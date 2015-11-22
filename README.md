@@ -1,4 +1,4 @@
-# <img src="./gifs/icon.png"> OTP Authenticator 
+#  OTP Authenticator ![OTP Authenticator Icon](./gifs/icon.png)
 
 
 ## Screenshots
