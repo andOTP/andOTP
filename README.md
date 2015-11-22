@@ -1,5 +1,19 @@
 # OTP Authenticator
 
+## Screenshots
+### Overview
+![Home Screen](./gifs/main.gif)
+
+### Rearranging Accounts 
+![Home Screen](./gifs/rearrange.gif)
+
+### Renaming Accounts
+![Home Screen](./gifs/rename.gif)
+
+### Deleting Accounts
+![Home Screen](./gifs/delete.gif)
+
+
 ## License:
 ```
 Copyright (C) 2014-2015 Bruno Bierbaumer, Andreas Heider
