@@ -1,4 +1,4 @@
-# otp-authenticator
+# OTP Authenticator
 
 ## License:
 ```
