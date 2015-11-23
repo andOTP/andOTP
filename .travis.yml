@@ -20,8 +20,6 @@ android:
 
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
-    - sys-img-armeabi-v7a-android-23
-    - sys-img-x86-android-23
     - sys-img-x86_64-android-23
 # Emulator Management: Create, Start and Wait
 
