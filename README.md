@@ -1,5 +1,5 @@
-#  OTP Authenticator ![OTP Authenticator Icon](./gifs/icon.png)
-
+#  OTP Authenticator 
+![OTP Authenticator Icon](./gifs/icon.png)
 
 ## Screenshots
 ### Overview
