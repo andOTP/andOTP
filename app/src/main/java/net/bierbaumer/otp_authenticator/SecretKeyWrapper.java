@@ -16,6 +16,7 @@
 
 package net.bierbaumer.otp_authenticator;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
@@ -52,6 +53,7 @@ public class SecretKeyWrapper {
      * Create a wrapper using the public/private key pair with the given alias.
      * If no pair with that alias exists, it will be generated.
      */
+    @SuppressLint("GetInstance")
     public SecretKeyWrapper(Context context, String alias)
             throws GeneralSecurityException, IOException {
         mCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");

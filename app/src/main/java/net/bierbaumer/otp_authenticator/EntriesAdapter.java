@@ -41,7 +41,7 @@ public class EntriesAdapter extends BaseAdapter {
         if (v == null) {
             final LayoutInflater vi;
             vi = LayoutInflater.from(parent.getContext());
-            v = vi.inflate(R.layout.row, null);
+            v = vi.inflate(R.layout.row, parent, false);
         }
 
         v.setBackgroundColor(Color.TRANSPARENT);
