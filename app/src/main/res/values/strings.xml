@@ -4,4 +4,6 @@
     <string name="action_settings">Settings</string>
     <string name="action_scan">Scan QR-Code</string>
     <string name="no_accounts">No Account has been added yet</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_edit">Edit</string>
 </resources>
