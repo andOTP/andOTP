@@ -24,10 +24,9 @@ import static net.bierbaumer.otp_authenticator.Utils.readFully;
 import static net.bierbaumer.otp_authenticator.Utils.writeFully;
 
 public class EncryptionHelper {
-    public final  static int KEY_LENGTH = 16;
-    public final  static int IV_LENGTH = 12;
-
-    public final static String ALGORITHM = "AES/GCM/NoPadding";
+    private final static String ALGORITHM = "AES/GCM/NoPadding";
+    private final static int KEY_LENGTH = 16;
+    private final static int IV_LENGTH = 12;
 
     public static byte[] encrypt(SecretKey secretKey, IvParameterSpec iv, byte[] plainText) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
