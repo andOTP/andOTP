@@ -2,6 +2,7 @@ package net.bierbaumer.otp_authenticator;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
 import android.test.ApplicationTestCase;
 
 import org.apache.commons.codec.DecoderException;
@@ -95,10 +96,13 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
     public void testSettingsHelper() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
         Context context = getContext();
 
-        final KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
-        keyStore.load(null);
-        keyStore.deleteEntry("settings");
 
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            final KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+            keyStore.load(null);
+            keyStore.deleteEntry("settings");
+
+        }
         new File(context.getFilesDir() + "/" + SettingsHelper.SETTINGS_FILE).delete();
         new File(context.getFilesDir() + "/" + SettingsHelper.KEY_FILE).delete();
 
