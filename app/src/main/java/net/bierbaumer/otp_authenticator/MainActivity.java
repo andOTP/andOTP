@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -33,10 +34,11 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
 
     private ArrayList<Entry> entries;
     private EntriesAdapter adapter;
+    private FloatingActionButton fab;
 
     private Entry nextSelection = null;
     private void showNoAccount(){
-        Snackbar noAccountSnackbar = Snackbar.make(findViewById(R.id.listView), R.string.no_accounts, Snackbar.LENGTH_INDEFINITE)
+        Snackbar noAccountSnackbar = Snackbar.make(fab, R.string.no_accounts, Snackbar.LENGTH_INDEFINITE)
                 .setAction("Add", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -61,6 +63,14 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        fab = (FloatingActionButton) findViewById(R.id.action_scan);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scanQRCode();
+            }
+        });
 
         final ListView listView = (ListView) findViewById(R.id.listView);
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -137,9 +147,9 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
 
                 adapter.notifyDataSetChanged();
 
-                Snackbar.make(findViewById(R.id.listView), "Account added", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(fab, "Account added", Snackbar.LENGTH_LONG).show();
             } catch (Exception e) {
-                Snackbar.make(findViewById(R.id.listView), "Invalid QR Code", Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
+                Snackbar.make(fab, "Invalid QR Code", Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
                     @Override
                     public void onDismissed(Snackbar snackbar, int event) {
                         super.onDismissed(snackbar, event);
@@ -169,18 +179,13 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_scan) {
-            scanQRCode();
-
-            return true;
-        } else  if(id == R.id.action_about){
+        if(id == R.id.action_about){
             WebView view = (WebView) LayoutInflater.from(this).inflate(R.layout.dialog_about, null);
             view.loadUrl("file:///android_res/raw/about.html");
             new AlertDialog.Builder(this).setView(view).show();
 
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -214,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
                 public void onClick(DialogInterface dialog, int whichButton) {
                     entries.remove(adapter.getCurrentSelection());
 
-                    Snackbar.make(findViewById(R.id.listView), "Account removed", Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
+                    Snackbar.make(fab, "Account removed", Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
                         @Override
                         public void onDismissed(Snackbar snackbar, int event) {
                             super.onDismissed(snackbar, event);
