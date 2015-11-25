@@ -3,6 +3,9 @@
 
 OTP Authenticator is a two-factor authentication App for Android 4.0+. 
 
+It implements Time-based One-time Passwords (TOTP) like specified in RFC 6238. 
+
+
 ## Features:
 - Free and Open-Source
 - Requires minimal permissions
