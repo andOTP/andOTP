@@ -4,7 +4,7 @@
 OTP Authenticator is a two-factor authentication App for Android 4.0+. 
 
 It implements Time-based One-time Passwords (TOTP) like specified in RFC 6238.  
-Simply scan the QR code and login with the generated 6-digit code.
+Simply scan the QR code and login with the generated 6-digit code. 
 
 
 ## Features:
@@ -14,6 +14,7 @@ Simply scan the QR code and login with the generated 6-digit code.
 - Encrypted storage on Android 4.3+
 - Sleek minimalistic Marterial Design
 - Great Usability 
+- Compatible with Google Authenticator
 
 ## Download:
 ![Download Latest Beta](./gifs/qr.png)
