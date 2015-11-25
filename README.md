@@ -1,6 +1,8 @@
 #  OTP Authenticator [![Build Status](https://img.shields.io/travis/0xbb/otp-authenticator/master.svg?style=flat-square)](https://travis-ci.org/0xbb/otp-authenticator)
 ![OTP Authenticator Icon](./gifs/icon.png)
 
+OTP Authenticator is a two-factor authentication App for Android 4.0+. 
+
 ## Features:
 - Free and Open-Source
 - Requires minimal permissions
