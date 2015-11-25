@@ -9,19 +9,20 @@
 - Sleek minimalistic Marterial Design
 - Great Usability 
 
+## Download:
+![Download Latest Beta](./gifs/qr.png)
 
-
-## Screenshots
-### Overview
+## Screenshots:
+### Overview:
 ![Home Screen](./gifs/main.gif)
 
-### Rearranging Accounts 
+### Rearranging Accounts:
 ![Home Screen](./gifs/rearrange.gif)
 
-### Renaming Accounts
+### Renaming Accounts:
 ![Home Screen](./gifs/rename.gif)
 
-### Deleting Accounts
+### Deleting Accounts:
 ![Home Screen](./gifs/delete.gif)
 
 
