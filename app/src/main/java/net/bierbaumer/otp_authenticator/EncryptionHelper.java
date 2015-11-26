@@ -88,8 +88,7 @@ public class EncryptionHelper {
         // Even if we just generated the key, always read it back to ensure we
         // can read it successfully.
         final byte[] wrapped = readFully(keyFile);
-        final SecretKey key = wrapper.unwrap(wrapped);
 
-        return key;
+        return wrapper.unwrap(wrapped);
     }
 }
