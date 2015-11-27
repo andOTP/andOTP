@@ -10,7 +10,7 @@ Simply scan the QR code and login with the generated 6-digit code.
 ## Features:
 - Free and Open-Source
 - Requires minimal permissions
-  - Only camera access for QR code scannning
+  - Only camera access for QR code scanning
 - Encrypted storage on Android 4.3+
 - Sleek minimalistic Marterial Design
 - Great Usability 
