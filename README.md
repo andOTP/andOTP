@@ -23,7 +23,7 @@ Simply scan the QR code and login with the generated 6-digit code.
 ### Overview:
 ![Home Screen](./media/overview_720p.gif)
 
-### Overview:
+### Adding Account:
 ![Adding Account](./media/add_720p.gif)
 
 ### Rearranging Accounts:
