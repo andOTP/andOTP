@@ -17,11 +17,13 @@ Simply scan the QR code and login with the generated 6-digit code.
 - Compatible with Google Authenticator
 
 ## Download:
-![Download Latest Beta](./gifs/qr.png)
+![Download Latest Beta](./media/qr.png)
 
 ## Screenshots:
 ### Overview:
-![Home Screen](./gifs/main.gif)
+![Home Screen]
+
+<video width="320" height="240" controls><source src="./media/overview_720p.mp4" type="video/mp4"></video>
 
 ### Rearranging Accounts:
 ![Home Screen](./gifs/rearrange.gif)
