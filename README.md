@@ -21,7 +21,7 @@ Simply scan the QR code and login with the generated 6-digit code.
 
 ## Screenshots:
 ### Overview:
-![Home Screen](./media/overview_720p.gif)
+![Home Screen](./media/overview_720p.gif) 
 
 ### Adding Accounts:
 ![Adding Account](./media/add_720p.gif)
@@ -34,7 +34,6 @@ Simply scan the QR code and login with the generated 6-digit code.
 
 ### Deleting Accounts:
 ![Home Screen](./media/delete_720p.gif)
-
 
 ## License:
 ```
