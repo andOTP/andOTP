@@ -17,7 +17,7 @@ Simply scan the QR code and login with the generated 6-digit code.
 - Compatible with Google Authenticator
 
 ## Download:
-![Download Latest Beta](./media/qr.png)
+![Download Latest Version (v0.1.0](https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://github.com/0xbb/otp-authenticator/releases/download/v0.1.0/otp-authenticator-v0.1.0.apk)
 
 ## Screenshots:
 ### Overview:
