@@ -1,5 +1,5 @@
 #  OTP Authenticator [![Build Status](https://img.shields.io/travis/0xbb/otp-authenticator/master.svg?style=flat-square)](https://travis-ci.org/0xbb/otp-authenticator)
-![OTP Authenticator Icon](./gifs/icon.png)
+![OTP Authenticator Icon](./media/icon.png)
 
 OTP Authenticator is a two-factor authentication App for Android 4.0+. 
 
@@ -21,18 +21,19 @@ Simply scan the QR code and login with the generated 6-digit code.
 
 ## Screenshots:
 ### Overview:
-![Home Screen]
+![Home Screen](./media/overview_720p.gif)
 
-<video width="320" height="240" controls><source src="./media/overview_720p.mp4" type="video/mp4"></video>
+### Overview:
+![Adding Account](./media/add_720p.gif)
 
 ### Rearranging Accounts:
-![Home Screen](./gifs/rearrange.gif)
+![Home Screen](./media/rearrange_720p.gif)
 
 ### Renaming Accounts:
-![Home Screen](./gifs/rename.gif)
+![Home Screen](./media/rename_720p.gif)
 
 ### Deleting Accounts:
-![Home Screen](./gifs/delete.gif)
+![Home Screen](./media/delete_720p.gif)
 
 
 ## License:
