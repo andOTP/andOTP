@@ -114,9 +114,7 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
                 animation.start();
 
                 for(int i =0;i< adapter.getCount();i++){
-                    if(progress == 0 || adapter.getItem(i).getCurrentOTP() == null){
-                        adapter.getItem(i).setCurrentOTP(TOTPHelper.generate(adapter.getItem(i).getSecret()));
-                    }
+                    adapter.getItem(i).setCurrentOTP(TOTPHelper.generate(adapter.getItem(i).getSecret()));
                 }
                 adapter.notifyDataSetChanged();
 
