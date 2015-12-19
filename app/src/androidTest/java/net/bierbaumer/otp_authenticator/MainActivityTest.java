@@ -87,7 +87,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
     public void test000EmptyStart() throws InterruptedException {
 
-        onView(withText("No Account has been added yet")).check(matches(isDisplayed()));
+        onView(withText("No account has been added yet")).check(matches(isDisplayed()));
         onView(withText("Add")).check(matches(isDisplayed()));
 
         Intents.init();
@@ -139,7 +139,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
 
         Thread.sleep(5000);
-        onView(withText("No Account has been added yet")).check(matches(isDisplayed()));
+        onView(withText("No account has been added yet")).check(matches(isDisplayed()));
 
         Intents.release();
     }
@@ -162,7 +162,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         // We can also validate that an intent resolving to the "camera" activity has been sent out by our app
         intended(hasAction("com.google.zxing.client.android.SCAN"));
 
-        onView(withText("No Account has been added yet")).check(matches(isDisplayed()));
+        onView(withText("No account has been added yet")).check(matches(isDisplayed()));
 
         Intents.release();
     }

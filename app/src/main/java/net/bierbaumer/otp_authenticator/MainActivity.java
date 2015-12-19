@@ -11,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -35,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
     private ArrayList<Entry> entries;
     private EntriesAdapter adapter;
     private FloatingActionButton fab;
+
+    private Handler handler;
+    private Runnable handlerTask;
 
     private Entry nextSelection = null;
     private void showNoAccount(){
@@ -96,30 +100,18 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
             showNoAccount();
         }
 
-        int progress = ((int) (System.currentTimeMillis() / 1000) % 30);
-        progressBar.setProgress((int) (1000.0 * progress / 30.0));
-
-        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 1000);
-        animation.setDuration((30 - progress) * 1000);
-        animation.setInterpolator(new LinearInterpolator());
-        animation.start();
-
-
-        final Handler handler = new Handler();
-        final Runnable handlerTask = new Runnable()
+        handler = new Handler();
+        handlerTask = new Runnable()
         {
             @Override
             public void run() {
                 int progress =  (int) (System.currentTimeMillis() / 1000) % 30 ;
+                progressBar.setProgress(progress*100);
 
-                if(progress == 0){
-                    progressBar.setProgress(progress);
-
-                    ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 1000);
-                    animation.setDuration(30 * 1000);
-                    animation.setInterpolator(new LinearInterpolator());
-                    animation.start();
-                }
+                ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", (progress+1)*100);
+                animation.setDuration(1000);
+                animation.setInterpolator(new LinearInterpolator());
+                animation.start();
 
                 for(int i =0;i< adapter.getCount();i++){
                     if(progress == 0 || adapter.getItem(i).getCurrentOTP() == null){
@@ -131,7 +123,20 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
                 handler.postDelayed(this, 1000);
             }
         };
-        handlerTask.run();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        handler.post(handlerTask);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        handler.removeCallbacks(handlerTask);
     }
 
     @Override
@@ -175,7 +180,8 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
         return true;
     }
 
-    @Override
+
+        @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 

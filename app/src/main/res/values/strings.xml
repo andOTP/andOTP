@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">OTP Authenticator</string>
     <string name="app_launcher">Authenticator</string>
-    <string name="no_accounts">No Account has been added yet</string>
+    <string name="no_accounts">No account has been added yet</string>
     <string name="menu_delete">Delete</string>
     <string name="menu_edit">Edit</string>
     <string name="menu_scan">Scan QR Code</string>
