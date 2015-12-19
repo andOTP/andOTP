@@ -20,7 +20,7 @@ Simply scan the QR code and login with the generated 6-digit code.
 
 <a href="https://play.google.com/store/apps/details?id=net.bierbaumer.otp_authenticator&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1"><img width=250 alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" /></a>
 
-![Download Latest Version (v0.1.0](https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://github.com/0xbb/otp-authenticator/releases/download/v0.1.0/otp-authenticator-v0.1.0.apk)
+![Download Latest Version (v0.1.1](https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://github.com/0xbb/otp-authenticator/releases/download/v0.1.1/otp-authenticator-v0.1.1.apk)
 
 ## Screenshots:
 ### Overview:
