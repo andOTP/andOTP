@@ -11,7 +11,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,7 +31,6 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements  ActionMode.Callback {
-
     private ArrayList<Entry> entries;
     private EntriesAdapter adapter;
     private FloatingActionButton fab;
@@ -43,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
     private Entry nextSelection = null;
     private void showNoAccount(){
         Snackbar noAccountSnackbar = Snackbar.make(fab, R.string.no_accounts, Snackbar.LENGTH_INDEFINITE)
-                .setAction("Add", new View.OnClickListener() {
+                .setAction(R.string.button_add, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         scanQRCode();
@@ -113,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
                 animation.setInterpolator(new LinearInterpolator());
                 animation.start();
 
-                for(int i =0;i< adapter.getCount();i++){
+                for(int i =0;i < adapter.getCount(); i++){
                     adapter.getItem(i).setCurrentOTP(TOTPHelper.generate(adapter.getItem(i).getSecret()));
                 }
                 adapter.notifyDataSetChanged();
@@ -150,9 +148,9 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
 
                 adapter.notifyDataSetChanged();
 
-                Snackbar.make(fab, "Account added", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(fab, R.string.msg_account_added, Snackbar.LENGTH_LONG).show();
             } catch (Exception e) {
-                Snackbar.make(fab, "Invalid QR Code", Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
+                Snackbar.make(fab, R.string.msg_invalid_qr_code, Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
                     @Override
                     public void onDismissed(Snackbar snackbar, int event) {
                         super.onDismissed(snackbar, event);
@@ -216,14 +214,14 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
 
         if (id == R.id.action_delete) {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.setTitle("Remove " + adapter.getCurrentSelection().getLabel() + "?");
-            alert.setMessage("Are you sure you want do remove this account?");
+            alert.setTitle(getString(R.string.alert_remove) + adapter.getCurrentSelection().getLabel() + "?");
+            alert.setMessage(R.string.msg_confirm_delete);
 
-            alert.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+            alert.setPositiveButton(R.string.button_remove, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     entries.remove(adapter.getCurrentSelection());
 
-                    Snackbar.make(fab, "Account removed", Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
+                    Snackbar.make(fab, R.string.msg_account_removed, Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
                         @Override
                         public void onDismissed(Snackbar snackbar, int event) {
                             super.onDismissed(snackbar, event);
@@ -238,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
                 }
             });
 
-            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            alert.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     dialog.cancel();
                     actionMode.finish();
@@ -251,20 +249,20 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
         }
         else if (id == R.id.action_edit) {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.setTitle("Rename");
+            alert.setTitle(R.string.alert_rename);
 
             final EditText input = new EditText(this);
             input.setText(adapter.getCurrentSelection().getLabel());
             alert.setView(input);
 
-            alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            alert.setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     adapter.getCurrentSelection().setLabel(input.getEditableText().toString());
                     actionMode.finish();
                 }
             });
 
-            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            alert.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     dialog.cancel();
                     actionMode.finish();

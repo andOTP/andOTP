@@ -6,4 +6,14 @@
     <string name="menu_edit">Edit</string>
     <string name="menu_scan">Scan QR Code</string>
     <string name="menu_about">About</string>
+    <string name="msg_invalid_qr_code">Invalid QR Code</string>
+    <string name="msg_account_added">Account added</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_save">Save</string>
+    <string name="msg_confirm_delete">Are you sure you want do remove this account?</string>
+    <string name="msg_account_removed">Account removed</string>
+    <string name="button_add">Add</string>
+    <string name="button_remove">Remove</string>
+    <string name="alert_rename">Rename</string>
+    <string name="alert_remove">"Remove "</string>
 </resources>
