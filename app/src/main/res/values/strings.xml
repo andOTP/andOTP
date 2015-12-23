@@ -16,4 +16,5 @@
     <string name="button_remove">Remove</string>
     <string name="alert_rename">Rename</string>
     <string name="alert_remove">"Remove "</string>
+    <string name="msg_camera_permission">Camera permission not granted</string>
 </resources>

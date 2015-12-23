@@ -1,14 +1,19 @@
 package net.bierbaumer.otp_authenticator;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ActionMode;
@@ -38,6 +43,49 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
     private Handler handler;
     private Runnable handlerTask;
 
+    private static final int PERMISSIONS_REQUEST_CAMERA = 42;
+
+    private void doScanQRCode(){
+        new IntentIntegrator(MainActivity.this)
+                .setCaptureActivity(CaptureActivityAnyOrientation.class)
+                .setOrientationLocked(false)
+                .initiateScan();
+    }
+
+    private void scanQRCode(){
+        // check Android 6 permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            doScanQRCode();
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA}, PERMISSIONS_REQUEST_CAMERA);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+       if(requestCode == PERMISSIONS_REQUEST_CAMERA) {
+           if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+               // permission was granted
+               doScanQRCode();
+           } else {
+               Snackbar.make(fab, R.string.msg_camera_permission, Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
+                   @Override
+                   public void onDismissed(Snackbar snackbar, int event) {
+                       super.onDismissed(snackbar, event);
+
+                       if (entries.isEmpty()) {
+                           showNoAccount();
+                       }
+                   }
+               }).show();
+           }
+       }
+       else {
+           super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+       }
+    }
+
     private Entry nextSelection = null;
     private void showNoAccount(){
         Snackbar noAccountSnackbar = Snackbar.make(fab, R.string.no_accounts, Snackbar.LENGTH_INDEFINITE)
@@ -48,13 +96,6 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
                     }
                 });
         noAccountSnackbar.show();
-    }
-
-    private void scanQRCode(){
-        new IntentIntegrator(MainActivity.this)
-                .setCaptureActivity(CaptureActivityAnyOrientation.class)
-                .setOrientationLocked(false)
-                .initiateScan();
     }
 
     @Override
