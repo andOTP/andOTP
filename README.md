@@ -27,7 +27,7 @@ Simply scan the QR code and login with the generated 6-digit code.
 [OTP Authenticator on F-Droid](https://f-droid.org/repository/browse/?fdfilter=otp&fdid=net.bierbaumer.otp_authenticator)
 
 ### APK:
-[![Download Latest Version (v0.1.1)](https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://github.com/0xbb/otp-authenticator/releases/download/v0.1.1/otp-authenticator-v0.1.1.apk)](https://github.com/0xbb/otp-authenticator/releases/download/v0.1.1/otp-authenticator-v0.1.1.apk)
+[![Download Latest Version (v0.1.2)](https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://github.com/0xbb/otp-authenticator/releases/download/v0.1.2/otp-authenticator-v0.1.2.apk)](https://github.com/0xbb/otp-authenticator/releases/download/v0.1.2/otp-authenticator-v0.1.2.apk)
 
 ## Screenshots:
 ### Overview:
