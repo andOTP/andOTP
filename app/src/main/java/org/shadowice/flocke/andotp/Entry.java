@@ -31,12 +31,16 @@ import org.json.JSONObject;
 import java.net.URL;
 import java.util.Arrays;
 
+import static org.shadowice.flocke.andotp.TOTPHelper.TOTP_DEFAULT_PERIOD;
+
 public class Entry {
     public static final String JSON_SECRET = "secret";
     public static final String JSON_LABEL = "label";
+    private static final String JSON_PERIOD = "period";
 
     private byte[] secret;
     private String label;
+    private int period;
     private String currentOTP;
 
     public Entry (){
@@ -61,23 +65,32 @@ public class Entry {
 
         String issuer = uri.getQueryParameter("issuer");
 
+        String period = uri.getQueryParameter("period");
+
         if(issuer != null){
             label = issuer +" - "+label;
         }
 
         this.label = label;
         this.secret = new Base32().decode(secret.toUpperCase());
+        if (period != null) {
+            this.period = Integer.parseInt(period);
+        } else {
+            this.period = TOTP_DEFAULT_PERIOD;
+        }
     }
 
     public Entry (JSONObject jsonObj ) throws JSONException {
         this.setSecret(new Base32().decode(jsonObj.getString(JSON_SECRET)));
         this.setLabel(jsonObj.getString(JSON_LABEL));
+        this.setPeriod(jsonObj.getInt(JSON_PERIOD));
     }
 
     public JSONObject toJSON() throws JSONException {
         JSONObject jsonObj = new JSONObject();
         jsonObj.put(JSON_SECRET, new String(new Base32().encode(getSecret())));
         jsonObj.put(JSON_LABEL, getLabel());
+        jsonObj.put(JSON_PERIOD, getPeriod());
 
         return jsonObj;
     }
@@ -97,6 +110,10 @@ public class Entry {
     public void setLabel(String label) {
         this.label = label;
     }
+
+    public int getPeriod() { return period; }
+
+    public void setPeriod(int period) { this.period = period; }
 
     public String getCurrentOTP() {
         return currentOTP;

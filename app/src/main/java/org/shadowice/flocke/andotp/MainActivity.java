@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
                 animation.start();
 
                 for(int i =0;i < adapter.getCount(); i++){
-                    adapter.getItem(i).setCurrentOTP(TOTPHelper.generate(adapter.getItem(i).getSecret()));
+                    adapter.getItem(i).setCurrentOTP(TOTPHelper.generate(adapter.getItem(i).getSecret(), adapter.getItem(i).getPeriod()));
                 }
                 adapter.notifyDataSetChanged();
 
@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
         if (requestCode == IntentIntegrator.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             try {
                 Entry e = new Entry(intent.getStringExtra(Intents.Scan.RESULT));
-                e.setCurrentOTP(TOTPHelper.generate(e.getSecret()));
+                e.setCurrentOTP(TOTPHelper.generate(e.getSecret(), e.getPeriod()));
                 entries.add(e);
                 SettingsHelper.store(this, entries);
 

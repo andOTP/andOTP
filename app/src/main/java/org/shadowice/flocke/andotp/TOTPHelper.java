@@ -27,17 +27,23 @@ import javax.crypto.spec.SecretKeySpec;
 
 
 public class TOTPHelper {
+    public static final int TOTP_DEFAULT_PERIOD = 30;
+
     public static final String SHA1 = "HmacSHA1";
 
     public static String generate(byte[] secret) {
-        return String.format("%06d", generate(secret, System.currentTimeMillis() / 1000, 6));
+        return String.format("%06d", generate(secret, TOTP_DEFAULT_PERIOD, System.currentTimeMillis() / 1000, 6));
     }
 
-    public static int generate(byte[] key, long t, int digits)
+    public static String generate(byte[] secret, int period) {
+        return String.format("%06d", generate(secret, period, System.currentTimeMillis() / 1000, 6));
+    }
+
+    public static int generate(byte[] key, int period, long t, int digits)
     {
         int r = 0;
         try {
-            t /= 30;
+            t /= period;
             byte[] data = new byte[8];
             long value = t;
             for (int i = 8; i-- > 0; value >>>= 8) {
