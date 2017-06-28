@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
 
     defaultConfig {
         applicationId "net.bierbaumer.otp_authenticator"
-        minSdkVersion 15
-        targetSdkVersion 23
+        minSdkVersion 18
+        targetSdkVersion 25
         versionCode 3
         versionName "0.1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -30,18 +30,18 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
     compile 'com.journeyapps:zxing-android-embedded:3.0.3@aar'
     compile 'com.google.zxing:core:3.2.1'
     compile 'commons-codec:commons-codec:1.5'
 
-    androidTestCompile 'com.android.support:support-annotations:23.1.1'
-    androidTestCompile 'com.android.support.test:runner:0.4.1'
-    androidTestCompile 'com.android.support.test:rules:0.4.1'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
-    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.1'
-    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'
+    androidTestCompile 'com.android.support:support-annotations:25.3.1'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
 
     androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
 
