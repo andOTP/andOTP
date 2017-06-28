@@ -28,6 +28,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,18 +40,17 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ActionMode;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -82,6 +82,29 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CAMERA}, PERMISSIONS_REQUEST_CAMERA);
         }
+    }
+
+    private void showAbout() {
+        // Inflate the dialog_about message contents
+        View messageView = getLayoutInflater().inflate(R.layout.dialog_about, null, false);
+
+        String versionName = "";
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            versionName = packageInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        TextView versionText = (TextView) messageView.findViewById(R.id.about_version);
+        versionText.setText(versionName);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.app_name);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setView(messageView);
+        builder.create();
+        builder.show();
     }
 
     @Override
@@ -240,14 +263,12 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
     }
 
 
-        @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if(id == R.id.action_about){
-            WebView view = (WebView) LayoutInflater.from(this).inflate(R.layout.dialog_about, null);
-            view.loadUrl("file:///android_res/raw/about.html");
-            new AlertDialog.Builder(this).setView(view).show();
+            showAbout();
 
             return true;
         }

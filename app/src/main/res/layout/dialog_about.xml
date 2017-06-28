@@ -1,7 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WebView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/about_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/webViewAbout"
-    />
+    android:orientation="vertical"
+    android:padding="@dimen/activity_vertical_margin" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:text="@string/about_description" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/about_version_hint" />
+        
+        <TextView
+            android:id="@+id/about_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:autoLink="web"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:text="@string/about_homepage_link" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:text="@string/about_credits" />
+
+</LinearLayout>

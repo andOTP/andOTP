@@ -8,8 +8,8 @@ android {
         applicationId "org.shadowice.flocke.andotp"
         minSdkVersion 18
         targetSdkVersion 25
-        versionCode 3
-        versionName "0.1.2"
+        versionCode 1
+        versionName "0.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }

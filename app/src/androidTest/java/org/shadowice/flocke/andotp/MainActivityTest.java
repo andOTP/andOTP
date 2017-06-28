@@ -100,10 +100,10 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         onView(allOf(withText("About"), isDisplayed())).perform(click());
 
         Thread.sleep(1000);
-        onView(withId(R.id.webViewAbout)).check(matches(isDisplayed()));
-        onView(withId(R.id.webViewAbout)).perform(pressBack());
+        onView(withId(R.id.about_layout)).check(matches(isDisplayed()));
+        onView(withId(R.id.about_layout)).perform(pressBack());
 
-        onView(withId(R.id.webViewAbout)).check(doesNotExist());
+        onView(withId(R.id.about_layout)).check(doesNotExist());
 
     }
 

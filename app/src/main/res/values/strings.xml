@@ -17,4 +17,10 @@
     <string name="alert_rename">Rename</string>
     <string name="alert_remove">"Remove "</string>
     <string name="msg_camera_permission">Camera permission not granted</string>
+
+    <!-- About dialog -->
+    <string name="about_description">An open-source two-factor authentication App for Android 4.3+</string>
+    <string name="about_version_hint">Version</string>
+    <string name="about_homepage_link" translatable="false">https://github.com/flocke/andOTP</string>
+    <string name="about_credits" translatable="false">Copyright © 2017 Jakob Nixdorf</string>
 </resources>
