@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.bierbaumer.otp_authenticator;
+package org.shadowice.flocke.andotp;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

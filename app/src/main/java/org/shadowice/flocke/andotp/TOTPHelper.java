@@ -1,4 +1,4 @@
-package net.bierbaumer.otp_authenticator;
+package org.shadowice.flocke.andotp;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

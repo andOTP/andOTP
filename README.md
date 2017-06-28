@@ -1,24 +1,28 @@
-#  OTP Authenticator [![Build Status](https://img.shields.io/travis/0xbb/otp-authenticator/master.svg?style=flat-square)](https://travis-ci.org/0xbb/otp-authenticator)
-![OTP Authenticator Icon](./media/icon.png)
+#  andOTP -  Android OTP Authenticator
+![andOTP](./media/icon.png)
 
-OTP Authenticator is a two-factor authentication App for Android 4.0+. 
+andOTP is a two-factor authentication App for Android 4.3+.
 
 It implements Time-based One-time Passwords (TOTP) like specified in RFC 6238.  
 Simply scan the QR code and login with the generated 6-digit code. 
 
+This is a fork of the great OTP Authenticator app written by Bruno Bierbaumer,
+which has sadly been inactive since 2015. All credit for the original version
+goes to Bruno.
 
 ## Features:
 - Free and Open-Source
 - Requires minimal permissions
   - Only camera access for QR code scanning
-- Encrypted storage on Android 4.3+
+- Encrypted storage
 - Sleek minimalistic Material Design
 - Great Usability 
 - Compatible with Google Authenticator
 
+<!--
+
 ## Download:
 ### Google Play:
-
 
 <a href="https://play.google.com/store/apps/details?id=net.bierbaumer.otp_authenticator&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1"><img width=250 alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" /></a>
 
@@ -28,6 +32,8 @@ Simply scan the QR code and login with the generated 6-digit code.
 
 ### APK:
 [![Download Latest Version (v0.1.2)](https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://github.com/0xbb/otp-authenticator/releases/download/v0.1.2/otp-authenticator-v0.1.2.apk)](https://github.com/0xbb/otp-authenticator/releases/download/v0.1.2/otp-authenticator-v0.1.2.apk)
+
+-->
 
 ## Screenshots:
 ### Overview:
@@ -47,6 +53,7 @@ Simply scan the QR code and login with the generated 6-digit code.
 
 ## License:
 ```
+Copyright (C) 2017 Jakob Nixdorf <flocke@shadowice.org>
 Copyright (C) 2015 Bruno Bierbaumer
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in the

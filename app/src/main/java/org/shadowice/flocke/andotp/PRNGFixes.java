@@ -1,4 +1,4 @@
-package net.bierbaumer.otp_authenticator;
+package org.shadowice.flocke.andotp;
 
 /*
  * This software is provided 'as-is', without any express or implied

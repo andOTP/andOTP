@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">OTP Authenticator</string>
-    <string name="app_launcher">Authenticator</string>
+    <string name="app_name">andOTP</string>
+    <string name="app_launcher">OTP Authenticator</string>
     <string name="no_accounts">No account has been added yet</string>
     <string name="menu_delete">Delete</string>
     <string name="menu_edit">Edit</string>

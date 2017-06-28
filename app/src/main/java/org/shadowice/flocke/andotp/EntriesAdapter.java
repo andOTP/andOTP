@@ -1,4 +1,4 @@
-package net.bierbaumer.otp_authenticator;
+package org.shadowice.flocke.andotp;
 
 import android.content.ClipData;
 import android.graphics.Color;

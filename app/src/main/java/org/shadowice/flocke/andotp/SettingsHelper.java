@@ -1,4 +1,4 @@
-package net.bierbaumer.otp_authenticator;
+package org.shadowice.flocke.andotp;
 
 import android.content.Context;
 import android.os.Build;
@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
 
-import static net.bierbaumer.otp_authenticator.Utils.readFully;
-import static net.bierbaumer.otp_authenticator.Utils.writeFully;
+import static org.shadowice.flocke.andotp.Utils.readFully;
+import static org.shadowice.flocke.andotp.Utils.writeFully;
 
 public class SettingsHelper {
     public static final String KEY_FILE = "otp.key";
