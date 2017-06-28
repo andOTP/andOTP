@@ -1,5 +1,5 @@
 #  andOTP -  Android OTP Authenticator
-![andOTP](./media/icon.png)
+![andOTP](./assets/logo.png)
 
 andOTP is a two-factor authentication App for Android 4.3+.
 
@@ -34,22 +34,6 @@ goes to Bruno.
 [![Download Latest Version (v0.1.2)](https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://github.com/0xbb/otp-authenticator/releases/download/v0.1.2/otp-authenticator-v0.1.2.apk)](https://github.com/0xbb/otp-authenticator/releases/download/v0.1.2/otp-authenticator-v0.1.2.apk)
 
 -->
-
-## Screenshots:
-### Overview:
-![Home Screen](./media/overview_720p.gif) 
-
-### Adding Accounts:
-![Adding Account](./media/add_720p.gif)
-
-### Rearranging Accounts:
-![Home Screen](./media/rearrange_720p.gif)
-
-### Renaming Accounts:
-![Home Screen](./media/rename_720p.gif)
-
-### Deleting Accounts:
-![Home Screen](./media/delete_720p.gif)
 
 ## License:
 ```
