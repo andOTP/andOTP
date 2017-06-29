@@ -35,6 +35,14 @@ goes to Bruno.
 
 -->
 
+## Acknowledgments:
+
+ * [Apache Commons Code](https://commons.apache.org/proper/commons-codec/)
+ * [Code Parts from Google's Android Samples](https://android.googlesource.com/platform/development/+/master/samples/Vault/src/com/example/android/vault)
+ * [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
+ * [ZXing](https://github.com/zxing/zxing)
+ * [ZXing Android Embedded](https://github.com/journeyapps/zxing-android-embedded)
+
 ## License:
 ```
 Copyright (C) 2017 Jakob Nixdorf <flocke@shadowice.org>

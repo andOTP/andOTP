@@ -37,6 +37,7 @@ dependencies {
     compile 'com.journeyapps:zxing-android-embedded:3.0.3@aar'
     compile 'com.google.zxing:core:3.2.1'
     compile 'commons-codec:commons-codec:1.5'
+    compile 'me.zhanghai.android.materialprogressbar:library:1.4.1'
 
     androidTestCompile 'com.android.support:support-annotations:25.3.1'
     androidTestCompile 'com.android.support.test:runner:0.5'

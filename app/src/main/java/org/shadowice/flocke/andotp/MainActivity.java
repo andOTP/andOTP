@@ -177,10 +177,10 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public void run() {
-                int progress =  (int) (System.currentTimeMillis() / 1000) % 30 ;
+                int progress =  (int) (TOTPHelper.TOTP_DEFAULT_PERIOD - (System.currentTimeMillis() / 1000) % TOTPHelper.TOTP_DEFAULT_PERIOD) ;
                 progressBar.setProgress(progress*100);
 
-                ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", (progress+1)*100);
+                ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", (progress-1)*100);
                 animation.setDuration(1000);
                 animation.setInterpolator(new LinearInterpolator());
                 animation.start();
