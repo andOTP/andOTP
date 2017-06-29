@@ -26,7 +26,6 @@ import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -38,17 +37,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.ActionMode;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -57,9 +53,9 @@ import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements  ActionMode.Callback {
+public class MainActivity extends AppCompatActivity {
     private ArrayList<Entry> entries;
-    private EntriesAdapter adapter;
+    private EntriesCardAdapter adapter;
     private FloatingActionButton fab;
 
     private Handler handler;
@@ -160,25 +156,17 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
             }
         });
 
-        final ListView listView = (ListView) findViewById(R.id.listView);
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
+        recList.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recList.setLayoutManager(llm);
 
         entries = SettingsHelper.load(this);
 
-        adapter = new EntriesAdapter();
-        adapter.setEntries(entries);
-
-        listView.setAdapter(adapter);
-
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                nextSelection = entries.get(i);
-                startActionMode(MainActivity.this);
-
-                return true;
-            }
-        });
+        adapter = new EntriesCardAdapter(entries);
+        recList.setAdapter(adapter);
 
         if(entries.isEmpty()){
             showNoAccount();
@@ -197,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
                 animation.setInterpolator(new LinearInterpolator());
                 animation.start();
 
-                for(int i =0;i < adapter.getCount(); i++){
+                for(int i =0;i < adapter.getItemCount(); i++){
                     adapter.getItem(i).setCurrentOTP(TOTPHelper.generate(adapter.getItem(i).getSecret(), adapter.getItem(i).getPeriod()));
                 }
                 adapter.notifyDataSetChanged();
@@ -273,99 +261,5 @@ public class MainActivity extends AppCompatActivity implements  ActionMode.Callb
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        MenuInflater inflater = actionMode.getMenuInflater();
-        inflater.inflate(R.menu.menu_edit, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        adapter.setCurrentSelection(nextSelection);
-        adapter.notifyDataSetChanged();
-        actionMode.setTitle(adapter.getCurrentSelection().getLabel());
-
-        return true;
-    }
-
-    @Override
-    public boolean onActionItemClicked(final ActionMode actionMode, MenuItem menuItem) {
-        int id = menuItem.getItemId();
-
-        if (id == R.id.action_delete) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.setTitle(getString(R.string.alert_remove) + adapter.getCurrentSelection().getLabel() + "?");
-            alert.setMessage(R.string.msg_confirm_delete);
-
-            alert.setPositiveButton(R.string.button_remove, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    entries.remove(adapter.getCurrentSelection());
-
-                    Snackbar.make(fab, R.string.msg_account_removed, Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
-                        @Override
-                        public void onDismissed(Snackbar snackbar, int event) {
-                            super.onDismissed(snackbar, event);
-
-                            if (entries.isEmpty()) {
-                                showNoAccount();
-                            }
-                        }
-                    }).show();
-
-                    actionMode.finish();
-                }
-            });
-
-            alert.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    dialog.cancel();
-                    actionMode.finish();
-                }
-            });
-
-            alert.show();
-
-            return true;
-        }
-        else if (id == R.id.action_edit) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.setTitle(R.string.alert_rename);
-
-            final EditText input = new EditText(this);
-            input.setText(adapter.getCurrentSelection().getLabel());
-            alert.setView(input);
-
-            alert.setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    adapter.getCurrentSelection().setLabel(input.getEditableText().toString());
-                    actionMode.finish();
-                }
-            });
-
-            alert.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    dialog.cancel();
-                    actionMode.finish();
-                }
-            });
-
-            alert.show();
-
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public void onDestroyActionMode(ActionMode actionMode) {
-        adapter.setCurrentSelection(null);
-        adapter.notifyDataSetChanged();
-
-        SettingsHelper.store(this, entries);
     }
 }
