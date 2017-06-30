@@ -28,13 +28,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
+import org.shadowice.flocke.andotp.ItemTouchHelper.ItemTouchHelperAdapter;
+import org.shadowice.flocke.andotp.ItemTouchHelper.ItemTouchHelperViewHolder;
 
-public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.EntryViewHolder> {
+import java.util.ArrayList;
+import java.util.Collections;
 
-    private List<Entry> entries;
+public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.EntryViewHolder>
+    implements ItemTouchHelperAdapter {
 
-    public EntriesCardAdapter(List<Entry> entries) {
+    private ArrayList<Entry> entries;
+    public MoveEventCallback moveEventCallback;
+
+    public EntriesCardAdapter(ArrayList<Entry> entries) {
         this.entries = entries;
     }
 
@@ -50,28 +56,75 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
     @Override
     public void onBindViewHolder(EntryViewHolder entryViewHolder, int i) {
         Entry entry = entries.get(i);
+
         entryViewHolder.OTPValue.setText(entry.getCurrentOTP());
         entryViewHolder.OTPLabel.setText(entry.getLabel());
+        entryViewHolder.moveEventCallback = moveEventCallback;
     }
 
     @Override
     public EntryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.
-                from(viewGroup.getContext()).
-                inflate(R.layout.card_layout, viewGroup, false);
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_layout, viewGroup, false);
 
         return new EntryViewHolder(itemView);
     }
 
-    public static class EntryViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void onItemDismiss(int position) {
+        entries.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(entries, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(entries, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+
+        return true;
+    }
+
+    public void setMoveEventCallback(MoveEventCallback cb) {
+        this.moveEventCallback = cb;
+    }
+
+    public static class EntryViewHolder extends RecyclerView.ViewHolder
+            implements ItemTouchHelperViewHolder {
+
+        private MoveEventCallback moveEventCallback;
 
         protected TextView OTPValue;
         protected TextView OTPLabel;
 
         public EntryViewHolder(View v) {
             super(v);
-            OTPValue =  (TextView) v.findViewById(R.id.textViewOTP);
-            OTPLabel = (TextView)  v.findViewById(R.id.textViewLabel);
+
+            OTPValue = (TextView) v.findViewById(R.id.textViewOTP);
+            OTPLabel = (TextView) v.findViewById(R.id.textViewLabel);
         }
+
+        @Override
+        public void onItemSelected() {
+            if (moveEventCallback != null)
+                moveEventCallback.onMoveEventStart();
+        }
+
+        @Override
+        public void onItemClear() {
+            if (moveEventCallback != null)
+                moveEventCallback.onMoveEventStop();
+        }
+    }
+
+    public interface MoveEventCallback {
+        void onMoveEventStart();
+        void onMoveEventStop();
     }
 }

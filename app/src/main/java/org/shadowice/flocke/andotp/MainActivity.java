@@ -40,6 +40,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,6 +51,8 @@ import android.widget.TextView;
 
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
+
+import org.shadowice.flocke.andotp.ItemTouchHelper.SimpleItemTouchHelperCallback;
 
 import java.util.ArrayList;
 
@@ -157,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
         recList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -167,6 +171,24 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new EntriesCardAdapter(entries);
         recList.setAdapter(adapter);
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(recList);
+
+        adapter.setMoveEventCallback(new EntriesCardAdapter.MoveEventCallback() {
+            @Override
+            public void onMoveEventStart() {
+                stopUpdater();
+            }
+
+            @Override
+            public void onMoveEventStop() {
+                startUpdater();
+
+                SettingsHelper.store(getBaseContext(), entries);
+            }
+        });
 
         if(entries.isEmpty()){
             showNoAccount();
