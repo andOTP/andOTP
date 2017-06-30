@@ -39,8 +39,8 @@ goes to Bruno.
 
  * [Apache Commons Code](https://commons.apache.org/proper/commons-codec/)
  * [Code Parts from Google's Android Samples](https://android.googlesource.com/platform/development/+/master/samples/Vault/src/com/example/android/vault)
- * [SimpleItemTouchHelperCallback](https://github.com/iPaulPro/Android-ItemTouchHelper-Demo/blob/master/app/src/main/java/co/paulburke/android/itemtouchhelperdemo/helper/SimpleItemTouchHelperCallback.java) from [Android-ItemTouchHelper-Demo](https://github.com/iPaulPro/Android-ItemTouchHelper-Demo) by Paul Burke
  * [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
+ * [SimpleItemTouchHelperCallback](https://github.com/iPaulPro/Android-ItemTouchHelper-Demo/blob/master/app/src/main/java/co/paulburke/android/itemtouchhelperdemo/helper/SimpleItemTouchHelperCallback.java) from [Android-ItemTouchHelper-Demo](https://github.com/iPaulPro/Android-ItemTouchHelper-Demo) by [Paul Burke](https://github.com/iPaulPro)
  * [ZXing](https://github.com/zxing/zxing)
  * [ZXing Android Embedded](https://github.com/journeyapps/zxing-android-embedded)
 
