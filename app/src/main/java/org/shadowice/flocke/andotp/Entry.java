@@ -42,6 +42,7 @@ public class Entry {
     private String label;
     private int period;
     private String currentOTP;
+    private long last_update = 0;
 
     public Entry (){
 
@@ -121,6 +122,20 @@ public class Entry {
 
     public void setCurrentOTP(String currentOTP) {
         this.currentOTP = currentOTP;
+    }
+
+    public boolean updateOTP() {
+        long time = System.currentTimeMillis() / 1000;
+        long counter = time / getPeriod();
+
+        if (counter > this.last_update) {
+            setCurrentOTP(TOTPHelper.generate(getSecret(), getPeriod()));
+            this.last_update = counter;
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

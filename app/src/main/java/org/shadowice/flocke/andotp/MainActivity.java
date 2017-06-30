@@ -185,28 +185,37 @@ public class MainActivity extends AppCompatActivity {
                 animation.setInterpolator(new LinearInterpolator());
                 animation.start();
 
+                boolean change = false;
                 for(int i =0;i < adapter.getItemCount(); i++){
-                    adapter.getItem(i).setCurrentOTP(TOTPHelper.generate(adapter.getItem(i).getSecret(), adapter.getItem(i).getPeriod()));
+                    change = adapter.getItem(i).updateOTP();
                 }
-                adapter.notifyDataSetChanged();
+
+                if (change)
+                    adapter.notifyDataSetChanged();
 
                 handler.postDelayed(this, 1000);
             }
         };
     }
 
+    public void stopUpdater() {
+        handler.removeCallbacks(handlerTask);
+    }
+
+    public void startUpdater() {
+        handler.post(handlerTask);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-
-        handler.post(handlerTask);
+        startUpdater();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
-        handler.removeCallbacks(handlerTask);
+        stopUpdater();
     }
 
     @Override
