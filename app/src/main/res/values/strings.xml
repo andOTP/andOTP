@@ -6,6 +6,9 @@
     <string name="menu_edit">Edit</string>
     <string name="menu_scan">Scan QR Code</string>
     <string name="menu_about">About</string>
+    <string name="menu_submenu_backup">Import / Export</string>
+    <string name="menu_export">Export as JSON</string>
+    <string name="menu_import">Import from JSON</string>
     <string name="msg_invalid_qr_code">Invalid QR Code</string>
     <string name="msg_account_added">Account added</string>
     <string name="button_cancel">Cancel</string>
@@ -17,6 +20,13 @@
     <string name="alert_rename">Rename</string>
     <string name="alert_remove">"Remove "</string>
     <string name="msg_camera_permission">Camera permission not granted</string>
+    <string name="msg_storage_permissions">Storage permissions not granted</string>
+    <string name="msg_security_warning">Security warning</string>
+    <string name="msg_export_warning">
+        Do you really want to export the database as plain-text JSON file?
+        This file contains all your secret keys, please keep it safe!
+    </string>
+    <string name="msg_export_success">Export to external storage successful</string>
 
     <!-- About dialog -->
     <string name="about_description">An open-source two-factor authentication App for Android 4.3+</string>

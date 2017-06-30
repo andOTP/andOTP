@@ -27,17 +27,23 @@ import android.content.Context;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
 
+import static android.os.Environment.getExternalStorageDirectory;
 import static org.shadowice.flocke.andotp.Utils.readFully;
 import static org.shadowice.flocke.andotp.Utils.writeFully;
 
 public class SettingsHelper {
     public static final String KEY_FILE = "otp.key";
     public static final String SETTINGS_FILE = "secrets.dat";
+
+    public static final String EXPORT_FILE = "otp_accounts.json";
 
     public static void store(Context context, ArrayList<Entry> entries){
         JSONArray a = new JSONArray();
@@ -80,5 +86,45 @@ public class SettingsHelper {
         catch (Exception e) {
         }
         return entries;
+    }
+
+    public static JSONArray readJSON(Context context) {
+        JSONArray json = new JSONArray();
+
+        try {
+            byte[] data = readFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
+
+            SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
+            data = EncryptionHelper.decrypt(key, data);
+
+            json = new JSONArray(new String(data));
+        }
+        catch (Exception e) {
+        }
+
+        return json;
+    }
+
+    public static boolean exportAsJSON(Context context) {
+        File outputFile = new File(getExternalStorageDirectory() + "/" + EXPORT_FILE);
+
+        JSONArray data = readJSON(context);
+
+        boolean success = true;
+
+        try {
+            Writer output = new BufferedWriter(new FileWriter(outputFile));
+            output.write(data.toString());
+            output.close();
+        } catch (Exception e) {
+            success = false;
+            e.printStackTrace();
+        }
+
+        return success;
+    }
+
+    public static void importFromJSON(Context context) {
+
     }
 }

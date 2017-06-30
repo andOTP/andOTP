@@ -2,6 +2,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/submenu_backup"
+        android:title="@string/menu_submenu_backup">
+
+        <menu>
+            <item
+                android:id="@+id/action_export"
+                android:orderInCategory="100"
+                android:title="@string/menu_export"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/action_import"
+                android:orderInCategory="100"
+                android:title="@string/menu_import"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+
+    <item
         android:id="@+id/action_about"
         android:orderInCategory="100"
         android:title="@string/menu_about"

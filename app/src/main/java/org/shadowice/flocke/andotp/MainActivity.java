@@ -26,6 +26,7 @@ import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private Runnable handlerTask;
 
     private static final int PERMISSIONS_REQUEST_CAMERA = 42;
+    private static final int PERMISSIONS_REQUEST_WRITE_EXPORT = 24;
 
     private void doScanQRCode(){
         new IntentIntegrator(MainActivity.this)
@@ -74,17 +76,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void scanQRCode(){
-        // check Android 6 permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             doScanQRCode();
         } else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.CAMERA}, PERMISSIONS_REQUEST_CAMERA);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMISSIONS_REQUEST_CAMERA);
         }
     }
 
     private void showAbout() {
-        // Inflate the dialog_about message contents
         View messageView = getLayoutInflater().inflate(R.layout.dialog_about, null, false);
 
         String versionName = "";
@@ -106,31 +105,72 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
+    private void doExportJSON() {
+        boolean success = SettingsHelper.exportAsJSON(this);
+
+        if (success)
+            showSimpleSnackbar(R.string.msg_export_success);
+    }
+
+    private void exportJSON() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            doExportJSON();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_WRITE_EXPORT);
+        }
+    }
+
+    private void exportJSONWithWarning() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(getString(R.string.msg_security_warning))
+                .setMessage(getString(R.string.msg_export_warning))
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        exportJSON();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
        if(requestCode == PERMISSIONS_REQUEST_CAMERA) {
            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-               // permission was granted
                doScanQRCode();
            } else {
-               Snackbar.make(fab, R.string.msg_camera_permission, Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
-                   @Override
-                   public void onDismissed(Snackbar snackbar, int event) {
-                       super.onDismissed(snackbar, event);
-
-                       if (entries.isEmpty()) {
-                           showNoAccount();
-                       }
-                   }
-               }).show();
+               showSimpleSnackbar(R.string.msg_camera_permission);
            }
-       }
-       else {
+       } else if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT) {
+           if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+               doExportJSON();
+           } else {
+               showSimpleSnackbar(R.string.msg_storage_permissions);
+           }
+       } else {
            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
        }
     }
 
-    private Entry nextSelection = null;
+    private void showSimpleSnackbar(int string_res) {
+        Snackbar.make(fab, string_res, Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
+            @Override
+            public void onDismissed(Snackbar snackbar, int event) {
+                super.onDismissed(snackbar, event);
+
+                if (entries.isEmpty()) {
+                    showNoAccount();
+                }
+            }
+        }).show();
+    }
+
     private void showNoAccount(){
         Snackbar noAccountSnackbar = Snackbar.make(fab, R.string.no_accounts, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.button_add, new View.OnClickListener() {
@@ -286,7 +326,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.action_about){
+        if (id == R.id.action_export) {
+            exportJSONWithWarning();
+
+            return true;
+        } else if (id == R.id.action_import) {
+            SettingsHelper.importFromJSON(this);
+
+            return true;
+        } else if (id == R.id.action_about){
             showAbout();
 
             return true;
