@@ -23,7 +23,6 @@
 package org.shadowice.flocke.andotp;
 
 import android.content.Context;
-import android.os.Build;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,11 +52,8 @@ public class SettingsHelper {
         try {
             byte[] data = a.toString().getBytes();
 
-            int currentApiVersion = android.os.Build.VERSION.SDK_INT;
-            if (currentApiVersion >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
-                data = EncryptionHelper.encrypt(key,data);
-            }
+            SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
+            data = EncryptionHelper.encrypt(key,data);
 
             writeFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
 
@@ -72,11 +68,9 @@ public class SettingsHelper {
         try {
             byte[] data = readFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
 
-            int currentApiVersion = android.os.Build.VERSION.SDK_INT;
-            if (currentApiVersion >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
-                data = EncryptionHelper.decrypt(key, data);
-            }
+            SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
+            data = EncryptionHelper.decrypt(key, data);
+
             JSONArray a = new JSONArray(new String(data));
 
             for(int i=0;i< a.length(); i++){
