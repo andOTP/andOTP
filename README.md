@@ -11,13 +11,20 @@ which has sadly been inactive since 2015. All credit for the original version
 goes to Bruno.
 
 ## Features:
-- Free and Open-Source
-- Requires minimal permissions
-  - Only camera access for QR code scanning
-- Encrypted storage
-- Sleek minimalistic Material Design
-- Great Usability 
-- Compatible with Google Authenticator
+
+ * Free and Open-Source
+ * Requires minimal permissions
+   - Only camera access for QR code scanning
+ * Encrypted storage
+ * Sleek minimalistic Material Design
+ * Great Usability
+ * Compatible with Google Authenticator
+
+## TODO
+
+ * Re-implement renaming of entries
+ * Import from JSON
+ * Export the secret key (maybe)
 
 <!--
 
