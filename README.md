@@ -23,7 +23,6 @@ goes to Bruno.
 ## TODO
 
  * Re-implement renaming of entries
- * Import from JSON
  * Export the secret key (maybe)
 
 <!--

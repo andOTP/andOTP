@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2017 Jakob Nixdorf
  * Copyright (C) 2015 Bruno Bierbaumer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,6 +31,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -67,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int PERMISSIONS_REQUEST_CAMERA = 42;
     private static final int PERMISSIONS_REQUEST_WRITE_EXPORT = 24;
+    private static final int PERMISSIONS_REQUEST_READ_IMPORT = 12;
+
+    private static final int INTENT_OPEN_DOCUMENT = 42;
 
     private void doScanQRCode(){
         new IntentIntegrator(MainActivity.this)
@@ -145,6 +150,39 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
+    private void doImportJSON(Uri uri) {
+        if (StorageHelper.isExternalStorageReadable()) {
+            boolean success = SettingsHelper.importFromJSON(this, uri);
+
+            if (success) {
+                entries = SettingsHelper.load(this);
+                adapter.setEntries(entries);
+                adapter.notifyDataSetChanged();
+
+                showSimpleSnackbar(R.string.msg_import_success);
+            } else {
+                showSimpleSnackbar(R.string.msg_import_failed);
+            }
+        } else {
+            showSimpleSnackbar(R.string.msg_storage_not_accessible);
+        }
+    }
+
+    private void importJSONWithSelector() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*");
+        startActivityForResult(intent, INTENT_OPEN_DOCUMENT);
+    }
+
+    private void importJSON() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            importJSONWithSelector();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_READ_IMPORT);
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
        if(requestCode == PERMISSIONS_REQUEST_CAMERA) {
@@ -156,6 +194,12 @@ public class MainActivity extends AppCompatActivity {
        } else if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT) {
            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                doExportJSON();
+           } else {
+               showSimpleSnackbar(R.string.msg_storage_permissions);
+           }
+       } else if (requestCode == PERMISSIONS_REQUEST_READ_IMPORT) {
+           if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+               importJSONWithSelector();
            } else {
                showSimpleSnackbar(R.string.msg_storage_permissions);
            }
@@ -314,6 +358,12 @@ public class MainActivity extends AppCompatActivity {
 
                 return;
             }
+        } else if (requestCode == INTENT_OPEN_DOCUMENT && resultCode == Activity.RESULT_OK) {
+            Uri file = null;
+            if (intent != null) {
+                file = intent.getData();
+                doImportJSON(file);
+            }
         }
 
         if(entries.isEmpty()){
@@ -337,7 +387,7 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         } else if (id == R.id.action_import) {
-            SettingsHelper.importFromJSON(this);
+            importJSON();
 
             return true;
         } else if (id == R.id.action_about){

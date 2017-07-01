@@ -23,13 +23,17 @@
 package org.shadowice.flocke.andotp;
 
 import android.content.Context;
+import android.net.Uri;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Writer;
 import java.util.ArrayList;
 
@@ -45,6 +49,19 @@ public class SettingsHelper {
 
     public static final String EXPORT_FILE = "otp_accounts.json";
 
+    public static void store(Context context, JSONArray json) {
+        try {
+            byte[] data = json.toString().getBytes();
+
+            SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
+            data = EncryptionHelper.encrypt(key,data);
+
+            writeFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
+
+        } catch (Exception e) {
+        }
+    }
+
     public static void store(Context context, ArrayList<Entry> entries){
         JSONArray a = new JSONArray();
 
@@ -55,17 +72,7 @@ public class SettingsHelper {
             }
         }
 
-        try {
-            byte[] data = a.toString().getBytes();
-
-            SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
-            data = EncryptionHelper.encrypt(key,data);
-
-            writeFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
-
-        } catch (Exception e) {
-        }
-
+        store(context, a);
     }
 
     public static ArrayList<Entry> load(Context context){
@@ -124,7 +131,37 @@ public class SettingsHelper {
         return success;
     }
 
-    public static void importFromJSON(Context context) {
+    public static boolean importFromJSON(Context context, Uri file) {
+        boolean success = true;
 
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try {
+            InputStream inputStream = context.getContentResolver().openInputStream(file);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            reader.close();
+            inputStream.close();
+        } catch (Exception e) {
+            success = false;
+            e.printStackTrace();
+        }
+        String content = stringBuilder.toString();
+
+        JSONArray json = null;
+
+        try {
+            json = new JSONArray(content);
+        } catch (Exception e) {
+            success = false;
+            e.printStackTrace();
+        }
+
+        store(context, json);
+
+        return success;
     }
 }

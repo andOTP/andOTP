@@ -53,6 +53,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         return entries.get(i);
     }
 
+    public void setEntries(ArrayList<Entry> e) {
+        entries = e;
+    }
+
     @Override
     public void onBindViewHolder(EntryViewHolder entryViewHolder, int i) {
         Entry entry = entries.get(i);
