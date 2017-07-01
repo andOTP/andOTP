@@ -27,6 +27,8 @@
         This file contains all your secret keys, please keep it safe!
     </string>
     <string name="msg_export_success">Export to external storage successful</string>
+    <string name="msg_export_failed">Export to external storage failed</string>
+    <string name="msg_storage_not_accessible">External storage currently not accessible</string>
 
     <!-- About dialog -->
     <string name="about_description">An open-source two-factor authentication App for Android 4.3+</string>

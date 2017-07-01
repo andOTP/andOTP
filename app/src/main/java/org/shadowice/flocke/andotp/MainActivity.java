@@ -106,10 +106,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doExportJSON() {
-        boolean success = SettingsHelper.exportAsJSON(this);
+        if (StorageHelper.isExternalStorageWritable()) {
+            boolean success = SettingsHelper.exportAsJSON(this);
 
-        if (success)
-            showSimpleSnackbar(R.string.msg_export_success);
+            if (success)
+                showSimpleSnackbar(R.string.msg_export_success);
+            else
+                showSimpleSnackbar(R.string.msg_export_failed);
+        } else {
+            showSimpleSnackbar(R.string.msg_storage_not_accessible);
+        }
     }
 
     private void exportJSON() {
