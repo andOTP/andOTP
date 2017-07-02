@@ -116,6 +116,10 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle(R.string.app_name);
         builder.setIcon(R.mipmap.ic_launcher);
         builder.setView(messageView);
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {}
+        });
         builder.create();
         builder.show();
     }
