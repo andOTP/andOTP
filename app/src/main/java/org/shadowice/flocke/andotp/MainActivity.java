@@ -236,28 +236,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showSimpleSnackbar(String msg) {
         Snackbar.make(fab, msg, Snackbar.LENGTH_LONG)
-                .addCallback(new Snackbar.Callback() {
-                    @Override
-                    public void onDismissed(Snackbar snackbar, int event) {
-                        super.onDismissed(snackbar, event);
-
-                        if (entries.isEmpty()) {
-                            showNoAccount();
-                        }
-                    }
-                })
                 .show();
-    }
-
-    private void showNoAccount(){
-        Snackbar noAccountSnackbar = Snackbar.make(fab, R.string.no_accounts, Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.button_add, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        scanQRCode();
-                    }
-                });
-        noAccountSnackbar.show();
     }
 
     // Initialize the main application
@@ -313,10 +292,6 @@ public class MainActivity extends AppCompatActivity {
                 editEntryLabel(pos);
             }
         });
-
-        if(entries.isEmpty()){
-            showNoAccount();
-        }
 
         handler = new Handler();
         handlerTask = new Runnable()
@@ -379,11 +354,9 @@ public class MainActivity extends AppCompatActivity {
 
                 adapter.notifyDataSetChanged();
 
-                Snackbar.make(fab, R.string.msg_account_added, Snackbar.LENGTH_LONG).show();
+                showSimpleSnackbar(R.string.msg_account_added);
             } catch (Exception e) {
                 showSimpleSnackbar(R.string.msg_invalid_qr_code);
-
-                return;
             }
         } else if (requestCode == INTENT_OPEN_DOCUMENT && resultCode == Activity.RESULT_OK) {
             Uri file;
@@ -397,10 +370,6 @@ public class MainActivity extends AppCompatActivity {
                 file = intent.getData();
                 doExportJSON(file);
             }
-        }
-
-        if(entries.isEmpty()){
-            showNoAccount();
         }
     }
 
@@ -434,9 +403,7 @@ public class MainActivity extends AppCompatActivity {
 
         builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
+            public void onClick(DialogInterface dialogInterface, int i) {}
         });
 
         builder.show();
