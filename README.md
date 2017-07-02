@@ -1,7 +1,7 @@
 #  andOTP -  Android OTP Authenticator
 ![andOTP](./assets/logo.png)
 
-andOTP is a two-factor authentication App for Android 4.3+.
+andOTP is a two-factor authentication App for Android 4.4+.
 
 It implements Time-based One-time Passwords (TOTP) like specified in RFC 6238.  
 Simply scan the QR code and login with the generated 6-digit code. 
