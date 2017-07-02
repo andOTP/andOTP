@@ -47,8 +47,11 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -289,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(recList);
 
-        adapter.setMoveEventCallback(new EntriesCardAdapter.MoveEventCallback() {
+        adapter.setMoveEventCallback(new EntriesCardAdapter.ViewHolderEventCallback() {
             @Override
             public void onMoveEventStart() {
                 stopUpdater();
@@ -300,6 +303,11 @@ public class MainActivity extends AppCompatActivity {
                 startUpdater();
 
                 SettingsHelper.store(getBaseContext(), entries);
+            }
+
+            @Override
+            public void onEditButtonClicked(int pos) {
+                editEntryLabel(pos);
             }
         });
 
@@ -400,6 +408,44 @@ public class MainActivity extends AppCompatActivity {
         if(entries.isEmpty()){
             showNoAccount();
         }
+    }
+
+    // Edit entry label
+    public void editEntryLabel(final int pos) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.alert_rename);
+
+        final EditText input = new EditText(this);
+        input.setText(adapter.getItem(pos).getLabel());
+        input.setSingleLine();
+
+        FrameLayout container = new FrameLayout(this);
+        FrameLayout.LayoutParams params = new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.leftMargin = getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
+        params.rightMargin = getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
+        input.setLayoutParams(params);
+
+        container.addView(input);
+        builder.setView(container);
+
+        builder.setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                adapter.getItem(pos).setLabel(input.getEditableText().toString());
+                adapter.notifyDataSetChanged();
+
+                SettingsHelper.store(getBaseContext(), entries);
+            }
+        });
+
+        builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        builder.show();
     }
 
     // Options menu

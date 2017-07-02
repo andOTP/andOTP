@@ -22,7 +22,6 @@ goes to Bruno.
 
 ## TODO
 
- * Re-implement renaming of entries
  * Export the secret key (maybe)
 
 <!--

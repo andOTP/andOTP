@@ -26,6 +26,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.shadowice.flocke.andotp.ItemTouchHelper.ItemTouchHelperAdapter;
@@ -38,7 +39,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
     implements ItemTouchHelperAdapter {
 
     private ArrayList<Entry> entries;
-    public MoveEventCallback moveEventCallback;
+    public ViewHolderEventCallback viewHolderEventCallback;
 
     public EntriesCardAdapter(ArrayList<Entry> entries) {
         this.entries = entries;
@@ -63,7 +64,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
 
         entryViewHolder.OTPValue.setText(entry.getCurrentOTP());
         entryViewHolder.OTPLabel.setText(entry.getLabel());
-        entryViewHolder.moveEventCallback = moveEventCallback;
+        entryViewHolder.eventCallback = viewHolderEventCallback;
     }
 
     @Override
@@ -95,40 +96,51 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         return true;
     }
 
-    public void setMoveEventCallback(MoveEventCallback cb) {
-        this.moveEventCallback = cb;
+    public void setMoveEventCallback(ViewHolderEventCallback cb) {
+        this.viewHolderEventCallback = cb;
     }
 
     public static class EntryViewHolder extends RecyclerView.ViewHolder
             implements ItemTouchHelperViewHolder {
 
-        private MoveEventCallback moveEventCallback;
+        private ViewHolderEventCallback eventCallback;
 
         protected TextView OTPValue;
         protected TextView OTPLabel;
+        protected ImageView editButton;
 
         public EntryViewHolder(View v) {
             super(v);
 
             OTPValue = (TextView) v.findViewById(R.id.textViewOTP);
             OTPLabel = (TextView) v.findViewById(R.id.textViewLabel);
+            editButton = (ImageView) v.findViewById(R.id.editImage);
+
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    eventCallback.onEditButtonClicked(getAdapterPosition());
+                }
+            });
         }
 
         @Override
         public void onItemSelected() {
-            if (moveEventCallback != null)
-                moveEventCallback.onMoveEventStart();
+            if (eventCallback != null)
+                eventCallback.onMoveEventStart();
         }
 
         @Override
         public void onItemClear() {
-            if (moveEventCallback != null)
-                moveEventCallback.onMoveEventStop();
+            if (eventCallback != null)
+                eventCallback.onMoveEventStop();
         }
     }
 
-    public interface MoveEventCallback {
+    public interface ViewHolderEventCallback {
         void onMoveEventStart();
         void onMoveEventStop();
+
+        void onEditButtonClicked(int pos);
     }
 }
