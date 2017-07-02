@@ -58,7 +58,8 @@ public class SettingsHelper {
 
             writeFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
 
-        } catch (Exception e) {
+        } catch (Exception error) {
+            error.printStackTrace();
         }
     }
 
@@ -68,7 +69,8 @@ public class SettingsHelper {
         for(Entry e: entries){
             try {
                 a.put(e.toJSON());
-            } catch (JSONException e1) {
+            } catch (Exception error) {
+                error.printStackTrace();
             }
         }
 
@@ -79,19 +81,15 @@ public class SettingsHelper {
         ArrayList<Entry> entries = new ArrayList<>();
 
         try {
-            byte[] data = readFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
+            JSONArray a = readJSON(context);
 
-            SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
-            data = EncryptionHelper.decrypt(key, data);
-
-            JSONArray a = new JSONArray(new String(data));
-
-            for(int i=0;i< a.length(); i++){
-                entries.add(new Entry(a.getJSONObject(i) ));
+            for (int i = 0; i < a.length(); i++) {
+                entries.add(new Entry(a.getJSONObject(i)));
             }
+        } catch (Exception error) {
+            error.printStackTrace();
         }
-        catch (Exception e) {
-        }
+
         return entries;
     }
 
@@ -106,7 +104,8 @@ public class SettingsHelper {
 
             json = new JSONArray(new String(data));
         }
-        catch (Exception e) {
+        catch (Exception error) {
+            error.printStackTrace();
         }
 
         return json;
@@ -123,9 +122,9 @@ public class SettingsHelper {
             Writer output = new BufferedWriter(new FileWriter(outputFile));
             output.write(data.toString());
             output.close();
-        } catch (Exception e) {
+        } catch (Exception error) {
             success = false;
-            e.printStackTrace();
+            error.printStackTrace();
         }
 
         return success;
@@ -145,9 +144,9 @@ public class SettingsHelper {
             }
             reader.close();
             inputStream.close();
-        } catch (Exception e) {
+        } catch (Exception error) {
             success = false;
-            e.printStackTrace();
+            error.printStackTrace();
         }
         String content = stringBuilder.toString();
 
@@ -155,9 +154,9 @@ public class SettingsHelper {
 
         try {
             json = new JSONArray(content);
-        } catch (Exception e) {
+        } catch (Exception error) {
             success = false;
-            e.printStackTrace();
+            error.printStackTrace();
         }
 
         store(context, json);
