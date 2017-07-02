@@ -2,9 +2,6 @@
     <string name="app_name">andOTP</string>
     <string name="app_launcher">OTP Authenticator</string>
     <string name="no_accounts">No account has been added yet</string>
-    <string name="menu_delete">Delete</string>
-    <string name="menu_edit">Edit</string>
-    <string name="menu_scan">Scan QR Code</string>
     <string name="menu_about">About</string>
     <string name="menu_submenu_backup">Import / Export</string>
     <string name="menu_export">Export (JSON)</string>
@@ -16,7 +13,6 @@
     <string name="msg_confirm_delete">Are you sure you want do remove this account?</string>
     <string name="msg_account_removed">Account removed</string>
     <string name="button_add">Add</string>
-    <string name="button_remove">Remove</string>
     <string name="alert_rename">Rename</string>
     <string name="alert_remove">"Remove "</string>
     <string name="msg_camera_permission">Camera permission not granted</string>

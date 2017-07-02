@@ -98,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
     // About dialog
     private void showAbout() {
-        View messageView = getLayoutInflater().inflate(R.layout.dialog_about, null, false);
+        ViewGroup container = (ViewGroup) findViewById(R.id.main_content);
+        View messageView = getLayoutInflater().inflate(R.layout.dialog_about, container, false);
 
         String versionName = "";
         try {
@@ -234,16 +235,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showSimpleSnackbar(String msg) {
-        Snackbar.make(fab, msg, Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
-            @Override
-            public void onDismissed(Snackbar snackbar, int event) {
-                super.onDismissed(snackbar, event);
+        Snackbar.make(fab, msg, Snackbar.LENGTH_LONG)
+                .addCallback(new Snackbar.Callback() {
+                    @Override
+                    public void onDismissed(Snackbar snackbar, int event) {
+                        super.onDismissed(snackbar, event);
 
-                if (entries.isEmpty()) {
-                    showNoAccount();
-                }
-            }
-        }).show();
+                        if (entries.isEmpty()) {
+                            showNoAccount();
+                        }
+                    }
+                })
+                .show();
     }
 
     private void showNoAccount(){
@@ -378,27 +381,18 @@ public class MainActivity extends AppCompatActivity {
 
                 Snackbar.make(fab, R.string.msg_account_added, Snackbar.LENGTH_LONG).show();
             } catch (Exception e) {
-                Snackbar.make(fab, R.string.msg_invalid_qr_code, Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
-                    @Override
-                    public void onDismissed(Snackbar snackbar, int event) {
-                        super.onDismissed(snackbar, event);
-
-                        if(entries.isEmpty()){
-                            showNoAccount();
-                        }
-                    }
-                }).show();
+                showSimpleSnackbar(R.string.msg_invalid_qr_code);
 
                 return;
             }
         } else if (requestCode == INTENT_OPEN_DOCUMENT && resultCode == Activity.RESULT_OK) {
-            Uri file = null;
+            Uri file;
             if (intent != null) {
                 file = intent.getData();
                 doImportJSON(file);
             }
         } else if (requestCode == INTENT_SAVE_DOCUMENT && resultCode == Activity.RESULT_OK) {
-            Uri file = null;
+            Uri file;
             if (intent != null) {
                 file = intent.getData();
                 doExportJSON(file);
@@ -432,7 +426,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 adapter.getItem(pos).setLabel(input.getEditableText().toString());
-                adapter.notifyDataSetChanged();
+                adapter.notifyItemChanged(pos);
 
                 SettingsHelper.store(getBaseContext(), entries);
             }
