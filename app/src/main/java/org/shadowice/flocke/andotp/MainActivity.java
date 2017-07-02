@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String DEFAULT_BACKUP_FILENAME = "otp_accounts.json";
     private static final String DEFAULT_BACKUP_MIMETYPE = "application/json";
 
+    // QR code scanning
     private void doScanQRCode(){
         new IntentIntegrator(MainActivity.this)
                 .setCaptureActivity(CaptureActivityAnyOrientation.class)
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // About dialog
     private void showAbout() {
         View messageView = getLayoutInflater().inflate(R.layout.dialog_about, null, false);
 
@@ -114,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
+    // Export to JSON
     private void doExportJSON(Uri uri) {
         if (StorageHelper.isExternalStorageWritable()) {
             boolean success = SettingsHelper.exportAsJSON(this, uri);
@@ -162,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
+    // Import from JSON
     private void doImportJSON(Uri uri) {
         if (StorageHelper.isExternalStorageReadable()) {
             boolean success = SettingsHelper.importFromJSON(this, uri);
@@ -195,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Permission results
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
        if(requestCode == PERMISSIONS_REQUEST_CAMERA) {
@@ -220,6 +225,7 @@ public class MainActivity extends AppCompatActivity {
        }
     }
 
+    // Snackbar notifications
     private void showSimpleSnackbar(int string_res) {
         showSimpleSnackbar(getString(string_res));
     }
@@ -248,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
         noAccountSnackbar.show();
     }
 
+    // Initialize the main application
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -326,6 +333,7 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+    // Controls for the updater background task
     public void stopUpdater() {
         handler.removeCallbacks(handlerTask);
     }
@@ -346,6 +354,7 @@ public class MainActivity extends AppCompatActivity {
         stopUpdater();
     }
 
+    // Activity results
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -393,6 +402,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
