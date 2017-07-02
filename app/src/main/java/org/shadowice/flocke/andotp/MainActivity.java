@@ -68,10 +68,14 @@ public class MainActivity extends AppCompatActivity {
     private Runnable handlerTask;
 
     private static final int PERMISSIONS_REQUEST_CAMERA = 42;
-    private static final int PERMISSIONS_REQUEST_WRITE_EXPORT = 24;
-    private static final int PERMISSIONS_REQUEST_READ_IMPORT = 12;
+    private static final int PERMISSIONS_REQUEST_WRITE_EXPORT = 41;
+    private static final int PERMISSIONS_REQUEST_READ_IMPORT = 40;
 
-    private static final int INTENT_OPEN_DOCUMENT = 42;
+    private static final int INTENT_OPEN_DOCUMENT = 24;
+    private static final int INTENT_SAVE_DOCUMENT= 23;
+
+    private static final String DEFAULT_BACKUP_FILENAME = "otp_accounts.json";
+    private static final String DEFAULT_BACKUP_MIMETYPE = "application/json";
 
     private void doScanQRCode(){
         new IntentIntegrator(MainActivity.this)
@@ -110,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void doExportJSON() {
+    private void doExportJSON(Uri uri) {
         if (StorageHelper.isExternalStorageWritable()) {
-            boolean success = SettingsHelper.exportAsJSON(this);
+            boolean success = SettingsHelper.exportAsJSON(this, uri);
 
             if (success)
                 showSimpleSnackbar(R.string.msg_export_success);
@@ -123,12 +127,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void exportJSON() {
+    private void exportJSONWithPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            doExportJSON();
+            exportJSONWithSelector();
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_WRITE_EXPORT);
         }
+    }
+
+    private void exportJSONWithSelector() {
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType(DEFAULT_BACKUP_MIMETYPE);
+        intent.putExtra(Intent.EXTRA_TITLE, DEFAULT_BACKUP_FILENAME);
+        startActivityForResult(intent, INTENT_SAVE_DOCUMENT);
     }
 
     private void exportJSONWithWarning() {
@@ -139,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        exportJSON();
+                        exportJSONWithPermissions();
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -175,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, INTENT_OPEN_DOCUMENT);
     }
 
-    private void importJSON() {
+    private void importJSONWithPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             importJSONWithSelector();
         } else {
@@ -193,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
            }
        } else if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT) {
            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-               doExportJSON();
+               exportJSONWithSelector();
            } else {
                showSimpleSnackbar(R.string.msg_storage_permissions);
            }
@@ -209,7 +221,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showSimpleSnackbar(int string_res) {
-        Snackbar.make(fab, string_res, Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
+        showSimpleSnackbar(getString(string_res));
+    }
+
+    private void showSimpleSnackbar(String msg) {
+        Snackbar.make(fab, msg, Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
             @Override
             public void onDismissed(Snackbar snackbar, int event) {
                 super.onDismissed(snackbar, event);
@@ -364,6 +380,12 @@ public class MainActivity extends AppCompatActivity {
                 file = intent.getData();
                 doImportJSON(file);
             }
+        } else if (requestCode == INTENT_SAVE_DOCUMENT && resultCode == Activity.RESULT_OK) {
+            Uri file = null;
+            if (intent != null) {
+                file = intent.getData();
+                doExportJSON(file);
+            }
         }
 
         if(entries.isEmpty()){
@@ -387,7 +409,7 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         } else if (id == R.id.action_import) {
-            importJSON();
+            importJSONWithPermissions();
 
             return true;
         } else if (id == R.id.action_about){

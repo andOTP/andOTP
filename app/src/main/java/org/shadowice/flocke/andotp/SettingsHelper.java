@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2017 Jakob Nixdorf
  * Copyright (C) 2015 Bruno Bierbaumer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,28 +27,24 @@ import android.content.Context;
 import android.net.Uri;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Writer;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
 
-import static android.os.Environment.getExternalStorageDirectory;
 import static org.shadowice.flocke.andotp.Utils.readFully;
 import static org.shadowice.flocke.andotp.Utils.writeFully;
 
 public class SettingsHelper {
     public static final String KEY_FILE = "otp.key";
     public static final String SETTINGS_FILE = "secrets.dat";
-
-    public static final String EXPORT_FILE = "otp_accounts.json";
 
     public static void store(Context context, JSONArray json) {
         try {
@@ -111,17 +108,17 @@ public class SettingsHelper {
         return json;
     }
 
-    public static boolean exportAsJSON(Context context) {
-        File outputFile = new File(getExternalStorageDirectory() + "/" + EXPORT_FILE);
-
+    public static boolean exportAsJSON(Context context, Uri file) {
         JSONArray data = readJSON(context);
 
         boolean success = true;
 
         try {
-            Writer output = new BufferedWriter(new FileWriter(outputFile));
-            output.write(data.toString());
-            output.close();
+            OutputStream outputStream = context.getContentResolver().openOutputStream(file);
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+            writer.write(data.toString());
+            writer.close();
+            outputStream.close();
         } catch (Exception error) {
             success = false;
             error.printStackTrace();
