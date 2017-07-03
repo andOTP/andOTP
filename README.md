@@ -14,7 +14,8 @@ goes to Bruno.
 
  * Free and Open-Source
  * Requires minimal permissions
-   - Only camera access for QR code scanning
+   - Camera access for QR code scanning
+   - Storage access for import and export of the database
  * Encrypted storage
  * Sleek minimalistic Material Design
  * Great Usability
