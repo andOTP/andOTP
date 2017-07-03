@@ -116,6 +116,10 @@ public class Entry {
 
     public void setPeriod(int period) { this.period = period; }
 
+    public boolean hasNonDefaultPeriod() {
+        return this.period != TOTP_DEFAULT_PERIOD;
+    }
+
     public String getCurrentOTP() {
         return currentOTP;
     }
@@ -126,10 +130,10 @@ public class Entry {
 
     public boolean updateOTP() {
         long time = System.currentTimeMillis() / 1000;
-        long counter = time / getPeriod();
+        long counter = time / this.getPeriod();
 
         if (counter > this.last_update) {
-            setCurrentOTP(TOTPHelper.generate(getSecret(), getPeriod()));
+            this.setCurrentOTP(TOTPHelper.generate(this.getSecret(), this.getPeriod()));
             this.last_update = counter;
 
             return true;

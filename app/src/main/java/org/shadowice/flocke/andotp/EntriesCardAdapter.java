@@ -30,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.shadowice.flocke.andotp.ItemTouchHelper.ItemTouchHelperAdapter;
@@ -70,6 +71,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         entryViewHolder.OTPValue.setText(entry.getCurrentOTP());
         entryViewHolder.OTPLabel.setText(entry.getLabel());
         entryViewHolder.eventCallback = viewHolderEventCallback;
+
+        if (entry.hasNonDefaultPeriod()) {
+            entryViewHolder.customPeriodLayout.setVisibility(View.VISIBLE);
+            entryViewHolder.customPeriod.setText(String.format(context.getString(R.string.format_custom_period), entry.getPeriod()));
+        }
     }
 
     @Override
@@ -133,6 +139,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         protected TextView OTPValue;
         protected TextView OTPLabel;
         protected ImageView editButton;
+        protected LinearLayout customPeriodLayout;
+        protected TextView customPeriod;
 
         public EntryViewHolder(View v) {
             super(v);
@@ -140,6 +148,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
             OTPValue = (TextView) v.findViewById(R.id.textViewOTP);
             OTPLabel = (TextView) v.findViewById(R.id.textViewLabel);
             editButton = (ImageView) v.findViewById(R.id.editImage);
+            customPeriodLayout = (LinearLayout) v.findViewById(R.id.customPeriodLayout);
+            customPeriod = (TextView) v.findViewById(R.id.customPeriod);
 
             editButton.setOnClickListener(new View.OnClickListener() {
                 @Override

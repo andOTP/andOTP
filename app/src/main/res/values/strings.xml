@@ -7,6 +7,8 @@
 
     <string name="button_save">Save</string>
 
+    <string name="format_custom_period">%d s</string>
+
     <string name="menu_about">About</string>
     <string name="menu_export">Export (JSON)</string>
     <string name="menu_import">Import (JSON)</string>
