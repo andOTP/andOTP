@@ -78,6 +78,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         if (entry.hasNonDefaultPeriod()) {
             entryViewHolder.customPeriodLayout.setVisibility(View.VISIBLE);
             entryViewHolder.customPeriod.setText(String.format(context.getString(R.string.format_custom_period), entry.getPeriod()));
+        } else {
+            entryViewHolder.customPeriodLayout.setVisibility(View.GONE);
         }
     }
 
