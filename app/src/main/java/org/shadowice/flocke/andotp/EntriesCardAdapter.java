@@ -32,6 +32,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -132,11 +134,69 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         return true;
     }
 
+    public void editEntryLabel(final int pos) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        final EditText input = new EditText(context);
+        input.setText(getItem(pos).getLabel());
+        input.setSingleLine();
+
+        FrameLayout container = new FrameLayout(context);
+        FrameLayout.LayoutParams params = new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.leftMargin = context.getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
+        params.rightMargin = context.getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
+        input.setLayoutParams(params);
+        container.addView(input);
+
+        builder.setTitle(R.string.alert_rename)
+                .setView(container)
+                .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        getItem(pos).setLabel(input.getEditableText().toString());
+                        notifyItemChanged(pos);
+
+                        SettingsHelper.store(context, entries);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .create()
+                .show();
+    }
+
+    private void showPopupMenu(View view, final int pos) {
+        View menuItemView = view.findViewById(R.id.menuButton);
+        PopupMenu popup = new PopupMenu(view.getContext(), menuItemView);
+        MenuInflater inflate = popup.getMenuInflater();
+        inflate.inflate(R.menu.menu_popup, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int id = item.getItemId();
+
+                if (id == R.id.menu_popup_editLabel) {
+                    editEntryLabel(pos);
+                    return true;
+                } else if (id == R.id.menu_popup_remove) {
+                    onItemDismiss(pos);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+        popup.show();
+    }
+
     public void setMoveEventCallback(ViewHolderEventCallback cb) {
         this.viewHolderEventCallback = cb;
     }
 
-    public static class EntryViewHolder extends RecyclerView.ViewHolder
+    public class EntryViewHolder extends RecyclerView.ViewHolder
             implements ItemTouchHelperViewHolder {
 
         private ViewHolderEventCallback eventCallback;
@@ -159,31 +219,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
             menuButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    showPopupMenu(view);
+                    showPopupMenu(view, getAdapterPosition());
                 }
             });
-        }
-
-        private void showPopupMenu(View view) {
-            View menuItemView = view.findViewById(R.id.menuButton);
-            PopupMenu popup = new PopupMenu(view.getContext(), menuItemView);
-            MenuInflater inflate = popup.getMenuInflater();
-            inflate.inflate(R.menu.menu_popup, popup.getMenu());
-
-            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    int id = item.getItemId();
-
-                    if (id == R.id.editLabel) {
-                        eventCallback.onEditButtonClicked(getAdapterPosition());
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-            });
-            popup.show();
         }
 
         @Override
@@ -202,7 +240,5 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
     public interface ViewHolderEventCallback {
         void onMoveEventStart();
         void onMoveEventStop();
-
-        void onEditButtonClicked(final int pos);
     }
 }

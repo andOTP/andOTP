@@ -53,8 +53,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -330,11 +328,6 @@ public class MainActivity extends AppCompatActivity {
             public void onMoveEventStop() {
                 startUpdater();
             }
-
-            @Override
-            public void onEditButtonClicked(final int pos) {
-                editEntryLabel(pos);
-            }
         });
 
         handler = new Handler();
@@ -414,40 +407,6 @@ public class MainActivity extends AppCompatActivity {
                 doExportJSON(file);
             }
         }
-    }
-
-    // Edit entry label
-    public void editEntryLabel(final int pos) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        final EditText input = new EditText(this);
-        input.setText(adapter.getItem(pos).getLabel());
-        input.setSingleLine();
-
-        FrameLayout container = new FrameLayout(this);
-        FrameLayout.LayoutParams params = new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.leftMargin = getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
-        params.rightMargin = getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
-        input.setLayoutParams(params);
-        container.addView(input);
-
-        builder.setTitle(R.string.alert_rename)
-                .setView(container)
-                .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        adapter.getItem(pos).setLabel(input.getEditableText().toString());
-                        adapter.notifyItemChanged(pos);
-
-                        SettingsHelper.store(getBaseContext(), entries);
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                })
-                .create()
-                .show();
     }
 
     // Options menu

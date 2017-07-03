@@ -2,7 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/editLabel"
+        android:id="@+id/menu_popup_editLabel"
         android:title="@string/menu_edit_label" />
+
+    <item
+        android:id="@+id/menu_popup_remove"
+        android:title="@string/alert_remove" />
 
 </menu>
