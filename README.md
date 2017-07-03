@@ -36,10 +36,11 @@ goes to Bruno.
 ### F-Droid:
 [OTP Authenticator on F-Droid](https://f-droid.org/repository/browse/?fdfilter=otp&fdid=net.bierbaumer.otp_authenticator)
 
-### APK:
-[![Download Latest Version (v0.1.2)](https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://github.com/0xbb/otp-authenticator/releases/download/v0.1.2/otp-authenticator-v0.1.2.apk)](https://github.com/0xbb/otp-authenticator/releases/download/v0.1.2/otp-authenticator-v0.1.2.apk)
-
 -->
+
+## Download
+### APK:
+[![Download latest version (v0.1.0)](https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://github.com/flocke/andOTP/releases/download/v0.1.0/andOTP_v0.1.0.apk)](https://github.com/flocke/andOTP/releases/download/v0.1.0/andOTP_v0.1.0.apk)
 
 ## Acknowledgments:
 
