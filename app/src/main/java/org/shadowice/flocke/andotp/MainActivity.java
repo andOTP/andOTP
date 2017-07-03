@@ -117,15 +117,15 @@ public class MainActivity extends AppCompatActivity {
         versionText.setText(versionName);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.app_name);
-        builder.setIcon(R.mipmap.ic_launcher);
-        builder.setView(messageView);
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {}
-        });
-        builder.create();
-        builder.show();
+        builder.setTitle(R.string.app_name)
+                .setIcon(R.mipmap.ic_launcher)
+                .setView(messageView)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .create()
+                .show();
     }
 
     // Export to JSON
@@ -161,8 +161,8 @@ public class MainActivity extends AppCompatActivity {
     private void exportJSONWithWarning() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle(getString(R.string.msg_security_warning))
-                .setMessage(getString(R.string.msg_export_warning))
+        builder.setTitle(R.string.msg_security_warning)
+                .setMessage(R.string.msg_export_warning)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -174,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {}
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
+                .create()
                 .show();
     }
 
@@ -418,7 +419,6 @@ public class MainActivity extends AppCompatActivity {
     // Edit entry label
     public void editEntryLabel(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.alert_rename);
 
         final EditText input = new EditText(this);
         input.setText(adapter.getItem(pos).getLabel());
@@ -429,26 +429,25 @@ public class MainActivity extends AppCompatActivity {
         params.leftMargin = getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
         params.rightMargin = getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
         input.setLayoutParams(params);
-
         container.addView(input);
-        builder.setView(container);
 
-        builder.setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                adapter.getItem(pos).setLabel(input.getEditableText().toString());
-                adapter.notifyItemChanged(pos);
+        builder.setTitle(R.string.alert_rename)
+                .setView(container)
+                .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        adapter.getItem(pos).setLabel(input.getEditableText().toString());
+                        adapter.notifyItemChanged(pos);
 
-                SettingsHelper.store(getBaseContext(), entries);
-            }
-        });
-
-        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {}
-        });
-
-        builder.show();
+                        SettingsHelper.store(getBaseContext(), entries);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .create()
+                .show();
     }
 
     // Options menu
