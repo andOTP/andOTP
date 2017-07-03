@@ -310,7 +310,8 @@ public class MainActivity extends AppCompatActivity {
 
                 boolean change = false;
                 for(int i =0;i < adapter.getItemCount(); i++){
-                    change = adapter.getItem(i).updateOTP();
+                    boolean item_changed = adapter.getItem(i).updateOTP();
+                    change = change || item_changed;
                 }
 
                 if (change)
