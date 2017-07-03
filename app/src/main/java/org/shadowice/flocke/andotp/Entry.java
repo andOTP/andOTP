@@ -146,6 +146,7 @@ public class Entry {
         Entry entry = (Entry) o;
 
         if (!Arrays.equals(secret, entry.secret)) return false;
+        if (period != entry.period) return false;
         return !(label != null ? !label.equals(entry.label) : entry.label != null);
 
     }
