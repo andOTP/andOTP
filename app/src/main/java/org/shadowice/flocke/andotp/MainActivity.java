@@ -355,8 +355,6 @@ public class MainActivity extends AppCompatActivity {
                 SettingsHelper.store(this, entries);
 
                 adapter.notifyDataSetChanged();
-
-                showSimpleSnackbar(R.string.msg_account_added);
             } catch (Exception e) {
                 showSimpleSnackbar(R.string.msg_invalid_qr_code);
             }
@@ -403,7 +401,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {}
         });
