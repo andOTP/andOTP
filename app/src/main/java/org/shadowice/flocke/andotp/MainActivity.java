@@ -29,11 +29,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -60,6 +63,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 
 import org.shadowice.flocke.andotp.ItemTouchHelper.SimpleItemTouchHelperCallback;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -243,6 +247,40 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
+    // Try to fix the animation scale
+    private float fixAnimationScale() {
+        float durationScale = Settings.Global.getFloat(this.getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE, 0);
+
+        if (durationScale != 1) {
+            try {
+                Class c = Class.forName("android.animation.ValueAnimator");
+                Method m = c.getMethod("setDurationScale", new Class[]{float.class});
+                m.invoke(null, new Object[]{ 1f });
+                durationScale = 1f;
+            } catch (Throwable t) {
+                t.printStackTrace();
+
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+                if (!prefs.getBoolean(getString(R.string.pref_animator_warning_displayed), false)) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle(R.string.title_animator_duration)
+                            .setMessage(R.string.msg_animator_duration_scale)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {}
+                            })
+                            .create()
+                            .show();
+
+                    prefs.edit().putBoolean(getString(R.string.pref_animator_warning_displayed), true).apply();
+                }
+            }
+        }
+
+        return durationScale;
+    }
+
     // Initialize the main application
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -278,6 +316,9 @@ public class MainActivity extends AppCompatActivity {
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(recList);
 
+        final float durationScale = fixAnimationScale();
+        final long animatorDuration = (long) (1000 / durationScale);
+
         adapter.setMoveEventCallback(new EntriesCardAdapter.ViewHolderEventCallback() {
             @Override
             public void onMoveEventStart() {
@@ -304,7 +345,7 @@ public class MainActivity extends AppCompatActivity {
                 progressBar.setProgress(progress*100);
 
                 ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", (progress-1)*100);
-                animation.setDuration(1000);
+                animation.setDuration(animatorDuration);
                 animation.setInterpolator(new LinearInterpolator());
                 animation.start();
 
