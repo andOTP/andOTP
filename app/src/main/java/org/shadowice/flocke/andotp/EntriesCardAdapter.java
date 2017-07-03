@@ -25,8 +25,11 @@ package org.shadowice.flocke.andotp;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -138,25 +141,47 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
 
         protected TextView OTPValue;
         protected TextView OTPLabel;
-        protected ImageView editButton;
         protected LinearLayout customPeriodLayout;
         protected TextView customPeriod;
+        protected ImageView menuButton;
 
-        public EntryViewHolder(View v) {
+        public EntryViewHolder(final View v) {
             super(v);
 
             OTPValue = (TextView) v.findViewById(R.id.textViewOTP);
             OTPLabel = (TextView) v.findViewById(R.id.textViewLabel);
-            editButton = (ImageView) v.findViewById(R.id.editImage);
             customPeriodLayout = (LinearLayout) v.findViewById(R.id.customPeriodLayout);
             customPeriod = (TextView) v.findViewById(R.id.customPeriod);
+            menuButton = (ImageView) v.findViewById(R.id.menuButton);
 
-            editButton.setOnClickListener(new View.OnClickListener() {
+            menuButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    eventCallback.onEditButtonClicked(getAdapterPosition());
+                    showPopupMenu(view);
                 }
             });
+        }
+
+        private void showPopupMenu(View view) {
+            View menuItemView = view.findViewById(R.id.menuButton);
+            PopupMenu popup = new PopupMenu(view.getContext(), menuItemView);
+            MenuInflater inflate = popup.getMenuInflater();
+            inflate.inflate(R.menu.menu_popup, popup.getMenu());
+
+            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    int id = item.getItemId();
+
+                    if (id == R.id.editLabel) {
+                        eventCallback.onEditButtonClicked(getAdapterPosition());
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+            popup.show();
         }
 
         @Override
@@ -176,6 +201,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         void onMoveEventStart();
         void onMoveEventStop();
 
-        void onEditButtonClicked(int pos);
+        void onEditButtonClicked(final int pos);
     }
 }

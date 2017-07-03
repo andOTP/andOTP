@@ -332,7 +332,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onEditButtonClicked(int pos) {
+            public void onEditButtonClicked(final int pos) {
                 editEntryLabel(pos);
             }
         });
@@ -464,15 +464,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_export) {
             exportJSONWithWarning();
-
             return true;
         } else if (id == R.id.action_import) {
             importJSONWithPermissions();
-
             return true;
         } else if (id == R.id.action_about){
             showAbout();
-
             return true;
         }
         return super.onOptionsItemSelected(item);

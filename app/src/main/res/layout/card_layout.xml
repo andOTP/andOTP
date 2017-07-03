@@ -23,31 +23,20 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textViewLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewOTP">
-
-            <TextView
-                android:id="@+id/textViewLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <ImageView
-                android:id="@+id/editImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_edit_gray" />
-        </LinearLayout>
+            android:layout_below="@+id/textViewOTP"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
             android:id="@+id/customPeriodLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
+            android:layout_toStartOf="@+id/menuButton"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:visibility="gone"
             android:orientation="horizontal" >
 
@@ -62,6 +51,14 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold" />
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/menuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_more_vert_gray"/>
 
     </RelativeLayout>
 
