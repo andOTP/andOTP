@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
 
         entries = SettingsHelper.load(this);
 
-        adapter = new EntriesCardAdapter(entries);
+        adapter = new EntriesCardAdapter(this, entries);
         recList.setAdapter(adapter);
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
@@ -287,8 +287,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onMoveEventStop() {
                 startUpdater();
-
-                SettingsHelper.store(getBaseContext(), entries);
             }
 
             @Override

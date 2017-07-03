@@ -22,6 +22,9 @@
 
 package org.shadowice.flocke.andotp;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,10 +41,12 @@ import java.util.Collections;
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.EntryViewHolder>
     implements ItemTouchHelperAdapter {
 
+    private Context context;
     private ArrayList<Entry> entries;
     public ViewHolderEventCallback viewHolderEventCallback;
 
-    public EntriesCardAdapter(ArrayList<Entry> entries) {
+    public EntriesCardAdapter(Context context, ArrayList<Entry> entries) {
+        this.context = context;
         this.entries = entries;
     }
 
@@ -75,9 +80,27 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
     }
 
     @Override
-    public void onItemDismiss(int position) {
-        entries.remove(position);
-        notifyItemRemoved(position);
+    public void onItemDismiss(final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        builder.setTitle(context.getString(R.string.alert_remove))
+                .setMessage(context.getString(R.string.msg_confirm_delete))
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        entries.remove(position);
+                        notifyItemRemoved(position);
+
+                        SettingsHelper.store(context, entries);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        notifyItemChanged(position);
+                    }
+                })
+                .show();
     }
 
     @Override
@@ -92,6 +115,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
             }
         }
         notifyItemMoved(fromPosition, toPosition);
+
+        SettingsHelper.store(context, entries);
 
         return true;
     }

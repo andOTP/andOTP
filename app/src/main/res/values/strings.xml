@@ -14,7 +14,7 @@
     <string name="msg_account_removed">Account removed</string>
     <string name="button_add">Add</string>
     <string name="alert_rename">Rename</string>
-    <string name="alert_remove">"Remove "</string>
+    <string name="alert_remove">Remove</string>
     <string name="msg_camera_permission">Camera permission not granted</string>
     <string name="msg_storage_permissions">Storage permissions not granted</string>
     <string name="msg_security_warning">Security warning</string>
