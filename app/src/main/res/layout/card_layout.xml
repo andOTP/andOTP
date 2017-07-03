@@ -58,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
+            android:padding="@dimen/activity_margin_small"
             android:src="@drawable/ic_more_vert_gray"/>
 
     </RelativeLayout>
