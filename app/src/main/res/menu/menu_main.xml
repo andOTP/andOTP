@@ -2,6 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/menu_search"
+        android:title="@string/title_search"
+        android:icon="@drawable/ic_search_white"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
+
+    <item
         android:id="@+id/submenu_backup"
         android:title="@string/menu_submenu_backup">
 

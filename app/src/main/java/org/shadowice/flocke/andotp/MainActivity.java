@@ -41,9 +41,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Entry> entries;
     private EntriesCardAdapter adapter;
     private FloatingActionButton fab;
+    private SimpleItemTouchHelperCallback touchHelperCallback;
 
     private Handler handler;
     private Runnable handlerTask;
@@ -184,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
             if (success) {
                 entries = SettingsHelper.load(this);
                 adapter.setEntries(entries);
-                adapter.notifyDataSetChanged();
 
                 Toast.makeText(this, R.string.msg_import_success, Toast.LENGTH_LONG).show();
             } else {
@@ -301,8 +303,8 @@ public class MainActivity extends AppCompatActivity {
         adapter = new EntriesCardAdapter(this, entries);
         recList.setAdapter(adapter);
 
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelperCallback = new SimpleItemTouchHelperCallback(adapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(touchHelperCallback);
         touchHelper.attachToRecyclerView(recList);
 
         final float durationScale = fixAnimationScale();
@@ -334,7 +336,7 @@ public class MainActivity extends AppCompatActivity {
                 animation.start();
 
                 boolean change = false;
-                for(int i =0;i < adapter.getItemCount(); i++){
+                for(int i =0;i < adapter.getFullItemCount(); i++){
                     boolean item_changed = adapter.getItem(i).updateOTP();
                     change = change || item_changed;
                 }
@@ -403,6 +405,38 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.menu_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                fab.setVisibility(View.GONE);
+                touchHelperCallback.setDragEnabled(false);
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                fab.setVisibility(View.VISIBLE);
+                touchHelperCallback.setDragEnabled(true);
+                return true;
+            }
+        });
+
         return true;
     }
 

@@ -42,6 +42,7 @@
     <string name="msg_storage_permissions">Storage permissions not granted</string>
 
     <string name="title_animator_duration">Animator duration scale</string>
+    <string name="title_search">Search</string>
 
     <string name="pref_animator_warning_displayed">animator_warning_displayed</string>
 

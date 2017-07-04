@@ -35,6 +35,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -48,19 +50,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.EntryViewHolder>
-    implements ItemTouchHelperAdapter {
+    implements ItemTouchHelperAdapter, Filterable {
 
     private Context context;
+    private EntryFilter filter;
     private ArrayList<Entry> entries;
+    private ArrayList<Integer> displayedEntries;
     public ViewHolderEventCallback viewHolderEventCallback;
 
     public EntriesCardAdapter(Context context, ArrayList<Entry> entries) {
         this.context = context;
         this.entries = entries;
+
+        displayedEntries = defaultIndices();
     }
 
     @Override
     public int getItemCount() {
+        return displayedEntries.size();
+    }
+
+    public int getFullItemCount() {
         return entries.size();
     }
 
@@ -70,11 +80,39 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
 
     public void setEntries(ArrayList<Entry> e) {
         entries = e;
+
+        displayedEntries.clear();
+        displayedEntries = defaultIndices();
+
+        notifyDataSetChanged();
+    }
+
+    public ArrayList<Integer> defaultIndices() {
+        ArrayList<Integer> newIdx = new ArrayList<>();
+        for (int i = 0; i < entries.size(); i++)
+            newIdx.add(i);
+
+        return newIdx;
+    }
+
+    public int removeIndex(int pos) {
+        int removed = displayedEntries.remove(pos);
+
+        ArrayList<Integer> newIdx = new ArrayList<>();
+        for (int i = 0; i < displayedEntries.size(); i++) {
+            int idx = displayedEntries.get(i);
+            if (idx > removed)
+                idx -= 1;
+            newIdx.add(idx);
+        }
+        displayedEntries = newIdx;
+
+        return removed;
     }
 
     @Override
     public void onBindViewHolder(EntryViewHolder entryViewHolder, int i) {
-        Entry entry = entries.get(i);
+        Entry entry = entries.get(displayedEntries.get(i));
 
         entryViewHolder.OTPValue.setText(entry.getCurrentOTP());
         entryViewHolder.OTPLabel.setText(entry.getLabel());
@@ -104,7 +142,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        entries.remove(position);
+                        entries.remove(removeIndex(position));
                         notifyItemRemoved(position);
 
                         SettingsHelper.store(context, entries);
@@ -121,15 +159,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-        if (fromPosition < toPosition) {
-            for (int i = fromPosition; i < toPosition; i++) {
-                Collections.swap(entries, i, i + 1);
-            }
-        } else {
-            for (int i = fromPosition; i > toPosition; i--) {
-                Collections.swap(entries, i, i - 1);
-            }
-        }
+        Collections.swap(entries, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
 
         SettingsHelper.store(context, entries);
@@ -141,7 +171,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
         final EditText input = new EditText(context);
-        input.setText(getItem(pos).getLabel());
+        input.setText(entries.get(displayedEntries.get(pos)).getLabel());
         input.setSingleLine();
 
         FrameLayout container = new FrameLayout(context);
@@ -156,7 +186,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
                 .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        getItem(pos).setLabel(input.getEditableText().toString());
+                        entries.get(displayedEntries.get(pos)).setLabel(input.getEditableText().toString());
                         notifyItemChanged(pos);
 
                         SettingsHelper.store(context, entries);
@@ -206,6 +236,43 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
     public void setMoveEventCallback(ViewHolderEventCallback cb) {
         this.viewHolderEventCallback = cb;
     }
+
+    public EntryFilter getFilter() {
+        if (filter == null)
+            filter = new EntryFilter();
+
+        return filter;
+    }
+
+    public class EntryFilter extends Filter {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            final FilterResults filterResults = new FilterResults();
+
+            ArrayList<Integer> newIdx = new ArrayList<>();
+            if (constraint != null && constraint.length() != 0){
+                for (int i = 0; i < entries.size(); i++) {
+                    if (entries.get(i).getLabel().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        newIdx.add(i);
+                    }
+                }
+            } else {
+                newIdx = defaultIndices();
+            }
+
+            filterResults.count = newIdx.size();
+            filterResults.values = newIdx;
+
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            displayedEntries = (ArrayList<Integer>) results.values;
+            notifyDataSetChanged();
+
+        }
+    };
 
     public class EntryViewHolder extends RecyclerView.ViewHolder
             implements ItemTouchHelperViewHolder {
