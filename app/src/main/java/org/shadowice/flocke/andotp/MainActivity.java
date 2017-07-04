@@ -39,7 +39,6 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -55,6 +54,7 @@ import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -132,11 +132,11 @@ public class MainActivity extends AppCompatActivity {
             boolean success = SettingsHelper.exportAsJSON(this, uri);
 
             if (success)
-                showSimpleSnackbar(R.string.msg_export_success);
+                Toast.makeText(this, R.string.msg_export_success, Toast.LENGTH_LONG).show();
             else
-                showSimpleSnackbar(R.string.msg_export_failed);
+                Toast.makeText(this, R.string.msg_export_failed, Toast.LENGTH_LONG).show();
         } else {
-            showSimpleSnackbar(R.string.msg_storage_not_accessible);
+            Toast.makeText(this, R.string.msg_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -186,12 +186,12 @@ public class MainActivity extends AppCompatActivity {
                 adapter.setEntries(entries);
                 adapter.notifyDataSetChanged();
 
-                showSimpleSnackbar(R.string.msg_import_success);
+                Toast.makeText(this, R.string.msg_import_success, Toast.LENGTH_LONG).show();
             } else {
-                showSimpleSnackbar(R.string.msg_import_failed);
+                Toast.makeText(this, R.string.msg_import_failed, Toast.LENGTH_LONG).show();
             }
         } else {
-            showSimpleSnackbar(R.string.msg_storage_not_accessible);
+            Toast.makeText(this, R.string.msg_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -217,33 +217,23 @@ public class MainActivity extends AppCompatActivity {
            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                doScanQRCode();
            } else {
-               showSimpleSnackbar(R.string.msg_camera_permission);
+               Toast.makeText(this, R.string.msg_camera_permission, Toast.LENGTH_LONG).show();
            }
        } else if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT) {
            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                exportJSONWithSelector();
            } else {
-               showSimpleSnackbar(R.string.msg_storage_permissions);
+               Toast.makeText(this, R.string.msg_storage_permissions, Toast.LENGTH_LONG).show();
            }
        } else if (requestCode == PERMISSIONS_REQUEST_READ_IMPORT) {
            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                importJSONWithSelector();
            } else {
-               showSimpleSnackbar(R.string.msg_storage_permissions);
+               Toast.makeText(this, R.string.msg_storage_permissions, Toast.LENGTH_LONG).show();
            }
        } else {
            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
        }
-    }
-
-    // Snackbar notifications
-    private void showSimpleSnackbar(int string_res) {
-        showSimpleSnackbar(getString(string_res));
-    }
-
-    private void showSimpleSnackbar(String msg) {
-        Snackbar.make(fab, msg, Snackbar.LENGTH_LONG)
-                .show();
     }
 
     // Try to fix the animation scale
@@ -392,7 +382,7 @@ public class MainActivity extends AppCompatActivity {
 
                 adapter.notifyDataSetChanged();
             } catch (Exception e) {
-                showSimpleSnackbar(R.string.msg_invalid_qr_code);
+                Toast.makeText(this, R.string.msg_invalid_qr_code, Toast.LENGTH_LONG).show();
             }
         } else if (requestCode == INTENT_OPEN_DOCUMENT && resultCode == Activity.RESULT_OK) {
             Uri file;
