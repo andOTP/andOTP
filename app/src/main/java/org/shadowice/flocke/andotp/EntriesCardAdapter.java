@@ -23,6 +23,8 @@
 package org.shadowice.flocke.andotp;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.widget.PopupMenu;
@@ -34,9 +36,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.ItemTouchHelper.ItemTouchHelperAdapter;
 import org.shadowice.flocke.andotp.ItemTouchHelper.ItemTouchHelperViewHolder;
@@ -192,6 +195,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         popup.show();
     }
 
+    private void copyToClipboard(String text) {
+        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText(context.getString(R.string.label_clipboard), text);
+        clipboard.setPrimaryClip(clip);
+
+        Toast.makeText(context, R.string.msg_copied_to_clipboard, Toast.LENGTH_LONG).show();
+    }
+
     public void setMoveEventCallback(ViewHolderEventCallback cb) {
         this.viewHolderEventCallback = cb;
     }
@@ -205,7 +216,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         protected TextView OTPLabel;
         protected LinearLayout customPeriodLayout;
         protected TextView customPeriod;
-        protected ImageView menuButton;
+        protected ImageButton menuButton;
+        protected ImageButton copyButton;
 
         public EntryViewHolder(final View v) {
             super(v);
@@ -214,12 +226,20 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
             OTPLabel = (TextView) v.findViewById(R.id.textViewLabel);
             customPeriodLayout = (LinearLayout) v.findViewById(R.id.customPeriodLayout);
             customPeriod = (TextView) v.findViewById(R.id.customPeriod);
-            menuButton = (ImageView) v.findViewById(R.id.menuButton);
+            menuButton = (ImageButton) v.findViewById(R.id.menuButton);
+            copyButton = (ImageButton) v.findViewById(R.id.copyButton);
 
             menuButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     showPopupMenu(view, getAdapterPosition());
+                }
+            });
+
+            copyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    copyToClipboard(OTPValue.getText().toString());
                 }
             });
         }

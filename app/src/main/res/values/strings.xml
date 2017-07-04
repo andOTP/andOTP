@@ -9,6 +9,8 @@
 
     <string name="format_custom_period">%d s</string>
 
+    <string name="label_clipboard" translatable="false">OTP Token</string>
+
     <string name="menu_about">About</string>
     <string name="menu_edit_label">Edit label</string>
     <string name="menu_export">Export (JSON)</string>
@@ -26,6 +28,7 @@
     </string>
     <string name="msg_camera_permission">Camera permission not granted</string>
     <string name="msg_confirm_delete">Are you sure you want do remove this account?</string>
+    <string name="msg_copied_to_clipboard">Copied to clipboard</string>
     <string name="msg_export_success">Export to external storage successful</string>
     <string name="msg_export_failed">Export to external storage failed</string>
     <string name="msg_export_warning">Do you really want to export the database as plain-text JSON
