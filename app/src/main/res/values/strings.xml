@@ -17,15 +17,6 @@
     <string name="menu_import">Import (JSON)</string>
     <string name="menu_submenu_backup">Import / Export</string>
 
-    <string name="msg_animator_duration_scale">Your devices <b>Animator duration scale</b> seems to
-        be set to something other than the default (<i>1.0x</i>), which will result in a not very
-        smooth animation of the countdown bar.
-        \n\nandOTP tried to apply an automatic fix to itself, but something went wrong with that.
-        Now it will try to compensate manually during the animation. In the case that does not work
-        you can either live with the jumpy countdown bar or change your devices <b>Animator duration
-        scale</b> in the <b>Developer options</b>.
-        \n\n<b>This message will not be shown again!</b>
-    </string>
     <string name="msg_camera_permission">Camera permission not granted</string>
     <string name="msg_confirm_delete">Are you sure you want do remove this account?</string>
     <string name="msg_copied_to_clipboard">Copied to clipboard</string>
@@ -41,10 +32,7 @@
     <string name="msg_storage_not_accessible">External storage currently not accessible</string>
     <string name="msg_storage_permissions">Storage permissions not granted</string>
 
-    <string name="title_animator_duration">Animator duration scale</string>
     <string name="title_search">Search</string>
-
-    <string name="pref_animator_warning_displayed">animator_warning_displayed</string>
 
     <!-- About dialog -->
     <string name="about_description">
