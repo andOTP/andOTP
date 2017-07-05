@@ -5,7 +5,18 @@
     <dimen name="activity_margin_large">32dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="card_corner_radius">0dp</dimen>
+
+    <!-- FAB Menu -->
+    <dimen name="fab_small_elevation">2dp</dimen>
+    <dimen name="fab_small_margin">8dp</dimen>
+    <dimen name="fab_small_horizontal_offset">16dp</dimen>
+    <dimen name="fab_small_vertical_offset">8dp</dimen>
+    <dimen name="fab_small_vertical_offset_base">16dp</dimen>
+    <dimen name="fab_small_label_corners">4dp</dimen>
+    <dimen name="fab_small_label_padding">4dp</dimen>
+    <dimen name="fab_small_label_offset">8dp</dimen>
+    <dimen name="fab_base_horizontal_offset">16dp</dimen>
+    <dimen name="fab_base_vertical_offset">16dp</dimen>
 </resources>

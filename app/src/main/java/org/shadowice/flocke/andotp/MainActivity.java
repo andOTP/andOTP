@@ -36,7 +36,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
@@ -61,11 +61,9 @@ import com.google.zxing.integration.android.IntentIntegrator;
 
 import org.shadowice.flocke.andotp.ItemTouchHelper.SimpleItemTouchHelperCallback;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
     private EntriesCardAdapter adapter;
-    private FloatingActionButton fab;
+    private FloatingActionMenu floatingActionMenu;
     private SimpleItemTouchHelperCallback touchHelperCallback;
 
     private Handler handler;
@@ -242,11 +240,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fab = (FloatingActionButton) findViewById(R.id.action_scan);
-        fab.setOnClickListener(new View.OnClickListener() {
+        floatingActionMenu = new FloatingActionMenu(this, (ConstraintLayout) findViewById(R.id.fab_main_layout));
+        floatingActionMenu.setFABHandler(new FloatingActionMenu.FABHandler() {
             @Override
-            public void onClick(View view) {
+            public void onQRFabClick() {
                 scanQRCode();
+            }
+
+            @Override
+            public void onManualFabClick() {
             }
         });
 
@@ -382,14 +384,14 @@ public class MainActivity extends AppCompatActivity {
         MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
-                fab.setVisibility(View.GONE);
+                floatingActionMenu.hide();
                 touchHelperCallback.setDragEnabled(false);
                 return true;
             }
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
-                fab.setVisibility(View.VISIBLE);
+                floatingActionMenu.show();
                 touchHelperCallback.setDragEnabled(true);
                 return true;
             }

@@ -32,6 +32,8 @@
     <string name="msg_storage_not_accessible">External storage currently not accessible</string>
     <string name="msg_storage_permissions">Storage permissions not granted</string>
 
+    <string name="title_enter_details">Enter details</string>
+    <string name="title_scan_qr">Scan QR-Code</string>
     <string name="title_search">Search</string>
 
     <!-- About dialog -->
