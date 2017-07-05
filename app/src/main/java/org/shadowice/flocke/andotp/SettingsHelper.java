@@ -46,9 +46,19 @@ public class SettingsHelper {
     public static final String KEY_FILE = "otp.key";
     public static final String SETTINGS_FILE = "secrets.dat";
 
-    public static void store(Context context, JSONArray json) {
+    public static void store(Context context, ArrayList<Entry> entries) {
+        JSONArray a = new JSONArray();
+
+        for(Entry e: entries){
+            try {
+                a.put(e.toJSON());
+            } catch (Exception error) {
+                error.printStackTrace();
+            }
+        }
+
         try {
-            byte[] data = json.toString().getBytes();
+            byte[] data = a.toString().getBytes();
 
             SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
             data = EncryptionHelper.encrypt(key,data);
@@ -60,28 +70,19 @@ public class SettingsHelper {
         }
     }
 
-    public static void store(Context context, ArrayList<Entry> entries){
-        JSONArray a = new JSONArray();
-
-        for(Entry e: entries){
-            try {
-                a.put(e.toJSON());
-            } catch (Exception error) {
-                error.printStackTrace();
-            }
-        }
-
-        store(context, a);
-    }
-
     public static ArrayList<Entry> load(Context context){
         ArrayList<Entry> entries = new ArrayList<>();
 
         try {
-            JSONArray a = readJSON(context);
+            byte[] data = readFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
 
-            for (int i = 0; i < a.length(); i++) {
-                entries.add(new Entry(a.getJSONObject(i)));
+            SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
+            data = EncryptionHelper.decrypt(key, data);
+
+            JSONArray json = new JSONArray(new String(data));
+
+            for (int i = 0; i < json.length(); i++) {
+                entries.add(new Entry(json.getJSONObject(i)));
             }
         } catch (Exception error) {
             error.printStackTrace();
@@ -90,73 +91,40 @@ public class SettingsHelper {
         return entries;
     }
 
-    public static JSONArray readJSON(Context context) {
+    public static boolean exportAsJSON(Context context, Uri file) {
+        ArrayList<Entry> entries = load(context);
+
         JSONArray json = new JSONArray();
 
-        try {
-            byte[] data = readFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
-
-            SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
-            data = EncryptionHelper.decrypt(key, data);
-
-            json = new JSONArray(new String(data));
-        }
-        catch (Exception error) {
-            error.printStackTrace();
+        for(Entry e: entries){
+            try {
+                json.put(e.toJSON());
+            } catch (Exception error) {
+                error.printStackTrace();
+            }
         }
 
-        return json;
-    }
-
-    public static boolean exportAsJSON(Context context, Uri file) {
-        JSONArray data = readJSON(context);
-
-        boolean success = true;
-
-        try {
-            OutputStream outputStream = context.getContentResolver().openOutputStream(file);
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
-            writer.write(data.toString());
-            writer.close();
-            outputStream.close();
-        } catch (Exception error) {
-            success = false;
-            error.printStackTrace();
-        }
-
-        return success;
+        return FileHelper.writeStringToFile(context, file, json.toString());
     }
 
     public static boolean importFromJSON(Context context, Uri file) {
         boolean success = true;
 
-        StringBuilder stringBuilder = new StringBuilder();
+        String content = FileHelper.readFileToString(context, file);
+        ArrayList<Entry> entries = new ArrayList<>();
 
         try {
-            InputStream inputStream = context.getContentResolver().openInputStream(file);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
+            JSONArray json = new JSONArray(content);
+
+            for (int i = 0; i < json.length(); i++) {
+                entries.add(new Entry(json.getJSONObject(i)));
             }
-            reader.close();
-            inputStream.close();
-        } catch (Exception error) {
-            success = false;
-            error.printStackTrace();
-        }
-        String content = stringBuilder.toString();
-
-        JSONArray json = null;
-
-        try {
-            json = new JSONArray(content);
         } catch (Exception error) {
             success = false;
             error.printStackTrace();
         }
 
-        store(context, json);
+        store(context, entries);
 
         return success;
     }
