@@ -343,6 +343,7 @@ public class MainActivity extends AppCompatActivity {
                 Entry e = new Entry(intent.getStringExtra(Intents.Scan.RESULT));
                 e.setCurrentOTP(TOTPHelper.generate(e.getSecret(), e.getPeriod()));
                 entries.add(e);
+                adapter.setEntries(entries);
                 SettingsHelper.store(this, entries);
 
                 adapter.notifyDataSetChanged();
