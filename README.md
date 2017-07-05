@@ -43,13 +43,18 @@ goes to Bruno.
 [![Download latest version (v0.1.0)](https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://github.com/flocke/andOTP/releases/download/v0.1.0/andOTP_v0.1.0.apk)](https://github.com/flocke/andOTP/releases/download/v0.1.0/andOTP_v0.1.0.apk)
 
 ## Acknowledgments:
+#### Open-source components used:
 
  * [Apache Commons Code](https://commons.apache.org/proper/commons-codec/)
- * [Code Parts from Google's Android Samples](https://android.googlesource.com/platform/development/+/master/samples/Vault/src/com/example/android/vault)
  * [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
- * [SimpleItemTouchHelperCallback](https://github.com/iPaulPro/Android-ItemTouchHelper-Demo/blob/master/app/src/main/java/co/paulburke/android/itemtouchhelperdemo/helper/SimpleItemTouchHelperCallback.java) from [Android-ItemTouchHelper-Demo](https://github.com/iPaulPro/Android-ItemTouchHelper-Demo) by [Paul Burke](https://github.com/iPaulPro)
  * [ZXing](https://github.com/zxing/zxing)
  * [ZXing Android Embedded](https://github.com/journeyapps/zxing-android-embedded)
+
+#### Code examples used:
+
+ * [Android-ItemTouchHelper-Demo](https://github.com/iPaulPro/Android-ItemTouchHelper-Demo/tree/master/app/src/main/java/co/paulburke/android/itemtouchhelperdemo/helper)
+ * [Code Parts from Google's Android Samples](https://android.googlesource.com/platform/development/+/master/samples/Vault/src/com/example/android/vault)
+ * [FloatingActionMenuAndroid](https://github.com/pmahsky/FloatingActionMenuAndroid)
 
 ## License:
 ```
