@@ -56,8 +56,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import org.shadowice.flocke.andotp.ItemTouchHelper.SimpleItemTouchHelperCallback;
 
@@ -69,9 +69,8 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler;
     private Runnable handlerTask;
 
-    private static final int PERMISSIONS_REQUEST_CAMERA = 42;
-    private static final int PERMISSIONS_REQUEST_WRITE_EXPORT = 41;
-    private static final int PERMISSIONS_REQUEST_READ_IMPORT = 40;
+    private static final int PERMISSIONS_REQUEST_WRITE_EXPORT = 42;
+    private static final int PERMISSIONS_REQUEST_READ_IMPORT = 41;
 
     private static final int INTENT_OPEN_DOCUMENT = 24;
     private static final int INTENT_SAVE_DOCUMENT= 23;
@@ -80,19 +79,11 @@ public class MainActivity extends AppCompatActivity {
     private static final String DEFAULT_BACKUP_MIMETYPE = "application/json";
 
     // QR code scanning
-    private void doScanQRCode(){
-        new IntentIntegrator(MainActivity.this)
-                .setCaptureActivity(CaptureActivityAnyOrientation.class)
-                .setOrientationLocked(false)
-                .initiateScan();
-    }
-
     private void scanQRCode(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            doScanQRCode();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMISSIONS_REQUEST_CAMERA);
-        }
+        new IntentIntegrator(MainActivity.this)
+                .setOrientationLocked(false)
+                .setBeepEnabled(false)
+                .initiateScan();
     }
 
     // About dialog
@@ -207,13 +198,7 @@ public class MainActivity extends AppCompatActivity {
     // Permission results
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-       if(requestCode == PERMISSIONS_REQUEST_CAMERA) {
-           if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-               doScanQRCode();
-           } else {
-               Toast.makeText(this, R.string.msg_camera_permission, Toast.LENGTH_LONG).show();
-           }
-       } else if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT) {
+       if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT) {
            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                exportJSONWithSelector();
            } else {
@@ -335,16 +320,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
-        if (requestCode == IntentIntegrator.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            try {
-                Entry e = new Entry(intent.getStringExtra(Intents.Scan.RESULT));
-                e.setCurrentOTP(TOTPHelper.generate(e.getSecret(), e.getPeriod()));
-                adapter.addEntry(e);
-                SettingsHelper.store(this, adapter.getEntries());
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if(result != null) {
+            if(result.getContents() != null) {
+                try {
+                    Entry e = new Entry(result.getContents());
+                    e.setCurrentOTP(TOTPHelper.generate(e.getSecret(), e.getPeriod()));
+                    adapter.addEntry(e);
+                    SettingsHelper.store(this, adapter.getEntries());
 
-                adapter.notifyDataSetChanged();
-            } catch (Exception e) {
-                Toast.makeText(this, R.string.msg_invalid_qr_code, Toast.LENGTH_LONG).show();
+                    adapter.notifyDataSetChanged();
+                } catch (Exception e) {
+                    Toast.makeText(this, R.string.msg_invalid_qr_code, Toast.LENGTH_LONG).show();
+                }
             }
         } else if (requestCode == INTENT_OPEN_DOCUMENT && resultCode == Activity.RESULT_OK) {
             Uri file;
@@ -399,7 +387,6 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

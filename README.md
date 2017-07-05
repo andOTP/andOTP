@@ -47,7 +47,6 @@ goes to Bruno.
 
  * [Apache Commons Code](https://commons.apache.org/proper/commons-codec/)
  * [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
- * [ZXing](https://github.com/zxing/zxing)
  * [ZXing Android Embedded](https://github.com/journeyapps/zxing-android-embedded)
 
 #### Code examples used:

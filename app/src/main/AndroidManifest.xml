@@ -24,11 +24,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CaptureActivityAnyOrientation"
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
-            android:stateNotNeeded="true"
-            android:theme="@style/zxing_CaptureTheme"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            tools:replace="screenOrientation" />
 
     </application>
 </manifest>
