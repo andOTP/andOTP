@@ -1,4 +1,8 @@
 #  andOTP -  Android OTP Authenticator
+
+[![Build Status](https://travis-ci.org/flocke/andOTP.svg?branch=master)](https://travis-ci.org/flocke/andOTP)
+[![Current release](https://img.shields.io/github/release/flocke/andOTP/all.svg)](https://github.com/flocke/andOTP/releases/download/v0.1.0/andOTP_v0.1.0.apk)
+
 ![andOTP](./assets/logo.png)
 
 andOTP is a two-factor authentication App for Android 4.4+.
@@ -26,7 +30,6 @@ goes to Bruno.
  * Export the secret key (maybe)
 
 <!--
-
 ## Download:
 ### Google Play:
 
@@ -35,12 +38,7 @@ goes to Bruno.
 
 ### F-Droid:
 [OTP Authenticator on F-Droid](https://f-droid.org/repository/browse/?fdfilter=otp&fdid=net.bierbaumer.otp_authenticator)
-
 -->
-
-## Download
-### APK:
-[![Download latest version (v0.1.0)](https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://github.com/flocke/andOTP/releases/download/v0.1.0/andOTP_v0.1.0.apk)](https://github.com/flocke/andOTP/releases/download/v0.1.0/andOTP_v0.1.0.apk)
 
 ## Acknowledgments:
 #### Open-source components used:
