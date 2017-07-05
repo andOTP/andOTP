@@ -64,7 +64,6 @@ import org.shadowice.flocke.andotp.ItemTouchHelper.SimpleItemTouchHelperCallback
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<Entry> entries;
     private EntriesCardAdapter adapter;
     private FloatingActionButton fab;
     private SimpleItemTouchHelperCallback touchHelperCallback;
@@ -182,9 +181,7 @@ public class MainActivity extends AppCompatActivity {
             boolean success = SettingsHelper.importFromJSON(this, uri);
 
             if (success) {
-                entries = SettingsHelper.load(this);
-                adapter.setEntries(entries);
-
+                adapter.setEntries(SettingsHelper.load(this));
                 Toast.makeText(this, R.string.msg_import_success, Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, R.string.msg_import_failed, Toast.LENGTH_LONG).show();
@@ -261,9 +258,7 @@ public class MainActivity extends AppCompatActivity {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
 
-        entries = SettingsHelper.load(this);
-
-        adapter = new EntriesCardAdapter(this, entries);
+        adapter = new EntriesCardAdapter(this, SettingsHelper.load(this));
         recList.setAdapter(adapter);
 
         touchHelperCallback = new SimpleItemTouchHelperCallback(adapter);
@@ -342,9 +337,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 Entry e = new Entry(intent.getStringExtra(Intents.Scan.RESULT));
                 e.setCurrentOTP(TOTPHelper.generate(e.getSecret(), e.getPeriod()));
-                entries.add(e);
-                adapter.setEntries(entries);
-                SettingsHelper.store(this, entries);
+                adapter.addEntry(e);
+                SettingsHelper.store(this, adapter.getEntries());
 
                 adapter.notifyDataSetChanged();
             } catch (Exception e) {

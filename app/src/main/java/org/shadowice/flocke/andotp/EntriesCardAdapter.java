@@ -62,7 +62,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         this.context = context;
         this.entries = entries;
 
-        displayedEntries = defaultIndices();
+        entriesChanged();
     }
 
     @Override
@@ -78,10 +78,23 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         return entries.get(i);
     }
 
+    public ArrayList<Entry> getEntries() {
+        return entries;
+    }
+
     public void setEntries(ArrayList<Entry> e) {
         entries = e;
+        entriesChanged();
+    }
 
-        displayedEntries.clear();
+    public void addEntry(Entry e) {
+        entries.add(e);
+        entriesChanged();
+    }
+
+    public void entriesChanged() {
+        if (displayedEntries != null)
+            displayedEntries.clear();
         displayedEntries = defaultIndices();
 
         notifyDataSetChanged();
