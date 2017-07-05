@@ -34,10 +34,16 @@ import java.util.Arrays;
 import static org.shadowice.flocke.andotp.TOTPHelper.TOTP_DEFAULT_PERIOD;
 
 public class Entry {
-    public static final String JSON_SECRET = "secret";
-    public static final String JSON_LABEL = "label";
-    private static final String JSON_PERIOD = "period";
+    public enum OTPType { TOTP, HOTP }
 
+    private static final OTPType DEFAULT_TYPE = OTPType.TOTP;
+
+    private static final String JSON_SECRET = "secret";
+    private static final String JSON_LABEL = "label";
+    private static final String JSON_PERIOD = "period";
+    private static final String JSON_TYPE = "type";
+
+    private OTPType type;
     private byte[] secret;
     private String label;
     private int period;
@@ -57,7 +63,9 @@ public class Entry {
             throw new Exception("Invalid Protocol");
         }
 
-        if(!url.getHost().equals("totp")){
+        if(url.getHost().equals("totp")){
+            type = OTPType.TOTP;
+        } else {
             throw new Exception();
         }
 
@@ -85,6 +93,11 @@ public class Entry {
         this.setSecret(new Base32().decode(jsonObj.getString(JSON_SECRET)));
         this.setLabel(jsonObj.getString(JSON_LABEL));
         this.setPeriod(jsonObj.getInt(JSON_PERIOD));
+        try {
+            this.setType(jsonObj.getString(JSON_TYPE));
+        } catch(JSONException e) {
+            this.setType(DEFAULT_TYPE);
+        }
     }
 
     public JSONObject toJSON() throws JSONException {
@@ -92,8 +105,21 @@ public class Entry {
         jsonObj.put(JSON_SECRET, new String(new Base32().encode(getSecret())));
         jsonObj.put(JSON_LABEL, getLabel());
         jsonObj.put(JSON_PERIOD, getPeriod());
+        jsonObj.put(JSON_TYPE, getType().toString());
 
         return jsonObj;
+    }
+
+    public OTPType getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = OTPType.valueOf(type);
+    }
+
+    public void setType(OTPType type) {
+        this.type = type;
     }
 
     public byte[] getSecret() {
@@ -149,6 +175,7 @@ public class Entry {
 
         Entry entry = (Entry) o;
 
+        if (type != entry.type) return false;
         if (!Arrays.equals(secret, entry.secret)) return false;
         if (period != entry.period) return false;
         return !(label != null ? !label.equals(entry.label) : entry.label != null);
