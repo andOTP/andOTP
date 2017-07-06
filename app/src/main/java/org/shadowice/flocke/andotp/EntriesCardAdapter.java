@@ -293,6 +293,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         private ViewHolderEventCallback eventCallback;
 
         protected TextView OTPValue;
+        protected TextView OTPValueCover;
         protected TextView OTPLabel;
         protected LinearLayout customPeriodLayout;
         protected TextView customPeriod;
@@ -303,6 +304,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
             super(v);
 
             OTPValue = (TextView) v.findViewById(R.id.textViewOTP);
+            OTPValueCover = (TextView) v.findViewById(R.id.textViewOTPCover);
             OTPLabel = (TextView) v.findViewById(R.id.textViewLabel);
             customPeriodLayout = (LinearLayout) v.findViewById(R.id.customPeriodLayout);
             customPeriod = (TextView) v.findViewById(R.id.customPeriod);
@@ -320,6 +322,22 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
                 @Override
                 public void onClick(View view) {
                     copyToClipboard(OTPValue.getText().toString());
+                }
+            });
+
+            OTPValue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    OTPValue.setVisibility(View.GONE);
+                    OTPValueCover.setVisibility(View.VISIBLE);
+                }
+            });
+
+            OTPValueCover.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    OTPValueCover.setVisibility(View.GONE);
+                    OTPValue.setVisibility(View.VISIBLE);
                 }
             });
         }
