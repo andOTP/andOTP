@@ -7,6 +7,8 @@
         <CheckBoxPreference
             android:key="@string/pref_key_tap_to_reveal"
             android:title="@string/pref_title_tap_to_reveal"
+            android:summaryOff="@string/pref_desc_tap_to_reveal_off"
+            android:summaryOn="@string/pref_desc_tap_to_reveal_on"
             android:defaultValue="false" />
 
     </PreferenceCategory>

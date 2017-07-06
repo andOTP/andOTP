@@ -48,7 +48,9 @@
     <!-- Preferences -->
     <string name="pref_window_title">Settings</string>
     <string name="pref_category_title_ui">User interface</string>
-    <string name="pref_title_tap_to_reveal">Tap-to-reveal</string>
+    <string name="pref_title_tap_to_reveal">Tap to reveal</string>
+    <string name="pref_desc_tap_to_reveal_on">The token is hidden and has to be revealed manually</string>
+    <string name="pref_desc_tap_to_reveal_off">The token is always displayed</string>
     <string name="pref_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>
 
     <!-- About dialog -->
