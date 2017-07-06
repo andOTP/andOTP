@@ -120,11 +120,11 @@ public class MainActivity extends AppCompatActivity {
             boolean success = DatabaseHelper.exportAsJSON(this, uri);
 
             if (success)
-                Toast.makeText(this, R.string.msg_export_success, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.toast_export_success, Toast.LENGTH_LONG).show();
             else
-                Toast.makeText(this, R.string.msg_export_failed, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.toast_export_failed, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, R.string.msg_storage_not_accessible, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -147,8 +147,8 @@ public class MainActivity extends AppCompatActivity {
     private void exportJSONWithWarning() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle(R.string.msg_security_warning)
-                .setMessage(R.string.msg_export_warning)
+        builder.setTitle(R.string.dialog_title_security_warning)
+                .setMessage(R.string.dialog_msg_export_warning)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -171,12 +171,12 @@ public class MainActivity extends AppCompatActivity {
 
             if (success) {
                 adapter.setEntries(DatabaseHelper.load(this));
-                Toast.makeText(this, R.string.msg_import_success, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.toast_import_success, Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, R.string.msg_import_failed, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.toast_import_failed, Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(this, R.string.msg_storage_not_accessible, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -202,13 +202,13 @@ public class MainActivity extends AppCompatActivity {
            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                exportJSONWithSelector();
            } else {
-               Toast.makeText(this, R.string.msg_storage_permissions, Toast.LENGTH_LONG).show();
+               Toast.makeText(this, R.string.toast_storage_permissions, Toast.LENGTH_LONG).show();
            }
        } else if (requestCode == PERMISSIONS_REQUEST_READ_IMPORT) {
            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                importJSONWithSelector();
            } else {
-               Toast.makeText(this, R.string.msg_storage_permissions, Toast.LENGTH_LONG).show();
+               Toast.makeText(this, R.string.toast_storage_permissions, Toast.LENGTH_LONG).show();
            }
        } else {
            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -331,7 +331,7 @@ public class MainActivity extends AppCompatActivity {
 
                     adapter.notifyDataSetChanged();
                 } catch (Exception e) {
-                    Toast.makeText(this, R.string.msg_invalid_qr_code, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();
                 }
             }
         } else if (requestCode == INTENT_OPEN_DOCUMENT && resultCode == Activity.RESULT_OK) {

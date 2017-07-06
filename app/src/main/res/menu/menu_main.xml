@@ -3,26 +3,26 @@
 
     <item
         android:id="@+id/menu_search"
-        android:title="@string/title_search"
+        android:title="@string/menu_main_search"
         android:icon="@drawable/ic_search_white"
         app:showAsAction="always|collapseActionView"
         app:actionViewClass="android.support.v7.widget.SearchView" />
 
     <item
         android:id="@+id/submenu_backup"
-        android:title="@string/menu_submenu_backup">
+        android:title="@string/menu_main_submenu_backup">
 
         <menu>
             <item
                 android:id="@+id/action_export"
                 android:orderInCategory="100"
-                android:title="@string/menu_export"
+                android:title="@string/menu_main_export"
                 app:showAsAction="never" />
 
             <item
                 android:id="@+id/action_import"
                 android:orderInCategory="100"
-                android:title="@string/menu_import"
+                android:title="@string/menu_main_import"
                 app:showAsAction="never" />
         </menu>
     </item>
@@ -30,6 +30,6 @@
     <item
         android:id="@+id/action_about"
         android:orderInCategory="100"
-        android:title="@string/menu_about"
+        android:title="@string/menu_main_about"
         app:showAsAction="never" />
 </menu>

@@ -38,7 +38,7 @@
             android:layout_marginEnd="@dimen/fab_small_label_offset"
             android:background="@drawable/shape_fab_label"
             android:padding="@dimen/fab_small_label_padding"
-            android:text="@string/title_scan_qr"
+            android:text="@string/button_scan_qr"
             android:textColor="@android:color/white"
             android:typeface="normal" />
 
@@ -75,7 +75,7 @@
             android:layout_marginEnd="@dimen/fab_small_label_offset"
             android:background="@drawable/shape_fab_label"
             android:padding="@dimen/fab_small_label_padding"
-            android:text="@string/title_enter_details"
+            android:text="@string/button_enter_details"
             android:textColor="@android:color/white"
             android:typeface="normal" />
 

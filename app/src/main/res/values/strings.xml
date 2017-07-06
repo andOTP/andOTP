@@ -2,40 +2,47 @@
     <string name="app_name">andOTP</string>
     <string name="app_launcher">OTP Authenticator</string>
 
-    <string name="alert_remove">Remove</string>
-    <string name="alert_rename">Rename</string>
-
+    <!-- Buttons -->
+    <string name="button_enter_details">Enter details</string>
+    <string name="button_scan_qr">Scan QR-Code</string>
     <string name="button_save">Save</string>
 
+    <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
 
-    <string name="label_clipboard" translatable="false">OTP Token</string>
+    <!-- Labels -->
+    <string name="label_clipboard_content" translatable="false">OTP Token</string>
     <string name="label_tap_to_reveal">Tap to reveal</string>
 
-    <string name="menu_about">About</string>
-    <string name="menu_edit_label">Edit label</string>
-    <string name="menu_export">Export (JSON)</string>
-    <string name="menu_import">Import (JSON)</string>
-    <string name="menu_submenu_backup">Import / Export</string>
+    <!-- Menu -->
+    <string name="menu_main_about">About</string>
+    <string name="menu_main_export">Export (JSON)</string>
+    <string name="menu_main_import">Import (JSON)</string>
+    <string name="menu_main_search">Search</string>
+    <string name="menu_main_submenu_backup">Import / Export</string>
 
-    <string name="msg_camera_permission">Camera permission not granted</string>
-    <string name="msg_confirm_delete">Are you sure you want do remove this account?</string>
-    <string name="msg_copied_to_clipboard">Copied to clipboard</string>
-    <string name="msg_export_success">Export to external storage successful</string>
-    <string name="msg_export_failed">Export to external storage failed</string>
-    <string name="msg_export_warning">Do you really want to export the database as plain-text JSON
-        file? This file contains all your secret keys, please <b>keep it safe</b>!
+    <string name="menu_popup_edit_label">Edit label</string>
+    <string name="menu_popup_remove">Remove</string>
+
+    <!-- Toast messages -->
+    <string name="toast_copied_to_clipboard">Copied to clipboard</string>
+    <string name="toast_export_success">Export to external storage successful</string>
+    <string name="toast_export_failed">Export to external storage failed</string>
+    <string name="toast_import_success">Import from external storage successful</string>
+    <string name="toast_import_failed">Import from external storage failed</string>
+    <string name="toast_invalid_qr_code">Invalid QR Code</string>
+    <string name="toast_storage_not_accessible">External storage currently not accessible</string>
+    <string name="toast_storage_permissions">Storage permissions not granted</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_title_remove">Remove</string>
+    <string name="dialog_title_rename">Rename</string>
+    <string name="dialog_title_security_warning">Security warning</string>
+
+    <string name="dialog_msg_confirm_delete">Are you sure you want do remove this account?</string>
+    <string name="dialog_msg_export_warning">Do you really want to export the database as plain-text
+        JSON file? This file contains all your secret keys, please <b>keep it safe</b>!
     </string>
-    <string name="msg_import_success">Import from external storage successful</string>
-    <string name="msg_import_failed">Import from external storage failed</string>
-    <string name="msg_invalid_qr_code">Invalid QR Code</string>
-    <string name="msg_security_warning">Security warning</string>
-    <string name="msg_storage_not_accessible">External storage currently not accessible</string>
-    <string name="msg_storage_permissions">Storage permissions not granted</string>
-
-    <string name="title_enter_details">Enter details</string>
-    <string name="title_scan_qr">Scan QR-Code</string>
-    <string name="title_search">Search</string>
 
     <!-- About dialog -->
     <string name="about_description">

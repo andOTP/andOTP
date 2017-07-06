@@ -150,8 +150,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
     public void onItemDismiss(final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-        builder.setTitle(context.getString(R.string.alert_remove))
-                .setMessage(context.getString(R.string.msg_confirm_delete))
+        builder.setTitle(R.string.dialog_title_remove)
+                .setMessage(R.string.dialog_msg_confirm_delete)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -194,7 +194,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         input.setLayoutParams(params);
         container.addView(input);
 
-        builder.setTitle(R.string.alert_rename)
+        builder.setTitle(R.string.dialog_title_rename)
                 .setView(container)
                 .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
                     @Override
@@ -240,10 +240,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
 
     private void copyToClipboard(String text) {
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText(context.getString(R.string.label_clipboard), text);
+        ClipData clip = ClipData.newPlainText(context.getString(R.string.label_clipboard_content), text);
         clipboard.setPrimaryClip(clip);
 
-        Toast.makeText(context, R.string.msg_copied_to_clipboard, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.toast_copied_to_clipboard, Toast.LENGTH_LONG).show();
     }
 
     public void setMoveEventCallback(ViewHolderEventCallback cb) {
