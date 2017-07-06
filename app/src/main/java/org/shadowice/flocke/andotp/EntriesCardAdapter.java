@@ -158,7 +158,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
                         entries.remove(removeIndex(position));
                         notifyItemRemoved(position);
 
-                        SettingsHelper.store(context, entries);
+                        DatabaseHelper.store(context, entries);
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -175,7 +175,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         Collections.swap(entries, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
 
-        SettingsHelper.store(context, entries);
+        DatabaseHelper.store(context, entries);
 
         return true;
     }
@@ -202,7 +202,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
                         entries.get(displayedEntries.get(pos)).setLabel(input.getEditableText().toString());
                         notifyItemChanged(pos);
 
-                        SettingsHelper.store(context, entries);
+                        DatabaseHelper.store(context, entries);
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {

@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
     // Export to JSON
     private void doExportJSON(Uri uri) {
         if (StorageHelper.isExternalStorageWritable()) {
-            boolean success = SettingsHelper.exportAsJSON(this, uri);
+            boolean success = DatabaseHelper.exportAsJSON(this, uri);
 
             if (success)
                 Toast.makeText(this, R.string.msg_export_success, Toast.LENGTH_LONG).show();
@@ -167,10 +167,10 @@ public class MainActivity extends AppCompatActivity {
     // Import from JSON
     private void doImportJSON(Uri uri) {
         if (StorageHelper.isExternalStorageReadable()) {
-            boolean success = SettingsHelper.importFromJSON(this, uri);
+            boolean success = DatabaseHelper.importFromJSON(this, uri);
 
             if (success) {
-                adapter.setEntries(SettingsHelper.load(this));
+                adapter.setEntries(DatabaseHelper.load(this));
                 Toast.makeText(this, R.string.msg_import_success, Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, R.string.msg_import_failed, Toast.LENGTH_LONG).show();
@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
 
-        adapter = new EntriesCardAdapter(this, SettingsHelper.load(this));
+        adapter = new EntriesCardAdapter(this, DatabaseHelper.load(this));
         recList.setAdapter(adapter);
 
         touchHelperCallback = new SimpleItemTouchHelperCallback(adapter);
@@ -327,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
                     Entry e = new Entry(result.getContents());
                     e.setCurrentOTP(TOTPHelper.generate(e.getSecret(), e.getPeriod()));
                     adapter.addEntry(e);
-                    SettingsHelper.store(this, adapter.getEntries());
+                    DatabaseHelper.store(this, adapter.getEntries());
 
                     adapter.notifyDataSetChanged();
                 } catch (Exception e) {

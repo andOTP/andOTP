@@ -42,7 +42,7 @@ import javax.crypto.SecretKey;
 import static org.shadowice.flocke.andotp.Utils.readFully;
 import static org.shadowice.flocke.andotp.Utils.writeFully;
 
-public class SettingsHelper {
+public class DatabaseHelper {
     public static final String KEY_FILE = "otp.key";
     public static final String SETTINGS_FILE = "secrets.dat";
 

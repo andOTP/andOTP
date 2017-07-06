@@ -128,10 +128,10 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
             keyStore.deleteEntry("settings");
 
         }
-        new File(context.getFilesDir() + "/" + SettingsHelper.SETTINGS_FILE).delete();
-        new File(context.getFilesDir() + "/" + SettingsHelper.KEY_FILE).delete();
+        new File(context.getFilesDir() + "/" + DatabaseHelper.SETTINGS_FILE).delete();
+        new File(context.getFilesDir() + "/" + DatabaseHelper.KEY_FILE).delete();
 
-        ArrayList<Entry> b = SettingsHelper.load(context);
+        ArrayList<Entry> b = DatabaseHelper.load(context);
         assertEquals(0, b.size());
 
 
@@ -146,13 +146,13 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         e.setSecret("secret2".getBytes());
         a.add(e);
 
-        SettingsHelper.store(context, a);
-        b = SettingsHelper.load(context);
+        DatabaseHelper.store(context, a);
+        b = DatabaseHelper.load(context);
 
         assertEquals(a, b);
 
-        new File(context.getFilesDir() + "/" + SettingsHelper.SETTINGS_FILE).delete();
-        new File(context.getFilesDir() + "/" + SettingsHelper.KEY_FILE).delete();
+        new File(context.getFilesDir() + "/" + DatabaseHelper.SETTINGS_FILE).delete();
+        new File(context.getFilesDir() + "/" + DatabaseHelper.KEY_FILE).delete();
     }
 
     public void testEncryptionHelper() throws NoSuchPaddingException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, InvalidAlgorithmParameterException, DecoderException {
