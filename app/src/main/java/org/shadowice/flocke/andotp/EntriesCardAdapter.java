@@ -297,6 +297,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
 
         private ViewHolderEventCallback eventCallback;
 
+        private boolean ttr_enabled = false;
+
         protected TextView OTPValue;
         protected TextView OTPValueCover;
         protected TextView OTPLabel;
@@ -334,8 +336,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         public void setTapToReveal(boolean ttr) {
             if (ttr) {
                 OTPValue.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_visibility_visible, 0, 0, 0);
-                OTPValue.setVisibility(View.GONE);
-                OTPValueCover.setVisibility(View.VISIBLE);
+                if (! ttr_enabled || OTPValue.getVisibility() == View.GONE) {
+                    OTPValue.setVisibility(View.GONE);
+                    OTPValueCover.setVisibility(View.VISIBLE);
+                }
 
                 OTPValue.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -360,6 +364,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
                 OTPValue.setOnClickListener(null);
                 OTPValueCover.setOnClickListener(null);
             }
+
+            ttr_enabled = ttr;
         }
 
         @Override
