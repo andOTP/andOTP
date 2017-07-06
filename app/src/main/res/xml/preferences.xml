@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/pref_category_title_ui">
+
+        <CheckBoxPreference
+            android:key="@string/pref_key_tap_to_reveal"
+            android:title="@string/pref_title_tap_to_reveal"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

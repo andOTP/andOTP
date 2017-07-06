@@ -27,6 +27,8 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -137,6 +139,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         } else {
             entryViewHolder.customPeriodLayout.setVisibility(View.GONE);
         }
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        entryViewHolder.setTapToReveal(sharedPref.getBoolean(context.getString(R.string.pref_key_tap_to_reveal), false));
     }
 
     @Override
@@ -324,22 +329,37 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
                     copyToClipboard(OTPValue.getText().toString());
                 }
             });
+        }
 
-            OTPValue.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    OTPValue.setVisibility(View.GONE);
-                    OTPValueCover.setVisibility(View.VISIBLE);
-                }
-            });
+        public void setTapToReveal(boolean ttr) {
+            if (ttr) {
+                OTPValue.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_visibility_visible, 0, 0, 0);
+                OTPValue.setVisibility(View.GONE);
+                OTPValueCover.setVisibility(View.VISIBLE);
 
-            OTPValueCover.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    OTPValueCover.setVisibility(View.GONE);
-                    OTPValue.setVisibility(View.VISIBLE);
-                }
-            });
+                OTPValue.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        OTPValue.setVisibility(View.GONE);
+                        OTPValueCover.setVisibility(View.VISIBLE);
+                    }
+                });
+
+                OTPValueCover.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        OTPValueCover.setVisibility(View.GONE);
+                        OTPValue.setVisibility(View.VISIBLE);
+                    }
+                });
+            } else {
+                OTPValue.setCompoundDrawables(null, null, null, null);
+                OTPValue.setVisibility(View.VISIBLE);
+                OTPValueCover.setVisibility(View.GONE);
+
+                OTPValue.setOnClickListener(null);
+                OTPValueCover.setOnClickListener(null);
+            }
         }
 
         @Override

@@ -19,6 +19,7 @@
     <string name="menu_main_export">Export (JSON)</string>
     <string name="menu_main_import">Import (JSON)</string>
     <string name="menu_main_search">Search</string>
+    <string name="menu_main_settings">Settings</string>
     <string name="menu_main_submenu_backup">Import / Export</string>
 
     <string name="menu_popup_edit_label">Edit label</string>
@@ -43,6 +44,12 @@
     <string name="dialog_msg_export_warning">Do you really want to export the database as plain-text
         JSON file? This file contains all your secret keys, please <b>keep it safe</b>!
     </string>
+
+    <!-- Preferences -->
+    <string name="pref_window_title">Settings</string>
+    <string name="pref_category_title_ui">User interface</string>
+    <string name="pref_title_tap_to_reveal">Tap-to-reveal</string>
+    <string name="pref_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>
 
     <!-- About dialog -->
     <string name="about_description">

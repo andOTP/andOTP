@@ -34,6 +34,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int INTENT_OPEN_DOCUMENT = 24;
     private static final int INTENT_SAVE_DOCUMENT= 23;
+    private static final int INTENT_SETTINGS = 22;
 
     private static final String DEFAULT_BACKUP_FILENAME = "otp_accounts.json";
     private static final String DEFAULT_BACKUP_MIMETYPE = "application/json";
@@ -225,6 +227,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
         floatingActionMenu = new FloatingActionMenu(this, (ConstraintLayout) findViewById(R.id.fab_main_layout));
         floatingActionMenu.setFABHandler(new FloatingActionMenu.FABHandler() {
             @Override
@@ -346,6 +350,8 @@ public class MainActivity extends AppCompatActivity {
                 file = intent.getData();
                 doExportJSON(file);
             }
+        } else if (requestCode == INTENT_SETTINGS && resultCode == RESULT_OK) {
+            adapter.notifyDataSetChanged();
         }
     }
 
@@ -398,6 +404,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_import) {
             importJSONWithPermissions();
             return true;
+        } else if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivityForResult(intent, INTENT_SETTINGS);
         } else if (id == R.id.action_about){
             showAbout();
             return true;
