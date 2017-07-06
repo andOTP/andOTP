@@ -27,8 +27,10 @@ import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.KeyguardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int INTENT_OPEN_DOCUMENT = 24;
     private static final int INTENT_SAVE_DOCUMENT= 23;
     private static final int INTENT_SETTINGS = 22;
+    private static final int INTENT_AUTHENTICATE = 21;
 
     private static final String DEFAULT_BACKUP_FILENAME = "otp_accounts.json";
     private static final String DEFAULT_BACKUP_MIMETYPE = "application/json";
@@ -229,6 +232,17 @@ public class MainActivity extends AppCompatActivity {
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            if(sharedPref.getBoolean(getString(R.string.pref_key_auth_device), false)) {
+                KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+                if (km.isKeyguardSecure()) {
+                    Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.auth_title), getString(R.string.auth_desc));
+                    startActivityForResult(authIntent, INTENT_AUTHENTICATE);
+                }
+            }
+        }
+
         floatingActionMenu = new FloatingActionMenu(this, (ConstraintLayout) findViewById(R.id.fab_main_layout));
         floatingActionMenu.setFABHandler(new FloatingActionMenu.FABHandler() {
             @Override
@@ -352,6 +366,10 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if (requestCode == INTENT_SETTINGS && resultCode == RESULT_OK) {
             adapter.notifyDataSetChanged();
+        } else if (requestCode == INTENT_AUTHENTICATE && resultCode != RESULT_OK) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                finishAndRemoveTask();
+            }
         }
     }
 

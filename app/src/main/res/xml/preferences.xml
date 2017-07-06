@@ -7,10 +7,15 @@
         <CheckBoxPreference
             android:key="@string/pref_key_tap_to_reveal"
             android:title="@string/pref_title_tap_to_reveal"
-            android:summaryOff="@string/pref_desc_tap_to_reveal_off"
-            android:summaryOn="@string/pref_desc_tap_to_reveal_on"
+            android:summary="@string/pref_desc_tap_to_reveal"
             android:defaultValue="false" />
 
     </PreferenceCategory>
+
+    <CheckBoxPreference
+        android:key="@string/pref_key_auth_device"
+        android:title="@string/pref_title_auth_device"
+        android:summary="@string/pref_desc_auth_device"
+        android:defaultValue="false" />
 
 </PreferenceScreen>
