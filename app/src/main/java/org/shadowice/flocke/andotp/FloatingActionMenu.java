@@ -86,7 +86,7 @@ public class FloatingActionMenu {
         ViewCompat.animate(baseFloatingActionButton)
                 .rotation(45F)
                 .withLayer()
-                .setDuration(300)
+                .setDuration(150)
                 .setInterpolator(new LinearInterpolator())
                 .start();
 
@@ -106,7 +106,7 @@ public class FloatingActionMenu {
         ViewCompat.animate(baseFloatingActionButton)
                 .rotation(0F)
                 .withLayer()
-                .setDuration(300)
+                .setDuration(150)
                 .setInterpolator(new LinearInterpolator())
                 .start();
 
