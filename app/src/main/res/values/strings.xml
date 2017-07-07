@@ -63,7 +63,8 @@
 
     <!-- Preferences -->
     <string name="pref_window_title">Settings</string>
-    <string name="pref_category_title_ui">User interface</string>
+
+    <string name="pref_category_title_security">Security</string>
 
     <string name="pref_title_tap_to_reveal">Tap to reveal</string>
     <string name="pref_desc_tap_to_reveal">If enabled the OTP token is hidden by default and has to
