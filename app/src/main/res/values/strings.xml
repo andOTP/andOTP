@@ -10,9 +10,18 @@
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
 
+    <!-- Hints -->
+    <string name="hint_label">Label</string>
+    <string name="hint_period">Period</string>
+    <string name="hint_secret">Secret</string>
+
     <!-- Labels -->
     <string name="label_clipboard_content" translatable="false">OTP Token</string>
     <string name="label_tap_to_reveal">Tap to reveal</string>
+    <string name="label_type">Type</string>
+    <string name="label_secret">Secret</string>
+    <string name="label_period">Period</string>
+    <string name="label_label">Label</string>
 
     <!-- Menu -->
     <string name="menu_main_about">About</string>
@@ -35,7 +44,10 @@
     <string name="toast_storage_not_accessible">External storage currently not accessible</string>
     <string name="toast_storage_permissions">Storage permissions not granted</string>
 
+    <string name="toast_tmp_hotp">HOTP is not yet implemented</string>
+
     <!-- Dialogs -->
+    <string name="dialog_title_manual_entry">Enter details</string>
     <string name="dialog_title_remove">Remove</string>
     <string name="dialog_title_rename">Rename</string>
     <string name="dialog_title_security_warning">Security warning</string>

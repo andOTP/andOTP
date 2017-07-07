@@ -55,7 +55,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -89,6 +92,49 @@ public class MainActivity extends AppCompatActivity {
                 .setOrientationLocked(false)
                 .setBeepEnabled(false)
                 .initiateScan();
+    }
+
+    // Manual data entry
+    private void enterDetails() {
+        ViewGroup container = (ViewGroup) findViewById(R.id.main_content);
+        View inputView = getLayoutInflater().inflate(R.layout.manual_entry, container, false);
+
+        final Spinner typeInput = (Spinner) inputView.findViewById(R.id.manual_type);
+        final EditText labelInput = (EditText) inputView.findViewById(R.id.manual_label);
+        final EditText secretInput = (EditText) inputView.findViewById(R.id.manual_secret);
+        final EditText periodInput = (EditText) inputView.findViewById(R.id.manual_period);
+
+        typeInput.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Entry.OTPType.values()));
+        periodInput.setText(Integer.toString(TOTPHelper.TOTP_DEFAULT_PERIOD));
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.dialog_title_manual_entry)
+                .setView(inputView)
+                .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
+                        if (type == Entry.OTPType.TOTP) {
+                            String label = labelInput.getText().toString();
+                            String secret = secretInput.getText().toString();
+                            int period = Integer.parseInt(periodInput.getText().toString());
+
+                            Entry e = new Entry(type, secret, period, label);
+                            e.setCurrentOTP(TOTPHelper.generate(e.getSecret(), e.getPeriod()));
+                            adapter.addEntry(e);
+
+                            DatabaseHelper.store(getBaseContext(), adapter.getEntries());
+                        } else if (type == Entry.OTPType.HOTP) {
+                            Toast.makeText(getBaseContext(), R.string.toast_tmp_hotp, Toast.LENGTH_LONG).show();
+                        }
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .create()
+                .show();
     }
 
     // About dialog
@@ -252,6 +298,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onManualFabClick() {
+                enterDetails();
             }
         });
 
@@ -345,9 +392,8 @@ public class MainActivity extends AppCompatActivity {
                     Entry e = new Entry(result.getContents());
                     e.setCurrentOTP(TOTPHelper.generate(e.getSecret(), e.getPeriod()));
                     adapter.addEntry(e);
-                    DatabaseHelper.store(this, adapter.getEntries());
 
-                    adapter.notifyDataSetChanged();
+                    DatabaseHelper.store(this, adapter.getEntries());
                 } catch (Exception e) {
                     Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();
                 }

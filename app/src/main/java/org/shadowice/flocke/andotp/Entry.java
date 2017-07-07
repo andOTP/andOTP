@@ -50,8 +50,13 @@ public class Entry {
     private String currentOTP;
     private long last_update = 0;
 
-    public Entry (){
+    public Entry(){}
 
+    public Entry(OTPType type, String secret, int period, String label) {
+        this.type = type;
+        this.secret = new Base32().decode(secret.toUpperCase());
+        this.period = period;
+        this.label = label;
     }
 
     public Entry(String contents) throws Exception {
