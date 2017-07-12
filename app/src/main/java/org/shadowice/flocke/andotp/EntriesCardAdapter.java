@@ -141,7 +141,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         }
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        entryViewHolder.setTapToReveal(sharedPref.getBoolean(context.getString(R.string.pref_key_tap_to_reveal), false));
+        entryViewHolder.setTapToReveal(sharedPref.getBoolean(context.getString(R.string.settings_key_tap_to_reveal), false));
     }
 
     @Override

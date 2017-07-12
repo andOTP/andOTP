@@ -2,9 +2,6 @@
     <string name="app_name">andOTP</string>
     <string name="app_launcher">OTP Authenticator</string>
 
-    <!-- Activity title -->
-    <string name="activity_title_settings">Settings</string>
-
     <!-- Buttons -->
     <string name="button_enter_details">Enter details</string>
     <string name="button_scan_qr">Scan QR-Code</string>
@@ -50,36 +47,17 @@
     <string name="toast_tmp_hotp">HOTP is not yet implemented</string>
 
     <!-- Dialogs -->
+    <string name="dialog_title_auth">Authenticate</string>
     <string name="dialog_title_manual_entry">Enter details</string>
     <string name="dialog_title_remove">Remove</string>
     <string name="dialog_title_rename">Rename</string>
     <string name="dialog_title_security_warning">Security warning</string>
 
+    <string name="dialog_msg_auth">Enter your device credentials to start andOTP.</string>
     <string name="dialog_msg_confirm_delete">Are you sure you want do remove this account?</string>
     <string name="dialog_msg_export_warning">Do you really want to export the database as plain-text
         JSON file? This file contains all your secret keys, please <b>keep it safe</b>!
     </string>
-
-    <!-- Device authentication -->
-    <string name="auth_title">Authenticate</string>
-    <string name="auth_desc">Enter your device credentials to start andOTP.</string>
-
-    <!-- Preferences -->
-    <string name="pref_category_title_security">Security</string>
-
-    <string name="pref_title_tap_to_reveal">Tap to reveal</string>
-    <string name="pref_desc_tap_to_reveal">If enabled the OTP token is hidden by default and has to
-        be revealed manually.</string>
-    <string name="pref_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>
-
-    <string name="pref_title_auth_device">Require device credentials</string>
-    <string name="pref_desc_auth_device">If enabled the user is required to authenticate using his
-        device credentials when starting andOTP.</string>
-    <string name="pref_desc_auth_device_pre_lollipop">This feature requires at least Android 5.0
-        (Lollipop) to work.</string>
-    <string name="pref_desc_auth_device_not_secure">This feature requires a secure lock screen to be
-        set up (Settings -> Security -> Screenlock).</string>
-    <string name="pref_key_auth_device" translatable="false">pref_auth_device</string>
 
     <!-- About dialog -->
     <string name="about_description">

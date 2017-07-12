@@ -280,10 +280,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            if(sharedPref.getBoolean(getString(R.string.pref_key_auth_device), false)) {
+            if(sharedPref.getBoolean(getString(R.string.settings_key_auth_device), false)) {
                 KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
                 if (km.isKeyguardSecure()) {
-                    Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.auth_title), getString(R.string.auth_desc));
+                    Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
                     startActivityForResult(authIntent, INTENT_AUTHENTICATE);
                 }
             }

@@ -2,18 +2,18 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="@string/pref_category_title_security">
+        android:title="@string/settings_category_title_security">
 
         <CheckBoxPreference
-            android:key="@string/pref_key_tap_to_reveal"
-            android:title="@string/pref_title_tap_to_reveal"
-            android:summary="@string/pref_desc_tap_to_reveal"
+            android:key="@string/settings_key_tap_to_reveal"
+            android:title="@string/settings_title_tap_to_reveal"
+            android:summary="@string/settings_desc_tap_to_reveal"
             android:defaultValue="false" />
 
         <CheckBoxPreference
-            android:key="@string/pref_key_auth_device"
-            android:title="@string/pref_title_auth_device"
-            android:summary="@string/pref_desc_auth_device"
+            android:key="@string/settings_key_auth_device"
+            android:title="@string/settings_title_auth_device"
+            android:summary="@string/settings_desc_auth_device"
             android:defaultValue="false" />
 
     </PreferenceCategory>

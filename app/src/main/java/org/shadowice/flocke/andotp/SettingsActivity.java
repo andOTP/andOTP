@@ -12,7 +12,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTitle(R.string.activity_title_settings);
+        setTitle(R.string.settings_activity_title);
         setContentView(R.layout.activity_container);
         Toolbar toolbar = (Toolbar) findViewById(R.id.container_toolbar);
         setSupportActionBar(toolbar);
@@ -46,15 +46,15 @@ public class SettingsActivity extends AppCompatActivity {
 
             addPreferencesFromResource(R.xml.preferences);
 
-            Preference authPref = findPreference(getString(R.string.pref_key_auth_device));
+            Preference authPref = findPreference(getString(R.string.settings_key_auth_device));
             if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
-                authPref.setSummary(R.string.pref_desc_auth_device_pre_lollipop);
+                authPref.setSummary(R.string.settings_desc_auth_device_pre_lollipop);
                 authPref.setEnabled(false);
                 authPref.setSelectable(false);
             } else {
                 KeyguardManager km = (KeyguardManager) getActivity().getSystemService(KEYGUARD_SERVICE);
                 if (! km.isKeyguardSecure()) {
-                    authPref.setSummary(R.string.pref_desc_auth_device_not_secure);
+                    authPref.setSummary(R.string.settings_desc_auth_device_not_secure);
                     authPref.setEnabled(false);
                     authPref.setSelectable(false);
                 }
