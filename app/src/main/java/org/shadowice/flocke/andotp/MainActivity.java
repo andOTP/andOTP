@@ -23,9 +23,7 @@
 
 package org.shadowice.flocke.andotp;
 
-import android.Manifest;
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.content.DialogInterface;
@@ -33,15 +31,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -75,16 +69,9 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler;
     private Runnable handlerTask;
 
-    private static final int PERMISSIONS_REQUEST_WRITE_EXPORT = 42;
-    private static final int PERMISSIONS_REQUEST_READ_IMPORT = 41;
-
-    private static final int INTENT_OPEN_DOCUMENT = 24;
-    private static final int INTENT_SAVE_DOCUMENT= 23;
-    private static final int INTENT_SETTINGS = 22;
-    private static final int INTENT_AUTHENTICATE = 21;
-
-    private static final String DEFAULT_BACKUP_FILENAME = "otp_accounts.json";
-    private static final String DEFAULT_BACKUP_MIMETYPE = "application/json";
+    private static final int INTENT_AUTHENTICATE = 1;
+    private static final int INTENT_INTERNAL_SETTINGS = 2;
+    private static final int INTENT_INTERNAL_BACKUP = 3;
 
     // QR code scanning
     private void scanQRCode(){
@@ -162,107 +149,6 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .create()
                 .show();
-    }
-
-    // Export to JSON
-    private void doExportJSON(Uri uri) {
-        if (StorageHelper.isExternalStorageWritable()) {
-            boolean success = DatabaseHelper.exportAsJSON(this, uri);
-
-            if (success)
-                Toast.makeText(this, R.string.toast_export_success, Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(this, R.string.toast_export_failed, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, R.string.toast_storage_not_accessible, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private void exportJSONWithPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            exportJSONWithSelector();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_WRITE_EXPORT);
-        }
-    }
-
-    private void exportJSONWithSelector() {
-        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType(DEFAULT_BACKUP_MIMETYPE);
-        intent.putExtra(Intent.EXTRA_TITLE, DEFAULT_BACKUP_FILENAME);
-        startActivityForResult(intent, INTENT_SAVE_DOCUMENT);
-    }
-
-    private void exportJSONWithWarning() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        builder.setTitle(R.string.dialog_title_security_warning)
-                .setMessage(R.string.dialog_msg_export_warning)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        exportJSONWithPermissions();
-                    }
-                })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                })
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .create()
-                .show();
-    }
-
-    // Import from JSON
-    private void doImportJSON(Uri uri) {
-        if (StorageHelper.isExternalStorageReadable()) {
-            boolean success = DatabaseHelper.importFromJSON(this, uri);
-
-            if (success) {
-                adapter.loadEntries();
-                Toast.makeText(this, R.string.toast_import_success, Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, R.string.toast_import_failed, Toast.LENGTH_LONG).show();
-            }
-        } else {
-            Toast.makeText(this, R.string.toast_storage_not_accessible, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private void importJSONWithSelector() {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("*/*");
-        startActivityForResult(intent, INTENT_OPEN_DOCUMENT);
-    }
-
-    private void importJSONWithPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            importJSONWithSelector();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_READ_IMPORT);
-        }
-    }
-
-    // Permission results
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-       if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT) {
-           if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-               exportJSONWithSelector();
-           } else {
-               Toast.makeText(this, R.string.toast_storage_permissions, Toast.LENGTH_LONG).show();
-           }
-       } else if (requestCode == PERMISSIONS_REQUEST_READ_IMPORT) {
-           if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-               importJSONWithSelector();
-           } else {
-               Toast.makeText(this, R.string.toast_storage_permissions, Toast.LENGTH_LONG).show();
-           }
-       } else {
-           super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-       }
     }
 
     // Initialize the main application
@@ -396,20 +282,11 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();
                 }
             }
-        } else if (requestCode == INTENT_OPEN_DOCUMENT && resultCode == Activity.RESULT_OK) {
-            Uri file;
-            if (intent != null) {
-                file = intent.getData();
-                doImportJSON(file);
-            }
-        } else if (requestCode == INTENT_SAVE_DOCUMENT && resultCode == Activity.RESULT_OK) {
-            Uri file;
-            if (intent != null) {
-                file = intent.getData();
-                doExportJSON(file);
-            }
-        } else if (requestCode == INTENT_SETTINGS && resultCode == RESULT_OK) {
+        } else if (requestCode == INTENT_INTERNAL_SETTINGS && resultCode == RESULT_OK) {
             adapter.notifyDataSetChanged();
+        } else if (requestCode == INTENT_INTERNAL_BACKUP && resultCode == RESULT_OK) {
+            if (intent.getBooleanExtra("reload", false))
+                adapter.loadEntries();
         } else if (requestCode == INTENT_AUTHENTICATE && resultCode != RESULT_OK) {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                 finishAndRemoveTask();
@@ -460,15 +337,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_export) {
-            exportJSONWithWarning();
-            return true;
-        } else if (id == R.id.action_import) {
-            importJSONWithPermissions();
-            return true;
+        if (id == R.id.action_backup) {
+            Intent intent = new Intent(this, BackupActivity.class);
+            startActivityForResult(intent, INTENT_INTERNAL_BACKUP);
         } else if (id == R.id.action_settings) {
             Intent intent = new Intent(this, SettingsActivity.class);
-            startActivityForResult(intent, INTENT_SETTINGS);
+            startActivityForResult(intent, INTENT_INTERNAL_SETTINGS);
         } else if (id == R.id.action_about){
             showAbout();
             return true;

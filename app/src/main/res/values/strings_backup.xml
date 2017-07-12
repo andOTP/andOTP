@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="backup_activity_title">Backups</string>
+
+    <string name="backup_category_plain">Plain-text backups</string>
+
+    <string name="backup_title_export_plain">Export to JSON</string>
+    <string name="backup_title_import_plain">Import from JSON</string>
+
+    <string name="backup_desc_export_plain">Export all accounts to a plain-text JSON file.</string>
+    <string name="backup_desc_import_plain">Import accounts from a plain-text JSON file.</string>
+
+    <!-- Dialogs -->
+    <string name="backup_dialog_title_security_warning">Security warning</string>
+
+    <string name="backup_dialog_msg_export_warning">Do you really want to export the database as
+        plain-text JSON file? This file contains all your secret keys, please <b>keep it safe</b>!
+    </string>
+
+    <!-- Toast messages -->
+    <string name="backup_toast_export_success">Export to external storage successful</string>
+    <string name="backup_toast_export_failed">Export to external storage failed</string>
+    <string name="backup_toast_import_success">Import from external storage successful</string>
+    <string name="backup_toast_import_failed">Import from external storage failed</string>
+    <string name="backup_toast_storage_not_accessible">External storage currently not accessible</string>
+    <string name="backup_toast_storage_permissions">Storage permissions not granted</string>
+</resources>
