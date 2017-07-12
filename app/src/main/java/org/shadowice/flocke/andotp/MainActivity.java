@@ -122,8 +122,7 @@ public class MainActivity extends AppCompatActivity {
                             Entry e = new Entry(type, secret, period, label);
                             e.setCurrentOTP(TOTPHelper.generate(e.getSecret(), e.getPeriod()));
                             adapter.addEntry(e);
-
-                            DatabaseHelper.store(getBaseContext(), adapter.getEntries());
+                            adapter.saveEntries();
                         } else if (type == Entry.OTPType.HOTP) {
                             Toast.makeText(getBaseContext(), R.string.toast_tmp_hotp, Toast.LENGTH_LONG).show();
                         }
@@ -221,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
             boolean success = DatabaseHelper.importFromJSON(this, uri);
 
             if (success) {
-                adapter.setEntries(DatabaseHelper.load(this));
+                adapter.loadEntries();
                 Toast.makeText(this, R.string.toast_import_success, Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, R.string.toast_import_failed, Toast.LENGTH_LONG).show();
@@ -310,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
 
-        adapter = new EntriesCardAdapter(this, DatabaseHelper.load(this));
+        adapter = new EntriesCardAdapter(this);
         recList.setAdapter(adapter);
 
         touchHelperCallback = new SimpleItemTouchHelperCallback(adapter);
@@ -392,8 +391,7 @@ public class MainActivity extends AppCompatActivity {
                     Entry e = new Entry(result.getContents());
                     e.setCurrentOTP(TOTPHelper.generate(e.getSecret(), e.getPeriod()));
                     adapter.addEntry(e);
-
-                    DatabaseHelper.store(this, adapter.getEntries());
+                    adapter.saveEntries();
                 } catch (Exception e) {
                     Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();
                 }

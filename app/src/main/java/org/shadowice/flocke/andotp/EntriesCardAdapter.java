@@ -60,11 +60,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
     private ArrayList<Integer> displayedEntries;
     public ViewHolderEventCallback viewHolderEventCallback;
 
-    public EntriesCardAdapter(Context context, ArrayList<Entry> entries) {
+    public EntriesCardAdapter(Context context) {
         this.context = context;
-        this.entries = entries;
 
-        entriesChanged();
+        loadEntries();
     }
 
     @Override
@@ -80,15 +79,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         return entries.get(i);
     }
 
-    public ArrayList<Entry> getEntries() {
-        return entries;
-    }
-
-    public void setEntries(ArrayList<Entry> e) {
-        entries = e;
-        entriesChanged();
-    }
-
     public void addEntry(Entry e) {
         entries.add(e);
         entriesChanged();
@@ -100,6 +90,15 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         displayedEntries = defaultIndices();
 
         notifyDataSetChanged();
+    }
+
+    public void saveEntries() {
+        DatabaseHelper.store(context, entries);
+    }
+
+    public void loadEntries() {
+        entries = DatabaseHelper.load(context);
+        entriesChanged();
     }
 
     public ArrayList<Integer> defaultIndices() {
