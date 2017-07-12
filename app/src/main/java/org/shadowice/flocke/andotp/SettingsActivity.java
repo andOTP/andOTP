@@ -22,16 +22,20 @@ public class SettingsActivity extends AppCompatActivity {
                 .commit();
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
+    public void finishWithResult() {
         setResult(RESULT_OK);
         finish();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finishWithResult();
         return true;
     }
 
     @Override
     public void onBackPressed() {
-        setResult(RESULT_OK);
+        finishWithResult();
         super.onBackPressed();
     }
 
