@@ -12,13 +12,13 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTitle(R.string.pref_window_title);
-        setContentView(R.layout.activity_settings);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.settings_toolbar);
+        setTitle(R.string.activity_title_settings);
+        setContentView(R.layout.activity_container);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.container_toolbar);
         setSupportActionBar(toolbar);
 
         getFragmentManager().beginTransaction()
-                .replace(R.id.settings_content, new SettingsFragment())
+                .replace(R.id.container_content, new SettingsFragment())
                 .commit();
     }
 
