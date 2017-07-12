@@ -6,6 +6,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ViewStub;
 
 public class SettingsActivity extends AppCompatActivity {
     @Override
@@ -16,6 +17,9 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_container);
         Toolbar toolbar = (Toolbar) findViewById(R.id.container_toolbar);
         setSupportActionBar(toolbar);
+
+        ViewStub stub = (ViewStub) findViewById(R.id.container_stub);
+        stub.inflate();
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.container_content, new SettingsFragment())

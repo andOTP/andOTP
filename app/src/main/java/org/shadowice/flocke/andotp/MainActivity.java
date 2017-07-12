@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     // Manual data entry
     private void enterDetails() {
         ViewGroup container = (ViewGroup) findViewById(R.id.main_content);
-        View inputView = getLayoutInflater().inflate(R.layout.manual_entry, container, false);
+        View inputView = getLayoutInflater().inflate(R.layout.dialog_manual_entry, container, false);
 
         final Spinner typeInput = (Spinner) inputView.findViewById(R.id.manual_type);
         final EditText labelInput = (EditText) inputView.findViewById(R.id.manual_label);

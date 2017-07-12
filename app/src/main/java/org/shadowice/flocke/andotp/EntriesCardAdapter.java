@@ -145,7 +145,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
 
     @Override
     public EntryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_layout, viewGroup, false);
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.component_card, viewGroup, false);
 
         return new EntryViewHolder(itemView);
     }
