@@ -44,6 +44,4 @@
 
     <include layout="@layout/content_main" />
 
-    <include layout="@layout/fab_menu" />
-
 </android.support.design.widget.CoordinatorLayout>

@@ -16,4 +16,6 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true" />
 
+    <include layout="@layout/fab_menu" />
+
 </RelativeLayout>
