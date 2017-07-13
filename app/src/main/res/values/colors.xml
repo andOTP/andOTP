@@ -9,5 +9,8 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
 
+    <color name="github_gray">#333333</color>
+    <color name="paypal_blue">#003087</color>
+
     <color name="fab_small_label_background">#212121</color>
 </resources>

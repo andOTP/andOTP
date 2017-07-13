@@ -19,6 +19,14 @@ public class AboutActivity extends AppCompatActivity {
     private static final String CHANGELOG_URI = GITHUB_URI + "/blob/master/CHANGELOG.md";
     private static final String MIT_URI = GITHUB_URI + "/blob/master/LICENSE.txt";
 
+    private static final String AUTHOR1_GITHUB = "https://github.com/flocke";
+    private static final String AUTHOR1_PAYPAL = "https://paypal.me/flocke000";
+
+    private static final String AUTHOR2_GITHUB = "https://github.com/0xbb";
+    private static final String AUTHOR2_APP = AUTHOR2_GITHUB + "/otp-authenticator";
+
+    private static final String BUGREPORT_URI = GITHUB_URI + "/issues";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +80,47 @@ public class AboutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showLicenses();
+            }
+        });
+
+        TextView author1GitHub = (TextView) v.findViewById(R.id.about_author1_github);
+        TextView author1Paypal = (TextView) v.findViewById(R.id.about_author1_paypal);
+
+        author1GitHub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openURI(AUTHOR1_GITHUB);
+            }
+        });
+        author1Paypal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openURI(AUTHOR1_PAYPAL);
+            }
+        });
+
+        TextView author2GitHub = (TextView) v.findViewById(R.id.about_author2_github);
+        TextView author2App = (TextView) v.findViewById(R.id.about_author2_app);
+
+        author2GitHub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openURI(AUTHOR2_GITHUB);
+            }
+        });
+
+        author2App.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openURI(AUTHOR2_APP);
+            }
+        });
+
+        LinearLayout bugReport = (LinearLayout) v.findViewById(R.id.about_layout_bugs);
+        bugReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openURI(BUGREPORT_URI);
             }
         });
 
