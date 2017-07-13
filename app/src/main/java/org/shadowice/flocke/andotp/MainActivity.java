@@ -29,8 +29,6 @@ import android.app.KeyguardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -53,7 +51,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -116,34 +113,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                })
-                .create()
-                .show();
-    }
-
-    // About dialog
-    private void showAbout() {
-        ViewGroup container = (ViewGroup) findViewById(R.id.main_content);
-        View messageView = getLayoutInflater().inflate(R.layout.dialog_about, container, false);
-
-        String versionName = "";
-        try {
-            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            versionName = packageInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        TextView versionText = (TextView) messageView.findViewById(R.id.about_version);
-        versionText.setText(versionName);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.app_name)
-                .setIcon(R.mipmap.ic_launcher)
-                .setView(messageView)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {}
                 })
@@ -338,13 +307,14 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_backup) {
-            Intent intent = new Intent(this, BackupActivity.class);
-            startActivityForResult(intent, INTENT_INTERNAL_BACKUP);
+            Intent backupIntent = new Intent(this, BackupActivity.class);
+            startActivityForResult(backupIntent, INTENT_INTERNAL_BACKUP);
         } else if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivityForResult(intent, INTENT_INTERNAL_SETTINGS);
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivityForResult(settingsIntent, INTENT_INTERNAL_SETTINGS);
         } else if (id == R.id.action_about){
-            showAbout();
+            Intent aboutIntent = new Intent(this, AboutActivity.class);
+            startActivity(aboutIntent);
             return true;
         }
         return super.onOptionsItemSelected(item);

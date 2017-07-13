@@ -44,6 +44,7 @@ goes to Bruno.
 #### Open-source components used:
 
  * [Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)
+ * [LicensesDialog](https://github.com/PSDev/LicensesDialog)
  * [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
  * [ZXing Android Embedded](https://github.com/journeyapps/zxing-android-embedded)
 

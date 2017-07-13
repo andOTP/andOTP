@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">About</string>
+
+    <string name="about_description">
+        An open-source two-factor authentication App for Android 4.4+.
+    </string>
+
+    <string name="about_label_changelog">Changelog</string>
+    <string name="about_label_license">License</string>
+    <string name="about_label_licenses">Open source licenses</string>
+    <string name="about_label_MIT">MIT License</string>
+    <string name="about_label_source">Source code</string>
+    <string name="about_label_version">Version</string>
+</resources>

@@ -46,15 +46,4 @@
 
     <string name="dialog_msg_auth">Enter your device credentials to start andOTP.</string>
     <string name="dialog_msg_confirm_delete">Are you sure you want do remove this account?</string>
-
-    <!-- About dialog -->
-    <string name="about_description">
-        An open-source two-factor authentication App for Android 4.4+.
-    </string>
-    <string name="about_version_hint">Version</string>
-    <string name="about_homepage_link" translatable="false">https://github.com/flocke/andOTP</string>
-    <string name="about_credits" translatable="false">
-        Copyright © 2017 Jakob Nixdorf\n
-        Copyright © 2015 Bruno Bierbaumer
-    </string>
 </resources>
