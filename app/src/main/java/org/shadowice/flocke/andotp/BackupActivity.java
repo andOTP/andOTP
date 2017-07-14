@@ -175,6 +175,18 @@ public class BackupActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
+        } else if (requestCode == PERMISSIONS_REQUEST_READ_IMPORT_PGP) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                importEncryptedWithSelector();
+            } else {
+                Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
+            }
+        } else if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT_PGP) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                exportEncryptedWithSelector();
+            } else {
+                Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
+            }
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
