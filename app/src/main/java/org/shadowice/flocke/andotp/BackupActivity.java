@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.openintents.openpgp.OpenPgpError;
+import org.openintents.openpgp.OpenPgpSignatureResult;
 import org.openintents.openpgp.util.OpenPgpApi;
 import org.openintents.openpgp.util.OpenPgpServiceConnection;
 
@@ -404,29 +405,35 @@ public class BackupActivity extends AppCompatActivity {
         }
     }
 
+    public String outputStreamToString(ByteArrayOutputStream os) {
+        String string = "";
+        try {
+            string = os.toString("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return string;
+    }
+
     public void handleOpenPGPResult(Intent result, ByteArrayOutputStream os, Uri file, int requestCode) {
         if (result.getIntExtra(OpenPgpApi.RESULT_CODE, OpenPgpApi.RESULT_CODE_ERROR) == OpenPgpApi.RESULT_CODE_SUCCESS) {
             if (requestCode == INTENT_ENCRYPT) {
-                if (os != null) {
-                    String encrypted = "";
-                    try {
-                        encrypted = os.toString("UTF-8");
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-
-                    doExportEncrypted(file, encrypted);
-                }
+                if (os != null)
+                    doExportEncrypted(file, outputStreamToString(os));
             } else if (requestCode == INTENT_DECRYPT) {
                 if (os != null) {
-                    String decrypted = "";
-                    try {
-                        decrypted = os.toString("UTF-8");
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
+                    if (settings.getBoolean(getString(R.string.settings_key_openpgp_verify), false)) {
+                        OpenPgpSignatureResult sigResult = result.getParcelableExtra(OpenPgpApi.RESULT_SIGNATURE);
 
-                    doImportEncrypted(decrypted);
+                        if (sigResult.getResult() == OpenPgpSignatureResult.RESULT_VALID_KEY_CONFIRMED) {
+                            doImportEncrypted(outputStreamToString(os));
+                        } else {
+                            Toast.makeText(this, R.string.backup_toast_openpgp_not_verified, Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        doImportEncrypted(outputStreamToString(os));
+                    }
                 }
             }
         } else if (result.getIntExtra(OpenPgpApi.RESULT_CODE, OpenPgpApi.RESULT_CODE_ERROR) == OpenPgpApi.RESULT_CODE_USER_INTERACTION_REQUIRED) {
@@ -446,7 +453,7 @@ public class BackupActivity extends AppCompatActivity {
             }
         } else if (result.getIntExtra(OpenPgpApi.RESULT_CODE, OpenPgpApi.RESULT_CODE_ERROR) == OpenPgpApi.RESULT_CODE_ERROR) {
             OpenPgpError error = result.getParcelableExtra(OpenPgpApi.RESULT_ERROR);
-            Toast.makeText(this, "OpenPGP Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, String.format(getString(R.string.backup_toast_openpgp_error), error.getMessage()), Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -35,6 +35,12 @@
             android:summary="@string/settings_desc_openpgp_sign"
             android:defaultValue="false" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_openpgp_verify"
+            android:title="@string/settings_title_openpgp_verify"
+            android:summary="@string/settings_desc_openpgp_verify"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

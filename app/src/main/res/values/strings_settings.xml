@@ -12,7 +12,8 @@
 
     <string name="settings_title_openpgp_provider">Select OpenPGP provider</string>
     <string name="settings_title_openpgp_keyid">Select OpenPGP key</string>
-    <string name="settings_title_openpgp_sign">Sign encrypted backups?</string>
+    <string name="settings_title_openpgp_sign">Sign encrypted backups</string>
+    <string name="settings_title_openpgp_verify">Verify encrypted backups</string>
 
     <!-- Descriptions -->
     <string name="settings_desc_tap_to_reveal">If enabled the OTP token is hidden by default and has
@@ -25,9 +26,10 @@
     <string name="settings_desc_auth_device_not_secure">This feature requires a secure lock screen
         to be set up (Settings -> Security -> Screenlock).</string>
 
-    <string name="settings_desc_openpgp_sign">Should the encrypted backups also be signed with your
-        key (requires password during each encryption)?
-    </string>
+    <string name="settings_desc_openpgp_sign">Every encrypted backup is additionally signed with
+        your key (requires password).</string>
+    <string name="settings_desc_openpgp_verify">Encrypted backups are only imported if they are
+        signed with a valid key.</string>
 
     <!-- Keys -->
     <string name="settings_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>
@@ -36,5 +38,6 @@
     <string name="settings_key_openpgp_provider">pref_openpgp_provider</string>
     <string name="settings_key_openpgp_keyid">pref_openpgp_keyid</string>
     <string name="settings_key_openpgp_sign">pref_openpgp_sign</string>
+    <string name="settings_key_openpgp_verify">pref_openpgp_verify</string>
 
 </resources>

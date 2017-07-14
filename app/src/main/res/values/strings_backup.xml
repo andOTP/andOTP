@@ -36,4 +36,6 @@
     <string name="backup_toast_import_failed">Import from external storage failed</string>
     <string name="backup_toast_storage_not_accessible">External storage currently not accessible</string>
     <string name="backup_toast_storage_permissions">Storage permissions not granted</string>
+    <string name="backup_toast_openpgp_error">OpenPGP Error: %s</string>
+    <string name="backup_toast_openpgp_not_verified">No verified signature detected</string>
 </resources>
