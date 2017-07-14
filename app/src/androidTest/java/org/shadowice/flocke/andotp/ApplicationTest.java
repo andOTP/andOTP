@@ -24,7 +24,6 @@ package org.shadowice.flocke.andotp;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Build;
 import android.test.ApplicationTestCase;
 
 import org.apache.commons.codec.DecoderException;
@@ -73,14 +72,18 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
     public void testEntry() throws JSONException {
         byte secret[] = "Das System ist sicher".getBytes();
         String label = "5 von 5 Sterne";
+        int period = 30;
 
-        String s = "{\"secret\":\""+ new String(new Base32().encode(secret)) +"\",\"label\":\"" + label + "\"}";
+        String s = "{\"secret\":\"" + new String(new Base32().encode(secret)) + "\"," +
+                    "\"label\":\"" + label + "\"," +
+                    "\"period\":" + Integer.toString(period) + "," +
+                    "\"type\":\"TOTP\"}";
 
         Entry e = new Entry(new JSONObject(s));
         assertTrue(Arrays.equals(secret, e.getSecret()));
         assertEquals(label, e.getLabel());
 
-        assertEquals(s, e.toJSON()+"");
+        assertEquals(s, e.toJSON().toString());
     }
 
 
@@ -121,19 +124,15 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
     public void testSettingsHelper() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
         Context context = getContext();
 
+        final KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+        keyStore.load(null);
+        keyStore.deleteEntry("settings");
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            final KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
-            keyStore.load(null);
-            keyStore.deleteEntry("settings");
-
-        }
         new File(context.getFilesDir() + "/" + DatabaseHelper.SETTINGS_FILE).delete();
         new File(context.getFilesDir() + "/" + DatabaseHelper.KEY_FILE).delete();
 
         ArrayList<Entry> b = DatabaseHelper.load(context);
         assertEquals(0, b.size());
-
 
         ArrayList<Entry> a = new ArrayList<>();
         Entry e = new Entry();
