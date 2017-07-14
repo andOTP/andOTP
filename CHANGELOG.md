@@ -2,7 +2,7 @@
 
 #### v0.2.1
 
- * New feature: encrypted backups using OpenPGP (WIP)
+ * New feature: encrypted backups using OpenPGP
  * Style: new about screen
  * Style: new backup screen
  * Code: a lot of refactoring

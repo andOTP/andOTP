@@ -1,7 +1,7 @@
 #  andOTP -  Android OTP Authenticator
 
 [![Build Status](https://travis-ci.org/flocke/andOTP.svg?branch=master)](https://travis-ci.org/flocke/andOTP)
-[![Current release](https://img.shields.io/github/release/flocke/andOTP/all.svg)](https://github.com/flocke/andOTP/releases/download/v0.2.0/andOTP_v0.2.0.apk)
+[![Current release](https://img.shields.io/github/release/flocke/andOTP/all.svg)](https://github.com/flocke/andOTP/releases/download/v0.2.1/andOTP_v0.2.1.apk)
 
 ![andOTP](./assets/logo.png)
 
@@ -22,7 +22,7 @@ goes to Bruno.
    - Storage access for import and export of the database
  * Encrypted storage
  * Plain-text backups
- * Encrypted backups using OpenPGP (WIP)
+ * Encrypted backups using OpenPGP
  * Sleek minimalistic Material Design
  * Great Usability
  * Compatible with Google Authenticator
