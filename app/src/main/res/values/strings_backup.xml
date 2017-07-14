@@ -10,16 +10,16 @@
     <string name="backup_title_import_plain">Import from JSON</string>
     <string name="backup_title_import_openpgp">Import from encrypted file</string>
 
-    <string name="backup_desc_export_plain">Export all accounts to a plain-text JSON file.</string>
-    <string name="backup_desc_export_openpgp">Export all accounts to an OpenPGP-encrypted JSON file.</string>
-    <string name="backup_desc_import_plain">Import accounts from a plain-text JSON file.</string>
-    <string name="backup_desc_import_openpgp">Import accounts from an OpenPGP-encrypted JSON file.</string>
+    <string name="backup_desc_export_plain">Export all accounts to a plain-text JSON file</string>
+    <string name="backup_desc_export_openpgp">Export all accounts to an OpenPGP-encrypted JSON file</string>
+    <string name="backup_desc_import_plain">Import accounts from a plain-text JSON file</string>
+    <string name="backup_desc_import_openpgp">Import accounts from an OpenPGP-encrypted JSON file</string>
 
     <string name="backup_desc_openpgp_provider">You need to install an OpenPGP provider and enable
         it in the Settings to use this feature.
     </string>
-    <string name="backup_desc_openpgp_keyid">You need to select an OpenPGP key for encrypting you
-        backups in the Settings.
+    <string name="backup_desc_openpgp_keyid">You need to select an OpenPGP key in the Settings
+        before you can create encrypted backups.
     </string>
 
     <!-- Dialogs -->

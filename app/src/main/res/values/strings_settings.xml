@@ -16,20 +16,20 @@
     <string name="settings_title_openpgp_verify">Verify encrypted backups</string>
 
     <!-- Descriptions -->
-    <string name="settings_desc_tap_to_reveal">If enabled the OTP token is hidden by default and has
-        to be revealed manually.</string>
+    <string name="settings_desc_tap_to_reveal">Hide the OTP tokens by default, requiring them to be
+        revealed manually</string>
 
-    <string name="settings_desc_auth_device">If enabled the user is required to authenticate using
-        his device credentials when starting andOTP.</string>
+    <string name="settings_desc_auth_device">Require the user to authenticate with his device
+        credentials when starting andOTP</string>
     <string name="settings_desc_auth_device_pre_lollipop">This feature requires at least Android 5.0
-        (Lollipop) to work.</string>
+        (Lollipop) to work</string>
     <string name="settings_desc_auth_device_not_secure">This feature requires a secure lock screen
-        to be set up (Settings -> Security -> Screenlock).</string>
+        to be set up (Settings -> Security -> Screenlock)</string>
 
     <string name="settings_desc_openpgp_sign">Every encrypted backup is additionally signed with
-        your key (requires password).</string>
+        your key (requires password)</string>
     <string name="settings_desc_openpgp_verify">Encrypted backups are only imported if they are
-        signed with a valid key.</string>
+        signed with a valid key</string>
 
     <!-- Keys -->
     <string name="settings_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>
