@@ -44,10 +44,10 @@ public class Entry {
     private static final String JSON_PERIOD = "period";
     private static final String JSON_TYPE = "type";
 
-    private OTPType type;
+    private OTPType type = OTPType.TOTP;
     private byte[] secret;
     private String label;
-    private int period;
+    private int period = TOTPHelper.TOTP_DEFAULT_PERIOD;
     private String currentOTP;
     private long last_update = 0;
 
@@ -190,8 +190,12 @@ public class Entry {
 
     @Override
     public int hashCode() {
-        int result = secret != null ? Arrays.hashCode(secret) : 0;
-        result = 31 * result + (label != null ? label.hashCode() : 0);
-        return result;
+        int hash = 1;
+        hash = hash + (secret == null ? 0 : Arrays.hashCode(secret));
+        hash = hash + 13 * (label == null ? 0 : label.hashCode());
+        hash = hash + 17 * type.hashCode();
+        hash = hash + 31 * period;
+
+        return hash;
     }
 }
