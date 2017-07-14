@@ -1,5 +1,12 @@
 # Changelog
 
+#### v0.2.1
+
+ * New feature: encrypted backups using OpenPGP (WIP)
+ * Style: new about screen
+ * Style: new backup screen
+ * Code: a lot of refactoring
+
 #### v0.2.0
 
  * New feature: copy token to clipboard

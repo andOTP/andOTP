@@ -91,7 +91,7 @@ public class DatabaseHelper {
         return entries;
     }
 
-    public static boolean exportAsJSON(Context context, Uri file) {
+    public static String entriesToString(Context context) {
         ArrayList<Entry> entries = load(context);
 
         JSONArray json = new JSONArray();
@@ -104,25 +104,34 @@ public class DatabaseHelper {
             }
         }
 
-        return FileHelper.writeStringToFile(context, file, json.toString());
+        return json.toString();
+    }
+
+    public static boolean exportAsJSON(Context context, Uri file) {
+        return FileHelper.writeStringToFile(context, file, entriesToString(context));
+    }
+
+    public static ArrayList<Entry> stringToEntries(Context context, String data) {
+        ArrayList<Entry> entries = new ArrayList<>();
+
+        try {
+            JSONArray json = new JSONArray(data);
+
+            for (int i = 0; i < json.length(); i++) {
+                entries.add(new Entry(json.getJSONObject(i)));
+            }
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
+
+        return entries;
     }
 
     public static boolean importFromJSON(Context context, Uri file) {
         boolean success = true;
 
         String content = FileHelper.readFileToString(context, file);
-        ArrayList<Entry> entries = new ArrayList<>();
-
-        try {
-            JSONArray json = new JSONArray(content);
-
-            for (int i = 0; i < json.length(); i++) {
-                entries.add(new Entry(json.getJSONObject(i)));
-            }
-        } catch (Exception error) {
-            success = false;
-            error.printStackTrace();
-        }
+        ArrayList<Entry> entries = stringToEntries(context, content);
 
         store(context, entries);
 

@@ -19,7 +19,7 @@ public class FileHelper {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             String line;
             while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
+                stringBuilder.append(line).append("\n");
             }
             reader.close();
             inputStream.close();
@@ -36,7 +36,7 @@ public class FileHelper {
         try {
             OutputStream outputStream = context.getContentResolver().openOutputStream(file);
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
-            writer.write(content.toString());
+            writer.write(content);
             writer.close();
             outputStream.close();
         } catch (Exception error) {

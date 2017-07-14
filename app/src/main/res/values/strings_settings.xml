@@ -4,24 +4,37 @@
 
     <!-- Categories -->
     <string name="settings_category_title_security">Security</string>
+    <string name="settings_category_title_openpgp">OpenPGP</string>
 
     <!-- Titles -->
     <string name="settings_title_tap_to_reveal">Tap to reveal</string>
     <string name="settings_title_auth_device">Require device credentials</string>
 
-    <!-- Descriptions -->
-    <string name="settings_desc_tap_to_reveal">If enabled the OTP token is hidden by default and has to
-        be revealed manually.</string>
+    <string name="settings_title_openpgp_provider">Select OpenPGP provider</string>
+    <string name="settings_title_openpgp_keyid">Select OpenPGP key</string>
+    <string name="settings_title_openpgp_sign">Sign encrypted backups?</string>
 
-    <string name="settings_desc_auth_device">If enabled the user is required to authenticate using his
-        device credentials when starting andOTP.</string>
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">If enabled the OTP token is hidden by default and has
+        to be revealed manually.</string>
+
+    <string name="settings_desc_auth_device">If enabled the user is required to authenticate using
+        his device credentials when starting andOTP.</string>
     <string name="settings_desc_auth_device_pre_lollipop">This feature requires at least Android 5.0
         (Lollipop) to work.</string>
-    <string name="settings_desc_auth_device_not_secure">This feature requires a secure lock screen to be
-        set up (Settings -> Security -> Screenlock).</string>
+    <string name="settings_desc_auth_device_not_secure">This feature requires a secure lock screen
+        to be set up (Settings -> Security -> Screenlock).</string>
+
+    <string name="settings_desc_openpgp_sign">Should the encrypted backups also be signed with your
+        key (requires password during each encryption)?
+    </string>
 
     <!-- Keys -->
     <string name="settings_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>
     <string name="settings_key_auth_device" translatable="false">pref_auth_device</string>
+
+    <string name="settings_key_openpgp_provider">pref_openpgp_provider</string>
+    <string name="settings_key_openpgp_keyid">pref_openpgp_keyid</string>
+    <string name="settings_key_openpgp_sign">pref_openpgp_sign</string>
 
 </resources>

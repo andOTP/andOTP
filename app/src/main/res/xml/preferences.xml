@@ -18,4 +18,23 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="@string/settings_category_title_openpgp">
+
+        <org.openintents.openpgp.util.OpenPgpAppPreference
+            android:key="@string/settings_key_openpgp_provider"
+            android:title="@string/settings_title_openpgp_provider" />
+
+        <org.openintents.openpgp.util.OpenPgpKeyPreference
+            android:key="@string/settings_key_openpgp_keyid"
+            android:title="@string/settings_title_openpgp_keyid" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_openpgp_sign"
+            android:title="@string/settings_title_openpgp_sign"
+            android:summary="@string/settings_desc_openpgp_sign"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

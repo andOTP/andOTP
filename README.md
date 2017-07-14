@@ -21,6 +21,8 @@ goes to Bruno.
    - Camera access for QR code scanning
    - Storage access for import and export of the database
  * Encrypted storage
+ * Plain-text backups
+ * Encrypted backups using OpenPGP (WIP)
  * Sleek minimalistic Material Design
  * Great Usability
  * Compatible with Google Authenticator
@@ -46,6 +48,7 @@ goes to Bruno.
  * [Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)
  * [LicensesDialog](https://github.com/PSDev/LicensesDialog)
  * [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
+ * [OpenPGP API library](https://github.com/open-keychain/openpgp-api)
  * [ZXing Android Embedded](https://github.com/journeyapps/zxing-android-embedded)
 
 #### Code examples used:

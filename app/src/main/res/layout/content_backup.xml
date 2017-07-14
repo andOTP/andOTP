@@ -58,4 +58,66 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/activity_margin"
+        android:paddingEnd="@dimen/activity_margin"
+        android:paddingTop="@dimen/activity_margin"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:text="@string/backup_category_openpgp" />
+
+    <TextView
+        android:id="@+id/msg_openpgp_setup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_margin"
+        android:visibility="gone"
+        android:text="@string/backup_desc_openpgp_provider"/>
+
+    <LinearLayout
+        android:id="@+id/button_export_openpgp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_margin"
+        android:background="?android:attr/selectableItemBackground" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceListItem"
+            android:text="@string/backup_title_export_openpgp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/backup_desc_export_openpgp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_import_openpgp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_margin"
+        android:background="?android:attr/selectableItemBackground" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceListItem"
+            android:text="@string/backup_title_import_openpgp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/backup_desc_import_openpgp"/>
+
+    </LinearLayout>
+
 </LinearLayout>
