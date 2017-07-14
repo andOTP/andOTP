@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1024"
+   height="500"
+   viewBox="0 0 1024 500.00001"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="feature_graphic_playstore.svg"
+   inkscape:export-filename="/home/flocke/data/development/android/andOTP/assets/feature_graphic_playstore.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="425.20724"
+     inkscape:cy="309.70563"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1678"
+     inkscape:window-height="1032"
+     inkscape:window-x="0"
+     inkscape:window-y="16"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-552.36216)">
+    <g
+       transform="matrix(1.4569083,0,0,1.4569083,47.422174,-590.97003)"
+       id="layer1-3"
+       inkscape:label="Ebene 1">
+      <circle
+         r="87.85714"
+         cy="956.36218"
+         cx="96"
+         id="path4271-5"
+         style="opacity:1;fill:#6abf69;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         id="path4480"
+         transform="translate(0,860.36216)"
+         d="M 141.11523,50.884766 50.884766,141.11523 93.501953,183.73242 A 87.85714,87.85714 0 0 0 96,183.85742 87.85714,87.85714 0 0 0 183.85742,96 a 87.85714,87.85714 0 0 0 -0.0879,-2.458984 l -42.6543,-42.65625 z"
+         style="opacity:0.3;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.00252771px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="matrix(0.72619931,0,0,0.72619931,26.284866,261.8526)"
+         id="g4369">
+        <circle
+           style="opacity:1;fill:#ffcc00;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="path4271"
+           cx="96"
+           cy="956.36218"
+           r="87.85714" />
+        <path
+           id="path4273"
+           transform="matrix(1.3770324,0,0,1.3770324,-36.195113,824.16707)"
+           d="M 96.001953,49.576172 A 46.424883,46.424883 0 0 0 51.425781,83.152344 l 89.123049,0 A 46.424883,46.424883 0 0 0 96.001953,49.576172 Z"
+           style="opacity:1;fill:#6abf69;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <path
+           style="opacity:1;fill:#6abf69;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           d="m 95.887704,966.54188 a 12.142858,12.142858 0 0 0 -12.142578,12.14258 12.142858,12.142858 0 0 0 6.773438,10.875 l -4.458985,9.82428 c -2.79146,6.14736 -5.17976,11.45896 -5.30664,11.80266 -0.21745,0.589 0.651601,0.625 15.144531,0.625 l 15.37499,0 -2.32812,-5.0898 c -1.28046,-2.7991 -3.70333,-8.10606 -5.38477,-11.79302 l -2.41992,-5.30662 a 12.142858,12.142858 0 0 0 6.89063,-10.9375 12.142858,12.142858 0 0 0 -12.142576,-12.14258 z"
+           id="path4290"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+    <g
+       id="g4229"
+       transform="translate(374.28571,7.9164508)">
+      <text
+         sodipodi:linespacing="125%"
+         id="text4219"
+         y="786.64783"
+         x="-5.3710938"
+         style="font-style:normal;font-weight:normal;font-size:50px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:125px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
+           y="786.64783"
+           x="-5.3710938"
+           id="tspan4221"
+           sodipodi:role="line">andOTP</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text4223"
+         y="846.64789"
+         x="-2.2460938"
+         style="font-style:normal;font-weight:normal;font-size:50px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-size:40px;fill:#72727f;fill-opacity:1"
+           y="846.64789"
+           x="-2.2460938"
+           id="tspan4225"
+           sodipodi:role="line">Open source two factor</tspan><tspan
+           style="font-size:40px;fill:#72727f;fill-opacity:1"
+           id="tspan4227"
+           y="896.64789"
+           x="-2.2460938"
+           sodipodi:role="line">authentication for Android</tspan></text>
+    </g>
+  </g>
+</svg>
