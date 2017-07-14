@@ -1,7 +1,7 @@
 #  andOTP -  Android OTP Authenticator
 
 [![Build Status](https://travis-ci.org/flocke/andOTP.svg?branch=master)](https://travis-ci.org/flocke/andOTP)
-[![Current release](https://img.shields.io/github/release/flocke/andOTP/all.svg)](https://github.com/flocke/andOTP/releases/download/v0.2.1/andOTP_v0.2.1.apk)
+[![Current release](https://img.shields.io/github/release/flocke/andOTP/all.svg)](https://github.com/flocke/andOTP/releases/download/v0.2.2/andOTP_v0.2.2.apk)
 
 ![andOTP](./assets/logo.png)
 

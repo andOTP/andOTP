@@ -1,5 +1,13 @@
 # Changelog
 
+#### v0.2.2
+
+ * Bug fix: resume import and export after permission request
+ * Bug fix: implement a working hashCode function for the Entry class
+ * Code: add missing copyright headers
+ * Code: fix some tests
+ * Code: remove outdated tests
+
 #### v0.2.1
 
  * New feature: encrypted backups using OpenPGP
