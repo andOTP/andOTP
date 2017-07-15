@@ -37,10 +37,9 @@ goes to Bruno.
 
 <a href="https://play.google.com/store/apps/details?id=org.shadowice.flocke.andotp"><img width=250 alt="Get in on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" /></a>
 
-#### APK:
+#### APKs:
 
  * [GitHub](https://github.com/flocke/andOTP/releases)
- * [XDA Thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993)
 
 **Warning**: The APKs and the Play Store version are not compatible (not signed by the same key)!
 You will have to uninstall one to install the other, which will delete all your data.
