@@ -34,7 +34,8 @@ goes to Bruno.
 ## Downloads:
 
 #### Google Play:
-[![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png)](https://play.google.com/store/apps/details?id=org.shadowice.flocke.andotp)
+
+<a href="https://play.google.com/store/apps/details?id=org.shadowice.flocke.andotp"><img width=250 alt="Get in on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" /></a>
 
 #### APK:
 
