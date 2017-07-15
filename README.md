@@ -27,20 +27,21 @@ goes to Bruno.
  * Great Usability
  * Compatible with Google Authenticator
 
-## TODO
+## TODO:
 
  * Export the secret key (maybe)
 
-<!--
-## Download:
-### Google Play:
+## Downloads:
 
-<a href="https://play.google.com/store/apps/details?id=net.bierbaumer.otp_authenticator&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1"><img width=250 alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" /></a>
+#### [GitHub](https://github.com/flocke/andOTP/releases)
 
+#### [XDA Thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993)
 
-### F-Droid:
-[OTP Authenticator on F-Droid](https://f-droid.org/repository/browse/?fdfilter=otp&fdid=net.bierbaumer.otp_authenticator)
--->
+#### Google Play: coming soon
+
+## Discussion:
+
+If you want to discuss this app, share ideas for features or get help with bugs please head over to the [XDA thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993).
 
 ## Acknowledgments:
 #### Open-source components used:
