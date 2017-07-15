@@ -15,10 +15,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="feature_graphic_playstore.svg"
-   inkscape:export-filename="/home/flocke/data/development/android/andOTP/assets/feature_graphic_playstore.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   sodipodi:docname="feature_graphic.svg"
+   inkscape:export-filename="/home/flocke/data/development/android/andOTP/assets/feature_graphic_small.png"
+   inkscape:export-xdpi="45"
+   inkscape:export-ydpi="45">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -32,7 +32,7 @@
      inkscape:cx="425.20724"
      inkscape:cy="309.70563"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g4229"
      showgrid="false"
      units="px"
      inkscape:window-width="1678"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -121,7 +121,7 @@
            y="846.64789"
            x="-2.2460938"
            id="tspan4225"
-           sodipodi:role="line">Open source two factor</tspan><tspan
+           sodipodi:role="line">Open source two-factor</tspan><tspan
            style="font-size:40px;fill:#72727f;fill-opacity:1"
            id="tspan4227"
            y="896.64789"

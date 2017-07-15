@@ -33,11 +33,17 @@ goes to Bruno.
 
 ## Downloads:
 
-#### [GitHub](https://github.com/flocke/andOTP/releases)
+#### Google Play:
+[![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png)](https://play.google.com/store/apps/details?id=org.shadowice.flocke.andotp)
 
-#### [XDA Thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993)
+#### APK:
 
-#### Google Play: coming soon
+ * [GitHub](https://github.com/flocke/andOTP/releases)
+ * [XDA Thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993)
+
+**Warning**: The APKs and the Play Store version are not compatible (not signed by the same key)!
+You will have to uninstall one to install the other, which will delete all your data.
+So make sure you have a **current backup** before switching!
 
 ## Discussion:
 
