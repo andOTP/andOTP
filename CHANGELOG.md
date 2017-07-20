@@ -1,5 +1,9 @@
 # Changelog
 
+#### v0.2.3
+
+ * New feature: show a warning about backups on the first launch
+
 #### v0.2.2
 
  * Bug fix: resume import and export after permission request

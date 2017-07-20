@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionMenu floatingActionMenu;
     private SimpleItemTouchHelperCallback touchHelperCallback;
 
+    private SharedPreferences sharedPref;
+
     private Handler handler;
     private Runnable handlerTask;
 
@@ -120,6 +122,25 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
+    private void showFirstTimeWarning() {
+        ViewGroup container = (ViewGroup) findViewById(R.id.main_content);
+        View msgView = getLayoutInflater().inflate(R.layout.dialog_security_backup, container, false);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.dialog_title_security_backup)
+                .setView(msgView)
+                .setPositiveButton(R.string.button_warned, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        sharedPref.edit()
+                                .putBoolean(getString(R.string.settings_key_security_backup_warning), true)
+                                .apply();
+                    }
+                })
+                .create()
+                .show();
+    }
+
     // Initialize the main application
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,9 +152,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
             if(sharedPref.getBoolean(getString(R.string.settings_key_auth_device), false)) {
                 KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
                 if (km.isKeyguardSecure()) {
@@ -141,6 +162,10 @@ public class MainActivity extends AppCompatActivity {
                     startActivityForResult(authIntent, INTENT_AUTHENTICATE);
                 }
             }
+        }
+
+        if (! sharedPref.getBoolean(getString(R.string.settings_key_security_backup_warning), false)) {
+           showFirstTimeWarning();
         }
 
         floatingActionMenu = new FloatingActionMenu(this, (ConstraintLayout) findViewById(R.id.fab_main_layout));
@@ -252,6 +277,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         } else if (requestCode == INTENT_INTERNAL_SETTINGS && resultCode == RESULT_OK) {
+            sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
             adapter.notifyDataSetChanged();
         } else if (requestCode == INTENT_INTERNAL_BACKUP && resultCode == RESULT_OK) {
             if (intent.getBooleanExtra("reload", false))

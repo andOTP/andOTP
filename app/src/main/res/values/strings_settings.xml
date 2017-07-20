@@ -40,4 +40,6 @@
     <string name="settings_key_openpgp_sign">pref_openpgp_sign</string>
     <string name="settings_key_openpgp_verify">pref_openpgp_verify</string>
 
+    <string name="settings_key_security_backup_warning">pref_security_backup_warning_shown</string>
+
 </resources>
