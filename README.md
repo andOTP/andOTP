@@ -27,9 +27,23 @@ goes to Bruno.
  * Great Usability
  * Compatible with Google Authenticator
 
+## Backups:
+
+To keep your account information as secure as possible andOTP only stores them encrypted.
+A part of the encryption key used for that is stored in the Android KeyStore system.
+The advantage of this approach is that the key is kept separate from the apps data and
+can be backed by hardware cryptography (if your device supports this).
+
+However due to that separation backups with 3rd-party apps like Titanium Backup can not
+be used with andOTP. Such apps only backup the data files and not the full encryption key,
+making those backups useless.
+
+**Please only use the internal backup functions provided by andOTP to backup your accounts!**
+**Everything else WILL result in data loss.**
+
 ## TODO:
 
- * Export the secret key (maybe)
+ * HOTP Support
 
 ## Downloads:
 
