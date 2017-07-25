@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText periodInput = (EditText) inputView.findViewById(R.id.manual_period);
 
         typeInput.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Entry.OTPType.values()));
-        periodInput.setText(Integer.toString(TOTPHelper.TOTP_DEFAULT_PERIOD));
+        periodInput.setText(Integer.toString(TokenCalculator.TOTP_DEFAULT_PERIOD));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dialog_title_manual_entry)
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                             int period = Integer.parseInt(periodInput.getText().toString());
 
                             Entry e = new Entry(type, secret, period, label);
-                            e.setCurrentOTP(TOTPHelper.generate(e.getSecret(), e.getPeriod()));
+                            e.updateOTP();
                             adapter.addEntry(e);
                             adapter.saveEntries();
                         } else if (type == Entry.OTPType.HOTP) {
@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public void run() {
-                int progress =  (int) (TOTPHelper.TOTP_DEFAULT_PERIOD - (System.currentTimeMillis() / 1000) % TOTPHelper.TOTP_DEFAULT_PERIOD) ;
+                int progress =  (int) (TokenCalculator.TOTP_DEFAULT_PERIOD - (System.currentTimeMillis() / 1000) % TokenCalculator.TOTP_DEFAULT_PERIOD) ;
                 progressBar.setProgress(progress*100);
 
                 ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", (progress-1)*100);
@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
             if(result.getContents() != null) {
                 try {
                     Entry e = new Entry(result.getContents());
-                    e.setCurrentOTP(TOTPHelper.generate(e.getSecret(), e.getPeriod()));
+                    e.updateOTP();
                     adapter.addEntry(e);
                     adapter.saveEntries();
                 } catch (Exception e) {

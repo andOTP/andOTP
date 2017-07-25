@@ -32,8 +32,6 @@ import org.json.JSONObject;
 import java.net.URL;
 import java.util.Arrays;
 
-import static org.shadowice.flocke.andotp.TOTPHelper.TOTP_DEFAULT_PERIOD;
-
 public class Entry {
     public enum OTPType { TOTP, HOTP }
 
@@ -47,7 +45,7 @@ public class Entry {
     private OTPType type = OTPType.TOTP;
     private byte[] secret;
     private String label;
-    private int period = TOTPHelper.TOTP_DEFAULT_PERIOD;
+    private int period = TokenCalculator.TOTP_DEFAULT_PERIOD;
     private String currentOTP;
     private long last_update = 0;
 
@@ -91,7 +89,7 @@ public class Entry {
         if (period != null) {
             this.period = Integer.parseInt(period);
         } else {
-            this.period = TOTP_DEFAULT_PERIOD;
+            this.period = TokenCalculator.TOTP_DEFAULT_PERIOD;
         }
     }
 
@@ -149,24 +147,20 @@ public class Entry {
     public void setPeriod(int period) { this.period = period; }
 
     public boolean hasNonDefaultPeriod() {
-        return this.period != TOTP_DEFAULT_PERIOD;
+        return this.period != TokenCalculator.TOTP_DEFAULT_PERIOD;
     }
 
     public String getCurrentOTP() {
         return currentOTP;
     }
 
-    public void setCurrentOTP(String currentOTP) {
-        this.currentOTP = currentOTP;
-    }
-
     public boolean updateOTP() {
         long time = System.currentTimeMillis() / 1000;
         long counter = time / this.getPeriod();
 
-        if (counter > this.last_update) {
-            this.setCurrentOTP(TOTPHelper.generate(this.getSecret(), this.getPeriod()));
-            this.last_update = counter;
+        if (counter > last_update) {
+            currentOTP = TokenCalculator.TOTP(secret, period);
+            last_update = counter;
 
             return true;
         } else {

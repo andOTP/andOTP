@@ -50,7 +50,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import static org.shadowice.flocke.andotp.TOTPHelper.TOTP_DEFAULT_PERIOD;
+import static org.shadowice.flocke.andotp.TokenCalculator.TOTP_DEFAULT_PERIOD;
 
 public class ApplicationTest extends ApplicationTestCase<Application> {
 
@@ -60,12 +60,12 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
 
     public void testTOTPHelper(){
         byte[] b =  "12345678901234567890".getBytes();
-        assertEquals(94287082, TOTPHelper.generate(b, TOTP_DEFAULT_PERIOD, 59l, 8));
-        assertEquals(7081804,  TOTPHelper.generate(b, TOTP_DEFAULT_PERIOD, 1111111109l, 8));
-        assertEquals(14050471, TOTPHelper.generate(b, TOTP_DEFAULT_PERIOD, 1111111111l, 8));
-        assertEquals(89005924, TOTPHelper.generate(b, TOTP_DEFAULT_PERIOD, 1234567890l, 8));
-        assertEquals(69279037, TOTPHelper.generate(b, TOTP_DEFAULT_PERIOD, 2000000000l, 8));
-        assertEquals(65353130, TOTPHelper.generate(b, TOTP_DEFAULT_PERIOD, 20000000000l, 8));
+        assertEquals(94287082, TokenCalculator.TOTP(b, TOTP_DEFAULT_PERIOD, 59l, 8));
+        assertEquals(7081804,  TokenCalculator.TOTP(b, TOTP_DEFAULT_PERIOD, 1111111109l, 8));
+        assertEquals(14050471, TokenCalculator.TOTP(b, TOTP_DEFAULT_PERIOD, 1111111111l, 8));
+        assertEquals(89005924, TokenCalculator.TOTP(b, TOTP_DEFAULT_PERIOD, 1234567890l, 8));
+        assertEquals(69279037, TokenCalculator.TOTP(b, TOTP_DEFAULT_PERIOD, 2000000000l, 8));
+        assertEquals(65353130, TokenCalculator.TOTP(b, TOTP_DEFAULT_PERIOD, 20000000000l, 8));
     }
 
 

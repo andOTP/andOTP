@@ -27,20 +27,20 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 
-public class TOTPHelper {
+public class TokenCalculator {
     public static final int TOTP_DEFAULT_PERIOD = 30;
 
     public static final String SHA1 = "HmacSHA1";
 
-    public static String generate(byte[] secret) {
-        return String.format("%06d", generate(secret, TOTP_DEFAULT_PERIOD, System.currentTimeMillis() / 1000, 6));
+    public static String TOTP(byte[] secret) {
+        return String.format("%06d", TOTP(secret, TOTP_DEFAULT_PERIOD, System.currentTimeMillis() / 1000, 6));
     }
 
-    public static String generate(byte[] secret, int period) {
-        return String.format("%06d", generate(secret, period, System.currentTimeMillis() / 1000, 6));
+    public static String TOTP(byte[] secret, int period) {
+        return String.format("%06d", TOTP(secret, period, System.currentTimeMillis() / 1000, 6));
     }
 
-    public static int generate(byte[] key, int period, long t, int digits)
+    public static int TOTP(byte[] key, int period, long t, int digits)
     {
         int r = 0;
         try {
