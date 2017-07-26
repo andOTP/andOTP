@@ -62,8 +62,8 @@ public class BackupActivity extends AppCompatActivity {
     private final static int INTENT_SAVE_DOCUMENT_PLAIN = 101;
     private final static int INTENT_OPEN_DOCUMENT_PGP = 102;
     private final static int INTENT_SAVE_DOCUMENT_PGP = 103;
-    private final static int INTENT_ENCRYPT = 104;
-    private final static int INTENT_DECRYPT = 105;
+    private final static int INTENT_ENCRYPT_PGP = 104;
+    private final static int INTENT_DECRYPT_PGP = 105;
 
     private final static int PERMISSIONS_REQUEST_READ_IMPORT_PLAIN = 110;
     private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_PLAIN = 111;
@@ -113,7 +113,7 @@ public class BackupActivity extends AppCompatActivity {
         importPlain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                importJSONWithPermissions();
+                openFileWithPermissions(INTENT_OPEN_DOCUMENT_PLAIN, PERMISSIONS_REQUEST_READ_IMPORT_PLAIN);
             }
         });
 
@@ -139,14 +139,14 @@ public class BackupActivity extends AppCompatActivity {
             exportPGP.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    exportEncryptedWithPermissions();
+                    saveFileWithPermissions(DEFAULT_BACKUP_MIMETYPE_PGP, DEFAULT_BACKUP_FILENAME_PGP, INTENT_SAVE_DOCUMENT_PGP, PERMISSIONS_REQUEST_WRITE_EXPORT_PGP);
                 }
             });
 
             importPGP.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    importEncryptedWithPermissions();
+                    openFileWithPermissions(INTENT_OPEN_DOCUMENT_PGP, PERMISSIONS_REQUEST_READ_IMPORT_PGP);
                 }
             });
         }
@@ -187,25 +187,25 @@ public class BackupActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         if (requestCode == PERMISSIONS_REQUEST_READ_IMPORT_PLAIN) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                importJSONWithSelector();
+                showOpenFileSelector(INTENT_OPEN_DOCUMENT_PLAIN);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
         } else if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT_PLAIN) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                exportJSONWithSelector();
+                showSaveFileSelector(DEFAULT_BACKUP_MIMETYPE_PLAIN, DEFAULT_BACKUP_FILENAME_PLAIN, INTENT_SAVE_DOCUMENT_PLAIN);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
         } else if (requestCode == PERMISSIONS_REQUEST_READ_IMPORT_PGP) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                importEncryptedWithSelector();
+                showOpenFileSelector(INTENT_OPEN_DOCUMENT_PGP);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
         } else if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT_PGP) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                exportEncryptedWithSelector();
+                showSaveFileSelector(DEFAULT_BACKUP_MIMETYPE_PGP, DEFAULT_BACKUP_FILENAME_PGP, INTENT_SAVE_DOCUMENT_PGP);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
@@ -233,14 +233,48 @@ public class BackupActivity extends AppCompatActivity {
         } else if (requestCode == INTENT_SAVE_DOCUMENT_PGP && resultCode == RESULT_OK) {
             if (intent != null)
                 exportEncryptedWithPGP(intent.getData());
-        } else if (requestCode == INTENT_ENCRYPT && resultCode == RESULT_OK) {
+        } else if (requestCode == INTENT_ENCRYPT_PGP && resultCode == RESULT_OK) {
             exportEncryptedWithPGP(encryptTargetFile);
-        } else if (requestCode == INTENT_DECRYPT && resultCode == RESULT_OK) {
+        } else if (requestCode == INTENT_DECRYPT_PGP && resultCode == RESULT_OK) {
             importEncryptedWithPGP(decryptSourceFile);
         }
     }
 
-    // Import from JSON
+    /* Generic functions for all backup/restore options */
+
+    private void showOpenFileSelector(int intentId) {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*");
+        startActivityForResult(intent, intentId);
+    }
+
+    private void showSaveFileSelector(String mimeType, String fileName, int intentId) {
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType(mimeType);
+        intent.putExtra(Intent.EXTRA_TITLE, fileName);
+        startActivityForResult(intent, intentId);
+    }
+
+    private void openFileWithPermissions(int intentId, int requestId) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            showOpenFileSelector(intentId);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, requestId);
+        }
+    }
+
+    private void saveFileWithPermissions(String mimeType, String fileName, int intentId, int requestId) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            showSaveFileSelector(mimeType, fileName, intentId);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, requestId);
+        }
+    }
+
+    /* Plain-text backup functions */
+
     private void doImportJSON(Uri uri) {
         if (StorageHelper.isExternalStorageReadable()) {
             boolean success = DatabaseHelper.importFromJSON(this, uri);
@@ -258,22 +292,6 @@ public class BackupActivity extends AppCompatActivity {
         finishWithResult();
     }
 
-    private void importJSONWithSelector() {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("*/*");
-        startActivityForResult(intent, INTENT_OPEN_DOCUMENT_PLAIN);
-    }
-
-    private void importJSONWithPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            importJSONWithSelector();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_READ_IMPORT_PLAIN);
-        }
-    }
-
-    // Export to JSON
     private void doExportJSON(Uri uri) {
         if (StorageHelper.isExternalStorageWritable()) {
             boolean success = DatabaseHelper.exportAsJSON(this, uri);
@@ -289,22 +307,6 @@ public class BackupActivity extends AppCompatActivity {
         finishWithResult();
     }
 
-    private void exportJSONWithSelector() {
-        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType(DEFAULT_BACKUP_MIMETYPE_PLAIN);
-        intent.putExtra(Intent.EXTRA_TITLE, DEFAULT_BACKUP_FILENAME_PLAIN);
-        startActivityForResult(intent, INTENT_SAVE_DOCUMENT_PLAIN);
-    }
-
-    private void exportJSONWithPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            exportJSONWithSelector();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_WRITE_EXPORT_PLAIN);
-        }
-    }
-
     private void exportJSONWithWarning() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -313,7 +315,7 @@ public class BackupActivity extends AppCompatActivity {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        exportJSONWithPermissions();
+                        saveFileWithPermissions(DEFAULT_BACKUP_MIMETYPE_PLAIN, DEFAULT_BACKUP_FILENAME_PLAIN, INTENT_SAVE_DOCUMENT_PLAIN, PERMISSIONS_REQUEST_WRITE_EXPORT_PLAIN);
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -325,7 +327,8 @@ public class BackupActivity extends AppCompatActivity {
                 .show();
     }
 
-    // Import Encrypted
+    /* OpenPGP backup functions */
+
     private void doImportEncrypted(String content) {
         if (StorageHelper.isExternalStorageReadable()) {
             ArrayList<Entry> entries = DatabaseHelper.stringToEntries(this, content);
@@ -361,25 +364,9 @@ public class BackupActivity extends AppCompatActivity {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         OpenPgpApi api = new OpenPgpApi(this, pgpServiceConnection.getService());
         Intent result = api.executeApi(decryptIntent, is, os);
-        handleOpenPGPResult(result, os, uri, INTENT_DECRYPT);
+        handleOpenPGPResult(result, os, uri, INTENT_DECRYPT_PGP);
     }
 
-    private void importEncryptedWithSelector() {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("*/*");
-        startActivityForResult(intent, INTENT_OPEN_DOCUMENT_PGP);
-    }
-
-    private void importEncryptedWithPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            importEncryptedWithSelector();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_READ_IMPORT_PGP);
-        }
-    }
-
-    // Export Encrypted
     private void doExportEncrypted(Uri uri, String data) {
         if (StorageHelper.isExternalStorageWritable()) {
             boolean success = FileHelper.writeStringToFile(this, uri, data);
@@ -420,23 +407,7 @@ public class BackupActivity extends AppCompatActivity {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         OpenPgpApi api = new OpenPgpApi(this, pgpServiceConnection.getService());
         Intent result = api.executeApi(encryptIntent, is, os);
-        handleOpenPGPResult(result, os, uri, INTENT_ENCRYPT);
-    }
-
-    private void exportEncryptedWithSelector() {
-        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType(DEFAULT_BACKUP_MIMETYPE_PGP);
-        intent.putExtra(Intent.EXTRA_TITLE, DEFAULT_BACKUP_FILENAME_PGP);
-        startActivityForResult(intent, INTENT_SAVE_DOCUMENT_PGP);
-    }
-
-    private void exportEncryptedWithPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            exportEncryptedWithSelector();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_WRITE_EXPORT_PGP);
-        }
+        handleOpenPGPResult(result, os, uri, INTENT_ENCRYPT_PGP);
     }
 
     public String outputStreamToString(ByteArrayOutputStream os) {
@@ -452,10 +423,10 @@ public class BackupActivity extends AppCompatActivity {
 
     public void handleOpenPGPResult(Intent result, ByteArrayOutputStream os, Uri file, int requestCode) {
         if (result.getIntExtra(OpenPgpApi.RESULT_CODE, OpenPgpApi.RESULT_CODE_ERROR) == OpenPgpApi.RESULT_CODE_SUCCESS) {
-            if (requestCode == INTENT_ENCRYPT) {
+            if (requestCode == INTENT_ENCRYPT_PGP) {
                 if (os != null)
                     doExportEncrypted(file, outputStreamToString(os));
-            } else if (requestCode == INTENT_DECRYPT) {
+            } else if (requestCode == INTENT_DECRYPT_PGP) {
                 if (os != null) {
                     if (settings.getBoolean(getString(R.string.settings_key_openpgp_verify), false)) {
                         OpenPgpSignatureResult sigResult = result.getParcelableExtra(OpenPgpApi.RESULT_SIGNATURE);
@@ -474,9 +445,9 @@ public class BackupActivity extends AppCompatActivity {
             PendingIntent pi = result.getParcelableExtra(OpenPgpApi.RESULT_INTENT);
 
             // Small hack to keep the target file even after user interaction
-            if (requestCode == INTENT_ENCRYPT) {
+            if (requestCode == INTENT_ENCRYPT_PGP) {
                 encryptTargetFile = file;
-            } else if (requestCode == INTENT_DECRYPT) {
+            } else if (requestCode == INTENT_DECRYPT_PGP) {
                 decryptSourceFile = file;
             }
 
