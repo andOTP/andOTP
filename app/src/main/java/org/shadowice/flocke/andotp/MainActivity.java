@@ -154,12 +154,14 @@ public class MainActivity extends AppCompatActivity {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            if(sharedPref.getBoolean(getString(R.string.settings_key_auth_device), false)) {
-                KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
-                if (km.isKeyguardSecure()) {
-                    Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
-                    startActivityForResult(authIntent, INTENT_AUTHENTICATE);
+        if (savedInstanceState == null) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                if(sharedPref.getBoolean(getString(R.string.settings_key_auth_device), false)) {
+                    KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+                    if (km.isKeyguardSecure()) {
+                        Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
+                        startActivityForResult(authIntent, INTENT_AUTHENTICATE);
+                    }
                 }
             }
         }
