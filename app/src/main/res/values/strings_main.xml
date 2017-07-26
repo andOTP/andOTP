@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">andOTP</string>
-    <string name="app_launcher">OTP Authenticator</string>
 
     <!-- Buttons -->
     <string name="button_enter_details">Enter details</string>
