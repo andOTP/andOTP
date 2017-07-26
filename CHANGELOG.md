@@ -3,6 +3,8 @@
 #### v0.2.3
 
  * New feature: show a warning about backups on the first launch
+ * Bug fix: don't require device authentication again after screen rotation (Issue #7)
+ * Bug fix: rename the apps launcher icon to "andOTP" (Bug #7)
 
 #### v0.2.2
 
