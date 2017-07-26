@@ -331,10 +331,10 @@ public class BackupActivity extends AppCompatActivity {
 
     private void doRestoreEncrypted(String content) {
         if (StorageHelper.isExternalStorageReadable()) {
-            ArrayList<Entry> entries = DatabaseHelper.stringToEntries(this, content);
+            ArrayList<Entry> entries = DatabaseHelper.stringToEntries(content);
 
             if (entries.size() > 0) {
-                DatabaseHelper.store(this, entries);
+                DatabaseHelper.saveDatabase(this, entries);
 
                 reload = true;
                 Toast.makeText(this, R.string.backup_toast_import_success, Toast.LENGTH_LONG).show();
@@ -383,7 +383,8 @@ public class BackupActivity extends AppCompatActivity {
     }
 
     private void backupEncryptedWithPGP(Uri uri) {
-        String plainJSON = DatabaseHelper.entriesToString(this);
+        ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this);
+        String plainJSON = DatabaseHelper.entriesToString(entries);
 
         Intent encryptIntent = new Intent();
 

@@ -131,7 +131,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         new File(context.getFilesDir() + "/" + DatabaseHelper.SETTINGS_FILE).delete();
         new File(context.getFilesDir() + "/" + DatabaseHelper.KEY_FILE).delete();
 
-        ArrayList<Entry> b = DatabaseHelper.load(context);
+        ArrayList<Entry> b = DatabaseHelper.loadDatabase(context);
         assertEquals(0, b.size());
 
         ArrayList<Entry> a = new ArrayList<>();
@@ -145,8 +145,8 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         e.setSecret("secret2".getBytes());
         a.add(e);
 
-        DatabaseHelper.store(context, a);
-        b = DatabaseHelper.load(context);
+        DatabaseHelper.saveDatabase(context, a);
+        b = DatabaseHelper.loadDatabase(context);
 
         assertEquals(a, b);
 

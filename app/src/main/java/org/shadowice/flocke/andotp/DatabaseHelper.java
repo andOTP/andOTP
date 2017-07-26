@@ -28,62 +28,43 @@ import android.net.Uri;
 
 import org.json.JSONArray;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
-
-import static org.shadowice.flocke.andotp.Utils.readFully;
-import static org.shadowice.flocke.andotp.Utils.writeFully;
 
 public class DatabaseHelper {
     public static final String KEY_FILE = "otp.key";
     public static final String SETTINGS_FILE = "secrets.dat";
 
-    public static void store(Context context, ArrayList<Entry> entries) {
-        JSONArray a = new JSONArray();
+    /* Database functions */
 
-        for(Entry e: entries){
-            try {
-                a.put(e.toJSON());
-            } catch (Exception error) {
-                error.printStackTrace();
-            }
-        }
+    public static void saveDatabase(Context context, ArrayList<Entry> entries) {
+        String jsonString = entriesToString(entries);
 
         try {
-            byte[] data = a.toString().getBytes();
+            byte[] data = jsonString.getBytes();
 
             SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
             data = EncryptionHelper.encrypt(key,data);
 
-            writeFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
+            Utils.writeFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
 
         } catch (Exception error) {
             error.printStackTrace();
         }
     }
 
-    public static ArrayList<Entry> load(Context context){
+    public static ArrayList<Entry> loadDatabase(Context context){
         ArrayList<Entry> entries = new ArrayList<>();
 
         try {
-            byte[] data = readFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
+            byte[] data = Utils.readFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
 
             SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
             data = EncryptionHelper.decrypt(key, data);
 
-            JSONArray json = new JSONArray(new String(data));
-
-            for (int i = 0; i < json.length(); i++) {
-                entries.add(new Entry(json.getJSONObject(i)));
-            }
+            entries = stringToEntries(new String(data));
         } catch (Exception error) {
             error.printStackTrace();
         }
@@ -91,9 +72,9 @@ public class DatabaseHelper {
         return entries;
     }
 
-    public static String entriesToString(Context context) {
-        ArrayList<Entry> entries = load(context);
+    /* Conversion functions */
 
+    public static String entriesToString(ArrayList<Entry> entries) {
         JSONArray json = new JSONArray();
 
         for(Entry e: entries){
@@ -107,11 +88,7 @@ public class DatabaseHelper {
         return json.toString();
     }
 
-    public static boolean exportAsJSON(Context context, Uri file) {
-        return FileHelper.writeStringToFile(context, file, entriesToString(context));
-    }
-
-    public static ArrayList<Entry> stringToEntries(Context context, String data) {
+    public static ArrayList<Entry> stringToEntries(String data) {
         ArrayList<Entry> entries = new ArrayList<>();
 
         try {
@@ -127,13 +104,26 @@ public class DatabaseHelper {
         return entries;
     }
 
+    /* Export functions */
+
+    public static boolean exportAsJSON(Context context, Uri file) {
+        ArrayList<Entry> entries = loadDatabase(context);
+
+        return FileHelper.writeStringToFile(context, file, entriesToString(entries));
+    }
+
     public static boolean importFromJSON(Context context, Uri file) {
-        boolean success = true;
+        boolean success = false;
 
         String content = FileHelper.readFileToString(context, file);
-        ArrayList<Entry> entries = stringToEntries(context, content);
 
-        store(context, entries);
+        if (! content.isEmpty()) {
+            ArrayList<Entry> entries = stringToEntries(content);
+
+            saveDatabase(context, entries);
+
+            success = true;
+        }
 
         return success;
     }
