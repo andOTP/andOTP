@@ -3,17 +3,17 @@
     <string name="backup_activity_title">Backups</string>
 
     <string name="backup_category_plain">Plain-text backups</string>
-    <string name="backup_category_openpgp">OpenPGP encrypted backups</string>
+    <string name="backup_category_openpgp">OpenPGP backups</string>
 
-    <string name="backup_title_export_plain">Export to JSON</string>
-    <string name="backup_title_export_openpgp">Export to encrypted file</string>
-    <string name="backup_title_import_plain">Import from JSON</string>
-    <string name="backup_title_import_openpgp">Import from encrypted file</string>
+    <string name="backup_title_export_plain">Backup (plain-text)</string>
+    <string name="backup_title_export_openpgp">Backup (OpenPGP)</string>
+    <string name="backup_title_import_plain">Restore (plain-text)</string>
+    <string name="backup_title_import_openpgp">Restore (OpenPGP)</string>
 
-    <string name="backup_desc_export_plain">Export all accounts to a plain-text JSON file</string>
-    <string name="backup_desc_export_openpgp">Export all accounts to an OpenPGP-encrypted JSON file</string>
-    <string name="backup_desc_import_plain">Import accounts from a plain-text JSON file</string>
-    <string name="backup_desc_import_openpgp">Import accounts from an OpenPGP-encrypted JSON file</string>
+    <string name="backup_desc_export_plain">Backup all accounts in a plain-text JSON file</string>
+    <string name="backup_desc_export_openpgp">Backup all accounts in an OpenPGP-encrypted JSON file</string>
+    <string name="backup_desc_import_plain">Restore accounts from a plain-text JSON file</string>
+    <string name="backup_desc_import_openpgp">Restore accounts from an OpenPGP-encrypted JSON file</string>
 
     <string name="backup_desc_openpgp_provider">You need to install an OpenPGP provider and enable
         it in the Settings to use this feature.

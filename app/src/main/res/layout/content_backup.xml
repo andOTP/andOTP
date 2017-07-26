@@ -15,7 +15,7 @@
         android:text="@string/backup_category_plain" />
 
     <LinearLayout
-        android:id="@+id/button_export_plain"
+        android:id="@+id/button_backup_plain"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/button_import_plain"
+        android:id="@+id/button_restore_plain"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
         android:text="@string/backup_desc_openpgp_provider"/>
 
     <LinearLayout
-        android:id="@+id/button_export_openpgp"
+        android:id="@+id/button_backup_openpgp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/button_import_openpgp"
+        android:id="@+id/button_restore_openpgp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

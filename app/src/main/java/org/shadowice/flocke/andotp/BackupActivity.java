@@ -100,17 +100,17 @@ public class BackupActivity extends AppCompatActivity {
 
         settings = PreferenceManager.getDefaultSharedPreferences(this);
 
-        LinearLayout exportPlain = (LinearLayout) v.findViewById(R.id.button_export_plain);
-        LinearLayout importPlain = (LinearLayout) v.findViewById(R.id.button_import_plain);
+        LinearLayout backupPlain = (LinearLayout) v.findViewById(R.id.button_backup_plain);
+        LinearLayout restorePlain = (LinearLayout) v.findViewById(R.id.button_restore_plain);
 
-        exportPlain.setOnClickListener(new View.OnClickListener() {
+        backupPlain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                exportJSONWithWarning();
+                backupPlainWithWarning();
             }
         });
 
-        importPlain.setOnClickListener(new View.OnClickListener() {
+        restorePlain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openFileWithPermissions(INTENT_OPEN_DOCUMENT_PLAIN, PERMISSIONS_REQUEST_READ_IMPORT_PLAIN);
@@ -121,29 +121,29 @@ public class BackupActivity extends AppCompatActivity {
         pgpKeyId = settings.getLong(getString(R.string.settings_key_openpgp_keyid), 0);
 
         TextView setupPGP = (TextView) v.findViewById(R.id.msg_openpgp_setup);
-        LinearLayout exportPGP = (LinearLayout) v.findViewById(R.id.button_export_openpgp);
-        LinearLayout importPGP = (LinearLayout) v.findViewById(R.id.button_import_openpgp);
+        LinearLayout backupPGP = (LinearLayout) v.findViewById(R.id.button_backup_openpgp);
+        LinearLayout restorePGP = (LinearLayout) v.findViewById(R.id.button_restore_openpgp);
 
         if (TextUtils.isEmpty(PGPProvider)) {
             setupPGP.setVisibility(View.VISIBLE);
-            exportPGP.setVisibility(View.GONE);
-            importPGP.setVisibility(View.GONE);
+            backupPGP.setVisibility(View.GONE);
+            restorePGP.setVisibility(View.GONE);
         } else if (pgpKeyId == 0){
             setupPGP.setVisibility(View.VISIBLE);
             setupPGP.setText(R.string.backup_desc_openpgp_keyid);
-            exportPGP.setVisibility(View.GONE);
+            backupPGP.setVisibility(View.GONE);
         } else {
             pgpServiceConnection = new OpenPgpServiceConnection(BackupActivity.this.getApplicationContext(), PGPProvider);
             pgpServiceConnection.bindToService();
 
-            exportPGP.setOnClickListener(new View.OnClickListener() {
+            backupPGP.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     saveFileWithPermissions(DEFAULT_BACKUP_MIMETYPE_PGP, DEFAULT_BACKUP_FILENAME_PGP, INTENT_SAVE_DOCUMENT_PGP, PERMISSIONS_REQUEST_WRITE_EXPORT_PGP);
                 }
             });
 
-            importPGP.setOnClickListener(new View.OnClickListener() {
+            restorePGP.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     openFileWithPermissions(INTENT_OPEN_DOCUMENT_PGP, PERMISSIONS_REQUEST_READ_IMPORT_PGP);
@@ -221,22 +221,22 @@ public class BackupActivity extends AppCompatActivity {
 
         if (requestCode == INTENT_OPEN_DOCUMENT_PLAIN && resultCode == RESULT_OK) {
             if (intent != null) {
-                doImportJSON(intent.getData());
+                doRestorePlain(intent.getData());
             }
         } else if (requestCode == INTENT_SAVE_DOCUMENT_PLAIN && resultCode == RESULT_OK) {
             if (intent != null) {
-                doExportJSON(intent.getData());
+                doBackupPlain(intent.getData());
             }
         } else if (requestCode == INTENT_OPEN_DOCUMENT_PGP && resultCode == RESULT_OK) {
             if (intent != null)
-                importEncryptedWithPGP(intent.getData());
+                restoreEncryptedWithPGP(intent.getData());
         } else if (requestCode == INTENT_SAVE_DOCUMENT_PGP && resultCode == RESULT_OK) {
             if (intent != null)
-                exportEncryptedWithPGP(intent.getData());
+                backupEncryptedWithPGP(intent.getData());
         } else if (requestCode == INTENT_ENCRYPT_PGP && resultCode == RESULT_OK) {
-            exportEncryptedWithPGP(encryptTargetFile);
+            backupEncryptedWithPGP(encryptTargetFile);
         } else if (requestCode == INTENT_DECRYPT_PGP && resultCode == RESULT_OK) {
-            importEncryptedWithPGP(decryptSourceFile);
+            restoreEncryptedWithPGP(decryptSourceFile);
         }
     }
 
@@ -275,7 +275,7 @@ public class BackupActivity extends AppCompatActivity {
 
     /* Plain-text backup functions */
 
-    private void doImportJSON(Uri uri) {
+    private void doRestorePlain(Uri uri) {
         if (StorageHelper.isExternalStorageReadable()) {
             boolean success = DatabaseHelper.importFromJSON(this, uri);
 
@@ -292,7 +292,7 @@ public class BackupActivity extends AppCompatActivity {
         finishWithResult();
     }
 
-    private void doExportJSON(Uri uri) {
+    private void doBackupPlain(Uri uri) {
         if (StorageHelper.isExternalStorageWritable()) {
             boolean success = DatabaseHelper.exportAsJSON(this, uri);
 
@@ -307,7 +307,7 @@ public class BackupActivity extends AppCompatActivity {
         finishWithResult();
     }
 
-    private void exportJSONWithWarning() {
+    private void backupPlainWithWarning() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle(R.string.backup_dialog_title_security_warning)
@@ -329,7 +329,7 @@ public class BackupActivity extends AppCompatActivity {
 
     /* OpenPGP backup functions */
 
-    private void doImportEncrypted(String content) {
+    private void doRestoreEncrypted(String content) {
         if (StorageHelper.isExternalStorageReadable()) {
             ArrayList<Entry> entries = DatabaseHelper.stringToEntries(this, content);
 
@@ -348,7 +348,7 @@ public class BackupActivity extends AppCompatActivity {
         finishWithResult();
     }
 
-    private void importEncryptedWithPGP(Uri uri) {
+    private void restoreEncryptedWithPGP(Uri uri) {
         Intent decryptIntent = new Intent(OpenPgpApi.ACTION_DECRYPT_VERIFY);
 
         String input = FileHelper.readFileToString(this, uri);
@@ -367,7 +367,7 @@ public class BackupActivity extends AppCompatActivity {
         handleOpenPGPResult(result, os, uri, INTENT_DECRYPT_PGP);
     }
 
-    private void doExportEncrypted(Uri uri, String data) {
+    private void doBackupEncrypted(Uri uri, String data) {
         if (StorageHelper.isExternalStorageWritable()) {
             boolean success = FileHelper.writeStringToFile(this, uri, data);
 
@@ -382,7 +382,7 @@ public class BackupActivity extends AppCompatActivity {
         finishWithResult();
     }
 
-    private void exportEncryptedWithPGP(Uri uri) {
+    private void backupEncryptedWithPGP(Uri uri) {
         String plainJSON = DatabaseHelper.entriesToString(this);
 
         Intent encryptIntent = new Intent();
@@ -425,19 +425,19 @@ public class BackupActivity extends AppCompatActivity {
         if (result.getIntExtra(OpenPgpApi.RESULT_CODE, OpenPgpApi.RESULT_CODE_ERROR) == OpenPgpApi.RESULT_CODE_SUCCESS) {
             if (requestCode == INTENT_ENCRYPT_PGP) {
                 if (os != null)
-                    doExportEncrypted(file, outputStreamToString(os));
+                    doBackupEncrypted(file, outputStreamToString(os));
             } else if (requestCode == INTENT_DECRYPT_PGP) {
                 if (os != null) {
                     if (settings.getBoolean(getString(R.string.settings_key_openpgp_verify), false)) {
                         OpenPgpSignatureResult sigResult = result.getParcelableExtra(OpenPgpApi.RESULT_SIGNATURE);
 
                         if (sigResult.getResult() == OpenPgpSignatureResult.RESULT_VALID_KEY_CONFIRMED) {
-                            doImportEncrypted(outputStreamToString(os));
+                            doRestoreEncrypted(outputStreamToString(os));
                         } else {
                             Toast.makeText(this, R.string.backup_toast_openpgp_not_verified, Toast.LENGTH_LONG).show();
                         }
                     } else {
-                        doImportEncrypted(outputStreamToString(os));
+                        doRestoreEncrypted(outputStreamToString(os));
                     }
                 }
             }
