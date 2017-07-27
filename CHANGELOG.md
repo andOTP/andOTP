@@ -8,6 +8,7 @@
  * Bug fix: don't require device authentication again after screen rotation (Issue #7)
  * Bug fix: hide the FloatingActionMenu on scroll (Issue #8)
  * Bug fix: rename the apps launcher icon to "andOTP" (Issue #6)
+ * Bug fix: restrict the label size so they don't overlap with the buttons (Issue #9)
  * Code: lots of internal refactoring
 
 #### v0.2.2

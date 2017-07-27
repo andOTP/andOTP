@@ -10,54 +10,61 @@
     card_view:contentPadding="@dimen/activity_margin"
      >
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:baselineAligned="false" >
 
         <LinearLayout
-            android:id="@+id/textViewOTPLayout"
-            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" >
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/textViewOTPLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textViewOTP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_visibility_visible"
+                    android:drawablePadding="@dimen/activity_margin_small"
+                    android:visibility="gone"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewOTPCover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_visibility_invisible"
+                    android:drawablePadding="@dimen/activity_margin_small"
+                    android:visibility="visible"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_light"
+                    android:text="@string/label_tap_to_reveal" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/textViewOTP"
+                android:id="@+id/textViewLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_visibility_visible"
-                android:drawablePadding="@dimen/activity_margin_small"
-                android:visibility="gone"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/textViewOTPCover"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_visibility_invisible"
-                android:drawablePadding="@dimen/activity_margin_small"
-                android:visibility="visible"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:textColor="@color/primary_light"
-                android:text="@string/label_tap_to_reveal" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textViewLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewOTPLayout"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:gravity="center"
-            android:orientation="horizontal" >
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/customPeriodLayout"
@@ -96,6 +103,6 @@
                 android:background="?android:attr/selectableItemBackground"/>
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>
