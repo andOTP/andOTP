@@ -57,22 +57,30 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import javax.crypto.SecretKey;
+
 public class BackupActivity extends AppCompatActivity {
     private final static int INTENT_OPEN_DOCUMENT_PLAIN = 100;
     private final static int INTENT_SAVE_DOCUMENT_PLAIN = 101;
-    private final static int INTENT_OPEN_DOCUMENT_PGP = 102;
-    private final static int INTENT_SAVE_DOCUMENT_PGP = 103;
-    private final static int INTENT_ENCRYPT_PGP = 104;
-    private final static int INTENT_DECRYPT_PGP = 105;
+    private final static int INTENT_OPEN_DOCUMENT_CRYPT = 102;
+    private final static int INTENT_SAVE_DOCUMENT_CRYPT = 103;
+    private final static int INTENT_OPEN_DOCUMENT_PGP = 104;
+    private final static int INTENT_SAVE_DOCUMENT_PGP = 105;
+    private final static int INTENT_ENCRYPT_PGP = 106;
+    private final static int INTENT_DECRYPT_PGP = 107;
 
     private final static int PERMISSIONS_REQUEST_READ_IMPORT_PLAIN = 110;
     private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_PLAIN = 111;
-    private final static int PERMISSIONS_REQUEST_READ_IMPORT_PGP = 112;
-    private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_PGP = 113;
+    private final static int PERMISSIONS_REQUEST_READ_IMPORT_CRYPT = 112;
+    private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_CRYPT = 113;
+    private final static int PERMISSIONS_REQUEST_READ_IMPORT_PGP = 114;
+    private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_PGP = 115;
 
     private static final String DEFAULT_BACKUP_FILENAME_PLAIN = "otp_accounts.json";
+    private static final String DEFAULT_BACKUP_FILENAME_CRYPT = "otp_accounts.json.aes";
     private static final String DEFAULT_BACKUP_FILENAME_PGP = "otp_accounts.json.gpg";
     private static final String DEFAULT_BACKUP_MIMETYPE_PLAIN = "application/json";
+    private static final String DEFAULT_BACKUP_MIMETYPE_CRYPT = "binary/aes";
     private static final String DEFAULT_BACKUP_MIMETYPE_PGP = "application/pgp-encrypted";
 
     private SharedPreferences settings;
@@ -100,6 +108,8 @@ public class BackupActivity extends AppCompatActivity {
 
         settings = PreferenceManager.getDefaultSharedPreferences(this);
 
+        // Plain-text
+
         LinearLayout backupPlain = (LinearLayout) v.findViewById(R.id.button_backup_plain);
         LinearLayout restorePlain = (LinearLayout) v.findViewById(R.id.button_restore_plain);
 
@@ -116,6 +126,27 @@ public class BackupActivity extends AppCompatActivity {
                 openFileWithPermissions(INTENT_OPEN_DOCUMENT_PLAIN, PERMISSIONS_REQUEST_READ_IMPORT_PLAIN);
             }
         });
+
+        // Password
+
+        LinearLayout backupCrypt = (LinearLayout) v.findViewById(R.id.button_backup_crypt);
+        LinearLayout restoreCrypt = (LinearLayout) v.findViewById(R.id.button_restore_crypt);
+
+        backupCrypt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveFileWithPermissions(DEFAULT_BACKUP_MIMETYPE_CRYPT, DEFAULT_BACKUP_FILENAME_CRYPT, INTENT_SAVE_DOCUMENT_CRYPT, PERMISSIONS_REQUEST_WRITE_EXPORT_CRYPT);
+            }
+        });
+
+        restoreCrypt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFileWithPermissions(INTENT_OPEN_DOCUMENT_CRYPT, PERMISSIONS_REQUEST_READ_IMPORT_CRYPT);
+            }
+        });
+
+        // OpenPGP
 
         String PGPProvider = settings.getString(getString(R.string.settings_key_openpgp_provider), "");
         pgpKeyId = settings.getLong(getString(R.string.settings_key_openpgp_keyid), 0);
@@ -197,6 +228,18 @@ public class BackupActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
+        } else if (requestCode == PERMISSIONS_REQUEST_READ_IMPORT_CRYPT) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                showOpenFileSelector(INTENT_OPEN_DOCUMENT_CRYPT);
+            } else {
+                Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
+            }
+        } else if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT_CRYPT) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                showSaveFileSelector(DEFAULT_BACKUP_MIMETYPE_CRYPT, DEFAULT_BACKUP_FILENAME_CRYPT, INTENT_SAVE_DOCUMENT_CRYPT);
+            } else {
+                Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
+            }
         } else if (requestCode == PERMISSIONS_REQUEST_READ_IMPORT_PGP) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 showOpenFileSelector(INTENT_OPEN_DOCUMENT_PGP);
@@ -226,6 +269,14 @@ public class BackupActivity extends AppCompatActivity {
         } else if (requestCode == INTENT_SAVE_DOCUMENT_PLAIN && resultCode == RESULT_OK) {
             if (intent != null) {
                 doBackupPlain(intent.getData());
+            }
+        } else if (requestCode == INTENT_OPEN_DOCUMENT_CRYPT && resultCode == RESULT_OK) {
+            if (intent != null) {
+                doRestoreCrypt(intent.getData());
+            }
+        } else if (requestCode == INTENT_SAVE_DOCUMENT_CRYPT && resultCode == RESULT_OK) {
+            if (intent != null) {
+                doBackupCrypt(intent.getData());
             }
         } else if (requestCode == INTENT_OPEN_DOCUMENT_PGP && resultCode == RESULT_OK) {
             if (intent != null)
@@ -325,6 +376,66 @@ public class BackupActivity extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .create()
                 .show();
+    }
+
+    /* Encrypted backup functions */
+
+    private void doRestoreCrypt(Uri uri) {
+        if (StorageHelper.isExternalStorageReadable()) {
+            boolean success = true;
+
+            try {
+                byte[] encrypted = FileHelper.readFileToBytes(this, uri);
+
+                SecretKey key = EncryptionHelper.genKeyFromPassword("test");
+                byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
+
+                ArrayList<Entry> entries = DatabaseHelper.stringToEntries(new String(decrypted, "UTF-8"));
+                DatabaseHelper.saveDatabase(this, entries);
+            } catch (Exception e) {
+                e.printStackTrace();
+                success = false;
+            }
+
+            if (success) {
+                reload = true;
+                Toast.makeText(this, R.string.backup_toast_import_success, Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, R.string.backup_toast_import_failed, Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
+        }
+
+        finishWithResult();
+    }
+
+    private void doBackupCrypt(Uri uri) {
+        if (StorageHelper.isExternalStorageWritable()) {
+            ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this);
+            String plain = DatabaseHelper.entriesToString(entries);
+
+            boolean success = true;
+
+            try {
+                SecretKey key = EncryptionHelper.genKeyFromPassword("test");
+                byte[] encrypted = EncryptionHelper.encrypt(key, plain.getBytes("UTF-8"));
+
+                FileHelper.writeBytesToFile(this, uri, encrypted);
+            } catch(Exception e) {
+                e.printStackTrace();
+                success = false;
+            }
+
+            if (success) {
+                Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
+            } else
+                Toast.makeText(this, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
+        }
+
+        finishWithResult();
     }
 
     /* OpenPGP backup functions */

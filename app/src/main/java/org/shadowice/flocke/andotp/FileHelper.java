@@ -97,5 +97,29 @@ public class FileHelper {
             out.close();
         }
     }
+
+    public static byte[] readFileToBytes(Context context, Uri file) throws IOException {
+        final InputStream in = context.getContentResolver().openInputStream(file);
+        try {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int count;
+            while ((count = in.read(buffer)) != -1) {
+                bytes.write(buffer, 0, count);
+            }
+            return bytes.toByteArray();
+        } finally {
+            in.close();
+        }
+    }
+
+    public static void writeBytesToFile(Context context, Uri file, byte[] data) throws IOException {
+        final OutputStream out = context.getContentResolver().openOutputStream(file);
+        try {
+            out.write(data);
+        } finally {
+            out.close();
+        }
+    }
 }
 

@@ -66,6 +66,60 @@
         android:paddingTop="@dimen/activity_margin"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
+        android:text="@string/backup_category_crypt" />
+
+    <LinearLayout
+        android:id="@+id/button_backup_crypt"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_margin"
+        android:background="?android:attr/selectableItemBackground" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceListItem"
+            android:text="@string/backup_title_export_crypt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/backup_desc_export_crypt"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_restore_crypt"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_margin"
+        android:background="?android:attr/selectableItemBackground" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceListItem"
+            android:text="@string/backup_title_import_crypt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/backup_desc_import_crypt"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/activity_margin"
+        android:paddingEnd="@dimen/activity_margin"
+        android:paddingTop="@dimen/activity_margin"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
         android:text="@string/backup_category_openpgp" />
 
     <TextView

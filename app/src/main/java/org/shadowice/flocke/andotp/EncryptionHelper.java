@@ -31,6 +31,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Arrays;
@@ -82,6 +83,12 @@ public class EncryptionHelper {
         byte[] cipher = Arrays.copyOfRange(cipherText, IV_LENGTH,cipherText.length);
 
         return decrypt(secretKey,new IvParameterSpec(iv), cipher );
+    }
+
+    public static SecretKey genKeyFromPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest sha = MessageDigest.getInstance("SHA-256");
+
+        return new SecretKeySpec(sha.digest(password.getBytes("UTF-8")), "AES");
     }
 
     /**
