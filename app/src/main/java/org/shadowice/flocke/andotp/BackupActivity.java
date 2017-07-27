@@ -129,8 +129,19 @@ public class BackupActivity extends AppCompatActivity {
 
         // Password
 
+        TextView cryptSetup = (TextView) v.findViewById(R.id.msg_crypt_setup);
         LinearLayout backupCrypt = (LinearLayout) v.findViewById(R.id.button_backup_crypt);
         LinearLayout restoreCrypt = (LinearLayout) v.findViewById(R.id.button_restore_crypt);
+
+        if (settings.getString(getString(R.string.settings_key_backup_password), "").isEmpty()) {
+            cryptSetup.setVisibility(View.VISIBLE);
+            backupCrypt.setVisibility(View.GONE);
+            restoreCrypt.setVisibility(View.GONE);
+        } else {
+            cryptSetup.setVisibility(View.GONE);
+            backupCrypt.setVisibility(View.VISIBLE);
+            restoreCrypt.setVisibility(View.VISIBLE);
+        }
 
         backupCrypt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -381,58 +392,71 @@ public class BackupActivity extends AppCompatActivity {
     /* Encrypted backup functions */
 
     private void doRestoreCrypt(Uri uri) {
-        if (StorageHelper.isExternalStorageReadable()) {
-            boolean success = true;
+        String password = settings.getString(getString(R.string.settings_key_backup_password), "");
 
-            try {
-                byte[] encrypted = FileHelper.readFileToBytes(this, uri);
+        if (! password.isEmpty()) {
+            if (StorageHelper.isExternalStorageReadable()) {
+                boolean success = true;
 
-                SecretKey key = EncryptionHelper.genKeyFromPassword("test");
-                byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
+                try {
+                    byte[] encrypted = FileHelper.readFileToBytes(this, uri);
 
-                ArrayList<Entry> entries = DatabaseHelper.stringToEntries(new String(decrypted, "UTF-8"));
-                DatabaseHelper.saveDatabase(this, entries);
-            } catch (Exception e) {
-                e.printStackTrace();
-                success = false;
-            }
+                    SecretKey key = EncryptionHelper.genKeyFromPassword(password);
+                    byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
 
-            if (success) {
-                reload = true;
-                Toast.makeText(this, R.string.backup_toast_import_success, Toast.LENGTH_LONG).show();
+                    ArrayList<Entry> entries = DatabaseHelper.stringToEntries(new String(decrypted, "UTF-8"));
+                    DatabaseHelper.saveDatabase(this, entries);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    success = false;
+                }
+
+                if (success) {
+                    reload = true;
+                    Toast.makeText(this, R.string.backup_toast_import_success, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, R.string.backup_toast_import_failed, Toast.LENGTH_LONG).show();
+                }
             } else {
-                Toast.makeText(this, R.string.backup_toast_import_failed, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.backup_toast_crypt_password_not_set, Toast.LENGTH_LONG).show();
         }
 
         finishWithResult();
     }
 
     private void doBackupCrypt(Uri uri) {
-        if (StorageHelper.isExternalStorageWritable()) {
-            ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this);
-            String plain = DatabaseHelper.entriesToString(entries);
+        String password = settings.getString(getString(R.string.settings_key_backup_password), "");
 
-            boolean success = true;
+        if (! password.isEmpty()) {
+            if (StorageHelper.isExternalStorageWritable()) {
+                ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this);
+                String plain = DatabaseHelper.entriesToString(entries);
 
-            try {
-                SecretKey key = EncryptionHelper.genKeyFromPassword("test");
-                byte[] encrypted = EncryptionHelper.encrypt(key, plain.getBytes("UTF-8"));
+                boolean success = true;
 
-                FileHelper.writeBytesToFile(this, uri, encrypted);
-            } catch(Exception e) {
-                e.printStackTrace();
-                success = false;
+                try {
+                    SecretKey key = EncryptionHelper.genKeyFromPassword(password);
+                    byte[] encrypted = EncryptionHelper.encrypt(key, plain.getBytes("UTF-8"));
+
+                    FileHelper.writeBytesToFile(this, uri, encrypted);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    success = false;
+                }
+
+                if (success) {
+                    Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
             }
-
-            if (success) {
-                Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
-            } else
-                Toast.makeText(this, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.backup_toast_crypt_password_not_set, Toast.LENGTH_LONG).show();
         }
 
         finishWithResult();

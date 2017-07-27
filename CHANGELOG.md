@@ -2,6 +2,7 @@
 
 #### v0.2.3
 
+ * New feature: encrypted backups with password
  * New feature: show a warning about backups on the first launch
  * Style/UI: rename Export and Import to Backup and Restore
  * Bug fix: don't require device authentication again after screen rotation (Issue #7)

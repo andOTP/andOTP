@@ -9,6 +9,7 @@
     <!-- Titles -->
     <string name="settings_title_tap_to_reveal">Tap to reveal</string>
     <string name="settings_title_auth_device">Require device credentials</string>
+    <string name="settings_title_backup_password">Backup password</string>
 
     <string name="settings_title_openpgp_provider">Select OpenPGP provider</string>
     <string name="settings_title_openpgp_keyid">Select OpenPGP key</string>
@@ -26,6 +27,9 @@
     <string name="settings_desc_auth_device_not_secure">This feature requires a secure lock screen
         to be set up (Settings -> Security -> Screenlock)</string>
 
+    <string name="settings_desc_backup_password">Set the password that is used to encrypt the
+        backups</string>
+
     <string name="settings_desc_openpgp_sign">Every encrypted backup is additionally signed with
         your key (requires password)</string>
     <string name="settings_desc_openpgp_verify">Encrypted backups are only imported if they are
@@ -34,6 +38,7 @@
     <!-- Keys -->
     <string name="settings_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>
     <string name="settings_key_auth_device" translatable="false">pref_auth_device</string>
+    <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>
 
     <string name="settings_key_openpgp_provider">pref_openpgp_provider</string>
     <string name="settings_key_openpgp_keyid">pref_openpgp_keyid</string>

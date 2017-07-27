@@ -68,6 +68,14 @@
         android:textStyle="bold"
         android:text="@string/backup_category_crypt" />
 
+    <TextView
+        android:id="@+id/msg_crypt_setup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_margin"
+        android:visibility="gone"
+        android:text="@string/backup_desc_crypt_setup"/>
+
     <LinearLayout
         android:id="@+id/button_backup_crypt"
         android:orientation="vertical"

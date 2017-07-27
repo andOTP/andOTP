@@ -16,6 +16,12 @@
             android:summary="@string/settings_desc_auth_device"
             android:defaultValue="false" />
 
+        <EditTextPreference
+            android:key="@string/settings_key_backup_password"
+            android:title="@string/settings_title_backup_password"
+            android:summary="@string/settings_desc_backup_password"
+            android:inputType="textPassword" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
