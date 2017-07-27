@@ -48,7 +48,7 @@ public class DatabaseHelper {
             SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
             data = EncryptionHelper.encrypt(key,data);
 
-            Utils.writeFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
+            FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
 
         } catch (Exception error) {
             error.printStackTrace();
@@ -59,7 +59,7 @@ public class DatabaseHelper {
         ArrayList<Entry> entries = new ArrayList<>();
 
         try {
-            byte[] data = Utils.readFully(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
+            byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
 
             SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
             data = EncryptionHelper.decrypt(key, data);

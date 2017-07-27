@@ -43,9 +43,6 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import static org.shadowice.flocke.andotp.Utils.readFully;
-import static org.shadowice.flocke.andotp.Utils.writeFully;
-
 public class EncryptionHelper {
     private final static String ALGORITHM = "AES/GCM/NoPadding";
     private final static int KEY_LENGTH = 16;
@@ -105,12 +102,12 @@ public class EncryptionHelper {
             final byte[] wrapped = wrapper.wrap(key);
 
 
-            writeFully(keyFile, wrapped);
+            FileHelper.writeBytesToFile(keyFile, wrapped);
         }
 
         // Even if we just generated the key, always read it back to ensure we
         // can read it successfully.
-        final byte[] wrapped = readFully(keyFile);
+        final byte[] wrapped = FileHelper.readFileToBytes(keyFile);
 
         return wrapper.unwrap(wrapped);
     }

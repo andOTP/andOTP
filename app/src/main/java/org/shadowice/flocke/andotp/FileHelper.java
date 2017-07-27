@@ -27,6 +27,11 @@ import android.net.Uri;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -67,6 +72,30 @@ public class FileHelper {
         }
 
         return success;
+    }
+
+    public static byte[] readFileToBytes(File file) throws IOException {
+        final InputStream in = new FileInputStream(file);
+        try {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int count;
+            while ((count = in.read(buffer)) != -1) {
+                bytes.write(buffer, 0, count);
+            }
+            return bytes.toByteArray();
+        } finally {
+            in.close();
+        }
+    }
+
+    public static void writeBytesToFile(File file, byte[] data) throws IOException {
+        final OutputStream out = new FileOutputStream(file);
+        try {
+            out.write(data);
+        } finally {
+            out.close();
+        }
     }
 }
 
