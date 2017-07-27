@@ -33,7 +33,7 @@ import java.net.URL;
 import java.util.Arrays;
 
 public class Entry {
-    public enum OTPType { TOTP, HOTP }
+    public enum OTPType { TOTP }
 
     private static final OTPType DEFAULT_TYPE = OTPType.TOTP;
 

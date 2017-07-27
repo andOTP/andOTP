@@ -109,8 +109,6 @@ public class MainActivity extends AppCompatActivity {
                             e.updateOTP();
                             adapter.addEntry(e);
                             adapter.saveEntries();
-                        } else if (type == Entry.OTPType.HOTP) {
-                            Toast.makeText(getBaseContext(), R.string.toast_tmp_hotp, Toast.LENGTH_LONG).show();
                         }
                     }
                 })
