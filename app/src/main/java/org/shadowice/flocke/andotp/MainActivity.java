@@ -192,6 +192,19 @@ public class MainActivity extends AppCompatActivity {
         adapter = new EntriesCardAdapter(this);
         recList.setAdapter(adapter);
 
+        recList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (dy > 0) {
+                    floatingActionMenu.hide();
+                } else {
+                    floatingActionMenu.show();
+                }
+            }
+        });
+
         touchHelperCallback = new SimpleItemTouchHelperCallback(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(touchHelperCallback);
         touchHelper.attachToRecyclerView(recList);

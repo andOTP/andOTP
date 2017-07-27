@@ -6,6 +6,7 @@
  * New feature: show a warning about backups on the first launch
  * Style/UI: rename Export and Import to Backup and Restore
  * Bug fix: don't require device authentication again after screen rotation (Issue #7)
+ * Bug fix: hide the FloatingActionMenu on scroll (Issue #8)
  * Bug fix: rename the apps launcher icon to "andOTP" (Issue #6)
  * Code: lots of internal refactoring
 
