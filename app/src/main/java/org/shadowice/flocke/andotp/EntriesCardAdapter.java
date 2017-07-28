@@ -29,6 +29,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -140,7 +141,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         }
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        entryViewHolder.setTapToReveal(sharedPref.getBoolean(context.getString(R.string.settings_key_tap_to_reveal), false));
+        if (sharedPref.getBoolean(context.getString(R.string.settings_key_tap_to_reveal), false)) {
+            entryViewHolder.enableTapToReveal();
+        } else {
+            entryViewHolder.disableTapToReveal();
+        }
     }
 
     @Override
@@ -296,8 +301,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
 
         private ViewHolderEventCallback eventCallback;
 
-        private boolean ttr_enabled = false;
-
+        protected CardView card;
         protected TextView OTPValue;
         protected TextView OTPValueCover;
         protected TextView OTPLabel;
@@ -309,6 +313,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         public EntryViewHolder(final View v) {
             super(v);
 
+            card = (CardView) v.findViewById(R.id.card_view);
             OTPValue = (TextView) v.findViewById(R.id.textViewOTP);
             OTPValueCover = (TextView) v.findViewById(R.id.textViewOTPCover);
             OTPLabel = (TextView) v.findViewById(R.id.textViewLabel);
@@ -332,39 +337,31 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
             });
         }
 
-        public void setTapToReveal(boolean ttr) {
-            if (ttr) {
-                OTPValue.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_visibility_visible, 0, 0, 0);
-                if (! ttr_enabled || OTPValue.getVisibility() == View.GONE) {
-                    OTPValue.setVisibility(View.GONE);
-                    OTPValueCover.setVisibility(View.VISIBLE);
-                }
+        public void enableTapToReveal() {
+            OTPValue.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_visibility_visible, 0, 0, 0);
+            OTPValue.setVisibility(View.GONE);
+            OTPValueCover.setVisibility(View.VISIBLE);
 
-                OTPValue.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+            card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (OTPValue.getVisibility() == View.GONE && OTPValueCover.getVisibility() == View.VISIBLE) {
+                        OTPValue.setVisibility(View.VISIBLE);
+                        OTPValueCover.setVisibility(View.GONE);
+                    } else {
                         OTPValue.setVisibility(View.GONE);
                         OTPValueCover.setVisibility(View.VISIBLE);
                     }
-                });
+                }
+            });
+        }
 
-                OTPValueCover.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        OTPValueCover.setVisibility(View.GONE);
-                        OTPValue.setVisibility(View.VISIBLE);
-                    }
-                });
-            } else {
-                OTPValue.setCompoundDrawables(null, null, null, null);
-                OTPValue.setVisibility(View.VISIBLE);
-                OTPValueCover.setVisibility(View.GONE);
+        public void disableTapToReveal() {
+            OTPValue.setCompoundDrawables(null, null, null, null);
+            OTPValue.setVisibility(View.VISIBLE);
+            OTPValueCover.setVisibility(View.GONE);
 
-                OTPValue.setOnClickListener(null);
-                OTPValueCover.setOnClickListener(null);
-            }
-
-            ttr_enabled = ttr;
+            card.setOnClickListener(null);
         }
 
         @Override
