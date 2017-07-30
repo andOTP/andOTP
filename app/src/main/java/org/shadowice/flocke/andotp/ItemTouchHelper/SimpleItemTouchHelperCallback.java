@@ -36,7 +36,6 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     public static final float ALPHA_FULL = 1.0f;
 
     private boolean dragEnabled = true;
-    private boolean swipeEnabled = true;
     private final ItemTouchHelperAdapter mAdapter;
 
     public SimpleItemTouchHelperCallback(ItemTouchHelperAdapter adapter) {
@@ -47,10 +46,6 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         this.dragEnabled = newDragState;
     }
 
-    public void setSwipeEnabled(boolean newSwipeState) {
-        this.swipeEnabled = newSwipeState;
-    }
-
     @Override
     public boolean isLongPressDragEnabled() {
         return dragEnabled;
@@ -58,7 +53,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     @Override
     public boolean isItemViewSwipeEnabled() {
-        return swipeEnabled;
+        return false;
     }
 
     @Override
@@ -70,7 +65,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
             return makeMovementFlags(dragFlags, swipeFlags);
         } else {
             final int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-            final int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+            final int swipeFlags = 0;
             return makeMovementFlags(dragFlags, swipeFlags);
         }
     }
@@ -88,8 +83,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
-        // Notify the adapter of the dismissal
-        mAdapter.onItemDismiss(viewHolder.getAdapterPosition());
+        // We don't do anything here as we don't support swipe-to-dismiss
     }
 
     @Override

@@ -4,6 +4,7 @@
 
  * New feature: make the font size of the labels configurable (Issue #18)
  * Bug fix: make the backup activity scrollable (Issue #15)
+ * Bug fix: remove swipe-to-dismiss to avoide accidental deletions (Issue #13)
  * Bug fix: use the whole card for tap-to-reveal, not just the token (Issue #10)
  * Code: internal changes (as always)
 

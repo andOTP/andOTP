@@ -161,30 +161,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
     }
 
     @Override
-    public void onItemDismiss(final int position) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-        builder.setTitle(R.string.dialog_title_remove)
-                .setMessage(R.string.dialog_msg_confirm_delete)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        entries.remove(removeIndex(position));
-                        notifyItemRemoved(position);
-
-                        DatabaseHelper.saveDatabase(context, entries);
-                    }
-                })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        notifyItemChanged(position);
-                    }
-                })
-                .show();
-    }
-
-    @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
         Collections.swap(entries, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
@@ -227,6 +203,29 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
                 .show();
     }
 
+    public void removeItem(final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        builder.setTitle(R.string.dialog_title_remove)
+                .setMessage(R.string.dialog_msg_confirm_delete)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        entries.remove(removeIndex(position));
+                        notifyItemRemoved(position);
+
+                        DatabaseHelper.saveDatabase(context, entries);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        notifyItemChanged(position);
+                    }
+                })
+                .show();
+    }
+
     private void showPopupMenu(View view, final int pos) {
         View menuItemView = view.findViewById(R.id.menuButton);
         PopupMenu popup = new PopupMenu(view.getContext(), menuItemView);
@@ -242,7 +241,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
                     editEntryLabel(pos);
                     return true;
                 } else if (id == R.id.menu_popup_remove) {
-                    onItemDismiss(pos);
+                    removeItem(pos);
                     return true;
                 } else {
                     return false;
@@ -299,7 +298,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
             notifyDataSetChanged();
 
         }
-    };
+    }
 
     public class EntryViewHolder extends RecyclerView.ViewHolder
             implements ItemTouchHelperViewHolder {
