@@ -58,7 +58,9 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.shadowice.flocke.andotp.ItemTouchHelper.SimpleItemTouchHelperCallback;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+    implements SharedPreferences.OnSharedPreferenceChangeListener {
+
     private EntriesCardAdapter adapter;
     private FloatingActionMenu floatingActionMenu;
     private SimpleItemTouchHelperCallback touchHelperCallback;
@@ -151,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPref.registerOnSharedPreferenceChangeListener(this);
 
         if (savedInstanceState == null) {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -272,6 +275,13 @@ public class MainActivity extends AppCompatActivity {
         stopUpdater();
     }
 
+    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+        if (key.equals(getString(R.string.settings_key_label_size)) ||
+                key.equals(getString(R.string.settings_key_tap_to_reveal))) {
+            adapter.notifyDataSetChanged();
+        }
+    }
+
     // Activity results
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -289,9 +299,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();
                 }
             }
-        } else if (requestCode == INTENT_INTERNAL_SETTINGS && resultCode == RESULT_OK) {
-            sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            adapter.notifyDataSetChanged();
         } else if (requestCode == INTENT_INTERNAL_BACKUP && resultCode == RESULT_OK) {
             if (intent.getBooleanExtra("reload", false))
                 adapter.loadEntries();
