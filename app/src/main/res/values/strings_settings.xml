@@ -37,19 +37,4 @@
         your key (requires password)</string>
     <string name="settings_desc_openpgp_verify">Encrypted backups are only imported if they are
         signed with a valid key</string>
-
-    <!-- Keys -->
-    <string name="settings_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>
-    <string name="settings_key_auth_device" translatable="false">pref_auth_device</string>
-    <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>
-
-    <string name="settings_key_label_size" translatable="false">pref_label_size</string>
-
-    <string name="settings_key_openpgp_provider">pref_openpgp_provider</string>
-    <string name="settings_key_openpgp_keyid">pref_openpgp_keyid</string>
-    <string name="settings_key_openpgp_sign">pref_openpgp_sign</string>
-    <string name="settings_key_openpgp_verify">pref_openpgp_verify</string>
-
-    <string name="settings_key_security_backup_warning">pref_security_backup_warning_shown</string>
-
 </resources>
