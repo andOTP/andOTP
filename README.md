@@ -42,6 +42,11 @@ key, which renders them useless.
 **Please only use the internal backup functions provided by andOTP to backup your accounts!**
 **Everything else WILL result in data loss.**
 
+### Opening the backups on your PC:
+
+ * [OpenPGP](http://openpgp.org/): OpenPGP can be used to easily decrypt the OpenPGP-encrypted backups on your PC.
+ * [andOTP-decrypt](https://github.com/asmw/andOTP-decrypt): A python script written by @asmw to decrypt password-protected backups on your PC (needs more testing).
+
 ## TODO:
 
  * HOTP Support
