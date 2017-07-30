@@ -65,7 +65,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
 
     public EntriesCardAdapter(Context context) {
         this.context = context;
-
         this.sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         loadEntries();
@@ -133,15 +132,12 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
     public void onBindViewHolder(EntryViewHolder entryViewHolder, int i) {
         Entry entry = entries.get(displayedEntries.get(i));
 
-        entryViewHolder.OTPValue.setText(entry.getCurrentOTP());
-        entryViewHolder.OTPLabel.setText(entry.getLabel());
-        entryViewHolder.eventCallback = viewHolderEventCallback;
+        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP());
 
         if (entry.hasNonDefaultPeriod()) {
-            entryViewHolder.customPeriodLayout.setVisibility(View.VISIBLE);
-            entryViewHolder.customPeriod.setText(String.format(context.getString(R.string.format_custom_period), entry.getPeriod()));
+            entryViewHolder.showCustomPeriod(entry.getPeriod());
         } else {
-            entryViewHolder.customPeriodLayout.setVisibility(View.GONE);
+            entryViewHolder.hideCustomPeriod();
         }
 
         if (sharedPrefs.getBoolean(context.getString(R.string.settings_key_tap_to_reveal), false)) {
@@ -151,14 +147,17 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         }
 
         int fontSize = sharedPrefs.getInt(context.getString(R.string.settings_key_label_size), context.getResources().getInteger(R.integer.settings_default_label_size));
-        entryViewHolder.OTPLabel.setTextSize(TypedValue.COMPLEX_UNIT_PT, fontSize);
+        entryViewHolder.setLabelSize(fontSize);
     }
 
     @Override
     public EntryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.component_card, viewGroup, false);
 
-        return new EntryViewHolder(itemView);
+        EntryViewHolder viewHolder = new EntryViewHolder(itemView);
+        viewHolder.eventCallback = viewHolderEventCallback;
+
+        return viewHolder;
     }
 
     @Override
@@ -307,14 +306,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
 
         private ViewHolderEventCallback eventCallback;
 
-        protected CardView card;
-        protected TextView OTPValue;
-        protected TextView OTPValueCover;
-        protected TextView OTPLabel;
-        protected LinearLayout customPeriodLayout;
-        protected TextView customPeriod;
-        protected ImageButton menuButton;
-        protected ImageButton copyButton;
+        private CardView card;
+        private TextView OTPValue;
+        private TextView OTPValueCover;
+        private TextView OTPLabel;
+        private LinearLayout customPeriodLayout;
+        private TextView customPeriod;
+        private ImageButton menuButton;
+        private ImageButton copyButton;
 
         public EntryViewHolder(final View v) {
             super(v);
@@ -341,6 +340,24 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
                     copyToClipboard(OTPValue.getText().toString());
                 }
             });
+        }
+
+        public void updateValues(String label, String token) {
+            OTPLabel.setText(label);
+            OTPValue.setText(token);
+        }
+
+        public void showCustomPeriod(int period) {
+            customPeriodLayout.setVisibility(View.VISIBLE);
+            customPeriod.setText(String.format(context.getString(R.string.format_custom_period), period));
+        }
+
+        public void hideCustomPeriod() {
+            customPeriodLayout.setVisibility(View.GONE);
+        }
+
+        public void setLabelSize(int size) {
+            OTPLabel.setTextSize(TypedValue.COMPLEX_UNIT_PT, size);
         }
 
         public void enableTapToReveal() {
