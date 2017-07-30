@@ -38,4 +38,5 @@ dependencies {
     compile 'commons-codec:commons-codec:1.5'
     compile 'me.zhanghai.android.materialprogressbar:library:1.4.1'
     compile 'org.sufficientlysecure:openpgp-api:12.0'
+    compile 'com.vanniktech:vntnumberpickerpreference:1.0.0'
 }

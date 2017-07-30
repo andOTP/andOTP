@@ -72,6 +72,7 @@ If you want to discuss this app, share ideas for features or get help with bugs 
  * [LicensesDialog](https://github.com/PSDev/LicensesDialog)
  * [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
  * [OpenPGP API library](https://github.com/open-keychain/openpgp-api)
+ * [VNTNumberPickerPreference](https://github.com/vanniktech/VNTNumberPickerPreference)
  * [ZXing Android Embedded](https://github.com/journeyapps/zxing-android-embedded)
 
 #### Code examples used:

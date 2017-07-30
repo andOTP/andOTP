@@ -19,6 +19,12 @@
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
+        <name>VNTNumberPickerPreference</name>
+        <url>https://github.com/vanniktech/VNTNumberPickerPreference</url>
+        <copyright>Copyright (C) 2014-2016 Vanniktech - Niklas Baudy</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
         <name>ZXing Android Embedded</name>
         <url>https://github.com/journeyapps/zxing-android-embedded</url>
         <copyright>Copyright (C) 2012-2017 ZXing authors, Journey Mobile</copyright>

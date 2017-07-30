@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         android:title="@string/settings_category_title_security">
@@ -21,6 +23,18 @@
             android:title="@string/settings_title_backup_password"
             android:summary="@string/settings_desc_backup_password"
             android:inputType="textPassword" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_category_title_ui">
+
+        <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
+            android:key="@string/settings_key_label_size"
+            android:title="@string/settings_title_label_size"
+            android:defaultValue="@integer/settings_default_label_size"
+            app:vnt_maxValue="@integer/settings_max_label_size"
+            app:vnt_minValue="@integer/settings_min_label_size" />
 
     </PreferenceCategory>
 

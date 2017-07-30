@@ -32,6 +32,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -56,6 +57,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
     implements ItemTouchHelperAdapter, Filterable {
 
     private Context context;
+    private SharedPreferences sharedPrefs;
     private EntryFilter filter;
     private ArrayList<Entry> entries;
     private ArrayList<Integer> displayedEntries;
@@ -63,6 +65,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
 
     public EntriesCardAdapter(Context context) {
         this.context = context;
+
+        this.sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         loadEntries();
     }
@@ -140,12 +144,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
             entryViewHolder.customPeriodLayout.setVisibility(View.GONE);
         }
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        if (sharedPref.getBoolean(context.getString(R.string.settings_key_tap_to_reveal), false)) {
+        if (sharedPrefs.getBoolean(context.getString(R.string.settings_key_tap_to_reveal), false)) {
             entryViewHolder.enableTapToReveal();
         } else {
             entryViewHolder.disableTapToReveal();
         }
+
+        int fontSize = sharedPrefs.getInt(context.getString(R.string.settings_key_label_size), context.getResources().getInteger(R.integer.settings_default_label_size));
+        entryViewHolder.OTPLabel.setTextSize(TypedValue.COMPLEX_UNIT_PT, fontSize);
     }
 
     @Override

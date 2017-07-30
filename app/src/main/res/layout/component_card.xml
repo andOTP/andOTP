@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textSize="8pt" />
 
         </LinearLayout>
 
