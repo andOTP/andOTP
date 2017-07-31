@@ -23,13 +23,10 @@
 package org.shadowice.flocke.andotp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewStub;
@@ -38,7 +35,7 @@ import android.widget.TextView;
 
 import de.psdev.licensesdialog.LicensesDialog;
 
-public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends BaseActivity {
     private static final String GITHUB_URI = "https://github.com/flocke/andOTP";
     private static final String CHANGELOG_URI = GITHUB_URI + "/blob/master/CHANGELOG.md";
     private static final String MIT_URI = GITHUB_URI + "/blob/master/LICENSE.txt";
@@ -51,25 +48,13 @@ public class AboutActivity extends AppCompatActivity {
 
     private static final String BUGREPORT_URI = GITHUB_URI + "/issues";
 
-    private void setThemeFromPrefs() {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        String theme = sharedPref.getString(getString(R.string.settings_key_theme), getString(R.string.settings_default_theme));
-
-        if (theme.equals("light")) {
-            setTheme(R.style.AppTheme_NoActionBar);
-        } else if (theme.equals("dark")) {
-            setTheme(R.style.AppTheme_Dark_NoActionBar);
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setThemeFromPrefs();
-
         super.onCreate(savedInstanceState);
 
         setTitle(R.string.about_activity_title);
         setContentView(R.layout.activity_container);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.container_toolbar);
         setSupportActionBar(toolbar);
 
@@ -160,7 +145,6 @@ public class AboutActivity extends AppCompatActivity {
                 openURI(BUGREPORT_URI);
             }
         });
-
     }
 
     // Go back to the main activity

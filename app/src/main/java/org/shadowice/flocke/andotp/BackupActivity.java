@@ -36,7 +36,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -59,7 +58,7 @@ import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
 
-public class BackupActivity extends AppCompatActivity {
+public class BackupActivity extends BaseActivity {
     private final static int INTENT_OPEN_DOCUMENT_PLAIN = 100;
     private final static int INTENT_SAVE_DOCUMENT_PLAIN = 101;
     private final static int INTENT_OPEN_DOCUMENT_CRYPT = 102;
@@ -93,25 +92,13 @@ public class BackupActivity extends AppCompatActivity {
 
     private boolean reload = false;
 
-    private void setThemeFromPrefs() {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        String theme = sharedPref.getString(getString(R.string.settings_key_theme), getString(R.string.settings_default_theme));
-
-        if (theme.equals("light")) {
-            setTheme(R.style.AppTheme_NoActionBar);
-        } else if (theme.equals("dark")) {
-            setTheme(R.style.AppTheme_Dark_NoActionBar);
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setThemeFromPrefs();
-
         super.onCreate(savedInstanceState);
 
         setTitle(R.string.backup_activity_title);
         setContentView(R.layout.activity_container);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.container_toolbar);
         setSupportActionBar(toolbar);
 

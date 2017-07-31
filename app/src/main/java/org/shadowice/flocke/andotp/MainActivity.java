@@ -35,7 +35,6 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -58,7 +57,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.shadowice.flocke.andotp.ItemTouchHelper.SimpleItemTouchHelperCallback;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
     implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private EntriesCardAdapter adapter;
@@ -141,25 +140,9 @@ public class MainActivity extends AppCompatActivity
                 .show();
     }
 
-    private void setThemeFromPrefs() {
-        String theme = sharedPref.getString(getString(R.string.settings_key_theme), getString(R.string.settings_default_theme));
-
-        if (theme.equals("light")) {
-            setTheme(R.style.AppTheme_NoActionBar);
-        } else if (theme.equals("dark")) {
-            setTheme(R.style.AppTheme_Dark_NoActionBar);
-        }
-    }
-
     // Initialize the main application
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPref.registerOnSharedPreferenceChangeListener(this);
-
-        setThemeFromPrefs();
-
         super.onCreate(savedInstanceState);
 
         setTitle(R.string.app_name);
@@ -168,6 +151,10 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPref.registerOnSharedPreferenceChangeListener(this);
 
         if (savedInstanceState == null) {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
