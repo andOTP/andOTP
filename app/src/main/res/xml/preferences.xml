@@ -29,6 +29,13 @@
     <PreferenceCategory
         android:title="@string/settings_category_title_ui">
 
+        <ListPreference
+            android:key="@string/settings_key_theme"
+            android:title="@string/settings_title_theme"
+            android:entries="@array/settings_entries_theme"
+            android:entryValues="@array/settings_values_theme"
+            android:defaultValue="@string/settings_default_theme" />
+
         <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
             android:key="@string/settings_key_label_size"
             android:title="@string/settings_title_label_size"

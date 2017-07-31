@@ -24,9 +24,11 @@ package org.shadowice.flocke.andotp;
 
 import android.app.KeyguardManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ViewStub;
@@ -37,8 +39,21 @@ import org.openintents.openpgp.util.OpenPgpKeyPreference;
 public class SettingsActivity extends AppCompatActivity {
     SettingsFragment fragement;
 
+    private void setThemeFromPrefs() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String theme = sharedPref.getString(getString(R.string.settings_key_theme), getString(R.string.settings_default_theme));
+
+        if (theme.equals("light")) {
+            setTheme(R.style.AppTheme_NoActionBar);
+        } else if (theme.equals("dark")) {
+            setTheme(R.style.AppTheme_Dark_NoActionBar);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setThemeFromPrefs();
+
         super.onCreate(savedInstanceState);
 
         setTitle(R.string.settings_activity_title);

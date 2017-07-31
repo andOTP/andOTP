@@ -12,6 +12,7 @@
     <string name="settings_title_auth_device">Require device credentials</string>
     <string name="settings_title_backup_password">Backup password</string>
 
+    <string name="settings_title_theme">Theme</string>
     <string name="settings_title_label_size">Label font size</string>
 
     <string name="settings_title_openpgp_provider">Select OpenPGP provider</string>
@@ -37,4 +38,10 @@
         your key (requires password)</string>
     <string name="settings_desc_openpgp_verify">Encrypted backups are only imported if they are
         signed with a valid key</string>
+
+    <!-- List entries -->
+    <string-array name="settings_entries_theme">
+        <item>Light theme</item>
+        <item>Dark theme</item>
+    </string-array>
 </resources>

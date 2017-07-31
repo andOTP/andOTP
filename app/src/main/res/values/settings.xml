@@ -5,6 +5,7 @@
     <string name="settings_key_auth_device" translatable="false">pref_auth_device</string>
     <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>
 
+    <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size</string>
 
     <string name="settings_key_openpgp_provider" translatable="false">pref_openpgp_provider</string>
@@ -15,7 +16,14 @@
     <string name="settings_key_security_backup_warning" translatable="false">pref_security_backup_warning_shown</string>
 
     <!-- Default values -->
+    <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">8</integer>
+
+    <!-- List values -->
+    <string-array name="settings_values_theme">
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
 
     <!-- Constraints -->
     <integer name="settings_min_label_size">4</integer>

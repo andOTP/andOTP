@@ -93,8 +93,21 @@ public class BackupActivity extends AppCompatActivity {
 
     private boolean reload = false;
 
+    private void setThemeFromPrefs() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String theme = sharedPref.getString(getString(R.string.settings_key_theme), getString(R.string.settings_default_theme));
+
+        if (theme.equals("light")) {
+            setTheme(R.style.AppTheme_NoActionBar);
+        } else if (theme.equals("dark")) {
+            setTheme(R.style.AppTheme_Dark_NoActionBar);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setThemeFromPrefs();
+
         super.onCreate(savedInstanceState);
 
         setTitle(R.string.backup_activity_title);

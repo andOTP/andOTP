@@ -141,19 +141,33 @@ public class MainActivity extends AppCompatActivity
                 .show();
     }
 
+    private void setThemeFromPrefs() {
+        String theme = sharedPref.getString(getString(R.string.settings_key_theme), getString(R.string.settings_default_theme));
+
+        if (theme.equals("light")) {
+            setTheme(R.style.AppTheme_NoActionBar);
+        } else if (theme.equals("dark")) {
+            setTheme(R.style.AppTheme_Dark_NoActionBar);
+        }
+    }
+
     // Initialize the main application
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setTitle(R.string.app_name);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPref.registerOnSharedPreferenceChangeListener(this);
+
+        setThemeFromPrefs();
+
+        super.onCreate(savedInstanceState);
+
+        setTitle(R.string.app_name);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         if (savedInstanceState == null) {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -279,6 +293,8 @@ public class MainActivity extends AppCompatActivity
         if (key.equals(getString(R.string.settings_key_label_size)) ||
                 key.equals(getString(R.string.settings_key_tap_to_reveal))) {
             adapter.notifyDataSetChanged();
+        } else if (key.equals(getString(R.string.settings_key_theme))) {
+            recreate();
         }
     }
 
