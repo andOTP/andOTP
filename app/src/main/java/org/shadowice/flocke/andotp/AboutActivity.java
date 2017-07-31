@@ -25,11 +25,13 @@ package org.shadowice.flocke.andotp;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.ColorFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,6 +50,11 @@ public class AboutActivity extends BaseActivity {
 
     private static final String BUGREPORT_URI = GITHUB_URI + "/issues";
 
+    int[] imageResources = {
+            R.id.aboutImgVersion, R.id.aboutImgLicense, R.id.aboutImgChangelog, R.id.aboutImgSource,
+            R.id.aboutImgOpenSource, R.id.aboutImgAuthor1, R.id.aboutImgAuthor2, R.id.aboutImgBugs
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +68,12 @@ public class AboutActivity extends BaseActivity {
         ViewStub stub = (ViewStub) findViewById(R.id.container_stub);
         stub.setLayoutResource(R.layout.content_about);
         View v = stub.inflate();
+
+        ColorFilter filter = ThemeHelper.getThemeColorFilter(this, android.R.attr.textColorSecondary);
+        for (int i : imageResources) {
+            ImageView imgView = (ImageView) v.findViewById(i);
+            imgView.getDrawable().setColorFilter(filter);
+        }
 
         String versionName = "";
         try {

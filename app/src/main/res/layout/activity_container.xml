@@ -23,7 +23,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 app:navigationIcon="?homeAsUpIndicator"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                app:popupTheme="?attr/actionBarPopupTheme" />
 
         </RelativeLayout>
 

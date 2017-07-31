@@ -28,6 +28,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.ColorFilter;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
@@ -43,6 +44,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -296,7 +298,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         protected void publishResults(CharSequence constraint, FilterResults results) {
             displayedEntries = (ArrayList<Integer>) results.values;
             notifyDataSetChanged();
-
         }
     }
 
@@ -306,26 +307,44 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         private ViewHolderEventCallback eventCallback;
 
         private CardView card;
-        private TextView OTPValue;
-        private TextView OTPValueCover;
-        private TextView OTPLabel;
+
+        private TextView value;
+        private LinearLayout valueLayout;
+        private ImageView visibleImg;
+        
+        private LinearLayout coverLayout;
+
+        private TextView label;
+
         private LinearLayout customPeriodLayout;
         private TextView customPeriod;
-        private ImageButton menuButton;
-        private ImageButton copyButton;
+
 
         public EntryViewHolder(final View v) {
             super(v);
 
             card = (CardView) v.findViewById(R.id.card_view);
-            OTPValue = (TextView) v.findViewById(R.id.textViewOTP);
-            OTPValueCover = (TextView) v.findViewById(R.id.textViewOTPCover);
-            OTPLabel = (TextView) v.findViewById(R.id.textViewLabel);
+            value = (TextView) v.findViewById(R.id.valueText);
+            valueLayout = (LinearLayout) v.findViewById(R.id.valueLayout);
+            visibleImg = (ImageView) v.findViewById(R.id.valueImg);
+            coverLayout = (LinearLayout) v.findViewById(R.id.coverLayout);
+            label = (TextView) v.findViewById(R.id.textViewLabel);
             customPeriodLayout = (LinearLayout) v.findViewById(R.id.customPeriodLayout);
             customPeriod = (TextView) v.findViewById(R.id.customPeriod);
-            menuButton = (ImageButton) v.findViewById(R.id.menuButton);
-            copyButton = (ImageButton) v.findViewById(R.id.copyButton);
 
+            ImageButton menuButton = (ImageButton) v.findViewById(R.id.menuButton);
+            ImageButton copyButton = (ImageButton) v.findViewById(R.id.copyButton);
+            ImageView invisibleImg = (ImageView) v.findViewById(R.id.coverImg);
+
+            // Style the buttons in the current theme colors
+            ColorFilter colorFilter = ThemeHelper.getThemeColorFilter(context, android.R.attr.textColorSecondary);
+
+            menuButton.getDrawable().setColorFilter(colorFilter);
+            copyButton.getDrawable().setColorFilter(colorFilter);
+            visibleImg.getDrawable().setColorFilter(colorFilter);
+            invisibleImg.getDrawable().setColorFilter(colorFilter);
+
+            // Setup onClickListeners
             menuButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -336,14 +355,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
             copyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    copyToClipboard(OTPValue.getText().toString());
+                    copyToClipboard(value.getText().toString());
                 }
             });
         }
 
         public void updateValues(String label, String token) {
-            OTPLabel.setText(label);
-            OTPValue.setText(token);
+            this.label.setText(label);
+            value.setText(token);
         }
 
         public void showCustomPeriod(int period) {
@@ -356,32 +375,32 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         }
 
         public void setLabelSize(int size) {
-            OTPLabel.setTextSize(TypedValue.COMPLEX_UNIT_PT, size);
+            label.setTextSize(TypedValue.COMPLEX_UNIT_PT, size);
         }
 
         public void enableTapToReveal() {
-            OTPValue.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_visibility_visible, 0, 0, 0);
-            OTPValue.setVisibility(View.GONE);
-            OTPValueCover.setVisibility(View.VISIBLE);
+            valueLayout.setVisibility(View.GONE);
+            coverLayout.setVisibility(View.VISIBLE);
+            visibleImg.setVisibility(View.VISIBLE);
 
             card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (OTPValue.getVisibility() == View.GONE && OTPValueCover.getVisibility() == View.VISIBLE) {
-                        OTPValue.setVisibility(View.VISIBLE);
-                        OTPValueCover.setVisibility(View.GONE);
+                    if (valueLayout.getVisibility() == View.GONE && coverLayout.getVisibility() == View.VISIBLE) {
+                        valueLayout.setVisibility(View.VISIBLE);
+                        coverLayout.setVisibility(View.GONE);
                     } else {
-                        OTPValue.setVisibility(View.GONE);
-                        OTPValueCover.setVisibility(View.VISIBLE);
+                        valueLayout.setVisibility(View.GONE);
+                        coverLayout.setVisibility(View.VISIBLE);
                     }
                 }
             });
         }
 
         public void disableTapToReveal() {
-            OTPValue.setCompoundDrawables(null, null, null, null);
-            OTPValue.setVisibility(View.VISIBLE);
-            OTPValueCover.setVisibility(View.GONE);
+            valueLayout.setVisibility(View.VISIBLE);
+            coverLayout.setVisibility(View.GONE);
+            visibleImg.setVisibility(View.GONE);
 
             card.setOnClickListener(null);
         }

@@ -86,6 +86,7 @@
                     android:gravity="center_vertical" >
 
                     <ImageView
+                        android:id="@+id/aboutImgVersion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
@@ -125,6 +126,7 @@
                     android:gravity="center_vertical" >
 
                     <ImageView
+                        android:id="@+id/aboutImgLicense"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
@@ -164,6 +166,7 @@
                     android:gravity="center_vertical" >
 
                     <ImageView
+                        android:id="@+id/aboutImgChangelog"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
@@ -190,6 +193,7 @@
                     android:gravity="center_vertical" >
 
                     <ImageView
+                        android:id="@+id/aboutImgSource"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
@@ -216,6 +220,7 @@
                     android:gravity="center_vertical" >
 
                     <ImageView
+                        android:id="@+id/aboutImgOpenSource"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
@@ -263,6 +268,7 @@
                     android:gravity="center_vertical" >
 
                     <ImageView
+                        android:id="@+id/aboutImgAuthor1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
@@ -302,7 +308,7 @@
                                 android:background="?android:attr/selectableItemBackground"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:textStyle="bold"
-                                android:textColor="@color/github_gray"
+                                android:textColor="?attr/colorGithub"
                                 android:text="@string/about_label_github" />
 
                             <TextView
@@ -313,7 +319,7 @@
                                 android:background="?android:attr/selectableItemBackground"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:textStyle="bold"
-                                android:textColor="@color/paypal_blue"
+                                android:textColor="?attr/colorPaypal"
                                 android:text="@string/about_label_donate" />
                         </LinearLayout>
                     </LinearLayout>
@@ -336,6 +342,7 @@
                     android:gravity="center_vertical" >
 
                     <ImageView
+                        android:id="@+id/aboutImgAuthor2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
@@ -375,7 +382,7 @@
                                 android:background="?android:attr/selectableItemBackground"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:textStyle="bold"
-                                android:textColor="@color/github_gray"
+                                android:textColor="?attr/colorGithub"
                                 android:text="@string/about_label_github" />
 
                             <TextView
@@ -386,7 +393,7 @@
                                 android:background="?android:attr/selectableItemBackground"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:textStyle="bold"
-                                android:textColor="@color/github_gray"
+                                android:textColor="?attr/colorGithub"
                                 android:text="@string/about_label_original_app" />
                         </LinearLayout>
                     </LinearLayout>
@@ -426,6 +433,7 @@
                     android:gravity="center_vertical" >
 
                     <ImageView
+                        android:id="@+id/aboutImgBugs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"

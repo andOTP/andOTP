@@ -1,4 +1,7 @@
 <resources>
+    <attr name="colorGithub" format="reference" />
+    <attr name="colorPaypal" format="reference" />
+
     <!-- Light application theme. -->
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -6,6 +9,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="colorGithub">@color/github_dark</item>
+        <item name="colorPaypal">@color/paypal_dark</item>
 
         <item name="actionBarPopupTheme">@style/AppTheme.PopupOverlay</item>
     </style>
@@ -25,6 +31,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="colorGithub">@color/github_light</item>
+        <item name="colorPaypal">@color/paypal_light</item>
 
         <item name="actionBarPopupTheme">@style/AppTheme.Dark.PopupOverlay</item>
     </style>
