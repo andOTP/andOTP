@@ -24,16 +24,19 @@ package org.shadowice.flocke.andotp;
 
 import android.app.KeyguardManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.view.ViewStub;
 
 import org.openintents.openpgp.util.OpenPgpAppPreference;
 import org.openintents.openpgp.util.OpenPgpKeyPreference;
 
-public class SettingsActivity extends BaseActivity {
+public class SettingsActivity extends BaseActivity
+        implements SharedPreferences.OnSharedPreferenceChangeListener{
     SettingsFragment fragement;
 
     @Override
@@ -54,6 +57,9 @@ public class SettingsActivity extends BaseActivity {
         getFragmentManager().beginTransaction()
                 .replace(R.id.container_content, fragement)
                 .commit();
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPref.registerOnSharedPreferenceChangeListener(this);
     }
 
     public void finishWithResult() {
@@ -71,6 +77,12 @@ public class SettingsActivity extends BaseActivity {
     public void onBackPressed() {
         finishWithResult();
         super.onBackPressed();
+    }
+
+    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+        if (key.equals(getString(R.string.settings_key_theme))) {
+            recreate();
+        }
     }
 
     @Override
