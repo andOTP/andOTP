@@ -21,9 +21,11 @@ goes to Bruno.
    - Camera access for QR code scanning
    - Storage access for import and export of the database
  * Encrypted storage
- * Plain-text backups
- * Encrypted backups using OpenPGP
- * Sleek minimalistic Material Design
+ * Multiple backup options:
+   - Plain-text
+   - Password-protected
+   - OpenPGP-encrypted
+ * Sleek minimalistic Material Design with a Dark and Light theme
  * Great Usability
  * Compatible with Google Authenticator
 
