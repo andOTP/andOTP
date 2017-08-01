@@ -32,6 +32,7 @@
         <ListPreference
             android:key="@string/settings_key_theme"
             android:title="@string/settings_title_theme"
+            android:summary="%s"
             android:entries="@array/settings_entries_theme"
             android:entryValues="@array/settings_values_theme"
             android:defaultValue="@string/settings_default_theme" />
