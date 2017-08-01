@@ -12,7 +12,6 @@
 
     <!-- Hints -->
     <string name="hint_label">Label</string>
-    <string name="hint_period">Period</string>
     <string name="hint_secret">Secret</string>
 
     <!-- Labels -->
@@ -35,8 +34,6 @@
     <!-- Toast messages -->
     <string name="toast_copied_to_clipboard">Copied to clipboard</string>
     <string name="toast_invalid_qr_code">Invalid QR Code</string>
-
-    <string name="toast_tmp_hotp">HOTP is not yet implemented</string>
 
     <!-- Dialogs -->
     <string name="dialog_title_auth">Authenticate</string>
