@@ -28,12 +28,9 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.ColorFilter;
 import android.preference.PreferenceManager;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,19 +40,14 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.ItemTouchHelper.ItemTouchHelperAdapter;
-import org.shadowice.flocke.andotp.ItemTouchHelper.ItemTouchHelperViewHolder;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.EntryViewHolder>
+public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     implements ItemTouchHelperAdapter, Filterable {
 
     private Context context;
@@ -63,7 +55,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
     private EntryFilter filter;
     private ArrayList<Entry> entries;
     private ArrayList<Integer> displayedEntries;
-    public ViewHolderEventCallback viewHolderEventCallback;
+    public Callback callback;
 
     public EntriesCardAdapter(Context context) {
         this.context = context;
@@ -156,8 +148,30 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
     public EntryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.component_card, viewGroup, false);
 
-        EntryViewHolder viewHolder = new EntryViewHolder(itemView);
-        viewHolder.eventCallback = viewHolderEventCallback;
+        EntryViewHolder viewHolder = new EntryViewHolder(context, itemView);
+        viewHolder.setCallback(new EntryViewHolder.Callback() {
+            @Override
+            public void onMoveEventStart() {
+                if (callback != null)
+                    callback.onMoveEventStart();
+            }
+
+            @Override
+            public void onMoveEventStop() {
+                if (callback != null)
+                    callback.onMoveEventStop();
+            }
+
+            @Override
+            public void onMenuButtonClicked(View parentView, int position) {
+                showPopupMenu(parentView, position);
+            }
+
+            @Override
+            public void onCopyButtonClicked(String text) {
+                copyToClipboard(text);
+            }
+        });
 
         return viewHolder;
     }
@@ -261,8 +275,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         Toast.makeText(context, R.string.toast_copied_to_clipboard, Toast.LENGTH_LONG).show();
     }
 
-    public void setMoveEventCallback(ViewHolderEventCallback cb) {
-        this.viewHolderEventCallback = cb;
+    public void setCallback(Callback cb) {
+        this.callback = cb;
     }
 
     public EntryFilter getFilter() {
@@ -301,124 +315,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntriesCardAdapter.
         }
     }
 
-    public class EntryViewHolder extends RecyclerView.ViewHolder
-            implements ItemTouchHelperViewHolder {
-
-        private ViewHolderEventCallback eventCallback;
-
-        private CardView card;
-
-        private TextView value;
-        private LinearLayout valueLayout;
-        private ImageView visibleImg;
-        
-        private LinearLayout coverLayout;
-
-        private TextView label;
-
-        private LinearLayout customPeriodLayout;
-        private TextView customPeriod;
-
-
-        public EntryViewHolder(final View v) {
-            super(v);
-
-            card = (CardView) v.findViewById(R.id.card_view);
-            value = (TextView) v.findViewById(R.id.valueText);
-            valueLayout = (LinearLayout) v.findViewById(R.id.valueLayout);
-            visibleImg = (ImageView) v.findViewById(R.id.valueImg);
-            coverLayout = (LinearLayout) v.findViewById(R.id.coverLayout);
-            label = (TextView) v.findViewById(R.id.textViewLabel);
-            customPeriodLayout = (LinearLayout) v.findViewById(R.id.customPeriodLayout);
-            customPeriod = (TextView) v.findViewById(R.id.customPeriod);
-
-            ImageButton menuButton = (ImageButton) v.findViewById(R.id.menuButton);
-            ImageButton copyButton = (ImageButton) v.findViewById(R.id.copyButton);
-            ImageView invisibleImg = (ImageView) v.findViewById(R.id.coverImg);
-
-            // Style the buttons in the current theme colors
-            ColorFilter colorFilter = ThemeHelper.getThemeColorFilter(context, android.R.attr.textColorSecondary);
-
-            menuButton.getDrawable().setColorFilter(colorFilter);
-            copyButton.getDrawable().setColorFilter(colorFilter);
-            visibleImg.getDrawable().setColorFilter(colorFilter);
-            invisibleImg.getDrawable().setColorFilter(colorFilter);
-
-            // Setup onClickListeners
-            menuButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    showPopupMenu(view, getAdapterPosition());
-                }
-            });
-
-            copyButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    copyToClipboard(value.getText().toString());
-                }
-            });
-        }
-
-        public void updateValues(String label, String token) {
-            this.label.setText(label);
-            value.setText(token);
-        }
-
-        public void showCustomPeriod(int period) {
-            customPeriodLayout.setVisibility(View.VISIBLE);
-            customPeriod.setText(String.format(context.getString(R.string.format_custom_period), period));
-        }
-
-        public void hideCustomPeriod() {
-            customPeriodLayout.setVisibility(View.GONE);
-        }
-
-        public void setLabelSize(int size) {
-            label.setTextSize(TypedValue.COMPLEX_UNIT_PT, size);
-        }
-
-        public void enableTapToReveal() {
-            valueLayout.setVisibility(View.GONE);
-            coverLayout.setVisibility(View.VISIBLE);
-            visibleImg.setVisibility(View.VISIBLE);
-
-            card.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (valueLayout.getVisibility() == View.GONE && coverLayout.getVisibility() == View.VISIBLE) {
-                        valueLayout.setVisibility(View.VISIBLE);
-                        coverLayout.setVisibility(View.GONE);
-                    } else {
-                        valueLayout.setVisibility(View.GONE);
-                        coverLayout.setVisibility(View.VISIBLE);
-                    }
-                }
-            });
-        }
-
-        public void disableTapToReveal() {
-            valueLayout.setVisibility(View.VISIBLE);
-            coverLayout.setVisibility(View.GONE);
-            visibleImg.setVisibility(View.GONE);
-
-            card.setOnClickListener(null);
-        }
-
-        @Override
-        public void onItemSelected() {
-            if (eventCallback != null)
-                eventCallback.onMoveEventStart();
-        }
-
-        @Override
-        public void onItemClear() {
-            if (eventCallback != null)
-                eventCallback.onMoveEventStop();
-        }
-    }
-
-    public interface ViewHolderEventCallback {
+    public interface Callback {
         void onMoveEventStart();
         void onMoveEventStop();
     }

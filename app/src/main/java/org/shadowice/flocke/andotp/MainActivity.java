@@ -216,7 +216,7 @@ public class MainActivity extends BaseActivity
         float durationScale = Settings.Global.getFloat(this.getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE, 0);
         final long animatorDuration = (long) (1000 / durationScale);
 
-        adapter.setMoveEventCallback(new EntriesCardAdapter.ViewHolderEventCallback() {
+        adapter.setCallback(new EntriesCardAdapter.Callback() {
             @Override
             public void onMoveEventStart() {
                 stopUpdater();
