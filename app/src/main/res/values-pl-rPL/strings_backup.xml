@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="backup_activity_title">Kopie bezpieczeństwa</string>
+
+    <string name="backup_category_plain">Kopia tekstowa</string>
+    <string name="backup_category_crypt">Szyfrowana kopia</string>
+    <string name="backup_category_openpgp">Kopia OpenPGP</string>
+
+
+    <string name="backup_desc_export_crypt">Zapisz kopie do zabezpieczonego hasłem</string>
+
+    <string name="backup_desc_crypt_setup">Musisz ustawić hasło w ustawieniach aby użyć szyfrowanych kopii</string>
+
+
+    <!-- Dialogs -->
+
+
+    <!-- Toast messages -->
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">O mnie</string>
+
+    <string name="about_description">Otwarto źródłowa aplikacja do dwu składnikowego uwierzytelniania dla systemu Android 4.4+</string>
+
+    <!-- Misc -->
+    <string name="about_label_changelog">Zmiany</string>
+    <string name="about_label_license">Licencja</string>
+    <string name="about_label_licenses">Otwarto źródłowa licencja</string>
+    <string name="about_label_MIT">Licencja MIT</string>
+    <string name="about_label_source">Źródło</string>
+    <string name="about_label_version">Wersja</string>
+
+    <!-- Authors -->
+    <string name="about_title_authors">Autorzy</string>
+
+    <string name="about_label_main_author">Główny autor</string>
+    <string name="about_label_original_author">Autor oryginalnej aplikacji</string>
+    <string name="about_label_original_app">Oryginalna aplikacja</string>
+    <string name="about_label_github">Github</string>
+    <string name="about_label_donate">Wspomoż</string>
+
+    <string name="about_name_author1">Jakob Nixdorf</string>
+    <string name="about_name_author2">Bruno Bierbaumer</string>
+
+    <!-- Support -->
+    <string name="about_title_support">Wesprzyj rozwój</string>
+
+    <string name="about_label_report_bugs">Raportuj błąd</string>
+
+    <string name="about_desc_report_bugs">Zgłoś błąd lub poproś o funkcję</string>
+</resources>
