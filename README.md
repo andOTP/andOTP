@@ -49,6 +49,10 @@ key, which renders them useless.
  * [OpenPGP](http://openpgp.org/): OpenPGP can be used to easily decrypt the OpenPGP-encrypted backups on your PC.
  * [andOTP-decrypt](https://github.com/asmw/andOTP-decrypt): A python script written by @asmw to decrypt password-protected backups on your PC (needs more testing).
 
+## Migration:
+
+ * [FreeOTP](https://freeotp.github.io/): https://github.com/viljoviitanen/freeotp-export
+
 ## TODO:
 
  * HOTP Support
