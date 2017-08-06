@@ -62,6 +62,7 @@ public class MainActivity extends BaseActivity
 
     private EntriesCardAdapter adapter;
     private FloatingActionMenu floatingActionMenu;
+    private SearchView searchView;
     private SimpleItemTouchHelperCallback touchHelperCallback;
 
     private SharedPreferences sharedPref;
@@ -204,7 +205,8 @@ public class MainActivity extends BaseActivity
                 if (dy > 0) {
                     floatingActionMenu.hide();
                 } else {
-                    floatingActionMenu.show();
+                    if (searchView == null || searchView.isIconified())
+                        floatingActionMenu.show();
                 }
             }
         });
@@ -318,7 +320,7 @@ public class MainActivity extends BaseActivity
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         MenuItem searchItem = menu.findItem(R.id.menu_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView = (SearchView) searchItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
