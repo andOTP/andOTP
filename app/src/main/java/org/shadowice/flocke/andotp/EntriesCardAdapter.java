@@ -54,7 +54,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     private SharedPreferences sharedPrefs;
     private EntryFilter filter;
     private ArrayList<Entry> entries;
-    private ArrayList<Integer> displayedEntries;
+    private ArrayList<Entry> displayedEntries;
     public Callback callback;
 
     public EntriesCardAdapter(Context context) {
@@ -85,7 +85,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void entriesChanged() {
         if (displayedEntries != null)
             displayedEntries.clear();
-        displayedEntries = defaultIndices();
+
+        displayedEntries = entries;
 
         notifyDataSetChanged();
     }
@@ -99,32 +100,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         entriesChanged();
     }
 
-    public ArrayList<Integer> defaultIndices() {
-        ArrayList<Integer> newIdx = new ArrayList<>();
-        for (int i = 0; i < entries.size(); i++)
-            newIdx.add(i);
-
-        return newIdx;
-    }
-
-    public int removeIndex(int pos) {
-        int removed = displayedEntries.remove(pos);
-
-        ArrayList<Integer> newIdx = new ArrayList<>();
-        for (int i = 0; i < displayedEntries.size(); i++) {
-            int idx = displayedEntries.get(i);
-            if (idx > removed)
-                idx -= 1;
-            newIdx.add(idx);
-        }
-        displayedEntries = newIdx;
-
-        return removed;
-    }
-
     @Override
     public void onBindViewHolder(EntryViewHolder entryViewHolder, int i) {
-        Entry entry = entries.get(displayedEntries.get(i));
+        Entry entry = displayedEntries.get(i);
 
         entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP());
 
@@ -190,7 +168,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
         final EditText input = new EditText(context);
-        input.setText(entries.get(displayedEntries.get(pos)).getLabel());
+        input.setText(displayedEntries.get(pos).getLabel());
         input.setSingleLine();
 
         FrameLayout container = new FrameLayout(context);
@@ -205,9 +183,13 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        entries.get(displayedEntries.get(pos)).setLabel(input.getEditableText().toString());
+                        int realIndex = entries.indexOf(displayedEntries.get(pos));
+                        String newLabel = input.getEditableText().toString();
+
+                        displayedEntries.get(pos).setLabel(newLabel);
                         notifyItemChanged(pos);
 
+                        entries.get(realIndex).setLabel(newLabel);
                         DatabaseHelper.saveDatabase(context, entries);
                     }
                 })
@@ -227,9 +209,12 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        entries.remove(removeIndex(position));
+                        int realIndex = entries.indexOf(displayedEntries.get(position));
+
+                        displayedEntries.remove(position);
                         notifyItemRemoved(position);
 
+                        entries.remove(realIndex);
                         DatabaseHelper.saveDatabase(context, entries);
                     }
                 })
@@ -291,26 +276,26 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         protected FilterResults performFiltering(CharSequence constraint) {
             final FilterResults filterResults = new FilterResults();
 
-            ArrayList<Integer> newIdx = new ArrayList<>();
+            ArrayList<Entry> filtered = new ArrayList<>();
             if (constraint != null && constraint.length() != 0){
                 for (int i = 0; i < entries.size(); i++) {
                     if (entries.get(i).getLabel().toLowerCase().contains(constraint.toString().toLowerCase())) {
-                        newIdx.add(i);
+                        filtered.add(entries.get(i));
                     }
                 }
             } else {
-                newIdx = defaultIndices();
+                filtered = entries;
             }
 
-            filterResults.count = newIdx.size();
-            filterResults.values = newIdx;
+            filterResults.count = filtered.size();
+            filterResults.values = filtered;
 
             return filterResults;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            displayedEntries = (ArrayList<Integer>) results.values;
+            displayedEntries = (ArrayList<Entry>) results.values;
             notifyDataSetChanged();
         }
     }
