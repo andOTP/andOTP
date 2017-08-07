@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Keys -->
+
+
+
+
+    <!-- Default values -->
+    <integer name="settings_default_label_size">8</integer>
+
+    <!-- List values -->
+    <string-array name="settings_values_theme">
+        <item>jasny</item>
+        <item>ciemny</item>
+    </string-array>
+
+    <!-- Constraints -->
+    <integer name="settings_min_label_size">4</integer>
+    <integer name="settings_max_label_size">12</integer>
+</resources>
