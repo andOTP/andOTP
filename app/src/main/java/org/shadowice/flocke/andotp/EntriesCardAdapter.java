@@ -89,6 +89,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         entriesChanged();
     }
 
+    private int getRealIndex(int displayPosition) {
+        return entries.indexOf(displayedEntries.get(displayPosition));
+    }
+
     public void entriesChanged() {
         displayedEntries = sortEntries(entries);
         notifyDataSetChanged();
@@ -190,7 +194,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        int realIndex = entries.indexOf(displayedEntries.get(pos));
+                        int realIndex = getRealIndex(pos);
                         String newLabel = input.getEditableText().toString();
 
                         displayedEntries.get(pos).setLabel(newLabel);
@@ -213,7 +217,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 .show();
     }
 
-    public void removeItem(final int position) {
+    public void removeItem(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
         builder.setTitle(R.string.dialog_title_remove)
@@ -221,10 +225,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        int realIndex = entries.indexOf(displayedEntries.get(position));
+                        int realIndex = getRealIndex(pos);
 
-                        displayedEntries.remove(position);
-                        notifyItemRemoved(position);
+                        displayedEntries.remove(pos);
+                        notifyItemRemoved(pos);
 
                         entries.remove(realIndex);
                         DatabaseHelper.saveDatabase(context, entries);
@@ -232,9 +236,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        notifyItemChanged(position);
-                    }
+                    public void onClick(DialogInterface dialogInterface, int i) {}
                 })
                 .show();
     }
