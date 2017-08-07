@@ -1,5 +1,12 @@
 # Changelog
 
+#### v0.2.5 / v0.3.0
+
+ * New feature: sort the entries by label (Issue #12)
+ * Bug fix: show current theme in the settings
+ * Bug fix: don't show FloatingActionMenu when scrolling while searching
+ * Code: lots of internal refactoring
+
 #### v0.2.4
 
  * New feature: make the font size of the labels configurable (Issue #18)
