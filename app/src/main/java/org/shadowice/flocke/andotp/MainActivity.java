@@ -63,6 +63,7 @@ public class MainActivity extends BaseActivity
     private EntriesCardAdapter adapter;
     private FloatingActionMenu floatingActionMenu;
     private SearchView searchView;
+    private MenuItem sortMenu;
     private SimpleItemTouchHelperCallback touchHelperCallback;
 
     private SharedPreferences sharedPref;
@@ -319,6 +320,8 @@ public class MainActivity extends BaseActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
+        sortMenu = menu.findItem(R.id.menu_sort);
+
         MenuItem searchItem = menu.findItem(R.id.menu_search);
         searchView = (SearchView) searchItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -339,13 +342,18 @@ public class MainActivity extends BaseActivity
             public boolean onMenuItemActionExpand(MenuItem item) {
                 floatingActionMenu.hide();
                 touchHelperCallback.setDragEnabled(false);
+                if (sortMenu != null)
+                    sortMenu.setVisible(false);
                 return true;
             }
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 floatingActionMenu.show();
-                touchHelperCallback.setDragEnabled(true);
+                if (adapter == null || adapter.getSortMode() == EntriesCardAdapter.SortMode.UNSORTED)
+                    touchHelperCallback.setDragEnabled(true);
+                if (sortMenu != null)
+                    sortMenu.setVisible(true);
                 return true;
             }
         });
@@ -367,7 +375,20 @@ public class MainActivity extends BaseActivity
             Intent aboutIntent = new Intent(this, AboutActivity.class);
             startActivity(aboutIntent);
             return true;
+        } else if (id == R.id.menu_sort_none) {
+            item.setChecked(true);
+            if (adapter != null) {
+                adapter.setSortMode(EntriesCardAdapter.SortMode.UNSORTED);
+                touchHelperCallback.setDragEnabled(true);
+            }
+        } else if (id == R.id.menu_sort_label) {
+            item.setChecked(true);
+            if (adapter != null) {
+                adapter.setSortMode(EntriesCardAdapter.SortMode.LABEL);
+                touchHelperCallback.setDragEnabled(false);
+            }
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

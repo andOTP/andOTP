@@ -46,16 +46,23 @@ import org.shadowice.flocke.andotp.ItemTouchHelper.ItemTouchHelperAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     implements ItemTouchHelperAdapter, Filterable {
+
+    public enum SortMode {
+        UNSORTED, LABEL
+    }
 
     private Context context;
     private SharedPreferences sharedPrefs;
     private EntryFilter filter;
     private ArrayList<Entry> entries;
     private ArrayList<Entry> displayedEntries;
-    public Callback callback;
+    private Callback callback;
+
+    private SortMode sortMode = SortMode.UNSORTED;
 
     public EntriesCardAdapter(Context context) {
         this.context = context;
@@ -83,11 +90,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public void entriesChanged() {
-        if (displayedEntries != null)
-            displayedEntries.clear();
-
-        displayedEntries = entries;
-
+        displayedEntries = sortEntries(entries);
         notifyDataSetChanged();
     }
 
@@ -156,10 +159,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-        Collections.swap(entries, fromPosition, toPosition);
-        notifyItemMoved(fromPosition, toPosition);
+        if (sortMode == SortMode.UNSORTED && displayedEntries.equals(entries)) {
+            Collections.swap(entries, fromPosition, toPosition);
 
-        DatabaseHelper.saveDatabase(context, entries);
+            displayedEntries = new ArrayList<>(entries);
+            notifyItemMoved(fromPosition, toPosition);
+
+            DatabaseHelper.saveDatabase(context, entries);
+        }
 
         return true;
     }
@@ -187,7 +194,12 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         String newLabel = input.getEditableText().toString();
 
                         displayedEntries.get(pos).setLabel(newLabel);
-                        notifyItemChanged(pos);
+                        if (sortMode == SortMode.LABEL) {
+                            displayedEntries = sortEntries(displayedEntries);
+                            notifyDataSetChanged();
+                        } else {
+                            notifyItemChanged(pos);
+                        }
 
                         entries.get(realIndex).setLabel(newLabel);
                         DatabaseHelper.saveDatabase(context, entries);
@@ -260,6 +272,25 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         Toast.makeText(context, R.string.toast_copied_to_clipboard, Toast.LENGTH_LONG).show();
     }
 
+    public void setSortMode(SortMode mode) {
+        this.sortMode = mode;
+        entriesChanged();
+    }
+
+    public SortMode getSortMode() {
+        return this.sortMode;
+    }
+
+    private ArrayList<Entry> sortEntries(ArrayList<Entry> unsorted) {
+        ArrayList<Entry> sorted = new ArrayList<>(unsorted);
+
+        if (sortMode == SortMode.LABEL) {
+            Collections.sort(sorted, new LabelComparator());
+        }
+
+        return sorted;
+    }
+
     public void setCallback(Callback cb) {
         this.callback = cb;
     }
@@ -295,8 +326,15 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            displayedEntries = (ArrayList<Entry>) results.values;
+            displayedEntries = sortEntries((ArrayList<Entry>) results.values);
             notifyDataSetChanged();
+        }
+    }
+
+    public class LabelComparator implements Comparator<Entry> {
+        @Override
+        public int compare(Entry o1, Entry o2) {
+            return o1.getLabel().compareTo(o2.getLabel());
         }
     }
 

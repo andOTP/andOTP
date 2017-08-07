@@ -27,6 +27,10 @@
     <string name="menu_main_backup">Backup</string>
     <string name="menu_main_search">Search</string>
     <string name="menu_main_settings">Settings</string>
+    <string name="menu_main_sort">Sort</string>
+
+    <string name="menu_sort_none">Unsorted</string>
+    <string name="menu_sort_label">Label</string>
 
     <string name="menu_popup_edit_label">Edit label</string>
     <string name="menu_popup_remove">Remove</string>
