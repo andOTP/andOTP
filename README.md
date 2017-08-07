@@ -81,6 +81,11 @@ So make sure you have a **current backup** before switching!
 
 If you want to discuss this app, share ideas for features or get help with bugs please head over to the [XDA thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993).
 
+## Contribute:
+
+ * **Translation**: If you want to help translate andOTP into your language head over to the [Crowdin project](https://crowdin.com/project/andotp).
+ * **Bug reports and feature requests**: You can report bugs and request features in the [Issue tracker](https://github.com/flocke/andOTP/issues) on GitHub.
+
 ## Acknowledgments:
 #### Open-source components used:
 
