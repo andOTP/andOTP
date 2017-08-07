@@ -4,7 +4,7 @@
     <item
         android:id="@+id/menu_sort"
         android:title="@string/menu_main_sort"
-        android:icon="@drawable/ic_sort_white"
+        android:icon="@drawable/ic_sort_inverted_white"
         app:showAsAction="always" >
 
         <menu>

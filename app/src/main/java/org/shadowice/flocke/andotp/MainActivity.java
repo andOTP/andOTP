@@ -142,6 +142,23 @@ public class MainActivity extends BaseActivity
                 .show();
     }
 
+    private void restoreSortMode(EntriesCardAdapter adapter) {
+        if (sharedPref != null) {
+            String modeStr = sharedPref.getString(getString(R.string.settings_key_sort_mode), EntriesCardAdapter.SortMode.UNSORTED.toString());
+            EntriesCardAdapter.SortMode mode = EntriesCardAdapter.SortMode.valueOf(modeStr);
+
+            adapter.setSortMode(mode);
+        }
+    }
+
+    private void saveSortMode(EntriesCardAdapter.SortMode mode) {
+        if (sharedPref != null) {
+            sharedPref.edit()
+                    .putString(getString(R.string.settings_key_sort_mode), mode.toString())
+                    .apply();
+        }
+    }
+
     // Initialize the main application
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,6 +228,8 @@ public class MainActivity extends BaseActivity
                 }
             }
         });
+
+        restoreSortMode(adapter);
 
         touchHelperCallback = new SimpleItemTouchHelperCallback(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(touchHelperCallback);
@@ -322,6 +341,18 @@ public class MainActivity extends BaseActivity
 
         sortMenu = menu.findItem(R.id.menu_sort);
 
+        if (adapter != null) {
+            EntriesCardAdapter.SortMode mode = adapter.getSortMode();
+
+            if (mode == EntriesCardAdapter.SortMode.UNSORTED) {
+                sortMenu.setIcon(R.drawable.ic_sort_inverted_white);
+                menu.findItem(R.id.menu_sort_none).setChecked(true);
+            } else if (mode == EntriesCardAdapter.SortMode.LABEL) {
+                sortMenu.setIcon(R.drawable.ic_sort_inverted_label_white);
+                menu.findItem(R.id.menu_sort_label).setChecked(true);
+            }
+        }
+
         MenuItem searchItem = menu.findItem(R.id.menu_search);
         searchView = (SearchView) searchItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -377,12 +408,16 @@ public class MainActivity extends BaseActivity
             return true;
         } else if (id == R.id.menu_sort_none) {
             item.setChecked(true);
+            sortMenu.setIcon(R.drawable.ic_sort_inverted_white);
+            saveSortMode(EntriesCardAdapter.SortMode.UNSORTED);
             if (adapter != null) {
                 adapter.setSortMode(EntriesCardAdapter.SortMode.UNSORTED);
                 touchHelperCallback.setDragEnabled(true);
             }
         } else if (id == R.id.menu_sort_label) {
             item.setChecked(true);
+            sortMenu.setIcon(R.drawable.ic_sort_inverted_label_white);
+            saveSortMode(EntriesCardAdapter.SortMode.LABEL);
             if (adapter != null) {
                 adapter.setSortMode(EntriesCardAdapter.SortMode.LABEL);
                 touchHelperCallback.setDragEnabled(false);
