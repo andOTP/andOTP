@@ -23,8 +23,8 @@
     <string name="about_label_github">Github</string>
     <string name="about_label_donate">Donate</string>
 
-    <string name="about_name_author1">Jakob Nixdorf</string>
-    <string name="about_name_author2">Bruno Bierbaumer</string>
+    <string name="about_name_author1" translatable="false">Jakob Nixdorf</string>
+    <string name="about_name_author2" translatable="false">Bruno Bierbaumer</string>
 
     <!-- Support -->
     <string name="about_title_support">Support development</string>
