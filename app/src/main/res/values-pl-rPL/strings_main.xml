@@ -19,6 +19,7 @@
     <string name="label_secret">Sekret</string>
     <string name="label_period">Okres</string>
     <string name="label_label">Etykieta</string>
+    <string name="label_algorithm">Algorytm</string>
 
     <!-- Menu -->
     <string name="menu_main_about">O aplikacji</string>
@@ -47,5 +48,8 @@
     <string name="dialog_msg_auth">Podaj swoje dane uwierzytelniające aby uruchomić aplikacje</string>
     <string name="dialog_msg_confirm_delete">Czy napewno usunąć to konto?</string>
 
+    <string name="dialog_msg_security_backup_desc">W celu zwiększenia bezpieczeństwa wszystkie informacje dotyczące kont są zaszyfrowane. Część klucza szyfrującego przechowywana jest w systemie Android. Zaletą takiego rozwiązania jest oddzielenie klucza od danych i wsparcie sprzętowego szyfrowania(jeżeli Twój sprzęt to wspiera).</string>
+    <string name="dialog_msg_security_backup_3rd_party">Używanie aplikacji typu Titanium Backup jest bezużyteczne, ponieważ aplikacja szyfruje swoje dane.</string>
+    <string name="dialog_msg_security_backup_warning">Proszę używaj Tylko wbudowanych funkcji robienia kopii zapasowej kont. Wszystkie inne metody nie są wspierane i mogą prowadzić do utraty danych.</string>
     <string name="dialog_msg_security_backup_one_time">Ta wiadomość nie pojawi się ponownie.</string>
 </resources>

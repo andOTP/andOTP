@@ -23,6 +23,7 @@
     <!-- Descriptions -->
     <string name="settings_desc_tap_to_reveal">Domyślnie ukrywaj tokeny OTP, wymaga kliknięcia aby odkryć token</string>
 
+    <string name="settings_desc_auth_device">Wymagana autoryzacja użytkownika podczas startu aplikacji.</string>
     <string name="settings_desc_auth_device_pre_lollipop">Ta funkcja wymaga systemu Android 5.0 i wzwyż</string>
     <string name="settings_desc_auth_device_not_secure">Ta funkcja wymaga włączenia blokady ekranu (Ustawienia -> Zabezpieczenia - > Blokada ekranu)</string>
 
