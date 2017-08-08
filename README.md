@@ -80,6 +80,10 @@ So make sure you have a **current backup** before switching!
 [<img width=200 alt="Main Activity" src="https://raw.githubusercontent.com/flocke/andOTP/master/assets/screenshots/backup_activity_dark.png">](https://raw.githubusercontent.com/flocke/andOTP/master/assets/screenshots/backup_activity_dark.png)
 
 ## Acknowledgments:
+#### Translators:
+
+ * **Spanish (es-rES)**: [Carlos Melero](https://crowdin.com/profile/carmebar)
+
 #### Open-source components used:
 
  * [Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)

@@ -21,7 +21,8 @@
     <string name="backup_desc_import_openpgp">Restore accounts from an OpenPGP-encrypted JSON file</string>
 
     <string name="backup_desc_crypt_setup">You need to set a password in the Settings to use
-        encrypted backups.</string>
+        encrypted backups.
+    </string>
 
     <string name="backup_desc_openpgp_provider">You need to install an OpenPGP provider and enable
         it in the Settings to use this feature.
