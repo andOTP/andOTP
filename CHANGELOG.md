@@ -1,11 +1,13 @@
 # Changelog
 
-#### v0.2.5 / v0.3.0
+#### v0.2.5
 
  * New feature: sort the entries by label (Issue #12)
+ * New feature: add support for SHA256 and SHA512 (Issue #24)
  * Bug fix: show current theme in the settings
  * Bug fix: don't show FloatingActionMenu when scrolling while searching
  * Code: lots of internal refactoring
+ * Translation: Spanish (es-rES) thanks to Carlos Melero
 
 #### v0.2.4
 
