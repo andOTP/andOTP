@@ -69,6 +69,10 @@ So make sure you have a **current backup** before switching!
  * **Bug reports and feature requests**: You can report bugs and request features in the [Issue tracker](https://github.com/flocke/andOTP/issues) on GitHub.
  * **Discussion**: You can discuss anything related to andOTP in the [XDA thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993).
 
+#### Translators:
+
+ * :es: Spanish (es-rES): [Carlos Melero](https://crowdin.com/profile/carmebar)
+
 ## Screenshots:
 
 [<img width=200 alt="Main Activity" src="https://raw.githubusercontent.com/flocke/andOTP/master/assets/screenshots/main_activity.png">](https://raw.githubusercontent.com/flocke/andOTP/master/assets/screenshots/main_activity.png)
@@ -80,10 +84,6 @@ So make sure you have a **current backup** before switching!
 [<img width=200 alt="Main Activity" src="https://raw.githubusercontent.com/flocke/andOTP/master/assets/screenshots/backup_activity_dark.png">](https://raw.githubusercontent.com/flocke/andOTP/master/assets/screenshots/backup_activity_dark.png)
 
 ## Acknowledgments:
-#### Translators:
-
- * **Spanish (es-rES)**: [Carlos Melero](https://crowdin.com/profile/carmebar)
-
 #### Open-source components used:
 
  * [Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)
