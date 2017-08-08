@@ -21,7 +21,7 @@
     <integer name="settings_default_label_size">8</integer>
 
     <!-- List values -->
-    <string-array name="settings_values_theme">
+    <string-array name="settings_values_theme" translatable="false">
         <item>light</item>
         <item>dark</item>
     </string-array>
