@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Entry {
     public enum OTPType { TOTP }
@@ -41,21 +42,24 @@ public class Entry {
     private static final String JSON_LABEL = "label";
     private static final String JSON_PERIOD = "period";
     private static final String JSON_TYPE = "type";
+    private static final String JSON_ALGORITHM = "algorithm";
 
     private OTPType type = OTPType.TOTP;
+    private int period = TokenCalculator.TOTP_DEFAULT_PERIOD;
+    private TokenCalculator.HashAlgorithm algorithm = TokenCalculator.DEFAULT_ALGORITHM;
     private byte[] secret;
     private String label;
-    private int period = TokenCalculator.TOTP_DEFAULT_PERIOD;
     private String currentOTP;
     private long last_update = 0;
 
     public Entry(){}
 
-    public Entry(OTPType type, String secret, int period, String label) {
+    public Entry(OTPType type, String secret, int period, String label, TokenCalculator.HashAlgorithm algorithm) {
         this.type = type;
         this.secret = new Base32().decode(secret.toUpperCase());
         this.period = period;
         this.label = label;
+        this.algorithm = algorithm;
     }
 
     public Entry(String contents) throws Exception {
@@ -77,8 +81,8 @@ public class Entry {
         String label = uri.getPath().substring(1);
 
         String issuer = uri.getQueryParameter("issuer");
-
         String period = uri.getQueryParameter("period");
+        String algorithm = uri.getQueryParameter("algorithm");
 
         if(issuer != null){
             label = issuer +" - "+label;
@@ -86,21 +90,35 @@ public class Entry {
 
         this.label = label;
         this.secret = new Base32().decode(secret.toUpperCase());
+
         if (period != null) {
             this.period = Integer.parseInt(period);
         } else {
             this.period = TokenCalculator.TOTP_DEFAULT_PERIOD;
         }
+
+        if (algorithm != null) {
+            this.algorithm = TokenCalculator.HashAlgorithm.valueOf(algorithm.toUpperCase());
+        } else {
+            this.algorithm = TokenCalculator.DEFAULT_ALGORITHM;
+        }
     }
 
-    public Entry (JSONObject jsonObj ) throws JSONException {
-        this.setSecret(new Base32().decode(jsonObj.getString(JSON_SECRET)));
-        this.setLabel(jsonObj.getString(JSON_LABEL));
-        this.setPeriod(jsonObj.getInt(JSON_PERIOD));
+    public Entry (JSONObject jsonObj) throws JSONException {
+        this.secret = new Base32().decode(jsonObj.getString(JSON_SECRET));
+        this.label = jsonObj.getString(JSON_LABEL);
+        this.period = jsonObj.getInt(JSON_PERIOD);
+
         try {
-            this.setType(jsonObj.getString(JSON_TYPE));
+            this.type = OTPType.valueOf(jsonObj.getString(JSON_TYPE));
         } catch(JSONException e) {
-            this.setType(DEFAULT_TYPE);
+            this.type = DEFAULT_TYPE;
+        }
+
+        try {
+            this.algorithm = TokenCalculator.HashAlgorithm.valueOf(jsonObj.getString(JSON_ALGORITHM));
+        } catch (JSONException e) {
+            this.algorithm = TokenCalculator.DEFAULT_ALGORITHM;
         }
     }
 
@@ -110,16 +128,13 @@ public class Entry {
         jsonObj.put(JSON_LABEL, getLabel());
         jsonObj.put(JSON_PERIOD, getPeriod());
         jsonObj.put(JSON_TYPE, getType().toString());
+        jsonObj.put(JSON_ALGORITHM, algorithm.toString());
 
         return jsonObj;
     }
 
     public OTPType getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = OTPType.valueOf(type);
     }
 
     public void setType(OTPType type) {
@@ -142,9 +157,21 @@ public class Entry {
         this.label = label;
     }
 
-    public int getPeriod() { return period; }
+    public int getPeriod() {
+        return period;
+    }
 
-    public void setPeriod(int period) { this.period = period; }
+    public void setPeriod(int period) {
+        this.period = period;
+    }
+
+    public TokenCalculator.HashAlgorithm getAlgorithm() {
+        return this.algorithm;
+    }
+
+    public void setAlgorithm(TokenCalculator.HashAlgorithm algorithm) {
+        this.algorithm = algorithm;
+    }
 
     public boolean hasNonDefaultPeriod() {
         return this.period != TokenCalculator.TOTP_DEFAULT_PERIOD;
@@ -159,7 +186,7 @@ public class Entry {
         long counter = time / this.getPeriod();
 
         if (counter > last_update) {
-            currentOTP = TokenCalculator.TOTP(secret, period);
+            currentOTP = TokenCalculator.TOTP(secret, period, algorithm);
             last_update = counter;
 
             return true;
@@ -172,24 +199,16 @@ public class Entry {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Entry entry = (Entry) o;
-
-        if (type != entry.type) return false;
-        if (!Arrays.equals(secret, entry.secret)) return false;
-        if (period != entry.period) return false;
-        return !(label != null ? !label.equals(entry.label) : entry.label != null);
-
+        return period == entry.period &&
+                type == entry.type &&
+                algorithm == entry.algorithm &&
+                Arrays.equals(secret, entry.secret) &&
+                Objects.equals(label, entry.label);
     }
 
     @Override
     public int hashCode() {
-        int hash = 1;
-        hash = hash + (secret == null ? 0 : Arrays.hashCode(secret));
-        hash = hash + 13 * (label == null ? 0 : label.hashCode());
-        hash = hash + 17 * type.hashCode();
-        hash = hash + 31 * period;
-
-        return hash;
+        return Objects.hash(type, period, algorithm, secret, label);
     }
 }

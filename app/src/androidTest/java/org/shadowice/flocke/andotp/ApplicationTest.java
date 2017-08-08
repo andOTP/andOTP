@@ -35,6 +35,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyStore;
@@ -58,14 +59,35 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         super(Application.class);
     }
 
-    public void testTOTPHelper(){
-        byte[] b =  "12345678901234567890".getBytes();
-        assertEquals(94287082, TokenCalculator.TOTP(b, TOTP_DEFAULT_PERIOD, 59l, 8));
-        assertEquals(7081804,  TokenCalculator.TOTP(b, TOTP_DEFAULT_PERIOD, 1111111109l, 8));
-        assertEquals(14050471, TokenCalculator.TOTP(b, TOTP_DEFAULT_PERIOD, 1111111111l, 8));
-        assertEquals(89005924, TokenCalculator.TOTP(b, TOTP_DEFAULT_PERIOD, 1234567890l, 8));
-        assertEquals(69279037, TokenCalculator.TOTP(b, TOTP_DEFAULT_PERIOD, 2000000000l, 8));
-        assertEquals(65353130, TokenCalculator.TOTP(b, TOTP_DEFAULT_PERIOD, 20000000000l, 8));
+    public void testTokenCalculator(){
+        // Test Vectors from https://tools.ietf.org/html/rfc6238
+        byte[] keySHA1 =  "12345678901234567890".getBytes(StandardCharsets.US_ASCII);
+        byte[] keySHA256 =  "12345678901234567890123456789012".getBytes(StandardCharsets.US_ASCII);
+        byte[] keySHA512 =  "1234567890123456789012345678901234567890123456789012345678901234".getBytes(StandardCharsets.US_ASCII);
+
+        assertEquals(94287082, TokenCalculator.TOTP(keySHA1,   TOTP_DEFAULT_PERIOD, 59L, 8, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals(46119246, TokenCalculator.TOTP(keySHA256, TOTP_DEFAULT_PERIOD, 59L, 8, TokenCalculator.HashAlgorithm.SHA256));
+        assertEquals(90693936, TokenCalculator.TOTP(keySHA512, TOTP_DEFAULT_PERIOD, 59L, 8, TokenCalculator.HashAlgorithm.SHA512));
+
+        assertEquals(7081804,  TokenCalculator.TOTP(keySHA1,   TOTP_DEFAULT_PERIOD, 1111111109L, 8, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals(68084774, TokenCalculator.TOTP(keySHA256, TOTP_DEFAULT_PERIOD, 1111111109L, 8, TokenCalculator.HashAlgorithm.SHA256));
+        assertEquals(25091201, TokenCalculator.TOTP(keySHA512, TOTP_DEFAULT_PERIOD, 1111111109L, 8, TokenCalculator.HashAlgorithm.SHA512));
+
+        assertEquals(14050471, TokenCalculator.TOTP(keySHA1,   TOTP_DEFAULT_PERIOD, 1111111111L, 8, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals(67062674, TokenCalculator.TOTP(keySHA256, TOTP_DEFAULT_PERIOD, 1111111111L, 8, TokenCalculator.HashAlgorithm.SHA256));
+        assertEquals(99943326, TokenCalculator.TOTP(keySHA512, TOTP_DEFAULT_PERIOD, 1111111111L, 8, TokenCalculator.HashAlgorithm.SHA512));
+
+        assertEquals(89005924, TokenCalculator.TOTP(keySHA1,   TOTP_DEFAULT_PERIOD, 1234567890L, 8, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals(91819424, TokenCalculator.TOTP(keySHA256, TOTP_DEFAULT_PERIOD, 1234567890L, 8, TokenCalculator.HashAlgorithm.SHA256));
+        assertEquals(93441116, TokenCalculator.TOTP(keySHA512, TOTP_DEFAULT_PERIOD, 1234567890L, 8, TokenCalculator.HashAlgorithm.SHA512));
+
+        assertEquals(69279037, TokenCalculator.TOTP(keySHA1,   TOTP_DEFAULT_PERIOD, 2000000000L, 8, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals(90698825, TokenCalculator.TOTP(keySHA256, TOTP_DEFAULT_PERIOD, 2000000000L, 8, TokenCalculator.HashAlgorithm.SHA256));
+        assertEquals(38618901, TokenCalculator.TOTP(keySHA512, TOTP_DEFAULT_PERIOD, 2000000000L, 8, TokenCalculator.HashAlgorithm.SHA512));
+
+        assertEquals(65353130, TokenCalculator.TOTP(keySHA1,   TOTP_DEFAULT_PERIOD, 20000000000L, 8, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals(77737706, TokenCalculator.TOTP(keySHA256, TOTP_DEFAULT_PERIOD, 20000000000L, 8, TokenCalculator.HashAlgorithm.SHA256));
+        assertEquals(47863826, TokenCalculator.TOTP(keySHA512, TOTP_DEFAULT_PERIOD, 20000000000L, 8, TokenCalculator.HashAlgorithm.SHA512));
     }
 
 
@@ -77,7 +99,8 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         String s = "{\"secret\":\"" + new String(new Base32().encode(secret)) + "\"," +
                     "\"label\":\"" + label + "\"," +
                     "\"period\":" + Integer.toString(period) + "," +
-                    "\"type\":\"TOTP\"}";
+                    "\"type\":\"TOTP\"," +
+                    "\"algorithm\":\"SHA1\"}";
 
         Entry e = new Entry(new JSONObject(s));
         assertTrue(Arrays.equals(secret, e.getSecret()));

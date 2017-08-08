@@ -21,6 +21,7 @@
     <string name="label_secret">Secret</string>
     <string name="label_period">Period</string>
     <string name="label_label">Label</string>
+    <string name="label_algorithm">Algorithm</string>
 
     <!-- Menu -->
     <string name="menu_main_about">About</string>

@@ -23,6 +23,10 @@
 
 package org.shadowice.flocke.andotp;
 
+import java.nio.ByteBuffer;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -30,48 +34,48 @@ import javax.crypto.spec.SecretKeySpec;
 public class TokenCalculator {
     public static final int TOTP_DEFAULT_PERIOD = 30;
 
-    public static final String SHA1 = "HmacSHA1";
-
-    public static String TOTP(byte[] secret) {
-        return String.format("%06d", TOTP(secret, TOTP_DEFAULT_PERIOD, System.currentTimeMillis() / 1000, 6));
+    public enum HashAlgorithm {
+        SHA1, SHA256, SHA512
     }
 
-    public static String TOTP(byte[] secret, int period) {
-        return String.format("%06d", TOTP(secret, period, System.currentTimeMillis() / 1000, 6));
+    public static final HashAlgorithm DEFAULT_ALGORITHM = HashAlgorithm.SHA1;
+
+    private static byte[] generateHash(HashAlgorithm algorithm, byte[] key, byte[] data)
+            throws NoSuchAlgorithmException, InvalidKeyException {
+        String algo = "Hmac" + algorithm.toString();
+
+        Mac mac = Mac.getInstance(algo);
+        mac.init(new SecretKeySpec(key, algo));
+
+        return mac.doFinal(data);
     }
 
-    public static int TOTP(byte[] key, int period, long t, int digits)
+    public static String TOTP(byte[] secret, int period, HashAlgorithm algorithm) {
+        return String.format("%06d", TOTP(secret, period, System.currentTimeMillis() / 1000, 6, algorithm));
+    }
+
+    public static int TOTP(byte[] key, int period, long time, int digits, HashAlgorithm algorithm)
     {
         int r = 0;
+
         try {
-            t /= period;
-            byte[] data = new byte[8];
-            long value = t;
-            for (int i = 8; i-- > 0; value >>>= 8) {
-                data[i] = (byte) value;
-            }
+            long timeInterval = time / period;
 
-            SecretKeySpec signKey = new SecretKeySpec(key, SHA1);
-            Mac mac = Mac.getInstance(SHA1);
-            mac.init(signKey);
-            byte[] hash = mac.doFinal(data);
+            byte[] data = ByteBuffer.allocate(8).putLong(timeInterval).array();
+            byte[] hash = generateHash(algorithm, key, data);
 
+            int offset = hash[hash.length - 1] & 0xF;
 
-            int offset = hash[20 - 1] & 0xF;
+            int binary = (hash[offset] & 0x7F) << 0x18;
+            binary |= (hash[offset + 1] & 0xFF) << 0x10;
+            binary |= (hash[offset + 2] & 0xFF) << 0x08;
+            binary |= (hash[offset + 3] & 0xFF);
 
-            long truncatedHash = 0;
-            for (int i = 0; i < 4; ++i) {
-                truncatedHash <<= 8;
-                truncatedHash |= (hash[offset + i] & 0xFF);
-            }
+            int div = (int) Math.pow(10, digits);
 
-            truncatedHash &= 0x7FFFFFFF;
-            truncatedHash %= Math.pow(10,digits);
-
-            r  = (int) truncatedHash;
-        }
-
-        catch(Exception e){
+            r  = binary % div;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return r;

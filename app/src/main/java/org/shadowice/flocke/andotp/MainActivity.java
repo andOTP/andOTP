@@ -92,8 +92,10 @@ public class MainActivity extends BaseActivity
         final EditText labelInput = (EditText) inputView.findViewById(R.id.manual_label);
         final EditText secretInput = (EditText) inputView.findViewById(R.id.manual_secret);
         final EditText periodInput = (EditText) inputView.findViewById(R.id.manual_period);
+        final Spinner algorithmInput = (Spinner) inputView.findViewById(R.id.manual_algorithm);
 
         typeInput.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Entry.OTPType.values()));
+        algorithmInput.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, TokenCalculator.HashAlgorithm.values()));
         periodInput.setText(Integer.toString(TokenCalculator.TOTP_DEFAULT_PERIOD));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -103,12 +105,14 @@ public class MainActivity extends BaseActivity
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
+                        TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
+
                         if (type == Entry.OTPType.TOTP) {
                             String label = labelInput.getText().toString();
                             String secret = secretInput.getText().toString();
                             int period = Integer.parseInt(periodInput.getText().toString());
 
-                            Entry e = new Entry(type, secret, period, label);
+                            Entry e = new Entry(type, secret, period, label, algorithm);
                             e.updateOTP();
                             adapter.addEntry(e);
                             adapter.saveEntries();
