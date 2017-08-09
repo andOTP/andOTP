@@ -71,6 +71,7 @@ So make sure you have a **current backup** before switching!
 
 #### Translators:
 
+ * 🇵🇱 Polish (pl-rPL): [Daniel Pustuła](https://github.com/9Cube-dpustula)
  * :es: Spanish (es-rES): [Carlos Melero](https://crowdin.com/profile/carmebar)
 
 ## Screenshots:

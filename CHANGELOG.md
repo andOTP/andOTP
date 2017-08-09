@@ -7,6 +7,7 @@
  * Bug fix: show current theme in the settings
  * Bug fix: don't show FloatingActionMenu when scrolling while searching
  * Code: lots of internal refactoring
+ * Translation: Polish (pl-rPL) thanks to Daniel Pustuła
  * Translation: Spanish (es-rES) thanks to Carlos Melero
 
 #### v0.2.4
