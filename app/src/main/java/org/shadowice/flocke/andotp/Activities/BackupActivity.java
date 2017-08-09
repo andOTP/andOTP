@@ -302,9 +302,9 @@ public class BackupActivity extends BaseActivity {
             if (intent != null)
                 backupEncryptedWithPGP(intent.getData());
         } else if (requestCode == INTENT_ENCRYPT_PGP && resultCode == RESULT_OK) {
-            backupEncryptedWithPGP(encryptTargetFile);
+            backupEncryptedWithPGP(encryptTargetFile, intent);
         } else if (requestCode == INTENT_DECRYPT_PGP && resultCode == RESULT_OK) {
-            restoreEncryptedWithPGP(decryptSourceFile);
+            restoreEncryptedWithPGP(decryptSourceFile, intent);
         }
     }
 
@@ -490,7 +490,12 @@ public class BackupActivity extends BaseActivity {
     }
 
     private void restoreEncryptedWithPGP(Uri uri) {
-        Intent decryptIntent = new Intent(OpenPgpApi.ACTION_DECRYPT_VERIFY);
+        restoreEncryptedWithPGP(uri, null);
+    }
+
+    private void restoreEncryptedWithPGP(Uri uri, Intent decryptIntent) {
+        if (decryptIntent == null)
+            decryptIntent = new Intent(OpenPgpApi.ACTION_DECRYPT_VERIFY);
 
         String input = FileHelper.readFileToString(this, uri);
         Log.d("OpenPGP", input);
@@ -523,21 +528,27 @@ public class BackupActivity extends BaseActivity {
         finishWithResult();
     }
 
-    private void backupEncryptedWithPGP(Uri uri) {
+    private void backupEncryptedWithPGP(Uri uri){
+        backupEncryptedWithPGP(uri, null);
+    }
+
+    private void backupEncryptedWithPGP(Uri uri, Intent encryptIntent) {
         ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this);
         String plainJSON = DatabaseHelper.entriesToString(entries);
 
-        Intent encryptIntent = new Intent();
+        if (encryptIntent == null) {
+            encryptIntent = new Intent();
 
-        if (settings.getBoolean(getString(R.string.settings_key_openpgp_sign), false)) {
-            encryptIntent.setAction(OpenPgpApi.ACTION_SIGN_AND_ENCRYPT);
-            encryptIntent.putExtra(OpenPgpApi.EXTRA_SIGN_KEY_ID, pgpKeyId);
-        } else {
-            encryptIntent.setAction(OpenPgpApi.ACTION_ENCRYPT);
+            if (settings.getBoolean(getString(R.string.settings_key_openpgp_sign), false)) {
+                encryptIntent.setAction(OpenPgpApi.ACTION_SIGN_AND_ENCRYPT);
+                encryptIntent.putExtra(OpenPgpApi.EXTRA_SIGN_KEY_ID, pgpKeyId);
+            } else {
+                encryptIntent.setAction(OpenPgpApi.ACTION_ENCRYPT);
+            }
+
+            encryptIntent.putExtra(OpenPgpApi.EXTRA_KEY_IDS, new long[]{pgpKeyId});
+            encryptIntent.putExtra(OpenPgpApi.EXTRA_REQUEST_ASCII_ARMOR, true);
         }
-
-        encryptIntent.putExtra(OpenPgpApi.EXTRA_KEY_IDS, new long[]{pgpKeyId});
-        encryptIntent.putExtra(OpenPgpApi.EXTRA_REQUEST_ASCII_ARMOR, true);
 
         InputStream is = null;
         try {
