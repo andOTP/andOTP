@@ -30,6 +30,8 @@
     <string name="about_title_support">Support development</string>
 
     <string name="about_label_report_bugs">Report Bugs</string>
+    <string name="about_label_translate">Translate</string>
 
     <string name="about_desc_report_bugs">Report bugs or request new features</string>
+    <string name="about_desc_translate">Help to translate andOTP to your language</string>
 </resources>

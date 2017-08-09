@@ -49,10 +49,12 @@ public class AboutActivity extends BaseActivity {
     private static final String AUTHOR2_APP = AUTHOR2_GITHUB + "/otp-authenticator";
 
     private static final String BUGREPORT_URI = GITHUB_URI + "/issues";
+    private static final String TRANSLATE_URI = "https://crowdin.com/project/andotp";
 
     int[] imageResources = {
             R.id.aboutImgVersion, R.id.aboutImgLicense, R.id.aboutImgChangelog, R.id.aboutImgSource,
-            R.id.aboutImgOpenSource, R.id.aboutImgAuthor1, R.id.aboutImgAuthor2, R.id.aboutImgBugs
+            R.id.aboutImgOpenSource, R.id.aboutImgAuthor1, R.id.aboutImgAuthor2, R.id.aboutImgBugs,
+            R.id.aboutImgTranslate
     };
 
     @Override
@@ -87,30 +89,27 @@ public class AboutActivity extends BaseActivity {
         version.setText(versionName);
 
         LinearLayout license = (LinearLayout) v.findViewById(R.id.about_layout_license);
+        LinearLayout changelog = (LinearLayout) v.findViewById(R.id.about_layout_changelog);
+        LinearLayout source = (LinearLayout) v.findViewById(R.id.about_layout_source);
+        LinearLayout licenses = (LinearLayout) v.findViewById(R.id.about_layout_licenses);
         license.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(MIT_URI);
             }
         });
-
-        LinearLayout changelog = (LinearLayout) v.findViewById(R.id.about_layout_changelog);
         changelog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(CHANGELOG_URI);
             }
         });
-
-        LinearLayout source = (LinearLayout) v.findViewById(R.id.about_layout_source);
         source.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(GITHUB_URI);
             }
         });
-
-        LinearLayout licenses = (LinearLayout) v.findViewById(R.id.about_layout_licenses);
         licenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,7 +119,6 @@ public class AboutActivity extends BaseActivity {
 
         TextView author1GitHub = (TextView) v.findViewById(R.id.about_author1_github);
         TextView author1Paypal = (TextView) v.findViewById(R.id.about_author1_paypal);
-
         author1GitHub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,14 +134,12 @@ public class AboutActivity extends BaseActivity {
 
         TextView author2GitHub = (TextView) v.findViewById(R.id.about_author2_github);
         TextView author2App = (TextView) v.findViewById(R.id.about_author2_app);
-
         author2GitHub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(AUTHOR2_GITHUB);
             }
         });
-
         author2App.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,10 +148,17 @@ public class AboutActivity extends BaseActivity {
         });
 
         LinearLayout bugReport = (LinearLayout) v.findViewById(R.id.about_layout_bugs);
+        LinearLayout translate = (LinearLayout) v.findViewById(R.id.about_layout_translate);
         bugReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(BUGREPORT_URI);
+            }
+        });
+        translate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openURI(TRANSLATE_URI);
             }
         });
     }
