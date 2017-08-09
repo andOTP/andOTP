@@ -21,13 +21,14 @@
  * SOFTWARE.
  */
 
-package org.shadowice.flocke.andotp;
+package org.shadowice.flocke.andotp.Database;
 
 import android.net.Uri;
 
 import org.apache.commons.codec.binary.Base32;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 
 import java.net.URL;
 import java.util.Arrays;

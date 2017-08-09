@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.shadowice.flocke.andotp;
+package org.shadowice.flocke.andotp.Utilities;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

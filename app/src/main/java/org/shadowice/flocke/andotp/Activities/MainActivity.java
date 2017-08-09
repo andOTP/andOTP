@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-package org.shadowice.flocke.andotp;
+package org.shadowice.flocke.andotp.Activities;
 
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
@@ -55,7 +55,12 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.shadowice.flocke.andotp.ItemTouchHelper.SimpleItemTouchHelperCallback;
+import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
+import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.View.FloatingActionMenu;
+import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCallback;
+import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 
 public class MainActivity extends BaseActivity
     implements SharedPreferences.OnSharedPreferenceChangeListener {

@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package org.shadowice.flocke.andotp;
+package org.shadowice.flocke.andotp.Activities;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -34,6 +34,9 @@ import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.shadowice.flocke.andotp.Utilities.ThemeHelper;
+import org.shadowice.flocke.andotp.R;
 
 import de.psdev.licensesdialog.LicensesDialog;
 

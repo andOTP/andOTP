@@ -20,27 +20,27 @@
  * SOFTWARE.
  */
 
-package org.shadowice.flocke.andotp;
+package org.shadowice.flocke.andotp.Utilities;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.os.Environment;
 
-public class ThemeHelper {
-    public static int getThemeColor(Context context, int colorAttr) {
-        Resources.Theme theme = context.getTheme();
-        TypedArray arr = theme.obtainStyledAttributes(new int[]{colorAttr});
-
-        int colorValue = arr.getColor(0, -1);
-        arr.recycle();
-
-        return colorValue;
+public class StorageHelper {
+    /* Checks if external storage is available for read and write */
+    public static boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
     }
 
-    public static ColorFilter getThemeColorFilter(Context context, int colorAttr) {
-        return new PorterDuffColorFilter(getThemeColor(context, colorAttr), PorterDuff.Mode.SRC_IN);
+    /* Checks if external storage is available to at least read */
+    public static boolean isExternalStorageReadable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state) ||
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            return true;
+        }
+        return false;
     }
 }

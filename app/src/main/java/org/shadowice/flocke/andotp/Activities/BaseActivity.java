@@ -1,9 +1,11 @@
-package org.shadowice.flocke.andotp;
+package org.shadowice.flocke.andotp.Activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+
+import org.shadowice.flocke.andotp.R;
 
 public class BaseActivity extends AppCompatActivity {
     @Override

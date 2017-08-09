@@ -11,10 +11,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".MyApplication"
-        >
+        android:name=".MyApplication" >
+
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -24,16 +24,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AboutActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".Activities.AboutActivity"
+            android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".BackupActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".Activities.BackupActivity"
+            android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SettingsActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".Activities.SettingsActivity"
+            android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"

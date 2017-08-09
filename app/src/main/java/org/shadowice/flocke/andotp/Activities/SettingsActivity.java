@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package org.shadowice.flocke.andotp;
+package org.shadowice.flocke.andotp.Activities;
 
 import android.app.KeyguardManager;
 import android.content.Intent;
@@ -34,6 +34,7 @@ import android.view.ViewStub;
 
 import org.openintents.openpgp.util.OpenPgpAppPreference;
 import org.openintents.openpgp.util.OpenPgpKeyPreference;
+import org.shadowice.flocke.andotp.R;
 
 public class SettingsActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener{

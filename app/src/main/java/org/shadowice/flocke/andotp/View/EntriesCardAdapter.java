@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package org.shadowice.flocke.andotp;
+package org.shadowice.flocke.andotp.View;
 
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -42,7 +42,10 @@ import android.widget.Filterable;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import org.shadowice.flocke.andotp.ItemTouchHelper.ItemTouchHelperAdapter;
+import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperAdapter;
+import org.shadowice.flocke.andotp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

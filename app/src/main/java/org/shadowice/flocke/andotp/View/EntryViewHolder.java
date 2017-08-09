@@ -1,4 +1,4 @@
-package org.shadowice.flocke.andotp;
+package org.shadowice.flocke.andotp.View;
 
 import android.content.Context;
 import android.graphics.ColorFilter;
@@ -11,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.shadowice.flocke.andotp.ItemTouchHelper.ItemTouchHelperViewHolder;
+import org.shadowice.flocke.andotp.Utilities.ThemeHelper;
+import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperViewHolder;
+import org.shadowice.flocke.andotp.R;
 
 public class EntryViewHolder extends RecyclerView.ViewHolder
         implements ItemTouchHelperViewHolder {

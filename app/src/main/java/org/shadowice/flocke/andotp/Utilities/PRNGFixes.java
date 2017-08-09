@@ -1,4 +1,4 @@
-package org.shadowice.flocke.andotp;
+package org.shadowice.flocke.andotp.Utilities;
 
 /*
  * This software is provided 'as-is', without any express or implied

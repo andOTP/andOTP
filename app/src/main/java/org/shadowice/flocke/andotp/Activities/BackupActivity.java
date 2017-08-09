@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package org.shadowice.flocke.andotp;
+package org.shadowice.flocke.andotp.Activities;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -49,6 +49,12 @@ import org.openintents.openpgp.OpenPgpError;
 import org.openintents.openpgp.OpenPgpSignatureResult;
 import org.openintents.openpgp.util.OpenPgpApi;
 import org.openintents.openpgp.util.OpenPgpServiceConnection;
+import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.Utilities.FileHelper;
+import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
+import org.shadowice.flocke.andotp.Utilities.StorageHelper;
+import org.shadowice.flocke.andotp.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

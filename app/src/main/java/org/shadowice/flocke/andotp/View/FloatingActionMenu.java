@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package org.shadowice.flocke.andotp;
+package org.shadowice.flocke.andotp.View;
 
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
@@ -31,6 +31,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
+
+import org.shadowice.flocke.andotp.R;
 
 public class FloatingActionMenu {
     private boolean isFabMenuOpen = false;

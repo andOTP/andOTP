@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-package org.shadowice.flocke.andotp;
+package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
 

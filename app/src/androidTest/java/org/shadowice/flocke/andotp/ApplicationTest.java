@@ -31,6 +31,10 @@ import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
+import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +55,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import static org.shadowice.flocke.andotp.TokenCalculator.TOTP_DEFAULT_PERIOD;
+import static org.shadowice.flocke.andotp.Utilities.TokenCalculator.TOTP_DEFAULT_PERIOD;
 
 public class ApplicationTest extends ApplicationTestCase<Application> {
 
