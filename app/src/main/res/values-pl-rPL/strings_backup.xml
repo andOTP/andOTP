@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="backup_activity_title">Kopie bezpieczeństwa</string>
+
+    <string name="backup_category_plain">Kopia tekstowa</string>
+    <string name="backup_category_crypt">Szyfrowana kopia</string>
+    <string name="backup_category_openpgp">Kopia OpenPGP</string>
+
+    <string name="backup_title_export_plain">Kopia</string>
+    <string name="backup_title_export_crypt">Kopia (szyfrowana)</string>
+    <string name="backup_title_export_openpgp">Kopia (OpenPGP)</string>
+    <string name="backup_title_import_plain">Przywróc kopie</string>
+    <string name="backup_title_import_crypt">Przywróc kopie (szyfrowana)</string>
+    <string name="backup_title_import_openpgp">Przywróc kopie (OpenPGP)</string>
+
+    <string name="backup_desc_export_plain">Zapisz wszystkie konta w pliku JSON</string>
+    <string name="backup_desc_export_crypt">Zapisz kopie do zabezpieczonego hasłem pliku JSON</string>
+    <string name="backup_desc_export_openpgp">Zapisz wszystkie konta w szyfrowanym OpenPGP pliku JSON</string>
+    <string name="backup_desc_import_plain">Przywróc konta z pliku JSON</string>
+    <string name="backup_desc_import_crypt">Przywróc konta z pliku JSON zabezpieczonego hasłem</string>
+    <string name="backup_desc_import_openpgp">Przywróc konta z szyfrowanego OpenPGP pliku JSON</string>
+
+    <string name="backup_desc_crypt_setup">Musisz ustawić hasło w ustawieniach aby użyć szyfrowanych kopii</string>
+
+    <string name="backup_desc_openpgp_provider">Musisz zainstalować aplikację do zarządzania kluczami OpenPGP i aby włączyć tę funkcjonalność przejdź do ustawień</string>
+    <string name="backup_desc_openpgp_keyid">Musisz wybrać klucz OpenPGP w ustawieniach aby utworzyć szyfrowane kopie.</string>
+
+    <!-- Dialogs -->
+    <string name="backup_dialog_title_security_warning">Ostrzeżenie bezpieczeństwa</string>
+
+    <string name="backup_dialog_msg_export_warning">Czy napewno chcesz zapisać kopie bazy w niezaszyfrowanym pliku JSON? Ten plik zawiera prywatne klucze, <b >zachowaj ostrożność</b></string>
+
+    <!-- Toast messages -->
+    <string name="backup_toast_export_success">Poprawnie zapisano kopie na zewnętrznej pamięci</string>
+    <string name="backup_toast_export_failed">Wystąpił problem z zapisaniem pliku na zewnętrznej pamieci</string>
+    <string name="backup_toast_import_success">Poprawnie wczytano kopie z zewnętrznej pamięci</string>
+    <string name="backup_toast_import_failed">Problem z wczytaniem kopi z zewnętrznej pamięci</string>
+    <string name="backup_toast_storage_not_accessible">Zewnętrzna pamięć aktualnie niedostępna.</string>
+    <string name="backup_toast_storage_permissions">Brak uprawnień dostępu do pamięci</string>
+    <string name="backup_toast_openpgp_error">Błąd OpenPGP: %s</string>
+    <string name="backup_toast_openpgp_not_verified">Nie znaleziono zweryfikowanej sygnatury</string>
+    <string name="backup_toast_crypt_password_not_set">Brak hasła, sprawdź ustawienia</string>
+</resources>
