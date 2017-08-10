@@ -26,6 +26,9 @@
     <string name="about_name_author1" translatable="false">Jakob Nixdorf</string>
     <string name="about_name_author2" translatable="false">Bruno Bierbaumer</string>
 
+    <string name="about_label_contributors">Contributors</string>
+    <string name="about_label_translators">Translators</string>
+
     <!-- Support -->
     <string name="about_title_support">Support development</string>
 

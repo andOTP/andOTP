@@ -51,13 +51,16 @@ public class AboutActivity extends BaseActivity {
     private static final String AUTHOR2_GITHUB = "https://github.com/0xbb";
     private static final String AUTHOR2_APP = AUTHOR2_GITHUB + "/otp-authenticator";
 
+    private static final String CONTRIBUTORS_URI = GITHUB_URI + "/blob/master/README.md#contributors";
+    private static final String TRANSLATORS_URI = GITHUB_URI + "/blob/master/README.md#translators";
+
     private static final String BUGREPORT_URI = GITHUB_URI + "/issues";
     private static final String TRANSLATE_URI = "https://crowdin.com/project/andotp";
 
     int[] imageResources = {
             R.id.aboutImgVersion, R.id.aboutImgLicense, R.id.aboutImgChangelog, R.id.aboutImgSource,
-            R.id.aboutImgOpenSource, R.id.aboutImgAuthor1, R.id.aboutImgAuthor2, R.id.aboutImgBugs,
-            R.id.aboutImgTranslate
+            R.id.aboutImgOpenSource, R.id.aboutImgAuthor1, R.id.aboutImgAuthor2, R.id.aboutImgContributors,
+            R.id.aboutImgTranslators, R.id.aboutImgBugs, R.id.aboutImgTranslate
     };
 
     @Override
@@ -147,6 +150,21 @@ public class AboutActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 openURI(AUTHOR2_APP);
+            }
+        });
+
+        LinearLayout contributors = (LinearLayout) v.findViewById(R.id.about_layout_contributors);
+        LinearLayout translators = (LinearLayout) v.findViewById(R.id.about_layout_translators);
+        contributors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openURI(CONTRIBUTORS_URI);
+            }
+        });
+        translators.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openURI(TRANSLATORS_URI);
             }
         });
 
