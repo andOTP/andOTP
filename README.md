@@ -71,7 +71,7 @@ So make sure you have a **current backup** before switching!
 
 #### Contributors:
 
- * [Carlos Melero](https://github.com/flocke/andOTP/commits/master?author=carmebar)
+ * [Carlos Melero](https://github.com/carmebar) ([view contributions](https://github.com/flocke/andOTP/commits/master?author=carmebar))
 
 #### Translators:
 
