@@ -69,6 +69,10 @@ So make sure you have a **current backup** before switching!
  * **Bug reports and feature requests**: You can report bugs and request features in the [Issue tracker](https://github.com/flocke/andOTP/issues) on GitHub.
  * **Discussion**: You can discuss anything related to andOTP in the [XDA thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993).
 
+#### Contributors:
+
+ * [Carlos Melero](https://github.com/flocke/andOTP/commits/master?author=carmebar)
+
 #### Translators:
 
  * 🇵🇱 Polish (pl-rPL): [Daniel Pustuła](https://github.com/9Cube-dpustula)
