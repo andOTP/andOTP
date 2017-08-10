@@ -297,10 +297,10 @@ public class BackupActivity extends BaseActivity {
             }
         } else if (requestCode == INTENT_OPEN_DOCUMENT_PGP && resultCode == RESULT_OK) {
             if (intent != null)
-                restoreEncryptedWithPGP(intent.getData());
+                restoreEncryptedWithPGP(intent.getData(), null);
         } else if (requestCode == INTENT_SAVE_DOCUMENT_PGP && resultCode == RESULT_OK) {
             if (intent != null)
-                backupEncryptedWithPGP(intent.getData());
+                backupEncryptedWithPGP(intent.getData(), null);
         } else if (requestCode == INTENT_ENCRYPT_PGP && resultCode == RESULT_OK) {
             backupEncryptedWithPGP(encryptTargetFile, intent);
         } else if (requestCode == INTENT_DECRYPT_PGP && resultCode == RESULT_OK) {
@@ -489,10 +489,6 @@ public class BackupActivity extends BaseActivity {
         finishWithResult();
     }
 
-    private void restoreEncryptedWithPGP(Uri uri) {
-        restoreEncryptedWithPGP(uri, null);
-    }
-
     private void restoreEncryptedWithPGP(Uri uri, Intent decryptIntent) {
         if (decryptIntent == null)
             decryptIntent = new Intent(OpenPgpApi.ACTION_DECRYPT_VERIFY);
@@ -526,10 +522,6 @@ public class BackupActivity extends BaseActivity {
         }
 
         finishWithResult();
-    }
-
-    private void backupEncryptedWithPGP(Uri uri){
-        backupEncryptedWithPGP(uri, null);
     }
 
     private void backupEncryptedWithPGP(Uri uri, Intent encryptIntent) {
