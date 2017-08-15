@@ -168,6 +168,35 @@ public class MainActivity extends BaseActivity
         }
     }
 
+    public void authenticate() {
+        String authMethod = sharedPref.getString(getString(R.string.settings_key_auth), getString(R.string.settings_default_auth));
+
+        switch (authMethod) {
+            case "device":
+                KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && km.isKeyguardSecure()) {
+                    Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
+                    startActivityForResult(authIntent, INTENT_AUTHENTICATE);
+                }
+
+                break;
+
+            case "password":
+                Toast.makeText(this, "TODO: Password auth", Toast.LENGTH_LONG).show();
+
+                break;
+
+            case "pin":
+                Toast.makeText(this, "TODO: PIN auth", Toast.LENGTH_LONG).show();
+
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
     // Initialize the main application
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,17 +213,8 @@ public class MainActivity extends BaseActivity
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPref.registerOnSharedPreferenceChangeListener(this);
 
-        if (savedInstanceState == null) {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                if(sharedPref.getBoolean(getString(R.string.settings_key_auth_device), false)) {
-                    KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
-                    if (km.isKeyguardSecure()) {
-                        Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
-                        startActivityForResult(authIntent, INTENT_AUTHENTICATE);
-                    }
-                }
-            }
-        }
+        if (savedInstanceState == null)
+            authenticate();
 
         if (! sharedPref.getBoolean(getString(R.string.settings_key_security_backup_warning), false)) {
            showFirstTimeWarning();

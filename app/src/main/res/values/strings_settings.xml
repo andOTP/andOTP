@@ -9,12 +9,14 @@
 
     <!-- Titles -->
     <string name="settings_title_tap_to_reveal">Tap to reveal</string>
-    <string name="settings_title_auth_device">Require device credentials</string>
-    <string name="settings_title_backup_password">Backup password</string>
+    <string name="settings_title_auth">Authentication</string>
+    <string name="settings_title_auth_password">Password</string>
+    <string name="settings_title_auth_pin">PIN</string>
 
     <string name="settings_title_theme">Theme</string>
     <string name="settings_title_label_size">Label font size</string>
 
+    <string name="settings_title_backup_password">Backup password</string>
     <string name="settings_title_openpgp_provider">Select OpenPGP provider</string>
     <string name="settings_title_openpgp_keyid">Select OpenPGP key</string>
     <string name="settings_title_openpgp_sign">Sign encrypted backups</string>
@@ -24,13 +26,6 @@
     <string name="settings_desc_tap_to_reveal">Hide the OTP tokens by default, requiring them to be
         revealed manually</string>
 
-    <string name="settings_desc_auth_device">Require the user to authenticate with his device
-        credentials when starting andOTP</string>
-    <string name="settings_desc_auth_device_pre_lollipop">This feature requires at least Android 5.0
-        (Lollipop) to work</string>
-    <string name="settings_desc_auth_device_not_secure">This feature requires a secure lock screen
-        to be set up (Settings -> Security -> Screenlock)</string>
-
     <string name="settings_desc_backup_password">Set the password that is used to encrypt the
         backups</string>
 
@@ -39,7 +34,20 @@
     <string name="settings_desc_openpgp_verify">Encrypted backups are only imported if they are
         signed with a valid key</string>
 
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_pre_lollipop">This feature requires at least Android 5.0
+        (Lollipop) to work</string>
+    <string name="settings_toast_auth_device_not_secure">This feature requires a secure lock screen
+        to be set up (Settings -> Security -> Screenlock)</string>
+
     <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>None</item>
+        <item>Password</item>
+        <item>PIN</item>
+        <item>Device credentials</item>
+    </string-array>
+
     <string-array name="settings_entries_theme">
         <item>Light theme</item>
         <item>Dark theme</item>
@@ -47,8 +55,7 @@
 
     <!-- PasswordPreference -->
     <string name="settings_hint_password">Password</string>
+    <string name="settings_hint_pin">PIN</string>
     <string name="settings_hint_password_confirm">Confirm password</string>
-
-    <string name="settings_msg_passwords_match">Passwords match!</string>
-    <string name="settings_msg_passwords_dont_match">Passwords don\'t match!</string>
+    <string name="settings_hint_pin_confirm">Confirm PIN</string>
 </resources>

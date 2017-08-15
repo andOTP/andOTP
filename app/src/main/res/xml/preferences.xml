@@ -4,19 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
+        android:key="@string/settings_key_cat_security"
         android:title="@string/settings_category_title_security">
 
         <CheckBoxPreference
             android:key="@string/settings_key_tap_to_reveal"
+            android:order="1"
             android:title="@string/settings_title_tap_to_reveal"
             android:summary="@string/settings_desc_tap_to_reveal"
             android:defaultValue="false" />
 
-        <CheckBoxPreference
-            android:key="@string/settings_key_auth_device"
-            android:title="@string/settings_title_auth_device"
-            android:summary="@string/settings_desc_auth_device"
-            android:defaultValue="false" />
+        <ListPreference
+            android:key="@string/settings_key_auth"
+            android:order="2"
+            android:title="@string/settings_title_auth"
+            android:summary="%s"
+            android:entries="@array/settings_entries_auth"
+            android:entryValues="@array/settings_values_auth"
+            android:defaultValue="@string/settings_default_auth" />
 
     </PreferenceCategory>
 

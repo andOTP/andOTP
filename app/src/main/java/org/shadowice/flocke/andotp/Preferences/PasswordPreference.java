@@ -27,27 +27,32 @@ import android.content.res.TypedArray;
 import android.preference.DialogPreference;
 import android.support.design.widget.TextInputEditText;
 import android.app.AlertDialog;
+import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import org.shadowice.flocke.andotp.R;
 
 public class PasswordPreference extends DialogPreference
     implements View.OnClickListener, TextWatcher {
 
+    public enum Mode {
+        PASSWORD, PIN
+    }
+
     private static final String DEFAULT_VALUE = "";
+
+    private Mode mode = Mode.PASSWORD;
 
     private TextInputEditText passwordInput;
     private EditText passwordConfirm;
 
-    private TextView label;
-
-    private Button btnCancel;
     private Button btnSave;
 
     private String value = DEFAULT_VALUE;
@@ -56,6 +61,10 @@ public class PasswordPreference extends DialogPreference
         super(context, attrs);
 
         setDialogLayoutResource(R.layout.component_password);
+    }
+
+    public void setMode(Mode mode) {
+        this.mode = mode;
     }
 
     @Override
@@ -68,12 +77,11 @@ public class PasswordPreference extends DialogPreference
 
     @Override
     protected void onBindDialogView(View view) {
+        TextInputLayout passwordLayout = (TextInputLayout) view.findViewById(R.id.passwordLayout);
         passwordInput = (TextInputEditText) view.findViewById(R.id.passwordEdit);
         passwordConfirm = (EditText) view.findViewById(R.id.passwordConfirm);
 
-        label = (TextView) view.findViewById(R.id.passwordLabel);
-
-        btnCancel = (Button) view.findViewById(R.id.btnCancel);
+        Button btnCancel = (Button) view.findViewById(R.id.btnCancel);
         btnSave = (Button) view.findViewById(R.id.btnSave);
         btnSave.setEnabled(false);
 
@@ -82,6 +90,24 @@ public class PasswordPreference extends DialogPreference
 
         if (! value.isEmpty()) {
             passwordInput.setText(value);
+        }
+
+        if (mode == Mode.PASSWORD) {
+            passwordLayout.setHint(getContext().getString(R.string.settings_hint_password));
+            passwordConfirm.setHint(R.string.settings_hint_password_confirm);
+
+            passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            passwordConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            passwordInput.setTransformationMethod(new PasswordTransformationMethod());
+            passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
+        } else if (mode == Mode.PIN) {
+            passwordLayout.setHint(getContext().getString(R.string.settings_hint_pin));
+            passwordConfirm.setHint(R.string.settings_hint_pin_confirm);
+
+            passwordInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+            passwordConfirm.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+            passwordInput.setTransformationMethod(new PasswordTransformationMethod());
+            passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
         }
 
         passwordConfirm.addTextChangedListener(this);
@@ -125,10 +151,8 @@ public class PasswordPreference extends DialogPreference
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if (passwordConfirm.getEditableText().toString().equals(passwordInput.getEditableText().toString())) {
-            label.setText(R.string.settings_msg_passwords_match);
             btnSave.setEnabled(true);
         } else {
-            label.setText(R.string.settings_msg_passwords_dont_match);
             btnSave.setEnabled(false);
         }
     }
