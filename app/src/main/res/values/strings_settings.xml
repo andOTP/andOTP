@@ -44,4 +44,11 @@
         <item>Light theme</item>
         <item>Dark theme</item>
     </string-array>
+
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">Password</string>
+    <string name="settings_hint_password_confirm">Confirm password</string>
+
+    <string name="settings_msg_passwords_match">Passwords match!</string>
+    <string name="settings_msg_passwords_dont_match">Passwords don\'t match!</string>
 </resources>

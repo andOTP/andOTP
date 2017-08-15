@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">andOTP</string>
 
     <!-- Buttons -->
+    <string name="button_cancel">Cancel</string>
     <string name="button_enter_details">Enter details</string>
     <string name="button_scan_qr">Scan QR-Code</string>
     <string name="button_save">Save</string>
