@@ -1,5 +1,13 @@
 # Changelog
 
+#### v0.2.6
+
+ * New feature: custom password preference with confirmation (Issue #26)
+ * New feature: support for Panic Trigger (PR #27 by carmebar)
+ * Bug fix: OpenPGP with security token (Issue #20, PR #25 by carmebar)
+ * Style/UI: add Contributors, Translators and Translate to About
+ * Code: internal refactoring
+
 #### v0.2.5
 
  * New feature: sort the entries by label (Issue #12)
