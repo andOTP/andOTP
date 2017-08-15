@@ -5,7 +5,7 @@
     <!-- Categories -->
     <string name="settings_category_title_security">Security</string>
     <string name="settings_category_title_ui">User interface</string>
-    <string name="settings_category_title_openpgp">OpenPGP</string>
+    <string name="settings_category_title_backup">Backup</string>
 
     <!-- Titles -->
     <string name="settings_title_tap_to_reveal">Tap to reveal</string>
