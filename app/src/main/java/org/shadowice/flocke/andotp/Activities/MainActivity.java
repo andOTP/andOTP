@@ -171,30 +171,16 @@ public class MainActivity extends BaseActivity
     public void authenticate() {
         String authMethod = sharedPref.getString(getString(R.string.settings_key_auth), getString(R.string.settings_default_auth));
 
-        switch (authMethod) {
-            case "device":
-                KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && km.isKeyguardSecure()) {
-                    Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
-                    startActivityForResult(authIntent, INTENT_AUTHENTICATE);
-                }
-
-                break;
-
-            case "password":
-                Toast.makeText(this, "TODO: Password auth", Toast.LENGTH_LONG).show();
-
-                break;
-
-            case "pin":
-                Toast.makeText(this, "TODO: PIN auth", Toast.LENGTH_LONG).show();
-
-                break;
-
-            default:
-                break;
+        if (authMethod.equals("device")) {
+            KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && km.isKeyguardSecure()) {
+                Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
+                startActivityForResult(authIntent, INTENT_AUTHENTICATE);
+            }
+        } else if (authMethod.equals("password") || authMethod.equals("pin")) {
+            Intent authIntent = new Intent(this, AuthenticateActivity.class);
+            startActivityForResult(authIntent, INTENT_AUTHENTICATE);
         }
-
     }
 
     // Initialize the main application
@@ -357,8 +343,12 @@ public class MainActivity extends BaseActivity
             if (intent.getBooleanExtra("reload", false))
                 adapter.loadEntries();
         } else if (requestCode == INTENT_AUTHENTICATE && resultCode != RESULT_OK) {
+            Toast.makeText(getBaseContext(), R.string.toast_auth_failed, Toast.LENGTH_LONG).show();
+
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                 finishAndRemoveTask();
+            } else {
+                finish();
             }
         }
     }

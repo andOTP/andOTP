@@ -98,17 +98,16 @@ public class PasswordPreference extends DialogPreference
 
             passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             passwordConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-            passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
         } else if (mode == Mode.PIN) {
             passwordLayout.setHint(getContext().getString(R.string.settings_hint_pin));
             passwordConfirm.setHint(R.string.settings_hint_pin_confirm);
 
             passwordInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
             passwordConfirm.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-            passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-            passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
         }
+
+        passwordInput.setTransformationMethod(new PasswordTransformationMethod());
+        passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
 
         passwordConfirm.addTextChangedListener(this);
         passwordInput.addTextChangedListener(this);

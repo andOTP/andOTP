@@ -38,6 +38,7 @@
     <string name="menu_popup_remove">Remove</string>
 
     <!-- Toast messages -->
+    <string name="toast_auth_failed">Authentication failed, closing andOTP!</string>
     <string name="toast_copied_to_clipboard">Copied to clipboard</string>
     <string name="toast_invalid_qr_code">Invalid QR Code</string>
 
@@ -48,7 +49,7 @@
     <string name="dialog_title_rename">Rename</string>
     <string name="dialog_title_security_backup">Security and Backups</string>
 
-    <string name="dialog_msg_auth">Enter your device credentials to start andOTP.</string>
+    <string name="dialog_msg_auth">Please enter your device credentials to start andOTP.</string>
     <string name="dialog_msg_confirm_delete">Are you sure you want do remove this account?</string>
 
     <string name="dialog_msg_security_backup_desc">To keep your account information secure this app

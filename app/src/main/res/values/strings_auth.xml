@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_activity_title">Authenticate</string>
+
+    <!-- Hints -->
+    <string name="auth_hint_password">Password</string>
+    <string name="auth_hint_pin">PIN</string>
+
+    <!-- Messages -->
+    <string name="auth_msg_password">Please enter your password to start andOTP.</string>
+    <string name="auth_msg_pin">Please enter your PIN to start andOTP.</string>
+
+    <!-- Toast messages -->
+    <string name="auth_toast_password_missing">Please set a password in the settings!</string>
+    <string name="auth_toast_pin_missing">Please set a PIN in the settings!</string>
+</resources>

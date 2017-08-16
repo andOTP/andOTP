@@ -4,6 +4,8 @@
     <dimen name="activity_margin">16dp</dimen>
     <dimen name="activity_margin_medium">24dp</dimen>
     <dimen name="activity_margin_large">32dp</dimen>
+    <dimen name="activity_margin_xlarge">40dp</dimen>
+
     <dimen name="activity_horizontal_margin">16dp</dimen>
 
     <dimen name="card_corner_radius">0dp</dimen>
