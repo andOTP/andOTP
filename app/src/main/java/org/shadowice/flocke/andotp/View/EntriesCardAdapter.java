@@ -119,12 +119,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             entryViewHolder.hideCustomPeriod();
         }
 
-        if (entry.hasNonDefaultDigits()) {
-            entryViewHolder.showCustomDigits(entry.getDigits());
-        } else {
-            entryViewHolder.hideCustomDigits();
-        }
-
         if (sharedPrefs.getBoolean(context.getString(R.string.settings_key_tap_to_reveal), false)) {
             entryViewHolder.enableTapToReveal();
         } else {

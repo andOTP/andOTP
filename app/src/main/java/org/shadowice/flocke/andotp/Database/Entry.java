@@ -203,10 +203,6 @@ public class Entry {
         return this.period != TokenCalculator.TOTP_DEFAULT_PERIOD;
     }
 
-    public boolean hasNonDefaultDigits() {
-        return this.digits != TokenCalculator.TOTP_DEFAULT_DIGITS;
-    }
-
     public String getCurrentOTP() {
         return currentOTP;
     }
