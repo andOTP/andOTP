@@ -47,17 +47,14 @@ import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperAdapter;
 import org.shadowice.flocke.andotp.R;
 
+import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     implements ItemTouchHelperAdapter, Filterable {
-
-    public enum SortMode {
-        UNSORTED, LABEL
-    }
-
     private Context context;
     private SharedPreferences sharedPrefs;
     private EntryFilter filter;

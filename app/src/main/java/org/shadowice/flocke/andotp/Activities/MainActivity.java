@@ -25,14 +25,12 @@ package org.shadowice.flocke.andotp.Activities;
 
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
-import android.app.KeyguardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,8 +60,12 @@ import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCal
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 
+import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
+
 public class MainActivity extends BaseActivity
-    implements SharedPreferences.OnSharedPreferenceChangeListener {
+        implements SharedPreferences.OnSharedPreferenceChangeListener {
+    private static final int INTENT_INTERNAL_SETTINGS   = 101;
+    private static final int INTENT_INTERNAL_BACKUP     = 102;
 
     private EntriesCardAdapter adapter;
     private FloatingActionMenu floatingActionMenu;
@@ -71,14 +73,8 @@ public class MainActivity extends BaseActivity
     private MenuItem sortMenu;
     private SimpleItemTouchHelperCallback touchHelperCallback;
 
-    private SharedPreferences sharedPref;
-
     private Handler handler;
     private Runnable handlerTask;
-
-    private static final int INTENT_AUTHENTICATE = 1;
-    private static final int INTENT_INTERNAL_SETTINGS = 2;
-    private static final int INTENT_INTERNAL_BACKUP = 3;
 
     // QR code scanning
     private void scanQRCode(){
@@ -142,9 +138,7 @@ public class MainActivity extends BaseActivity
                 .setPositiveButton(R.string.button_warned, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        sharedPref.edit()
-                                .putBoolean(getString(R.string.settings_key_security_backup_warning), true)
-                                .apply();
+                        settings.setFirstTimeWarningShown(true);
                     }
                 })
                 .create()
@@ -152,35 +146,13 @@ public class MainActivity extends BaseActivity
     }
 
     private void restoreSortMode(EntriesCardAdapter adapter) {
-        if (sharedPref != null) {
-            String modeStr = sharedPref.getString(getString(R.string.settings_key_sort_mode), EntriesCardAdapter.SortMode.UNSORTED.toString());
-            EntriesCardAdapter.SortMode mode = EntriesCardAdapter.SortMode.valueOf(modeStr);
-
-            adapter.setSortMode(mode);
-        }
+        if (settings != null)
+            adapter.setSortMode(settings.getSortMode());
     }
 
-    private void saveSortMode(EntriesCardAdapter.SortMode mode) {
-        if (sharedPref != null) {
-            sharedPref.edit()
-                    .putString(getString(R.string.settings_key_sort_mode), mode.toString())
-                    .apply();
-        }
-    }
-
-    public void authenticate() {
-        String authMethod = sharedPref.getString(getString(R.string.settings_key_auth), getString(R.string.settings_default_auth));
-
-        if (authMethod.equals("device")) {
-            KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && km.isKeyguardSecure()) {
-                Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
-                startActivityForResult(authIntent, INTENT_AUTHENTICATE);
-            }
-        } else if (authMethod.equals("password") || authMethod.equals("pin")) {
-            Intent authIntent = new Intent(this, AuthenticateActivity.class);
-            startActivityForResult(authIntent, INTENT_AUTHENTICATE);
-        }
+    private void saveSortMode(SortMode mode) {
+        if (settings != null)
+            settings.setSortMode(mode);
     }
 
     // Initialize the main application
@@ -196,13 +168,12 @@ public class MainActivity extends BaseActivity
         setSupportActionBar(toolbar);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPref.registerOnSharedPreferenceChangeListener(this);
+        settings.registerPreferenceChangeListener(this);
 
         if (savedInstanceState == null)
             authenticate();
 
-        if (! sharedPref.getBoolean(getString(R.string.settings_key_security_backup_warning), false)) {
+        if (! settings.getFirstTimeWarningShown()) {
            showFirstTimeWarning();
         }
 
@@ -250,7 +221,7 @@ public class MainActivity extends BaseActivity
         ItemTouchHelper touchHelper = new ItemTouchHelper(touchHelperCallback);
         touchHelper.attachToRecyclerView(recList);
 
-        float durationScale = Settings.Global.getFloat(this.getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE, 0);
+        float durationScale = android.provider.Settings.Global.getFloat(this.getContentResolver(), android.provider.Settings.Global.ANIMATOR_DURATION_SCALE, 0);
         final long animatorDuration = (long) (1000 / durationScale);
 
         adapter.setCallback(new EntriesCardAdapter.Callback() {
@@ -342,14 +313,6 @@ public class MainActivity extends BaseActivity
         } else if (requestCode == INTENT_INTERNAL_BACKUP && resultCode == RESULT_OK) {
             if (intent.getBooleanExtra("reload", false))
                 adapter.loadEntries();
-        } else if (requestCode == INTENT_AUTHENTICATE && resultCode != RESULT_OK) {
-            Toast.makeText(getBaseContext(), R.string.toast_auth_failed, Toast.LENGTH_LONG).show();
-
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                finishAndRemoveTask();
-            } else {
-                finish();
-            }
         }
     }
 
@@ -361,12 +324,12 @@ public class MainActivity extends BaseActivity
         sortMenu = menu.findItem(R.id.menu_sort);
 
         if (adapter != null) {
-            EntriesCardAdapter.SortMode mode = adapter.getSortMode();
+            SortMode mode = adapter.getSortMode();
 
-            if (mode == EntriesCardAdapter.SortMode.UNSORTED) {
+            if (mode == SortMode.UNSORTED) {
                 sortMenu.setIcon(R.drawable.ic_sort_inverted_white);
                 menu.findItem(R.id.menu_sort_none).setChecked(true);
-            } else if (mode == EntriesCardAdapter.SortMode.LABEL) {
+            } else if (mode == SortMode.LABEL) {
                 sortMenu.setIcon(R.drawable.ic_sort_inverted_label_white);
                 menu.findItem(R.id.menu_sort_label).setChecked(true);
             }
@@ -400,7 +363,7 @@ public class MainActivity extends BaseActivity
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 floatingActionMenu.show();
-                if (adapter == null || adapter.getSortMode() == EntriesCardAdapter.SortMode.UNSORTED)
+                if (adapter == null || adapter.getSortMode() == SortMode.UNSORTED)
                     touchHelperCallback.setDragEnabled(true);
                 if (sortMenu != null)
                     sortMenu.setVisible(true);
@@ -428,17 +391,17 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.menu_sort_none) {
             item.setChecked(true);
             sortMenu.setIcon(R.drawable.ic_sort_inverted_white);
-            saveSortMode(EntriesCardAdapter.SortMode.UNSORTED);
+            saveSortMode(SortMode.UNSORTED);
             if (adapter != null) {
-                adapter.setSortMode(EntriesCardAdapter.SortMode.UNSORTED);
+                adapter.setSortMode(SortMode.UNSORTED);
                 touchHelperCallback.setDragEnabled(true);
             }
         } else if (id == R.id.menu_sort_label) {
             item.setChecked(true);
             sortMenu.setIcon(R.drawable.ic_sort_inverted_label_white);
-            saveSortMode(EntriesCardAdapter.SortMode.LABEL);
+            saveSortMode(SortMode.LABEL);
             if (adapter != null) {
-                adapter.setSortMode(EntriesCardAdapter.SortMode.LABEL);
+                adapter.setSortMode(SortMode.LABEL);
                 touchHelperCallback.setDragEnabled(false);
             }
         }

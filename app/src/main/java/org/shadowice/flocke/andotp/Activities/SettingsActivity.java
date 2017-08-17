@@ -42,7 +42,7 @@ import org.shadowice.flocke.andotp.R;
 
 public class SettingsActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener{
-    SettingsFragment fragement;
+    SettingsFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +57,10 @@ public class SettingsActivity extends BaseActivity
         ViewStub stub = (ViewStub) findViewById(R.id.container_stub);
         stub.inflate();
 
-        fragement = new SettingsFragment();
+        fragment = new SettingsFragment();
 
         getFragmentManager().beginTransaction()
-                .replace(R.id.container_content, fragement)
+                .replace(R.id.container_content, fragment)
                 .commit();
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -93,7 +93,7 @@ public class SettingsActivity extends BaseActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (fragement.pgpKey.handleOnActivityResult(requestCode, resultCode, data)) {
+        if (fragment.pgpKey.handleOnActivityResult(requestCode, resultCode, data)) {
             // handled by OpenPgpKeyPreference
             return;
         }

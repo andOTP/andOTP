@@ -23,9 +23,7 @@
 package org.shadowice.flocke.andotp.Activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
@@ -42,10 +40,10 @@ import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.R;
 
+import static org.shadowice.flocke.andotp.Utilities.Settings.AuthMethod;
+
 public class AuthenticateActivity extends BaseActivity
     implements EditText.OnEditorActionListener {
-
-    private SharedPreferences settings;
     private String password;
 
     @Override
@@ -67,11 +65,10 @@ public class AuthenticateActivity extends BaseActivity
         TextInputLayout passwordLayout = (TextInputLayout) v.findViewById(R.id.passwordLayout);
         TextInputEditText passwordInput = (TextInputEditText) v.findViewById(R.id.passwordEdit);
 
-        settings = PreferenceManager.getDefaultSharedPreferences(this);
-        String authMethod = settings.getString(getString(R.string.settings_key_auth), getString(R.string.settings_default_auth));
+        AuthMethod authMethod = settings.getAuthMethod();
 
-        if (authMethod.equals("password")) {
-            password = settings.getString(getString(R.string.settings_key_auth_password), "");
+        if (authMethod == AuthMethod.PASSWORD) {
+            password = settings.getAuthPassword();
 
             if (password.isEmpty()) {
                 Toast.makeText(this, R.string.auth_toast_password_missing, Toast.LENGTH_LONG).show();
@@ -81,8 +78,8 @@ public class AuthenticateActivity extends BaseActivity
                 passwordLayout.setHint(getString(R.string.auth_hint_password));
                 passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             }
-        } else if (authMethod.equals("pin")) {
-            password = settings.getString(getString(R.string.settings_key_auth_pin), "");
+        } else if (authMethod == AuthMethod.PIN) {
+            password = settings.getAuthPIN();
 
             if (password.isEmpty()) {
                 Toast.makeText(this, R.string.auth_toast_pin_missing, Toast.LENGTH_LONG).show();

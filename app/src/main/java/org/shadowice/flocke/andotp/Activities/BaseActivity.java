@@ -22,18 +22,27 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
-import android.content.SharedPreferences;
+import android.app.KeyguardManager;
+import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Settings;
+
+import static org.shadowice.flocke.andotp.Utilities.Settings.AuthMethod;
 
 public class BaseActivity extends AppCompatActivity {
+    private static final int INTENT_INTERNAL_AUTHENTICATE   = 1;
+
+    public Settings settings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        String theme = sharedPref.getString(getString(R.string.settings_key_theme), getString(R.string.settings_default_theme));
+        settings = new Settings(this);
+
+        String theme = settings.getTheme();
 
         if (theme.equals("light")) {
             setTheme(R.style.AppTheme_NoActionBar);
@@ -42,5 +51,35 @@ public class BaseActivity extends AppCompatActivity {
         }
 
         super.onCreate(savedInstanceState);
+    }
+
+    public void authenticate() {
+        AuthMethod authMethod = settings.getAuthMethod();
+
+        if (authMethod == AuthMethod.DEVICE) {
+            KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && km.isKeyguardSecure()) {
+                Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
+                startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
+            }
+        } else if (authMethod == AuthMethod.PASSWORD || authMethod == AuthMethod.PIN) {
+            Intent authIntent = new Intent(this, AuthenticateActivity.class);
+            startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if (requestCode == INTENT_INTERNAL_AUTHENTICATE && resultCode != RESULT_OK) {
+            Toast.makeText(getBaseContext(), R.string.toast_auth_failed, Toast.LENGTH_LONG).show();
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                finishAndRemoveTask();
+            } else {
+                finish();
+            }
+        }
     }
 }

@@ -28,11 +28,9 @@ import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -65,30 +63,28 @@ import java.util.ArrayList;
 import javax.crypto.SecretKey;
 
 public class BackupActivity extends BaseActivity {
-    private final static int INTENT_OPEN_DOCUMENT_PLAIN = 100;
-    private final static int INTENT_SAVE_DOCUMENT_PLAIN = 101;
-    private final static int INTENT_OPEN_DOCUMENT_CRYPT = 102;
-    private final static int INTENT_SAVE_DOCUMENT_CRYPT = 103;
-    private final static int INTENT_OPEN_DOCUMENT_PGP = 104;
-    private final static int INTENT_SAVE_DOCUMENT_PGP = 105;
-    private final static int INTENT_ENCRYPT_PGP = 106;
-    private final static int INTENT_DECRYPT_PGP = 107;
+    private final static int INTENT_OPEN_DOCUMENT_PLAIN = 200;
+    private final static int INTENT_SAVE_DOCUMENT_PLAIN = 201;
+    private final static int INTENT_OPEN_DOCUMENT_CRYPT = 202;
+    private final static int INTENT_SAVE_DOCUMENT_CRYPT = 203;
+    private final static int INTENT_OPEN_DOCUMENT_PGP   = 204;
+    private final static int INTENT_SAVE_DOCUMENT_PGP   = 205;
+    private final static int INTENT_ENCRYPT_PGP         = 206;
+    private final static int INTENT_DECRYPT_PGP         = 207;
 
-    private final static int PERMISSIONS_REQUEST_READ_IMPORT_PLAIN = 110;
-    private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_PLAIN = 111;
-    private final static int PERMISSIONS_REQUEST_READ_IMPORT_CRYPT = 112;
-    private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_CRYPT = 113;
-    private final static int PERMISSIONS_REQUEST_READ_IMPORT_PGP = 114;
-    private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_PGP = 115;
+    private final static int PERMISSIONS_REQUEST_READ_IMPORT_PLAIN  = 210;
+    private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_PLAIN = 211;
+    private final static int PERMISSIONS_REQUEST_READ_IMPORT_CRYPT  = 212;
+    private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_CRYPT = 213;
+    private final static int PERMISSIONS_REQUEST_READ_IMPORT_PGP    = 214;
+    private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_PGP   = 215;
 
-    private static final String DEFAULT_BACKUP_FILENAME_PLAIN = "otp_accounts.json";
-    private static final String DEFAULT_BACKUP_FILENAME_CRYPT = "otp_accounts.json.aes";
-    private static final String DEFAULT_BACKUP_FILENAME_PGP = "otp_accounts.json.gpg";
-    private static final String DEFAULT_BACKUP_MIMETYPE_PLAIN = "application/json";
-    private static final String DEFAULT_BACKUP_MIMETYPE_CRYPT = "binary/aes";
-    private static final String DEFAULT_BACKUP_MIMETYPE_PGP = "application/pgp-encrypted";
-
-    private SharedPreferences settings;
+    private static final String DEFAULT_BACKUP_FILENAME_PLAIN   = "otp_accounts.json";
+    private static final String DEFAULT_BACKUP_FILENAME_CRYPT   = "otp_accounts.json.aes";
+    private static final String DEFAULT_BACKUP_FILENAME_PGP     = "otp_accounts.json.gpg";
+    private static final String DEFAULT_BACKUP_MIMETYPE_PLAIN   = "application/json";
+    private static final String DEFAULT_BACKUP_MIMETYPE_CRYPT   = "binary/aes";
+    private static final String DEFAULT_BACKUP_MIMETYPE_PGP     = "application/pgp-encrypted";
 
     private OpenPgpServiceConnection pgpServiceConnection;
     private long pgpKeyId;
@@ -111,8 +107,6 @@ public class BackupActivity extends BaseActivity {
         ViewStub stub = (ViewStub) findViewById(R.id.container_stub);
         stub.setLayoutResource(R.layout.content_backup);
         View v = stub.inflate();
-
-        settings = PreferenceManager.getDefaultSharedPreferences(this);
 
         // Plain-text
 
@@ -139,7 +133,7 @@ public class BackupActivity extends BaseActivity {
         LinearLayout backupCrypt = (LinearLayout) v.findViewById(R.id.button_backup_crypt);
         LinearLayout restoreCrypt = (LinearLayout) v.findViewById(R.id.button_restore_crypt);
 
-        if (settings.getString(getString(R.string.settings_key_backup_password), "").isEmpty()) {
+        if (settings.getBackupPassword().isEmpty()) {
             cryptSetup.setVisibility(View.VISIBLE);
             backupCrypt.setVisibility(View.GONE);
             restoreCrypt.setVisibility(View.GONE);
@@ -165,8 +159,8 @@ public class BackupActivity extends BaseActivity {
 
         // OpenPGP
 
-        String PGPProvider = settings.getString(getString(R.string.settings_key_openpgp_provider), "");
-        pgpKeyId = settings.getLong(getString(R.string.settings_key_openpgp_keyid), 0);
+        String PGPProvider = settings.getOpenPGPProvider();
+        pgpKeyId = settings.getOpenPGPKey();
 
         TextView setupPGP = (TextView) v.findViewById(R.id.msg_openpgp_setup);
         LinearLayout backupPGP = (LinearLayout) v.findViewById(R.id.button_backup_openpgp);
@@ -398,7 +392,7 @@ public class BackupActivity extends BaseActivity {
     /* Encrypted backup functions */
 
     private void doRestoreCrypt(Uri uri) {
-        String password = settings.getString(getString(R.string.settings_key_backup_password), "");
+        String password = settings.getBackupPassword();
 
         if (! password.isEmpty()) {
             if (StorageHelper.isExternalStorageReadable()) {
@@ -434,7 +428,7 @@ public class BackupActivity extends BaseActivity {
     }
 
     private void doBackupCrypt(Uri uri) {
-        String password = settings.getString(getString(R.string.settings_key_backup_password), "");
+        String password = settings.getBackupPassword();
 
         if (! password.isEmpty()) {
             if (StorageHelper.isExternalStorageWritable()) {
@@ -531,7 +525,7 @@ public class BackupActivity extends BaseActivity {
         if (encryptIntent == null) {
             encryptIntent = new Intent();
 
-            if (settings.getBoolean(getString(R.string.settings_key_openpgp_sign), false)) {
+            if (settings.getOpenPGPSign()) {
                 encryptIntent.setAction(OpenPgpApi.ACTION_SIGN_AND_ENCRYPT);
                 encryptIntent.putExtra(OpenPgpApi.EXTRA_SIGN_KEY_ID, pgpKeyId);
             } else {
@@ -573,7 +567,7 @@ public class BackupActivity extends BaseActivity {
                     doBackupEncrypted(file, outputStreamToString(os));
             } else if (requestCode == INTENT_DECRYPT_PGP) {
                 if (os != null) {
-                    if (settings.getBoolean(getString(R.string.settings_key_openpgp_verify), false)) {
+                    if (settings.getOpenPGPVerify()) {
                         OpenPgpSignatureResult sigResult = result.getParcelableExtra(OpenPgpApi.RESULT_SIGNATURE);
 
                         if (sigResult.getResult() == OpenPgpSignatureResult.RESULT_VALID_KEY_CONFIRMED) {
