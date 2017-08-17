@@ -42,11 +42,13 @@ public class Entry {
     private static final String JSON_SECRET = "secret";
     private static final String JSON_LABEL = "label";
     private static final String JSON_PERIOD = "period";
+    private static final String JSON_DIGITS = "digits";
     private static final String JSON_TYPE = "type";
     private static final String JSON_ALGORITHM = "algorithm";
 
     private OTPType type = OTPType.TOTP;
     private int period = TokenCalculator.TOTP_DEFAULT_PERIOD;
+    private int digits = TokenCalculator.TOTP_DEFAULT_DIGITS;
     private TokenCalculator.HashAlgorithm algorithm = TokenCalculator.DEFAULT_ALGORITHM;
     private byte[] secret;
     private String label;
@@ -55,10 +57,11 @@ public class Entry {
 
     public Entry(){}
 
-    public Entry(OTPType type, String secret, int period, String label, TokenCalculator.HashAlgorithm algorithm) {
+    public Entry(OTPType type, String secret, int period, int digits, String label, TokenCalculator.HashAlgorithm algorithm) {
         this.type = type;
         this.secret = new Base32().decode(secret.toUpperCase());
         this.period = period;
+        this.digits = digits;
         this.label = label;
         this.algorithm = algorithm;
     }
@@ -83,6 +86,7 @@ public class Entry {
 
         String issuer = uri.getQueryParameter("issuer");
         String period = uri.getQueryParameter("period");
+        String digits = uri.getQueryParameter("digits");
         String algorithm = uri.getQueryParameter("algorithm");
 
         if(issuer != null){
@@ -98,6 +102,12 @@ public class Entry {
             this.period = TokenCalculator.TOTP_DEFAULT_PERIOD;
         }
 
+        if (digits != null) {
+            this.digits = Integer.parseInt(digits);
+        } else {
+            this.digits = TokenCalculator.TOTP_DEFAULT_DIGITS;
+        }
+
         if (algorithm != null) {
             this.algorithm = TokenCalculator.HashAlgorithm.valueOf(algorithm.toUpperCase());
         } else {
@@ -109,6 +119,12 @@ public class Entry {
         this.secret = new Base32().decode(jsonObj.getString(JSON_SECRET));
         this.label = jsonObj.getString(JSON_LABEL);
         this.period = jsonObj.getInt(JSON_PERIOD);
+
+        try {
+            this.digits = jsonObj.getInt(JSON_DIGITS);
+        } catch(JSONException e) {
+            this.digits = TokenCalculator.TOTP_DEFAULT_DIGITS;
+        }
 
         try {
             this.type = OTPType.valueOf(jsonObj.getString(JSON_TYPE));
@@ -128,6 +144,7 @@ public class Entry {
         jsonObj.put(JSON_SECRET, new String(new Base32().encode(getSecret())));
         jsonObj.put(JSON_LABEL, getLabel());
         jsonObj.put(JSON_PERIOD, getPeriod());
+        jsonObj.put(JSON_DIGITS, getDigits());
         jsonObj.put(JSON_TYPE, getType().toString());
         jsonObj.put(JSON_ALGORITHM, algorithm.toString());
 
@@ -166,6 +183,14 @@ public class Entry {
         this.period = period;
     }
 
+    public int getDigits() {
+        return digits;
+    }
+
+    public void setDigits(int digits) {
+        this.digits = digits;
+    }
+
     public TokenCalculator.HashAlgorithm getAlgorithm() {
         return this.algorithm;
     }
@@ -187,7 +212,7 @@ public class Entry {
         long counter = time / this.getPeriod();
 
         if (counter > last_update) {
-            currentOTP = TokenCalculator.TOTP(secret, period, algorithm);
+            currentOTP = TokenCalculator.TOTP(secret, period, digits, algorithm);
             last_update = counter;
 
             return true;
@@ -202,6 +227,7 @@ public class Entry {
         if (o == null || getClass() != o.getClass()) return false;
         Entry entry = (Entry) o;
         return period == entry.period &&
+                digits == entry.digits &&
                 type == entry.type &&
                 algorithm == entry.algorithm &&
                 Arrays.equals(secret, entry.secret) &&
@@ -210,6 +236,6 @@ public class Entry {
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, period, algorithm, secret, label);
+        return Objects.hash(type, period, digits, algorithm, secret, label);
     }
 }

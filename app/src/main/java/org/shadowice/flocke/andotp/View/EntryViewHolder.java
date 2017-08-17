@@ -48,10 +48,12 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private LinearLayout valueLayout;
     private LinearLayout coverLayout;
     private LinearLayout customPeriodLayout;
+    private LinearLayout customDigitsLayout;
     private ImageView visibleImg;
     private TextView value;
     private TextView label;
     private TextView customPeriod;
+    private TextView customDigits;
 
 
     public EntryViewHolder(Context context, final View v) {
