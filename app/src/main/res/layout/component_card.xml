@@ -110,6 +110,26 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/customDigitsLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:visibility="gone"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_digit6_gray" />
+
+                <TextView
+                    android:id="@+id/customDigits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
             <ImageButton
                 android:id="@+id/copyButton"
                 android:layout_width="wrap_content"

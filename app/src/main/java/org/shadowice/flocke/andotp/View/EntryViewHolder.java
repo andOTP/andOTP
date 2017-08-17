@@ -48,10 +48,12 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private LinearLayout valueLayout;
     private LinearLayout coverLayout;
     private LinearLayout customPeriodLayout;
+    private LinearLayout customDigitsLayout;
     private ImageView visibleImg;
     private TextView value;
     private TextView label;
     private TextView customPeriod;
+    private TextView customDigits;
 
 
     public EntryViewHolder(Context context, final View v) {
@@ -67,6 +69,8 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         label = (TextView) v.findViewById(R.id.textViewLabel);
         customPeriodLayout = (LinearLayout) v.findViewById(R.id.customPeriodLayout);
         customPeriod = (TextView) v.findViewById(R.id.customPeriod);
+        customDigitsLayout = (LinearLayout) v.findViewById(R.id.customDigitsLayout);
+        customDigits = (TextView) v.findViewById(R.id.customDigits);
 
         ImageButton menuButton = (ImageButton) v.findViewById(R.id.menuButton);
         ImageButton copyButton = (ImageButton) v.findViewById(R.id.copyButton);
@@ -110,6 +114,15 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
     public void hideCustomPeriod() {
         customPeriodLayout.setVisibility(View.GONE);
+    }
+
+    public void showCustomDigits(int digits) {
+        customDigitsLayout.setVisibility(View.VISIBLE);
+        customDigits.setText(String.format("%d", digits));
+    }
+
+    public void hideCustomDigits() {
+        customDigitsLayout.setVisibility(View.GONE);
     }
 
     public void setLabelSize(int size) {
