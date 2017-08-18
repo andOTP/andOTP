@@ -33,6 +33,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class TokenCalculator {
     public static final int TOTP_DEFAULT_PERIOD = 30;
+    public static final int TOTP_DEFAULT_DIGITS = 6;
 
     public enum HashAlgorithm {
         SHA1, SHA256, SHA512
@@ -50,8 +51,8 @@ public class TokenCalculator {
         return mac.doFinal(data);
     }
 
-    public static String TOTP(byte[] secret, int period, HashAlgorithm algorithm) {
-        return String.format("%06d", TOTP(secret, period, System.currentTimeMillis() / 1000, 6, algorithm));
+    public static String TOTP(byte[] secret, int period, int digits, HashAlgorithm algorithm) {
+        return String.format("%0" + digits + "d", TOTP(secret, period, System.currentTimeMillis() / 1000, digits, algorithm));
     }
 
     public static int TOTP(byte[] key, int period, long time, int digits, HashAlgorithm algorithm)
