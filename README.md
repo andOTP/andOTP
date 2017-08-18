@@ -72,6 +72,7 @@ So make sure you have a **current backup** before switching!
 #### Contributors:
 
  * [Carlos Melero](https://github.com/carmebar) ([view contributions](https://github.com/flocke/andOTP/commits/master?author=carmebar))
+ * [SuperVirus](https://github.com/SuperVirus) ([view contributions](https://github.com/flocke/andOTP/commits/master?author=SuperVirus))
 
 #### Translators:
 
