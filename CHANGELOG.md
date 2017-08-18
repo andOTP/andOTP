@@ -9,6 +9,7 @@
  * Bug fix: OpenPGP with security token (Issue #20, PR #25 by carmebar)
  * Style/UI: add Contributors, Translators and Translate to About
  * Code: internal refactoring
+ * Translation: German (de-rDE) thanks to SuperVirus
 
 #### v0.2.5
 
