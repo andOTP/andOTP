@@ -22,10 +22,15 @@
     <string name="about_label_donate">Wspomoż</string>
 
 
+    <string name="about_label_contributors">Współpracownicy</string>
+    <string name="about_label_translators">Tłumacze</string>
+
     <!-- Support -->
     <string name="about_title_support">Wesprzyj rozwój</string>
 
     <string name="about_label_report_bugs">Raportuj błąd</string>
+    <string name="about_label_translate">Tłumacz</string>
 
     <string name="about_desc_report_bugs">Zgłoś błąd lub poproś o funkcję</string>
+    <string name="about_desc_translate">Pomóż przetłumaczyć andOTP na swój język</string>
 </resources>

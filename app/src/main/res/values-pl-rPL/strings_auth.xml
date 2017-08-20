@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_activity_title">Uwierzytelnianie</string>
+
+    <!-- Hints -->
+    <string name="auth_hint_password">Hasło</string>
+    <string name="auth_hint_pin">PIN</string>
+
+    <!-- Messages -->
+    <string name="auth_msg_password">Wprowadź proszę hasło aby otworzyć andOTP</string>
+    <string name="auth_msg_pin">Wprowadź proszę PIN aby odtworzyć andOTP</string>
+
+    <!-- Toast messages -->
+    <string name="auth_toast_password_missing">Proszę ustaw hasło w ustawieniach!</string>
+    <string name="auth_toast_pin_missing">Proszę ustaw PIN w ustawieniach!</string>
+</resources>
