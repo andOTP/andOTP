@@ -1,6 +1,8 @@
 <resources>
 
     <!-- Buttons -->
+    <string name="button_cancel">Anuluj</string>
+
     <string name="button_enter_details">Wprowadź szczegóły</string>
     <string name="button_scan_qr">Skanuj kod QR</string>
     <string name="button_save">Zapisz</string>
@@ -18,6 +20,7 @@
     <string name="label_type">Napisz</string>
     <string name="label_secret">Sekret</string>
     <string name="label_period">Okres</string>
+    <string name="label_digits">Cyfry</string>
     <string name="label_label">Etykieta</string>
     <string name="label_algorithm">Algorytm</string>
 
@@ -35,6 +38,7 @@
     <string name="menu_popup_remove">Usuń</string>
 
     <!-- Toast messages -->
+    <string name="toast_auth_failed">Autoryzacja nie powiodła się, zamykam aplikacje</string>
     <string name="toast_copied_to_clipboard">Skopiowano do schowka</string>
     <string name="toast_invalid_qr_code">Nieprawidłowy kod QR</string>
 
