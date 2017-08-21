@@ -2,6 +2,7 @@
 
     <!-- Buttons -->
     <string name="button_cancel">Anuluj</string>
+
     <string name="button_enter_details">Wprowadź szczegóły</string>
     <string name="button_scan_qr">Skanuj kod QR</string>
     <string name="button_save">Zapisz</string>

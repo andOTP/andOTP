@@ -25,6 +25,8 @@ package org.shadowice.flocke.andotp;
 
 import android.app.Application;
 
+import org.shadowice.flocke.andotp.Utilities.PRNGFixes;
+
 public class MyApplication extends Application {
     @Override
     public void onCreate() {

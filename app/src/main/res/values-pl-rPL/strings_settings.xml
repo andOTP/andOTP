@@ -26,7 +26,6 @@
     <string name="settings_desc_tap_to_reveal">Domyślnie ukrywaj tokeny OTP, wymaga kliknięcia aby odkryć token</string>
 
     <string name="settings_desc_backup_password">Ustaw hasło używane do szyfrowania kopii</string>
-
     <string name="settings_desc_openpgp_sign">Każda szyfrowana kopia dodatkowo jest podpisywana Twoim kluczem (wymaga hasła)</string>
     <string name="settings_desc_openpgp_verify">Szyfrowane kopie mogą zostać zaimportowane tylko gdy zostały podpisane Twoim kluczem</string>
 

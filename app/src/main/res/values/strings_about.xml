@@ -23,13 +23,18 @@
     <string name="about_label_github">Github</string>
     <string name="about_label_donate">Donate</string>
 
-    <string name="about_name_author1">Jakob Nixdorf</string>
-    <string name="about_name_author2">Bruno Bierbaumer</string>
+    <string name="about_name_author1" translatable="false">Jakob Nixdorf</string>
+    <string name="about_name_author2" translatable="false">Bruno Bierbaumer</string>
+
+    <string name="about_label_contributors">Contributors</string>
+    <string name="about_label_translators">Translators</string>
 
     <!-- Support -->
     <string name="about_title_support">Support development</string>
 
     <string name="about_label_report_bugs">Report Bugs</string>
+    <string name="about_label_translate">Translate</string>
 
     <string name="about_desc_report_bugs">Report bugs or request new features</string>
+    <string name="about_desc_translate">Help to translate andOTP to your language</string>
 </resources>

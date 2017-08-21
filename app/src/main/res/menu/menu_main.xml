@@ -2,6 +2,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/menu_sort"
+        android:title="@string/menu_main_sort"
+        android:icon="@drawable/ic_sort_inverted_white"
+        app:showAsAction="always" >
+
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_sort_none"
+                    android:title="@string/menu_sort_none"
+                    android:checked="true" />
+
+                <item
+                    android:id="@+id/menu_sort_label"
+                    android:title="@string/menu_sort_label" />
+            </group>
+        </menu>
+
+    </item>
+
+    <item
         android:id="@+id/menu_search"
         android:title="@string/menu_main_search"
         android:icon="@drawable/ic_search_white"

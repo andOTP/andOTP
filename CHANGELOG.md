@@ -1,5 +1,26 @@
 # Changelog
 
+#### v0.2.6
+
+ * New feature: custom password preference with confirmation (Issue #26)
+ * New feature: use an individual password or PIN to lock the app (Issue #23)
+ * New feature: support for Panic Trigger (PR #27 by carmebar)
+ * New feature: support for variable digits lenths (PR #30 by SuperVirus)
+ * Bug fix: OpenPGP with security token (Issue #20, PR #25 by carmebar)
+ * Style/UI: add Contributors, Translators and Translate to About
+ * Code: internal refactoring
+ * Translation: German (de-rDE) thanks to SuperVirus
+
+#### v0.2.5
+
+ * New feature: sort the entries by label (Issue #12)
+ * New feature: add support for SHA256 and SHA512 (Issue #24)
+ * Bug fix: show current theme in the settings
+ * Bug fix: don't show FloatingActionMenu when scrolling while searching
+ * Code: lots of internal refactoring
+ * Translation: Polish (pl-rPL) thanks to Daniel Pustuła
+ * Translation: Spanish (es-rES) thanks to Carlos Melero
+
 #### v0.2.4
 
  * New feature: make the font size of the labels configurable (Issue #18)
