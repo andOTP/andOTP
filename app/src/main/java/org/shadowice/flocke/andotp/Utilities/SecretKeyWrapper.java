@@ -21,6 +21,8 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.security.KeyPairGeneratorSpec;
+import android.security.keystore.KeyGenParameterSpec;
+import android.security.keystore.KeyProperties;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -28,6 +30,7 @@ import java.security.GeneralSecurityException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
+import java.security.spec.AlgorithmParameterSpec;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -67,8 +70,7 @@ public class SecretKeyWrapper {
 
         // Even if we just generated the key, always read it back to ensure we
         // can read it successfully.
-        final KeyStore.PrivateKeyEntry entry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(
-                alias, null);
+        final KeyStore.PrivateKeyEntry entry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(alias, null);
         mPair = new KeyPair(entry.getCertificate().getPublicKey(), entry.getPrivateKey());
     }
 
@@ -79,13 +81,25 @@ public class SecretKeyWrapper {
         final Calendar end = new GregorianCalendar();
         end.add(Calendar.YEAR, 100);
 
-        final KeyPairGeneratorSpec spec = new KeyPairGeneratorSpec.Builder(context)
-                .setAlias(alias)
-                .setSubject(new X500Principal("CN=" + alias))
-                .setSerialNumber(BigInteger.ONE)
-                .setStartDate(start.getTime())
-                .setEndDate(end.getTime())
-                .build();
+        AlgorithmParameterSpec spec;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            spec = new KeyGenParameterSpec.Builder(alias, KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+                    .setCertificateSubject(new X500Principal("CN=" + alias))
+                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_RSA_PKCS1)
+                    .setCertificateSerialNumber(BigInteger.ONE)
+                    .setCertificateNotBefore(start.getTime())
+                    .setCertificateNotAfter(end.getTime())
+                    .build();
+        } else {
+            spec = new KeyPairGeneratorSpec.Builder(context)
+                    .setAlias(alias)
+                    .setSubject(new X500Principal("CN=" + alias))
+                    .setSerialNumber(BigInteger.ONE)
+                    .setStartDate(start.getTime())
+                    .setEndDate(end.getTime())
+                    .build();
+        }
 
         final KeyPairGenerator gen = KeyPairGenerator.getInstance("RSA", "AndroidKeyStore");
 
