@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Keys -->
-    <string name="settings_key_cat_security">pref_cat_security</string>
+    <string name="settings_key_cat_security" translatable="false">pref_cat_security</string>
 
     <string name="settings_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>
     <string name="settings_key_auth" translatable="false">pref_auth</string>
