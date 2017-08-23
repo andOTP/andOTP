@@ -76,14 +76,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         return displayedEntries.size();
     }
 
-    public int getFullItemCount() {
-        return entries.size();
-    }
-
-    public Entry getItem(int i) {
-        return entries.get(i);
-    }
-
     public void addEntry(Entry e) {
         entries.add(e);
         entriesChanged();
@@ -105,6 +97,18 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void loadEntries() {
         entries = DatabaseHelper.loadDatabase(context);
         entriesChanged();
+    }
+
+    public void updateTokens() {
+        boolean change = false;
+
+        for(int i =0;i < entries.size(); i++){
+            boolean item_changed = entries.get(i).updateOTP();
+            change = change || item_changed;
+        }
+
+        if (change)
+            notifyDataSetChanged();
     }
 
     @Override

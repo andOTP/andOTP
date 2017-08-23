@@ -253,14 +253,7 @@ public class MainActivity extends BaseActivity
                 animation.setInterpolator(new LinearInterpolator());
                 animation.start();
 
-                boolean change = false;
-                for(int i =0;i < adapter.getFullItemCount(); i++){
-                    boolean item_changed = adapter.getItem(i).updateOTP();
-                    change = change || item_changed;
-                }
-
-                if (change)
-                    adapter.notifyDataSetChanged();
+                adapter.updateTokens();
 
                 handler.postDelayed(this, 1000);
             }
