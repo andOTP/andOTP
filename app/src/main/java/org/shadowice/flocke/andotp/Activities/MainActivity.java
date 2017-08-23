@@ -32,7 +32,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -60,6 +59,8 @@ import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCal
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 
+import java.util.Locale;
+
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
 public class MainActivity extends BaseActivity
@@ -86,20 +87,20 @@ public class MainActivity extends BaseActivity
 
     // Manual data entry
     private void enterDetails() {
-        ViewGroup container = (ViewGroup) findViewById(R.id.main_content);
+        ViewGroup container = findViewById(R.id.main_content);
         View inputView = getLayoutInflater().inflate(R.layout.dialog_manual_entry, container, false);
 
-        final Spinner typeInput = (Spinner) inputView.findViewById(R.id.manual_type);
-        final EditText labelInput = (EditText) inputView.findViewById(R.id.manual_label);
-        final EditText secretInput = (EditText) inputView.findViewById(R.id.manual_secret);
-        final EditText periodInput = (EditText) inputView.findViewById(R.id.manual_period);
-        final EditText digitsInput = (EditText) inputView.findViewById(R.id.manual_digits);
-        final Spinner algorithmInput = (Spinner) inputView.findViewById(R.id.manual_algorithm);
+        final Spinner typeInput = inputView.findViewById(R.id.manual_type);
+        final EditText labelInput = inputView.findViewById(R.id.manual_label);
+        final EditText secretInput = inputView.findViewById(R.id.manual_secret);
+        final EditText periodInput = inputView.findViewById(R.id.manual_period);
+        final EditText digitsInput = inputView.findViewById(R.id.manual_digits);
+        final Spinner algorithmInput = inputView.findViewById(R.id.manual_algorithm);
 
         typeInput.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Entry.OTPType.values()));
         algorithmInput.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, TokenCalculator.HashAlgorithm.values()));
-        periodInput.setText(Integer.toString(TokenCalculator.TOTP_DEFAULT_PERIOD));
-        digitsInput.setText(Integer.toString(TokenCalculator.TOTP_DEFAULT_DIGITS));
+        periodInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_PERIOD));
+        digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dialog_title_manual_entry)
@@ -132,7 +133,7 @@ public class MainActivity extends BaseActivity
     }
 
     private void showFirstTimeWarning() {
-        ViewGroup container = (ViewGroup) findViewById(R.id.main_content);
+        ViewGroup container = findViewById(R.id.main_content);
         View msgView = getLayoutInflater().inflate(R.layout.dialog_security_backup, container, false);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -167,7 +168,7 @@ public class MainActivity extends BaseActivity
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -193,9 +194,9 @@ public class MainActivity extends BaseActivity
             }
         });
 
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        final ProgressBar progressBar = findViewById(R.id.progressBar);
 
-        RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
+        RecyclerView recList = findViewById(R.id.cardList);
         recList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -353,9 +354,9 @@ public class MainActivity extends BaseActivity
             }
         });
 
-        MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
+        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
-            public boolean onMenuItemActionExpand(MenuItem item) {
+            public boolean onMenuItemActionExpand(MenuItem menuItem) {
                 floatingActionMenu.hide();
                 touchHelperCallback.setDragEnabled(false);
                 if (sortMenu != null)
@@ -364,7 +365,7 @@ public class MainActivity extends BaseActivity
             }
 
             @Override
-            public boolean onMenuItemActionCollapse(MenuItem item) {
+            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
                 floatingActionMenu.show();
                 if (adapter == null || adapter.getSortMode() == SortMode.UNSORTED)
                     touchHelperCallback.setDragEnabled(true);

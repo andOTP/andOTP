@@ -70,16 +70,16 @@ public class AboutActivity extends BaseActivity {
         setTitle(R.string.about_activity_title);
         setContentView(R.layout.activity_container);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.container_toolbar);
+        Toolbar toolbar = findViewById(R.id.container_toolbar);
         setSupportActionBar(toolbar);
 
-        ViewStub stub = (ViewStub) findViewById(R.id.container_stub);
+        ViewStub stub = findViewById(R.id.container_stub);
         stub.setLayoutResource(R.layout.content_about);
         View v = stub.inflate();
 
         ColorFilter filter = ThemeHelper.getThemeColorFilter(this, android.R.attr.textColorSecondary);
         for (int i : imageResources) {
-            ImageView imgView = (ImageView) v.findViewById(i);
+            ImageView imgView = v.findViewById(i);
             imgView.getDrawable().setColorFilter(filter);
         }
 
@@ -91,13 +91,13 @@ public class AboutActivity extends BaseActivity {
             e.printStackTrace();
         }
 
-        TextView version = (TextView) v.findViewById(R.id.about_text_version);
+        TextView version = v.findViewById(R.id.about_text_version);
         version.setText(versionName);
 
-        LinearLayout license = (LinearLayout) v.findViewById(R.id.about_layout_license);
-        LinearLayout changelog = (LinearLayout) v.findViewById(R.id.about_layout_changelog);
-        LinearLayout source = (LinearLayout) v.findViewById(R.id.about_layout_source);
-        LinearLayout licenses = (LinearLayout) v.findViewById(R.id.about_layout_licenses);
+        LinearLayout license = v.findViewById(R.id.about_layout_license);
+        LinearLayout changelog = v.findViewById(R.id.about_layout_changelog);
+        LinearLayout source = v.findViewById(R.id.about_layout_source);
+        LinearLayout licenses = v.findViewById(R.id.about_layout_licenses);
         license.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,8 +123,8 @@ public class AboutActivity extends BaseActivity {
             }
         });
 
-        TextView author1GitHub = (TextView) v.findViewById(R.id.about_author1_github);
-        TextView author1Paypal = (TextView) v.findViewById(R.id.about_author1_paypal);
+        TextView author1GitHub = v.findViewById(R.id.about_author1_github);
+        TextView author1Paypal = v.findViewById(R.id.about_author1_paypal);
         author1GitHub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,8 +138,8 @@ public class AboutActivity extends BaseActivity {
             }
         });
 
-        TextView author2GitHub = (TextView) v.findViewById(R.id.about_author2_github);
-        TextView author2App = (TextView) v.findViewById(R.id.about_author2_app);
+        TextView author2GitHub = v.findViewById(R.id.about_author2_github);
+        TextView author2App = v.findViewById(R.id.about_author2_app);
         author2GitHub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,8 +153,8 @@ public class AboutActivity extends BaseActivity {
             }
         });
 
-        LinearLayout contributors = (LinearLayout) v.findViewById(R.id.about_layout_contributors);
-        LinearLayout translators = (LinearLayout) v.findViewById(R.id.about_layout_translators);
+        LinearLayout contributors = v.findViewById(R.id.about_layout_contributors);
+        LinearLayout translators = v.findViewById(R.id.about_layout_translators);
         contributors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,8 +168,8 @@ public class AboutActivity extends BaseActivity {
             }
         });
 
-        LinearLayout bugReport = (LinearLayout) v.findViewById(R.id.about_layout_bugs);
-        LinearLayout translate = (LinearLayout) v.findViewById(R.id.about_layout_translate);
+        LinearLayout bugReport = v.findViewById(R.id.about_layout_bugs);
+        LinearLayout translate = v.findViewById(R.id.about_layout_translate);
         bugReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

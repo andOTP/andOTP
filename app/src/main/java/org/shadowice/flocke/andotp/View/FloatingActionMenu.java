@@ -57,13 +57,13 @@ public class FloatingActionMenu {
         fabOpenAnimation = AnimationUtils.loadAnimation(context, R.anim.fab_open);
         fabCloseAnimation = AnimationUtils.loadAnimation(context, R.anim.fab_close);
 
-        baseFloatingActionButton = (FloatingActionButton) mainLayout.findViewById(R.id.baseFloatingActionButton);
+        baseFloatingActionButton = mainLayout.findViewById(R.id.baseFloatingActionButton);
 
-        qrFAB = (FloatingActionButton) mainLayout.findViewById(R.id.qrFAB);
-        manualFAB = (FloatingActionButton) mainLayout.findViewById(R.id.manualFAB);
+        qrFAB = mainLayout.findViewById(R.id.qrFAB);
+        manualFAB = mainLayout.findViewById(R.id.manualFAB);
 
-        qrLayout = (LinearLayout) mainLayout.findViewById(R.id.qrLayout);
-        manualLayout = (LinearLayout) mainLayout.findViewById(R.id.manualLayout);
+        qrLayout = mainLayout.findViewById(R.id.qrLayout);
+        manualLayout = mainLayout.findViewById(R.id.manualLayout);
 
         baseFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override

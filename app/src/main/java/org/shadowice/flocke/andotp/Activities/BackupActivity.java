@@ -101,17 +101,17 @@ public class BackupActivity extends BaseActivity {
         setTitle(R.string.backup_activity_title);
         setContentView(R.layout.activity_container);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.container_toolbar);
+        Toolbar toolbar = findViewById(R.id.container_toolbar);
         setSupportActionBar(toolbar);
 
-        ViewStub stub = (ViewStub) findViewById(R.id.container_stub);
+        ViewStub stub = findViewById(R.id.container_stub);
         stub.setLayoutResource(R.layout.content_backup);
         View v = stub.inflate();
 
         // Plain-text
 
-        LinearLayout backupPlain = (LinearLayout) v.findViewById(R.id.button_backup_plain);
-        LinearLayout restorePlain = (LinearLayout) v.findViewById(R.id.button_restore_plain);
+        LinearLayout backupPlain = v.findViewById(R.id.button_backup_plain);
+        LinearLayout restorePlain = v.findViewById(R.id.button_restore_plain);
 
         backupPlain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,9 +129,9 @@ public class BackupActivity extends BaseActivity {
 
         // Password
 
-        TextView cryptSetup = (TextView) v.findViewById(R.id.msg_crypt_setup);
-        LinearLayout backupCrypt = (LinearLayout) v.findViewById(R.id.button_backup_crypt);
-        LinearLayout restoreCrypt = (LinearLayout) v.findViewById(R.id.button_restore_crypt);
+        TextView cryptSetup = v.findViewById(R.id.msg_crypt_setup);
+        LinearLayout backupCrypt = v.findViewById(R.id.button_backup_crypt);
+        LinearLayout restoreCrypt = v.findViewById(R.id.button_restore_crypt);
 
         if (settings.getBackupPassword().isEmpty()) {
             cryptSetup.setVisibility(View.VISIBLE);
@@ -162,9 +162,9 @@ public class BackupActivity extends BaseActivity {
         String PGPProvider = settings.getOpenPGPProvider();
         pgpKeyId = settings.getOpenPGPKey();
 
-        TextView setupPGP = (TextView) v.findViewById(R.id.msg_openpgp_setup);
-        LinearLayout backupPGP = (LinearLayout) v.findViewById(R.id.button_backup_openpgp);
-        LinearLayout restorePGP = (LinearLayout) v.findViewById(R.id.button_restore_openpgp);
+        TextView setupPGP = v.findViewById(R.id.msg_openpgp_setup);
+        LinearLayout backupPGP = v.findViewById(R.id.button_backup_openpgp);
+        LinearLayout restorePGP = v.findViewById(R.id.button_restore_openpgp);
 
         if (TextUtils.isEmpty(PGPProvider)) {
             setupPGP.setVisibility(View.VISIBLE);

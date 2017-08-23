@@ -59,18 +59,18 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         this.context = context;
 
-        card = (CardView) v.findViewById(R.id.card_view);
-        value = (TextView) v.findViewById(R.id.valueText);
-        valueLayout = (LinearLayout) v.findViewById(R.id.valueLayout);
-        visibleImg = (ImageView) v.findViewById(R.id.valueImg);
-        coverLayout = (LinearLayout) v.findViewById(R.id.coverLayout);
-        label = (TextView) v.findViewById(R.id.textViewLabel);
-        customPeriodLayout = (LinearLayout) v.findViewById(R.id.customPeriodLayout);
-        customPeriod = (TextView) v.findViewById(R.id.customPeriod);
+        card = v.findViewById(R.id.card_view);
+        value = v.findViewById(R.id.valueText);
+        valueLayout = v.findViewById(R.id.valueLayout);
+        visibleImg = v.findViewById(R.id.valueImg);
+        coverLayout = v.findViewById(R.id.coverLayout);
+        label = v.findViewById(R.id.textViewLabel);
+        customPeriodLayout = v.findViewById(R.id.customPeriodLayout);
+        customPeriod = v.findViewById(R.id.customPeriod);
 
-        ImageButton menuButton = (ImageButton) v.findViewById(R.id.menuButton);
-        ImageButton copyButton = (ImageButton) v.findViewById(R.id.copyButton);
-        ImageView invisibleImg = (ImageView) v.findViewById(R.id.coverImg);
+        ImageButton menuButton = v.findViewById(R.id.menuButton);
+        ImageButton copyButton = v.findViewById(R.id.copyButton);
+        ImageView invisibleImg = v.findViewById(R.id.coverImg);
 
         // Style the buttons in the current theme colors
         ColorFilter colorFilter = ThemeHelper.getThemeColorFilter(context, android.R.attr.textColorSecondary);

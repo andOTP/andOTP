@@ -53,17 +53,17 @@ public class AuthenticateActivity extends BaseActivity
         setTitle(R.string.auth_activity_title);
         setContentView(R.layout.activity_container);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.container_toolbar);
+        Toolbar toolbar = findViewById(R.id.container_toolbar);
         toolbar.setNavigationIcon(null);
         setSupportActionBar(toolbar);
 
-        ViewStub stub = (ViewStub) findViewById(R.id.container_stub);
+        ViewStub stub = findViewById(R.id.container_stub);
         stub.setLayoutResource(R.layout.content_authenticate);
         View v = stub.inflate();
 
-        TextView passwordLabel = (TextView) v.findViewById(R.id.passwordLabel);
-        TextInputLayout passwordLayout = (TextInputLayout) v.findViewById(R.id.passwordLayout);
-        TextInputEditText passwordInput = (TextInputEditText) v.findViewById(R.id.passwordEdit);
+        TextView passwordLabel = v.findViewById(R.id.passwordLabel);
+        TextInputLayout passwordLayout = v.findViewById(R.id.passwordLayout);
+        TextInputEditText passwordInput = v.findViewById(R.id.passwordEdit);
 
         AuthMethod authMethod = settings.getAuthMethod();
 

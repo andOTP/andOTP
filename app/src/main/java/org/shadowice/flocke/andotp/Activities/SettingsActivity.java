@@ -51,10 +51,10 @@ public class SettingsActivity extends BaseActivity
         setTitle(R.string.settings_activity_title);
         setContentView(R.layout.activity_container);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.container_toolbar);
+        Toolbar toolbar = findViewById(R.id.container_toolbar);
         setSupportActionBar(toolbar);
 
-        ViewStub stub = (ViewStub) findViewById(R.id.container_stub);
+        ViewStub stub = findViewById(R.id.container_stub);
         stub.inflate();
 
         fragment = new SettingsFragment();

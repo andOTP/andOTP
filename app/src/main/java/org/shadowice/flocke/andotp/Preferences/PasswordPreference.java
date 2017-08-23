@@ -77,12 +77,12 @@ public class PasswordPreference extends DialogPreference
 
     @Override
     protected void onBindDialogView(View view) {
-        TextInputLayout passwordLayout = (TextInputLayout) view.findViewById(R.id.passwordLayout);
-        passwordInput = (TextInputEditText) view.findViewById(R.id.passwordEdit);
-        passwordConfirm = (EditText) view.findViewById(R.id.passwordConfirm);
+        TextInputLayout passwordLayout = view.findViewById(R.id.passwordLayout);
+        passwordInput = view.findViewById(R.id.passwordEdit);
+        passwordConfirm = view.findViewById(R.id.passwordConfirm);
 
-        Button btnCancel = (Button) view.findViewById(R.id.btnCancel);
-        btnSave = (Button) view.findViewById(R.id.btnSave);
+        Button btnCancel = view.findViewById(R.id.btnCancel);
+        btnSave = view.findViewById(R.id.btnSave);
         btnSave.setEnabled(false);
 
         btnCancel.setOnClickListener(this);
