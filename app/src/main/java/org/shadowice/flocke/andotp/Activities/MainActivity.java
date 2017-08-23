@@ -149,9 +149,16 @@ public class MainActivity extends BaseActivity
                 .show();
     }
 
-    private void restoreSortMode(EntriesCardAdapter adapter) {
-        if (settings != null)
-            adapter.setSortMode(settings.getSortMode());
+    private void restoreSortMode() {
+        if (settings != null && adapter != null && touchHelperCallback != null) {
+            SortMode mode = settings.getSortMode();
+            adapter.setSortMode(mode);
+
+            if (mode == SortMode.LABEL)
+                touchHelperCallback.setDragEnabled(false);
+            else
+                touchHelperCallback.setDragEnabled(true);
+        }
     }
 
     private void saveSortMode(SortMode mode) {
@@ -219,11 +226,11 @@ public class MainActivity extends BaseActivity
             }
         });
 
-        restoreSortMode(adapter);
-
         touchHelperCallback = new SimpleItemTouchHelperCallback(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(touchHelperCallback);
         touchHelper.attachToRecyclerView(recList);
+
+        restoreSortMode();
 
         float durationScale = android.provider.Settings.Global.getFloat(this.getContentResolver(), android.provider.Settings.Global.ANIMATOR_DURATION_SCALE, 0);
         final long animatorDuration = (long) (1000 / durationScale);
