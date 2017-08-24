@@ -23,6 +23,14 @@
             android:entryValues="@array/settings_values_auth"
             android:defaultValue="@string/settings_default_auth" />
 
+        <MultiSelectListPreference
+            android:key="@string/settings_key_panic"
+            android:order="4"
+            android:title="@string/settings_title_panic"
+            android:summary="@string/settings_desc_panic"
+            android:entries="@array/settings_entries_panic"
+            android:entryValues="@array/settings_values_panic" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

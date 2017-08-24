@@ -7,6 +7,7 @@
     <string name="settings_key_auth" translatable="false">pref_auth</string>
     <string name="settings_key_auth_password" translatable="false">pref_auth_password</string>
     <string name="settings_key_auth_pin" translatable="false">pref_auth_pin</string>
+    <string name="settings_key_panic" translatable="false">pref_panic</string>
 
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size</string>
@@ -31,6 +32,11 @@
         <item>password</item>
         <item>pin</item>
         <item>device</item>
+    </string-array>
+
+    <string-array name="settings_values_panic" translatable="false">
+        <item>accounts</item>
+        <item>settings</item>
     </string-array>
 
     <string-array name="settings_values_theme" translatable="false">

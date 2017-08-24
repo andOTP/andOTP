@@ -28,6 +28,10 @@ import android.preference.PreferenceManager;
 
 import org.shadowice.flocke.andotp.R;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Set;
+
 public class Settings {
     private Context context;
     private SharedPreferences settings;
@@ -77,6 +81,11 @@ public class Settings {
                 .apply();
     }
 
+    public void clear() {
+        settings.edit().clear().commit();
+        PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
+    }
+
 
 
     public void registerPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
@@ -96,6 +105,10 @@ public class Settings {
 
     public String getAuthPIN() {
         return getString(R.string.settings_key_auth_pin, "");
+    }
+
+    public Set<String> getPanicResponse() {
+        return settings.getStringSet(getResString(R.string.settings_key_panic), Collections.<String>emptySet());
     }
 
     public String getTheme() {
