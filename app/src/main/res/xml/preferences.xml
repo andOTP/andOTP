@@ -29,7 +29,8 @@
             android:title="@string/settings_title_panic"
             android:summary="@string/settings_desc_panic"
             android:entries="@array/settings_entries_panic"
-            android:entryValues="@array/settings_values_panic" />
+            android:entryValues="@array/settings_values_panic"
+            android:defaultValue="@array/settings_empty_array" />
 
     </PreferenceCategory>
 

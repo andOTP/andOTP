@@ -44,6 +44,10 @@
         <item>dark</item>
     </string-array>
 
+    <!-- Misc -->
+    <string-array name="settings_empty_array" translatable="false">
+    </string-array>
+
     <!-- Constraints -->
     <integer name="settings_min_label_size">4</integer>
     <integer name="settings_max_label_size">12</integer>
