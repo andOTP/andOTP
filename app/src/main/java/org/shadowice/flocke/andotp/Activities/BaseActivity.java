@@ -23,7 +23,10 @@
 package org.shadowice.flocke.andotp.Activities;
 
 import android.app.KeyguardManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -35,6 +38,8 @@ import static org.shadowice.flocke.andotp.Utilities.Settings.AuthMethod;
 
 public class BaseActivity extends AppCompatActivity {
     private static final int INTENT_INTERNAL_AUTHENTICATE   = 1;
+
+    private ScreenOffReceiver screenOffReceiver = new ScreenOffReceiver();
 
     public Settings settings;
 
@@ -51,6 +56,15 @@ public class BaseActivity extends AppCompatActivity {
         }
 
         super.onCreate(savedInstanceState);
+
+        registerReceiver(screenOffReceiver, screenOffReceiver.filter);
+    }
+
+    @Override
+    protected void onDestroy(){
+        unregisterReceiver(screenOffReceiver);
+
+        super.onDestroy();
     }
 
     public void authenticate() {
@@ -81,5 +95,28 @@ public class BaseActivity extends AppCompatActivity {
                 finish();
             }
         }
+    }
+
+    private class ScreenOffReceiver extends BroadcastReceiver{
+
+        final IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+
+        @Override
+        public void onReceive(Context context, Intent intent){
+            if(intent != null
+                    && Intent.ACTION_SCREEN_OFF.equals(intent.getAction())){
+
+                //lock only if the auth method is set
+                if(settings.getAuthMethod() != AuthMethod.NONE){
+                    if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
+                        finishAndRemoveTask();
+                    } else {
+                        finish();
+                    }
+                }
+
+            }
+        }
+
     }
 }
