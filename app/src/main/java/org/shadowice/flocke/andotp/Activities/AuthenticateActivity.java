@@ -42,7 +42,7 @@ import org.shadowice.flocke.andotp.R;
 
 import static org.shadowice.flocke.andotp.Utilities.Settings.AuthMethod;
 
-public class AuthenticateActivity extends BaseActivity
+public class AuthenticateActivity extends ThemedActivity
     implements EditText.OnEditorActionListener {
     private String password;
 

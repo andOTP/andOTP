@@ -25,6 +25,7 @@ package org.shadowice.flocke.andotp.Activities;
 
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
+import android.app.KeyguardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -52,6 +53,7 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.View.FloatingActionMenu;
@@ -65,14 +67,17 @@ import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
 public class MainActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private static final int INTENT_INTERNAL_SETTINGS   = 101;
-    private static final int INTENT_INTERNAL_BACKUP     = 102;
+    private static final int INTENT_INTERNAL_AUTHENTICATE   = 100;
+    private static final int INTENT_INTERNAL_SETTINGS       = 101;
+    private static final int INTENT_INTERNAL_BACKUP         = 102;
 
     private EntriesCardAdapter adapter;
     private FloatingActionMenu floatingActionMenu;
     private SearchView searchView;
     private MenuItem sortMenu;
     private SimpleItemTouchHelperCallback touchHelperCallback;
+
+    private boolean requireAuthentication = false;
 
     private Handler handler;
     private Runnable handlerTask;
@@ -149,6 +154,21 @@ public class MainActivity extends BaseActivity
                 .show();
     }
 
+    public void authenticate() {
+        Settings.AuthMethod authMethod = settings.getAuthMethod();
+
+        if (authMethod == Settings.AuthMethod.DEVICE) {
+            KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && km.isKeyguardSecure()) {
+                Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
+                startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
+            }
+        } else if (authMethod == Settings.AuthMethod.PASSWORD || authMethod == Settings.AuthMethod.PIN) {
+            Intent authIntent = new Intent(this, AuthenticateActivity.class);
+            startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
+        }
+    }
+
     private void restoreSortMode() {
         if (settings != null && adapter != null && touchHelperCallback != null) {
             SortMode mode = settings.getSortMode();
@@ -182,7 +202,14 @@ public class MainActivity extends BaseActivity
         settings.registerPreferenceChangeListener(this);
 
         if (savedInstanceState == null)
-            authenticate();
+            requireAuthentication = true;
+
+        setBroadcastCallback(new BroadcastReceivedCallback() {
+            @Override
+            public void onReceivedScreenOff() {
+                requireAuthentication = true;
+            }
+        });
 
         if (! settings.getFirstTimeWarningShown()) {
            showFirstTimeWarning();
@@ -279,6 +306,12 @@ public class MainActivity extends BaseActivity
     @Override
     public void onResume() {
         super.onResume();
+
+        if (requireAuthentication) {
+            requireAuthentication = false;
+            authenticate();
+        }
+
         startUpdater();
     }
 
@@ -317,6 +350,18 @@ public class MainActivity extends BaseActivity
         } else if (requestCode == INTENT_INTERNAL_BACKUP && resultCode == RESULT_OK) {
             if (intent.getBooleanExtra("reload", false))
                 adapter.loadEntries();
+        } else if (requestCode == INTENT_INTERNAL_AUTHENTICATE) {
+            if (resultCode != RESULT_OK) {
+                Toast.makeText(getBaseContext(), R.string.toast_auth_failed, Toast.LENGTH_LONG).show();
+
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    finishAndRemoveTask();
+                } else {
+                    finish();
+                }
+            } else {
+                requireAuthentication = false;
+            }
         }
     }
 

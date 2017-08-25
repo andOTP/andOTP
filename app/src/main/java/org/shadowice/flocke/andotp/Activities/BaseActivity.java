@@ -22,64 +22,55 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
-import android.app.KeyguardManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
-import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Utilities.Settings;
-
-import static org.shadowice.flocke.andotp.Utilities.Settings.AuthMethod;
-
-public class BaseActivity extends AppCompatActivity {
-    private static final int INTENT_INTERNAL_AUTHENTICATE   = 1;
-
-    public Settings settings;
+public abstract class BaseActivity extends ThemedActivity {
+    private ScreenOffReceiver screenOffReceiver;
+    private BroadcastReceivedCallback broadcastReceivedCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        settings = new Settings(this);
-
-        String theme = settings.getTheme();
-
-        if (theme.equals("light")) {
-            setTheme(R.style.AppTheme_NoActionBar);
-        } else if (theme.equals("dark")) {
-            setTheme(R.style.AppTheme_Dark_NoActionBar);
-        }
-
         super.onCreate(savedInstanceState);
-    }
 
-    public void authenticate() {
-        AuthMethod authMethod = settings.getAuthMethod();
-
-        if (authMethod == AuthMethod.DEVICE) {
-            KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && km.isKeyguardSecure()) {
-                Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
-                startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
-            }
-        } else if (authMethod == AuthMethod.PASSWORD || authMethod == AuthMethod.PIN) {
-            Intent authIntent = new Intent(this, AuthenticateActivity.class);
-            startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
-        }
+        screenOffReceiver = new ScreenOffReceiver();
+        registerReceiver(screenOffReceiver, screenOffReceiver.filter);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
+    protected void onDestroy() {
+        unregisterReceiver(screenOffReceiver);
 
-        if (requestCode == INTENT_INTERNAL_AUTHENTICATE && resultCode != RESULT_OK) {
-            Toast.makeText(getBaseContext(), R.string.toast_auth_failed, Toast.LENGTH_LONG).show();
+        super.onDestroy();
+    }
 
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                finishAndRemoveTask();
-            } else {
-                finish();
+    private void destroyIfNotMain() {
+        if (getClass() != MainActivity.class)
+            finish();
+    }
+
+    public void setBroadcastCallback(BroadcastReceivedCallback cb) {
+        this.broadcastReceivedCallback = cb;
+    }
+
+    public class ScreenOffReceiver extends BroadcastReceiver {
+        public IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                if (broadcastReceivedCallback != null)
+                    broadcastReceivedCallback.onReceivedScreenOff();
+
+                destroyIfNotMain();
             }
         }
+    }
+
+    interface BroadcastReceivedCallback {
+        void onReceivedScreenOff();
     }
 }
