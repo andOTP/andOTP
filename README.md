@@ -14,6 +14,10 @@ This is a fork of the great OTP Authenticator app written by Bruno Bierbaumer,
 which has sadly been inactive since 2015. All credit for the original version
 goes to Bruno.
 
+## Help wanted:
+I currently don't have that much time to spend developing andOTP, so any contributions are always welcome.
+Don't worry, I will still continue to develop andOTP it will just slow down from the incredible speed I had going in the beginning.
+
 ## Features:
 
  * Free and Open-Source

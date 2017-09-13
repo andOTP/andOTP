@@ -1,5 +1,13 @@
 # Changelog
 
+#### v0.2.7
+
+ * New feature: require authentication again after screen lock (Issue #28)
+ * New feature: make response to Panic Trigger configurable (Issue #35)
+ * Update: Android SDK 26 (Oreo)
+ * Update: Apache Commons Codec 1.10
+ * Code: lot of internal changes (mostly due to the Android 26 update)
+
 #### v0.2.6
 
  * New feature: custom password preference with confirmation (Issue #26)
