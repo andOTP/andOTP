@@ -77,8 +77,12 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public void addEntry(Entry e) {
-        entries.add(e);
-        entriesChanged();
+        if (! entries.contains(e)) {
+            entries.add(e);
+            entriesChanged();
+        } else {
+            Toast.makeText(context, R.string.toast_entry_exists, Toast.LENGTH_LONG).show();
+        }
     }
 
     private int getRealIndex(int displayPosition) {

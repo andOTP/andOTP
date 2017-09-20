@@ -41,6 +41,7 @@
     <!-- Toast messages -->
     <string name="toast_auth_failed">Authentication failed, closing andOTP!</string>
     <string name="toast_copied_to_clipboard">Copied to clipboard</string>
+    <string name="toast_entry_exists">This entry already exists</string>
     <string name="toast_invalid_qr_code">Invalid QR Code</string>
 
     <!-- Dialogs -->
