@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name" translatable="false">andOTP</string>
+
+    <!-- Buttons -->
+    <string name="button_cancel">Annuler</string>
+    <string name="button_enter_details">Ajouter avec les détails</string>
+    <string name="button_scan_qr">Scanner un QR-Code</string>
+    <string name="button_save">Enregistrer</string>
+    <string name="button_warned">Vous avez été prévenu !</string>
+
+    <!-- Custom formatting -->
+    <string name="format_custom_period">%d s</string>
+
+    <!-- Hints -->
+    <string name="hint_label">Titre</string>
+    <string name="hint_secret">Secret</string>
+
+    <!-- Labels -->
+    <string name="label_clipboard_content" translatable="false">
+      OTP Token
+    </string>
+    <string name="label_tap_to_reveal">Appuyer pour afficher</string>
+    <string name="label_type">Type</string>
+    <string name="label_secret">Secret</string>
+    <string name="label_period">Interval</string>
+    <string name="label_digits">Nombre de chiffres</string>
+    <string name="label_label">Titre</string>
+    <string name="label_algorithm">Algorythme</string>
+
+    <!-- Menu -->
+    <string name="menu_main_about">À propos</string>
+    <string name="menu_main_backup">Sauvegarde</string>
+    <string name="menu_main_search">Recherche</string>
+    <string name="menu_main_settings">Paramètres</string>
+    <string name="menu_main_sort">Trier</string>
+
+    <string name="menu_sort_none">Non trier</string>
+    <string name="menu_sort_label">Titre</string>
+
+    <string name="menu_popup_edit_label">Renommer</string>
+    <string name="menu_popup_remove">Supprimer</string>
+
+    <!-- Toast messages -->
+    <string name="toast_auth_failed">
+      L'identification a échoué, fermeture d’andOTP !
+    </string>
+    <string name="toast_copied_to_clipboard">
+      Copié dans le presse-papier
+    </string>
+    <string name="toast_invalid_qr_code">QR-Code invalide</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_title_auth">Identifiez vous</string>
+    <string name="dialog_title_manual_entry">Ajouter les détails</string>
+    <string name="dialog_title_remove">Supprimer</string>
+    <string name="dialog_title_rename">Rennomer</string>
+    <string name="dialog_title_security_backup">
+      Sécurité et sauvegardes
+    </string>
+
+    <string name="dialog_msg_auth">
+      Veuillez entrer les informations d’identification du prériphérique pour
+      démarrer andOTP.
+    </string>
+    <string name="dialog_msg_confirm_delete">
+      Êtes vous sûr de vouloir supprimer ce compte ?
+    </string>
+
+    <string name="dialog_msg_security_backup_desc">
+      Pour conserver les informations de vos comptes de manière sécurisé, cette
+      application ne les stock que chiffré. Une partie des clefs de
+      chiffrements utilisé à cet effet sont stocker dans le KeyStore d’Android.
+      Cette approche a l’avantage de séparrer les clefs des donnée de
+      l’applications et permet d’utiliser le matériel dédier à la cryptographie
+      (s'il est géré par votre périphérique).
+    </string>
+    <string name="dialog_msg_security_backup_3rd_party">
+      Néamoins, cela rend plus difficile la réalisation de sauvegardes des
+      donnée de l’application. Si vous utilisez une application tierce (comme
+      Titanium Backup), vous ne pourrez sauvegarder que les données et non les
+      clefs de chiffrement rendant les sauvegardes inexploitable.
+    </string>
+    <string name="dialog_msg_security_backup_warning">
+      Veuillez n’utiliser que les fonction de sauvegardes proposées par
+      l’application pour sauvegarder vos comptes ! Tout autre méthode
+      provoquera des perte de données.
+    </string>
+    <string name="dialog_msg_security_backup_one_time">
+      Ce message n’apparaitra plus par la suite.
+    </string>
+</resources>
