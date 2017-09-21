@@ -20,7 +20,7 @@
     <string name="about_label_main_author">Main author</string>
     <string name="about_label_original_author">Author of the original app</string>
     <string name="about_label_original_app">Original App</string>
-    <string name="about_label_github">Github</string>
+    <string name="about_label_github" translatable="false">Github</string>
     <string name="about_label_donate">Donate</string>
 
     <string name="about_name_author1" translatable="false">Jakob Nixdorf</string>
