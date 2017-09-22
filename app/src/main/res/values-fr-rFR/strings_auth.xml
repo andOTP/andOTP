@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_activity_title">Identifiez vous</string>
+
+    <!-- Hints -->
+    <string name="auth_hint_password">Mot de passe</string>
+    <string name="auth_hint_pin">Code PIN</string>
+
+    <!-- Messages -->
+    <string name="auth_msg_password">
+      Veuillez entrer votre mot de passe pour démarrer andOTP.
+    </string>
+    <string name="auth_msg_pin">
+      Veuillez entrer votre code PIN pour démarrer.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="auth_toast_password_missing">
+      Veuillez ajouter un mot de passe dans les paramètres !
+    </string>
+    <string name="auth_toast_pin_missing">
+      Veuillez ajouter un code PIN dans les paramètres !
+    </string>
+</resources>
