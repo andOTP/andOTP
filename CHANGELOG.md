@@ -4,9 +4,11 @@
 
  * New feature: require authentication again after screen lock (Issue #28)
  * New feature: make response to Panic Trigger configurable (Issue #35)
+ * Bug fix: prevent adding duplicate entries (Issue #41)
  * Update: Android SDK 26 (Oreo)
  * Update: Apache Commons Codec 1.10
  * Code: lot of internal changes (mostly due to the Android 26 update)
+ * Translation: French (fr-rFR) thanks to Johan Fleury
 
 #### v0.2.6
 
