@@ -11,6 +11,7 @@
  * Translation: French (fr-rFR) thanks to Johan Fleury
  * Translation: Durch (nl-rNL) thanks to T-v-Gerwen and rain2reign
  * Translation: Galician (gl-rES) thanks to Triskel
+ * Translation: Russian (ru-rRU) thanks to Victor Nidens, Ilia Drogaitsev and Dmitry
 
 #### v0.2.6
 

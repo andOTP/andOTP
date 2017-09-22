@@ -86,6 +86,7 @@ So make sure you have a **current backup** before switching!
  * :fr: French (fr-rFR): [Johan Fleury](https://github.com/johanfleury)
  * 🇳🇱 Dutch (nl-rNL): [T-v-Gerwen](https://crowdin.com/profile/T-v-Gerwen), [rain2reign](https://crowdin.com/profile/rain2reign)
  * Galician (gl-rES): [Triskel](https://crowdin.com/profile/triskel)
+ * :ru: Russian (ru-rRU): [Victor Nidens](https://crowdin.com/profile/vnidens), [Ilia Drogaitsev](https://crowdin.com/profile/waytoroot), [Dmitry](https://crowdin.com/profile/SaintDI)
 
 ## Screenshots:
 
