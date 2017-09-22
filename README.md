@@ -85,6 +85,7 @@ So make sure you have a **current backup** before switching!
  * :de: German (de-rDE): [SuperVirus](https://crowdin.com/profile/SuperVirus)
  * :fr: French (fr-rFR): [Johan Fleury](https://github.com/johanfleury)
  * 🇳🇱 Dutch (nl-rNL): [T-v-Gerwen](https://crowdin.com/profile/T-v-Gerwen), [rain2reign](https://crowdin.com/profile/rain2reign)
+ * Galician (gl-rES): [Triskel](https://crowdin.com/profile/triskel)
 
 ## Screenshots:
 

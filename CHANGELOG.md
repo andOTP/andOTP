@@ -10,6 +10,7 @@
  * Code: lot of internal changes (mostly due to the Android 26 update)
  * Translation: French (fr-rFR) thanks to Johan Fleury
  * Translation: Durch (nl-rNL) thanks to T-v-Gerwen and rain2reign
+ * Translation: Galician (gl-rES) thanks to Triskel
 
 #### v0.2.6
 
