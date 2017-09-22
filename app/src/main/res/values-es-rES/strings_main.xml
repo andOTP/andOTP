@@ -33,6 +33,7 @@
   <!-- Toast messages -->
   <string name="toast_auth_failed">La autenticación ha fallado, cerrando andOTP!</string>
   <string name="toast_copied_to_clipboard">Copiado al portapapeles</string>
+  <string name="toast_entry_exists">La entrada ya existe</string>
   <string name="toast_invalid_qr_code">Código QR inválido</string>
   <!-- Dialogs -->
   <string name="dialog_title_auth">Autenticar</string>

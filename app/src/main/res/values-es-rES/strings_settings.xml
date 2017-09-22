@@ -11,6 +11,7 @@
   <string name="settings_title_auth">Autenticación</string>
   <string name="settings_title_auth_password">Contraseña</string>
   <string name="settings_title_auth_pin">PIN</string>
+  <string name="settings_title_panic">Botón del pánico</string>
   <string name="settings_title_theme">Aspecto</string>
   <string name="settings_title_label_size">Tamaño de fuente</string>
   <string name="settings_title_backup_password">Contraseña de copia de seguridad</string>
@@ -21,6 +22,7 @@
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">Esconder códigos OTP por defecto,
         necesitando mostrarlos manualmente</string>
+  <string name="settings_desc_panic">Decidir qué ocurre cuando el botón del pánico se ha pulsado</string>
   <string name="settings_desc_backup_password">Establecer la contraseña usada para cifrar las
         copias de seguridad</string>
   <string name="settings_desc_openpgp_sign">Cada copia de seguridad cifrada es además firmada con
@@ -38,6 +40,10 @@
     <item>Contraseña</item>
     <item>PIN</item>
     <item>Credenciales del dispositivo</item>
+  </string-array>
+  <string-array name="settings_entries_panic">
+    <item>Eliminar todas las cuentas</item>
+    <item>Restablecer la configuración</item>
   </string-array>
   <string-array name="settings_entries_theme">
     <item>Tema claro</item>
