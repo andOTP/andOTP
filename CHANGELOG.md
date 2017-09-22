@@ -9,6 +9,7 @@
  * Update: Apache Commons Codec 1.10
  * Code: lot of internal changes (mostly due to the Android 26 update)
  * Translation: French (fr-rFR) thanks to Johan Fleury
+ * Translation: Durch (nl-rNL) thanks to T-v-Gerwen and rain2reign
 
 #### v0.2.6
 
