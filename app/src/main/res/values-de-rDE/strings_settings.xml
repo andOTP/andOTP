@@ -11,6 +11,7 @@
   <string name="settings_title_auth">Authentifizierung</string>
   <string name="settings_title_auth_password">Passwort</string>
   <string name="settings_title_auth_pin">PIN</string>
+  <string name="settings_title_panic">Panik-Trigger</string>
   <string name="settings_title_theme">Design</string>
   <string name="settings_title_label_size">Schriftgrösse der Beschriftung</string>
   <string name="settings_title_backup_password">Datensicherungs-Passwort</string>
@@ -21,6 +22,7 @@
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">OTP-Token standardmäßig ausblenden, erfordert dass sie
         manuell aufgedeckt werden</string>
+  <string name="settings_desc_panic">Entscheiden Sie, was passiert, wenn ein Panik-Trigger empfangen wird</string>
   <string name="settings_desc_backup_password">Setzt das Kennwort, das verwendet wird, um die
         Sicherungen zu verschlüsseln</string>
   <string name="settings_desc_openpgp_sign">Jedes verschlüsselte Backup wird zusätzlich mit
@@ -38,6 +40,10 @@
     <item>Passwort</item>
     <item>PIN</item>
     <item>Gerät-Anmeldedaten</item>
+  </string-array>
+  <string-array name="settings_entries_panic">
+    <item>Alle Konten löschen</item>
+    <item>Einstellungen zurücksetzen</item>
   </string-array>
   <string-array name="settings_entries_theme">
     <item>Helles Design</item>

@@ -82,7 +82,7 @@ So make sure you have a **current backup** before switching!
 
  * 🇵🇱 Polish (pl-rPL): [Daniel Pustuła](https://github.com/9Cube-dpustula)
  * :es: Spanish (es-rES): [Carlos Melero](https://crowdin.com/profile/carmebar)
- * :de: German (de-rDE): [SuperVirus](https://crowdin.com/profile/SuperVirus)
+ * :de: German (de-rDE): [SuperVirus](https://crowdin.com/profile/SuperVirus), [Chris Heitkamp](https://crowdin.com/profile/christophheitkamp)
  * :fr: French (fr-rFR): [Johan Fleury](https://github.com/johanfleury)
  * 🇳🇱 Dutch (nl-rNL): [T-v-Gerwen](https://crowdin.com/profile/T-v-Gerwen), [rain2reign](https://crowdin.com/profile/rain2reign)
  * Galician (gl-rES): [Triskel](https://crowdin.com/profile/triskel)
