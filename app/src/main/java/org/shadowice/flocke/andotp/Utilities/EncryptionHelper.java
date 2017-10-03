@@ -49,6 +49,19 @@ public class EncryptionHelper {
     private final static int KEY_LENGTH = 16;
     private final static int IV_LENGTH = 12;
 
+    public static String SHA256Sum(String input) {
+        String hash = "";
+
+        try {
+            MessageDigest sha = MessageDigest.getInstance("SHA-256");
+            hash = new String(sha.digest(input.getBytes("UTF-8")), "UTF-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return hash;
+    }
+
     public static byte[] encrypt(SecretKey secretKey, IvParameterSpec iv, byte[] plainText) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);

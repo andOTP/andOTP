@@ -39,6 +39,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 
 import static org.shadowice.flocke.andotp.Utilities.Settings.AuthMethod;
 
@@ -68,7 +69,7 @@ public class AuthenticateActivity extends ThemedActivity
         AuthMethod authMethod = settings.getAuthMethod();
 
         if (authMethod == AuthMethod.PASSWORD) {
-            password = settings.getAuthPassword();
+            password = settings.getAuthPasswordHash();
 
             if (password.isEmpty()) {
                 Toast.makeText(this, R.string.auth_toast_password_missing, Toast.LENGTH_LONG).show();
@@ -79,7 +80,7 @@ public class AuthenticateActivity extends ThemedActivity
                 passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             }
         } else if (authMethod == AuthMethod.PIN) {
-            password = settings.getAuthPIN();
+            password = settings.getAuthPINHash();
 
             if (password.isEmpty()) {
                 Toast.makeText(this, R.string.auth_toast_pin_missing, Toast.LENGTH_LONG).show();
@@ -102,9 +103,9 @@ public class AuthenticateActivity extends ThemedActivity
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
-            String input = v.getText().toString();
+            String hashedPassword = EncryptionHelper.SHA256Sum(v.getText().toString());
 
-            if (input.equals(password)) {
+            if (hashedPassword.equals(password)) {
                 finishWithResult(true);
             } else {
                 finishWithResult(false);

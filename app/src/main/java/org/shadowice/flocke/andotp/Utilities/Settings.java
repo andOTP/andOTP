@@ -47,6 +47,28 @@ public class Settings {
     public Settings(Context context) {
         this.context = context;
         this.settings = PreferenceManager.getDefaultSharedPreferences(context);
+
+        migrateDeprecatedSettings();
+    }
+
+    private void migrateDeprecatedSettings() {
+        if (settings.contains(getResString(R.string.settings_key_auth_password))) {
+            String plainPassword = getAuthPassword();
+            String hashedPassword = EncryptionHelper.SHA256Sum(plainPassword);
+
+            setString(R.string.settings_key_auth_password_hash, hashedPassword);
+
+            remove(R.string.settings_key_auth_password);
+        }
+
+        if (settings.contains(getResString(R.string.settings_key_auth_pin))) {
+            String plainPIN = getAuthPIN();
+            String hashedPIN = EncryptionHelper.SHA256Sum(plainPIN);
+
+            setString(R.string.settings_key_auth_pin_hash, hashedPIN);
+
+            remove(R.string.settings_key_auth_pin);
+        }
     }
 
     private String getResString(int resId) {
@@ -81,6 +103,12 @@ public class Settings {
                 .apply();
     }
 
+    private void remove(int keyId) {
+        settings.edit()
+                .remove(getResString(keyId))
+                .apply();
+    }
+
     public void clear() {
         settings.edit().clear().commit();
         PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
@@ -103,8 +131,16 @@ public class Settings {
         return getString(R.string.settings_key_auth_password, "");
     }
 
+    public String getAuthPasswordHash() {
+        return getString(R.string.settings_key_auth_password_hash, "");
+    }
+
     public String getAuthPIN() {
         return getString(R.string.settings_key_auth_pin, "");
+    }
+
+    public String getAuthPINHash() {
+        return getString(R.string.settings_key_auth_pin_hash, "");
     }
 
     public Set<String> getPanicResponse() {

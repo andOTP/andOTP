@@ -37,7 +37,7 @@ import android.widget.Toast;
 
 import org.openintents.openpgp.util.OpenPgpAppPreference;
 import org.openintents.openpgp.util.OpenPgpKeyPreference;
-import org.shadowice.flocke.andotp.Preferences.PasswordPreference;
+import org.shadowice.flocke.andotp.Preferences.PasswordHashPreference;
 import org.shadowice.flocke.andotp.R;
 
 public class SettingsActivity extends BaseActivity
@@ -106,8 +106,8 @@ public class SettingsActivity extends BaseActivity
         OpenPgpKeyPreference pgpKey;
 
         public void updateAuthPassword(String newAuth) {
-            PasswordPreference pwPref = (PasswordPreference) catSecurity.findPreference(getString(R.string.settings_key_auth_password));
-            PasswordPreference pinPref = (PasswordPreference) catSecurity.findPreference(getString(R.string.settings_key_auth_pin));
+            PasswordHashPreference pwPref = (PasswordHashPreference) catSecurity.findPreference(getString(R.string.settings_key_auth_password));
+            PasswordHashPreference pinPref = (PasswordHashPreference) catSecurity.findPreference(getString(R.string.settings_key_auth_pin));
 
             if (pwPref != null)
                 catSecurity.removePreference(pwPref);
@@ -116,22 +116,22 @@ public class SettingsActivity extends BaseActivity
 
             switch (newAuth) {
                 case "password":
-                    PasswordPreference authPassword = new PasswordPreference(getActivity(), null);
+                    PasswordHashPreference authPassword = new PasswordHashPreference(getActivity(), null);
                     authPassword.setTitle(R.string.settings_title_auth_password);
                     authPassword.setOrder(3);
-                    authPassword.setKey(getString(R.string.settings_key_auth_password));
-                    authPassword.setMode(PasswordPreference.Mode.PASSWORD);
+                    authPassword.setKey(getString(R.string.settings_key_auth_password_hash));
+                    authPassword.setMode(PasswordHashPreference.Mode.PASSWORD);
 
                     catSecurity.addPreference(authPassword);
 
                     break;
 
                 case "pin":
-                    PasswordPreference authPIN = new PasswordPreference(getActivity(), null);
+                    PasswordHashPreference authPIN = new PasswordHashPreference(getActivity(), null);
                     authPIN.setTitle(R.string.settings_title_auth_pin);
                     authPIN.setOrder(3);
-                    authPIN.setKey(getString(R.string.settings_key_auth_pin));
-                    authPIN.setMode(PasswordPreference.Mode.PIN);
+                    authPIN.setKey(getString(R.string.settings_key_auth_pin_hash));
+                    authPIN.setMode(PasswordHashPreference.Mode.PIN);
 
                     catSecurity.addPreference(authPIN);
 

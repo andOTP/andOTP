@@ -65,4 +65,5 @@
     <string name="settings_hint_pin">PIN</string>
     <string name="settings_hint_password_confirm">Confirm password</string>
     <string name="settings_hint_pin_confirm">Confirm PIN</string>
+    <string name="settings_hint_unchanged">(unchanged)</string>
 </resources>
