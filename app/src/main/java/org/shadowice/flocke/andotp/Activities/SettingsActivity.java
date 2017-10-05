@@ -106,8 +106,8 @@ public class SettingsActivity extends BaseActivity
         OpenPgpKeyPreference pgpKey;
 
         public void updateAuthPassword(String newAuth) {
-            PasswordHashPreference pwPref = (PasswordHashPreference) catSecurity.findPreference(getString(R.string.settings_key_auth_password));
-            PasswordHashPreference pinPref = (PasswordHashPreference) catSecurity.findPreference(getString(R.string.settings_key_auth_pin));
+            PasswordHashPreference pwPref = (PasswordHashPreference) catSecurity.findPreference(getString(R.string.settings_key_auth_password_hash));
+            PasswordHashPreference pinPref = (PasswordHashPreference) catSecurity.findPreference(getString(R.string.settings_key_auth_pin_hash));
 
             if (pwPref != null)
                 catSecurity.removePreference(pwPref);
