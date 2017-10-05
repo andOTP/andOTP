@@ -109,8 +109,30 @@ public class Settings {
                 .apply();
     }
 
-    public void clear() {
-        settings.edit().clear().commit();
+    public void clear(boolean keep_auth) {
+        String authMethod = getAuthMethod().toString().toLowerCase();
+        String authPassword = getAuthPasswordHash();
+        String authPIN = getAuthPINHash();
+
+        boolean warningShown = getFirstTimeWarningShown();
+
+        SharedPreferences.Editor editor = settings.edit();
+        editor.clear();
+
+        editor.putBoolean(getResString(R.string.settings_key_security_backup_warning), warningShown);
+
+        if (keep_auth) {
+            editor.putString(getResString(R.string.settings_key_auth), authMethod);
+
+            if (!authPassword.isEmpty())
+                editor.putString(getResString(R.string.settings_key_auth_password_hash), authPassword);
+
+            if (!authPIN.isEmpty())
+                editor.putString(getResString(R.string.settings_key_auth_pin_hash), authPIN);
+        }
+
+        editor.commit();
+
         PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
     }
 

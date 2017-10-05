@@ -51,7 +51,7 @@ public class PanicResponderActivity extends Activity {
                 DatabaseHelper.saveDatabase(this, new ArrayList<Entry>());
 
             if (response.contains("settings"))
-                settings.clear();
+                settings.clear(true);
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
