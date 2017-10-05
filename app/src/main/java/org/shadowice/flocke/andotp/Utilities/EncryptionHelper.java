@@ -28,6 +28,7 @@ import android.content.Context;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -85,10 +86,10 @@ public class EncryptionHelper {
         return decrypt(secretKey,new IvParameterSpec(iv), cipher );
     }
 
-    public static SecretKey genKeyFromPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public static SecretKey genKeyFromPassword(String password) throws NoSuchAlgorithmException {
         MessageDigest sha = MessageDigest.getInstance("SHA-256");
 
-        return new SecretKeySpec(sha.digest(password.getBytes("UTF-8")), "AES");
+        return new SecretKeySpec(sha.digest(password.getBytes(StandardCharsets.UTF_8)), "AES");
     }
 
     /**

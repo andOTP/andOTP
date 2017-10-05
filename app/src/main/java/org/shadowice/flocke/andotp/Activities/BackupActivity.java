@@ -57,7 +57,7 @@ import org.shadowice.flocke.andotp.R;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
@@ -404,7 +404,7 @@ public class BackupActivity extends BaseActivity {
                     SecretKey key = EncryptionHelper.genKeyFromPassword(password);
                     byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
 
-                    ArrayList<Entry> entries = DatabaseHelper.stringToEntries(new String(decrypted, "UTF-8"));
+                    ArrayList<Entry> entries = DatabaseHelper.stringToEntries(new String(decrypted, StandardCharsets.UTF_8));
                     DatabaseHelper.saveDatabase(this, entries);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -439,7 +439,7 @@ public class BackupActivity extends BaseActivity {
 
                 try {
                     SecretKey key = EncryptionHelper.genKeyFromPassword(password);
-                    byte[] encrypted = EncryptionHelper.encrypt(key, plain.getBytes("UTF-8"));
+                    byte[] encrypted = EncryptionHelper.encrypt(key, plain.getBytes(StandardCharsets.UTF_8));
 
                     FileHelper.writeBytesToFile(this, uri, encrypted);
                 } catch (Exception e) {
@@ -490,13 +490,7 @@ public class BackupActivity extends BaseActivity {
         String input = FileHelper.readFileToString(this, uri);
         Log.d("OpenPGP", input);
 
-        InputStream is = null;
-        try {
-            is = new ByteArrayInputStream(input.getBytes("UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
+        InputStream is = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         OpenPgpApi api = new OpenPgpApi(this, pgpServiceConnection.getService());
         Intent result = api.executeApi(decryptIntent, is, os);
@@ -536,13 +530,7 @@ public class BackupActivity extends BaseActivity {
             encryptIntent.putExtra(OpenPgpApi.EXTRA_REQUEST_ASCII_ARMOR, true);
         }
 
-        InputStream is = null;
-        try {
-            is = new ByteArrayInputStream(plainJSON.getBytes("UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
+        InputStream is = new ByteArrayInputStream(plainJSON.getBytes(StandardCharsets.UTF_8));
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         OpenPgpApi api = new OpenPgpApi(this, pgpServiceConnection.getService());
         Intent result = api.executeApi(encryptIntent, is, os);
@@ -550,14 +538,7 @@ public class BackupActivity extends BaseActivity {
     }
 
     public String outputStreamToString(ByteArrayOutputStream os) {
-        String string = "";
-        try {
-            string = os.toString("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        return string;
+        return new String(os.toByteArray(), StandardCharsets.UTF_8);
     }
 
     public void handleOpenPGPResult(Intent result, ByteArrayOutputStream os, Uri file, int requestCode) {
