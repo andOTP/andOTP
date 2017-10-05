@@ -26,9 +26,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.shadowice.flocke.andotp.R;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
 
@@ -54,7 +55,7 @@ public class Settings {
     private void migrateDeprecatedSettings() {
         if (settings.contains(getResString(R.string.settings_key_auth_password))) {
             String plainPassword = getAuthPassword();
-            String hashedPassword = EncryptionHelper.SHA256Sum(plainPassword);
+            String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(plainPassword)));
 
             setString(R.string.settings_key_auth_password_hash, hashedPassword);
 
@@ -63,7 +64,7 @@ public class Settings {
 
         if (settings.contains(getResString(R.string.settings_key_auth_pin))) {
             String plainPIN = getAuthPIN();
-            String hashedPIN = EncryptionHelper.SHA256Sum(plainPIN);
+            String hashedPIN = new String(Hex.encodeHex(DigestUtils.sha256(plainPIN)));
 
             setString(R.string.settings_key_auth_pin_hash, hashedPIN);
 

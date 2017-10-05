@@ -37,8 +37,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 
 public class PasswordHashPreference extends DialogPreference
     implements View.OnClickListener, TextWatcher {
@@ -139,7 +140,7 @@ public class PasswordHashPreference extends DialogPreference
                 break;
             case (R.id.btnSave):
                 value = passwordInput.getText().toString();
-                String hashedPassword = EncryptionHelper.SHA256Sum(value);
+                String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(value)));
 
                 persistString(hashedPassword);
 

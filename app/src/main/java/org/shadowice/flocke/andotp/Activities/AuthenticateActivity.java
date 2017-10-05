@@ -38,8 +38,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 
 import static org.shadowice.flocke.andotp.Utilities.Settings.AuthMethod;
 
@@ -103,7 +104,7 @@ public class AuthenticateActivity extends ThemedActivity
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
-            String hashedPassword = EncryptionHelper.SHA256Sum(v.getText().toString());
+            String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(v.getText().toString())));
 
             if (hashedPassword.equals(password)) {
                 finishWithResult(true);
