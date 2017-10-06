@@ -23,13 +23,8 @@
 
 package org.shadowice.flocke.andotp.Utilities;
 
-import android.content.Context;
-
-import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.security.GeneralSecurityException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
@@ -47,17 +42,25 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class EncryptionHelper {
     private final static String ALGORITHM = "AES/GCM/NoPadding";
-    private final static int KEY_LENGTH = 16;
     private final static int IV_LENGTH = 12;
 
-    public static byte[] encrypt(SecretKey secretKey, IvParameterSpec iv, byte[] plainText) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException {
+    public static SecretKey generateSymmetricKeyFromPassword(String password)
+            throws NoSuchAlgorithmException {
+        MessageDigest sha = MessageDigest.getInstance("SHA-256");
+
+        return new SecretKeySpec(sha.digest(password.getBytes(StandardCharsets.UTF_8)), "AES");
+    }
+
+    public static byte[] encrypt(SecretKey secretKey, IvParameterSpec iv, byte[] plainText)
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
 
         return cipher.doFinal(plainText);
     }
 
-    public static byte[] decrypt(SecretKey secretKey, IvParameterSpec iv, byte[] cipherText) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+    public static byte[] decrypt(SecretKey secretKey, IvParameterSpec iv, byte[] cipherText)
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
 
@@ -65,7 +68,8 @@ public class EncryptionHelper {
     }
 
 
-    public static byte[] encrypt(SecretKey secretKey, byte[] plaintext) throws NoSuchPaddingException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, InvalidAlgorithmParameterException {
+    public static byte[] encrypt(SecretKey secretKey, byte[] plaintext)
+            throws NoSuchPaddingException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, InvalidAlgorithmParameterException {
         final byte[] iv = new byte[IV_LENGTH];
         new SecureRandom().nextBytes(iv);
 
@@ -79,44 +83,11 @@ public class EncryptionHelper {
         return combined;
     }
 
-    public static byte[] decrypt(SecretKey secretKey, byte[] cipherText) throws NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
+    public static byte[] decrypt(SecretKey secretKey, byte[] cipherText)
+            throws NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
         byte[] iv = Arrays.copyOfRange(cipherText, 0, IV_LENGTH);
         byte[] cipher = Arrays.copyOfRange(cipherText, IV_LENGTH,cipherText.length);
 
         return decrypt(secretKey,new IvParameterSpec(iv), cipher );
-    }
-
-    public static SecretKey genKeyFromPassword(String password) throws NoSuchAlgorithmException {
-        MessageDigest sha = MessageDigest.getInstance("SHA-256");
-
-        return new SecretKeySpec(sha.digest(password.getBytes(StandardCharsets.UTF_8)), "AES");
-    }
-
-    /**
-     * Load our symmetric secret key.
-     * The symmetric secret key is stored securely on disk by wrapping
-     * it with a public/private key pair, possibly backed by hardware.
-     */
-    public static SecretKey loadOrGenerateKeys(Context context, File keyFile)
-            throws GeneralSecurityException, IOException {
-        final SecretKeyWrapper wrapper = new SecretKeyWrapper(context, "settings");
-
-        // Generate secret key if none exists
-        if (!keyFile.exists()) {
-            final byte[] raw = new byte[KEY_LENGTH];
-            new SecureRandom().nextBytes(raw);
-
-            final SecretKey key = new SecretKeySpec(raw, "AES");
-            final byte[] wrapped = wrapper.wrap(key);
-
-
-            FileHelper.writeBytesToFile(keyFile, wrapped);
-        }
-
-        // Even if we just generated the key, always read it back to ensure we
-        // can read it successfully.
-        final byte[] wrapped = FileHelper.readFileToBytes(keyFile);
-
-        return wrapper.unwrap(wrapped);
     }
 }

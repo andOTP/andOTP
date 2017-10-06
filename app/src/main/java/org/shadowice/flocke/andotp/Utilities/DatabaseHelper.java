@@ -46,7 +46,7 @@ public class DatabaseHelper {
         try {
             byte[] data = jsonString.getBytes();
 
-            SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
+            SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
             data = EncryptionHelper.encrypt(key,data);
 
             FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
@@ -62,7 +62,7 @@ public class DatabaseHelper {
         try {
             byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
 
-            SecretKey key = EncryptionHelper.loadOrGenerateKeys(context, new File(context.getFilesDir() + "/" + KEY_FILE));
+            SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
             data = EncryptionHelper.decrypt(key, data);
 
             entries = stringToEntries(new String(data));

@@ -401,7 +401,7 @@ public class BackupActivity extends BaseActivity {
                 try {
                     byte[] encrypted = FileHelper.readFileToBytes(this, uri);
 
-                    SecretKey key = EncryptionHelper.genKeyFromPassword(password);
+                    SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
                     byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
 
                     ArrayList<Entry> entries = DatabaseHelper.stringToEntries(new String(decrypted, StandardCharsets.UTF_8));
@@ -438,7 +438,7 @@ public class BackupActivity extends BaseActivity {
                 boolean success = true;
 
                 try {
-                    SecretKey key = EncryptionHelper.genKeyFromPassword(password);
+                    SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
                     byte[] encrypted = EncryptionHelper.encrypt(key, plain.getBytes(StandardCharsets.UTF_8));
 
                     FileHelper.writeBytesToFile(this, uri, encrypted);
