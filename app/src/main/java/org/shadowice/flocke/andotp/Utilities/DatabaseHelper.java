@@ -47,7 +47,7 @@ public class DatabaseHelper {
             byte[] data = jsonString.getBytes();
 
             SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
-            data = EncryptionHelper.encrypt(key,data);
+            data = EncryptionHelper.encrypt(key, data);
 
             FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
 

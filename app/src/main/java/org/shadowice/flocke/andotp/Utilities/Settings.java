@@ -25,13 +25,18 @@ package org.shadowice.flocke.andotp.Utilities;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Base64;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.shadowice.flocke.andotp.R;
 
+import java.nio.charset.StandardCharsets;
+import java.security.KeyPair;
 import java.util.Collections;
 import java.util.Set;
+
+import static org.shadowice.flocke.andotp.Preferences.PasswordEncryptedPreference.KEY_ALIAS;
 
 public class Settings {
     private Context context;
@@ -69,6 +74,21 @@ public class Settings {
             setString(R.string.settings_key_auth_pin_hash, hashedPIN);
 
             remove(R.string.settings_key_auth_pin);
+        }
+
+        if (settings.contains(getResString(R.string.settings_key_backup_password))) {
+            String plainPassword = getBackupPassword();
+
+            try {
+                KeyPair key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, KEY_ALIAS);
+                byte[] encPassword = EncryptionHelper.encrypt(key.getPublic(), plainPassword.getBytes(StandardCharsets.UTF_8));
+
+                setString(R.string.settings_key_backup_password_enc, Base64.encodeToString(encPassword, Base64.URL_SAFE));
+
+                remove(R.string.settings_key_backup_password);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -193,6 +213,22 @@ public class Settings {
 
     public String getBackupPassword() {
         return getString(R.string.settings_key_backup_password, "");
+    }
+
+    public String getBackupPasswordEnc() {
+        String base64Password = getString(R.string.settings_key_backup_password_enc, "");
+        byte[] encPassword = Base64.decode(base64Password, Base64.URL_SAFE);
+
+        String password = "";
+
+        try {
+            KeyPair key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, KEY_ALIAS);
+            password = new String(EncryptionHelper.decrypt(key.getPrivate(), encPassword), StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return password;
     }
 
     public String getOpenPGPProvider() {

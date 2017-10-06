@@ -57,8 +57,8 @@
     <PreferenceCategory
         android:title="@string/settings_category_title_backup">
 
-        <org.shadowice.flocke.andotp.Preferences.PasswordPreference
-            android:key="@string/settings_key_backup_password"
+        <org.shadowice.flocke.andotp.Preferences.PasswordEncryptedPreference
+            android:key="@string/settings_key_backup_password_enc"
             android:title="@string/settings_title_backup_password"
             android:summary="@string/settings_desc_backup_password" />
 

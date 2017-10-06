@@ -133,7 +133,7 @@ public class BackupActivity extends BaseActivity {
         LinearLayout backupCrypt = v.findViewById(R.id.button_backup_crypt);
         LinearLayout restoreCrypt = v.findViewById(R.id.button_restore_crypt);
 
-        if (settings.getBackupPassword().isEmpty()) {
+        if (settings.getBackupPasswordEnc().isEmpty()) {
             cryptSetup.setVisibility(View.VISIBLE);
             backupCrypt.setVisibility(View.GONE);
             restoreCrypt.setVisibility(View.GONE);
@@ -392,7 +392,7 @@ public class BackupActivity extends BaseActivity {
     /* Encrypted backup functions */
 
     private void doRestoreCrypt(Uri uri) {
-        String password = settings.getBackupPassword();
+        String password = settings.getBackupPasswordEnc();
 
         if (! password.isEmpty()) {
             if (StorageHelper.isExternalStorageReadable()) {
@@ -428,7 +428,7 @@ public class BackupActivity extends BaseActivity {
     }
 
     private void doBackupCrypt(Uri uri) {
-        String password = settings.getBackupPassword();
+        String password = settings.getBackupPasswordEnc();
 
         if (! password.isEmpty()) {
             if (StorageHelper.isExternalStorageWritable()) {

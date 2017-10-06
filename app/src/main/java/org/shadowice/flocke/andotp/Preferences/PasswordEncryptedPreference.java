@@ -33,18 +33,27 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
+import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 
-public class PasswordPreference extends DialogPreference
+import java.nio.charset.StandardCharsets;
+import java.security.KeyPair;
+
+public class PasswordEncryptedPreference extends DialogPreference
     implements View.OnClickListener, TextWatcher {
 
     public enum Mode {
         PASSWORD, PIN
     }
+
+    public static final String KEY_ALIAS = "password";
+    private KeyPair key;
 
     private static final String DEFAULT_VALUE = "";
 
@@ -57,8 +66,14 @@ public class PasswordPreference extends DialogPreference
 
     private String value = DEFAULT_VALUE;
 
-    public PasswordPreference(Context context, AttributeSet attrs) {
+    public PasswordEncryptedPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        try {
+            key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, KEY_ALIAS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         setDialogLayoutResource(R.layout.component_password);
     }
@@ -120,13 +135,31 @@ public class PasswordPreference extends DialogPreference
         return a.getString(index);
     }
 
+    private void encryptAndPersist(String value) {
+        try {
+            byte[] encBytes = EncryptionHelper.encrypt(key.getPublic(), value.getBytes(StandardCharsets.UTF_8));
+            persistString(Base64.encodeToString(encBytes, Base64.URL_SAFE));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void restoreAndDecrypt(String encValue) {
+        try {
+            byte[] encBytes = Base64.decode(encValue, Base64.URL_SAFE);
+            value = new String(EncryptionHelper.decrypt(key.getPrivate(), encBytes), StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected void onSetInitialValue(boolean restorePersistedValue, Object defaultValue) {
         if (restorePersistedValue) {
-            value = getPersistedString(DEFAULT_VALUE);
+            restoreAndDecrypt(getPersistedString(DEFAULT_VALUE));
         } else {
             value = (String) defaultValue;
-            persistString(value);
+            encryptAndPersist(value);
         }
     }
 
@@ -138,7 +171,7 @@ public class PasswordPreference extends DialogPreference
                 break;
             case (R.id.btnSave):
                 value = passwordInput.getText().toString();
-                persistString(value);
+                encryptAndPersist(value);
 
                 getDialog().dismiss();
                 break;
