@@ -58,6 +58,7 @@
     <string-array name="settings_entries_theme">
         <item>Light theme</item>
         <item>Dark theme</item>
+        <item>Black theme</item>
     </string-array>
 
     <!-- PasswordPreference -->

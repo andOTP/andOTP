@@ -5,6 +5,7 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    card_view:cardBackgroundColor="?cardBackgroundColor"
     card_view:cardUseCompatPadding="true"
     card_view:cardCornerRadius="@dimen/card_corner_radius"
     card_view:contentPadding="@dimen/activity_margin"

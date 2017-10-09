@@ -45,6 +45,7 @@
     <string-array name="settings_values_theme" translatable="false">
         <item>light</item>
         <item>dark</item>
+        <item>black</item>
     </string-array>
 
     <!-- Misc -->

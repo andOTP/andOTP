@@ -41,6 +41,8 @@ public abstract class ThemedActivity extends AppCompatActivity {
             setTheme(R.style.AppTheme_NoActionBar);
         } else if (theme.equals("dark")) {
             setTheme(R.style.AppTheme_Dark_NoActionBar);
+        } else if (theme.equals("black")) {
+            setTheme(R.style.AppTheme_Black_NoActionBar);
         }
 
         super.onCreate(savedInstanceState);
