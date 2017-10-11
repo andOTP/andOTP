@@ -1,21 +1,25 @@
 <resources>
+    <!-- Definitions -->
+    <attr name="windowBackground" format="reference" />
+
     <attr name="colorGithub" format="reference" />
     <attr name="colorPaypal" format="reference" />
 
-    <!-- Light application theme. -->
+    <!-- General styles -->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+    <!-- Light application theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-D        <!-- Light theme base colours -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="windowBackground">?android:attr/colorBackground</item>
 
         <item name="colorGithub">@color/github_dark</item>
         <item name="colorPaypal">@color/paypal_dark</item>
 
         <item name="cardBackgroundColor">?android:colorBackgroundFloating</item>
-
-        <item name="actionBarPopupTheme">@style/AppTheme.PopupOverlay</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -23,23 +27,18 @@ D        <!-- Light theme base colours -->
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
     <!-- Dark application theme. -->
-
     <style name="AppTheme.Dark" parent="Theme.AppCompat">
-        <!-- Dark theme base colours -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="windowBackground">?android:attr/colorBackground</item>
 
         <item name="colorGithub">@color/github_light</item>
         <item name="colorPaypal">@color/paypal_light</item>
 
         <item name="cardBackgroundColor">?android:colorBackgroundFloating</item>
-
-        <item name="actionBarPopupTheme">@style/AppTheme.Dark.PopupOverlay</item>
     </style>
 
     <style name="AppTheme.Dark.NoActionBar">
@@ -47,32 +46,22 @@ D        <!-- Light theme base colours -->
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.Dark.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="AppTheme.Dark.PopupOverlay" parent="ThemeOverlay.AppCompat" />
-
     <!-- Black application theme. -->
-
     <style name="AppTheme.Black" parent="Theme.AppCompat">
-        <!-- Black theme base colours -->
-        <item name="android:colorBackground">@android:color/black</item>
-
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="windowBackground">@android:color/black</item>
 
         <item name="colorGithub">@color/github_light</item>
         <item name="colorPaypal">@color/paypal_light</item>
 
         <item name="cardBackgroundColor">@android:color/black</item>
-
-        <item name="actionBarPopupTheme">@style/AppTheme.Dark.PopupOverlay</item>
     </style>
 
     <style name="AppTheme.Black.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
-    <style name="AppTheme.Black.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="AppTheme.Black.PopupOverlay" parent="ThemeOverlay.AppCompat" />
 </resources>
