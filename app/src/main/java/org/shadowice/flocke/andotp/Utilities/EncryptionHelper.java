@@ -55,14 +55,20 @@ public class EncryptionHelper {
         return new SecretKeySpec(sha.digest(password.getBytes(StandardCharsets.UTF_8)), "AES");
     }
 
+    public static byte[] encrypt(SecretKey secretKey, IvParameterSpec iv, byte[] plainText)
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException {
+        Cipher cipher = Cipher.getInstance(ALGORITHM_SYMMETRIC);
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
+
+        return cipher.doFinal(plainText);
+    }
+
     public static byte[] encrypt(SecretKey secretKey, byte[] plaintext)
             throws NoSuchPaddingException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, InvalidAlgorithmParameterException {
         final byte[] iv = new byte[IV_LENGTH];
         new SecureRandom().nextBytes(iv);
 
-        Cipher cipher = Cipher.getInstance(ALGORITHM_SYMMETRIC);
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey, new IvParameterSpec(iv));
-        byte[] cipherText = cipher.doFinal(plaintext);
+        byte[] cipherText = encrypt(secretKey, new IvParameterSpec(iv), plaintext);
 
         byte[] combined = new byte[iv.length + cipherText.length];
         System.arraycopy(iv, 0, combined, 0, iv.length);
@@ -79,15 +85,20 @@ public class EncryptionHelper {
         return cipher.doFinal(plaintext);
     }
 
+    public static byte[] decrypt(SecretKey secretKey, IvParameterSpec iv, byte[] cipherText)
+            throws NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
+        Cipher cipher = Cipher.getInstance(ALGORITHM_SYMMETRIC);
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
+
+        return cipher.doFinal(cipherText);
+    }
+
     public static byte[] decrypt(SecretKey secretKey, byte[] cipherText)
             throws NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
         byte[] iv = Arrays.copyOfRange(cipherText, 0, IV_LENGTH);
         byte[] encrypted = Arrays.copyOfRange(cipherText, IV_LENGTH, cipherText.length);
 
-        Cipher cipher = Cipher.getInstance(ALGORITHM_SYMMETRIC);
-        cipher.init(Cipher.DECRYPT_MODE, secretKey, new IvParameterSpec(iv));
-
-        return cipher.doFinal(encrypted);
+        return decrypt(secretKey, new IvParameterSpec(iv), encrypted);
     }
 
     public static byte[] decrypt(PrivateKey privateKey, byte[] cipherText)

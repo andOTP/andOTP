@@ -103,6 +103,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         String s = "{\"secret\":\"" + new String(new Base32().encode(secret)) + "\"," +
                     "\"label\":\"" + label + "\"," +
                     "\"period\":" + Integer.toString(period) + "," +
+                    "\"digits\":6," +
                     "\"type\":\"TOTP\"," +
                     "\"algorithm\":\"SHA1\"}";
 
