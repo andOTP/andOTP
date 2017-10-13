@@ -35,8 +35,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.shadowice.flocke.andotp.Utilities.ThemeHelper;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Tools;
 
 import de.psdev.licensesdialog.LicensesDialog;
 
@@ -77,7 +77,7 @@ public class AboutActivity extends BaseActivity {
         stub.setLayoutResource(R.layout.content_about);
         View v = stub.inflate();
 
-        ColorFilter filter = ThemeHelper.getThemeColorFilter(this, android.R.attr.textColorSecondary);
+        ColorFilter filter = Tools.getThemeColorFilter(this, android.R.attr.textColorSecondary);
         for (int i : imageResources) {
             ImageView imgView = v.findViewById(i);
             imgView.getDrawable().setColorFilter(filter);

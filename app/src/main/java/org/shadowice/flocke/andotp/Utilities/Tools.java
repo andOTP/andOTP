@@ -23,13 +23,39 @@
 package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.os.Environment;
 
-public class ThemeHelper {
+import java.util.List;
+
+public class Tools {
+    /* Checks if external storage is available for read and write */
+    public static boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        return Environment.MEDIA_MOUNTED.equals(state);
+    }
+
+    /* Checks if external storage is available to at least read */
+    public static boolean isExternalStorageReadable() {
+        String state = Environment.getExternalStorageState();
+        return Environment.MEDIA_MOUNTED.equals(state) || Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
+    }
+
+    /* Check is there is a handler for an Intent */
+    public static boolean isIntentAvailable(Context context, String action) {
+        final PackageManager packageManager = context.getPackageManager();
+        final Intent intent = new Intent(action);
+        List resolveInfo = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        return resolveInfo.size() > 0;
+    }
+
+    /* Get a color based on the current theme */
     public static int getThemeColor(Context context, int colorAttr) {
         Resources.Theme theme = context.getTheme();
         TypedArray arr = theme.obtainStyledAttributes(new int[]{colorAttr});
@@ -40,6 +66,7 @@ public class ThemeHelper {
         return colorValue;
     }
 
+    /* Create a ColorFilter based on the current theme */
     public static ColorFilter getThemeColorFilter(Context context, int colorAttr) {
         return new PorterDuffColorFilter(getThemeColor(context, colorAttr), PorterDuff.Mode.SRC_IN);
     }

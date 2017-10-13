@@ -51,7 +51,7 @@ import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Utilities.FileHelper;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
-import org.shadowice.flocke.andotp.Utilities.StorageHelper;
+import org.shadowice.flocke.andotp.Utilities.Tools;
 import org.shadowice.flocke.andotp.R;
 
 import java.io.ByteArrayInputStream;
@@ -338,7 +338,7 @@ public class BackupActivity extends BaseActivity {
     /* Plain-text backup functions */
 
     private void doRestorePlain(Uri uri) {
-        if (StorageHelper.isExternalStorageReadable()) {
+        if (Tools.isExternalStorageReadable()) {
             boolean success = DatabaseHelper.importFromJSON(this, uri);
 
             if (success) {
@@ -355,7 +355,7 @@ public class BackupActivity extends BaseActivity {
     }
 
     private void doBackupPlain(Uri uri) {
-        if (StorageHelper.isExternalStorageWritable()) {
+        if (Tools.isExternalStorageWritable()) {
             boolean success = DatabaseHelper.exportAsJSON(this, uri);
 
             if (success)
@@ -395,7 +395,7 @@ public class BackupActivity extends BaseActivity {
         String password = settings.getBackupPasswordEnc();
 
         if (! password.isEmpty()) {
-            if (StorageHelper.isExternalStorageReadable()) {
+            if (Tools.isExternalStorageReadable()) {
                 boolean success = true;
 
                 try {
@@ -431,7 +431,7 @@ public class BackupActivity extends BaseActivity {
         String password = settings.getBackupPasswordEnc();
 
         if (! password.isEmpty()) {
-            if (StorageHelper.isExternalStorageWritable()) {
+            if (Tools.isExternalStorageWritable()) {
                 ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this);
                 String plain = DatabaseHelper.entriesToString(entries);
 
@@ -465,7 +465,7 @@ public class BackupActivity extends BaseActivity {
     /* OpenPGP backup functions */
 
     private void doRestoreEncrypted(String content) {
-        if (StorageHelper.isExternalStorageReadable()) {
+        if (Tools.isExternalStorageReadable()) {
             ArrayList<Entry> entries = DatabaseHelper.stringToEntries(content);
 
             if (entries.size() > 0) {
@@ -498,7 +498,7 @@ public class BackupActivity extends BaseActivity {
     }
 
     private void doBackupEncrypted(Uri uri, String data) {
-        if (StorageHelper.isExternalStorageWritable()) {
+        if (Tools.isExternalStorageWritable()) {
             boolean success = FileHelper.writeStringToFile(this, uri, data);
 
             if (success)

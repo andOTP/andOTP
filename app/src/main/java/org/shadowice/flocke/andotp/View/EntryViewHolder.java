@@ -33,7 +33,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.shadowice.flocke.andotp.Utilities.ThemeHelper;
+import org.shadowice.flocke.andotp.Utilities.Tools;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperViewHolder;
 import org.shadowice.flocke.andotp.R;
 
@@ -73,7 +73,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         ImageView invisibleImg = v.findViewById(R.id.coverImg);
 
         // Style the buttons in the current theme colors
-        ColorFilter colorFilter = ThemeHelper.getThemeColorFilter(context, android.R.attr.textColorSecondary);
+        ColorFilter colorFilter = Tools.getThemeColorFilter(context, android.R.attr.textColorSecondary);
 
         menuButton.getDrawable().setColorFilter(colorFilter);
         copyButton.getDrawable().setColorFilter(colorFilter);
