@@ -14,6 +14,8 @@
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size</string>
 
+    <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
+    <string name="settings_key_backup_directory" translatable="false">pref_backup_directory</string>
     <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>
     <string name="settings_key_backup_password_enc" translatable="false">pref_backup_password_enc</string>
     <string name="settings_key_openpgp_provider" translatable="false">pref_openpgp_provider</string>

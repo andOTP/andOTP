@@ -57,6 +57,19 @@
     <PreferenceCategory
         android:title="@string/settings_category_title_backup">
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_backup_ask"
+            android:title="@string/settings_title_backup_ask"
+            android:summary="@string/settings_desc_backup_ask"
+            android:disableDependentsState="true"
+            android:defaultValue="true" />
+
+        <EditTextPreference
+            android:key="@string/settings_key_backup_directory"
+            android:title="@string/settings_title_backup_directory"
+            android:summary="@string/settings_desc_backup_directory"
+            android:dependency="@string/settings_key_backup_ask" />
+
         <org.shadowice.flocke.andotp.Preferences.PasswordEncryptedPreference
             android:key="@string/settings_key_backup_password_enc"
             android:title="@string/settings_title_backup_password"

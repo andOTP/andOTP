@@ -24,6 +24,7 @@ package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Base64;
 
@@ -31,6 +32,7 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.shadowice.flocke.andotp.R;
 
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.util.Collections;
@@ -39,6 +41,8 @@ import java.util.Set;
 import static org.shadowice.flocke.andotp.Preferences.PasswordEncryptedPreference.KEY_ALIAS;
 
 public class Settings {
+    private static final String DEFAULT_BACKUP_FOLDER = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "andOTP";
+
     private Context context;
     private SharedPreferences settings;
 
@@ -54,7 +58,15 @@ public class Settings {
         this.context = context;
         this.settings = PreferenceManager.getDefaultSharedPreferences(context);
 
+        setupDeviceDependedDefaults();
         migrateDeprecatedSettings();
+    }
+
+    private void setupDeviceDependedDefaults() {
+        if (! settings.contains(getResString(R.string.settings_key_backup_directory))
+                || settings.getString(getResString(R.string.settings_key_backup_directory), "").isEmpty()) {
+            setString(R.string.settings_key_backup_directory, DEFAULT_BACKUP_FOLDER);
+        }
     }
 
     private void migrateDeprecatedSettings() {
@@ -209,6 +221,14 @@ public class Settings {
 
     public void setSortMode(SortMode value) {
         setString(R.string.settings_key_sort_mode, value.toString());
+    }
+
+    public boolean getBackupAsk() {
+        return getBoolean(R.string.settings_key_backup_ask, true);
+    }
+
+    public String getBackupDir() {
+        return getString(R.string.settings_key_backup_directory, DEFAULT_BACKUP_FOLDER);
     }
 
     public String getBackupPassword() {

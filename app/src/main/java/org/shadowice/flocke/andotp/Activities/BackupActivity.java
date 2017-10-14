@@ -305,18 +305,40 @@ public class BackupActivity extends BaseActivity {
     /* Generic functions for all backup/restore options */
 
     private void showOpenFileSelector(int intentId) {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("*/*");
-        startActivityForResult(intent, intentId);
+        if (settings.getBackupAsk()) {
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("*/*");
+            startActivityForResult(intent, intentId);
+        } else {
+            if (intentId == INTENT_OPEN_DOCUMENT_PLAIN)
+                doRestorePlain(Tools.buildUri(settings.getBackupDir(), DEFAULT_BACKUP_FILENAME_PLAIN));
+            else if (intentId == INTENT_OPEN_DOCUMENT_CRYPT)
+                doRestoreCrypt(Tools.buildUri(settings.getBackupDir(), DEFAULT_BACKUP_FILENAME_CRYPT));
+            else if (intentId == INTENT_OPEN_DOCUMENT_PGP)
+                restoreEncryptedWithPGP(Tools.buildUri(settings.getBackupDir(), DEFAULT_BACKUP_FILENAME_PGP), null);
+        }
     }
 
     private void showSaveFileSelector(String mimeType, String fileName, int intentId) {
-        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType(mimeType);
-        intent.putExtra(Intent.EXTRA_TITLE, fileName);
-        startActivityForResult(intent, intentId);
+        if (settings.getBackupAsk()) {
+            Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType(mimeType);
+            intent.putExtra(Intent.EXTRA_TITLE, fileName);
+            startActivityForResult(intent, intentId);
+        } else {
+            if (Tools.mkdir(settings.getBackupDir())) {
+                if (intentId == INTENT_SAVE_DOCUMENT_PLAIN)
+                    doBackupPlain(Tools.buildUri(settings.getBackupDir(), DEFAULT_BACKUP_FILENAME_PLAIN));
+                else if (intentId == INTENT_SAVE_DOCUMENT_CRYPT)
+                    doBackupCrypt(Tools.buildUri(settings.getBackupDir(), DEFAULT_BACKUP_FILENAME_CRYPT));
+                else if (intentId == INTENT_SAVE_DOCUMENT_PGP)
+                    backupEncryptedWithPGP(Tools.buildUri(settings.getBackupDir(), DEFAULT_BACKUP_FILENAME_PGP), null);
+            } else {
+                Toast.makeText(this, R.string.backup_toast_mkdir_failed, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private void openFileWithPermissions(int intentId, int requestId) {
