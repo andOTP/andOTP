@@ -1,6 +1,7 @@
 <resources>
     <!-- Definitions -->
     <attr name="windowBackground" format="reference" />
+    <attr name="cardStyle" format="reference" />
 
     <attr name="colorGithub" format="reference" />
     <attr name="colorPaypal" format="reference" />
@@ -19,12 +20,19 @@
         <item name="colorGithub">@color/github_dark</item>
         <item name="colorPaypal">@color/paypal_dark</item>
 
-        <item name="cardBackgroundColor">?android:colorBackgroundFloating</item>
+        <item name="cardStyle">@style/CardViewStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="CardViewStyle" parent="CardView">
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="contentPadding">@dimen/activity_margin</item>
+        <item name="cardElevation">@dimen/card_elevation</item>
     </style>
 
     <!-- Dark application theme. -->
@@ -38,7 +46,7 @@
         <item name="colorGithub">@color/github_light</item>
         <item name="colorPaypal">@color/paypal_light</item>
 
-        <item name="cardBackgroundColor">?android:colorBackgroundFloating</item>
+        <item name="cardStyle">@style/CardViewStyle</item>
     </style>
 
     <style name="AppTheme.Dark.NoActionBar">
@@ -57,6 +65,10 @@
         <item name="colorGithub">@color/github_light</item>
         <item name="colorPaypal">@color/paypal_light</item>
 
+        <item name="cardStyle">@style/CardViewStyle.Black</item>
+    </style>
+
+    <style name="CardViewStyle.Black">
         <item name="cardBackgroundColor">@android:color/black</item>
     </style>
 

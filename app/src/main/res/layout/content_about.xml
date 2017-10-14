@@ -17,15 +17,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_margin"
-            app:cardBackgroundColor="?cardBackgroundColor"
-            app:cardElevation="@dimen/card_elevation" >
+            style="?attr/cardStyle" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="@dimen/activity_margin"
-                android:paddingBottom="@dimen/activity_margin" >
+                android:paddingBottom="@dimen/activity_margin_small" >
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -68,22 +66,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_margin"
-            app:cardBackgroundColor="?cardBackgroundColor"
-            app:cardElevation="@dimen/card_elevation" >
+            style="?attr/cardStyle" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/activity_margin"
-                android:paddingBottom="@dimen/activity_margin" >
+                android:orientation="vertical" >
 
                 <!-- version -->
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="?android:attr/listPreferredItemHeight"
-                    android:padding="@dimen/activity_margin_small"
+                    android:paddingTop="@dimen/activity_margin_small"
+                    android:paddingBottom="@dimen/activity_margin_small"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical" >
 
@@ -123,7 +119,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="?android:attr/listPreferredItemHeight"
-                    android:padding="@dimen/activity_margin_small"
+                    android:paddingTop="@dimen/activity_margin_small"
+                    android:paddingBottom="@dimen/activity_margin_small"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical" >
 
@@ -163,7 +160,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="?android:attr/listPreferredItemHeight"
-                    android:padding="@dimen/activity_margin_small"
+                    android:paddingTop="@dimen/activity_margin_small"
+                    android:paddingBottom="@dimen/activity_margin_small"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical" >
 
@@ -190,7 +188,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="?android:attr/listPreferredItemHeight"
-                    android:padding="@dimen/activity_margin_small"
+                    android:paddingTop="@dimen/activity_margin_small"
+                    android:paddingBottom="@dimen/activity_margin_small"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical" >
 
@@ -217,7 +216,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="?android:attr/listPreferredItemHeight"
-                    android:padding="@dimen/activity_margin_small"
+                    android:paddingTop="@dimen/activity_margin_small"
+                    android:paddingBottom="@dimen/activity_margin_small"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical" >
 
@@ -244,20 +244,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_margin"
-            app:cardBackgroundColor="?cardBackgroundColor"
-            app:cardElevation="@dimen/card_elevation" >
+            style="?attr/cardStyle" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/activity_margin"
-                android:paddingBottom="@dimen/activity_margin" >
+                android:orientation="vertical" >
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/activity_margin"
                     android:text="@string/about_title_authors"/>
 
                 <!-- 1st author -->
@@ -265,8 +261,9 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_margin"
-                    android:padding="@dimen/activity_margin_small"
+                    android:layout_marginTop="@dimen/activity_margin_small"
+                    android:paddingTop="@dimen/activity_margin_small"
+                    android:paddingBottom="@dimen/activity_margin_small"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical" >
 
@@ -339,7 +336,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/activity_margin_small"
+                    android:paddingTop="@dimen/activity_margin_small"
+                    android:paddingBottom="@dimen/activity_margin_small"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical" >
 
@@ -413,7 +411,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="?android:attr/listPreferredItemHeight"
-                    android:padding="@dimen/activity_margin_small"
+                    android:paddingTop="@dimen/activity_margin_small"
+                    android:paddingBottom="@dimen/activity_margin_small"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical" >
 
@@ -440,7 +439,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="?android:attr/listPreferredItemHeight"
-                    android:padding="@dimen/activity_margin_small"
+                    android:paddingTop="@dimen/activity_margin_small"
+                    android:paddingBottom="@dimen/activity_margin_small"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical" >
 
@@ -468,20 +468,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_margin"
-            app:cardBackgroundColor="?cardBackgroundColor"
-            app:cardElevation="@dimen/card_elevation" >
+            style="?attr/cardStyle" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/activity_margin"
-                android:paddingBottom="@dimen/activity_margin" >
+                android:orientation="vertical" >
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/activity_margin"
                     android:text="@string/about_title_support"/>
 
                 <!-- bug reports -->
@@ -491,7 +487,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="?android:attr/listPreferredItemHeight"
                     android:layout_marginTop="@dimen/activity_margin"
-                    android:padding="@dimen/activity_margin_small"
+                    android:paddingTop="@dimen/activity_margin_small"
+                    android:paddingBottom="@dimen/activity_margin_small"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical" >
 
@@ -531,7 +528,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="?android:attr/listPreferredItemHeight"
-                    android:padding="@dimen/activity_margin_small"
+                    android:paddingTop="@dimen/activity_margin_small"
+                    android:paddingBottom="@dimen/activity_margin_small"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical" >
 
