@@ -260,6 +260,9 @@ public class MainActivity extends BaseActivity
         restoreSortMode();
 
         float durationScale = android.provider.Settings.Global.getFloat(this.getContentResolver(), android.provider.Settings.Global.ANIMATOR_DURATION_SCALE, 0);
+        if (durationScale == 0)
+            durationScale = 1;
+
         final long animatorDuration = (long) (1000 / durationScale);
 
         adapter.setCallback(new EntriesCardAdapter.Callback() {
