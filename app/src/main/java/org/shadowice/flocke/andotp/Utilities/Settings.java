@@ -214,6 +214,14 @@ public class Settings {
         setBoolean(R.string.settings_key_security_backup_warning, value);
     }
 
+    public boolean getExperimental() {
+        return getBoolean(R.string.settings_key_experimental, false);
+    }
+
+    public void setExperimental(boolean value) {
+        setBoolean(R.string.settings_key_experimental, value);
+    }
+
     public SortMode getSortMode() {
         String modeStr = getString(R.string.settings_key_sort_mode, SortMode.UNSORTED.toString());
         return SortMode.valueOf(modeStr);

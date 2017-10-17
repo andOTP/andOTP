@@ -44,6 +44,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -102,10 +103,46 @@ public class MainActivity extends BaseActivity
         final EditText digitsInput = inputView.findViewById(R.id.manual_digits);
         final Spinner algorithmInput = inputView.findViewById(R.id.manual_algorithm);
 
-        typeInput.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Entry.OTPType.values()));
-        algorithmInput.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, TokenCalculator.HashAlgorithm.values()));
+        final ArrayAdapter<TokenCalculator.HashAlgorithm> algorithmAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, TokenCalculator.HashAlgorithm.values());
+        final ArrayAdapter<Entry.OTPType> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Entry.PublicTypes.toArray(new Entry.OTPType[Entry.PublicTypes.size()]));
+        final ArrayAdapter<Entry.OTPType> fullTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Entry.OTPType.values());
+
+        if (settings.getExperimental())
+            typeInput.setAdapter(fullTypeAdapter);
+        else
+            typeInput.setAdapter(typeAdapter);
+
+        algorithmInput.setAdapter(algorithmAdapter);
+
         periodInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_PERIOD));
         digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
+
+        typeInput.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Entry.OTPType type = (Entry.OTPType) adapterView.getSelectedItem();
+
+                if (type == Entry.OTPType.STEAM) {
+                    digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.STEAM_DEFAULT_DIGITS));
+                    periodInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_PERIOD));
+                    algorithmInput.setSelection(algorithmAdapter.getPosition(TokenCalculator.HashAlgorithm.SHA1));
+
+                    digitsInput.setEnabled(false);
+                    periodInput.setEnabled(false);
+                    algorithmInput.setEnabled(false);
+                } else {
+                    digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
+                    digitsInput.setEnabled(true);
+                    periodInput.setEnabled(true);
+                    algorithmInput.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dialog_title_manual_entry)
@@ -116,7 +153,7 @@ public class MainActivity extends BaseActivity
                         Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
                         TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
 
-                        if (type == Entry.OTPType.TOTP) {
+                        if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
                             String label = labelInput.getText().toString();
                             String secret = secretInput.getText().toString();
                             int period = Integer.parseInt(periodInput.getText().toString());

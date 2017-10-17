@@ -22,6 +22,8 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -34,6 +36,7 @@ import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Tools;
@@ -57,11 +60,15 @@ public class AboutActivity extends BaseActivity {
     private static final String BUGREPORT_URI = GITHUB_URI + "/issues";
     private static final String TRANSLATE_URI = "https://crowdin.com/project/andotp";
 
-    int[] imageResources = {
+    static final int[] imageResources = {
             R.id.aboutImgVersion, R.id.aboutImgLicense, R.id.aboutImgChangelog, R.id.aboutImgSource,
             R.id.aboutImgOpenSource, R.id.aboutImgAuthor1, R.id.aboutImgAuthor2, R.id.aboutImgContributors,
             R.id.aboutImgTranslators, R.id.aboutImgBugs, R.id.aboutImgTranslate
     };
+
+    static long lastTap = 0;
+    static int taps = 0;
+    static Toast currentToast = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +97,39 @@ public class AboutActivity extends BaseActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+
+        LinearLayout versionLayout = v.findViewById(R.id.about_layout_version);
+
+        versionLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                long thisTap = System.currentTimeMillis();
+
+                if (thisTap - lastTap < 500) {
+                    taps = taps + 1;
+
+                    if (currentToast != null && taps <= 7)
+                        currentToast.cancel();
+
+                    if (taps > 3 && taps < 7)
+                        currentToast = Toast.makeText(getBaseContext(), String.valueOf(taps), Toast.LENGTH_SHORT);
+
+                    if (taps == 7) {
+                        if (settings.getExperimental())
+                            currentToast = Toast.makeText(getBaseContext(), R.string.about_toast_experimental_enabled, Toast.LENGTH_LONG);
+                        else
+                            enableExperimental();
+                    }
+
+                    if (currentToast != null)
+                        currentToast.show();
+                } else {
+                    taps = 0;
+                }
+
+                lastTap = thisTap;
+            }
+        });
 
         TextView version = v.findViewById(R.id.about_text_version);
         version.setText(versionName);
@@ -182,6 +222,25 @@ public class AboutActivity extends BaseActivity {
                 openURI(TRANSLATE_URI);
             }
         });
+    }
+
+    private void enableExperimental() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.about_title_experimental)
+                .setMessage(R.string.about_dialog_experimental)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        settings.setExperimental(true);
+                        Toast.makeText(getBaseContext(), R.string.about_toast_experimental, Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .create()
+                .show();
     }
 
     // Go back to the main activity

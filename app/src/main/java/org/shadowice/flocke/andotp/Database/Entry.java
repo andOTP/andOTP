@@ -32,10 +32,13 @@ import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 
 import java.net.URL;
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Entry {
-    public enum OTPType { TOTP }
+    public enum OTPType { TOTP, STEAM}
+    public static Set<OTPType> PublicTypes = EnumSet.of(OTPType.TOTP);
 
     private static final OTPType DEFAULT_TYPE = OTPType.TOTP;
 
@@ -208,14 +211,22 @@ public class Entry {
     }
 
     public boolean updateOTP() {
-        long time = System.currentTimeMillis() / 1000;
-        long counter = time / this.getPeriod();
+        if (type == OTPType.TOTP || type == OTPType.STEAM) {
+            long time = System.currentTimeMillis() / 1000;
+            long counter = time / this.getPeriod();
 
-        if (counter > last_update) {
-            currentOTP = TokenCalculator.TOTP(secret, period, digits, algorithm);
-            last_update = counter;
+            if (counter > last_update) {
+                if (type == OTPType.TOTP)
+                    currentOTP = TokenCalculator.TOTP_RFC6238(secret, period, digits, algorithm);
+                else if (type == OTPType.STEAM)
+                    currentOTP = TokenCalculator.TOTP_Steam(secret, period, digits, algorithm);
 
-            return true;
+                last_update = counter;
+
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }

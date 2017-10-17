@@ -34,6 +34,13 @@ import javax.crypto.spec.SecretKeySpec;
 public class TokenCalculator {
     public static final int TOTP_DEFAULT_PERIOD = 30;
     public static final int TOTP_DEFAULT_DIGITS = 6;
+    public static final int STEAM_DEFAULT_DIGITS = 5;
+
+    private static final char[] STEAMCHARS = new char[] {
+            '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C',
+            'D', 'F', 'G', 'H', 'J', 'K', 'M', 'N', 'P', 'Q',
+            'R', 'T', 'V', 'W', 'X', 'Y'
+    };
 
     public enum HashAlgorithm {
         SHA1, SHA256, SHA512
@@ -51,11 +58,33 @@ public class TokenCalculator {
         return mac.doFinal(data);
     }
 
-    public static String TOTP(byte[] secret, int period, int digits, HashAlgorithm algorithm) {
-        return String.format("%0" + digits + "d", TOTP(secret, period, System.currentTimeMillis() / 1000, digits, algorithm));
+    public static int TOTP_RFC6238(byte[] secret, int period, long time, int digits, HashAlgorithm algorithm) {
+        int fullToken = TOTP(secret, period, time, algorithm);
+        int div = (int) Math.pow(10, digits);
+
+        return fullToken % div;
     }
 
-    public static int TOTP(byte[] key, int period, long time, int digits, HashAlgorithm algorithm)
+    public static String TOTP_RFC6238(byte[] secret, int period, int digits, HashAlgorithm algorithm) {
+        int token = TOTP_RFC6238(secret, period, System.currentTimeMillis() / 1000, digits, algorithm);
+
+        return String.format("%0" + digits + "d", token);
+    }
+
+    public static String TOTP_Steam(byte[] secret, int period, int digits, HashAlgorithm algorithm) {
+        int fullToken = TOTP(secret, period, System.currentTimeMillis() / 1000, algorithm);
+
+        StringBuilder tokenBuilder = new StringBuilder();
+
+        for (int i = 0; i < digits; i++) {
+            tokenBuilder.append(STEAMCHARS[fullToken % STEAMCHARS.length]);
+            fullToken /= STEAMCHARS.length;
+        }
+
+        return tokenBuilder.toString();
+    }
+
+    public static int TOTP(byte[] key, int period, long time, HashAlgorithm algorithm)
     {
         int r = 0;
 
@@ -72,9 +101,7 @@ public class TokenCalculator {
             binary |= (hash[offset + 2] & 0xFF) << 0x08;
             binary |= (hash[offset + 3] & 0xFF);
 
-            int div = (int) Math.pow(10, digits);
-
-            r  = binary % div;
+            r = binary;
         } catch (Exception e) {
             e.printStackTrace();
         }
