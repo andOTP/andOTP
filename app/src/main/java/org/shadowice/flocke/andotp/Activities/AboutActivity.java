@@ -111,14 +111,14 @@ public class AboutActivity extends BaseActivity {
                     if (currentToast != null && taps <= 7)
                         currentToast.cancel();
 
-                    if (taps > 3 && taps < 7)
+                    if (taps >= 3 && taps <= 7)
                         currentToast = Toast.makeText(getBaseContext(), String.valueOf(taps), Toast.LENGTH_SHORT);
 
                     if (taps == 7) {
-                        if (settings.getExperimental())
-                            currentToast = Toast.makeText(getBaseContext(), R.string.about_toast_experimental_enabled, Toast.LENGTH_LONG);
+                        if (settings.getHiddenFeatures())
+                            currentToast = Toast.makeText(getBaseContext(), R.string.about_toast_hidden_features_enabled, Toast.LENGTH_LONG);
                         else
-                            enableExperimental();
+                            enableHiddenFeatures();
                     }
 
                     if (currentToast != null)
@@ -224,15 +224,15 @@ public class AboutActivity extends BaseActivity {
         });
     }
 
-    private void enableExperimental() {
+    private void enableHiddenFeatures() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.about_title_experimental)
-                .setMessage(R.string.about_dialog_experimental)
+        builder.setTitle(R.string.about_title_hidden_features)
+                .setMessage(R.string.about_dialog_hidden_features)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        settings.setExperimental(true);
-                        Toast.makeText(getBaseContext(), R.string.about_toast_experimental, Toast.LENGTH_LONG).show();
+                        settings.setHiddenFeatures(true);
+                        Toast.makeText(getBaseContext(), R.string.about_toast_hidden_features, Toast.LENGTH_LONG).show();
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {

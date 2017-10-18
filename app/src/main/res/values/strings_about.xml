@@ -38,13 +38,12 @@
     <string name="about_desc_report_bugs">Report bugs or request new features</string>
     <string name="about_desc_translate">Help to translate andOTP to your language</string>
 
-    <string name="about_title_experimental">Enable experimental settings</string>
-    <string name="about_dialog_experimental">Are you sure you want to enable the experimental
-        settings? Those settings are mostly non-standard OTP algorithms which were implemented on
-        special request. There is no official support for those algorithms and there are certain
-        limitations to them, please read the approriate GitHub issue to learn about them. You are on
-        your own on figuring out how to get the shared secrets for those accounts, please do not ask
-        about this!</string>
-    <string name="about_toast_experimental">Experimental settings enabled</string>
-    <string name="about_toast_experimental_enabled">Experimental settings already enabled</string>
+    <string name="about_title_hidden_features">Hidden features</string>
+    <string name="about_dialog_hidden_features">Are you sure you want to enable the hidden features?
+        Most of them are non-standard OTP algorithms which were implemented on special request.
+        They are <b>not officially supported</b> and can come with <b>certain limitations</b>,
+        please read (and understand) the page about "Hidden features" in the Github wiki to learn
+        more before using them.</string>
+    <string name="about_toast_hidden_features">Hidden features enabled</string>
+    <string name="about_toast_hidden_features_enabled">Hidden features already enabled</string>
 </resources>

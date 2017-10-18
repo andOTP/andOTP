@@ -214,12 +214,12 @@ public class Settings {
         setBoolean(R.string.settings_key_security_backup_warning, value);
     }
 
-    public boolean getExperimental() {
-        return getBoolean(R.string.settings_key_experimental, false);
+    public boolean getHiddenFeatures() {
+        return getBoolean(R.string.settings_key_hidden_features, false);
     }
 
-    public void setExperimental(boolean value) {
-        setBoolean(R.string.settings_key_experimental, value);
+    public void setHiddenFeatures(boolean value) {
+        setBoolean(R.string.settings_key_hidden_features, value);
     }
 
     public SortMode getSortMode() {
