@@ -115,10 +115,10 @@ public class AboutActivity extends BaseActivity {
                         currentToast = Toast.makeText(getBaseContext(), String.valueOf(taps), Toast.LENGTH_SHORT);
 
                     if (taps == 7) {
-                        if (settings.getHiddenFeatures())
-                            currentToast = Toast.makeText(getBaseContext(), R.string.about_toast_hidden_features_enabled, Toast.LENGTH_LONG);
+                        if (settings.getSpecialFeatures())
+                            currentToast = Toast.makeText(getBaseContext(), R.string.about_toast_special_features_enabled, Toast.LENGTH_LONG);
                         else
-                            enableHiddenFeatures();
+                            enableSpecialFeatures();
                     }
 
                     if (currentToast != null)
@@ -224,15 +224,15 @@ public class AboutActivity extends BaseActivity {
         });
     }
 
-    private void enableHiddenFeatures() {
+    private void enableSpecialFeatures() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.about_title_hidden_features)
-                .setMessage(R.string.about_dialog_hidden_features)
+        builder.setTitle(R.string.about_title_special_features)
+                .setMessage(R.string.about_dialog_special_features)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        settings.setHiddenFeatures(true);
-                        Toast.makeText(getBaseContext(), R.string.about_toast_hidden_features, Toast.LENGTH_LONG).show();
+                        settings.setSpecialFeatures(true);
+                        Toast.makeText(getBaseContext(), R.string.about_toast_special_features, Toast.LENGTH_LONG).show();
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {

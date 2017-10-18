@@ -107,7 +107,7 @@ public class MainActivity extends BaseActivity
         final ArrayAdapter<Entry.OTPType> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Entry.PublicTypes.toArray(new Entry.OTPType[Entry.PublicTypes.size()]));
         final ArrayAdapter<Entry.OTPType> fullTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Entry.OTPType.values());
 
-        if (settings.getHiddenFeatures())
+        if (settings.getSpecialFeatures())
             typeInput.setAdapter(fullTypeAdapter);
         else
             typeInput.setAdapter(typeAdapter);

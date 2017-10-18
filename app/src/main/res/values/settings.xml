@@ -25,7 +25,7 @@
 
     <string name="settings_key_security_backup_warning" translatable="false">pref_security_backup_warning_shown</string>
     <string name="settings_key_sort_mode" translatable="false">pref_sort_mode</string>
-    <string name="settings_key_hidden_features" translatable="false">pref_hidden_features</string>
+    <string name="settings_key_special_features" translatable="false">pref_special_features</string>
 
     <!-- Default values -->
     <string name="settings_default_auth" translatable="false">none</string>

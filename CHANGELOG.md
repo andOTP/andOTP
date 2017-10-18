@@ -5,8 +5,8 @@
  * New feature: store authentication credentials hashed (Issue #49)
  * New feature: store backup password encrypted (Issue #49)
  * New feature: set a static backup dir to disable the file selector (Issue #52)
- * New feature: hidden features (see wiki)
- * New hidden feature: SteamGuard tokens (Issue #38)
+ * New feature: special features (see wiki)
+ * New special feature: SteamGuard tokens (Issue #38)
  * Style/UI: black theme (Issue #47)
  * Bug fix: keep authentication settings when receiving a Panic Trigger (Issue #50)
  * Bug fix: progress bar animation with default duration scale
