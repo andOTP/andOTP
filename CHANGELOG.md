@@ -10,6 +10,7 @@
  * Style/UI: black theme (Issue #47)
  * Bug fix: keep authentication settings when receiving a Panic Trigger (Issue #50)
  * Bug fix: progress bar animation with default duration scale
+ * Translation: Czech (cs-rCZ) thanks to Picard0147
 
 #### v0.2.7
 

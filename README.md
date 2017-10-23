@@ -89,6 +89,7 @@ So make sure you have a **current backup** before switching!
  * 🇳🇱 Dutch (nl-rNL): Toon, [rain2reign](https://crowdin.com/profile/rain2reign)
  * Galician (gl-rES): [Triskel](https://crowdin.com/profile/triskel)
  * :ru: Russian (ru-rRU): [Victor Nidens](https://crowdin.com/profile/vnidens), [Ilia Drogaitsev](https://crowdin.com/profile/waytoroot), [Dmitry](https://crowdin.com/profile/SaintDI)
+ * 🇨🇿 Czech: [Picard0147](https://crowdin.com/profile/Picard0147)
 
 ## Screenshots:
 
