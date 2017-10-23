@@ -87,9 +87,9 @@ So make sure you have a **current backup** before switching!
  * :de: German (de-rDE): [SuperVirus](https://crowdin.com/profile/SuperVirus), [Chris Heitkamp](https://crowdin.com/profile/christophheitkamp)
  * :fr: French (fr-rFR): [Johan Fleury](https://github.com/johanfleury)
  * 🇳🇱 Dutch (nl-rNL): Toon, [rain2reign](https://crowdin.com/profile/rain2reign)
- * Galician (gl-rES): [Triskel](https://crowdin.com/profile/triskel)
+ * :es: Galician (gl-rES): [Triskel](https://crowdin.com/profile/triskel) (sorry for the wrong flag, but there is no unicode character for the Galician flag)
  * :ru: Russian (ru-rRU): [Victor Nidens](https://crowdin.com/profile/vnidens), [Ilia Drogaitsev](https://crowdin.com/profile/waytoroot), [Dmitry](https://crowdin.com/profile/SaintDI)
- * 🇨🇿 Czech: [Picard0147](https://crowdin.com/profile/Picard0147)
+ * 🇨🇿 Czech (cs-rCZ): [Picard0147](https://crowdin.com/profile/Picard0147)
 
 ## Screenshots:
 
