@@ -82,14 +82,16 @@ So make sure you have a **current backup** before switching!
 
 #### Translators:
 
- * 🇵🇱 Polish (pl-rPL): [Daniel Pustuła](https://github.com/9Cube-dpustula)
- * :es: Spanish (es-rES): [Carlos Melero](https://crowdin.com/profile/carmebar)
- * :de: German (de-rDE): [SuperVirus](https://crowdin.com/profile/SuperVirus), [Chris Heitkamp](https://crowdin.com/profile/christophheitkamp)
- * :fr: French (fr-rFR): [Johan Fleury](https://github.com/johanfleury)
- * 🇳🇱 Dutch (nl-rNL): Toon, [rain2reign](https://crowdin.com/profile/rain2reign)
- * :es: Galician (gl-rES): [Triskel](https://crowdin.com/profile/triskel) (sorry for the wrong flag, but there is no unicode character for the Galician flag)
- * :ru: Russian (ru-rRU): [Victor Nidens](https://crowdin.com/profile/vnidens), [Ilia Drogaitsev](https://crowdin.com/profile/waytoroot), [Dmitry](https://crowdin.com/profile/SaintDI)
- * 🇨🇿 Czech (cs-rCZ): [Picard0147](https://crowdin.com/profile/Picard0147)
+&nbsp; | Language          | Translators
+------ | ----------------- | -----------
+🇵🇱   | Polish (pl-rPL)   | [Daniel Pustuła](https://github.com/9Cube-dpustula)
+:es:   | Spanish (es-rES)  | [Carlos Melero](https://crowdin.com/profile/carmebar)
+:de:   | German (de-rDE)   | [SuperVirus](https://crowdin.com/profile/SuperVirus), [Chris Heitkamp](https://crowdin.com/profile/christophheitkamp)
+:fr:   | French (fr-rFR)   | [Johan Fleury](https://github.com/johanfleury)
+🇳🇱   | Dutch (nl-rNL)    | Toon, [rain2reign](https://crowdin.com/profile/rain2reign)
+&nbsp; | Galician (gl-rES) | [Triskel](https://crowdin.com/profile/triskel)
+:ru:   | Russian (ru-rRU)  | [Victor Nidens](https://crowdin.com/profile/vnidens), [Ilia Drogaitsev](https://crowdin.com/profile/waytoroot), [Dmitry](https://crowdin.com/profile/SaintDI)
+🇨🇿   | Czech (cs-rCZ)    | [Picard0147](https://crowdin.com/profile/Picard0147)
 
 ## Screenshots:
 
