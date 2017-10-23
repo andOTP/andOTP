@@ -55,7 +55,7 @@ key, which renders them useless.
 
 ## Migration:
 
- * [FreeOTP](https://freeotp.github.io/): https://github.com/viljoviitanen/freeotp-export
+Check out [this](https://github.com/flocke/andOTP/wiki/Migration) wiki page to learn about the different ways to migrate to andOTP from other 2FA apps.
 
 ## Downloads:
 
