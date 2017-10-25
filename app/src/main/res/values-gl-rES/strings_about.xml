@@ -25,4 +25,12 @@ Un aplicativo libre de autenticación de dous factores para Android 4.4+.    </s
   <string name="about_label_translate">Traducir</string>
   <string name="about_desc_report_bugs">Informar dun fallo ou solicitar novas funcionalidades</string>
   <string name="about_desc_translate">Axuda a traducir andOTP á túa lingua</string>
+  <string name="about_title_special_features">Funcionalidades especiais</string>
+  <string name="about_dialog_special_features">Queres activar as funcionalidades
+        especiais? A maioría delas son algoritmos OTP non estándar que foron implementados por petición
+        especial. <b>Non están oficialmente soportados</b> e poden ter <b>certas
+        limitacións</b>, por favor lea (e comprenda) a páxina \"Special features\" na wiki Github
+        para aprender máis antes de usalas.</string>
+  <string name="about_toast_special_features">Funcionalidades especiais activadas</string>
+  <string name="about_toast_special_features_enabled">As funcionalidades especiais xa están activadas</string>
 </resources>

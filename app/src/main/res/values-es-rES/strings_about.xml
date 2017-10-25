@@ -25,4 +25,12 @@
   <string name="about_label_translate">Traducir</string>
   <string name="about_desc_report_bugs">Informar errores o solicitar nuevas características</string>
   <string name="about_desc_translate">Ayuda a traducir andOTP a tu idioma</string>
+  <string name="about_title_special_features">Funcionalidades especiales</string>
+  <string name="about_dialog_special_features">Seguro que quieres activar las funcionalidades
+        especiales? Muchas de ellas son algoritmos OTP no estándares que han sido implementados
+        por petición. <b>No están soportados de forma oficial</b> y tienen <b>ciertas limitaciones</b>.
+        Por favor lee (y comprende) la página \"Special features\" de la wiki en Github para comprenderlas
+        antes de usarlas.</string>
+  <string name="about_toast_special_features">Funcionalidades especiales activadas</string>
+  <string name="about_toast_special_features_enabled">Funcionalidades especiales ya activadas</string>
 </resources>

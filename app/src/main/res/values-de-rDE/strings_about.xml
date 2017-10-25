@@ -25,4 +25,8 @@ Eine OpenSource-zwei-Faktor-Authentifizierung App für Android 4.4+.    </string
   <string name="about_label_translate">Übersetzen</string>
   <string name="about_desc_report_bugs">Melde Fehler oder schlage neue Funktionen vor</string>
   <string name="about_desc_translate">Helfen Sie andOTP in Ihre Sprache zu übersetzen</string>
+  <string name="about_title_special_features">Sonderfunktionen</string>
+  <string name="about_dialog_special_features">Sind Sie sicher, dass Sie die Sonderfunktionen aktivieren möchten? Die meisten davon sind nicht standardgemäße OTP-Algorithmen, die auf besonderen Wunsch umgesetzt wurden. Diese sind <b>nicht offiziell unterstützt</b> und mit <b>gewissen Einschränkungen</b>. Bitte lesen (und verstehen) Sie die Seite \"Special Features\" im Github Wiki um mehr darüber zu lernen, bevor Sie sie verwenden.</string>
+  <string name="about_toast_special_features">Sonderfunktionen aktiviert</string>
+  <string name="about_toast_special_features_enabled">Sonderfunktionen bereits aktiviert</string>
 </resources>

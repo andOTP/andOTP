@@ -31,6 +31,7 @@
   <string name="backup_dialog_msg_export_warning">Möchten Sie wirklich die Datenbank als
         Klatext-JSON-Datei exportieren? Diese Datei enthält alle Ihre geheimen Schlüssel. Bitte <b>sicher aufbewahren</b>!    </string>
   <!-- Toast messages -->
+  <string name="backup_toast_mkdir_failed">Erstellen des Backup-Verzeichnisses fehlgeschlagen</string>
   <string name="backup_toast_export_success">Export auf externen Speicher erfolgreich</string>
   <string name="backup_toast_export_failed">Export auf externen Speicher fehlgeschlagen</string>
   <string name="backup_toast_import_success">Import vom externen Speicher erfolgreich</string>

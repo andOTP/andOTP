@@ -16,7 +16,7 @@
   <string name="label_tap_to_reveal">Tik om te onthullen</string>
   <string name="label_type">Soort</string>
   <string name="label_secret">Geheim</string>
-  <string name="label_period">Tijdsduur</string>
+  <string name="label_period">Periode</string>
   <string name="label_digits">Cijfers</string>
   <string name="label_label">Etiket</string>
   <string name="label_algorithm">Algoritme</string>

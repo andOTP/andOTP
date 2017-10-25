@@ -14,6 +14,8 @@
   <string name="settings_title_panic">Botón del pánico</string>
   <string name="settings_title_theme">Aspecto</string>
   <string name="settings_title_label_size">Tamaño de fuente</string>
+  <string name="settings_title_backup_ask">Pedir nombre de fichero</string>
+  <string name="settings_title_backup_directory">Carpeta para copias de seguridad</string>
   <string name="settings_title_backup_password">Contraseña de copia de seguridad</string>
   <string name="settings_title_openpgp_provider">Seleccionar aplicación OpenPGP</string>
   <string name="settings_title_openpgp_keyid">Seleccionar clave OpenPGP</string>
@@ -23,6 +25,10 @@
   <string name="settings_desc_tap_to_reveal">Esconder códigos OTP por defecto,
         necesitando mostrarlos manualmente</string>
   <string name="settings_desc_panic">Decidir qué ocurre cuando el botón del pánico se ha pulsado</string>
+  <string name="settings_desc_backup_ask">Pedir nombre de fichero cada vvez que una copia de seguridad
+        es creada o restaurada</string>
+  <string name="settings_desc_backup_directory">Directorio para las copias de seguridad (los nombres de
+        fichero dependerán del tipo de copia de seguridad)</string>
   <string name="settings_desc_backup_password">Establecer la contraseña usada para cifrar las
         copias de seguridad</string>
   <string name="settings_desc_openpgp_sign">Cada copia de seguridad cifrada es además firmada con
@@ -48,10 +54,12 @@
   <string-array name="settings_entries_theme">
     <item>Tema claro</item>
     <item>Tema oscuro</item>
+    <item>Tema negro</item>
   </string-array>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Contraseña</string>
   <string name="settings_hint_pin">PIN</string>
   <string name="settings_hint_password_confirm">Confirmar contraseña</string>
   <string name="settings_hint_pin_confirm">Confirmar PIN</string>
+  <string name="settings_hint_unchanged">(sin cambios)</string>
 </resources>

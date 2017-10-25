@@ -24,6 +24,7 @@
   <string name="backup_dialog_title_security_warning">Предупреждение безопасности</string>
   <string name="backup_dialog_msg_export_warning">Вы действительно хотите экспортировать базу данных как незашифрованный текстовый JSON файл? Этот файл содержит все ваши секретные ключи, пожалуйста, <b>надежно сохраните его</b>!    </string>
   <!-- Toast messages -->
+  <string name="backup_toast_mkdir_failed">Не удалось создать каталог для резервной копии</string>
   <string name="backup_toast_export_success">Экспорт на внешний носитель выполнен успешно</string>
   <string name="backup_toast_export_failed">Экспорт на внешний носитель выполнить не удалось</string>
   <string name="backup_toast_import_success">Импорт из внешнего носителя выполнен успешно</string>

@@ -14,6 +14,8 @@
   <string name="settings_title_panic">Panik-Trigger</string>
   <string name="settings_title_theme">Design</string>
   <string name="settings_title_label_size">Schriftgrösse der Beschriftung</string>
+  <string name="settings_title_backup_ask">Nach Dateinamen fragen</string>
+  <string name="settings_title_backup_directory">Sicherungsverzeichnis</string>
   <string name="settings_title_backup_password">Datensicherungs-Passwort</string>
   <string name="settings_title_openpgp_provider">OpenPGP-Anbieter auswählen</string>
   <string name="settings_title_openpgp_keyid">OpenPGP-Schlüssel auswählen</string>
@@ -23,6 +25,8 @@
   <string name="settings_desc_tap_to_reveal">OTP-Token standardmäßig ausblenden, erfordert dass sie
         manuell aufgedeckt werden</string>
   <string name="settings_desc_panic">Entscheiden Sie, was passiert, wenn ein Panik-Trigger empfangen wird</string>
+  <string name="settings_desc_backup_ask">Jedes Mal nach dem Dateinamen fragen, wenn eine Sicherung erstellt oder wiederhergestellt wird</string>
+  <string name="settings_desc_backup_directory">Verzeichnis für die Sicherungen (Dateinamen hängen vom Backup-Typ ab)</string>
   <string name="settings_desc_backup_password">Setzt das Kennwort, das verwendet wird, um die
         Sicherungen zu verschlüsseln</string>
   <string name="settings_desc_openpgp_sign">Jedes verschlüsselte Backup wird zusätzlich mit
@@ -48,10 +52,12 @@
   <string-array name="settings_entries_theme">
     <item>Helles Design</item>
     <item>Dunkles Design</item>
+    <item>Schwarzes Design</item>
   </string-array>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Passwort</string>
   <string name="settings_hint_pin">PIN</string>
   <string name="settings_hint_password_confirm">Passwort bestätigen</string>
   <string name="settings_hint_pin_confirm">PIN bestätigen</string>
+  <string name="settings_hint_unchanged">(unverändert)</string>
 </resources>

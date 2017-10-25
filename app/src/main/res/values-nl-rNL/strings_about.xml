@@ -5,7 +5,7 @@
   <string name="about_description">
 Een open-source verificatie met twee factoren App voor Android 4.4 +.    </string>
   <!-- Misc -->
-  <string name="about_label_changelog">Veranderingen</string>
+  <string name="about_label_changelog">Wijzigingen</string>
   <string name="about_label_license">Licentie</string>
   <string name="about_label_licenses">Open source licenties</string>
   <string name="about_label_MIT">MIT-licentie</string>
@@ -23,6 +23,10 @@ Een open-source verificatie met twee factoren App voor Android 4.4 +.    </strin
   <string name="about_title_support">Ondersteunende ontwikkeling</string>
   <string name="about_label_report_bugs">Fout melden</string>
   <string name="about_label_translate">Vertalen</string>
-  <string name="about_desc_report_bugs">Fout melden of verzoek om nieuwe functies</string>
-  <string name="about_desc_translate">Help andOTP te vertalen in jouw taal</string>
+  <string name="about_desc_report_bugs">Meld een bug of verzoek nieuwe functies</string>
+  <string name="about_desc_translate">Help andOTP te vertalen</string>
+  <string name="about_title_special_features">Speciale functies</string>
+  <string name="about_dialog_special_features">Weet u zeker dat u de speciale functies gebruikers wilt inschakelen? De meeste van hen zijn atypische OTP-algoritmen en op verzoek toegevoegd. Ze zijn <b>niet officieel ondersteund</b> en kunnen komen met <b>bepaalde beperkingen</b>, lees (en begrijp) de pagina \"Special features\" in de Github wiki voordat je ze gebruikt.</string>
+  <string name="about_toast_special_features">Speciale functies zijn ingeschakeld</string>
+  <string name="about_toast_special_features_enabled">Speciale functies zijn al ingeschakeld</string>
 </resources>

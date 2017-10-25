@@ -14,6 +14,8 @@
   <string name="settings_title_panic">Panic Trigger</string>
   <string name="settings_title_theme">Tema</string>
   <string name="settings_title_label_size">Tamaño da tipografía</string>
+  <string name="settings_title_backup_ask">Preguntar polo nome do ficheiro</string>
+  <string name="settings_title_backup_directory">Directorio de copias de seguranza</string>
   <string name="settings_title_backup_password">Contrasinal da copia de seguranza</string>
   <string name="settings_title_openpgp_provider">Escoller fornecedor OpenPGP</string>
   <string name="settings_title_openpgp_keyid">Escoller chave OpenPGP</string>
@@ -22,6 +24,10 @@
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">Agochar códigos OTP, require mostralos manualmente</string>
   <string name="settings_desc_panic">Decide que facer cando se recibe un Panic Trigger</string>
+  <string name="settings_desc_backup_ask">Preguntar polo nome do ficheiro cada vez que unha copia de seguranza sexa creada ou
+        restaurada</string>
+  <string name="settings_desc_backup_directory">Directorio para as copias de seguranza (o nome do ficheiro dependerá
+        do tipo de copia)</string>
   <string name="settings_desc_backup_password">Establecer o contrasinal para cifrar as
         copias de seguranza</string>
   <string name="settings_desc_openpgp_sign">Cada copia de seguranza cifrada é ademais asinada coa
@@ -47,10 +53,12 @@
   <string-array name="settings_entries_theme">
     <item>Tema claro</item>
     <item>Tema escuro</item>
+    <item>Tema negro</item>
   </string-array>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Contrasinal</string>
   <string name="settings_hint_pin">PIN</string>
   <string name="settings_hint_password_confirm">Confirmar contrasinal</string>
   <string name="settings_hint_pin_confirm">Confirmar PIN</string>
+  <string name="settings_hint_unchanged">(sen cambios)</string>
 </resources>

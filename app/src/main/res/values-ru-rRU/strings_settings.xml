@@ -14,6 +14,8 @@
   <string name="settings_title_panic">Panic Trigger</string>
   <string name="settings_title_theme">Тема оформления</string>
   <string name="settings_title_label_size">Размер шрифта для метки</string>
+  <string name="settings_title_backup_ask">Спрашивать об имени файла</string>
+  <string name="settings_title_backup_directory">Каталог резервной копии</string>
   <string name="settings_title_backup_password">Пароль для резервной копии</string>
   <string name="settings_title_openpgp_provider">Выберите поставщика OpenPGP</string>
   <string name="settings_title_openpgp_keyid">Выберите ключ OpenPGP</string>
@@ -22,6 +24,8 @@
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">Скрыть OTP-токены по-умолчанию, требуя их показ вручную</string>
   <string name="settings_desc_panic">Решите, что произойдет при получении Panic Trigger</string>
+  <string name="settings_desc_backup_ask">Спрашивать об имени файла при создании резервной копии или        восстановлении</string>
+  <string name="settings_desc_backup_directory">Каталог для резервных копий (имена файлов будут зависеть        от типа резервного копирования)</string>
   <string name="settings_desc_backup_password">Установить пароль для шифрования резервных копий</string>
   <string name="settings_desc_openpgp_sign">Все зашифрованные резервные копии дополнительно подписываются вашим ключом (требуется пароль)</string>
   <string name="settings_desc_openpgp_verify">Зашифрованные резервные копии можно импортировать только если они подписаны действительным ключом</string>
@@ -42,10 +46,12 @@
   <string-array name="settings_entries_theme">
     <item>Светлая тема</item>
     <item>Тёмная тема</item>
+    <item>Тёмная тема</item>
   </string-array>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Пароль</string>
   <string name="settings_hint_pin">PIN-код</string>
   <string name="settings_hint_password_confirm">Подтвердить пароль</string>
   <string name="settings_hint_pin_confirm">Подтвердите ПИН-код</string>
+  <string name="settings_hint_unchanged">(без изменений)</string>
 </resources>

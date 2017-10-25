@@ -32,6 +32,7 @@
         fichero JSON de texto plano? Este fichero incluye las claves secretas, por favor <b>mántenlo seguro</b>!
     </string>
   <!-- Toast messages -->
+  <string name="backup_toast_mkdir_failed">Fallo al crear la carpeta para copias de seguridad</string>
   <string name="backup_toast_export_success">Exportado a almacenamiento externo con éxito</string>
   <string name="backup_toast_export_failed">Fallo al exportar al almacenamiento externo</string>
   <string name="backup_toast_import_success">Importado desde el almacenamiento externo con éxito</string>
