@@ -9,7 +9,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
 
     <dimen name="card_corner_radius">0dp</dimen>
-    <dimen name="card_elevation">4dp</dimen>
 
     <!-- FAB Menu -->
     <dimen name="fab_small_elevation">2dp</dimen>

@@ -32,7 +32,6 @@
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
         <item name="cardUseCompatPadding">true</item>
         <item name="contentPadding">@dimen/activity_margin</item>
-        <item name="cardElevation">@dimen/card_elevation</item>
     </style>
 
     <!-- Dark application theme. -->
