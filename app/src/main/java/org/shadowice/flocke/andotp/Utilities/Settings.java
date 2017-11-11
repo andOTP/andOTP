@@ -274,4 +274,24 @@ public class Settings {
     public boolean getOpenPGPVerify() {
         return getBoolean(R.string.settings_key_openpgp_verify, false);
     }
+
+    public boolean getAllTagsToggle() {
+        return getBoolean(R.string.settings_key_all_tags_toggle, true);
+    }
+
+    public void setAllTagsToggle(Boolean value) {
+        setBoolean(R.string.settings_key_all_tags_toggle, value);
+    }
+
+    public boolean getTagToggle(String tag) {
+        String settingsKey = getResString(R.string.settings_key_tags_toggles) + "_" + tag;
+        return settings.getBoolean(settingsKey, true);
+    }
+
+    public void setTagToggle(String tag, Boolean value) {
+        String settingsKey = getResString(R.string.settings_key_tags_toggles) + "_" + tag;
+        settings.edit()
+                .putBoolean(settingsKey, value)
+                .apply();
+    }
 }

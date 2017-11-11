@@ -66,8 +66,11 @@ import org.shadowice.flocke.andotp.View.FloatingActionMenu;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCallback;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
+import org.shadowice.flocke.andotp.View.TagsAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
@@ -89,7 +92,7 @@ public class MainActivity extends BaseActivity
     private Handler handler;
     private Runnable handlerTask;
 
-    private ArrayAdapter<String> tagsDrawerAdapter;
+    private TagsAdapter tagsDrawerAdapter;
     private ActionBarDrawerToggle tagsToggle;
 
     // QR code scanning
@@ -557,14 +560,19 @@ public class MainActivity extends BaseActivity
                 CheckedTextView checkedTextView = ((CheckedTextView)view);
                 checkedTextView.setChecked(!checkedTextView.isChecked());
 
+                settings.setAllTagsToggle(checkedTextView.isChecked());
+
                 for(int i = 0; i < tagsDrawerListView.getChildCount(); i++) {
                     CheckedTextView childCheckBox = (CheckedTextView)tagsDrawerListView.getChildAt(i);
                     childCheckBox.setChecked(checkedTextView.isChecked());
                 }
             }
         });
+        allTagsButton.setChecked(settings.getAllTagsToggle());
 
-        tagsDrawerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, adapter.getTags());
+        List<String> sortedTags = adapter.getTags();
+        Collections.sort(sortedTags);
+        tagsDrawerAdapter = new TagsAdapter(this, sortedTags);
         tagsDrawerListView.setAdapter(tagsDrawerAdapter);
 
         tagsDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -572,6 +580,8 @@ public class MainActivity extends BaseActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 CheckedTextView checkedTextView = ((CheckedTextView)view);
                 checkedTextView.setChecked(!checkedTextView.isChecked());
+
+                settings.setTagToggle(checkedTextView.getText().toString(), checkedTextView.isChecked());
             }
         });
     }

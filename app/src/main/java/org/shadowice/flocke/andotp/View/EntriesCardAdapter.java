@@ -49,11 +49,11 @@ import org.shadowice.flocke.andotp.R;
 
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     implements ItemTouchHelperAdapter, Filterable {
@@ -314,14 +314,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         return filter;
     }
 
-    public String[] getTags() {
+    public List<String> getTags() {
         HashSet<String> tags = new HashSet<String>();
 
         for(Entry entry : entries) {
             tags.addAll(entry.getTags());
         }
 
-        return tags.toArray(new String[tags.size()]);
+        return new ArrayList<String>(tags);
     }
 
     public class EntryFilter extends Filter {
