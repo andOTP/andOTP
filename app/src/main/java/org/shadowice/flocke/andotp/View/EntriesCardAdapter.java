@@ -63,6 +63,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     private ArrayList<Entry> entries;
     private ArrayList<Entry> displayedEntries;
     private Callback callback;
+    private List<String> tagsFilter = new ArrayList<>();
 
     private SortMode sortMode = SortMode.UNSORTED;
 
@@ -93,6 +94,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
     public void entriesChanged() {
         displayedEntries = sortEntries(entries);
+        filterByTags(tagsFilter);
         notifyDataSetChanged();
     }
 
@@ -103,6 +105,29 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void loadEntries() {
         entries = DatabaseHelper.loadDatabase(context);
         entriesChanged();
+    }
+
+    public void filterByTags(List<String> tags) {
+        tagsFilter = tags;
+        List<Entry> matchingEntries = new ArrayList<>();
+
+        for(Entry e : entries) {
+            //Entries with no tags will always be shown
+            Boolean foundMatchingTag = e.getTags().isEmpty();
+
+            for(String tag : tags) {
+                if(e.getTags().contains(tag)) {
+                    foundMatchingTag = true;
+                }
+            }
+
+            if(foundMatchingTag) {
+                matchingEntries.add(e);
+            }
+        }
+
+        displayedEntries = sortEntries(matchingEntries);
+        notifyDataSetChanged();
     }
 
     public void updateTokens() {
@@ -293,7 +318,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         return this.sortMode;
     }
 
-    private ArrayList<Entry> sortEntries(ArrayList<Entry> unsorted) {
+    private ArrayList<Entry> sortEntries(List<Entry> unsorted) {
         ArrayList<Entry> sorted = new ArrayList<>(unsorted);
 
         if (sortMode == SortMode.LABEL) {

@@ -9,6 +9,7 @@ import android.widget.CheckedTextView;
 
 import org.shadowice.flocke.andotp.Utilities.Settings;
 
+import java.util.Collections;
 import java.util.List;
 
 public class TagsAdapter extends ArrayAdapter<String> {
@@ -35,5 +36,13 @@ public class TagsAdapter extends ArrayAdapter<String> {
         checkedTextView.setText(tags.get(i));
         checkedTextView.setChecked(settings.getTagToggle(tags.get(i)));
         return checkedTextView;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+        Collections.sort(this.tags);
+        this.clear();
+        this.addAll(this.tags);
+        notifyDataSetChanged();
     }
 }
