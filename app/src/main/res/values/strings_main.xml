@@ -7,7 +7,8 @@
     <string name="button_scan_qr">Scan QR-Code</string>
     <string name="button_save">Save</string>
     <string name="button_warned">You have been warned!</string>
-
+    <string name="button_all_tags">All tags</string>
+    
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
 
@@ -24,6 +25,11 @@
     <string name="label_digits">Digits</string>
     <string name="label_label">Label</string>
     <string name="label_algorithm">Algorithm</string>
+    <string name="label_tags">Tags</string>
+
+    <!-- Drawer -->
+    <string name="drawer_open">Show tags</string>
+    <string name="drawer_close">Hide tags</string>
 
     <!-- Menu -->
     <string name="menu_main_about">About</string>

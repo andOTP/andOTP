@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fab_main_layout"
+    android:background="?attr/windowBackground"
+    android:layout_width="@dimen/drawer_width"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="start" >
+
+    <CheckedTextView
+        android:id="@+id/all_tags_in_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeightSmall"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:gravity="center_vertical"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+        android:text="@string/button_all_tags"/>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/strong_divider_size"
+            android:background="@color/divider" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/tags_list_in_drawer"
+        android:layout_width="match_parent"
+        android:dividerHeight="0dp"
+        android:headerDividersEnabled="false"
+        android:footerDividersEnabled="true"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

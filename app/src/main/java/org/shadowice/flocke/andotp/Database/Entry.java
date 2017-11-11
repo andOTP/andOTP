@@ -26,13 +26,16 @@ package org.shadowice.flocke.andotp.Database;
 import android.net.Uri;
 
 import org.apache.commons.codec.binary.Base32;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -48,6 +51,7 @@ public class Entry {
     private static final String JSON_DIGITS = "digits";
     private static final String JSON_TYPE = "type";
     private static final String JSON_ALGORITHM = "algorithm";
+    private static final String JSON_TAGS = "tags";
 
     private OTPType type = OTPType.TOTP;
     private int period = TokenCalculator.TOTP_DEFAULT_PERIOD;
@@ -57,16 +61,18 @@ public class Entry {
     private String label;
     private String currentOTP;
     private long last_update = 0;
+    public List<String> tags = new ArrayList<>();
 
     public Entry(){}
 
-    public Entry(OTPType type, String secret, int period, int digits, String label, TokenCalculator.HashAlgorithm algorithm) {
+    public Entry(OTPType type, String secret, int period, int digits, String label, TokenCalculator.HashAlgorithm algorithm, ArrayList<String> tags) {
         this.type = type;
         this.secret = new Base32().decode(secret.toUpperCase());
         this.period = period;
         this.digits = digits;
         this.label = label;
         this.algorithm = algorithm;
+        this.tags = tags;
     }
 
     public Entry(String contents) throws Exception {
@@ -91,6 +97,7 @@ public class Entry {
         String period = uri.getQueryParameter("period");
         String digits = uri.getQueryParameter("digits");
         String algorithm = uri.getQueryParameter("algorithm");
+        List<String> tags = uri.getQueryParameters("tags");
 
         if(issuer != null){
             label = issuer +" - "+label;
@@ -116,6 +123,12 @@ public class Entry {
         } else {
             this.algorithm = TokenCalculator.DEFAULT_ALGORITHM;
         }
+
+        if(tags != null) {
+            this.tags = tags;
+        } else {
+            this.tags = new ArrayList<>();
+        }
     }
 
     public Entry (JSONObject jsonObj) throws JSONException {
@@ -140,6 +153,15 @@ public class Entry {
         } catch (JSONException e) {
             this.algorithm = TokenCalculator.DEFAULT_ALGORITHM;
         }
+
+        this.tags = new ArrayList<>();
+        try {
+            JSONArray tagsArray = jsonObj.getJSONArray(JSON_TAGS);
+            for(int i = 0; i < tagsArray.length(); i++) {
+                this.tags.add(tagsArray.getString(i));
+            }
+        } catch (JSONException e) {
+        }
     }
 
     public JSONObject toJSON() throws JSONException {
@@ -150,6 +172,12 @@ public class Entry {
         jsonObj.put(JSON_DIGITS, getDigits());
         jsonObj.put(JSON_TYPE, getType().toString());
         jsonObj.put(JSON_ALGORITHM, algorithm.toString());
+
+        JSONArray tagsArray = new JSONArray();
+        for(String tag : tags){
+            tagsArray.put(tag);
+        }
+        jsonObj.put(JSON_TAGS, tagsArray);
 
         return jsonObj;
     }
@@ -193,6 +221,10 @@ public class Entry {
     public void setDigits(int digits) {
         this.digits = digits;
     }
+
+    public List<String> getTags() { return tags; }
+
+    public void setTags(List<String> tags) { this.tags = tags; }
 
     public TokenCalculator.HashAlgorithm getAlgorithm() {
         return this.algorithm;

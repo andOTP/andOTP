@@ -29,10 +29,13 @@ import android.app.KeyguardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -46,7 +49,9 @@ import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -62,6 +67,7 @@ import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCal
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
@@ -82,6 +88,9 @@ public class MainActivity extends BaseActivity
 
     private Handler handler;
     private Runnable handlerTask;
+
+    private ArrayAdapter<String> tagsDrawerAdapter;
+    private ActionBarDrawerToggle tagsToggle;
 
     // QR code scanning
     private void scanQRCode(){
@@ -159,7 +168,7 @@ public class MainActivity extends BaseActivity
                             int period = Integer.parseInt(periodInput.getText().toString());
                             int digits = Integer.parseInt(digitsInput.getText().toString());
 
-                            Entry e = new Entry(type, secret, period, digits, label, algorithm);
+                            Entry e = new Entry(type, secret, period, digits, label, algorithm, new ArrayList<String>());
                             e.updateOTP();
                             adapter.addEntry(e);
                             adapter.saveEntries();
@@ -332,6 +341,14 @@ public class MainActivity extends BaseActivity
                 handler.postDelayed(this, 1000);
             }
         };
+
+        setupDrawer();
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        tagsToggle.syncState();
     }
 
     // Controls for the updater background task
@@ -368,6 +385,12 @@ public class MainActivity extends BaseActivity
         } else if (key.equals(getString(R.string.settings_key_theme))) {
             recreate();
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        tagsToggle.onConfigurationChanged(newConfig);
     }
 
     // Activity results
@@ -493,8 +516,63 @@ public class MainActivity extends BaseActivity
                 adapter.setSortMode(SortMode.LABEL);
                 touchHelperCallback.setDragEnabled(false);
             }
+        } else if (tagsToggle.onOptionsItemSelected(item)) {
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setupDrawer() {
+        final ListView tagsDrawerListView = (ListView)findViewById(R.id.tags_list_in_drawer);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        DrawerLayout tagsDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+
+        tagsToggle = new ActionBarDrawerToggle(this, tagsDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                getSupportActionBar().setTitle(R.string.label_tags);
+                invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                getSupportActionBar().setTitle(R.string.app_name);
+                invalidateOptionsMenu();
+            }
+        };
+
+        tagsToggle.setDrawerIndicatorEnabled(true);
+        tagsDrawerLayout.addDrawerListener(tagsToggle);
+
+        CheckedTextView allTagsButton = (CheckedTextView)findViewById(R.id.all_tags_in_drawer);
+        allTagsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CheckedTextView checkedTextView = ((CheckedTextView)view);
+                checkedTextView.setChecked(!checkedTextView.isChecked());
+
+                for(int i = 0; i < tagsDrawerListView.getChildCount(); i++) {
+                    CheckedTextView childCheckBox = (CheckedTextView)tagsDrawerListView.getChildAt(i);
+                    childCheckBox.setChecked(checkedTextView.isChecked());
+                }
+            }
+        });
+
+        tagsDrawerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, adapter.getTags());
+        tagsDrawerListView.setAdapter(tagsDrawerAdapter);
+
+        tagsDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CheckedTextView checkedTextView = ((CheckedTextView)view);
+                checkedTextView.setChecked(!checkedTextView.isChecked());
+            }
+        });
     }
 }
