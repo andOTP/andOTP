@@ -55,6 +55,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import static org.shadowice.flocke.andotp.Utilities.TokenCalculator.DEFAULT_ALGORITHM;
 import static org.shadowice.flocke.andotp.Utilities.TokenCalculator.TOTP_DEFAULT_PERIOD;
 
 public class ApplicationTest extends ApplicationTestCase<Application> {
@@ -147,6 +148,42 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         assertEquals("ACME Co - ACME Co:john.doe@email.com", entry.getLabel());
 
         assertEquals("HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ", new String(new Base32().encode(entry.getSecret())));
+    }
+
+    public void testToURL() throws Exception {
+
+        Entry entry = new Entry(
+                Entry.OTPType.TOTP,
+                "HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ",
+                30,
+                6,
+                "ACME Co:john.doe@email.com",
+                TokenCalculator.HashAlgorithm.SHA1);
+
+        assertEquals("otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30", entry.toUriKey());
+
+        entry = new Entry(
+                Entry.OTPType.TOTP,
+                "HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ",
+                30,
+                6,
+                "ACME Co - john.doe@email.com",
+                TokenCalculator.HashAlgorithm.SHA1);
+
+        assertEquals("otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30", entry.toUriKey());
+
+        entry = new Entry();
+        entry.setDigits(0);
+        entry.setPeriod(0);
+        entry.setLabel("Foobar");
+        entry.setType(Entry.OTPType.TOTP);
+        entry.setSecret("12345678901234567890".getBytes(StandardCharsets.US_ASCII));
+
+        assertEquals("otpauth://totp/Foobar?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&algorithm=" + DEFAULT_ALGORITHM.toString(), entry.toUriKey());
+
+        String uriFormat = "otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30";
+        entry = new Entry(uriFormat);
+        assertEquals(uriFormat, entry.toUriKey());
     }
 
     public void testSettingsHelper() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {

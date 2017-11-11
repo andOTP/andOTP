@@ -274,4 +274,8 @@ public class Settings {
     public boolean getOpenPGPVerify() {
         return getBoolean(R.string.settings_key_openpgp_verify, false);
     }
+
+    public boolean getBackupAsUriKeyFormat() {
+        return getBoolean(R.string.settings_key_use_urikeyformat, false);
+    }
 }

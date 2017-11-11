@@ -6,6 +6,7 @@
     <string name="settings_category_title_security">Security</string>
     <string name="settings_category_title_ui">User interface</string>
     <string name="settings_category_title_backup">Backup</string>
+    <string name="settings_category_title_secrets">Secret features</string>
 
     <!-- Titles -->
     <string name="settings_title_tap_to_reveal">Tap to reveal</string>
@@ -24,6 +25,7 @@
     <string name="settings_title_openpgp_keyid">Select OpenPGP key</string>
     <string name="settings_title_openpgp_sign">Sign encrypted backups</string>
     <string name="settings_title_openpgp_verify">Verify encrypted backups</string>
+    <string name="settings_title_use_urikeyformat">Use UriKeyFormat</string>
 
     <!-- Descriptions -->
     <string name="settings_desc_tap_to_reveal">Hide the OTP tokens by default, requiring them to be
@@ -41,6 +43,8 @@
         your key (requires password)</string>
     <string name="settings_desc_openpgp_verify">Encrypted backups are only imported if they are
         signed with a valid key</string>
+
+    <string name="settings_desc_use_urikeyformat">Use UriKeyFormat for all backups and restores rather than JSON</string>
 
     <!-- Toasts -->
     <string name="settings_toast_auth_device_pre_lollipop">This feature requires at least Android 5.0

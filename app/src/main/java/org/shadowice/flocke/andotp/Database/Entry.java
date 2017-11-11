@@ -30,9 +30,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.EnumSet;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
@@ -92,11 +97,11 @@ public class Entry {
         String digits = uri.getQueryParameter("digits");
         String algorithm = uri.getQueryParameter("algorithm");
 
-        if(issuer != null){
+        if(issuer != null && !label.startsWith(issuer)){
             label = issuer +" - "+label;
         }
 
-        this.label = label;
+        this.label = URLDecoder.decode(label, StandardCharsets.UTF_8.toString());
         this.secret = new Base32().decode(secret.toUpperCase());
 
         if (period != null) {
@@ -152,6 +157,59 @@ public class Entry {
         jsonObj.put(JSON_ALGORITHM, algorithm.toString());
 
         return jsonObj;
+    }
+
+    public String toUriKey() throws UnsupportedEncodingException {
+        StringBuilder builder = new StringBuilder();
+
+        String label = getLabel();
+        String issuer = null;
+
+        if(label.contains(" - ") || label.contains(":"))
+        {
+            String[] strings =
+                    label.contains(" - ") ?
+                            label.split(" - ", 2) :
+                            label.split(":", 2);
+
+            if(strings.length == 2) {
+                issuer = strings[0];
+                label = URLEncoder.encode(issuer, StandardCharsets.UTF_8.toString())
+                        .replace("+", "%20")
+                        + ":" +
+                        strings[1]
+                                .replace(issuer, "")
+                                .replace(":", "");
+            }
+        }else{
+            label = URLEncoder.encode(label, StandardCharsets.UTF_8.toString()).replace("+", "%20");
+        }
+
+        builder.append("otpauth://")
+                .append(getType().toString().toLowerCase())
+                .append("/")
+                .append(label)
+                .append("?secret=")
+                .append( new String(new Base32().encode(getSecret())));
+
+        if(issuer != null && !issuer.isEmpty())
+        {
+            builder.append("&issuer=").append(URLEncoder.encode(issuer, "UTF-8").replace("+", "%20"));
+        }
+
+        if (algorithm.toString() != null && !getAlgorithm().toString().isEmpty()) {
+            builder.append("&algorithm=").append(algorithm.toString());
+        }
+
+        if (getDigits() > 0) {
+            builder.append("&digits=").append(getDigits());
+        }
+
+        if (getPeriod() > 0) {
+            builder.append("&period=").append(getPeriod());
+        }
+
+        return builder.toString();
     }
 
     public OTPType getType() {

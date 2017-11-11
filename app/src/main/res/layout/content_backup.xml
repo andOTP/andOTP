@@ -38,6 +38,7 @@
                 android:text="@string/backup_title_export_plain" />
 
             <TextView
+                android:id="@+id/text_view_backup_plain_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -60,6 +61,7 @@
                 android:text="@string/backup_title_import_plain" />
 
             <TextView
+                android:id="@+id/text_view_restore_plain_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -100,6 +102,7 @@
                 android:text="@string/backup_title_export_crypt" />
 
             <TextView
+                android:id="@+id/text_view_backup_crypt_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -122,6 +125,7 @@
                 android:text="@string/backup_title_import_crypt" />
 
             <TextView
+                android:id="@+id/text_view_restore_crypt_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -162,6 +166,7 @@
                 android:text="@string/backup_title_export_openpgp" />
 
             <TextView
+                android:id="@+id/text_view_backup_openpgp_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -184,6 +189,7 @@
                 android:text="@string/backup_title_import_openpgp" />
 
             <TextView
+                android:id="@+id/text_view_restore_openpgp_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"

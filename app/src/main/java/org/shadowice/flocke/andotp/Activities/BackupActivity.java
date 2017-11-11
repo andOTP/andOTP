@@ -193,6 +193,23 @@ public class BackupActivity extends BaseActivity {
             });
         }
 
+        if(settings.getBackupAsUriKeyFormat()) {
+            TextView[] descriptions = {
+                    v.findViewById(R.id.text_view_backup_plain_desc),
+                    v.findViewById(R.id.text_view_backup_crypt_desc),
+                    v.findViewById(R.id.text_view_backup_openpgp_desc),
+                    v.findViewById(R.id.text_view_restore_plain_desc),
+                    v.findViewById(R.id.text_view_restore_crypt_desc),
+                    v.findViewById(R.id.text_view_restore_openpgp_desc)
+            };
+
+            String json = getString(R.string.backup_filetype_json);
+            String uriKey = getString(R.string.backup_filetype_urikeyformat);
+
+            for(TextView textView : descriptions) {
+                textView.setText(textView.getText().toString().replace(json, uriKey));
+            }
+        }
     }
 
     // End with a result
@@ -361,7 +378,7 @@ public class BackupActivity extends BaseActivity {
 
     private void doRestorePlain(Uri uri) {
         if (Tools.isExternalStorageReadable()) {
-            boolean success = DatabaseHelper.importFromJSON(this, uri);
+            boolean success = DatabaseHelper.importFromKeys(this, uri);
 
             if (success) {
                 reload = true;
@@ -378,7 +395,7 @@ public class BackupActivity extends BaseActivity {
 
     private void doBackupPlain(Uri uri) {
         if (Tools.isExternalStorageWritable()) {
-            boolean success = DatabaseHelper.exportAsJSON(this, uri);
+            boolean success = DatabaseHelper.exportKeys(this, uri);
 
             if (success)
                 Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
@@ -394,8 +411,13 @@ public class BackupActivity extends BaseActivity {
     private void backupPlainWithWarning() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
+        String message = getString(R.string.backup_dialog_msg_export_warning);
+        if(settings.getBackupAsUriKeyFormat()) {
+            message = message.replace(getString(R.string.backup_filetype_json), getString(R.string.backup_filetype_urikeyformat));
+        }
+
         builder.setTitle(R.string.backup_dialog_title_security_warning)
-                .setMessage(R.string.backup_dialog_msg_export_warning)
+                .setMessage(message)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -426,7 +448,10 @@ public class BackupActivity extends BaseActivity {
                     SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
                     byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
 
-                    ArrayList<Entry> entries = DatabaseHelper.stringToEntries(new String(decrypted, StandardCharsets.UTF_8));
+                    ArrayList<Entry> entries = settings.getBackupAsUriKeyFormat() ?
+                            DatabaseHelper.uriKeysToEntries(new String(decrypted, StandardCharsets.UTF_8)) :
+                            DatabaseHelper.jsonToEntries(new String(decrypted, StandardCharsets.UTF_8));
+
                     DatabaseHelper.saveDatabase(this, entries);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -455,13 +480,16 @@ public class BackupActivity extends BaseActivity {
         if (! password.isEmpty()) {
             if (Tools.isExternalStorageWritable()) {
                 ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this);
-                String plain = DatabaseHelper.entriesToString(entries);
+
+                String plainKeys = settings.getBackupAsUriKeyFormat() ?
+                        DatabaseHelper.entriesToURIKeyString(entries) :
+                        DatabaseHelper.entriesToJsonString(entries);
 
                 boolean success = true;
 
                 try {
                     SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
-                    byte[] encrypted = EncryptionHelper.encrypt(key, plain.getBytes(StandardCharsets.UTF_8));
+                    byte[] encrypted = EncryptionHelper.encrypt(key, plainKeys.getBytes(StandardCharsets.UTF_8));
 
                     FileHelper.writeBytesToFile(this, uri, encrypted);
                 } catch (Exception e) {
@@ -488,7 +516,9 @@ public class BackupActivity extends BaseActivity {
 
     private void doRestoreEncrypted(String content) {
         if (Tools.isExternalStorageReadable()) {
-            ArrayList<Entry> entries = DatabaseHelper.stringToEntries(content);
+            ArrayList<Entry> entries = settings.getBackupAsUriKeyFormat() ?
+                    DatabaseHelper.uriKeysToEntries(content) :
+                    DatabaseHelper.jsonToEntries(content);
 
             if (entries.size() > 0) {
                 DatabaseHelper.saveDatabase(this, entries);
@@ -536,7 +566,10 @@ public class BackupActivity extends BaseActivity {
 
     private void backupEncryptedWithPGP(Uri uri, Intent encryptIntent) {
         ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this);
-        String plainJSON = DatabaseHelper.entriesToString(entries);
+
+        String plainKeys = settings.getBackupAsUriKeyFormat() ?
+                DatabaseHelper.entriesToURIKeyString(entries) :
+                DatabaseHelper.entriesToJsonString(entries);
 
         if (encryptIntent == null) {
             encryptIntent = new Intent();
@@ -552,7 +585,7 @@ public class BackupActivity extends BaseActivity {
             encryptIntent.putExtra(OpenPgpApi.EXTRA_REQUEST_ASCII_ARMOR, true);
         }
 
-        InputStream is = new ByteArrayInputStream(plainJSON.getBytes(StandardCharsets.UTF_8));
+        InputStream is = new ByteArrayInputStream(plainKeys.getBytes(StandardCharsets.UTF_8));
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         OpenPgpApi api = new OpenPgpApi(this, pgpServiceConnection.getService());
         Intent result = api.executeApi(encryptIntent, is, os);

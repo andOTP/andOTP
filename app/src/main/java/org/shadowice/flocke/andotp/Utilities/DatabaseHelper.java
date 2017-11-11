@@ -31,6 +31,7 @@ import org.shadowice.flocke.andotp.Database.Entry;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.crypto.SecretKey;
 
@@ -41,10 +42,14 @@ public class DatabaseHelper {
     /* Database functions */
 
     public static void saveDatabase(Context context, ArrayList<Entry> entries) {
-        String jsonString = entriesToString(entries);
+        Settings settings = new Settings(context);
+
+        String plainKeys = settings.getBackupAsUriKeyFormat() ?
+                DatabaseHelper.entriesToURIKeyString(entries) :
+                DatabaseHelper.entriesToJsonString(entries);
 
         try {
-            byte[] data = jsonString.getBytes();
+            byte[] data = plainKeys.getBytes();
 
             SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
             data = EncryptionHelper.encrypt(key, data);
@@ -58,6 +63,7 @@ public class DatabaseHelper {
 
     public static ArrayList<Entry> loadDatabase(Context context){
         ArrayList<Entry> entries = new ArrayList<>();
+        Settings settings = new Settings(context);
 
         try {
             byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
@@ -65,7 +71,10 @@ public class DatabaseHelper {
             SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
             data = EncryptionHelper.decrypt(key, data);
 
-            entries = stringToEntries(new String(data));
+            entries = settings.getBackupAsUriKeyFormat() ?
+                    DatabaseHelper.uriKeysToEntries(new String(data)) :
+                    DatabaseHelper.jsonToEntries(new String(data));
+
         } catch (Exception error) {
             error.printStackTrace();
         }
@@ -74,8 +83,21 @@ public class DatabaseHelper {
     }
 
     /* Conversion functions */
+    public static String entriesToURIKeyString(ArrayList<Entry> entries) {
+        StringBuilder builder = new StringBuilder();
 
-    public static String entriesToString(ArrayList<Entry> entries) {
+        for(Entry e: entries){
+            try {
+                builder.append(e.toUriKey()).append('\n');
+            } catch (Exception error) {
+                error.printStackTrace();
+            }
+        }
+
+        return builder.toString();
+    }
+
+    public static String entriesToJsonString(ArrayList<Entry> entries) {
         JSONArray json = new JSONArray();
 
         for(Entry e: entries){
@@ -89,7 +111,24 @@ public class DatabaseHelper {
         return json.toString();
     }
 
-    public static ArrayList<Entry> stringToEntries(String data) {
+    public static ArrayList<Entry> uriKeysToEntries(String data) {
+        ArrayList<Entry> entries = new ArrayList<>();
+
+        try {
+            Scanner scanner = new Scanner(data);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                entries.add(new Entry(line));
+            }
+            scanner.close();
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
+
+        return entries;
+    }
+
+    public static ArrayList<Entry> jsonToEntries(String data) {
         ArrayList<Entry> entries = new ArrayList<>();
 
         try {
@@ -107,19 +146,26 @@ public class DatabaseHelper {
 
     /* Export functions */
 
-    public static boolean exportAsJSON(Context context, Uri file) {
+    public static boolean exportKeys(Context context, Uri file) {
         ArrayList<Entry> entries = loadDatabase(context);
 
-        return FileHelper.writeStringToFile(context, file, entriesToString(entries));
+        Settings settings = new Settings(context);
+
+        String plainKeys = settings.getBackupAsUriKeyFormat() ?
+                DatabaseHelper.entriesToURIKeyString(entries) :
+                DatabaseHelper.entriesToJsonString(entries);
+
+        return FileHelper.writeStringToFile(context, file, plainKeys);
     }
 
-    public static boolean importFromJSON(Context context, Uri file) {
+    public static boolean importFromKeys(Context context, Uri file) {
         boolean success = false;
+        Settings settings = new Settings(context);
 
         String content = FileHelper.readFileToString(context, file);
 
         if (! content.isEmpty()) {
-            ArrayList<Entry> entries = stringToEntries(content);
+            ArrayList<Entry> entries = settings.getBackupAsUriKeyFormat() ? uriKeysToEntries(content) : jsonToEntries(content);
 
             saveDatabase(context, entries);
 

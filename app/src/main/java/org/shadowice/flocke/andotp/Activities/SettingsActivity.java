@@ -39,6 +39,7 @@ import org.openintents.openpgp.util.OpenPgpAppPreference;
 import org.openintents.openpgp.util.OpenPgpKeyPreference;
 import org.shadowice.flocke.andotp.Preferences.PasswordHashPreference;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Settings;
 
 public class SettingsActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener{
@@ -147,6 +148,11 @@ public class SettingsActivity extends BaseActivity
             super.onCreate(savedInstanceState);
 
             addPreferencesFromResource(R.xml.preferences);
+
+            Settings settings = new Settings(getActivity());
+            if(settings.getSpecialFeatures()) {
+                addPreferencesFromResource(R.xml.preferences_special_features);
+            }
 
             // Authentication
             catSecurity = (PreferenceCategory) findPreference(getString(R.string.settings_key_cat_security));
