@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:key="@string/settings_key_cat_special_features"
+        android:title="@string/settings_category_title_secrets">
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_use_urikeyformat"
+            android:title="@string/settings_title_use_urikeyformat"
+            android:summary="@string/settings_desc_use_urikeyformat"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
+

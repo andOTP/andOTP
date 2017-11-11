@@ -23,6 +23,9 @@
     <string name="settings_key_openpgp_sign" translatable="false">pref_openpgp_sign</string>
     <string name="settings_key_openpgp_verify" translatable="false">pref_openpgp_verify</string>
 
+    <string name="settings_key_cat_special_features" translatable="false">pref_cat_special_features</string>
+    <string name="settings_key_use_urikeyformat" translatable="false">pref_backup_urikeyformat</string>
+
     <string name="settings_key_security_backup_warning" translatable="false">pref_security_backup_warning_shown</string>
     <string name="settings_key_sort_mode" translatable="false">pref_sort_mode</string>
     <string name="settings_key_special_features" translatable="false">pref_special_features</string>

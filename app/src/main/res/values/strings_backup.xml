@@ -49,4 +49,8 @@
     <string name="backup_toast_openpgp_error">OpenPGP Error: %s</string>
     <string name="backup_toast_openpgp_not_verified">No verified signature detected</string>
     <string name="backup_toast_crypt_password_not_set">Password not set, check the Settings</string>
+
+    <!-- File types -->
+    <string name="backup_filetype_json">JSON</string>
+    <string name="backup_filetype_urikeyformat">UriKey</string>
 </resources>
