@@ -150,7 +150,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void onBindViewHolder(EntryViewHolder entryViewHolder, int i) {
         Entry entry = displayedEntries.get(i);
 
-        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP());
+        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags());
 
         if (entry.hasNonDefaultPeriod()) {
             entryViewHolder.showCustomPeriod(entry.getPeriod());
