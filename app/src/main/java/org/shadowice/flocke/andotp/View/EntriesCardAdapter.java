@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.Utilities.TagDialogHelper;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperAdapter;
 import org.shadowice.flocke.andotp.R;
 
@@ -52,8 +53,10 @@ import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     implements ItemTouchHelperAdapter, Filterable {
@@ -66,11 +69,12 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     private List<String> tagsFilter = new ArrayList<>();
 
     private SortMode sortMode = SortMode.UNSORTED;
+    private TagsAdapter tagsFilterAdapter;
 
-    public EntriesCardAdapter(Context context) {
+    public EntriesCardAdapter(Context context, TagsAdapter tagsFilterAdapter) {
         this.context = context;
         this.sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-
+        this.tagsFilterAdapter = tagsFilterAdapter;
         loadEntries();
     }
 
@@ -252,6 +256,50 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 .show();
     }
 
+    public void editEntryTags(final int pos) {
+        final Entry entry = displayedEntries.get(pos);
+
+        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+        for(String tag: entry.getTags()) {
+            tagsHashMap.put(tag, true);
+        }
+        for(String tag: getTags()) {
+            if(!tagsHashMap.containsKey(tag))
+                tagsHashMap.put(tag, false);
+        }
+        final TagsAdapter tagsAdapter = new TagsAdapter(context, tagsHashMap);
+
+        final Callable tagsCallable = new Callable() {
+            @Override
+            public Object call() throws Exception {
+                entry.setTags(tagsAdapter.getActiveTags());
+
+                List<String> inUseTags = getTags();
+
+                HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+                for(String tag: tagsFilterAdapter.getTags()) {
+                    if(inUseTags.contains(tag))
+                        tagsHashMap.put(tag, false);
+                }
+                for(String tag: tagsFilterAdapter.getActiveTags()) {
+                    if(inUseTags.contains(tag))
+                        tagsHashMap.put(tag, true);
+                }
+                for(String tag: getTags()) {
+                    if(inUseTags.contains(tag))
+                        if(!tagsHashMap.containsKey(tag))
+                            tagsHashMap.put(tag, true);
+                }
+
+                tagsFilterAdapter.setTags(tagsHashMap);
+                filterByTags(tagsFilterAdapter.getActiveTags());
+                return null;
+            }
+        };
+
+        TagDialogHelper.createTagsDialog(context, tagsAdapter, tagsCallable, tagsCallable);
+    }
+
     public void removeItem(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -289,6 +337,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
                 if (id == R.id.menu_popup_editLabel) {
                     editEntryLabel(pos);
+                    return true;
+                } else if (id == R.id.menu_popup_editTags) {
+                    editEntryTags(pos);
                     return true;
                 } else if (id == R.id.menu_popup_remove) {
                     removeItem(pos);

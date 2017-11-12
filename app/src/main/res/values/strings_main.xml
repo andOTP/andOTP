@@ -6,6 +6,7 @@
     <string name="button_enter_details">Enter details</string>
     <string name="button_scan_qr">Scan QR-Code</string>
     <string name="button_save">Save</string>
+    <string name="button_new_tag">New tag</string>
     <string name="button_warned">You have been warned!</string>
     <string name="button_all_tags">All tags</string>
     
@@ -42,6 +43,7 @@
     <string name="menu_sort_label">Label</string>
 
     <string name="menu_popup_edit_label">Edit label</string>
+    <string name="menu_popup_edit_tags">Edit tags</string>
     <string name="menu_popup_remove">Remove</string>
 
     <!-- Toast messages -->

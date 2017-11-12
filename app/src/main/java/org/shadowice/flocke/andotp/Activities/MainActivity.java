@@ -49,6 +49,7 @@ import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -59,7 +60,9 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
+import org.shadowice.flocke.andotp.Utilities.TagDialogHelper;
 import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.View.FloatingActionMenu;
@@ -69,9 +72,12 @@ import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 import org.shadowice.flocke.andotp.View.TagsAdapter;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.Callable;
 
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
@@ -115,6 +121,7 @@ public class MainActivity extends BaseActivity
         final EditText periodInput = inputView.findViewById(R.id.manual_period);
         final EditText digitsInput = inputView.findViewById(R.id.manual_digits);
         final Spinner algorithmInput = inputView.findViewById(R.id.manual_algorithm);
+        final Button tagsInput = inputView.findViewById(R.id.manual_tags);
 
         final ArrayAdapter<TokenCalculator.HashAlgorithm> algorithmAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, TokenCalculator.HashAlgorithm.values());
         final ArrayAdapter<Entry.OTPType> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Entry.PublicTypes.toArray(new Entry.OTPType[Entry.PublicTypes.size()]));
@@ -157,6 +164,36 @@ public class MainActivity extends BaseActivity
             }
         });
 
+        List<String> allTags = adapter.getTags();
+        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+        for(String tag: allTags) {
+            tagsHashMap.put(tag, false);
+        }
+        final TagsAdapter tagsAdapter = new TagsAdapter(this, tagsHashMap);
+
+        final Callable tagsCallable = new Callable() {
+            @Override
+            public Object call() throws Exception {
+                List<String> selectedTags = tagsAdapter.getActiveTags();
+                StringBuilder stringBuilder = new StringBuilder();
+                for(int j = 0; j < selectedTags.size(); j++) {
+                    stringBuilder.append(selectedTags.get(j));
+                    if(j < selectedTags.size() - 1) {
+                        stringBuilder.append(", ");
+                    }
+                }
+                tagsInput.setText(stringBuilder.toString());
+                return null;
+            }
+        };
+
+        tagsInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TagDialogHelper.createTagsDialog(MainActivity.this, tagsAdapter, tagsCallable, tagsCallable);
+            }
+        });
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dialog_title_manual_entry)
                 .setView(inputView)
@@ -172,7 +209,7 @@ public class MainActivity extends BaseActivity
                             int period = Integer.parseInt(periodInput.getText().toString());
                             int digits = Integer.parseInt(digitsInput.getText().toString());
 
-                            Entry e = new Entry(type, secret, period, digits, label, algorithm, new ArrayList<String>());
+                            Entry e = new Entry(type, secret, period, digits, label, algorithm, tagsAdapter.getActiveTags());
                             e.updateOTP();
                             adapter.addEntry(e);
                             adapter.saveEntries();
@@ -288,7 +325,14 @@ public class MainActivity extends BaseActivity
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
 
-        adapter = new EntriesCardAdapter(this);
+        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+        for(Entry entry : DatabaseHelper.loadDatabase(this)) {
+            for(String tag : entry.getTags())
+                tagsHashMap.put(tag, settings.getTagToggle(tag));
+        }
+        tagsDrawerAdapter = new TagsAdapter(this, tagsHashMap);
+
+        adapter = new EntriesCardAdapter(this, tagsDrawerAdapter);
         recList.setAdapter(adapter);
 
         recList.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -582,9 +626,6 @@ public class MainActivity extends BaseActivity
         });
         allTagsButton.setChecked(settings.getAllTagsToggle());
 
-        List<String> sortedTags = adapter.getTags();
-        Collections.sort(sortedTags);
-        tagsDrawerAdapter = new TagsAdapter(this, sortedTags);
         tagsDrawerListView.setAdapter(tagsDrawerAdapter);
 
         tagsDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -594,33 +635,27 @@ public class MainActivity extends BaseActivity
                 checkedTextView.setChecked(!checkedTextView.isChecked());
 
                 settings.setTagToggle(checkedTextView.getText().toString(), checkedTextView.isChecked());
-
-                List<String> checkedTags = new ArrayList<>();
-                for(int i = 0; i < tagsDrawerListView.getChildCount(); i++) {
-                    CheckedTextView childCheckBox = (CheckedTextView)tagsDrawerListView.getChildAt(i);
-                    if(childCheckBox.isChecked()) {
-                        checkedTags.add(childCheckBox.getText().toString());
-                    }
-                }
-                adapter.filterByTags(checkedTags);
+                tagsDrawerAdapter.setTagState(checkedTextView.getText().toString(), checkedTextView.isChecked());
+                adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
             }
         });
 
-        adapter.filterByTags(getCheckedTags());
+        adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
     }
 
     void refreshTags() {
-        tagsDrawerAdapter.setTags(adapter.getTags());
-        adapter.filterByTags(getCheckedTags());
-    }
-
-    List<String> getCheckedTags() {
-        List<String> checkedTags = new ArrayList<>();
-        for(String tag : adapter.getTags()) {
-            if(settings.getTagToggle(tag)) {
-                checkedTags.add(tag);
-            }
+        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+        for(String tag: tagsDrawerAdapter.getTags()) {
+            tagsHashMap.put(tag, false);
         }
-        return checkedTags;
+        for(String tag: tagsDrawerAdapter.getActiveTags()) {
+            tagsHashMap.put(tag, true);
+        }
+        for(String tag: adapter.getTags()) {
+            if(!tagsHashMap.containsKey(tag))
+                tagsHashMap.put(tag, true);
+        }
+        tagsDrawerAdapter.setTags(tagsHashMap);
+        adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
     }
 }

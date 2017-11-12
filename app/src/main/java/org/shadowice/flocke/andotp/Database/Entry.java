@@ -65,7 +65,7 @@ public class Entry {
 
     public Entry(){}
 
-    public Entry(OTPType type, String secret, int period, int digits, String label, TokenCalculator.HashAlgorithm algorithm, ArrayList<String> tags) {
+    public Entry(OTPType type, String secret, int period, int digits, String label, TokenCalculator.HashAlgorithm algorithm, List<String> tags) {
         this.type = type;
         this.secret = new Base32().decode(secret.toUpperCase());
         this.period = period;
