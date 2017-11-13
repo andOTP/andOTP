@@ -36,6 +36,7 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import static org.shadowice.flocke.andotp.Preferences.PasswordEncryptedPreference.KEY_ALIAS;
@@ -124,6 +125,10 @@ public class Settings {
         return settings.getLong(getResString(keyId), defaultValue);
     }
 
+    private Set<String> getStringSet(int keyId, Set<String> defaultValue) {
+        return settings.getStringSet(getResString(keyId), defaultValue);
+    }
+
     private void setBoolean(int keyId, boolean value) {
         settings.edit()
                 .putBoolean(getResString(keyId), value)
@@ -133,6 +138,12 @@ public class Settings {
     private void setString(int keyId, String value) {
         settings.edit()
                 .putString(getResString(keyId), value)
+                .apply();
+    }
+
+    private void setStringSet(int keyId, Set<String> value) {
+        settings.edit()
+                .putStringSet(getResString(keyId), value)
                 .apply();
     }
 
@@ -284,14 +295,17 @@ public class Settings {
     }
 
     public boolean getTagToggle(String tag) {
-        String settingsKey = getResString(R.string.settings_key_tags_toggles) + "_" + tag;
-        return settings.getBoolean(settingsKey, true);
+        //The tag toggle holds tags that are unchecked in order to default to checked.
+        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<String>());
+        return !toggledTags.contains(tag);
     }
 
     public void setTagToggle(String tag, Boolean value) {
-        String settingsKey = getResString(R.string.settings_key_tags_toggles) + "_" + tag;
-        settings.edit()
-                .putBoolean(settingsKey, value)
-                .apply();
+        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<String>());
+        if(value)
+            toggledTags.remove(tag);
+        else
+            toggledTags.add(tag);
+        setStringSet(R.string.settings_key_tags_toggles, toggledTags);
     }
 }
