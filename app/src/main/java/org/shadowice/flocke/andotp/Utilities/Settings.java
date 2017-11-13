@@ -206,6 +206,10 @@ public class Settings {
         return getString(R.string.settings_key_theme, R.string.settings_default_theme);
     }
 
+    public boolean getScrollLabel() {
+        return getBoolean(R.string.settings_key_label_scroll, false);
+    }
+
     public boolean getFirstTimeWarningShown() {
         return getBoolean(R.string.settings_key_security_backup_warning, false);
     }

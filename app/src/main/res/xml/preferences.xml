@@ -52,6 +52,12 @@
             app:vnt_maxValue="@integer/settings_max_label_size"
             app:vnt_minValue="@integer/settings_min_label_size" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_label_scroll"
+            android:title="@string/settings_title_label_scroll"
+            android:summary="@string/settings_desc_label_scroll"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

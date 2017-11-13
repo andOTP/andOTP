@@ -16,6 +16,7 @@
 
     <string name="settings_title_theme">Theme</string>
     <string name="settings_title_label_size">Label font size</string>
+    <string name="settings_title_label_scroll">Scroll label</string>
 
     <string name="settings_title_backup_ask">Ask for filename</string>
     <string name="settings_title_backup_directory">Backup directory</string>
@@ -29,6 +30,8 @@
     <string name="settings_desc_tap_to_reveal">Hide the OTP tokens by default, requiring them to be
         revealed manually</string>
     <string name="settings_desc_panic">Decide what happens when a Panic Trigger is received</string>
+
+    <string name="settings_desc_label_scroll">Scroll overlong labels instead of truncating them</string>
 
     <string name="settings_desc_backup_ask">Ask for the filename every time a backup is created or
         restored</string>

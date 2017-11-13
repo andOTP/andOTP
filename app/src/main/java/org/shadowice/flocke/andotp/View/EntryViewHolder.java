@@ -26,6 +26,7 @@ import android.content.Context;
 import android.graphics.ColorFilter;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageButton;
@@ -114,6 +115,18 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
     public void setLabelSize(int size) {
         label.setTextSize(TypedValue.COMPLEX_UNIT_PT, size);
+    }
+
+    public void setLabelScroll(boolean active) {
+        if (active) {
+            label.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+            label.setHorizontallyScrolling(true);
+            label.setSelected(true);
+        } else {
+            label.setEllipsize(TextUtils.TruncateAt.END);
+            label.setHorizontallyScrolling(false);
+            label.setSelected(false);
+        }
     }
 
     public void enableTapToReveal() {
