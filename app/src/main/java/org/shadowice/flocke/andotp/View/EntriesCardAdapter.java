@@ -257,7 +257,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public void editEntryTags(final int pos) {
-        final Entry entry = displayedEntries.get(pos);
+        final int realPos = getRealIndex(pos);
+        final Entry entry = entries.get(realPos);
 
         HashMap<String, Boolean> tagsHashMap = new HashMap<>();
         for(String tag: entry.getTags()) {
@@ -272,7 +273,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         final Callable tagsCallable = new Callable() {
             @Override
             public Object call() throws Exception {
-                entry.setTags(tagsAdapter.getActiveTags());
+                entries.get(realPos).setTags(tagsAdapter.getActiveTags());
+                DatabaseHelper.saveDatabase(context, entries);
 
                 List<String> inUseTags = getTags();
 
