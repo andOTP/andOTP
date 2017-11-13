@@ -2,22 +2,16 @@ package org.shadowice.flocke.andotp.View;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter ;
+import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 
-import org.shadowice.flocke.andotp.Utilities.Settings;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class TagsAdapter extends ArrayAdapter<String> {
     private Context context;
