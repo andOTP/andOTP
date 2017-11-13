@@ -294,6 +294,14 @@ public class Settings {
         setBoolean(R.string.settings_key_all_tags_toggle, value);
     }
 
+    public boolean getNoTagsToggle() {
+        return getBoolean(R.string.settings_key_no_tags_toggle, true);
+    }
+
+    public void setNoTagsToggle(Boolean value) {
+        setBoolean(R.string.settings_key_no_tags_toggle, value);
+    }
+
     public boolean getTagToggle(String tag) {
         //The tag toggle holds tags that are unchecked in order to default to checked.
         Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<String>());

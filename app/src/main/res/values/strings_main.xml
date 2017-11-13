@@ -9,6 +9,7 @@
     <string name="button_new_tag">New tag</string>
     <string name="button_warned">You have been warned!</string>
     <string name="button_all_tags">All tags</string>
+    <string name="button_no_tags">No tags</string>
     
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>

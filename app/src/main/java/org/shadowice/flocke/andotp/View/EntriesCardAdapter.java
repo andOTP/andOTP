@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.TagDialogHelper;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperAdapter;
 import org.shadowice.flocke.andotp.R;
@@ -70,11 +71,13 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
     private SortMode sortMode = SortMode.UNSORTED;
     private TagsAdapter tagsFilterAdapter;
+    private Settings settings;
 
     public EntriesCardAdapter(Context context, TagsAdapter tagsFilterAdapter) {
         this.context = context;
         this.sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         this.tagsFilterAdapter = tagsFilterAdapter;
+        this.settings = new Settings(context);
         loadEntries();
     }
 
@@ -117,7 +120,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         for(Entry e : entries) {
             //Entries with no tags will always be shown
-            Boolean foundMatchingTag = e.getTags().isEmpty();
+            Boolean foundMatchingTag = e.getTags().isEmpty() && settings.getNoTagsToggle();
 
             for(String tag : tags) {
                 if(e.getTags().contains(tag)) {
