@@ -113,8 +113,13 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
                 stringBuilder.append(", ");
             }
         }
-
         this.tags.setText(stringBuilder.toString());
+
+        if (! tags.isEmpty()) {
+            this.tags.setVisibility(View.VISIBLE);
+        } else {
+            this.tags.setVisibility(View.GONE);
+        }
     }
 
     public void showCustomPeriod(int period) {
