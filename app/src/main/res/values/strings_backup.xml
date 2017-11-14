@@ -31,6 +31,8 @@
         before you can create encrypted backups.
     </string>
 
+    <string name="backup_desc_replace">Replace already existing entries</string>
+
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">Security warning</string>
 

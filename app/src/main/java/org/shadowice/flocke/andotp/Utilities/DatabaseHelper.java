@@ -113,19 +113,14 @@ public class DatabaseHelper {
         return FileHelper.writeStringToFile(context, file, entriesToString(entries));
     }
 
-    public static boolean importFromJSON(Context context, Uri file) {
-        boolean success = false;
-
+    public static ArrayList<Entry> importFromJSON(Context context, Uri file) {
         String content = FileHelper.readFileToString(context, file);
 
-        if (! content.isEmpty()) {
-            ArrayList<Entry> entries = stringToEntries(content);
+        ArrayList<Entry> entries = null;
 
-            saveDatabase(context, entries);
+        if (! content.isEmpty())
+            entries = stringToEntries(content);
 
-            success = true;
-        }
-
-        return success;
+        return entries;
     }
 }

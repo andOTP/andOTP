@@ -40,6 +40,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -91,6 +92,8 @@ public class BackupActivity extends BaseActivity {
 
     private Uri encryptTargetFile;
     private Uri decryptSourceFile;
+
+    private Switch replace;
 
     private boolean reload = false;
 
@@ -192,6 +195,8 @@ public class BackupActivity extends BaseActivity {
                 }
             });
         }
+
+        replace = v.findViewById(R.id.backup_replace);
 
     }
 
@@ -361,10 +366,18 @@ public class BackupActivity extends BaseActivity {
 
     private void doRestorePlain(Uri uri) {
         if (Tools.isExternalStorageReadable()) {
-            boolean success = DatabaseHelper.importFromJSON(this, uri);
+            ArrayList<Entry> entries = DatabaseHelper.importFromJSON(this, uri);
 
-            if (success) {
+            if (entries != null) {
+                if (! replace.isChecked()) {
+                    ArrayList<Entry> currentEntries = DatabaseHelper.loadDatabase(this);
+                    entries.removeAll(currentEntries);
+                    entries.addAll(currentEntries);
+                }
+
+                DatabaseHelper.saveDatabase(this, entries);
                 reload = true;
+
                 Toast.makeText(this, R.string.backup_toast_import_success, Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, R.string.backup_toast_import_failed, Toast.LENGTH_LONG).show();
@@ -427,6 +440,13 @@ public class BackupActivity extends BaseActivity {
                     byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
 
                     ArrayList<Entry> entries = DatabaseHelper.stringToEntries(new String(decrypted, StandardCharsets.UTF_8));
+
+                    if (! replace.isChecked()) {
+                        ArrayList<Entry> currentEntries = DatabaseHelper.loadDatabase(this);
+                        entries.removeAll(currentEntries);
+                        entries.addAll(currentEntries);
+                    }
+
                     DatabaseHelper.saveDatabase(this, entries);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -491,9 +511,15 @@ public class BackupActivity extends BaseActivity {
             ArrayList<Entry> entries = DatabaseHelper.stringToEntries(content);
 
             if (entries.size() > 0) {
-                DatabaseHelper.saveDatabase(this, entries);
+                if (! replace.isChecked()) {
+                    ArrayList<Entry> currentEntries = DatabaseHelper.loadDatabase(this);
+                    entries.removeAll(currentEntries);
+                    entries.addAll(currentEntries);
+                }
 
+                DatabaseHelper.saveDatabase(this, entries);
                 reload = true;
+
                 Toast.makeText(this, R.string.backup_toast_import_success, Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, R.string.backup_toast_import_failed, Toast.LENGTH_LONG).show();
