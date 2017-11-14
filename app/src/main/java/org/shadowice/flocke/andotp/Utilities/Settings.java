@@ -126,7 +126,7 @@ public class Settings {
     }
 
     private Set<String> getStringSet(int keyId, Set<String> defaultValue) {
-        return settings.getStringSet(getResString(keyId), defaultValue);
+        return new HashSet<String>(settings.getStringSet(getResString(keyId), defaultValue));
     }
 
     private void setBoolean(int keyId, boolean value) {
