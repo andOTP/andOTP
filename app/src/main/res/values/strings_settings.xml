@@ -14,6 +14,7 @@
     <string name="settings_title_auth_pin">PIN</string>
     <string name="settings_title_panic">Panic Trigger</string>
 
+    <string name="settings_title_lang">Language</string>
     <string name="settings_title_theme">Theme</string>
     <string name="settings_title_label_size">Label font size</string>
     <string name="settings_title_label_scroll">Scroll label</string>
@@ -62,6 +63,19 @@
     <string-array name="settings_entries_panic">
         <item>Wipe all accounts</item>
         <item>Reset app settings</item>
+    </string-array>
+
+    <string-array name="settings_entries_lang">
+        <item>System default</item>
+        <item>English</item>
+        <item>Czech</item>
+        <item>German</item>
+        <item>Spanish</item>
+        <item>French</item>
+        <item>Galician</item>
+        <item>Dutch</item>
+        <item>Polish</item>
+        <item>Russian</item>
     </string-array>
 
     <string-array name="settings_entries_theme">

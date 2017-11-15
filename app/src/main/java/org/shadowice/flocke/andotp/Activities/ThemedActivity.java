@@ -22,11 +22,14 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Settings;
+
+import java.util.Locale;
 
 public abstract class ThemedActivity extends AppCompatActivity {
     public Settings settings;
@@ -35,6 +38,20 @@ public abstract class ThemedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         settings = new Settings(this);
 
+        setTheme();
+        setLocale();
+
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        setLocale();
+
+        super.onResume();
+    }
+
+    public void setTheme() {
         String theme = settings.getTheme();
 
         if (theme.equals("light")) {
@@ -44,7 +61,15 @@ public abstract class ThemedActivity extends AppCompatActivity {
         } else if (theme.equals("black")) {
             setTheme(R.style.AppTheme_Black_NoActionBar);
         }
+    }
 
-        super.onCreate(savedInstanceState);
+    public void setLocale() {
+        Locale locale = settings.getLang();
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.locale = locale;
+
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 }
