@@ -17,7 +17,7 @@
 
     <!-- Labels -->
     <string name="label_clipboard_content" translatable="false">OTP Token</string>
-    <string name="label_tap_to_reveal">Tap to reveal</string>
+    <string name="label_hidden">Hidden</string>
     <string name="label_type">Type</string>
     <string name="label_secret">Secret</string>
     <string name="label_period">Period</string>

@@ -66,7 +66,7 @@
                         android:textColor="?android:attr/textColorSecondary"
                         android:textSize="28sp"
                         android:textStyle="bold"
-                        android:text="@string/label_tap_to_reveal" />
+                        android:text="@string/label_hidden" />
 
                 </LinearLayout>
             </LinearLayout>
