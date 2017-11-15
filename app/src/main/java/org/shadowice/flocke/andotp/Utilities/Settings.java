@@ -37,6 +37,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import static org.shadowice.flocke.andotp.Preferences.PasswordEncryptedPreference.KEY_ALIAS;
@@ -213,8 +214,21 @@ public class Settings {
         return settings.getStringSet(getResString(R.string.settings_key_panic), Collections.<String>emptySet());
     }
 
+    public Locale getLang() {
+        String lang = getString(R.string.settings_key_lang, R.string.settings_default_lang);
+
+        if (lang.equals("system"))
+            return Tools.getSystemLocale();
+        else
+            return new Locale(lang);
+    }
+
     public String getTheme() {
         return getString(R.string.settings_key_theme, R.string.settings_default_theme);
+    }
+
+    public boolean getScrollLabel() {
+        return getBoolean(R.string.settings_key_label_scroll, false);
     }
 
     public boolean getFirstTimeWarningShown() {

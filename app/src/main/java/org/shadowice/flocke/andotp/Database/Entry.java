@@ -132,7 +132,7 @@ public class Entry {
     }
 
     public Entry (JSONObject jsonObj) throws JSONException {
-        this.secret = new Base32().decode(jsonObj.getString(JSON_SECRET));
+        this.secret = new Base32().decode(jsonObj.getString(JSON_SECRET).toUpperCase());
         this.label = jsonObj.getString(JSON_LABEL);
         this.period = jsonObj.getInt(JSON_PERIOD);
 

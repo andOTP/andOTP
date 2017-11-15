@@ -169,6 +169,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         int fontSize = sharedPrefs.getInt(context.getString(R.string.settings_key_label_size), context.getResources().getInteger(R.integer.settings_default_label_size));
         entryViewHolder.setLabelSize(fontSize);
+
+        entryViewHolder.setLabelScroll(sharedPrefs.getBoolean(context.getString(R.string.settings_key_label_scroll), false));
     }
 
     @Override

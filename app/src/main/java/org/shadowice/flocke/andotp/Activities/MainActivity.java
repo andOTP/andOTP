@@ -428,9 +428,11 @@ public class MainActivity extends BaseActivity
 
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
         if (key.equals(getString(R.string.settings_key_label_size)) ||
-                key.equals(getString(R.string.settings_key_tap_to_reveal))) {
+                key.equals(getString(R.string.settings_key_tap_to_reveal)) ||
+                key.equals(getString(R.string.settings_key_label_scroll))) {
             adapter.notifyDataSetChanged();
-        } else if (key.equals(getString(R.string.settings_key_theme))) {
+        } else if (key.equals(getString(R.string.settings_key_theme)) ||
+                key.equals(getString(R.string.settings_key_lang))) {
             recreate();
         }
     }

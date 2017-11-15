@@ -38,6 +38,14 @@
         android:title="@string/settings_category_title_ui">
 
         <ListPreference
+            android:key="@string/settings_key_lang"
+            android:title="@string/settings_title_lang"
+            android:summary="%s"
+            android:entries="@array/settings_entries_lang"
+            android:entryValues="@array/settings_values_lang"
+            android:defaultValue="@string/settings_default_lang" />
+
+        <ListPreference
             android:key="@string/settings_key_theme"
             android:title="@string/settings_title_theme"
             android:summary="%s"
@@ -51,6 +59,12 @@
             android:defaultValue="@integer/settings_default_label_size"
             app:vnt_maxValue="@integer/settings_max_label_size"
             app:vnt_minValue="@integer/settings_min_label_size" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_label_scroll"
+            android:title="@string/settings_title_label_scroll"
+            android:summary="@string/settings_desc_label_scroll"
+            android:defaultValue="false" />
 
     </PreferenceCategory>
 

@@ -9,10 +9,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/label_type"/>
@@ -28,10 +29,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/label_label"/>
@@ -48,10 +50,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/label_secret"/>
@@ -61,7 +64,7 @@
             android:layout_weight="7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:lines="2"
+            android:lines="3"
             android:hint="@string/hint_secret" />
 
     </LinearLayout>
@@ -69,10 +72,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/label_period"/>
@@ -90,10 +94,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/label_digits"/>
@@ -111,10 +116,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/label_algorithm"/>

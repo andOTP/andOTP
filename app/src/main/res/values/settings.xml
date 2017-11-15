@@ -11,8 +11,10 @@
     <string name="settings_key_auth_pin_hash" translatable="false">pref_auth_pin_hash</string>
     <string name="settings_key_panic" translatable="false">pref_panic</string>
 
+    <string name="settings_key_lang" translatable="false">pref_lang</string>
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size</string>
+    <string name="settings_key_label_scroll" translatable="false">pref_label_scroll</string>
 
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
     <string name="settings_key_backup_directory" translatable="false">pref_backup_directory</string>
@@ -32,6 +34,7 @@
 
     <!-- Default values -->
     <string name="settings_default_auth" translatable="false">none</string>
+    <string name="settings_default_lang" translatable="false">system</string>
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">8</integer>
 
@@ -46,6 +49,19 @@
     <string-array name="settings_values_panic" translatable="false">
         <item>accounts</item>
         <item>settings</item>
+    </string-array>
+
+    <string-array name="settings_values_lang" translatable="false">
+        <item>system</item>
+        <item>en</item>
+        <item>cs</item>
+        <item>de</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>gl</item>
+        <item>nl</item>
+        <item>pl</item>
+        <item>ru</item>
     </string-array>
 
     <string-array name="settings_values_theme" translatable="false">

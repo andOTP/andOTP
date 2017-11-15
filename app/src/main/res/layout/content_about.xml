@@ -486,7 +486,7 @@
                     android:id="@+id/about_layout_bugs"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="?android:attr/listPreferredItemHeight"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_margin"
                     android:paddingTop="@dimen/activity_margin_small"
                     android:paddingBottom="@dimen/activity_margin_small"
@@ -504,7 +504,7 @@
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center_vertical" >
 
                         <TextView
@@ -528,7 +528,7 @@
                     android:id="@+id/about_layout_translate"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="?android:attr/listPreferredItemHeight"
+                    android:layout_height="wrap_content"
                     android:paddingTop="@dimen/activity_margin_small"
                     android:paddingBottom="@dimen/activity_margin_small"
                     android:background="?android:attr/selectableItemBackground"
@@ -545,7 +545,7 @@
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center_vertical" >
 
                         <TextView
