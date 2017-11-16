@@ -582,7 +582,7 @@ public class MainActivity extends BaseActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        DrawerLayout tagsDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        final DrawerLayout tagsDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
         tagsToggle = new ActionBarDrawerToggle(this, tagsDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
             @Override
@@ -604,7 +604,7 @@ public class MainActivity extends BaseActivity
         tagsDrawerLayout.addDrawerListener(tagsToggle);
 
         final CheckedTextView noTagsButton = (CheckedTextView)findViewById(R.id.no_tags_entries);
-        CheckedTextView allTagsButton = (CheckedTextView)findViewById(R.id.all_tags_in_drawer);
+        final CheckedTextView allTagsButton = (CheckedTextView)findViewById(R.id.all_tags_in_drawer);
 
         allTagsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -617,12 +617,12 @@ public class MainActivity extends BaseActivity
                 for(int i = 0; i < tagsDrawerListView.getChildCount(); i++) {
                     CheckedTextView childCheckBox = (CheckedTextView)tagsDrawerListView.getChildAt(i);
                     childCheckBox.setChecked(checkedTextView.isChecked());
+                    tagsDrawerAdapter.setTagState(childCheckBox.getText().toString(), childCheckBox.isChecked());
+                    settings.setTagToggle(childCheckBox.getText().toString(), childCheckBox.isChecked());
                 }
-                noTagsButton.setChecked(checkedTextView.isChecked());
-                settings.setNoTagsToggle(noTagsButton.isChecked());
 
                 if(checkedTextView.isChecked()) {
-                    adapter.filterByTags(adapter.getTags());
+                    adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
                 } else {
                     adapter.filterByTags(new ArrayList<String>());
                 }
@@ -637,13 +637,12 @@ public class MainActivity extends BaseActivity
                 checkedTextView.setChecked(!checkedTextView.isChecked());
 
                 settings.setNoTagsToggle(checkedTextView.isChecked());
-                adapter.filterByTags(adapter.getTags());
+                adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
             }
         });
         noTagsButton.setChecked(settings.getNoTagsToggle());
 
         tagsDrawerListView.setAdapter(tagsDrawerAdapter);
-
         tagsDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -652,6 +651,17 @@ public class MainActivity extends BaseActivity
 
                 settings.setTagToggle(checkedTextView.getText().toString(), checkedTextView.isChecked());
                 tagsDrawerAdapter.setTagState(checkedTextView.getText().toString(), checkedTextView.isChecked());
+
+                if (! checkedTextView.isChecked()) {
+                    allTagsButton.setChecked(false);
+                    settings.setAllTagsToggle(false);
+                }
+
+                if (tagsDrawerAdapter.allTagsActive()) {
+                    allTagsButton.setChecked(true);
+                    settings.setAllTagsToggle(true);
+                }
+
                 adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
             }
         });

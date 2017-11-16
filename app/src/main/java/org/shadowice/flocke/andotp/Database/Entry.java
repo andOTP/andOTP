@@ -161,6 +161,7 @@ public class Entry {
                 this.tags.add(tagsArray.getString(i));
             }
         } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

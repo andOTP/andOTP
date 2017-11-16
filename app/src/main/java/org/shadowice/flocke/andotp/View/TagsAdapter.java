@@ -69,6 +69,14 @@ public class TagsAdapter extends ArrayAdapter<String> {
         return tagsList;
     }
 
+    public boolean allTagsActive() {
+        for (String key : tagsState.keySet())
+            if (! tagsState.get(key))
+                return false;
+
+        return true;
+    }
+
     public HashMap<String, Boolean> getTagsWithState() {
         return new HashMap<String, Boolean>(tagsState);
     }
