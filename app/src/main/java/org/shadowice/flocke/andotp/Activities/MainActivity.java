@@ -510,7 +510,10 @@ public class MainActivity extends BaseActivity
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
+                if (newText.isEmpty())
+                    adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+                else
+                    adapter.getFilter().filter(newText);
 
                 return false;
             }
