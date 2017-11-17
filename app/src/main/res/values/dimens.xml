@@ -11,7 +11,8 @@
     <dimen name="card_corner_radius">0dp</dimen>
 
     <dimen name="drawer_width">200dp</dimen>
-    <dimen name="strong_divider_size">2dp</dimen>
+    <dimen name="divider_size">1dp</dimen>
+
     <!-- FAB Menu -->
     <dimen name="fab_small_elevation">2dp</dimen>
     <dimen name="fab_small_margin">8dp</dimen>

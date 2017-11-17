@@ -222,15 +222,16 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void editEntryLabel(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
+        int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
+        int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
+
         final EditText input = new EditText(context);
+        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         input.setText(displayedEntries.get(pos).getLabel());
         input.setSingleLine();
 
         FrameLayout container = new FrameLayout(context);
-        FrameLayout.LayoutParams params = new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.leftMargin = context.getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
-        params.rightMargin = context.getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
-        input.setLayoutParams(params);
+        container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
         container.addView(input);
 
         builder.setTitle(R.string.dialog_title_rename)
