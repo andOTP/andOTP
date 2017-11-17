@@ -29,10 +29,13 @@ import android.app.KeyguardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -46,7 +49,10 @@ import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -54,15 +60,22 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.shadowice.flocke.andotp.Utilities.Settings;
-import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
 import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.Utilities.Settings;
+import org.shadowice.flocke.andotp.Utilities.TagDialogHelper;
+import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
+import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
 import org.shadowice.flocke.andotp.View.FloatingActionMenu;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCallback;
-import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
+import org.shadowice.flocke.andotp.View.TagsAdapter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.Callable;
 
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
@@ -83,6 +96,10 @@ public class MainActivity extends BaseActivity
     private Handler handler;
     private Runnable handlerTask;
 
+    private ListView tagsDrawerListView;
+    private TagsAdapter tagsDrawerAdapter;
+    private ActionBarDrawerToggle tagsToggle;
+
     // QR code scanning
     private void scanQRCode(){
         new IntentIntegrator(MainActivity.this)
@@ -102,6 +119,7 @@ public class MainActivity extends BaseActivity
         final EditText periodInput = inputView.findViewById(R.id.manual_period);
         final EditText digitsInput = inputView.findViewById(R.id.manual_digits);
         final Spinner algorithmInput = inputView.findViewById(R.id.manual_algorithm);
+        final Button tagsInput = inputView.findViewById(R.id.manual_tags);
 
         final ArrayAdapter<TokenCalculator.HashAlgorithm> algorithmAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, TokenCalculator.HashAlgorithm.values());
         final ArrayAdapter<Entry.OTPType> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Entry.PublicTypes.toArray(new Entry.OTPType[Entry.PublicTypes.size()]));
@@ -144,6 +162,36 @@ public class MainActivity extends BaseActivity
             }
         });
 
+        List<String> allTags = adapter.getTags();
+        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+        for(String tag: allTags) {
+            tagsHashMap.put(tag, false);
+        }
+        final TagsAdapter tagsAdapter = new TagsAdapter(this, tagsHashMap);
+
+        final Callable tagsCallable = new Callable() {
+            @Override
+            public Object call() throws Exception {
+                List<String> selectedTags = tagsAdapter.getActiveTags();
+                StringBuilder stringBuilder = new StringBuilder();
+                for(int j = 0; j < selectedTags.size(); j++) {
+                    stringBuilder.append(selectedTags.get(j));
+                    if(j < selectedTags.size() - 1) {
+                        stringBuilder.append(", ");
+                    }
+                }
+                tagsInput.setText(stringBuilder.toString());
+                return null;
+            }
+        };
+
+        tagsInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TagDialogHelper.createTagsDialog(MainActivity.this, tagsAdapter, tagsCallable, tagsCallable);
+            }
+        });
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dialog_title_manual_entry)
                 .setView(inputView)
@@ -159,10 +207,12 @@ public class MainActivity extends BaseActivity
                             int period = Integer.parseInt(periodInput.getText().toString());
                             int digits = Integer.parseInt(digitsInput.getText().toString());
 
-                            Entry e = new Entry(type, secret, period, digits, label, algorithm);
+                            Entry e = new Entry(type, secret, period, digits, label, algorithm, tagsAdapter.getActiveTags());
                             e.updateOTP();
                             adapter.addEntry(e);
                             adapter.saveEntries();
+
+                            refreshTags();
                         }
                     }
                 })
@@ -273,7 +323,14 @@ public class MainActivity extends BaseActivity
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
 
-        adapter = new EntriesCardAdapter(this);
+        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+        for(Entry entry : DatabaseHelper.loadDatabase(this)) {
+            for(String tag : entry.getTags())
+                tagsHashMap.put(tag, settings.getTagToggle(tag));
+        }
+        tagsDrawerAdapter = new TagsAdapter(this, tagsHashMap);
+
+        adapter = new EntriesCardAdapter(this, tagsDrawerAdapter);
         recList.setAdapter(adapter);
 
         recList.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -332,6 +389,14 @@ public class MainActivity extends BaseActivity
                 handler.postDelayed(this, 1000);
             }
         };
+
+        setupDrawer();
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        tagsToggle.syncState();
     }
 
     // Controls for the updater background task
@@ -372,6 +437,12 @@ public class MainActivity extends BaseActivity
         }
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        tagsToggle.onConfigurationChanged(newConfig);
+    }
+
     // Activity results
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -385,13 +456,16 @@ public class MainActivity extends BaseActivity
                     e.updateOTP();
                     adapter.addEntry(e);
                     adapter.saveEntries();
+                    refreshTags();
                 } catch (Exception e) {
                     Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();
                 }
             }
         } else if (requestCode == INTENT_INTERNAL_BACKUP && resultCode == RESULT_OK) {
-            if (intent.getBooleanExtra("reload", false))
+            if (intent.getBooleanExtra("reload", false)) {
                 adapter.loadEntries();
+                refreshTags();
+            }
         } else if (requestCode == INTENT_INTERNAL_AUTHENTICATE) {
             if (resultCode != RESULT_OK) {
                 Toast.makeText(getBaseContext(), R.string.toast_auth_failed, Toast.LENGTH_LONG).show();
@@ -495,8 +569,119 @@ public class MainActivity extends BaseActivity
                 adapter.setSortMode(SortMode.LABEL);
                 touchHelperCallback.setDragEnabled(false);
             }
+        } else if (tagsToggle.onOptionsItemSelected(item)) {
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setupDrawer() {
+        tagsDrawerListView = (ListView)findViewById(R.id.tags_list_in_drawer);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        final DrawerLayout tagsDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+
+        tagsToggle = new ActionBarDrawerToggle(this, tagsDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                getSupportActionBar().setTitle(R.string.label_tags);
+                invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                getSupportActionBar().setTitle(R.string.app_name);
+                invalidateOptionsMenu();
+            }
+        };
+
+        tagsToggle.setDrawerIndicatorEnabled(true);
+        tagsDrawerLayout.addDrawerListener(tagsToggle);
+
+        final CheckedTextView noTagsButton = (CheckedTextView)findViewById(R.id.no_tags_entries);
+        final CheckedTextView allTagsButton = (CheckedTextView)findViewById(R.id.all_tags_in_drawer);
+
+        allTagsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CheckedTextView checkedTextView = ((CheckedTextView)view);
+                checkedTextView.setChecked(!checkedTextView.isChecked());
+
+                settings.setAllTagsToggle(checkedTextView.isChecked());
+
+                for(int i = 0; i < tagsDrawerListView.getChildCount(); i++) {
+                    CheckedTextView childCheckBox = (CheckedTextView)tagsDrawerListView.getChildAt(i);
+                    childCheckBox.setChecked(checkedTextView.isChecked());
+                    tagsDrawerAdapter.setTagState(childCheckBox.getText().toString(), childCheckBox.isChecked());
+                    settings.setTagToggle(childCheckBox.getText().toString(), childCheckBox.isChecked());
+                }
+
+                if(checkedTextView.isChecked()) {
+                    adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+                } else {
+                    adapter.filterByTags(new ArrayList<String>());
+                }
+            }
+        });
+        allTagsButton.setChecked(settings.getAllTagsToggle());
+
+        noTagsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CheckedTextView checkedTextView = ((CheckedTextView)view);
+                checkedTextView.setChecked(!checkedTextView.isChecked());
+
+                settings.setNoTagsToggle(checkedTextView.isChecked());
+                adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+            }
+        });
+        noTagsButton.setChecked(settings.getNoTagsToggle());
+
+        tagsDrawerListView.setAdapter(tagsDrawerAdapter);
+        tagsDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CheckedTextView checkedTextView = ((CheckedTextView)view);
+                checkedTextView.setChecked(!checkedTextView.isChecked());
+
+                settings.setTagToggle(checkedTextView.getText().toString(), checkedTextView.isChecked());
+                tagsDrawerAdapter.setTagState(checkedTextView.getText().toString(), checkedTextView.isChecked());
+
+                if (! checkedTextView.isChecked()) {
+                    allTagsButton.setChecked(false);
+                    settings.setAllTagsToggle(false);
+                }
+
+                if (tagsDrawerAdapter.allTagsActive()) {
+                    allTagsButton.setChecked(true);
+                    settings.setAllTagsToggle(true);
+                }
+
+                adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+            }
+        });
+
+        adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+    }
+
+    void refreshTags() {
+        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+        for(String tag: tagsDrawerAdapter.getTags()) {
+            tagsHashMap.put(tag, false);
+        }
+        for(String tag: tagsDrawerAdapter.getActiveTags()) {
+            tagsHashMap.put(tag, true);
+        }
+        for(String tag: adapter.getTags()) {
+            if(!tagsHashMap.containsKey(tag))
+                tagsHashMap.put(tag, true);
+        }
+        tagsDrawerAdapter.setTags(tagsHashMap);
+        adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
     }
 }

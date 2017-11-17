@@ -36,6 +36,7 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
@@ -125,6 +126,10 @@ public class Settings {
         return settings.getLong(getResString(keyId), defaultValue);
     }
 
+    private Set<String> getStringSet(int keyId, Set<String> defaultValue) {
+        return new HashSet<String>(settings.getStringSet(getResString(keyId), defaultValue));
+    }
+
     private void setBoolean(int keyId, boolean value) {
         settings.edit()
                 .putBoolean(getResString(keyId), value)
@@ -134,6 +139,12 @@ public class Settings {
     private void setString(int keyId, String value) {
         settings.edit()
                 .putString(getResString(keyId), value)
+                .apply();
+    }
+
+    private void setStringSet(int keyId, Set<String> value) {
+        settings.edit()
+                .putStringSet(getResString(keyId), value)
                 .apply();
     }
 
@@ -287,5 +298,36 @@ public class Settings {
 
     public boolean getOpenPGPVerify() {
         return getBoolean(R.string.settings_key_openpgp_verify, false);
+    }
+
+    public boolean getAllTagsToggle() {
+        return getBoolean(R.string.settings_key_all_tags_toggle, true);
+    }
+
+    public void setAllTagsToggle(Boolean value) {
+        setBoolean(R.string.settings_key_all_tags_toggle, value);
+    }
+
+    public boolean getNoTagsToggle() {
+        return getBoolean(R.string.settings_key_no_tags_toggle, true);
+    }
+
+    public void setNoTagsToggle(Boolean value) {
+        setBoolean(R.string.settings_key_no_tags_toggle, value);
+    }
+
+    public boolean getTagToggle(String tag) {
+        //The tag toggle holds tags that are unchecked in order to default to checked.
+        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<String>());
+        return !toggledTags.contains(tag);
+    }
+
+    public void setTagToggle(String tag, Boolean value) {
+        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<String>());
+        if(value)
+            toggledTags.remove(tag);
+        else
+            toggledTags.add(tag);
+        setStringSet(R.string.settings_key_tags_toggles, toggledTags);
     }
 }

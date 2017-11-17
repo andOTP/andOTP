@@ -44,6 +44,8 @@ import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.Utilities.Settings;
+import org.shadowice.flocke.andotp.Utilities.TagDialogHelper;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperAdapter;
 import org.shadowice.flocke.andotp.R;
 
@@ -52,6 +54,10 @@ import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.concurrent.Callable;
 
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     implements ItemTouchHelperAdapter, Filterable {
@@ -61,13 +67,17 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     private ArrayList<Entry> entries;
     private ArrayList<Entry> displayedEntries;
     private Callback callback;
+    private List<String> tagsFilter = new ArrayList<>();
 
     private SortMode sortMode = SortMode.UNSORTED;
+    private TagsAdapter tagsFilterAdapter;
+    private Settings settings;
 
-    public EntriesCardAdapter(Context context) {
+    public EntriesCardAdapter(Context context, TagsAdapter tagsFilterAdapter) {
         this.context = context;
         this.sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-
+        this.tagsFilterAdapter = tagsFilterAdapter;
+        this.settings = new Settings(context);
         loadEntries();
     }
 
@@ -91,6 +101,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
     public void entriesChanged() {
         displayedEntries = sortEntries(entries);
+        filterByTags(tagsFilter);
         notifyDataSetChanged();
     }
 
@@ -101,6 +112,29 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void loadEntries() {
         entries = DatabaseHelper.loadDatabase(context);
         entriesChanged();
+    }
+
+    public void filterByTags(List<String> tags) {
+        tagsFilter = tags;
+        List<Entry> matchingEntries = new ArrayList<>();
+
+        for(Entry e : entries) {
+            //Entries with no tags will always be shown
+            Boolean foundMatchingTag = e.getTags().isEmpty() && settings.getNoTagsToggle();
+
+            for(String tag : tags) {
+                if(e.getTags().contains(tag)) {
+                    foundMatchingTag = true;
+                }
+            }
+
+            if(foundMatchingTag) {
+                matchingEntries.add(e);
+            }
+        }
+
+        displayedEntries = sortEntries(matchingEntries);
+        notifyDataSetChanged();
     }
 
     public void updateTokens() {
@@ -119,7 +153,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void onBindViewHolder(EntryViewHolder entryViewHolder, int i) {
         Entry entry = displayedEntries.get(i);
 
-        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP());
+        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags());
 
         if (entry.hasNonDefaultPeriod()) {
             entryViewHolder.showCustomPeriod(entry.getPeriod());
@@ -227,6 +261,52 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 .show();
     }
 
+    public void editEntryTags(final int pos) {
+        final int realPos = getRealIndex(pos);
+        final Entry entry = entries.get(realPos);
+
+        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+        for(String tag: entry.getTags()) {
+            tagsHashMap.put(tag, true);
+        }
+        for(String tag: getTags()) {
+            if(!tagsHashMap.containsKey(tag))
+                tagsHashMap.put(tag, false);
+        }
+        final TagsAdapter tagsAdapter = new TagsAdapter(context, tagsHashMap);
+
+        final Callable tagsCallable = new Callable() {
+            @Override
+            public Object call() throws Exception {
+                entries.get(realPos).setTags(tagsAdapter.getActiveTags());
+                DatabaseHelper.saveDatabase(context, entries);
+
+                List<String> inUseTags = getTags();
+
+                HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+                for(String tag: tagsFilterAdapter.getTags()) {
+                    if(inUseTags.contains(tag))
+                        tagsHashMap.put(tag, false);
+                }
+                for(String tag: tagsFilterAdapter.getActiveTags()) {
+                    if(inUseTags.contains(tag))
+                        tagsHashMap.put(tag, true);
+                }
+                for(String tag: getTags()) {
+                    if(inUseTags.contains(tag))
+                        if(!tagsHashMap.containsKey(tag))
+                            tagsHashMap.put(tag, true);
+                }
+
+                tagsFilterAdapter.setTags(tagsHashMap);
+                filterByTags(tagsFilterAdapter.getActiveTags());
+                return null;
+            }
+        };
+
+        TagDialogHelper.createTagsDialog(context, tagsAdapter, tagsCallable, tagsCallable);
+    }
+
     public void removeItem(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -265,6 +345,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 if (id == R.id.menu_popup_editLabel) {
                     editEntryLabel(pos);
                     return true;
+                } else if (id == R.id.menu_popup_editTags) {
+                    editEntryTags(pos);
+                    return true;
                 } else if (id == R.id.menu_popup_remove) {
                     removeItem(pos);
                     return true;
@@ -293,7 +376,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         return this.sortMode;
     }
 
-    private ArrayList<Entry> sortEntries(ArrayList<Entry> unsorted) {
+    private ArrayList<Entry> sortEntries(List<Entry> unsorted) {
         ArrayList<Entry> sorted = new ArrayList<>(unsorted);
 
         if (sortMode == SortMode.LABEL) {
@@ -312,6 +395,16 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             filter = new EntryFilter();
 
         return filter;
+    }
+
+    public List<String> getTags() {
+        HashSet<String> tags = new HashSet<String>();
+
+        for(Entry entry : entries) {
+            tags.addAll(entry.getTags());
+        }
+
+        return new ArrayList<String>(tags);
     }
 
     public class EntryFilter extends Filter {

@@ -38,6 +38,8 @@ import org.shadowice.flocke.andotp.Utilities.Tools;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperViewHolder;
 import org.shadowice.flocke.andotp.R;
 
+import java.util.List;
+
 public class EntryViewHolder extends RecyclerView.ViewHolder
         implements ItemTouchHelperViewHolder {
 
@@ -52,6 +54,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private ImageView visibleImg;
     private TextView value;
     private TextView label;
+    private TextView tags;
     private TextView customPeriod;
 
 
@@ -66,6 +69,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         visibleImg = v.findViewById(R.id.valueImg);
         coverLayout = v.findViewById(R.id.coverLayout);
         label = v.findViewById(R.id.textViewLabel);
+        tags = v.findViewById(R.id.textViewTags);
         customPeriodLayout = v.findViewById(R.id.customPeriodLayout);
         customPeriod = v.findViewById(R.id.customPeriod);
 
@@ -99,9 +103,24 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         });
     }
 
-    public void updateValues(String label, String token) {
+    public void updateValues(String label, String token, List<String> tags) {
         this.label.setText(label);
         value.setText(token);
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0; i < tags.size(); i++) {
+            stringBuilder.append(tags.get(i));
+            if(i < tags.size() - 1) {
+                stringBuilder.append(", ");
+            }
+        }
+        this.tags.setText(stringBuilder.toString());
+
+        if (! tags.isEmpty()) {
+            this.tags.setVisibility(View.VISIBLE);
+        } else {
+            this.tags.setVisibility(View.GONE);
+        }
     }
 
     public void showCustomPeriod(int period) {
@@ -115,6 +134,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
     public void setLabelSize(int size) {
         label.setTextSize(TypedValue.COMPLEX_UNIT_PT, size);
+        tags.setTextSize(TypedValue.COMPLEX_UNIT_PT, size - 2);
     }
 
     public void setLabelScroll(boolean active) {

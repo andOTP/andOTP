@@ -133,4 +133,25 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/label_tags"/>
+
+        <Button
+            android:id="@+id/manual_tags"
+            style="?android:attr/spinnerStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:textAlignment="textEnd" />
+
+    </LinearLayout>
+
 </LinearLayout>

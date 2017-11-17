@@ -105,11 +105,16 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
                     "\"period\":" + Integer.toString(period) + "," +
                     "\"digits\":6," +
                     "\"type\":\"TOTP\"," +
-                    "\"algorithm\":\"SHA1\"}";
+                    "\"algorithm\":\"SHA1\"," +
+                    "\"tags\":[\"test1\",\"test2\"]}";
 
         Entry e = new Entry(new JSONObject(s));
         assertTrue(Arrays.equals(secret, e.getSecret()));
         assertEquals(label, e.getLabel());
+
+        String[] tags = new String[]{"test1", "test2"};
+        assertEquals(tags.length, e.getTags().size());
+        assertTrue(Arrays.equals(tags, e.getTags().toArray(new String[e.getTags().size()])));
 
         assertEquals(s, e.toJSON().toString());
     }
@@ -147,6 +152,15 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         assertEquals("ACME Co - ACME Co:john.doe@email.com", entry.getLabel());
 
         assertEquals("HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ", new String(new Base32().encode(entry.getSecret())));
+
+
+        entry = new Entry("otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&ALGORITHM=SHA1&digits=6&period=30&tags=test1&tags=test2");
+        assertEquals("ACME Co - ACME Co:john.doe@email.com", entry.getLabel());
+
+        assertEquals("HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ", new String(new Base32().encode(entry.getSecret())));
+        String[] tags = new String[]{"test1", "test2"};
+        assertEquals(tags.length, entry.getTags().size());
+        assertTrue(Arrays.equals(tags, entry.getTags().toArray(new String[entry.getTags().size()])));
     }
 
     public void testSettingsHelper() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
