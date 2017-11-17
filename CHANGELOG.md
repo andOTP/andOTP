@@ -1,5 +1,17 @@
 # Changelog
 
+#### v0.3.0
+
+ * New feature: tagging support (Issue #37, PR #64, big thanks to @RichyHBM for actually implementing this)
+ * New feature: settings option to scroll overlong labels instead of just truncating them
+ * New feature: option to append entries during import instead of just replacing everything
+ * New feature: in-app language switcher (Issue #53)
+ * Bug fix: convert secrets to upper case when importing from JSON (Issue #55)
+ * Bug fix: some layout fixes for certain translations (Issue #58)
+ * Style/UI: remove card elevation
+ * Update: Android Studio 3
+ * Update: Gradle 4.1 / Android Gradle Plugin 3.0
+
 #### v0.2.8
 
  * New feature: store authentication credentials hashed (Issue #49)
