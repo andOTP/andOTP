@@ -25,6 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
+                app:navigationIcon="?homeAsUpIndicator"
                 app:popupTheme="?attr/actionBarPopupTheme" />
 
             <me.zhanghai.android.materialprogressbar.MaterialProgressBar

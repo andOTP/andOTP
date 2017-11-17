@@ -511,6 +511,7 @@ public class MainActivity extends BaseActivity
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
+
                 return false;
             }
         });
@@ -528,10 +529,13 @@ public class MainActivity extends BaseActivity
             @Override
             public boolean onMenuItemActionCollapse(MenuItem menuItem) {
                 floatingActionMenu.show();
+
                 if (adapter == null || adapter.getSortMode() == SortMode.UNSORTED)
                     touchHelperCallback.setDragEnabled(true);
+
                 if (sortMenu != null)
                     sortMenu.setVisible(true);
+
                 return true;
             }
         });
@@ -577,12 +581,9 @@ public class MainActivity extends BaseActivity
     }
 
     private void setupDrawer() {
-        tagsDrawerListView = (ListView)findViewById(R.id.tags_list_in_drawer);
+        tagsDrawerListView = findViewById(R.id.tags_list_in_drawer);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
-        final DrawerLayout tagsDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        final DrawerLayout tagsDrawerLayout = findViewById(R.id.drawer_layout);
 
         tagsToggle = new ActionBarDrawerToggle(this, tagsDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
             @Override
@@ -603,8 +604,8 @@ public class MainActivity extends BaseActivity
         tagsToggle.setDrawerIndicatorEnabled(true);
         tagsDrawerLayout.addDrawerListener(tagsToggle);
 
-        final CheckedTextView noTagsButton = (CheckedTextView)findViewById(R.id.no_tags_entries);
-        final CheckedTextView allTagsButton = (CheckedTextView)findViewById(R.id.all_tags_in_drawer);
+        final CheckedTextView noTagsButton = findViewById(R.id.no_tags_entries);
+        final CheckedTextView allTagsButton = findViewById(R.id.all_tags_in_drawer);
 
         allTagsButton.setOnClickListener(new View.OnClickListener() {
             @Override
