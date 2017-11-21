@@ -3,10 +3,11 @@ Check if all requirements are fulfilled otherwise the issue will be closed witho
   * Add details to fields  below
   * Use search. Check if the issue is already reported before creating a new one. 
     https://github.com/flocke/andOTP/issues
-  * Try again after clearing the apps data before posting
+  * Try again after clearing the apps data before posting (**don't forget to backup**)
   * Record a logcat: https://goo.gl/mc71vk
   * Bug reports without logcat will be closed (I can not reproduce every bug myself and I can not fix them without logs)
   * Delete this info block
+
 -----------------------------
 
 #### General information
@@ -14,6 +15,7 @@ Check if all requirements are fulfilled otherwise the issue will be closed witho
 * **App version:**
 * **App source:** Google Play / F-Droid / GitHub / ...
 * **Android Version:**
+* **Custom ROM:**
 
 #### Expected result
 **What is expected?** 
