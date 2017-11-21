@@ -196,23 +196,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_margin"
-            android:layout_gravity="center"
             android:padding="@dimen/activity_margin"
             android:background="?android:attr/selectableItemBackground" >
 
-            <CheckedTextView
-                android:id="@+id/backup_replace_label"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@id/backup_replace"
-                android:text="@string/backup_desc_replace"
-                android:textAppearance="?android:attr/textAppearanceListItem" />
+                android:layout_toStartOf="@id/backup_replace" >
+
+                <TextView
+                    android:id="@+id/backup_replace_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/backup_title_replace"
+                    android:textAppearance="?android:attr/textAppearanceListItem" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/backup_desc_replace"/>
+
+            </LinearLayout>
 
             <Switch
                 android:id="@+id/backup_replace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
                 android:checked="true" />
 
         </RelativeLayout>

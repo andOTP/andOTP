@@ -13,6 +13,8 @@
     <string name="backup_title_import_crypt">Restore (encrypted)</string>
     <string name="backup_title_import_openpgp">Restore (OpenPGP)</string>
 
+    <string name="backup_title_replace">Replace existing entries</string>
+
     <string name="backup_desc_export_plain">Backup all accounts in a plain-text JSON file</string>
     <string name="backup_desc_export_crypt">Backup all accounts in a password-protected JSON file</string>
     <string name="backup_desc_export_openpgp">Backup all accounts in an OpenPGP-encrypted JSON file</string>
@@ -31,7 +33,9 @@
         before you can create encrypted backups.
     </string>
 
-    <string name="backup_desc_replace">Replace already existing entries</string>
+    <string name="backup_desc_replace">If enabled all old entries are replaced when importing a
+        backup and only the backup is present. If disabled the old entries and the backups content
+        are merged.</string>
 
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">Security warning</string>
