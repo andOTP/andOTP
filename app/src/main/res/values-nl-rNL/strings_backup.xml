@@ -20,6 +20,7 @@
   <string name="backup_desc_crypt_setup">Het is nodig een wachtwoord in te stellen bij de instellingen voor het gebruik van versleutelde reservekopiën.    </string>
   <string name="backup_desc_openpgp_provider">Je dient een OpenPGP-provider te installeren en in te schakelen bij de instellingen om deze functie te gebruiken.    </string>
   <string name="backup_desc_openpgp_keyid">Je dient een OpenPGP sleutel te selecteren bij de instellingen voordat je versleutelde reservekopiën kunt maken.    </string>
+  <string name="backup_desc_replace">Vervang bestaande vermeldingen</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">Veiligheidswaarschuwing</string>
   <string name="backup_dialog_msg_export_warning">Wilt je echt de database exporteren als JSON-bestand zonder opmaak? Dit bestand bevat al uw geheime sleutels. <b>Houdt het veilig</b>!    </string>

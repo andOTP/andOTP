@@ -6,20 +6,27 @@
   <string name="button_enter_details">Wprowadź szczegóły</string>
   <string name="button_scan_qr">Skanuj kod QR</string>
   <string name="button_save">Zapisz</string>
+  <string name="button_new_tag">Nowy znacznik</string>
   <string name="button_warned">Zostałeś / łaś ostrzeżona!</string>
+  <string name="button_all_tags">Wszystkie znaczniki</string>
+  <string name="button_no_tags">Brak znaczników</string>
   <!-- Custom formatting -->
   <string name="format_custom_period">%d s</string>
   <!-- Hints -->
   <string name="hint_label">Etykieta</string>
   <string name="hint_secret">Sekret</string>
   <!-- Labels -->
-  <string name="label_tap_to_reveal">Naciśnij aby odsłonić</string>
+  <string name="label_hidden">Ukryte</string>
   <string name="label_type">Napisz</string>
   <string name="label_secret">Sekret</string>
   <string name="label_period">Okres</string>
   <string name="label_digits">Cyfry</string>
   <string name="label_label">Etykieta</string>
   <string name="label_algorithm">Algorytm</string>
+  <string name="label_tags">Znaczniki</string>
+  <!-- Drawer -->
+  <string name="drawer_open">Pokaż znaczniki</string>
+  <string name="drawer_close">Ukryj znaczniki</string>
   <!-- Menu -->
   <string name="menu_main_about">O aplikacji</string>
   <string name="menu_main_backup">Kopia</string>
@@ -29,6 +36,7 @@
   <string name="menu_sort_none">Nieposortowane</string>
   <string name="menu_sort_label">Etykieta</string>
   <string name="menu_popup_edit_label">Edytuj etykietę</string>
+  <string name="menu_popup_edit_tags">Edytuj znaczniki</string>
   <string name="menu_popup_remove">Usuń</string>
   <!-- Toast messages -->
   <string name="toast_auth_failed">Autoryzacja nie powiodła się, zamykam aplikacje</string>

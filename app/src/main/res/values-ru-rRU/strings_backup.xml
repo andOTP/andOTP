@@ -20,6 +20,7 @@
   <string name="backup_desc_crypt_setup">Для создания зашифрованных резервных копий вам нужно установить пароль в Настройках.    </string>
   <string name="backup_desc_openpgp_provider">Для использования этой функции вам нужно выбрать и установить поставщика OpenPGP.</string>
   <string name="backup_desc_openpgp_keyid">Вам нужно выбрать ключ OpenPGP в Настройках, прежде чем создавать зашифрованные резервные копии.</string>
+  <string name="backup_desc_replace">Заменить уже существующие записи</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">Предупреждение безопасности</string>
   <string name="backup_dialog_msg_export_warning">Вы действительно хотите экспортировать базу данных как незашифрованный текстовый JSON файл? Этот файл содержит все ваши секретные ключи, пожалуйста, <b>надежно сохраните его</b>!    </string>

@@ -12,8 +12,10 @@
   <string name="settings_title_auth_password">Heslo</string>
   <string name="settings_title_auth_pin">PIN</string>
   <string name="settings_title_panic">Panikové tlačítko</string>
+  <string name="settings_title_lang">Jazyk</string>
   <string name="settings_title_theme">Vzhled</string>
   <string name="settings_title_label_size">Velikost písma popisku</string>
+  <string name="settings_title_label_scroll">Pohybující se popisky</string>
   <string name="settings_title_backup_ask">Zadejte název souboru</string>
   <string name="settings_title_backup_directory">Adresář záloh</string>
   <string name="settings_title_backup_password">Heslo pro zálohu</string>
@@ -24,6 +26,7 @@
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">V základu skryje OTP tokeny, budou zobrazeny manuálně</string>
   <string name="settings_desc_panic">Zvolte reakci na signál paniky</string>
+  <string name="settings_desc_label_scroll">Posouvat příliš dlouhé popisky namísto zkracování</string>
   <string name="settings_desc_backup_ask">Dotazovat se na název souboru vždy při vytváření či obnovování zálohy</string>
   <string name="settings_desc_backup_directory">Adresář pro zálohy (názvy souborů se odvíjí od typu zálohy)</string>
   <string name="settings_desc_backup_password">Nastaví heslo používané k šifrování záloh</string>
@@ -42,6 +45,18 @@
   <string-array name="settings_entries_panic">
     <item>Smazat všechny účty</item>
     <item>Obnovit výchozí nastavení</item>
+  </string-array>
+  <string-array name="settings_entries_lang">
+    <item>Podle systému</item>
+    <item>Angličtina</item>
+    <item>Čeština</item>
+    <item>Němčina</item>
+    <item>Španělština</item>
+    <item>Francouzština</item>
+    <item>Galicijština</item>
+    <item>Holandština</item>
+    <item>Polština</item>
+    <item>Ruština</item>
   </string-array>
   <string-array name="settings_entries_theme">
     <item>Světlý vzhled</item>

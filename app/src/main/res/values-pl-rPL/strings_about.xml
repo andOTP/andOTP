@@ -25,11 +25,11 @@
   <string name="about_desc_report_bugs">Zgłoś błąd lub poproś o funkcję</string>
   <string name="about_desc_translate">Pomóż przetłumaczyć andOTP na swój język</string>
   <string name="about_title_special_features">Specjalne funkcje</string>
-  <string name="about_dialog_special_features">Are you sure you want to enable the special
-        features? Most of them are non-standard OTP algorithms which were implemented on special
-        request. They are <b>not officially supported</b> and can come with <b>certain
-        limitations</b>, please read (and understand) the page \"Special features\" in the Github
-        wiki to learn more before using them.</string>
+  <string name="about_dialog_special_features">Czy jesteś pewny/a, że chcesz włączyć specjalne
+        funkcję? Większość z z tych algorytmów nie jest standardowa i została dodana na prośby użytkowników.
+        Algorytmy te <b>nie są oficjalnie wspierane</b> i zawierają <b> limity </b>, 
+        przed włączeniem zapoznaj się z stroną \"Specjalne funkcje\" na stronie projektu w serwisie Github, 
+        która opisuje jak ich używać.</string>
   <string name="about_toast_special_features">Specjalne funkcje włączone</string>
   <string name="about_toast_special_features_enabled">Specjalne funkcje już włączone</string>
 </resources>

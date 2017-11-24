@@ -12,20 +12,22 @@
   <string name="settings_title_auth_password">Mot de passe</string>
   <string name="settings_title_auth_pin">Code PIN</string>
   <string name="settings_title_panic">Bouton d\'urgence</string>
+  <string name="settings_title_lang">Langage</string>
   <string name="settings_title_theme">Thème</string>
   <string name="settings_title_label_size">
       Taille de la police des titres
     </string>
-  <string name="settings_title_backup_ask">Ask for filename</string>
-  <string name="settings_title_backup_directory">Backup directory</string>
+  <string name="settings_title_label_scroll">Défilement des libellés</string>
+  <string name="settings_title_backup_ask">Demander le nom du fichier</string>
+  <string name="settings_title_backup_directory">Répertoire de sauvegarde</string>
   <string name="settings_title_backup_password">
       Mot de passe de sauvegarde
     </string>
   <string name="settings_title_openpgp_provider">
-      Sélectionner le fournisseur OpenPGP
+      Sélectionnez le fournisseur OpenPGP
     </string>
   <string name="settings_title_openpgp_keyid">
-      Sélectionner la clef OpenPGP
+      Sélectionner la clé OpenPGP
     </string>
   <string name="settings_title_openpgp_sign">
       Signer les sauvegardes chiffrées
@@ -40,20 +42,19 @@
   <string name="settings_desc_panic">
       Choisir quoi faire lorsque que le bouton d\'urgence est déclenché
     </string>
-  <string name="settings_desc_backup_ask">Ask for the filename every time a backup is created or
-        restored</string>
-  <string name="settings_desc_backup_directory">Directory for the backups (filenames will depend
-        on the backup type)</string>
+  <string name="settings_desc_label_scroll">Faire défiler les libellés trop longs plutôt que de les tronquer</string>
+  <string name="settings_desc_backup_ask">Demander le nom du fichier à chaque fois qu\'une sauvegarde est créée ou restaurée</string>
+  <string name="settings_desc_backup_directory">Répertoire de sauvegarde (les noms de fichier dépendront du type de sauvegarde)</string>
   <string name="settings_desc_backup_password">
-      Configurer le mot de passe utiliser pour chiffrer les sauvegardes
+      Configurer le mot de passe utilisé pour chiffrer les sauvegardes
     </string>
   <string name="settings_desc_openpgp_sign">
-      Toutes les sauvegardes chiffrées sera également signé avec votre clef
+      Toutes les sauvegardes chiffrées seront également signées avec votre clé
       (nécessite un mot de passe)
     </string>
   <string name="settings_desc_openpgp_verify">
-      Les sauvegardes chiffrées ne sont restaurée que lorsqu\'elles sont
-      signées avec une clef valide.
+      Les sauvegardes chiffrées ne sont restaurées que lorsqu\'elles sont
+      signées avec une clé valide.
     </string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">
@@ -75,10 +76,22 @@
     <item>Supprimer l\'ensemble des comptes</item>
     <item>Réinitialiser les paramètres de l\'application</item>
   </string-array>
+  <string-array name="settings_entries_lang">
+    <item>Par défaut du système</item>
+    <item>Anglais</item>
+    <item>Tchèque</item>
+    <item>Allemand</item>
+    <item>Espagnol</item>
+    <item>Français</item>
+    <item>Galicien</item>
+    <item>Néerlandais</item>
+    <item>Polonais</item>
+    <item>Russe</item>
+  </string-array>
   <string-array name="settings_entries_theme">
-    <item>Theme clair</item>
-    <item>Theme sombre</item>
-    <item>Black theme</item>
+    <item>Thème clair</item>
+    <item>Thème sombre</item>
+    <item>Thème noir</item>
   </string-array>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Mot de passe</string>
@@ -87,5 +100,5 @@
       Confirmer le mot de passe
     </string>
   <string name="settings_hint_pin_confirm">Confirmer le code PIN</string>
-  <string name="settings_hint_unchanged">(unchanged)</string>
+  <string name="settings_hint_unchanged">(inchangé)</string>
 </resources>

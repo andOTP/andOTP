@@ -20,6 +20,7 @@
   <string name="backup_desc_crypt_setup">Musisz ustawić hasło w ustawieniach aby użyć szyfrowanych kopii</string>
   <string name="backup_desc_openpgp_provider">Musisz zainstalować aplikację do zarządzania kluczami OpenPGP i aby włączyć tę funkcjonalność przejdź do ustawień</string>
   <string name="backup_desc_openpgp_keyid">Musisz wybrać klucz OpenPGP w ustawieniach aby utworzyć szyfrowane kopie.</string>
+  <string name="backup_desc_replace">Zastąp istniejące wpisy</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">Ostrzeżenie bezpieczeństwa</string>
   <string name="backup_dialog_msg_export_warning">Czy napewno chcesz zapisać kopie bazy w niezaszyfrowanym pliku JSON? Ten plik zawiera prywatne klucze, <b>zachowaj ostrożność</b></string>

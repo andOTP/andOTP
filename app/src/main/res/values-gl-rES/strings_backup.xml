@@ -26,6 +26,7 @@
   <string name="backup_desc_openpgp_keyid">Necesitas seleccionar unha chave OpenPGP nos Axustes
         antes de crear unha copia de seguranza cifrada.
     </string>
+  <string name="backup_desc_replace">Substituír as entradas existentes</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">Advertencia de seguranza</string>
   <string name="backup_dialog_msg_export_warning">¿Queres exportar a base de datos como

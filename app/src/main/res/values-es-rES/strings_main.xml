@@ -6,20 +6,27 @@
   <string name="button_enter_details">Introducir datos</string>
   <string name="button_scan_qr">Escanear código QR</string>
   <string name="button_save">Guardar</string>
+  <string name="button_new_tag">Nueva etiqueta</string>
   <string name="button_warned">¡Has sido avisado!</string>
+  <string name="button_all_tags">Todas etiquetas</string>
+  <string name="button_no_tags">Sin etiquetas</string>
   <!-- Custom formatting -->
   <string name="format_custom_period">%d s</string>
   <!-- Hints -->
   <string name="hint_label">Etiqueta</string>
   <string name="hint_secret">Secreto</string>
   <!-- Labels -->
-  <string name="label_tap_to_reveal">Toca para mostrar</string>
+  <string name="label_hidden">Oculto</string>
   <string name="label_type">Tipo</string>
   <string name="label_secret">Secreto</string>
   <string name="label_period">Periodo</string>
   <string name="label_digits">Dígitos</string>
   <string name="label_label">Etiqueta</string>
   <string name="label_algorithm">Algoritmo</string>
+  <string name="label_tags">Etiquetas</string>
+  <!-- Drawer -->
+  <string name="drawer_open">Mostrar etiquetas</string>
+  <string name="drawer_close">Ocultar etiquetas</string>
   <!-- Menu -->
   <string name="menu_main_about">Acerca de</string>
   <string name="menu_main_backup">Copia de seguridad</string>
@@ -29,6 +36,7 @@
   <string name="menu_sort_none">Sin ordenar</string>
   <string name="menu_sort_label">Etiqueta</string>
   <string name="menu_popup_edit_label">Editar etiqueta</string>
+  <string name="menu_popup_edit_tags">Editar etiquetas</string>
   <string name="menu_popup_remove">Eliminar</string>
   <!-- Toast messages -->
   <string name="toast_auth_failed">La autenticación ha fallado, cerrando andOTP!</string>

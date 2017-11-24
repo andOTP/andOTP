@@ -7,9 +7,9 @@
       Android 4.4+.
     </string>
   <!-- Misc -->
-  <string name="about_label_changelog">Changelog</string>
+  <string name="about_label_changelog">Liste des changements</string>
   <string name="about_label_license">Licence</string>
-  <string name="about_label_licenses">Licences Open Sources</string>
+  <string name="about_label_licenses">Licences Open Source</string>
   <string name="about_label_MIT">Licence MIT</string>
   <string name="about_label_source">Code source</string>
   <string name="about_label_version">Version</string>
@@ -33,12 +33,8 @@
   <string name="about_desc_translate">
       Aider à la traduction d\'andOTP dans votre langue
     </string>
-  <string name="about_title_special_features">Special features</string>
-  <string name="about_dialog_special_features">Are you sure you want to enable the special
-        features? Most of them are non-standard OTP algorithms which were implemented on special
-        request. They are <b>not officially supported</b> and can come with <b>certain
-        limitations</b>, please read (and understand) the page \"Special features\" in the Github
-        wiki to learn more before using them.</string>
-  <string name="about_toast_special_features">Special features enabled</string>
-  <string name="about_toast_special_features_enabled">Special features already enabled</string>
+  <string name="about_title_special_features">Fonctionnalités spéciales</string>
+  <string name="about_dialog_special_features">Êtes-vous sûr de vouloir activer les fonctionnalités spéciales ? La plupart d\'entre elles sont des algorithmes OTP non standard qui ont été implémentés sur demande spéciale. Elles ne sont <b>pas supportées officiellement</b> et peuvent venir avec <b>certaines limitations</b>. Veuillez lire (et comprendre) la page « Fonctionnalités spéciales » sur le wiki du GitHub pour en apprendre d\'avantage avant de les utiliser.</string>
+  <string name="about_toast_special_features">Fonctionnalités spéciales activées</string>
+  <string name="about_toast_special_features_enabled">Fonctionnalités spéciales déjà activées</string>
 </resources>

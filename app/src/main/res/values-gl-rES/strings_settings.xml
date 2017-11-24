@@ -12,8 +12,10 @@
   <string name="settings_title_auth_password">Contrasinal</string>
   <string name="settings_title_auth_pin">PIN</string>
   <string name="settings_title_panic">Panic Trigger</string>
+  <string name="settings_title_lang">Idioma</string>
   <string name="settings_title_theme">Tema</string>
   <string name="settings_title_label_size">Tamaño da tipografía</string>
+  <string name="settings_title_label_scroll">Desprazar etiqueta</string>
   <string name="settings_title_backup_ask">Preguntar polo nome do ficheiro</string>
   <string name="settings_title_backup_directory">Directorio de copias de seguranza</string>
   <string name="settings_title_backup_password">Contrasinal da copia de seguranza</string>
@@ -24,6 +26,7 @@
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">Agochar códigos OTP, require mostralos manualmente</string>
   <string name="settings_desc_panic">Decide que facer cando se recibe un Panic Trigger</string>
+  <string name="settings_desc_label_scroll">Desprazar etiquetas largas no canto de truncalas</string>
   <string name="settings_desc_backup_ask">Preguntar polo nome do ficheiro cada vez que unha copia de seguranza sexa creada ou
         restaurada</string>
   <string name="settings_desc_backup_directory">Directorio para as copias de seguranza (o nome do ficheiro dependerá
@@ -49,6 +52,18 @@
   <string-array name="settings_entries_panic">
     <item>Eliminar todas as contas</item>
     <item>Restablecer axustes</item>
+  </string-array>
+  <string-array name="settings_entries_lang">
+    <item>Predefinido do sistema</item>
+    <item>Inglés</item>
+    <item>Checo</item>
+    <item>Alemán</item>
+    <item>Español</item>
+    <item>Francés</item>
+    <item>Galego</item>
+    <item>Holandés</item>
+    <item>Polaco</item>
+    <item>Ruso</item>
   </string-array>
   <string-array name="settings_entries_theme">
     <item>Tema claro</item>

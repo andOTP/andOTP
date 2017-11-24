@@ -26,6 +26,7 @@
   <string name="backup_desc_openpgp_keyid">Sie müssen einen OpenPGP-Schlüssel in den Einstellungen
         auswählen, bevor Sie verschlüsselte Backups erstellen können.
     </string>
+  <string name="backup_desc_replace">Bereits vorhandene Einträge ersetzen</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">Sicherheitswarnung</string>
   <string name="backup_dialog_msg_export_warning">Möchten Sie wirklich die Datenbank als

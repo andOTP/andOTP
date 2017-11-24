@@ -12,8 +12,10 @@
   <string name="settings_title_auth_password">Пароль</string>
   <string name="settings_title_auth_pin">PIN-код</string>
   <string name="settings_title_panic">Panic Trigger</string>
+  <string name="settings_title_lang">Язык</string>
   <string name="settings_title_theme">Тема оформления</string>
-  <string name="settings_title_label_size">Размер шрифта для метки</string>
+  <string name="settings_title_label_size">Размер шрифта для ярлыка</string>
+  <string name="settings_title_label_scroll">Прокрутка ярлыка</string>
   <string name="settings_title_backup_ask">Спрашивать об имени файла</string>
   <string name="settings_title_backup_directory">Каталог резервной копии</string>
   <string name="settings_title_backup_password">Пароль для резервной копии</string>
@@ -24,6 +26,7 @@
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">Скрыть OTP-токены по-умолчанию, требуя их показ вручную</string>
   <string name="settings_desc_panic">Решите, что произойдет при получении Panic Trigger</string>
+  <string name="settings_desc_label_scroll">Прокрутка слишком длинных ярлыков вместо их усечения</string>
   <string name="settings_desc_backup_ask">Спрашивать об имени файла при создании резервной копии или        восстановлении</string>
   <string name="settings_desc_backup_directory">Каталог для резервных копий (имена файлов будут зависеть        от типа резервного копирования)</string>
   <string name="settings_desc_backup_password">Установить пароль для шифрования резервных копий</string>
@@ -43,10 +46,22 @@
     <item>Удалить все аккаунты</item>
     <item>Сброс параметров приложения</item>
   </string-array>
+  <string-array name="settings_entries_lang">
+    <item>Настройки по умолчанию</item>
+    <item>Английский</item>
+    <item>Чешский</item>
+    <item>Немецкий</item>
+    <item>Испанский</item>
+    <item>Французский</item>
+    <item>Галисийский</item>
+    <item>Голландский</item>
+    <item>Польский</item>
+    <item>Русский</item>
+  </string-array>
   <string-array name="settings_entries_theme">
     <item>Светлая тема</item>
     <item>Тёмная тема</item>
-    <item>Тёмная тема</item>
+    <item>Чёрная тема</item>
   </string-array>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Пароль</string>

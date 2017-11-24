@@ -6,20 +6,27 @@
   <string name="button_enter_details">Введите детали</string>
   <string name="button_scan_qr">Сканировать QR-код</string>
   <string name="button_save">Сохранить</string>
+  <string name="button_new_tag">Новый тег</string>
   <string name="button_warned">Вас предупредили!</string>
+  <string name="button_all_tags">Все теги</string>
+  <string name="button_no_tags">Нет тегов</string>
   <!-- Custom formatting -->
   <string name="format_custom_period">%d сек.</string>
   <!-- Hints -->
   <string name="hint_label">Ярлык</string>
   <string name="hint_secret">Секрет</string>
   <!-- Labels -->
-  <string name="label_tap_to_reveal">Нажмите, чтобы показать</string>
+  <string name="label_hidden">Скрыто</string>
   <string name="label_type">Тип</string>
   <string name="label_secret">Секрет</string>
   <string name="label_period">Срок действия</string>
   <string name="label_digits">Цифры</string>
-  <string name="label_label">Метка</string>
+  <string name="label_label">Ярлык</string>
   <string name="label_algorithm">Алгоритм</string>
+  <string name="label_tags">Теги</string>
+  <!-- Drawer -->
+  <string name="drawer_open">Показать теги</string>
+  <string name="drawer_close">Скрыть теги</string>
   <!-- Menu -->
   <string name="menu_main_about">О программе</string>
   <string name="menu_main_backup">Резервная копия</string>
@@ -27,8 +34,9 @@
   <string name="menu_main_settings">Настройки</string>
   <string name="menu_main_sort">Сортировка</string>
   <string name="menu_sort_none">Без сортировки</string>
-  <string name="menu_sort_label">Метка</string>
-  <string name="menu_popup_edit_label">Редактировать метку</string>
+  <string name="menu_sort_label">Ярлык</string>
+  <string name="menu_popup_edit_label">Редактировать ярлык</string>
+  <string name="menu_popup_edit_tags">Изменить теги</string>
   <string name="menu_popup_remove">Убрать</string>
   <!-- Toast messages -->
   <string name="toast_auth_failed">Ошибка аутентификации, andOTP закрывается!</string>

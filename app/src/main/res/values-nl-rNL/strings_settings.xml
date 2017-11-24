@@ -12,8 +12,10 @@
   <string name="settings_title_auth_password">Wachtwoord</string>
   <string name="settings_title_auth_pin">PIN</string>
   <string name="settings_title_panic">Paniek Trigger</string>
+  <string name="settings_title_lang">Taal</string>
   <string name="settings_title_theme">Thema</string>
   <string name="settings_title_label_size">Label lettergrootte</string>
+  <string name="settings_title_label_scroll">Scroll etiket</string>
   <string name="settings_title_backup_ask">Vraag naar de bestandsnaam</string>
   <string name="settings_title_backup_directory">Archief map</string>
   <string name="settings_title_backup_password">Wachtwoord reserve kopie</string>
@@ -24,6 +26,7 @@
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">De OTP tokens standaard verbergen, maak ze handmatig zichtbaar</string>
   <string name="settings_desc_panic">Beslissen wat er gebeurt wanneer een Paniek Trigger wordt ontvangen</string>
+  <string name="settings_desc_label_scroll">Scroll overlangs de etiketten in plaats van ze af te korten</string>
   <string name="settings_desc_backup_ask">Vraag naar de bestandsnaam elke keer een reservekopie is gemaakt of wordt teruggezet</string>
   <string name="settings_desc_backup_directory">Map voor de reservekopieën (bestandsnamen zullen afhangen van het type archief)</string>
   <string name="settings_desc_backup_password">Stel het wachtwoord in dat wordt gebruikt voor het versleutelen van de reserve kopie</string>
@@ -42,6 +45,18 @@
   <string-array name="settings_entries_panic">
     <item>Alle accounts verwijderen</item>
     <item>App instellingen resetten</item>
+  </string-array>
+  <string-array name="settings_entries_lang">
+    <item>Systeem standaard</item>
+    <item>Engels</item>
+    <item>Tsjechisch</item>
+    <item>Duits</item>
+    <item>Spaans</item>
+    <item>Frans</item>
+    <item>Galicisch</item>
+    <item>Nederlands</item>
+    <item>Pools</item>
+    <item>Russisch</item>
   </string-array>
   <string-array name="settings_entries_theme">
     <item>Licht thema</item>

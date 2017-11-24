@@ -6,20 +6,27 @@
   <string name="button_enter_details">Details ingeven</string>
   <string name="button_scan_qr">QR-code scannen</string>
   <string name="button_save">Bewaren</string>
+  <string name="button_new_tag">Nieuwe label</string>
   <string name="button_warned">Je bent gewaarschuwd!</string>
+  <string name="button_all_tags">Alle labels</string>
+  <string name="button_no_tags">Geen Labels</string>
   <!-- Custom formatting -->
   <string name="format_custom_period">%d s</string>
   <!-- Hints -->
   <string name="hint_label">Etiket</string>
   <string name="hint_secret">Geheim</string>
   <!-- Labels -->
-  <string name="label_tap_to_reveal">Tik om te onthullen</string>
+  <string name="label_hidden">Verborgen</string>
   <string name="label_type">Soort</string>
   <string name="label_secret">Geheim</string>
   <string name="label_period">Periode</string>
   <string name="label_digits">Cijfers</string>
   <string name="label_label">Etiket</string>
   <string name="label_algorithm">Algoritme</string>
+  <string name="label_tags">Labels</string>
+  <!-- Drawer -->
+  <string name="drawer_open">Labels tonen</string>
+  <string name="drawer_close">Labels verbergen</string>
   <!-- Menu -->
   <string name="menu_main_about">Over</string>
   <string name="menu_main_backup">Reservekopie</string>
@@ -29,6 +36,7 @@
   <string name="menu_sort_none">Ongesorteerd</string>
   <string name="menu_sort_label">Etiket</string>
   <string name="menu_popup_edit_label">Etiket bewerken</string>
+  <string name="menu_popup_edit_tags">Labels bewerken</string>
   <string name="menu_popup_remove">Verwijderen</string>
   <!-- Toast messages -->
   <string name="toast_auth_failed">Verificatie is mislukt, sluiten andOTP!</string>

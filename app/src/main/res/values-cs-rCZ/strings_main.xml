@@ -6,20 +6,27 @@
   <string name="button_enter_details">Ruční zadání</string>
   <string name="button_scan_qr">Načíst QR kód</string>
   <string name="button_save">Uložit</string>
+  <string name="button_new_tag">Nový štítek</string>
   <string name="button_warned">Byli jste varováni!</string>
+  <string name="button_all_tags">Všechny štítky</string>
+  <string name="button_no_tags">Bez štítku</string>
   <!-- Custom formatting -->
   <string name="format_custom_period">%d s</string>
   <!-- Hints -->
   <string name="hint_label">Popis</string>
   <string name="hint_secret">Klíč</string>
   <!-- Labels -->
-  <string name="label_tap_to_reveal">Ukaž klepnutím</string>
+  <string name="label_hidden">Skryté</string>
   <string name="label_type">Druh</string>
   <string name="label_secret">Klíč</string>
   <string name="label_period">Interval</string>
   <string name="label_digits">Délka</string>
   <string name="label_label">Popis</string>
   <string name="label_algorithm">Algoritmus</string>
+  <string name="label_tags">Štítky</string>
+  <!-- Drawer -->
+  <string name="drawer_open">Zobrazit štítky</string>
+  <string name="drawer_close">Skrýt štítky</string>
   <!-- Menu -->
   <string name="menu_main_about">O aplikaci</string>
   <string name="menu_main_backup">Zálohování</string>
@@ -29,6 +36,7 @@
   <string name="menu_sort_none">Neřadit</string>
   <string name="menu_sort_label">Popis</string>
   <string name="menu_popup_edit_label">Upravit popis</string>
+  <string name="menu_popup_edit_tags">Upravit štítky</string>
   <string name="menu_popup_remove">Smazat</string>
   <!-- Toast messages -->
   <string name="toast_auth_failed">Ověření se nezdařilo, zavírám andOTP!</string>

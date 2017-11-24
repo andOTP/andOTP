@@ -6,20 +6,27 @@
   <string name="button_enter_details">Details eingeben</string>
   <string name="button_scan_qr">QR-Code scannen</string>
   <string name="button_save">Sichern</string>
+  <string name="button_new_tag">Neuer Marker</string>
   <string name="button_warned">Sie wurden gewarnt!</string>
+  <string name="button_all_tags">Alle Marker</string>
+  <string name="button_no_tags">Keine Marker</string>
   <!-- Custom formatting -->
   <string name="format_custom_period">%d s</string>
   <!-- Hints -->
   <string name="hint_label">Beschriftung</string>
   <string name="hint_secret">Geheimnis</string>
   <!-- Labels -->
-  <string name="label_tap_to_reveal">Tippen zum Anzeigen</string>
+  <string name="label_hidden">Versteckt</string>
   <string name="label_type">Typ</string>
   <string name="label_secret">Geheimnis</string>
   <string name="label_period">Zeitraum</string>
   <string name="label_digits">Ziffern</string>
   <string name="label_label">Beschriftung</string>
   <string name="label_algorithm">Algorithmus</string>
+  <string name="label_tags">Marker</string>
+  <!-- Drawer -->
+  <string name="drawer_open">Marker anzeigen</string>
+  <string name="drawer_close">Marker ausblenden</string>
   <!-- Menu -->
   <string name="menu_main_about">Über</string>
   <string name="menu_main_backup">Backup</string>
@@ -29,6 +36,7 @@
   <string name="menu_sort_none">Unsortiert</string>
   <string name="menu_sort_label">Beschriftung</string>
   <string name="menu_popup_edit_label">Beschriftung bearbeiten</string>
+  <string name="menu_popup_edit_tags">Marker bearbeiten</string>
   <string name="menu_popup_remove">Entfernen</string>
   <!-- Toast messages -->
   <string name="toast_auth_failed">Authentifizierung fehlgeschlagen, andOTP wird geschlossen!</string>

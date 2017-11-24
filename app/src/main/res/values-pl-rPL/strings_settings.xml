@@ -12,10 +12,12 @@
   <string name="settings_title_auth_password">Hasło</string>
   <string name="settings_title_auth_pin">PIN</string>
   <string name="settings_title_panic">Panic Trigger</string>
+  <string name="settings_title_lang">Język</string>
   <string name="settings_title_theme">Motyw</string>
   <string name="settings_title_label_size">Etykieta rozmiaru czcionki</string>
-  <string name="settings_title_backup_ask">Ask for filename</string>
-  <string name="settings_title_backup_directory">Backup directory</string>
+  <string name="settings_title_label_scroll">Przewiń etykietę</string>
+  <string name="settings_title_backup_ask">Pytaj o nazwę pliku</string>
+  <string name="settings_title_backup_directory">Katalog kopii</string>
   <string name="settings_title_backup_password">Hasło do kopii</string>
   <string name="settings_title_openpgp_provider">Wybierz dostawcę OpenPGP</string>
   <string name="settings_title_openpgp_keyid">Wybierz klucz OpenPGP</string>
@@ -24,10 +26,10 @@
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">Domyślnie ukrywaj tokeny OTP, wymaga kliknięcia aby odkryć token</string>
   <string name="settings_desc_panic">Zdecyduj co ma się stać po otrzymaniu sygnału Panic Trigger</string>
-  <string name="settings_desc_backup_ask">Ask for the filename every time a backup is created or
-        restored</string>
-  <string name="settings_desc_backup_directory">Directory for the backups (filenames will depend
-        on the backup type)</string>
+  <string name="settings_desc_label_scroll">Przewiń etykiety zamiast ucinać je</string>
+  <string name="settings_desc_backup_ask">Pytaj o nazwę pliku za każdym razem kiedy kopia jest
+        tworzona lub przywracana</string>
+  <string name="settings_desc_backup_directory">Katalog z kopiami (nazwy plików zależą od typu kopii)</string>
   <string name="settings_desc_backup_password">Ustaw hasło używane do szyfrowania kopii</string>
   <string name="settings_desc_openpgp_sign">Każda szyfrowana kopia dodatkowo jest podpisywana Twoim kluczem (wymaga hasła)</string>
   <string name="settings_desc_openpgp_verify">Szyfrowane kopie mogą zostać zaimportowane tylko gdy zostały podpisane Twoim kluczem</string>
@@ -45,15 +47,27 @@
     <item>Usuń wszystkie konta</item>
     <item>Resetowanie ustawień</item>
   </string-array>
+  <string-array name="settings_entries_lang">
+    <item>Domyślna wartość</item>
+    <item>Angielski</item>
+    <item>Czeski</item>
+    <item>Niemiecki</item>
+    <item>Hiszpański</item>
+    <item>Francuski</item>
+    <item>Galicyjski</item>
+    <item>Holenderski</item>
+    <item>Polski</item>
+    <item>Rosyjski</item>
+  </string-array>
   <string-array name="settings_entries_theme">
     <item>Jasny motyw</item>
     <item>Ciemny motyw</item>
-    <item>Black theme</item>
+    <item>Czarny motyw</item>
   </string-array>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Hasło</string>
   <string name="settings_hint_pin">PIN</string>
   <string name="settings_hint_password_confirm">Potwierdź hasło</string>
   <string name="settings_hint_pin_confirm">Potwierdź PIN</string>
-  <string name="settings_hint_unchanged">(unchanged)</string>
+  <string name="settings_hint_unchanged">(bez zmian)</string>
 </resources>

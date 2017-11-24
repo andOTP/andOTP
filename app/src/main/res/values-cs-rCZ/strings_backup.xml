@@ -20,6 +20,7 @@
   <string name="backup_desc_crypt_setup">K použití šifrovaných záloh je třeba v Nastavení aplikace nastavit heslo.    </string>
   <string name="backup_desc_openpgp_provider">K použití této funkce potřebujete nainstalovat OpenPGP aplikaci a povolit ji v Nastavení.    </string>
   <string name="backup_desc_openpgp_keyid">Než budete moct vytvářet šifrované zálohy potřebujete v Nastavení zvolit OpenPGP klíč.    </string>
+  <string name="backup_desc_replace">Nahrazovat předchozí zálohy</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">Bezpečnostní varování</string>
   <string name="backup_dialog_msg_export_warning">Opravdu chcete exportovat databázi jako nechráněný JSON soubor? Tento soubor obsahuje všechny vaše tajné klíče, prosím <b>mějte ho v bezpečí</b>!    </string>
