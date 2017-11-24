@@ -8,6 +8,7 @@
  * New feature: in-app language switcher (Issue #53)
  * Bug fix: convert secrets to upper case when importing from JSON (Issue #55)
  * Bug fix: some layout fixes for certain translations (Issue #58)
+ * Style/UI: new adaptive icon for Android 8+ (Issue #65)
  * Style/UI: remove card elevation
  * Update: Android Studio 3
  * Update: Gradle 4.1 / Android Gradle Plugin 3.0
