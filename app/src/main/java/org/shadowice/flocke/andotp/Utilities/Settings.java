@@ -330,4 +330,9 @@ public class Settings {
             toggledTags.add(tag);
         setStringSet(R.string.settings_key_tags_toggles, toggledTags);
     }
+
+    public boolean getThumbnailVisible() {
+        return getBoolean(R.string.settings_key_thumbnail_visible, true);
+    }
+
 }

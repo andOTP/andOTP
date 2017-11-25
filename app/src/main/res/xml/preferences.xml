@@ -66,6 +66,12 @@
             android:summary="@string/settings_desc_label_scroll"
             android:defaultValue="false" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_thumbnail_visible"
+            android:title="@string/settings_title_thumbnail_visible_ask"
+            android:defaultValue="true" />
+
+
     </PreferenceCategory>
 
     <PreferenceCategory
