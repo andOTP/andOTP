@@ -30,6 +30,7 @@ import org.apache.commons.codec.binary.Base32;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 
 import java.net.URL;
@@ -64,7 +65,7 @@ public class Entry {
     private String currentOTP;
     private long last_update = 0;
     public List<String> tags = new ArrayList<>();
-    private int thumbnail = -1;
+    private EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
     private Bitmap thumbnailImage;
 
     public Entry(){}
@@ -169,9 +170,9 @@ public class Entry {
         }
 
         try {
-            this.thumbnail = jsonObj.getInt(JSON_THUMBNAIL);
+            this.thumbnail = EntryThumbnail.EntryThumbnails.values()[jsonObj.getInt(JSON_THUMBNAIL)];
         } catch(JSONException e) {
-            this.thumbnail = -1;
+            this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
         }
     }
 
@@ -183,7 +184,7 @@ public class Entry {
         jsonObj.put(JSON_DIGITS, getDigits());
         jsonObj.put(JSON_TYPE, getType().toString());
         jsonObj.put(JSON_ALGORITHM, algorithm.toString());
-        jsonObj.put(JSON_THUMBNAIL, getThumbnail());
+        jsonObj.put(JSON_THUMBNAIL, getThumbnail().ordinal());
 
         JSONArray tagsArray = new JSONArray();
         for(String tag : tags){
@@ -242,7 +243,7 @@ public class Entry {
 
     public void setThumbnailImage(Bitmap thumbnailImage) { this.thumbnailImage = thumbnailImage; }
 
-    public int getThumbnail() { return thumbnail; }
+    public EntryThumbnail.EntryThumbnails getThumbnail() { return thumbnail; }
 
     public TokenCalculator.HashAlgorithm getAlgorithm() {
         return this.algorithm;

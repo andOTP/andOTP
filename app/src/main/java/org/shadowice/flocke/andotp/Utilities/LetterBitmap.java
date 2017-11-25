@@ -22,7 +22,7 @@ import org.shadowice.flocke.andotp.R;
  *
  * Only English language supported.
  */
-public class LetterBitmap {
+class LetterBitmap {
 
     /**
      * The number of available tile colors

@@ -43,14 +43,12 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
-import org.shadowice.flocke.andotp.Utilities.LetterBitmap;
+import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.TagDialogHelper;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperAdapter;
-import org.shadowice.flocke.andotp.R;
-
-import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,6 +57,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.Callable;
+
+import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     implements ItemTouchHelperAdapter, Filterable {
@@ -255,7 +255,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
                         Entry e = entries.get(realIndex);
                         e.setLabel(newLabel);
-                        e.setThumbnailImage(new LetterBitmap(context).getLetterTile(e.getLabel(), e.getLabel(), size, size));
+                        e.setThumbnailImage(EntryThumbnail.getThumbnailGraphic(context, e.getLabel(), size, e.getThumbnail()));
 
                         DatabaseHelper.saveDatabase(context, entries);
                     }

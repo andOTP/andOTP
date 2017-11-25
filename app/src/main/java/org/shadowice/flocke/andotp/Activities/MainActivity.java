@@ -63,7 +63,7 @@ import com.google.zxing.integration.android.IntentResult;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
-import org.shadowice.flocke.andotp.Utilities.LetterBitmap;
+import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.TagDialogHelper;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
@@ -211,7 +211,7 @@ public class MainActivity extends BaseActivity
                             Entry e = new Entry(type, secret, period, digits, label, algorithm, tagsAdapter.getActiveTags());
 
                             int size = getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
-                            e.setThumbnailImage(new LetterBitmap(MainActivity.this).getLetterTile(label, label, size, size));
+                            e.setThumbnailImage(EntryThumbnail.getThumbnailGraphic(MainActivity.this, label, size, e.getThumbnail()));
 
                             e.updateOTP();
                             adapter.addEntry(e);
@@ -461,7 +461,7 @@ public class MainActivity extends BaseActivity
                     Entry e = new Entry(result.getContents());
 
                     int size = getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
-                    e.setThumbnailImage(new LetterBitmap(MainActivity.this).getLetterTile(e.getLabel(), e.getLabel(), size, size));
+                    e.setThumbnailImage(EntryThumbnail.getThumbnailGraphic(MainActivity.this, e.getLabel(), size, e.getThumbnail()));
 
                     e.updateOTP();
                     adapter.addEntry(e);

@@ -100,7 +100,8 @@ public class DatabaseHelper {
                 Entry entry = new Entry(json.getJSONObject(i));
 
                 int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
-                entry.setThumbnailImage(new LetterBitmap(context).getLetterTile(entry.getLabel(), entry.getLabel(), size, size));
+                entry.setThumbnailImage(EntryThumbnail.getThumbnailGraphic(context, entry.getLabel(), size, entry.getThumbnail()));
+
                 entries.add(entry);
             }
         } catch (Exception error) {
