@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.Utilities.LetterBitmap;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.TagDialogHelper;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperAdapter;
@@ -153,7 +154,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void onBindViewHolder(EntryViewHolder entryViewHolder, int i) {
         Entry entry = displayedEntries.get(i);
 
-        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags());
+        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags(), entry.getThumbnailImage());
 
         if (entry.hasNonDefaultPeriod()) {
             entryViewHolder.showCustomPeriod(entry.getPeriod());
@@ -250,7 +251,12 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                             notifyItemChanged(pos);
                         }
 
-                        entries.get(realIndex).setLabel(newLabel);
+                        int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
+
+                        Entry e = entries.get(realIndex);
+                        e.setLabel(newLabel);
+                        e.setThumbnailImage(new LetterBitmap(context).getLetterTile(e.getLabel(), e.getLabel(), size, size));
+
                         DatabaseHelper.saveDatabase(context, entries);
                     }
                 })

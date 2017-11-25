@@ -439,7 +439,7 @@ public class BackupActivity extends BaseActivity {
                     SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
                     byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
 
-                    ArrayList<Entry> entries = DatabaseHelper.stringToEntries(new String(decrypted, StandardCharsets.UTF_8));
+                    ArrayList<Entry> entries = DatabaseHelper.stringToEntries(this, new String(decrypted, StandardCharsets.UTF_8));
 
                     if (! replace.isChecked()) {
                         ArrayList<Entry> currentEntries = DatabaseHelper.loadDatabase(this);
@@ -508,7 +508,7 @@ public class BackupActivity extends BaseActivity {
 
     private void doRestoreEncrypted(String content) {
         if (Tools.isExternalStorageReadable()) {
-            ArrayList<Entry> entries = DatabaseHelper.stringToEntries(content);
+            ArrayList<Entry> entries = DatabaseHelper.stringToEntries(this, content);
 
             if (entries.size() > 0) {
                 if (! replace.isChecked()) {

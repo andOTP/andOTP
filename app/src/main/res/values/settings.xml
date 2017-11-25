@@ -39,6 +39,18 @@
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">8</integer>
 
+    <!-- All of the possible tile background colors -->
+    <array name="letter_tile_colors">
+        <item>#f16364</item>
+        <item>#f58559</item>
+        <item>#f9a43e</item>
+        <item>#e4c62e</item>
+        <item>#67bf74</item>
+        <item>#59a2be</item>
+        <item>#2093cd</item>
+        <item>#ad62a7</item>
+    </array>
+
     <!-- List values -->
     <string-array name="settings_values_auth" translatable="false">
         <item>none</item>

@@ -28,6 +28,7 @@ import android.net.Uri;
 
 import org.json.JSONArray;
 import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.R;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class DatabaseHelper {
             SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
             data = EncryptionHelper.decrypt(key, data);
 
-            entries = stringToEntries(new String(data));
+            entries = stringToEntries(context, new String(data));
         } catch (Exception error) {
             error.printStackTrace();
         }
@@ -89,14 +90,18 @@ public class DatabaseHelper {
         return json.toString();
     }
 
-    public static ArrayList<Entry> stringToEntries(String data) {
+    public static ArrayList<Entry> stringToEntries(Context context, String data) {
         ArrayList<Entry> entries = new ArrayList<>();
 
         try {
             JSONArray json = new JSONArray(data);
 
             for (int i = 0; i < json.length(); i++) {
-                entries.add(new Entry(json.getJSONObject(i)));
+                Entry entry = new Entry(json.getJSONObject(i));
+
+                int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
+                entry.setThumbnailImage(new LetterBitmap(context).getLetterTile(entry.getLabel(), entry.getLabel(), size, size));
+                entries.add(entry);
             }
         } catch (Exception error) {
             error.printStackTrace();
@@ -119,7 +124,7 @@ public class DatabaseHelper {
         ArrayList<Entry> entries = null;
 
         if (! content.isEmpty())
-            entries = stringToEntries(content);
+            entries = stringToEntries(context, content);
 
         return entries;
     }

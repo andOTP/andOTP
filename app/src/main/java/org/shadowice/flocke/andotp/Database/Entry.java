@@ -23,6 +23,7 @@
 
 package org.shadowice.flocke.andotp.Database;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 
 import org.apache.commons.codec.binary.Base32;
@@ -52,6 +53,7 @@ public class Entry {
     private static final String JSON_TYPE = "type";
     private static final String JSON_ALGORITHM = "algorithm";
     private static final String JSON_TAGS = "tags";
+    private static final String JSON_THUMBNAIL = "thumbnail";
 
     private OTPType type = OTPType.TOTP;
     private int period = TokenCalculator.TOTP_DEFAULT_PERIOD;
@@ -62,6 +64,8 @@ public class Entry {
     private String currentOTP;
     private long last_update = 0;
     public List<String> tags = new ArrayList<>();
+    private int thumbnail = -1;
+    private Bitmap thumbnailImage;
 
     public Entry(){}
 
@@ -163,6 +167,12 @@ public class Entry {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        try {
+            this.thumbnail = jsonObj.getInt(JSON_THUMBNAIL);
+        } catch(JSONException e) {
+            this.thumbnail = -1;
+        }
     }
 
     public JSONObject toJSON() throws JSONException {
@@ -173,6 +183,7 @@ public class Entry {
         jsonObj.put(JSON_DIGITS, getDigits());
         jsonObj.put(JSON_TYPE, getType().toString());
         jsonObj.put(JSON_ALGORITHM, algorithm.toString());
+        jsonObj.put(JSON_THUMBNAIL, getThumbnail());
 
         JSONArray tagsArray = new JSONArray();
         for(String tag : tags){
@@ -226,6 +237,12 @@ public class Entry {
     public List<String> getTags() { return tags; }
 
     public void setTags(List<String> tags) { this.tags = tags; }
+
+    public Bitmap getThumbnailImage() { return thumbnailImage; }
+
+    public void setThumbnailImage(Bitmap thumbnailImage) { this.thumbnailImage = thumbnailImage; }
+
+    public int getThumbnail() { return thumbnail; }
 
     public TokenCalculator.HashAlgorithm getAlgorithm() {
         return this.algorithm;

@@ -120,6 +120,7 @@ So make sure you have a **current backup** before switching!
  * [Android-ItemTouchHelper-Demo](https://github.com/iPaulPro/Android-ItemTouchHelper-Demo/tree/master/app/src/main/java/co/paulburke/android/itemtouchhelperdemo/helper)
  * [Code Parts from Google's Android Samples](https://android.googlesource.com/platform/development/+/master/samples/Vault/src/com/example/android/vault)
  * [FloatingActionMenuAndroid](https://github.com/pmahsky/FloatingActionMenuAndroid)
+ * [LetterBitmap](http://stackoverflow.com/questions/23122088/colored-boxed-with-letters-a-la-gmail)
 
 ## License:
 ```
