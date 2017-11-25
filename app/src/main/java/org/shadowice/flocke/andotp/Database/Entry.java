@@ -245,6 +245,8 @@ public class Entry {
 
     public EntryThumbnail.EntryThumbnails getThumbnail() { return thumbnail; }
 
+    public void setThumbnail( EntryThumbnail.EntryThumbnails value) { thumbnail = value; }
+
     public TokenCalculator.HashAlgorithm getAlgorithm() {
         return this.algorithm;
     }

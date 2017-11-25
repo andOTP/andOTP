@@ -28,6 +28,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -36,10 +37,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
@@ -268,6 +274,51 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 .show();
     }
 
+    public void changeThumbnail(final int pos) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
+        int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
+
+        ListView list = new ListView(context);
+        list.setAdapter(new ThumbnailSelectionAdapter(context));
+        list.setDividerHeight(0);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int realIndex = getRealIndex(pos);
+                TextView v = (TextView) view.findViewById(R.id.thumbnail_selection_text);
+                EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
+                try {
+                    thumbnail = EntryThumbnail.EntryThumbnails.valueOf(v.getText().toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
+                Entry e = entries.get(realIndex);
+                e.setThumbnailImage(EntryThumbnail.getThumbnailGraphic(context, e.getLabel(), size, thumbnail));
+                DatabaseHelper.saveDatabase(context, entries);
+                notifyItemChanged(pos);
+            }
+        });
+
+        FrameLayout container = new FrameLayout(context);
+        container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
+        container.addView(list);
+
+        builder.setTitle(R.string.menu_popup_change_image)
+                .setView(container)
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .create()
+                .show();
+    }
+
+
     public void editEntryTags(final int pos) {
         final int realPos = getRealIndex(pos);
         final Entry entry = entries.get(realPos);
@@ -351,6 +402,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
                 if (id == R.id.menu_popup_editLabel) {
                     editEntryLabel(pos);
+                    return true;
+                } else if(id == R.id.menu_popup_changeImage) {
+                    changeThumbnail(pos);
                     return true;
                 } else if (id == R.id.menu_popup_editTags) {
                     editEntryTags(pos);
