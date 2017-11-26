@@ -15,36 +15,52 @@ import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ThumbnailSelectionAdapter extends BaseAdapter {
     private Context context;
+    private List items;
 
     ThumbnailSelectionAdapter(Context context) {
+        items = new ArrayList(EntryThumbnail.EntryThumbnails.values().length);
+        Collections.addAll(items, EntryThumbnail.EntryThumbnails.values());
+
         this.context = context;
+    }
+
+    void filter(String filter) {
+        items.clear();
+        for (EntryThumbnail.EntryThumbnails thumb : EntryThumbnail.EntryThumbnails.values()) {
+            if(thumb.name().toLowerCase().contains(filter.toLowerCase())) {
+                items.add(thumb);
+            }
+        }
+        notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return EntryThumbnail.EntryThumbnails.values().length;
+        return items.size();
     }
 
     @Override
     public Object getItem(int i) {
-        if(i >= EntryThumbnail.EntryThumbnails.values().length)
-            return EntryThumbnail.EntryThumbnails.Default;
+        if(i < getCount())
+            return items.get(i);
         else
-            return EntryThumbnail.EntryThumbnails.values()[i];
+            return EntryThumbnail.EntryThumbnails.Default;
     }
 
     @Override
     public long getItemId(int i) {
-        return EntryThumbnail.EntryThumbnails.values()[i].ordinal();
+        return ((EntryThumbnail.EntryThumbnails) getItem(i)).ordinal();
     }
 
     @NonNull
     @Override
     public View getView(int i, View view, @NonNull ViewGroup viewGroup) {
-        int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
+        int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size_small);
         ImageView imageView;
         if (view == null) {
             imageView = new ImageView(context);

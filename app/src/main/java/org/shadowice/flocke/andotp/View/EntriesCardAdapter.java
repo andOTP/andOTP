@@ -32,6 +32,9 @@ import android.graphics.Bitmap;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -281,18 +284,43 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
         int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
 
+        final ThumbnailSelectionAdapter thumbnailAdapter = new ThumbnailSelectionAdapter(context);
+
+        final EditText input = new EditText(context);
+        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        input.setSingleLine();
+
+        input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                thumbnailAdapter.filter(editable.toString());
+            }
+        });
+
         GridView grid = new GridView(context);
-        grid.setAdapter(new ThumbnailSelectionAdapter(context));
+        grid.setAdapter(thumbnailAdapter);
         grid.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        grid.setColumnWidth(context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size));
+        grid.setColumnWidth(context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size_small));
         grid.setNumColumns(GridView.AUTO_FIT);
         grid.setVerticalSpacing(context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium));
         grid.setHorizontalSpacing(context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium));
         grid.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
+        LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        layout.addView(input);
+        layout.addView(grid);
+
         FrameLayout container = new FrameLayout(context);
         container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
-        container.addView(grid);
+        container.addView(layout);
 
         final AlertDialog alert = builder.setTitle(R.string.menu_popup_change_image)
                 .setView(container)
