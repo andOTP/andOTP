@@ -36,6 +36,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperViewHolder;
@@ -106,7 +107,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         });
     }
 
-    public void updateValues(String label, String token, List<String> tags, Bitmap thumbnail) {
+    public void updateValues(String label, String token, List<String> tags, EntryThumbnail.EntryThumbnails thumbnail) {
         Settings settings = new Settings(context);
 
         this.label.setText(label);
@@ -128,7 +129,9 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         }
 
         thumbnailImg.setVisibility(settings.getThumbnailVisible() ? View.VISIBLE : View.GONE);
-        thumbnailImg.setImageBitmap(thumbnail);
+
+        int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
+        thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, size, thumbnail));
     }
 
     public void showCustomPeriod(int period) {

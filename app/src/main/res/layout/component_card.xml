@@ -17,7 +17,7 @@
             android:id="@+id/thumbnailImg"
             android:layout_width="@dimen/card_thumbnail_size"
             android:layout_height="@dimen/card_thumbnail_size"
-            android:layout_marginEnd="@dimen/activity_margin_small"
+            android:layout_marginEnd="@dimen/activity_margin"
             android:src="@mipmap/ic_launcher"/>
 
         <LinearLayout

@@ -37,12 +37,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -160,7 +162,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void onBindViewHolder(EntryViewHolder entryViewHolder, int i) {
         Entry entry = displayedEntries.get(i);
 
-        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags(), entry.getThumbnailImage());
+        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags(), entry.getThumbnail());
 
         if (entry.hasNonDefaultPeriod()) {
             entryViewHolder.showCustomPeriod(entry.getPeriod());
@@ -261,7 +263,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
                         Entry e = entries.get(realIndex);
                         e.setLabel(newLabel);
-                        e.setThumbnailImage(EntryThumbnail.getThumbnailGraphic(context, e.getLabel(), size, e.getThumbnail()));
 
                         DatabaseHelper.saveDatabase(context, entries);
                     }
@@ -280,42 +281,49 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
         int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
 
-        ListView list = new ListView(context);
-        list.setAdapter(new ThumbnailSelectionAdapter(context));
-        list.setDividerHeight(0);
+        GridView grid = new GridView(context);
+        grid.setAdapter(new ThumbnailSelectionAdapter(context));
+        grid.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        grid.setColumnWidth(context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size));
+        grid.setNumColumns(GridView.AUTO_FIT);
+        grid.setVerticalSpacing(context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium));
+        grid.setHorizontalSpacing(context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium));
+        grid.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        FrameLayout container = new FrameLayout(context);
+        container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
+        container.addView(grid);
+
+        final AlertDialog alert = builder.setTitle(R.string.menu_popup_change_image)
+                .setView(container)
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .create();
+
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int realIndex = getRealIndex(pos);
-                TextView v = (TextView) view.findViewById(R.id.thumbnail_selection_text);
                 EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
                 try {
-                    thumbnail = EntryThumbnail.EntryThumbnails.valueOf(v.getText().toString());
+                    thumbnail = EntryThumbnail.EntryThumbnails.values()[position];
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
                 int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
                 Entry e = entries.get(realIndex);
-                e.setThumbnailImage(EntryThumbnail.getThumbnailGraphic(context, e.getLabel(), size, thumbnail));
+                e.setThumbnail(thumbnail);
+
                 DatabaseHelper.saveDatabase(context, entries);
                 notifyItemChanged(pos);
+                alert.cancel();
             }
         });
 
-        FrameLayout container = new FrameLayout(context);
-        container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
-        container.addView(list);
-
-        builder.setTitle(R.string.menu_popup_change_image)
-                .setView(container)
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                })
-                .create()
-                .show();
+        alert.show();
     }
 
 

@@ -66,7 +66,6 @@ public class Entry {
     private long last_update = 0;
     public List<String> tags = new ArrayList<>();
     private EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
-    private Bitmap thumbnailImage;
 
     public Entry(){}
 
@@ -238,10 +237,6 @@ public class Entry {
     public List<String> getTags() { return tags; }
 
     public void setTags(List<String> tags) { this.tags = tags; }
-
-    public Bitmap getThumbnailImage() { return thumbnailImage; }
-
-    public void setThumbnailImage(Bitmap thumbnailImage) { this.thumbnailImage = thumbnailImage; }
 
     public EntryThumbnail.EntryThumbnails getThumbnail() { return thumbnail; }
 

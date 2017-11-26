@@ -98,10 +98,6 @@ public class DatabaseHelper {
 
             for (int i = 0; i < json.length(); i++) {
                 Entry entry = new Entry(json.getJSONObject(i));
-
-                int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
-                entry.setThumbnailImage(EntryThumbnail.getThumbnailGraphic(context, entry.getLabel(), size, entry.getThumbnail()));
-
                 entries.add(entry);
             }
         } catch (Exception error) {

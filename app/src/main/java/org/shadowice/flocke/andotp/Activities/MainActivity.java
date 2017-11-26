@@ -209,10 +209,6 @@ public class MainActivity extends BaseActivity
                             int digits = Integer.parseInt(digitsInput.getText().toString());
 
                             Entry e = new Entry(type, secret, period, digits, label, algorithm, tagsAdapter.getActiveTags());
-
-                            int size = getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
-                            e.setThumbnailImage(EntryThumbnail.getThumbnailGraphic(MainActivity.this, label, size, e.getThumbnail()));
-
                             e.updateOTP();
                             adapter.addEntry(e);
                             adapter.saveEntries();
@@ -459,10 +455,6 @@ public class MainActivity extends BaseActivity
             if(result.getContents() != null) {
                 try {
                     Entry e = new Entry(result.getContents());
-
-                    int size = getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
-                    e.setThumbnailImage(EntryThumbnail.getThumbnailGraphic(MainActivity.this, e.getLabel(), size, e.getThumbnail()));
-
                     e.updateOTP();
                     adapter.addEntry(e);
                     adapter.saveEntries();

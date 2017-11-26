@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,37 +16,46 @@ import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 
 import java.util.ArrayList;
 
-public class ThumbnailSelectionAdapter extends ArrayAdapter<EntryThumbnail.EntryThumbnails> {
+public class ThumbnailSelectionAdapter extends BaseAdapter {
     private Context context;
 
-    public ThumbnailSelectionAdapter(Context context) {
-        super(context, R.layout.component_thumbnail_selection, new ArrayList<EntryThumbnail.EntryThumbnails>());
+    ThumbnailSelectionAdapter(Context context) {
         this.context = context;
+    }
 
-        for (EntryThumbnail.EntryThumbnails thumb : EntryThumbnail.EntryThumbnails.values()) {
-            add(thumb);
-        }
+    @Override
+    public int getCount() {
+        return EntryThumbnail.EntryThumbnails.values().length;
+    }
+
+    @Override
+    public Object getItem(int i) {
+        if(i >= EntryThumbnail.EntryThumbnails.values().length)
+            return EntryThumbnail.EntryThumbnails.Default;
+        else
+            return EntryThumbnail.EntryThumbnails.values()[i];
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return EntryThumbnail.EntryThumbnails.values()[i].ordinal();
     }
 
     @NonNull
     @Override
     public View getView(int i, View view, @NonNull ViewGroup viewGroup) {
-        View newView;
+        int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
+        ImageView imageView;
         if (view == null) {
-            newView = LayoutInflater.from(context).inflate(R.layout.component_thumbnail_selection , viewGroup, false);
-        } else{
-            newView = view;
+            imageView = new ImageView(context);
+            imageView.setLayoutParams(new GridView.LayoutParams(size, size));
+        } else {
+            imageView = (ImageView) view;
         }
 
-        ImageView imageView = (ImageView) newView.findViewById(R.id.thumbnail_selection_icon);
-        TextView textView = (TextView) newView.findViewById(R.id.thumbnail_selection_text);
+        EntryThumbnail.EntryThumbnails thumb = (EntryThumbnail.EntryThumbnails)getItem(i);
 
-        EntryThumbnail.EntryThumbnails thumb = getItem(i);
-
-        int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
         imageView.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, thumb.name(), size, thumb));
-        textView.setText(thumb.name());
-
-        return newView;
+        return imageView;
     }
 }

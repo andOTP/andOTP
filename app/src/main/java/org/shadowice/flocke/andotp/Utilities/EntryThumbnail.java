@@ -5,14 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.PictureDrawable;
-
-import com.larvalabs.svgandroid.SVG;
-import com.larvalabs.svgandroid.SVGBuilder;
 
 import org.shadowice.flocke.andotp.R;
-
-import java.io.IOException;
 
 public class EntryThumbnail {
     public enum EntryThumbnails {
@@ -38,9 +32,9 @@ public class EntryThumbnail {
 
         try {
             Drawable drawable = context.getResources().getDrawable(thumbnail.getResource());
-            Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+            Bitmap bitmap = Bitmap.createBitmap(drawable.getMinimumWidth(), drawable.getMinimumHeight(), Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmap);
-            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             drawable.draw(canvas);
             return bitmap;
         } catch(Exception e) {
