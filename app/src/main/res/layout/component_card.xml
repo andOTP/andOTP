@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textSize="8pt" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textViewTags"
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textSize="6pt" />
+                android:textSize="13.5sp" />
 
         </LinearLayout>
 

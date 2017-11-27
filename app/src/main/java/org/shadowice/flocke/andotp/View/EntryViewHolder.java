@@ -27,7 +27,6 @@ import android.graphics.ColorFilter;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -133,8 +132,8 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     }
 
     public void setLabelSize(int size) {
-        label.setTextSize(TypedValue.COMPLEX_UNIT_PT, size);
-        tags.setTextSize(TypedValue.COMPLEX_UNIT_PT, size - 2);
+        label.setTextSize(size);
+        tags.setTextSize(0.75f * size);
     }
 
     public void setLabelScroll(boolean active) {
