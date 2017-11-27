@@ -9,18 +9,33 @@ import android.graphics.drawable.Drawable;
 import org.shadowice.flocke.andotp.R;
 
 public class EntryThumbnail {
+    private enum AssetType {
+        Bitmap,
+        Vector
+    }
+
     public enum EntryThumbnails {
         Default(R.mipmap.ic_launcher_round),
         Github(R.drawable.ic_github);
 
         private int resource;
+        private AssetType assetType;
 
         EntryThumbnails(int resource) {
             this.resource = resource;
+            this.assetType = AssetType.Vector;
+        }
+
+        EntryThumbnails(int resource, AssetType assetType) {
+            this.resource = resource;
+            this.assetType = assetType;
         }
 
         public int getResource() {
             return resource;
+        }
+        public AssetType getAssetType() {
+            return assetType;
         }
     }
 
@@ -31,13 +46,17 @@ public class EntryThumbnail {
         }
 
         try {
-            Drawable drawable = context.getResources().getDrawable(thumbnail.getResource());
-            Bitmap bitmap = Bitmap.createBitmap(drawable.getMinimumWidth(), drawable.getMinimumHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bitmap);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            drawable.draw(canvas);
-            return bitmap;
-        } catch(Exception e) {
+            if(thumbnail.getAssetType() == AssetType.Vector) {
+                Drawable drawable = context.getResources().getDrawable(thumbnail.getResource());
+                Bitmap bitmap = Bitmap.createBitmap(drawable.getMinimumWidth(), drawable.getMinimumHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmap);
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                drawable.draw(canvas);
+                return bitmap;
+            } else {
+                return BitmapFactory.decodeResource(context.getResources(), thumbnail.getResource());
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

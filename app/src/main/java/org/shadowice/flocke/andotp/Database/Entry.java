@@ -142,19 +142,19 @@ public class Entry {
 
         try {
             this.digits = jsonObj.getInt(JSON_DIGITS);
-        } catch(JSONException e) {
+        } catch(Exception e) {
             this.digits = TokenCalculator.TOTP_DEFAULT_DIGITS;
         }
 
         try {
             this.type = OTPType.valueOf(jsonObj.getString(JSON_TYPE));
-        } catch(JSONException e) {
+        } catch(Exception e) {
             this.type = DEFAULT_TYPE;
         }
 
         try {
             this.algorithm = TokenCalculator.HashAlgorithm.valueOf(jsonObj.getString(JSON_ALGORITHM));
-        } catch (JSONException e) {
+        } catch (Exception e) {
             this.algorithm = TokenCalculator.DEFAULT_ALGORITHM;
         }
 
@@ -164,13 +164,13 @@ public class Entry {
             for(int i = 0; i < tagsArray.length(); i++) {
                 this.tags.add(tagsArray.getString(i));
             }
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            this.thumbnail = EntryThumbnail.EntryThumbnails.values()[jsonObj.getInt(JSON_THUMBNAIL)];
-        } catch(JSONException e) {
+            this.thumbnail = EntryThumbnail.EntryThumbnails.valueOf(jsonObj.getString(JSON_THUMBNAIL));
+        } catch(Exception e) {
             this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
         }
     }
@@ -183,7 +183,7 @@ public class Entry {
         jsonObj.put(JSON_DIGITS, getDigits());
         jsonObj.put(JSON_TYPE, getType().toString());
         jsonObj.put(JSON_ALGORITHM, algorithm.toString());
-        jsonObj.put(JSON_THUMBNAIL, getThumbnail().ordinal());
+        jsonObj.put(JSON_THUMBNAIL, getThumbnail().name());
 
         JSONArray tagsArray = new JSONArray();
         for(String tag : tags){

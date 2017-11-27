@@ -21,11 +21,12 @@ import java.util.List;
 public class ThumbnailSelectionAdapter extends BaseAdapter {
     private Context context;
     private List items;
+    private String label = "Example";
 
-    ThumbnailSelectionAdapter(Context context) {
+    ThumbnailSelectionAdapter(Context context, String label) {
         items = new ArrayList(EntryThumbnail.EntryThumbnails.values().length);
         Collections.addAll(items, EntryThumbnail.EntryThumbnails.values());
-
+        this.label = label;
         this.context = context;
     }
 
@@ -60,7 +61,7 @@ public class ThumbnailSelectionAdapter extends BaseAdapter {
     @NonNull
     @Override
     public View getView(int i, View view, @NonNull ViewGroup viewGroup) {
-        int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size_small);
+        int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
         ImageView imageView;
         if (view == null) {
             imageView = new ImageView(context);
@@ -71,7 +72,7 @@ public class ThumbnailSelectionAdapter extends BaseAdapter {
 
         EntryThumbnail.EntryThumbnails thumb = (EntryThumbnail.EntryThumbnails)getItem(i);
 
-        imageView.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, thumb.name(), size, thumb));
+        imageView.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, size, thumb));
         return imageView;
     }
 }

@@ -148,6 +148,12 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         tags.setTextSize(TypedValue.COMPLEX_UNIT_PT, size - 2);
     }
 
+    public void setThumbnailSize(int size) {
+        thumbnailImg.getLayoutParams().height = size;
+        thumbnailImg.getLayoutParams().width = size;
+        thumbnailImg.requestLayout();
+    }
+
     public void setLabelScroll(boolean active) {
         if (active) {
             label.setEllipsize(TextUtils.TruncateAt.MARQUEE);
