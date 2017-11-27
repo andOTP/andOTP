@@ -36,6 +36,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.DimensionConverter;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
@@ -130,8 +131,8 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         thumbnailImg.setVisibility(settings.getThumbnailVisible() ? View.VISIBLE : View.GONE);
 
-        int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
-        thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, size, thumbnail));
+        int thumbnailSize = settings.getThumbnailSize();
+        thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumbnail));
     }
 
     public void showCustomPeriod(int period) {

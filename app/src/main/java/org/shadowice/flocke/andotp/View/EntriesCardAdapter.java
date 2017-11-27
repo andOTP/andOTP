@@ -56,6 +56,7 @@ import android.widget.Toast;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.Utilities.DimensionConverter;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.TagDialogHelper;
@@ -182,6 +183,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         int fontSize = sharedPrefs.getInt(context.getString(R.string.settings_key_label_size), context.getResources().getInteger(R.integer.settings_default_label_size));
         entryViewHolder.setLabelSize(fontSize);
 
+        int thumbnailSize = settings.getThumbnailSize();
+        entryViewHolder.setThumbnailSize(thumbnailSize);
+
         entryViewHolder.setLabelScroll(sharedPrefs.getBoolean(context.getString(R.string.settings_key_label_scroll), false));
     }
 
@@ -262,8 +266,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                             notifyItemChanged(pos);
                         }
 
-                        int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
-
                         Entry e = entries.get(realIndex);
                         e.setLabel(newLabel);
 
@@ -307,7 +309,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         GridView grid = new GridView(context);
         grid.setAdapter(thumbnailAdapter);
         grid.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        grid.setColumnWidth(context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size));
+
+        int thumbnailSize = settings.getThumbnailSize();
+        grid.setColumnWidth(thumbnailSize);
         grid.setNumColumns(GridView.AUTO_FIT);
         grid.setVerticalSpacing(context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium));
         grid.setHorizontalSpacing(context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium));
@@ -342,7 +346,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                     e.printStackTrace();
                 }
 
-                int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
                 Entry e = entries.get(realIndex);
                 e.setThumbnail(thumbnail);
 

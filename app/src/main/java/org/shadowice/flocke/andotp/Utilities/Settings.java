@@ -27,6 +27,7 @@ import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Base64;
+import android.util.Log;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -335,4 +336,14 @@ public class Settings {
         return getBoolean(R.string.settings_key_thumbnail_visible, true);
     }
 
+    public int getThumbnailSize() {
+        try {
+            String dimen = getString(R.string.settings_key_thumbnail_size, context.getResources().getString(R.string.settings_default_thumbnail_size));
+            Log.d("dimen", dimen);
+            return DimensionConverter.stringToDimensionPixelSize(dimen, context.getResources().getDisplayMetrics());
+        } catch(Exception e) {
+            e.printStackTrace();
+            return context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
+        }
+    }
 }

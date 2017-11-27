@@ -12,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.DimensionConverter;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
+import org.shadowice.flocke.andotp.Utilities.Settings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,12 +24,14 @@ public class ThumbnailSelectionAdapter extends BaseAdapter {
     private Context context;
     private List items;
     private String label = "Example";
+    private Settings settings;
 
     ThumbnailSelectionAdapter(Context context, String label) {
         items = new ArrayList(EntryThumbnail.EntryThumbnails.values().length);
         Collections.addAll(items, EntryThumbnail.EntryThumbnails.values());
         this.label = label;
         this.context = context;
+        settings = new Settings(context);
     }
 
     void filter(String filter) {
@@ -61,18 +65,18 @@ public class ThumbnailSelectionAdapter extends BaseAdapter {
     @NonNull
     @Override
     public View getView(int i, View view, @NonNull ViewGroup viewGroup) {
-        int size = context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
+        int thumbnailSize = settings.getThumbnailSize();
         ImageView imageView;
         if (view == null) {
             imageView = new ImageView(context);
-            imageView.setLayoutParams(new GridView.LayoutParams(size, size));
+            imageView.setLayoutParams(new GridView.LayoutParams(thumbnailSize, thumbnailSize));
         } else {
             imageView = (ImageView) view;
         }
 
         EntryThumbnail.EntryThumbnails thumb = (EntryThumbnail.EntryThumbnails)getItem(i);
 
-        imageView.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, size, thumb));
+        imageView.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumb));
         return imageView;
     }
 }

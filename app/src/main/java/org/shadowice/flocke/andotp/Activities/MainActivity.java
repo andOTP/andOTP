@@ -431,7 +431,8 @@ public class MainActivity extends BaseActivity
         if (key.equals(getString(R.string.settings_key_label_size)) ||
                 key.equals(getString(R.string.settings_key_tap_to_reveal)) ||
                 key.equals(getString(R.string.settings_key_label_scroll)) ||
-                key.equals(getString(R.string.settings_key_thumbnail_visible))) {
+                key.equals(getString(R.string.settings_key_thumbnail_visible)) ||
+                key.equals(getString(R.string.settings_key_thumbnail_size))) {
             adapter.notifyDataSetChanged();
         } else if (key.equals(getString(R.string.settings_key_theme)) ||
                 key.equals(getString(R.string.settings_key_lang))) {

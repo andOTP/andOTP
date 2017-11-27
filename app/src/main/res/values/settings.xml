@@ -16,6 +16,7 @@
     <string name="settings_key_label_size" translatable="false">pref_label_size</string>
     <string name="settings_key_label_scroll" translatable="false">pref_label_scroll</string>
     <string name="settings_key_thumbnail_visible" translatable="false">pref_thumbnail_visible</string>
+    <string name="settings_key_thumbnail_size" translatable="false">pref_thumbnail_size</string>
 
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
     <string name="settings_key_backup_directory" translatable="false">pref_backup_directory</string>
@@ -38,6 +39,7 @@
     <string name="settings_default_lang" translatable="false">system</string>
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">8</integer>
+    <string name="settings_default_thumbnail_size">46dp</string>
 
     <!-- All of the possible tile background colors -->
     <array name="letter_tile_colors">
@@ -81,6 +83,13 @@
         <item>light</item>
         <item>dark</item>
         <item>black</item>
+    </string-array>
+
+    <string-array name="settings_values_thumbnail_size" translatable="false">
+        <item>32dp</item>
+        <item>46dp</item>
+        <item>64dp</item>
+        <item>96dp</item>
     </string-array>
 
     <!-- Misc -->
