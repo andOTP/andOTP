@@ -438,9 +438,16 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public class LabelComparator implements Comparator<Entry> {
+        Collator collator;
+
+        LabelComparator(){
+            collator = Collator.getInstance();
+            collator.setStrength(Collator.PRIMARY);
+        }
+
         @Override
         public int compare(Entry o1, Entry o2) {
-            return o1.getLabel().compareTo(o2.getLabel());
+            return collator.compare(o1.getLabel(), o2.getLabel());
         }
     }
 
