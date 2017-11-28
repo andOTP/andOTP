@@ -23,7 +23,6 @@
 package org.shadowice.flocke.andotp.View;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.ColorFilter;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -36,7 +35,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Utilities.DimensionConverter;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;

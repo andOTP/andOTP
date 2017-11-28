@@ -28,7 +28,6 @@ import android.net.Uri;
 
 import org.json.JSONArray;
 import org.shadowice.flocke.andotp.Database.Entry;
-import org.shadowice.flocke.andotp.R;
 
 import java.io.File;
 import java.util.ArrayList;
