@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import org.shadowice.flocke.andotp.R;
 
@@ -17,25 +18,37 @@ public class EntryThumbnail {
     public enum EntryThumbnails {
         Default(R.mipmap.ic_launcher_round),
         Amazon(R.drawable.ic_amazon),
+        AngelList(R.drawable.ic_angellist),
+        Apple(R.drawable.ic_apple),
         BattleNet(R.drawable.ic_battlenet),
         BitBucket(R.drawable.ic_bitbucket),
         Bitcoin(R.drawable.ic_bitcoin),
         Bitstamp(R.mipmap.bitstamp, AssetType.Bitmap),
         Bitwarden(R.mipmap.bitwarden, AssetType.Bitmap),
+        Cloudflare(R.drawable.ic_cloudflare),
         Coinbase(R.drawable.ic_coinbase),
+        DigitalOcean(R.drawable.ic_digital_ocean),
+        Discord(R.drawable.ic_discord),
         Dropbox(R.drawable.ic_dropbox),
         Facebook(R.drawable.ic_facebook),
         Git(R.drawable.ic_git),
         Github(R.drawable.ic_github),
         Gitlab(R.drawable.ic_gitlab),
         Google(R.drawable.ic_google),
+        IFTTT(R.drawable.ic_ifttt),
         Kickstarter(R.drawable.ic_kickstarter),
         LastPass(R.drawable.ic_lastpass),
+        Mailgun(R.drawable.ic_mailgun),
         Microsoft(R.drawable.ic_microsoft),
         Origin(R.drawable.ic_origin),
+        PayPal(R.drawable.ic_paypal),
+        ProtonMail(R.drawable.ic_protonmail),
         RSS(R.drawable.ic_rss),
         Slack(R.drawable.ic_slack),
         Steam(R.drawable.ic_steam),
+        Stripe(R.drawable.ic_stripe),
+        Twitch(R.drawable.ic_twitch),
+        Twitter(R.drawable.ic_twitter),
         Wordpress(R.drawable.ic_wordpress);
 
         private int resource;
