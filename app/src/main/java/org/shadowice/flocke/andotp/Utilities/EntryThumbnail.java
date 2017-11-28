@@ -16,7 +16,27 @@ public class EntryThumbnail {
 
     public enum EntryThumbnails {
         Default(R.mipmap.ic_launcher_round),
-        Github(R.drawable.ic_github);
+        Amazon(R.drawable.ic_amazon),
+        BattleNet(R.drawable.ic_battlenet),
+        BitBucket(R.drawable.ic_bitbucket),
+        Bitcoin(R.drawable.ic_bitcoin),
+        Bitstamp(R.mipmap.bitstamp, AssetType.Bitmap),
+        Bitwarden(R.mipmap.bitwarden, AssetType.Bitmap),
+        Coinbase(R.drawable.ic_coinbase),
+        Dropbox(R.drawable.ic_dropbox),
+        Facebook(R.drawable.ic_facebook),
+        Git(R.drawable.ic_git),
+        Github(R.drawable.ic_github),
+        Gitlab(R.drawable.ic_gitlab),
+        Google(R.drawable.ic_google),
+        Kickstarter(R.drawable.ic_kickstarter),
+        LastPass(R.drawable.ic_lastpass),
+        Microsoft(R.drawable.ic_microsoft),
+        Origin(R.drawable.ic_origin),
+        RSS(R.drawable.ic_rss),
+        Slack(R.drawable.ic_slack),
+        Steam(R.drawable.ic_steam),
+        Wordpress(R.drawable.ic_wordpress);
 
         private int resource;
         private AssetType assetType;
