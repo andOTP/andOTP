@@ -44,7 +44,7 @@ import org.shadowice.flocke.andotp.Utilities.Tools;
 import de.psdev.licensesdialog.LicensesDialog;
 
 public class AboutActivity extends BaseActivity {
-    private static final String GITHUB_URI = "https://github.com/flocke/andOTP";
+    private static final String GITHUB_URI = "https://github.com/andOTP/andOTP";
     private static final String CHANGELOG_URI = GITHUB_URI + "/blob/master/CHANGELOG.md";
     private static final String MIT_URI = GITHUB_URI + "/blob/master/LICENSE.txt";
 

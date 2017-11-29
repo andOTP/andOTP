@@ -1,7 +1,7 @@
 #  andOTP -  Android OTP Authenticator
 
 [![Build Status](https://travis-ci.org/flocke/andOTP.svg?branch=master)](https://travis-ci.org/flocke/andOTP)
-[![Current release](https://img.shields.io/github/release/flocke/andOTP/all.svg)](https://github.com/flocke/andOTP/releases/download/v0.3.0/andOTP_v0.3.0.apk)
+[![Current release](https://img.shields.io/github/release/flocke/andOTP/all.svg)](https://github.com/andOTP/andOTP/releases/download/v0.3.0/andOTP_v0.3.0.apk)
 
 ![andOTP](./assets/logo.png)
 
@@ -55,13 +55,13 @@ key, which renders them useless.
 
 ## Migration:
 
-Check out [this](https://github.com/flocke/andOTP/wiki/Migration) wiki page to learn about the different ways to migrate to andOTP from other 2FA apps.
+Check out [this](https://github.com/andOTP/andOTP/wiki/Migration) wiki page to learn about the different ways to migrate to andOTP from other 2FA apps.
 
 ## Downloads:
 
 [<img height=80 alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" />](https://play.google.com/store/apps/details?id=org.shadowice.flocke.andotp)
 [<img height=80 alt="Get it on F-Droid" src="https://f-droid.org/badge/get-it-on.png" />](https://f-droid.org/packages/org.shadowice.flocke.andotp/)
-[<img height=80 alt="Get it on GitHub" src="https://raw.githubusercontent.com/flocke/andOTP/master/assets/badges/get-it-on-github.png" />](https://github.com/flocke/andOTP/releases)
+[<img height=80 alt="Get it on GitHub" src="https://raw.githubusercontent.com/flocke/andOTP/master/assets/badges/get-it-on-github.png" />](https://github.com/andOTP/andOTP/releases)
 
 **Warning**: All three versions (Google Play, F-Droid and the APKs) are not compatible (not signed by the same key)!
 You will have to uninstall one to install the other, which will delete all your data.
@@ -70,16 +70,16 @@ So make sure you have a **current backup** before switching!
 ## Contribute:
 
  * **Translation**: If you want to help translate andOTP into your language head over to the [Crowdin project](https://crowdin.com/project/andotp).
- * **Bug reports and feature requests**: You can report bugs and request features in the [Issue tracker](https://github.com/flocke/andOTP/issues) on GitHub.
+ * **Bug reports and feature requests**: You can report bugs and request features in the [Issue tracker](https://github.com/andOTP/andOTP/issues) on GitHub.
  * **Discussion and support**: 
    - [XDA thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993) (please keep off-topic to a minimum)
    - Telegram channel [@andOTP](https://t.me/andOTP)
 
 #### Contributors:
 
- * [Carlos Melero](https://github.com/carmebar) ([view contributions](https://github.com/flocke/andOTP/commits/master?author=carmebar))
- * [SuperVirus](https://github.com/SuperVirus) ([view contributions](https://github.com/flocke/andOTP/commits/master?author=SuperVirus))
- * [RichyHBM](https://github.com/RichyHBM) ([view contributions](https://github.com/flocke/andOTP/commits/master?author=RichyHBM))
+ * [Carlos Melero](https://github.com/carmebar) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=carmebar))
+ * [SuperVirus](https://github.com/SuperVirus) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=SuperVirus))
+ * [RichyHBM](https://github.com/RichyHBM) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=RichyHBM))
 
 
 #### Translators:
