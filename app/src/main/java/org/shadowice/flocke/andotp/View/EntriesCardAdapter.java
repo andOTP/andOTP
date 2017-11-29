@@ -51,6 +51,7 @@ import org.shadowice.flocke.andotp.R;
 
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
