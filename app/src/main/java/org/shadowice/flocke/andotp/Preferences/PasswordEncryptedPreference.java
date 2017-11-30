@@ -22,11 +22,11 @@
 
 package org.shadowice.flocke.andotp.Preferences;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.preference.DialogPreference;
 import android.support.design.widget.TextInputEditText;
-import android.app.AlertDialog;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.InputType;

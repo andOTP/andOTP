@@ -49,11 +49,11 @@ import org.openintents.openpgp.OpenPgpSignatureResult;
 import org.openintents.openpgp.util.OpenPgpApi;
 import org.openintents.openpgp.util.OpenPgpServiceConnection;
 import org.shadowice.flocke.andotp.Database.Entry;
-import org.shadowice.flocke.andotp.Utilities.FileHelper;
+import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
+import org.shadowice.flocke.andotp.Utilities.FileHelper;
 import org.shadowice.flocke.andotp.Utilities.Tools;
-import org.shadowice.flocke.andotp.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -439,7 +439,7 @@ public class BackupActivity extends BaseActivity {
                     SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
                     byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
 
-                    ArrayList<Entry> entries = DatabaseHelper.stringToEntries(new String(decrypted, StandardCharsets.UTF_8));
+                    ArrayList<Entry> entries = DatabaseHelper.stringToEntries(this, new String(decrypted, StandardCharsets.UTF_8));
 
                     if (! replace.isChecked()) {
                         ArrayList<Entry> currentEntries = DatabaseHelper.loadDatabase(this);
@@ -508,7 +508,7 @@ public class BackupActivity extends BaseActivity {
 
     private void doRestoreEncrypted(String content) {
         if (Tools.isExternalStorageReadable()) {
-            ArrayList<Entry> entries = DatabaseHelper.stringToEntries(content);
+            ArrayList<Entry> entries = DatabaseHelper.stringToEntries(this, content);
 
             if (entries.size() > 0) {
                 if (! replace.isChecked()) {

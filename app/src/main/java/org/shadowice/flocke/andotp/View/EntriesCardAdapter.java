@@ -31,25 +31,29 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.FrameLayout;
+import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.TagDialogHelper;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperAdapter;
-import org.shadowice.flocke.andotp.R;
-
-import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
 import java.text.Collator;
 import java.util.ArrayList;
@@ -59,6 +63,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.Callable;
+
+import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     implements ItemTouchHelperAdapter, Filterable {
@@ -154,7 +160,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void onBindViewHolder(EntryViewHolder entryViewHolder, int i) {
         Entry entry = displayedEntries.get(i);
 
-        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags());
+        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags(), entry.getThumbnail());
 
         if (entry.hasNonDefaultPeriod()) {
             entryViewHolder.showCustomPeriod(entry.getPeriod());
@@ -170,6 +176,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         int fontSize = sharedPrefs.getInt(context.getString(R.string.settings_key_label_size), context.getResources().getInteger(R.integer.settings_default_label_size));
         entryViewHolder.setLabelSize(fontSize);
+
+        int thumbnailSize = settings.getThumbnailSize();
+        entryViewHolder.setThumbnailSize(thumbnailSize);
 
         entryViewHolder.setLabelScroll(sharedPrefs.getBoolean(context.getString(R.string.settings_key_label_scroll), false));
     }
@@ -251,7 +260,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                             notifyItemChanged(pos);
                         }
 
-                        entries.get(realIndex).setLabel(newLabel);
+                        Entry e = entries.get(realIndex);
+                        e.setLabel(newLabel);
+
                         DatabaseHelper.saveDatabase(context, entries);
                     }
                 })
@@ -262,6 +273,86 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 .create()
                 .show();
     }
+
+    public void changeThumbnail(final int pos) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
+        int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
+
+        int realIndex = getRealIndex(pos);
+        final ThumbnailSelectionAdapter thumbnailAdapter = new ThumbnailSelectionAdapter(context, entries.get(realIndex).getLabel());
+
+        final EditText input = new EditText(context);
+        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        input.setSingleLine();
+
+        input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                thumbnailAdapter.filter(editable.toString());
+            }
+        });
+
+        GridView grid = new GridView(context);
+        grid.setAdapter(thumbnailAdapter);
+        grid.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        int thumbnailSize = settings.getThumbnailSize();
+        grid.setColumnWidth(thumbnailSize);
+        grid.setNumColumns(GridView.AUTO_FIT);
+        grid.setVerticalSpacing(context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium));
+        grid.setHorizontalSpacing(context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium));
+        grid.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+
+        LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        layout.addView(input);
+        layout.addView(grid);
+
+        FrameLayout container = new FrameLayout(context);
+        container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
+        container.addView(layout);
+
+        final AlertDialog alert = builder.setTitle(R.string.menu_popup_change_image)
+                .setView(container)
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .create();
+
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int realIndex = getRealIndex(pos);
+                EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
+                try {
+                    int realPos = thumbnailAdapter.getRealIndex(position);
+                    thumbnail = EntryThumbnail.EntryThumbnails.values()[realPos];
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                Entry e = entries.get(realIndex);
+                e.setThumbnail(thumbnail);
+
+                DatabaseHelper.saveDatabase(context, entries);
+                notifyItemChanged(pos);
+                alert.cancel();
+            }
+        });
+
+        alert.show();
+    }
+
 
     public void editEntryTags(final int pos) {
         final int realPos = getRealIndex(pos);
@@ -346,6 +437,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
                 if (id == R.id.menu_popup_editLabel) {
                     editEntryLabel(pos);
+                    return true;
+                } else if(id == R.id.menu_popup_changeImage) {
+                    changeThumbnail(pos);
                     return true;
                 } else if (id == R.id.menu_popup_editTags) {
                     editEntryTags(pos);

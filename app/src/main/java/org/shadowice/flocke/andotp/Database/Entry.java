@@ -29,6 +29,7 @@ import org.apache.commons.codec.binary.Base32;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 
 import java.net.URL;
@@ -52,6 +53,7 @@ public class Entry {
     private static final String JSON_TYPE = "type";
     private static final String JSON_ALGORITHM = "algorithm";
     private static final String JSON_TAGS = "tags";
+    private static final String JSON_THUMBNAIL = "thumbnail";
 
     private OTPType type = OTPType.TOTP;
     private int period = TokenCalculator.TOTP_DEFAULT_PERIOD;
@@ -62,6 +64,7 @@ public class Entry {
     private String currentOTP;
     private long last_update = 0;
     public List<String> tags = new ArrayList<>();
+    private EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
 
     public Entry(){}
 
@@ -138,19 +141,19 @@ public class Entry {
 
         try {
             this.digits = jsonObj.getInt(JSON_DIGITS);
-        } catch(JSONException e) {
+        } catch(Exception e) {
             this.digits = TokenCalculator.TOTP_DEFAULT_DIGITS;
         }
 
         try {
             this.type = OTPType.valueOf(jsonObj.getString(JSON_TYPE));
-        } catch(JSONException e) {
+        } catch(Exception e) {
             this.type = DEFAULT_TYPE;
         }
 
         try {
             this.algorithm = TokenCalculator.HashAlgorithm.valueOf(jsonObj.getString(JSON_ALGORITHM));
-        } catch (JSONException e) {
+        } catch (Exception e) {
             this.algorithm = TokenCalculator.DEFAULT_ALGORITHM;
         }
 
@@ -160,8 +163,14 @@ public class Entry {
             for(int i = 0; i < tagsArray.length(); i++) {
                 this.tags.add(tagsArray.getString(i));
             }
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        try {
+            this.thumbnail = EntryThumbnail.EntryThumbnails.valueOf(jsonObj.getString(JSON_THUMBNAIL));
+        } catch(Exception e) {
+            this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
         }
     }
 
@@ -173,6 +182,7 @@ public class Entry {
         jsonObj.put(JSON_DIGITS, getDigits());
         jsonObj.put(JSON_TYPE, getType().toString());
         jsonObj.put(JSON_ALGORITHM, algorithm.toString());
+        jsonObj.put(JSON_THUMBNAIL, getThumbnail().name());
 
         JSONArray tagsArray = new JSONArray();
         for(String tag : tags){
@@ -226,6 +236,10 @@ public class Entry {
     public List<String> getTags() { return tags; }
 
     public void setTags(List<String> tags) { this.tags = tags; }
+
+    public EntryThumbnail.EntryThumbnails getThumbnail() { return thumbnail; }
+
+    public void setThumbnail( EntryThumbnail.EntryThumbnails value) { thumbnail = value; }
 
     public TokenCalculator.HashAlgorithm getAlgorithm() {
         return this.algorithm;

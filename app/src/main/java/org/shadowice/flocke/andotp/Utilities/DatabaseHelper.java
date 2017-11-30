@@ -65,7 +65,7 @@ public class DatabaseHelper {
             SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
             data = EncryptionHelper.decrypt(key, data);
 
-            entries = stringToEntries(new String(data));
+            entries = stringToEntries(context, new String(data));
         } catch (Exception error) {
             error.printStackTrace();
         }
@@ -89,14 +89,15 @@ public class DatabaseHelper {
         return json.toString();
     }
 
-    public static ArrayList<Entry> stringToEntries(String data) {
+    public static ArrayList<Entry> stringToEntries(Context context, String data) {
         ArrayList<Entry> entries = new ArrayList<>();
 
         try {
             JSONArray json = new JSONArray(data);
 
             for (int i = 0; i < json.length(); i++) {
-                entries.add(new Entry(json.getJSONObject(i)));
+                Entry entry = new Entry(json.getJSONObject(i));
+                entries.add(entry);
             }
         } catch (Exception error) {
             error.printStackTrace();
@@ -119,7 +120,7 @@ public class DatabaseHelper {
         ArrayList<Entry> entries = null;
 
         if (! content.isEmpty())
-            entries = stringToEntries(content);
+            entries = stringToEntries(context, content);
 
         return entries;
     }

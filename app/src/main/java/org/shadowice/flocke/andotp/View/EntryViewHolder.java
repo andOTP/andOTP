@@ -33,9 +33,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
+import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperViewHolder;
-import org.shadowice.flocke.andotp.R;
 
 import java.util.List;
 
@@ -51,11 +53,11 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private LinearLayout coverLayout;
     private LinearLayout customPeriodLayout;
     private ImageView visibleImg;
+    private ImageView thumbnailImg;
     private TextView value;
     private TextView label;
     private TextView tags;
     private TextView customPeriod;
-
 
     public EntryViewHolder(Context context, final View v) {
         super(v);
@@ -66,6 +68,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         value = v.findViewById(R.id.valueText);
         valueLayout = v.findViewById(R.id.valueLayout);
         visibleImg = v.findViewById(R.id.valueImg);
+        thumbnailImg = v.findViewById(R.id.thumbnailImg);
         coverLayout = v.findViewById(R.id.coverLayout);
         label = v.findViewById(R.id.textViewLabel);
         tags = v.findViewById(R.id.textViewTags);
@@ -102,7 +105,9 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         });
     }
 
-    public void updateValues(String label, String token, List<String> tags) {
+    public void updateValues(String label, String token, List<String> tags, EntryThumbnail.EntryThumbnails thumbnail) {
+        Settings settings = new Settings(context);
+
         this.label.setText(label);
         value.setText(token);
 
@@ -120,6 +125,11 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         } else {
             this.tags.setVisibility(View.GONE);
         }
+
+        thumbnailImg.setVisibility(settings.getThumbnailVisible() ? View.VISIBLE : View.GONE);
+
+        int thumbnailSize = settings.getThumbnailSize();
+        thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumbnail));
     }
 
     public void showCustomPeriod(int period) {
@@ -134,6 +144,12 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     public void setLabelSize(int size) {
         label.setTextSize(size);
         tags.setTextSize(0.75f * size);
+    }
+
+    public void setThumbnailSize(int size) {
+        thumbnailImg.getLayoutParams().height = size;
+        thumbnailImg.getLayoutParams().width = size;
+        thumbnailImg.requestLayout();
     }
 
     public void setLabelScroll(boolean active) {

@@ -6,6 +6,10 @@
         android:title="@string/menu_popup_edit_label" />
 
     <item
+        android:id="@+id/menu_popup_changeImage"
+        android:title="@string/menu_popup_change_image" />
+
+    <item
         android:id="@+id/menu_popup_editTags"
         android:title="@string/menu_popup_edit_tags" />
 

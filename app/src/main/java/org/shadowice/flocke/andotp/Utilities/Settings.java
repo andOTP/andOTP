@@ -330,4 +330,18 @@ public class Settings {
             toggledTags.add(tag);
         setStringSet(R.string.settings_key_tags_toggles, toggledTags);
     }
+
+    public boolean getThumbnailVisible() {
+        return getBoolean(R.string.settings_key_thumbnail_visible, true);
+    }
+
+    public int getThumbnailSize() {
+        try {
+            String dimen = getString(R.string.settings_key_thumbnail_size, context.getResources().getString(R.string.settings_default_thumbnail_size));
+            return DimensionConverter.stringToDimensionPixelSize(dimen, context.getResources().getDisplayMetrics());
+        } catch(Exception e) {
+            e.printStackTrace();
+            return context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
+        }
+    }
 }
