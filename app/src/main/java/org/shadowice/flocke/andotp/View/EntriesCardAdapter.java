@@ -51,6 +51,7 @@ import org.shadowice.flocke.andotp.R;
 
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -438,9 +439,16 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public class LabelComparator implements Comparator<Entry> {
+        Collator collator;
+
+        LabelComparator(){
+            collator = Collator.getInstance();
+            collator.setStrength(Collator.PRIMARY);
+        }
+
         @Override
         public int compare(Entry o1, Entry o2) {
-            return o1.getLabel().compareTo(o2.getLabel());
+            return collator.compare(o1.getLabel(), o2.getLabel());
         }
     }
 
