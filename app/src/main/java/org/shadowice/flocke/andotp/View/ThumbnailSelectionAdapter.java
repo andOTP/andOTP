@@ -52,6 +52,10 @@ public class ThumbnailSelectionAdapter extends BaseAdapter {
             return EntryThumbnail.EntryThumbnails.Default;
     }
 
+    public int getRealIndex(int displayPosition) {
+        return ((EntryThumbnail.EntryThumbnails)getItem(displayPosition)).ordinal();
+    }
+
     @Override
     public long getItemId(int i) {
         return ((EntryThumbnail.EntryThumbnails) getItem(i)).ordinal();

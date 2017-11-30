@@ -334,7 +334,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 int realIndex = getRealIndex(pos);
                 EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
                 try {
-                    thumbnail = EntryThumbnail.EntryThumbnails.values()[position];
+                    int realPos = thumbnailAdapter.getRealIndex(position);
+                    thumbnail = EntryThumbnail.EntryThumbnails.values()[realPos];
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
