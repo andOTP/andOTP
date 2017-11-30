@@ -29,6 +29,7 @@
     <string name="settings_title_openpgp_sign">Sign encrypted backups</string>
     <string name="settings_title_openpgp_verify">Verify encrypted backups</string>
 
+    <string name="settings_title_special_features">Enable special features</string>
     <string name="settings_title_enable_screenshot">Enable screenshots</string>
 
     <!-- Descriptions -->
@@ -52,6 +53,7 @@
 
     <string name="settings_desc_enable_screenshot">Allow to take screenshots of the main screen
         (disabled by default for security reasons)</string>
+    <string name="settings_desc_special_features">Uncheck to disable the special features again</string>
 
     <!-- Toasts -->
     <string name="settings_toast_auth_device_pre_lollipop">This feature requires at least Android 5.0

@@ -6,6 +6,12 @@
         android:title="@string/about_title_special_features" >
 
         <CheckBoxPreference
+            android:key="@string/settings_key_special_features"
+            android:title="@string/settings_title_special_features"
+            android:summary="@string/settings_desc_special_features"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
             android:key="@string/settings_key_enable_screenshot"
             android:title="@string/settings_title_enable_screenshot"
             android:summary="@string/settings_desc_enable_screenshot"
