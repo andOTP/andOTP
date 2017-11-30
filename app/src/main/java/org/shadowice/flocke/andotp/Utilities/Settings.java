@@ -360,4 +360,8 @@ public class Settings {
             return context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
         }
     }
+
+    public boolean getScreenshotsEnabled() {
+        return getBoolean(R.string.settings_key_enable_screenshot, false);
+    }
 }

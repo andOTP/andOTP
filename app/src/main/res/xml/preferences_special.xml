@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:title="@string/about_title_special_features" >
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_enable_screenshot"
+            android:title="@string/settings_title_enable_screenshot"
+            android:summary="@string/settings_desc_enable_screenshot"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

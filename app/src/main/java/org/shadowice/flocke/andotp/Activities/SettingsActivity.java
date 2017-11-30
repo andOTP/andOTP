@@ -147,6 +147,8 @@ public class SettingsActivity extends BaseActivity
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
+
             addPreferencesFromResource(R.xml.preferences);
 
             // Authentication
@@ -191,6 +193,12 @@ public class SettingsActivity extends BaseActivity
                 }
             });
             pgpKey.setDefaultUserId("Alice <alice@example.com>");
+
+
+            if (sharedPref.contains(getString(R.string.settings_key_special_features)) &&
+                    sharedPref.getBoolean(getString(R.string.settings_key_special_features), false)) {
+                addPreferencesFromResource(R.xml.preferences_special);
+            }
         }
     }
 }

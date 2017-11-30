@@ -279,7 +279,10 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
 
         setTitle(R.string.app_name);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+
+        if (! settings.getScreenshotsEnabled())
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -434,7 +437,8 @@ public class MainActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_thumbnail_size))) {
             adapter.notifyDataSetChanged();
         } else if (key.equals(getString(R.string.settings_key_theme)) ||
-                key.equals(getString(R.string.settings_key_lang))) {
+                key.equals(getString(R.string.settings_key_lang)) ||
+                key.equals(getString(R.string.settings_key_enable_screenshot))) {
             recreate();
         }
     }
