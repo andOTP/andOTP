@@ -27,8 +27,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -69,7 +67,6 @@ import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     implements ItemTouchHelperAdapter, Filterable {
     private Context context;
-    private SharedPreferences sharedPrefs;
     private EntryFilter filter;
     private ArrayList<Entry> entries;
     private ArrayList<Entry> displayedEntries;
@@ -82,7 +79,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
     public EntriesCardAdapter(Context context, TagsAdapter tagsFilterAdapter) {
         this.context = context;
-        this.sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         this.tagsFilterAdapter = tagsFilterAdapter;
         this.settings = new Settings(context);
         loadEntries();
@@ -168,19 +164,15 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             entryViewHolder.hideCustomPeriod();
         }
 
-        if (sharedPrefs.getBoolean(context.getString(R.string.settings_key_tap_to_reveal), false)) {
+        if (settings.getTapToReveal()) {
             entryViewHolder.enableTapToReveal();
         } else {
             entryViewHolder.disableTapToReveal();
         }
 
-        int fontSize = sharedPrefs.getInt(context.getString(R.string.settings_key_label_size), context.getResources().getInteger(R.integer.settings_default_label_size));
-        entryViewHolder.setLabelSize(fontSize);
-
-        int thumbnailSize = settings.getThumbnailSize();
-        entryViewHolder.setThumbnailSize(thumbnailSize);
-
-        entryViewHolder.setLabelScroll(sharedPrefs.getBoolean(context.getString(R.string.settings_key_label_scroll), false));
+        entryViewHolder.setLabelSize(settings.getLabelSize());
+        entryViewHolder.setThumbnailSize(settings.getThumbnailSize());
+        entryViewHolder.setLabelScroll(settings.getScrollLabel());
     }
 
     @Override

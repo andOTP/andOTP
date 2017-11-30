@@ -110,6 +110,10 @@ public class Settings {
         return context.getString(resId);
     }
 
+    private int getResInt(int resId) {
+        return context.getResources().getInteger(resId);
+    }
+
     private String getString(int keyId, int defaultId) {
         return settings.getString(getResString(keyId), getResString(defaultId));
     }
@@ -120,6 +124,10 @@ public class Settings {
 
     private boolean getBoolean(int keyId, boolean defaultValue) {
         return settings.getBoolean(getResString(keyId), defaultValue);
+    }
+
+    private int getInt(int keyId, int defaultId) {
+        return settings.getInt(getResString(keyId), getResInt(defaultId));
     }
 
     private long getLong(int keyId, long defaultValue) {
@@ -189,6 +197,10 @@ public class Settings {
 
 
 
+    public boolean getTapToReveal() {
+        return getBoolean(R.string.settings_key_tap_to_reveal, false);
+    }
+
     public AuthMethod getAuthMethod() {
         String authString = getString(R.string.settings_key_auth, R.string.settings_default_auth);
         return AuthMethod.valueOf(authString.toUpperCase());
@@ -225,6 +237,10 @@ public class Settings {
 
     public String getTheme() {
         return getString(R.string.settings_key_theme, R.string.settings_default_theme);
+    }
+
+    public int getLabelSize() {
+        return getInt(R.string.settings_key_label_size, R.integer.settings_default_label_size);
     }
 
     public boolean getScrollLabel() {
