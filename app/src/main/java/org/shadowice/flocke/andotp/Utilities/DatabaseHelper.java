@@ -40,7 +40,7 @@ public class DatabaseHelper {
 
     /* Database functions */
 
-    public static void saveDatabase(Context context, ArrayList<Entry> entries) {
+    public static boolean saveDatabase(Context context, ArrayList<Entry> entries) {
         String jsonString = entriesToString(entries);
 
         try {
@@ -53,7 +53,10 @@ public class DatabaseHelper {
 
         } catch (Exception error) {
             error.printStackTrace();
+            return false;
         }
+
+        return true;
     }
 
     public static ArrayList<Entry> loadDatabase(Context context){
@@ -112,16 +115,5 @@ public class DatabaseHelper {
         ArrayList<Entry> entries = loadDatabase(context);
 
         return FileHelper.writeStringToFile(context, file, entriesToString(entries));
-    }
-
-    public static ArrayList<Entry> importFromJSON(Context context, Uri file) {
-        String content = FileHelper.readFileToString(context, file);
-
-        ArrayList<Entry> entries = null;
-
-        if (! content.isEmpty())
-            entries = stringToEntries(content);
-
-        return entries;
     }
 }

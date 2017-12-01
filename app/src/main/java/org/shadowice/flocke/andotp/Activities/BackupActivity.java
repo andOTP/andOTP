@@ -362,31 +362,39 @@ public class BackupActivity extends BaseActivity {
         }
     }
 
+    private void restoreEntries(String text) {
+        ArrayList<Entry> entries = DatabaseHelper.stringToEntries(text);
+
+        if (entries.size() > 0) {
+            if (! replace.isChecked()) {
+                ArrayList<Entry> currentEntries = DatabaseHelper.loadDatabase(this);
+
+                entries.removeAll(currentEntries);
+                entries.addAll(currentEntries);
+            }
+
+            if (DatabaseHelper.saveDatabase(this, entries)) {
+                reload = true;
+                Toast.makeText(this, R.string.backup_toast_import_success, Toast.LENGTH_LONG).show();
+                finishWithResult();
+            } else {
+                Toast.makeText(this, R.string.backup_toast_import_save_failed, Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(this, R.string.backup_toast_import_no_entries, Toast.LENGTH_LONG).show();
+        }
+    }
+
     /* Plain-text backup functions */
 
     private void doRestorePlain(Uri uri) {
         if (Tools.isExternalStorageReadable()) {
-            ArrayList<Entry> entries = DatabaseHelper.importFromJSON(this, uri);
+            String content = FileHelper.readFileToString(this, uri);
 
-            if (entries != null) {
-                if (! replace.isChecked()) {
-                    ArrayList<Entry> currentEntries = DatabaseHelper.loadDatabase(this);
-                    entries.removeAll(currentEntries);
-                    entries.addAll(currentEntries);
-                }
-
-                DatabaseHelper.saveDatabase(this, entries);
-                reload = true;
-
-                Toast.makeText(this, R.string.backup_toast_import_success, Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, R.string.backup_toast_import_failed, Toast.LENGTH_LONG).show();
-            }
+            restoreEntries(content);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
-
-        finishWithResult();
     }
 
     private void doBackupPlain(Uri uri) {
@@ -432,6 +440,7 @@ public class BackupActivity extends BaseActivity {
         if (! password.isEmpty()) {
             if (Tools.isExternalStorageReadable()) {
                 boolean success = true;
+                String decryptedString = "";
 
                 try {
                     byte[] encrypted = FileHelper.readFileToBytes(this, uri);
@@ -439,25 +448,16 @@ public class BackupActivity extends BaseActivity {
                     SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
                     byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
 
-                    ArrayList<Entry> entries = DatabaseHelper.stringToEntries(new String(decrypted, StandardCharsets.UTF_8));
-
-                    if (! replace.isChecked()) {
-                        ArrayList<Entry> currentEntries = DatabaseHelper.loadDatabase(this);
-                        entries.removeAll(currentEntries);
-                        entries.addAll(currentEntries);
-                    }
-
-                    DatabaseHelper.saveDatabase(this, entries);
+                    decryptedString = new String(decrypted, StandardCharsets.UTF_8);
                 } catch (Exception e) {
-                    e.printStackTrace();
                     success = false;
+                    e.printStackTrace();
                 }
 
                 if (success) {
-                    reload = true;
-                    Toast.makeText(this, R.string.backup_toast_import_success, Toast.LENGTH_LONG).show();
+                    restoreEntries(decryptedString);
                 } else {
-                    Toast.makeText(this, R.string.backup_toast_import_failed, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,R.string.backup_toast_import_decryption_failed, Toast.LENGTH_LONG).show();
                 }
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
@@ -465,8 +465,6 @@ public class BackupActivity extends BaseActivity {
         } else {
             Toast.makeText(this, R.string.backup_toast_crypt_password_not_set, Toast.LENGTH_LONG).show();
         }
-
-        finishWithResult();
     }
 
     private void doBackupCrypt(Uri uri) {
@@ -505,31 +503,6 @@ public class BackupActivity extends BaseActivity {
     }
 
     /* OpenPGP backup functions */
-
-    private void doRestoreEncrypted(String content) {
-        if (Tools.isExternalStorageReadable()) {
-            ArrayList<Entry> entries = DatabaseHelper.stringToEntries(content);
-
-            if (entries.size() > 0) {
-                if (! replace.isChecked()) {
-                    ArrayList<Entry> currentEntries = DatabaseHelper.loadDatabase(this);
-                    entries.removeAll(currentEntries);
-                    entries.addAll(currentEntries);
-                }
-
-                DatabaseHelper.saveDatabase(this, entries);
-                reload = true;
-
-                Toast.makeText(this, R.string.backup_toast_import_success, Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, R.string.backup_toast_import_failed, Toast.LENGTH_LONG).show();
-            }
-        } else {
-            Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
-        }
-
-        finishWithResult();
-    }
 
     private void restoreEncryptedWithPGP(Uri uri, Intent decryptIntent) {
         if (decryptIntent == null)
@@ -600,12 +573,12 @@ public class BackupActivity extends BaseActivity {
                         OpenPgpSignatureResult sigResult = result.getParcelableExtra(OpenPgpApi.RESULT_SIGNATURE);
 
                         if (sigResult.getResult() == OpenPgpSignatureResult.RESULT_VALID_KEY_CONFIRMED) {
-                            doRestoreEncrypted(outputStreamToString(os));
+                            restoreEntries(outputStreamToString(os));
                         } else {
                             Toast.makeText(this, R.string.backup_toast_openpgp_not_verified, Toast.LENGTH_LONG).show();
                         }
                     } else {
-                        doRestoreEncrypted(outputStreamToString(os));
+                        restoreEntries(outputStreamToString(os));
                     }
                 }
             }

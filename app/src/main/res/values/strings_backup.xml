@@ -45,7 +45,9 @@
     <string name="backup_toast_export_success">Export to external storage successful</string>
     <string name="backup_toast_export_failed">Export to external storage failed</string>
     <string name="backup_toast_import_success">Import from external storage successful</string>
-    <string name="backup_toast_import_failed">Import from external storage failed</string>
+    <string name="backup_toast_import_save_failed">Failed to save restored entries</string>
+    <string name="backup_toast_import_decryption_failed">Decryption of the backup failed</string>
+    <string name="backup_toast_import_no_entries">No entries found in imported data</string>
     <string name="backup_toast_storage_not_accessible">External storage currently not accessible</string>
     <string name="backup_toast_storage_permissions">Storage permissions not granted</string>
     <string name="backup_toast_openpgp_error">OpenPGP Error: %s</string>
