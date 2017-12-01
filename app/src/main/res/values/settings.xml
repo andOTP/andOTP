@@ -37,6 +37,8 @@
 
     <string name="settings_key_enable_screenshot" translatable="false">pref_enable_screenshot</string>
 
+    <string name="settings_key_last_used_dialog_shown" translatable="false">pref_last_used_dialog_shown</string>
+
     <!-- Default values -->
     <integer name="settings_default_tap_to_reveal_timeout">30</integer>
     <string name="settings_default_auth" translatable="false">none</string>

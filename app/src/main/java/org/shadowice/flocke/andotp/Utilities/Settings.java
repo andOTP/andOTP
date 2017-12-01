@@ -368,4 +368,12 @@ public class Settings {
     public boolean getScreenshotsEnabled() {
         return getBoolean(R.string.settings_key_enable_screenshot, false);
     }
+
+    public boolean getLastUsedDialogShown() {
+        return getBoolean(R.string.settings_key_last_used_dialog_shown, false);
+    }
+
+    public void setLastUsedDialogShown(boolean value) {
+        setBoolean(R.string.settings_key_last_used_dialog_shown, value);
+    }
 }

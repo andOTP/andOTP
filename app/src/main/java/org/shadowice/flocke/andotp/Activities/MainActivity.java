@@ -593,11 +593,28 @@ public class MainActivity extends BaseActivity
                 adapter.setSortMode(SortMode.LAST_USED);
                 touchHelperCallback.setDragEnabled(false);
             }
+            if (! settings.getLastUsedDialogShown())
+                showLastUsedDialog();
         } else if (tagsToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showLastUsedDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.dialog_title_manual_entry)
+                .setTitle(R.string.dialog_title_last_used)
+                .setMessage(R.string.dialog_msg_last_used)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        settings.setLastUsedDialogShown(true);
+                    }
+                })
+                .create()
+                .show();
     }
 
     private void setupDrawer() {
