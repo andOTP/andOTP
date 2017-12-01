@@ -261,10 +261,10 @@ public class MainActivity extends BaseActivity
             SortMode mode = settings.getSortMode();
             adapter.setSortMode(mode);
 
-            if (mode == SortMode.LABEL)
-                touchHelperCallback.setDragEnabled(false);
-            else
+            if (mode == SortMode.UNSORTED)
                 touchHelperCallback.setDragEnabled(true);
+            else
+                touchHelperCallback.setDragEnabled(false);
         }
     }
 
@@ -431,12 +431,12 @@ public class MainActivity extends BaseActivity
 
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
         if (key.equals(getString(R.string.settings_key_label_size)) ||
-                key.equals(getString(R.string.settings_key_tap_to_reveal)) ||
                 key.equals(getString(R.string.settings_key_label_scroll)) ||
                 key.equals(getString(R.string.settings_key_thumbnail_visible)) ||
                 key.equals(getString(R.string.settings_key_thumbnail_size))) {
             adapter.notifyDataSetChanged();
-        } else if (key.equals(getString(R.string.settings_key_theme)) ||
+        } else if (key.equals(getString(R.string.settings_key_tap_to_reveal)) ||
+                key.equals(getString(R.string.settings_key_theme)) ||
                 key.equals(getString(R.string.settings_key_lang)) ||
                 key.equals(getString(R.string.settings_key_enable_screenshot))) {
             recreate();
@@ -503,6 +503,9 @@ public class MainActivity extends BaseActivity
             } else if (mode == SortMode.LABEL) {
                 sortMenu.setIcon(R.drawable.ic_sort_inverted_label_white);
                 menu.findItem(R.id.menu_sort_label).setChecked(true);
+            } else if (mode == SortMode.LAST_USED) {
+                sortMenu.setIcon(R.drawable.ic_sort_inverted_time_white);
+                menu.findItem(R.id.menu_sort_last_used).setChecked(true);
             }
         }
 
@@ -580,6 +583,14 @@ public class MainActivity extends BaseActivity
             saveSortMode(SortMode.LABEL);
             if (adapter != null) {
                 adapter.setSortMode(SortMode.LABEL);
+                touchHelperCallback.setDragEnabled(false);
+            }
+        } else if (id == R.id.menu_sort_last_used) {
+            item.setChecked(true);
+            sortMenu.setIcon(R.drawable.ic_sort_inverted_time_white);
+            saveSortMode(SortMode.LAST_USED);
+            if (adapter != null) {
+                adapter.setSortMode(SortMode.LAST_USED);
                 touchHelperCallback.setDragEnabled(false);
             }
         } else if (tagsToggle.onOptionsItemSelected(item)) {

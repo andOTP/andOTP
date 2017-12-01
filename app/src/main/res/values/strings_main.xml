@@ -42,6 +42,7 @@
 
     <string name="menu_sort_none">Unsorted</string>
     <string name="menu_sort_label">Label</string>
+    <string name="menu_sort_last_used">Last used</string>
 
     <string name="menu_popup_edit_label">Edit label</string>
     <string name="menu_popup_change_image">Change image</string>

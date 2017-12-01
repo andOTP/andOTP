@@ -45,8 +45,8 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         implements ItemTouchHelperViewHolder {
 
     private Context context;
-
     private Callback callback;
+    private boolean tapToReveal;
 
     private CardView card;
     private LinearLayout valueLayout;
@@ -59,10 +59,11 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private TextView tags;
     private TextView customPeriod;
 
-    public EntryViewHolder(Context context, final View v) {
+    public EntryViewHolder(Context context, final View v, boolean tapToReveal) {
         super(v);
 
         this.context = context;
+        this.tapToReveal = tapToReveal;
 
         card = v.findViewById(R.id.card_view);
         value = v.findViewById(R.id.valueText);
@@ -100,12 +101,14 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             @Override
             public void onClick(View view) {
                 if (callback != null)
-                    callback.onCopyButtonClicked(value.getText().toString());
+                    callback.onCopyButtonClicked(value.getText().toString(), getAdapterPosition());
             }
         });
+
+        setTapToReveal(tapToReveal);
     }
 
-    public void updateValues(String label, String token, List<String> tags, EntryThumbnail.EntryThumbnails thumbnail) {
+    public void updateValues(String label, String token, List<String> tags, EntryThumbnail.EntryThumbnails thumbnail, boolean isVisible) {
         Settings settings = new Settings(context);
 
         this.label.setText(label);
@@ -130,6 +133,18 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         int thumbnailSize = settings.getThumbnailSize();
         thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumbnail));
+
+        if (this.tapToReveal) {
+            if (isVisible) {
+                valueLayout.setVisibility(View.VISIBLE);
+                coverLayout.setVisibility(View.GONE);
+                visibleImg.setVisibility(View.GONE);
+            } else {
+                valueLayout.setVisibility(View.GONE);
+                coverLayout.setVisibility(View.VISIBLE);
+                visibleImg.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     public void showCustomPeriod(int period) {
@@ -164,31 +179,25 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         }
     }
 
-    public void enableTapToReveal() {
-        valueLayout.setVisibility(View.GONE);
-        coverLayout.setVisibility(View.VISIBLE);
-        visibleImg.setVisibility(View.VISIBLE);
+    private void setTapToReveal(boolean enabled) {
+        if (enabled) {
+            valueLayout.setVisibility(View.GONE);
+            coverLayout.setVisibility(View.VISIBLE);
+            visibleImg.setVisibility(View.VISIBLE);
 
-        card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (valueLayout.getVisibility() == View.GONE && coverLayout.getVisibility() == View.VISIBLE) {
-                    valueLayout.setVisibility(View.VISIBLE);
-                    coverLayout.setVisibility(View.GONE);
-                } else {
-                    valueLayout.setVisibility(View.GONE);
-                    coverLayout.setVisibility(View.VISIBLE);
+            card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    callback.onTap(getAdapterPosition());
                 }
-            }
-        });
-    }
+            });
+        } else {
+            valueLayout.setVisibility(View.VISIBLE);
+            coverLayout.setVisibility(View.GONE);
+            visibleImg.setVisibility(View.GONE);
 
-    public void disableTapToReveal() {
-        valueLayout.setVisibility(View.VISIBLE);
-        coverLayout.setVisibility(View.GONE);
-        visibleImg.setVisibility(View.GONE);
-
-        card.setOnClickListener(null);
+            card.setOnClickListener(null);
+        }
     }
 
     @Override
@@ -212,6 +221,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         void onMoveEventStop();
 
         void onMenuButtonClicked(View parentView, int position);
-        void onCopyButtonClicked(String text);
+        void onCopyButtonClicked(String text, int position);
+        void onTap(int position);
     }
 }

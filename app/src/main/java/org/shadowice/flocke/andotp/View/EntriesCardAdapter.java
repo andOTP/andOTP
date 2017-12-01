@@ -27,6 +27,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Handler;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -67,6 +68,7 @@ import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     implements ItemTouchHelperAdapter, Filterable {
     private Context context;
+    private Handler taskHandler;
     private EntryFilter filter;
     private ArrayList<Entry> entries;
     private ArrayList<Entry> displayedEntries;
@@ -81,6 +83,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         this.context = context;
         this.tagsFilterAdapter = tagsFilterAdapter;
         this.settings = new Settings(context);
+        this.taskHandler = new Handler();
+
         loadEntries();
     }
 
@@ -156,18 +160,12 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void onBindViewHolder(EntryViewHolder entryViewHolder, int i) {
         Entry entry = displayedEntries.get(i);
 
-        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags(), entry.getThumbnail());
+        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags(), entry.getThumbnail(), entry.isVisible());
 
         if (entry.hasNonDefaultPeriod()) {
             entryViewHolder.showCustomPeriod(entry.getPeriod());
         } else {
             entryViewHolder.hideCustomPeriod();
-        }
-
-        if (settings.getTapToReveal()) {
-            entryViewHolder.enableTapToReveal();
-        } else {
-            entryViewHolder.disableTapToReveal();
         }
 
         entryViewHolder.setLabelSize(settings.getLabelSize());
@@ -179,7 +177,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public EntryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.component_card, viewGroup, false);
 
-        EntryViewHolder viewHolder = new EntryViewHolder(context, itemView);
+        EntryViewHolder viewHolder = new EntryViewHolder(context, itemView, settings.getTapToReveal());
         viewHolder.setCallback(new EntryViewHolder.Callback() {
             @Override
             public void onMoveEventStart() {
@@ -199,12 +197,74 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             }
 
             @Override
-            public void onCopyButtonClicked(String text) {
+            public void onCopyButtonClicked(String text, int position) {
                 copyToClipboard(text);
+                updateLastUsed(position, getRealIndex(position));
+            }
+
+            @Override
+            public void onTap(final int position) {
+                if (settings.getTapToReveal()) {
+                    final Entry entry = displayedEntries.get(position);
+                    final int realIndex = entries.indexOf(entry);
+
+                    if (entry.isVisible()) {
+                        hideEntry(entry);
+                    } else {
+                        entries.get(realIndex).setHideTask(new Runnable() {
+                            @Override
+                            public void run() {
+                                hideEntry(entry);
+                            }
+                        });
+                        taskHandler.postDelayed(entries.get(realIndex).getHideTask(), settings.getTapToRevealTimeout() * 1000);
+
+                        entry.setVisible(true);
+                        notifyItemChanged(position);
+                    }
+                }
             }
         });
 
         return viewHolder;
+    }
+
+    private void hideEntry(Entry entry) {
+        int pos = displayedEntries.indexOf(entry);
+        int realIndex = entries.indexOf(entry);
+
+        if (realIndex >= 0) {
+            entries.get(realIndex).setVisible(false);
+            taskHandler.removeCallbacks(entries.get(realIndex).getHideTask());
+            entries.get(realIndex).setHideTask(null);
+        }
+
+        boolean updateNeeded = updateLastUsed(pos, realIndex);
+
+        if (pos >= 0) {
+            displayedEntries.get(pos).setVisible(false);
+
+            if (updateNeeded)
+                notifyItemChanged(pos);
+        }
+    }
+
+    private boolean updateLastUsed(int position, int realIndex) {
+        long timeStamp = System.currentTimeMillis();
+
+        if (position >= 0)
+            displayedEntries.get(position).setLastUsed(timeStamp);
+
+        entries.get(realIndex).setLastUsed(timeStamp);
+        DatabaseHelper.saveDatabase(context, entries);
+
+        if (sortMode == SortMode.LAST_USED) {
+            displayedEntries = sortEntries(displayedEntries);
+            notifyDataSetChanged();
+            return false;
+        }
+
+        return true;
     }
 
     @Override
@@ -469,6 +529,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         if (sortMode == SortMode.LABEL) {
             Collections.sort(sorted, new LabelComparator());
+        } else if (sortMode == SortMode.LAST_USED) {
+            Collections.sort(sorted, new LastUsedComparator());
         }
 
         return sorted;
@@ -535,6 +597,13 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         @Override
         public int compare(Entry o1, Entry o2) {
             return collator.compare(o1.getLabel(), o2.getLabel());
+        }
+    }
+
+    public class LastUsedComparator implements Comparator<Entry> {
+        @Override
+        public int compare(Entry o1, Entry o2) {
+            return Long.compare(o2.getLastUsed(), o1.getLastUsed());
         }
     }
 

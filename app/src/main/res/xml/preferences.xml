@@ -14,9 +14,19 @@
             android:summary="@string/settings_desc_tap_to_reveal"
             android:defaultValue="false" />
 
+        <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
+            android:key="@string/settings_key_tap_to_reveal_timeout"
+            android:order="2"
+            android:title="@string/settings_title_tap_to_reveal_timeout"
+            android:dialogMessage="@string/settings_desc_tap_to_reveal_timeout"
+            android:defaultValue="@integer/settings_default_tap_to_reveal_timeout"
+            android:dependency="@string/settings_key_tap_to_reveal"
+            app:vnt_minValue="@integer/settings_min_tap_to_reveal_timeout"
+            app:vnt_maxValue="@integer/settings_max_tap_to_reveal_timeout" />
+
         <ListPreference
             android:key="@string/settings_key_auth"
-            android:order="2"
+            android:order="3"
             android:title="@string/settings_title_auth"
             android:summary="%s"
             android:entries="@array/settings_entries_auth"
@@ -25,7 +35,7 @@
 
         <MultiSelectListPreference
             android:key="@string/settings_key_panic"
-            android:order="4"
+            android:order="5"
             android:title="@string/settings_title_panic"
             android:summary="@string/settings_desc_panic"
             android:entries="@array/settings_entries_panic"

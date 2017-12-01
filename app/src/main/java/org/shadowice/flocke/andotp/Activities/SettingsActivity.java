@@ -120,7 +120,7 @@ public class SettingsActivity extends BaseActivity
                 case "password":
                     PasswordHashPreference authPassword = new PasswordHashPreference(getActivity(), null);
                     authPassword.setTitle(R.string.settings_title_auth_password);
-                    authPassword.setOrder(3);
+                    authPassword.setOrder(4);
                     authPassword.setKey(getString(R.string.settings_key_auth_password_hash));
                     authPassword.setMode(PasswordHashPreference.Mode.PASSWORD);
 
@@ -131,7 +131,7 @@ public class SettingsActivity extends BaseActivity
                 case "pin":
                     PasswordHashPreference authPIN = new PasswordHashPreference(getActivity(), null);
                     authPIN.setTitle(R.string.settings_title_auth_pin);
-                    authPIN.setOrder(3);
+                    authPIN.setOrder(4);
                     authPIN.setKey(getString(R.string.settings_key_auth_pin_hash));
                     authPIN.setMode(PasswordHashPreference.Mode.PIN);
 

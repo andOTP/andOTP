@@ -53,7 +53,7 @@ public class Settings {
     }
 
     public enum SortMode {
-        UNSORTED, LABEL
+        UNSORTED, LABEL, LAST_USED
     }
 
     public Settings(Context context) {
@@ -199,6 +199,10 @@ public class Settings {
 
     public boolean getTapToReveal() {
         return getBoolean(R.string.settings_key_tap_to_reveal, false);
+    }
+
+    public int getTapToRevealTimeout() {
+        return getInt(R.string.settings_key_tap_to_reveal_timeout, R.integer.settings_default_tap_to_reveal_timeout);
     }
 
     public AuthMethod getAuthMethod() {

@@ -9,6 +9,7 @@
 
     <!-- Titles -->
     <string name="settings_title_tap_to_reveal">Tap to reveal</string>
+    <string name="settings_title_tap_to_reveal_timeout">Timeout for tap to reveal</string>
     <string name="settings_title_auth">Authentication</string>
     <string name="settings_title_auth_password">Password</string>
     <string name="settings_title_auth_pin">PIN</string>
@@ -35,6 +36,8 @@
     <!-- Descriptions -->
     <string name="settings_desc_tap_to_reveal">Hide the OTP tokens by default, requiring them to be
         revealed manually</string>
+    <string name="settings_desc_tap_to_reveal_timeout">Select the time (in sec) after which to hide
+        revealed entries again</string>
     <string name="settings_desc_panic">Decide what happens when a Panic Trigger is received</string>
 
     <string name="settings_desc_label_scroll">Scroll overlong labels instead of truncating them</string>

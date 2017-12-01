@@ -54,6 +54,7 @@ public class Entry {
     private static final String JSON_ALGORITHM = "algorithm";
     private static final String JSON_TAGS = "tags";
     private static final String JSON_THUMBNAIL = "thumbnail";
+    private static final String JSON_LAST_USED = "last_used";
 
     private OTPType type = OTPType.TOTP;
     private int period = TokenCalculator.TOTP_DEFAULT_PERIOD;
@@ -62,7 +63,10 @@ public class Entry {
     private byte[] secret;
     private String label;
     private String currentOTP;
+    private boolean visible = false;
+    private Runnable hideTask = null;
     private long last_update = 0;
+    private long last_used = 0;
     public List<String> tags = new ArrayList<>();
     private EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
 
@@ -164,13 +168,19 @@ public class Entry {
                 this.tags.add(tagsArray.getString(i));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            // Nothing wrong here
         }
 
         try {
             this.thumbnail = EntryThumbnail.EntryThumbnails.valueOf(jsonObj.getString(JSON_THUMBNAIL));
         } catch(Exception e) {
             this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
+        }
+
+        try {
+            this.last_used = jsonObj.getLong(JSON_LAST_USED);
+        } catch (Exception e) {
+            this.last_used = 0;
         }
     }
 
@@ -183,6 +193,7 @@ public class Entry {
         jsonObj.put(JSON_TYPE, getType().toString());
         jsonObj.put(JSON_ALGORITHM, algorithm.toString());
         jsonObj.put(JSON_THUMBNAIL, getThumbnail().name());
+        jsonObj.put(JSON_LAST_USED, getLastUsed());
 
         JSONArray tagsArray = new JSONArray();
         for(String tag : tags){
@@ -251,6 +262,30 @@ public class Entry {
 
     public boolean hasNonDefaultPeriod() {
         return this.period != TokenCalculator.TOTP_DEFAULT_PERIOD;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean value) {
+        this.visible = value;
+    }
+
+    public void setHideTask(Runnable newTask) {
+        this.hideTask = newTask;
+    }
+
+    public Runnable getHideTask() {
+        return this.hideTask;
+    }
+
+    public long getLastUsed() {
+        return this.last_used;
+    }
+
+    public void setLastUsed(long value) {
+        this.last_used = value;
     }
 
     public String getCurrentOTP() {
