@@ -1,5 +1,19 @@
 # Changelog
 
+#### v0.3.1
+
+ * Move: the Github repository was moved from flocke/andOTP to andOTP/andOTP for better organization of collaborators
+ * New feature: assign (predefined) images to entries (Issue #14, PR #75, again thanks to @RichyHBM for the implementation)
+ * New feature: sort labels locale-sensitive (PR #74 by carmebar)
+ * New feature: re-hide the revealed entries after a configurable timeout (Issue #77)
+ * New feature: add sorting by last usage (Issue #67)
+ * New feature: improved error messages during the import of backups
+ * New special feature: disable Special features again
+ * New special feature: enable screenshots in the main Activity
+ * Bug fix: use sp for font sizes (to make them scalable)
+ * Update: Android SDK 27 (Issue #76)
+ * Update: Android Gradle plugin 3.0.1
+
 #### v0.3.0
 
  * New feature: tagging support (Issue #37, PR #64, big thanks to @RichyHBM for actually implementing this)
