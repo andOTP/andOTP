@@ -24,6 +24,9 @@ package org.shadowice.flocke.andotp.View;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -154,8 +157,34 @@ public class ManualEntryDialog {
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {}
-                })
-                .create()
-                .show();
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        final Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        positiveButton.setEnabled(false);
+
+        TextWatcher watcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (TextUtils.isEmpty(labelInput.getText()) || TextUtils.isEmpty(secretInput.getText())) {
+                    positiveButton.setEnabled(false);
+                } else {
+                    positiveButton.setEnabled(true);
+                }
+            }
+        };
+
+        labelInput.addTextChangedListener(watcher);
+        secretInput.addTextChangedListener(watcher);
     }
 }
