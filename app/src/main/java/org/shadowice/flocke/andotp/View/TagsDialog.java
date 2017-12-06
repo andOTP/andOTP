@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-package org.shadowice.flocke.andotp.Utilities;
+package org.shadowice.flocke.andotp.View;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -35,13 +35,12 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.View.TagsAdapter;
 
 import java.util.HashMap;
 import java.util.concurrent.Callable;
 
-public class TagDialogHelper {
-    public static void createTagsDialog(Context context, final TagsAdapter tagsAdapter, final Callable newTagCallable, final Callable selectedTagsCallable) {
+public class TagsDialog {
+    public static void show(Context context, final TagsAdapter tagsAdapter, final Callable newTagCallable, final Callable selectedTagsCallable) {
         int margin = context.getResources().getDimensionPixelSize(R.dimen.activity_margin);
         int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
         int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);

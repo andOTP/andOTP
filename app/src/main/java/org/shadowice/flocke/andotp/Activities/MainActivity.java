@@ -48,13 +48,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckedTextView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -64,18 +60,15 @@ import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
-import org.shadowice.flocke.andotp.Utilities.TagDialogHelper;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
 import org.shadowice.flocke.andotp.View.FloatingActionMenu;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCallback;
+import org.shadowice.flocke.andotp.View.ManualEntryDialog;
 import org.shadowice.flocke.andotp.View.TagsAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.Callable;
 
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
@@ -106,122 +99,6 @@ public class MainActivity extends BaseActivity
                 .setOrientationLocked(false)
                 .setBeepEnabled(false)
                 .initiateScan();
-    }
-
-    // Manual data entry
-    private void enterDetails() {
-        ViewGroup container = findViewById(R.id.main_content);
-        View inputView = getLayoutInflater().inflate(R.layout.dialog_manual_entry, container, false);
-
-        final Spinner typeInput = inputView.findViewById(R.id.manual_type);
-        final EditText labelInput = inputView.findViewById(R.id.manual_label);
-        final EditText secretInput = inputView.findViewById(R.id.manual_secret);
-        final EditText periodInput = inputView.findViewById(R.id.manual_period);
-        final EditText digitsInput = inputView.findViewById(R.id.manual_digits);
-        final Spinner algorithmInput = inputView.findViewById(R.id.manual_algorithm);
-        final Button tagsInput = inputView.findViewById(R.id.manual_tags);
-
-        final ArrayAdapter<TokenCalculator.HashAlgorithm> algorithmAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, TokenCalculator.HashAlgorithm.values());
-        final ArrayAdapter<Entry.OTPType> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Entry.PublicTypes.toArray(new Entry.OTPType[Entry.PublicTypes.size()]));
-        final ArrayAdapter<Entry.OTPType> fullTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Entry.OTPType.values());
-
-        if (settings.getSpecialFeatures())
-            typeInput.setAdapter(fullTypeAdapter);
-        else
-            typeInput.setAdapter(typeAdapter);
-
-        algorithmInput.setAdapter(algorithmAdapter);
-
-        periodInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_PERIOD));
-        digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
-
-        typeInput.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Entry.OTPType type = (Entry.OTPType) adapterView.getSelectedItem();
-
-                if (type == Entry.OTPType.STEAM) {
-                    digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.STEAM_DEFAULT_DIGITS));
-                    periodInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_PERIOD));
-                    algorithmInput.setSelection(algorithmAdapter.getPosition(TokenCalculator.HashAlgorithm.SHA1));
-
-                    digitsInput.setEnabled(false);
-                    periodInput.setEnabled(false);
-                    algorithmInput.setEnabled(false);
-                } else {
-                    digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
-                    digitsInput.setEnabled(true);
-                    periodInput.setEnabled(true);
-                    algorithmInput.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        List<String> allTags = adapter.getTags();
-        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
-        for(String tag: allTags) {
-            tagsHashMap.put(tag, false);
-        }
-        final TagsAdapter tagsAdapter = new TagsAdapter(this, tagsHashMap);
-
-        final Callable tagsCallable = new Callable() {
-            @Override
-            public Object call() throws Exception {
-                List<String> selectedTags = tagsAdapter.getActiveTags();
-                StringBuilder stringBuilder = new StringBuilder();
-                for(int j = 0; j < selectedTags.size(); j++) {
-                    stringBuilder.append(selectedTags.get(j));
-                    if(j < selectedTags.size() - 1) {
-                        stringBuilder.append(", ");
-                    }
-                }
-                tagsInput.setText(stringBuilder.toString());
-                return null;
-            }
-        };
-
-        tagsInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TagDialogHelper.createTagsDialog(MainActivity.this, tagsAdapter, tagsCallable, tagsCallable);
-            }
-        });
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.dialog_title_manual_entry)
-                .setView(inputView)
-                .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
-                        TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
-
-                        if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
-                            String label = labelInput.getText().toString();
-                            String secret = secretInput.getText().toString();
-                            int period = Integer.parseInt(periodInput.getText().toString());
-                            int digits = Integer.parseInt(digitsInput.getText().toString());
-
-                            Entry e = new Entry(type, secret, period, digits, label, algorithm, tagsAdapter.getActiveTags());
-                            e.updateOTP();
-                            adapter.addEntry(e);
-                            adapter.saveEntries();
-
-                            refreshTags();
-                        }
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                })
-                .create()
-                .show();
     }
 
     private void showFirstTimeWarning() {
@@ -314,7 +191,7 @@ public class MainActivity extends BaseActivity
 
             @Override
             public void onManualFabClick() {
-                enterDetails();
+                ManualEntryDialog.show(MainActivity.this, settings, adapter);
             }
         });
 
@@ -707,7 +584,7 @@ public class MainActivity extends BaseActivity
         adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
     }
 
-    void refreshTags() {
+    public void refreshTags() {
         HashMap<String, Boolean> tagsHashMap = new HashMap<>();
         for(String tag: tagsDrawerAdapter.getTags()) {
             tagsHashMap.put(tag, false);

@@ -51,7 +51,6 @@ import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
-import org.shadowice.flocke.andotp.Utilities.TagDialogHelper;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperAdapter;
 
 import java.text.Collator;
@@ -449,7 +448,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             }
         };
 
-        TagDialogHelper.createTagsDialog(context, tagsAdapter, tagsCallable, tagsCallable);
+        TagsDialog.show(context, tagsAdapter, tagsCallable, tagsCallable);
     }
 
     public void removeItem(final int pos) {
