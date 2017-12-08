@@ -83,6 +83,7 @@
         <item>nl</item>
         <item>pl</item>
         <item>ru</item>
+        <item>zh</item>
     </string-array>
 
     <string-array name="settings_values_theme" translatable="false">

@@ -13,6 +13,7 @@
  * Bug fix: use sp for font sizes (to make them scalable)
  * Update: Android SDK 27 (Issue #76)
  * Update: Android Gradle plugin 3.0.1
+ * Translation: Chinese Simplified (zh-rCN) thanks to Cp0204
 
 #### v0.3.0
 

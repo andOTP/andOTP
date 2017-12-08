@@ -88,6 +88,7 @@
         <item>Dutch</item>
         <item>Polish</item>
         <item>Russian</item>
+        <item>Chinese Simplified</item>
     </string-array>
 
     <string-array name="settings_entries_theme">

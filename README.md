@@ -94,6 +94,7 @@ So make sure you have a **current backup** before switching!
 &nbsp; | Galician (gl-rES) | [Triskel](https://crowdin.com/profile/triskel)
 :ru:   | Russian (ru-rRU)  | [Victor Nidens](https://crowdin.com/profile/vnidens), [Ilia Drogaitsev](https://crowdin.com/profile/waytoroot), [Dmitry](https://crowdin.com/profile/SaintDI)
 🇨🇿   | Czech (cs-rCZ)    | [Picard0147](https://crowdin.com/profile/Picard0147)
+:cn: | Chinese Simplified (zh-rCN) | [Cp0204](https://crowdin.com/profile/Cp0204)
 
 ## Screenshots:
 
