@@ -8,6 +8,7 @@
   <string name="settings_category_title_backup">Copia de seguranza</string>
   <!-- Titles -->
   <string name="settings_title_tap_to_reveal">Tocar para mostrar</string>
+  <string name="settings_title_tap_to_reveal_timeout">Tempo de espera para tocar para mostrar</string>
   <string name="settings_title_auth">Autenticación</string>
   <string name="settings_title_auth_password">Contrasinal</string>
   <string name="settings_title_auth_pin">PIN</string>
@@ -16,6 +17,8 @@
   <string name="settings_title_theme">Tema</string>
   <string name="settings_title_label_size">Tamaño da tipografía</string>
   <string name="settings_title_label_scroll">Desprazar etiqueta</string>
+  <string name="settings_title_thumbnail_visible_ask">Mostrar miniaturas</string>
+  <string name="settings_title_thumbnail_size_ask">Tamaño de miniatura</string>
   <string name="settings_title_backup_ask">Preguntar polo nome do ficheiro</string>
   <string name="settings_title_backup_directory">Directorio de copias de seguranza</string>
   <string name="settings_title_backup_password">Contrasinal da copia de seguranza</string>
@@ -23,8 +26,12 @@
   <string name="settings_title_openpgp_keyid">Escoller chave OpenPGP</string>
   <string name="settings_title_openpgp_sign">Asinar copias de seguranza cifradas</string>
   <string name="settings_title_openpgp_verify">Comprobar copias de seguranza cifradas</string>
+  <string name="settings_title_special_features">Activar funcionalidades especiais</string>
+  <string name="settings_title_enable_screenshot">Activar capturas de pantalla</string>
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">Agochar códigos OTP, require mostralos manualmente</string>
+  <string name="settings_desc_tap_to_reveal_timeout">Selecciona o tempo (en segundos) tras o cal esconder
+        as entradas reveladas</string>
   <string name="settings_desc_panic">Decide que facer cando se recibe un Panic Trigger</string>
   <string name="settings_desc_label_scroll">Desprazar etiquetas largas no canto de truncalas</string>
   <string name="settings_desc_backup_ask">Preguntar polo nome do ficheiro cada vez que unha copia de seguranza sexa creada ou
@@ -37,6 +44,9 @@
         túa chave (require contrasinal)</string>
   <string name="settings_desc_openpgp_verify">As copias de seguranza cifradas só se importan
         se están asinadas con unha chave válida</string>
+  <string name="settings_desc_enable_screenshot">Permitir capturas de pantalla da vista principal
+        (Desactivado por defecto por razóns de seguridade)</string>
+  <string name="settings_desc_special_features">Desmarcar para desactivar as funcionalidades especiais</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">Esta característica require polo menos
         Android 5.0 (Lollipop)</string>
@@ -69,6 +79,12 @@
     <item>Tema claro</item>
     <item>Tema escuro</item>
     <item>Tema negro</item>
+  </string-array>
+  <string-array name="settings_entries_thumbnail_size">
+    <item>Pequeno</item>
+    <item>Predefinido</item>
+    <item>Mediano</item>
+    <item>Grande</item>
   </string-array>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Contrasinal</string>

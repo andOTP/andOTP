@@ -35,7 +35,9 @@
   <string name="menu_main_sort">Sortieren</string>
   <string name="menu_sort_none">Unsortiert</string>
   <string name="menu_sort_label">Beschriftung</string>
+  <string name="menu_sort_last_used">Zuletzt benutzt</string>
   <string name="menu_popup_edit_label">Beschriftung bearbeiten</string>
+  <string name="menu_popup_change_image">Bild ändern</string>
   <string name="menu_popup_edit_tags">Marker bearbeiten</string>
   <string name="menu_popup_remove">Entfernen</string>
   <!-- Toast messages -->
@@ -49,6 +51,7 @@
   <string name="dialog_title_remove">Entfernen</string>
   <string name="dialog_title_rename">Umbenennen</string>
   <string name="dialog_title_security_backup">Sicherheit und Backups</string>
+  <string name="dialog_title_last_used">Zuletzt benutzt</string>
   <string name="dialog_msg_auth">Bitte geben Sie die Anmeldeinformationen Ihres Geräts ein, um andOTP zu starten.</string>
   <string name="dialog_msg_confirm_delete">Möchten Sie das Konto wirklich entfernen?</string>
   <string name="dialog_msg_security_backup_desc">Zum Schutz Ihrer Kontoinformationen werden diese
@@ -66,4 +69,7 @@
         die von der App bereitgestellt werden, um Ihre Konten zu sichern! Alles andere WIRD zum Datenverlust führen.
     </string>
   <string name="dialog_msg_security_backup_one_time">Diese Meldung wird nicht nochmal angezeigt.</string>
+  <string name="dialog_msg_last_used">Damit andOTP erkennt welches Token zuletzt benutzt wurde, muss entweder \"Tippen zum Anzeigen\" aktiv sein
+oder der Kopieren-Button benutzt werden.\n\n
+Diese Nachricht wird nicht erneut angezeigt.</string>
 </resources>

@@ -35,7 +35,9 @@
   <string name="menu_main_sort">Řazení</string>
   <string name="menu_sort_none">Neřadit</string>
   <string name="menu_sort_label">Popis</string>
+  <string name="menu_sort_last_used">Naposledy použité</string>
   <string name="menu_popup_edit_label">Upravit popis</string>
+  <string name="menu_popup_change_image">Změnit obrázek</string>
   <string name="menu_popup_edit_tags">Upravit štítky</string>
   <string name="menu_popup_remove">Smazat</string>
   <!-- Toast messages -->
@@ -49,10 +51,12 @@
   <string name="dialog_title_remove">Smazat</string>
   <string name="dialog_title_rename">Přejmenování</string>
   <string name="dialog_title_security_backup">Zabezpečení a zálohy</string>
+  <string name="dialog_title_last_used">Naposledy použité</string>
   <string name="dialog_msg_auth">Prosím zadejte heslo zařízení ke spuštění andOTP.</string>
   <string name="dialog_msg_confirm_delete">Opravdu chcete odebrat tento účet?</string>
   <string name="dialog_msg_security_backup_desc">Pro zajištění bezpečnosti vašich údajů je tato aplikace ukládá šifrované. Část použitého šifrovacího klíče je uložena pomocí systému Android KeyStore. Výhodou tohoto přístupu je uložení dat aplikace odděleně od klíče, toto může být podpořeno HW šifrováním (pokud to Vaše zařízení podporuje).    </string>
   <string name="dialog_msg_security_backup_3rd_party">Nevýhodou je trochu ztížené zálohování dat aplikace. Užíváte-li aplikace třetích stran (jako Titanium Backup) zazálohujete pouze data aplikace ne však šifrovací klíč, následkem toho budou takové zálohy nepoužitelné.    </string>
   <string name="dialog_msg_security_backup_warning">Používejte prosím k zálohování Vašich účtů pouze vlastní zálohovací funkce této aplikace! Cokoliv jiného povede ke ztrátě dat.    </string>
   <string name="dialog_msg_security_backup_one_time">Tato zpráva se víckrát nezobrazí.</string>
+  <string name="dialog_msg_last_used">Aby andOTP poznal, který token byl použitý jako poslední, je potřeba mít zapnuté \"zobraz klepnutím\" nebo používat kopírovací tlačítko. \n\n Tato zpráva se již nezobrazí.</string>
 </resources>

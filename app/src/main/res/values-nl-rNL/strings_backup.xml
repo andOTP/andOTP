@@ -11,6 +11,7 @@
   <string name="backup_title_import_plain">Herstellen (tekst zonder opmaak)</string>
   <string name="backup_title_import_crypt">Herstellen (versleuteld)</string>
   <string name="backup_title_import_openpgp">Herstellen (OpenPGP)</string>
+  <string name="backup_title_replace">Replace existing entries</string>
   <string name="backup_desc_export_plain">Back-up JSON bestand van alle accounts in tekst zonder opmaak</string>
   <string name="backup_desc_export_crypt">Back-up van alle accounts in een JSON-bestand met wachtwoordbeveiliging</string>
   <string name="backup_desc_export_openpgp">Maak een reservekopie van alle accounts in een JSON-bestand met OpenPGP versleuteling</string>
@@ -20,7 +21,9 @@
   <string name="backup_desc_crypt_setup">Het is nodig een wachtwoord in te stellen bij de instellingen voor het gebruik van versleutelde reservekopiën.    </string>
   <string name="backup_desc_openpgp_provider">Je dient een OpenPGP-provider te installeren en in te schakelen bij de instellingen om deze functie te gebruiken.    </string>
   <string name="backup_desc_openpgp_keyid">Je dient een OpenPGP sleutel te selecteren bij de instellingen voordat je versleutelde reservekopiën kunt maken.    </string>
-  <string name="backup_desc_replace">Vervang bestaande vermeldingen</string>
+  <string name="backup_desc_replace">If enabled all old entries are replaced when importing a
+        backup and only the backup is present. If disabled the old entries and the backups content
+        are merged.</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">Veiligheidswaarschuwing</string>
   <string name="backup_dialog_msg_export_warning">Wilt je echt de database exporteren als JSON-bestand zonder opmaak? Dit bestand bevat al uw geheime sleutels. <b>Houdt het veilig</b>!    </string>
@@ -29,7 +32,9 @@
   <string name="backup_toast_export_success">Exporteren naar een extern opslagmedium was succesvol</string>
   <string name="backup_toast_export_failed">Exporteren naar een extern opslagmedium is mislukt</string>
   <string name="backup_toast_import_success">Importeren uit externe opslag was succesvol</string>
-  <string name="backup_toast_import_failed">Importeren uit externe opslag is mislukt</string>
+  <string name="backup_toast_import_save_failed">Failed to save restored entries</string>
+  <string name="backup_toast_import_decryption_failed">Decryption of the backup failed</string>
+  <string name="backup_toast_import_no_entries">No entries found in imported data</string>
   <string name="backup_toast_storage_not_accessible">Externe opslag is momenteel niet toegankelijk</string>
   <string name="backup_toast_storage_permissions">Opslag rechten zijn niet gemachtigt</string>
   <string name="backup_toast_openpgp_error">OpenPGP fout: %s</string>

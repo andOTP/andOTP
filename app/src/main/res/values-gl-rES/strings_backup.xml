@@ -11,6 +11,7 @@
   <string name="backup_title_import_plain">Restaurar (texto plano)</string>
   <string name="backup_title_import_crypt">Restaurar (cifrada)</string>
   <string name="backup_title_import_openpgp">Restaurar (OpenPGP)</string>
+  <string name="backup_title_replace">Replace existing entries</string>
   <string name="backup_desc_export_plain">Facer copia de seguranza de todas as contas nun ficheiro de texto plano JSON</string>
   <string name="backup_desc_export_crypt">Facer copia de seguranza de todas as contas nun ficheiro JSON con contrasinal</string>
   <string name="backup_desc_export_openpgp">Facer copia de seguranza de todas as contas nun ficheiro JSON cifrado con OpenPGP</string>
@@ -26,7 +27,9 @@
   <string name="backup_desc_openpgp_keyid">Necesitas seleccionar unha chave OpenPGP nos Axustes
         antes de crear unha copia de seguranza cifrada.
     </string>
-  <string name="backup_desc_replace">Substituír as entradas existentes</string>
+  <string name="backup_desc_replace">If enabled all old entries are replaced when importing a
+        backup and only the backup is present. If disabled the old entries and the backups content
+        are merged.</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">Advertencia de seguranza</string>
   <string name="backup_dialog_msg_export_warning">¿Queres exportar a base de datos como
@@ -37,7 +40,9 @@
   <string name="backup_toast_export_success">Exportado correctamente ao almacenamento externo</string>
   <string name="backup_toast_export_failed">Fallo ao exportar ao almacenamento externo</string>
   <string name="backup_toast_import_success">Importado correctamente desde o almacenamento externo</string>
-  <string name="backup_toast_import_failed">Fallo ao importar desde o almacenamento externo</string>
+  <string name="backup_toast_import_save_failed">Erro ao gardar os elementos restaurados</string>
+  <string name="backup_toast_import_decryption_failed">Erro ao descifrar a copia de seguranza</string>
+  <string name="backup_toast_import_no_entries">Non se atoparon elementos nos datos importados</string>
   <string name="backup_toast_storage_not_accessible">O almacenamento externo non é accesible actualmente</string>
   <string name="backup_toast_storage_permissions">Permiso de almacenamento non concedido</string>
   <string name="backup_toast_openpgp_error">Error OpenPGP: %s</string>

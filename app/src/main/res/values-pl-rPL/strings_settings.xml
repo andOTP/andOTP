@@ -7,7 +7,8 @@
   <string name="settings_category_title_ui">Interfejs użytkownika</string>
   <string name="settings_category_title_backup">Kopia</string>
   <!-- Titles -->
-  <string name="settings_title_tap_to_reveal">Kliknij by odkryć</string>
+  <string name="settings_title_tap_to_reveal">Kliknij, aby odkryć</string>
+  <string name="settings_title_tap_to_reveal_timeout">Timeout for tap to reveal</string>
   <string name="settings_title_auth">Autoryzacja</string>
   <string name="settings_title_auth_password">Hasło</string>
   <string name="settings_title_auth_pin">PIN</string>
@@ -16,6 +17,8 @@
   <string name="settings_title_theme">Motyw</string>
   <string name="settings_title_label_size">Etykieta rozmiaru czcionki</string>
   <string name="settings_title_label_scroll">Przewiń etykietę</string>
+  <string name="settings_title_thumbnail_visible_ask">Show thumbnails</string>
+  <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
   <string name="settings_title_backup_ask">Pytaj o nazwę pliku</string>
   <string name="settings_title_backup_directory">Katalog kopii</string>
   <string name="settings_title_backup_password">Hasło do kopii</string>
@@ -23,16 +26,23 @@
   <string name="settings_title_openpgp_keyid">Wybierz klucz OpenPGP</string>
   <string name="settings_title_openpgp_sign">Podpisz zaszyfrowane kopie</string>
   <string name="settings_title_openpgp_verify">Sprawdź poprawność zaszyfrowanych kopii</string>
+  <string name="settings_title_special_features">Włącz funkcje specjalne</string>
+  <string name="settings_title_enable_screenshot">Zezwól na zrzuty ekranu</string>
   <!-- Descriptions -->
-  <string name="settings_desc_tap_to_reveal">Domyślnie ukrywaj tokeny OTP, wymaga kliknięcia aby odkryć token</string>
-  <string name="settings_desc_panic">Zdecyduj co ma się stać po otrzymaniu sygnału Panic Trigger</string>
-  <string name="settings_desc_label_scroll">Przewiń etykiety zamiast ucinać je</string>
-  <string name="settings_desc_backup_ask">Pytaj o nazwę pliku za każdym razem kiedy kopia jest
+  <string name="settings_desc_tap_to_reveal">Domyślnie ukrywaj tokeny OTP; wymaga kliknięcia, aby odkryć token</string>
+  <string name="settings_desc_tap_to_reveal_timeout">Select the time (in sec) after which to hide
+        revealed entries again</string>
+  <string name="settings_desc_panic">Zdecyduj, co ma się stać po otrzymaniu sygnału Panic Trigger</string>
+  <string name="settings_desc_label_scroll">Przewijaj etykiety zamiast ucinać je</string>
+  <string name="settings_desc_backup_ask">Pytaj o nazwę pliku za każdym razem, kiedy kopia jest
         tworzona lub przywracana</string>
   <string name="settings_desc_backup_directory">Katalog z kopiami (nazwy plików zależą od typu kopii)</string>
   <string name="settings_desc_backup_password">Ustaw hasło używane do szyfrowania kopii</string>
   <string name="settings_desc_openpgp_sign">Każda szyfrowana kopia dodatkowo jest podpisywana Twoim kluczem (wymaga hasła)</string>
-  <string name="settings_desc_openpgp_verify">Szyfrowane kopie mogą zostać zaimportowane tylko gdy zostały podpisane Twoim kluczem</string>
+  <string name="settings_desc_openpgp_verify">Szyfrowane kopie mogą zostać zaimportowane tylko wtedy, gdy zostały podpisane Twoim kluczem</string>
+  <string name="settings_desc_enable_screenshot">Allow to take screenshots of the main screen
+        (disabled by default for security reasons)</string>
+  <string name="settings_desc_special_features">Uncheck to disable the special features again</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">Ta funkcja wymaga systemu Android w wersji co najmniej 5.0 (Lolipop)</string>
   <string name="settings_toast_auth_device_not_secure">Ta funkcja wymaga włączenia blokady ekranu. Sprawdź Ustawienia - &gt; Zabezpieczenia - &gt; Blokada ekranu</string>
@@ -63,6 +73,12 @@
     <item>Jasny motyw</item>
     <item>Ciemny motyw</item>
     <item>Czarny motyw</item>
+  </string-array>
+  <string-array name="settings_entries_thumbnail_size">
+    <item>Small</item>
+    <item>Default</item>
+    <item>Medium</item>
+    <item>Large</item>
   </string-array>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Hasło</string>

@@ -35,7 +35,9 @@
   <string name="menu_main_sort">Trier</string>
   <string name="menu_sort_none">Non trié</string>
   <string name="menu_sort_label">Titre</string>
+  <string name="menu_sort_last_used">Dernier utilisé</string>
   <string name="menu_popup_edit_label">Renommer</string>
+  <string name="menu_popup_change_image">Modifier l\'image</string>
   <string name="menu_popup_edit_tags">Éditer les tags</string>
   <string name="menu_popup_remove">Supprimer</string>
   <!-- Toast messages -->
@@ -55,6 +57,7 @@
   <string name="dialog_title_security_backup">
       Sécurité et sauvegardes
     </string>
+  <string name="dialog_title_last_used">Dernier utilisé</string>
   <string name="dialog_msg_auth">
       Veuillez entrer les informations d\'identification du périphérique pour
       démarrer andOTP.
@@ -84,4 +87,5 @@
   <string name="dialog_msg_security_backup_one_time">
       Ce message n\'apparaîtra plus par la suite.
     </string>
+  <string name="dialog_msg_last_used">Afin que andOTP puisse reconnaitre le dernier jeton utilisé vous devez activer l\'option \"appuyer pour afficher\" ou utiliser le bouton de copie.\n\nCe message ne s\'affichera plus.</string>
 </resources>

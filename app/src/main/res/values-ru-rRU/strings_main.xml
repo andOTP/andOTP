@@ -35,7 +35,9 @@
   <string name="menu_main_sort">Сортировка</string>
   <string name="menu_sort_none">Без сортировки</string>
   <string name="menu_sort_label">Ярлык</string>
+  <string name="menu_sort_last_used">Последнее использование</string>
   <string name="menu_popup_edit_label">Редактировать ярлык</string>
+  <string name="menu_popup_change_image">Изменить изображение</string>
   <string name="menu_popup_edit_tags">Изменить теги</string>
   <string name="menu_popup_remove">Убрать</string>
   <!-- Toast messages -->
@@ -49,10 +51,12 @@
   <string name="dialog_title_remove">Убрать</string>
   <string name="dialog_title_rename">Переименовать</string>
   <string name="dialog_title_security_backup">Безопасность и резервное копирование</string>
+  <string name="dialog_title_last_used">Последнее использование</string>
   <string name="dialog_msg_auth">Пожалуйста, подтвердите учетные данные устройства для открытия andOTP.</string>
   <string name="dialog_msg_confirm_delete">Вы уверены, что хотите удалить эту учетную запись?</string>
   <string name="dialog_msg_security_backup_desc">Для обеспечения безопасности ваших данных это приложение хранит их только в зашифрованном виде. Часть этого ключа шифрования хранится в системе Android KeyStore. Преимущество этого подхода в том, что ключ хранится отдельно от данных приложения и может быть защищён аппаратным шифрованием (если ваше устройство его поддерживает).</string>
   <string name="dialog_msg_security_backup_3rd_party">С другой стороны, это делает резервное копирование данных приложения немного более сложным. Если вы используете сторонние приложения (вроде Titanium Backup) вы только лишь скопируете сами файлы, но не ключ шифрования, в результате чего резервная копия окажется нерабочей.</string>
   <string name="dialog_msg_security_backup_warning">Пожалуйста, используйте только функцию резервного копирования встроенную в это приложение! Прочие способы ПРИВЕДУТ к потере данных.</string>
   <string name="dialog_msg_security_backup_one_time">Это сообщение повторно отображаться не будет.</string>
+  <string name="dialog_msg_last_used">Чтобы andOTP знал время последнего использования токена необходимо включить настройку \"Нажмите, чтобы показать\" или копировать токен.\n\nЭто сообщение больше не будет показано.</string>
 </resources>

@@ -35,7 +35,9 @@
   <string name="menu_main_sort">Ordenar</string>
   <string name="menu_sort_none">Sin ordenar</string>
   <string name="menu_sort_label">Etiqueta</string>
+  <string name="menu_sort_last_used">Último usado</string>
   <string name="menu_popup_edit_label">Editar etiqueta</string>
+  <string name="menu_popup_change_image">Cambiar imagen</string>
   <string name="menu_popup_edit_tags">Editar etiquetas</string>
   <string name="menu_popup_remove">Eliminar</string>
   <!-- Toast messages -->
@@ -49,6 +51,7 @@
   <string name="dialog_title_remove">Eliminar</string>
   <string name="dialog_title_rename">Renombrar</string>
   <string name="dialog_title_security_backup">Seguridad y copias de seguridad</string>
+  <string name="dialog_title_last_used">Último usado</string>
   <string name="dialog_msg_auth">Por favor, introduce los credenciales del dispositivo para iniciar andOTP.</string>
   <string name="dialog_msg_confirm_delete">¿Está seguro de que desea eliminar esta cuenta?</string>
   <string name="dialog_msg_security_backup_desc">Para mantener la información de tu cuenta segura esta aplicación
@@ -65,4 +68,7 @@
         provistos por la aplicación. Cualquier otro método HARÁ que pierdas los datos.
     </string>
   <string name="dialog_msg_security_backup_one_time">Este mensaje no volverá a ser mostrado.</string>
+  <string name="dialog_msg_last_used">Para que andOTP pueda saber qué código ha sido el último usado
+        tienes que activar \"Tocar para mostrar\" o usar el botón de copiar.\n\nEste mensaje no
+        se mostrará de nuevo.</string>
 </resources>

@@ -11,6 +11,7 @@
   <string name="backup_title_import_plain">Restauration (en clair)</string>
   <string name="backup_title_import_crypt">Restauration (chiffrée)</string>
   <string name="backup_title_import_openpgp">Restauration (OpenPGP)</string>
+  <string name="backup_title_replace">Remplacer les entrées existantes</string>
   <string name="backup_desc_export_plain">
       Sauvegarder tous les comptes en clair dans un fichier JSON
     </string>
@@ -44,7 +45,7 @@
       Vous devez sélectionner une clé dans les paramètres pour faire des
       sauvegardes avec OpenPGP.
     </string>
-  <string name="backup_desc_replace">Remplacer les entrées déjà existantes</string>
+  <string name="backup_desc_replace">Si activé, à l\'import d\'une sauvegarde toutes les entrées seront supprimées et remplacées par les entrées de la sauvegarde. Si désactivé, les entrées seront fusionnées avec celles de la sauvegarde.</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">
       Avertissement de sécurité
@@ -65,9 +66,9 @@
   <string name="backup_toast_import_success">
       Restauration depuis le stockage externe effectuée avec succès
     </string>
-  <string name="backup_toast_import_failed">
-      La restauration depuis le stockage externe a échoué
-    </string>
+  <string name="backup_toast_import_save_failed">Échec de l\'enregistrement des entrées restaurées</string>
+  <string name="backup_toast_import_decryption_failed">Échec du déchiffrement de la sauvegarde</string>
+  <string name="backup_toast_import_no_entries">Aucune entrée trouvée dans les données importées</string>
   <string name="backup_toast_storage_not_accessible">
       Stockage externe non disponible
     </string>

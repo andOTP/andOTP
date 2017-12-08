@@ -8,6 +8,7 @@
   <string name="settings_category_title_backup">Reservekopie</string>
   <!-- Titles -->
   <string name="settings_title_tap_to_reveal">Tik om te onthullen</string>
+  <string name="settings_title_tap_to_reveal_timeout">Timeout for tap to reveal</string>
   <string name="settings_title_auth">Authenticatie</string>
   <string name="settings_title_auth_password">Wachtwoord</string>
   <string name="settings_title_auth_pin">PIN</string>
@@ -16,6 +17,8 @@
   <string name="settings_title_theme">Thema</string>
   <string name="settings_title_label_size">Label lettergrootte</string>
   <string name="settings_title_label_scroll">Scroll etiket</string>
+  <string name="settings_title_thumbnail_visible_ask">Show thumbnails</string>
+  <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
   <string name="settings_title_backup_ask">Vraag naar de bestandsnaam</string>
   <string name="settings_title_backup_directory">Archief map</string>
   <string name="settings_title_backup_password">Wachtwoord reserve kopie</string>
@@ -23,8 +26,12 @@
   <string name="settings_title_openpgp_keyid">Select OpenPGP sleutel</string>
   <string name="settings_title_openpgp_sign">Versleutelde reserve kopieën verifiëren</string>
   <string name="settings_title_openpgp_verify">Versleutelde reserve kopie verifiëren</string>
+  <string name="settings_title_special_features">Enable special features</string>
+  <string name="settings_title_enable_screenshot">Enable screenshots</string>
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">De OTP tokens standaard verbergen, maak ze handmatig zichtbaar</string>
+  <string name="settings_desc_tap_to_reveal_timeout">Select the time (in sec) after which to hide
+        revealed entries again</string>
   <string name="settings_desc_panic">Beslissen wat er gebeurt wanneer een Paniek Trigger wordt ontvangen</string>
   <string name="settings_desc_label_scroll">Scroll overlangs de etiketten in plaats van ze af te korten</string>
   <string name="settings_desc_backup_ask">Vraag naar de bestandsnaam elke keer een reservekopie is gemaakt of wordt teruggezet</string>
@@ -32,6 +39,9 @@
   <string name="settings_desc_backup_password">Stel het wachtwoord in dat wordt gebruikt voor het versleutelen van de reserve kopie</string>
   <string name="settings_desc_openpgp_sign">Elk versleuteld reservekopie is aanvullend ondertekend met je sleutel (wachtwoord vereist)</string>
   <string name="settings_desc_openpgp_verify">Gecodeerde reservekopieën worden alleen geïmporteerd als ze zijn ondertekend met een geldige sleutel</string>
+  <string name="settings_desc_enable_screenshot">Allow to take screenshots of the main screen
+        (disabled by default for security reasons)</string>
+  <string name="settings_desc_special_features">Uncheck to disable the special features again</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">Deze functie vereist ten minste Android 5.0 (Lollipop)</string>
   <string name="settings_toast_auth_device_not_secure">Deze functie vereist een beveiligd slotscherm (instellingen -&gt; Beveiliging -&gt; Schermlock)</string>
@@ -62,6 +72,12 @@
     <item>Licht thema</item>
     <item>Donker thema</item>
     <item>Zwart thema</item>
+  </string-array>
+  <string-array name="settings_entries_thumbnail_size">
+    <item>Small</item>
+    <item>Default</item>
+    <item>Medium</item>
+    <item>Large</item>
   </string-array>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Wachtwoord</string>

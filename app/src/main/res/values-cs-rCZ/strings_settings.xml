@@ -8,6 +8,7 @@
   <string name="settings_category_title_backup">Zálohování</string>
   <!-- Titles -->
   <string name="settings_title_tap_to_reveal">Zobraz klepnutím</string>
+  <string name="settings_title_tap_to_reveal_timeout">Čas do skrytí zobrazeného kódu</string>
   <string name="settings_title_auth">Přihlášení</string>
   <string name="settings_title_auth_password">Heslo</string>
   <string name="settings_title_auth_pin">PIN</string>
@@ -16,6 +17,8 @@
   <string name="settings_title_theme">Vzhled</string>
   <string name="settings_title_label_size">Velikost písma popisku</string>
   <string name="settings_title_label_scroll">Pohybující se popisky</string>
+  <string name="settings_title_thumbnail_visible_ask">Zobrazit náhledy</string>
+  <string name="settings_title_thumbnail_size_ask">Velikost náhledu</string>
   <string name="settings_title_backup_ask">Zadejte název souboru</string>
   <string name="settings_title_backup_directory">Adresář záloh</string>
   <string name="settings_title_backup_password">Heslo pro zálohu</string>
@@ -23,8 +26,11 @@
   <string name="settings_title_openpgp_keyid">Vyberte OpenPGP klíč</string>
   <string name="settings_title_openpgp_sign">Podepsat šifrované zálohy</string>
   <string name="settings_title_openpgp_verify">Ověřit šifrované zálohy</string>
+  <string name="settings_title_special_features">Povolit speciální funkce</string>
+  <string name="settings_title_enable_screenshot">Povolit snímání obrazovky</string>
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">V základu skryje OTP tokeny, budou zobrazeny manuálně</string>
+  <string name="settings_desc_tap_to_reveal_timeout">Zvolte čas v sekundách, po kterém se zobrazené kódy opět skryjí</string>
   <string name="settings_desc_panic">Zvolte reakci na signál paniky</string>
   <string name="settings_desc_label_scroll">Posouvat příliš dlouhé popisky namísto zkracování</string>
   <string name="settings_desc_backup_ask">Dotazovat se na název souboru vždy při vytváření či obnovování zálohy</string>
@@ -32,6 +38,8 @@
   <string name="settings_desc_backup_password">Nastaví heslo používané k šifrování záloh</string>
   <string name="settings_desc_openpgp_sign">Každá šifrovaná záloha bude navíc podepsána Vaším klíčem (vyžaduje heslo)</string>
   <string name="settings_desc_openpgp_verify">Šifrované zálohy jsou importovány pouze, jsou-li podepsány platným klíčem</string>
+  <string name="settings_desc_enable_screenshot">Povolí pořizování snímků hlavní obrazovky (ve výchozím nastavení je z bezpečnostních důvodů zakázáno)</string>
+  <string name="settings_desc_special_features">Zrušte zaškrtnutí políčka opětovné zakázání speciálních funkcí</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">Tato funkce ke své činnosti vyžaduje alespoň Android 5.0 (Lollipop)</string>
   <string name="settings_toast_auth_device_not_secure">Tato funkce vyžaduje nastavení zámku obrazovky (Nastavení -&gt; Zabezpečení -&gt; Zámek obrazovky)</string>
@@ -62,6 +70,12 @@
     <item>Světlý vzhled</item>
     <item>Tmavý vzhled</item>
     <item>Černý vzhled</item>
+  </string-array>
+  <string-array name="settings_entries_thumbnail_size">
+    <item>Malé</item>
+    <item>Výchozí</item>
+    <item>Střední</item>
+    <item>Velké</item>
   </string-array>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Heslo</string>
