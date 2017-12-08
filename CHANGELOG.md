@@ -8,9 +8,12 @@
  * New feature: re-hide the revealed entries after a configurable timeout (Issue #77)
  * New feature: add sorting by last usage (Issue #67)
  * New feature: improved error messages during the import of backups
+ * New feature: make the replace switch default to false (Issue #80)
  * New special feature: disable Special features again
  * New special feature: enable screenshots in the main Activity
  * Bug fix: use sp for font sizes (to make them scalable)
+ * Bug fix: disable the save button in a manual entry until label and secret are not empty (Issue #82)
+ * Style/UI: better description of the replace switch
  * Update: Android SDK 27 (Issue #76)
  * Update: Android Gradle plugin 3.0.1
  * Translation: Chinese Simplified (zh-rCN) thanks to Cp0204
