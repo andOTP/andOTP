@@ -84,18 +84,6 @@
     <item>Supprimer l\'ensemble des comptes</item>
     <item>Réinitialiser les paramètres de l\'application</item>
   </string-array>
-  <string-array name="settings_entries_lang">
-    <item>Par défaut du système</item>
-    <item>Anglais</item>
-    <item>Tchèque</item>
-    <item>Allemand</item>
-    <item>Espagnol</item>
-    <item>Français</item>
-    <item>Galicien</item>
-    <item>Néerlandais</item>
-    <item>Polonais</item>
-    <item>Russe</item>
-  </string-array>
   <string-array name="settings_entries_theme">
     <item>Thème clair</item>
     <item>Thème sombre</item>
@@ -107,6 +95,8 @@
     <item>Moyen</item>
     <item>Grand</item>
   </string-array>
+  <!-- Special -->
+  <string name="settings_lang_sys_default">Par défaut du système</string>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Mot de passe</string>
   <string name="settings_hint_pin">Code PIN</string>

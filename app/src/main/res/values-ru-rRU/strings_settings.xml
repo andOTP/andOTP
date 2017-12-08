@@ -54,18 +54,6 @@
     <item>Удалить все аккаунты</item>
     <item>Сброс параметров приложения</item>
   </string-array>
-  <string-array name="settings_entries_lang">
-    <item>Настройки по умолчанию</item>
-    <item>Английский</item>
-    <item>Чешский</item>
-    <item>Немецкий</item>
-    <item>Испанский</item>
-    <item>Французский</item>
-    <item>Галисийский</item>
-    <item>Голландский</item>
-    <item>Польский</item>
-    <item>Русский</item>
-  </string-array>
   <string-array name="settings_entries_theme">
     <item>Светлая тема</item>
     <item>Тёмная тема</item>
@@ -77,6 +65,8 @@
     <item>Средний</item>
     <item>Большой</item>
   </string-array>
+  <!-- Special -->
+  <string name="settings_lang_sys_default">Настройки по умолчанию</string>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Пароль</string>
   <string name="settings_hint_pin">PIN-код</string>

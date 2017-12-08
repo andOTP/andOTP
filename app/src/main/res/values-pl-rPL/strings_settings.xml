@@ -57,18 +57,6 @@
     <item>Usuń wszystkie konta</item>
     <item>Resetowanie ustawień</item>
   </string-array>
-  <string-array name="settings_entries_lang">
-    <item>Domyślna wartość</item>
-    <item>Angielski</item>
-    <item>Czeski</item>
-    <item>Niemiecki</item>
-    <item>Hiszpański</item>
-    <item>Francuski</item>
-    <item>Galicyjski</item>
-    <item>Holenderski</item>
-    <item>Polski</item>
-    <item>Rosyjski</item>
-  </string-array>
   <string-array name="settings_entries_theme">
     <item>Jasny motyw</item>
     <item>Ciemny motyw</item>
@@ -80,6 +68,8 @@
     <item>Medium</item>
     <item>Large</item>
   </string-array>
+  <!-- Special -->
+  <string name="settings_lang_sys_default">Domyślna wartość</string>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Hasło</string>
   <string name="settings_hint_pin">PIN</string>

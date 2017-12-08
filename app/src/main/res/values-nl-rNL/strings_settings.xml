@@ -56,18 +56,6 @@
     <item>Alle accounts verwijderen</item>
     <item>App instellingen resetten</item>
   </string-array>
-  <string-array name="settings_entries_lang">
-    <item>Systeem standaard</item>
-    <item>Engels</item>
-    <item>Tsjechisch</item>
-    <item>Duits</item>
-    <item>Spaans</item>
-    <item>Frans</item>
-    <item>Galicisch</item>
-    <item>Nederlands</item>
-    <item>Pools</item>
-    <item>Russisch</item>
-  </string-array>
   <string-array name="settings_entries_theme">
     <item>Licht thema</item>
     <item>Donker thema</item>
@@ -79,6 +67,8 @@
     <item>Medium</item>
     <item>Large</item>
   </string-array>
+  <!-- Special -->
+  <string name="settings_lang_sys_default">Systeem standaard</string>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Wachtwoord</string>
   <string name="settings_hint_pin">PIN</string>

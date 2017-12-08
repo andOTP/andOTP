@@ -54,18 +54,6 @@
     <item>Smazat všechny účty</item>
     <item>Obnovit výchozí nastavení</item>
   </string-array>
-  <string-array name="settings_entries_lang">
-    <item>Podle systému</item>
-    <item>Angličtina</item>
-    <item>Čeština</item>
-    <item>Němčina</item>
-    <item>Španělština</item>
-    <item>Francouzština</item>
-    <item>Galicijština</item>
-    <item>Holandština</item>
-    <item>Polština</item>
-    <item>Ruština</item>
-  </string-array>
   <string-array name="settings_entries_theme">
     <item>Světlý vzhled</item>
     <item>Tmavý vzhled</item>
@@ -77,6 +65,8 @@
     <item>Střední</item>
     <item>Velké</item>
   </string-array>
+  <!-- Special -->
+  <string name="settings_lang_sys_default">Podle systému</string>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Heslo</string>
   <string name="settings_hint_pin">PIN</string>

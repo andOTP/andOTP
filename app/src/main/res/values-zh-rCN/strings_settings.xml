@@ -54,19 +54,6 @@
     <item>清除所有帐户</item>
     <item>重置设置</item>
   </string-array>
-  <string-array name="settings_entries_lang">
-    <item>系统默认</item>
-    <item>英语</item>
-    <item>Czech</item>
-    <item>German</item>
-    <item>Spanish</item>
-    <item>French</item>
-    <item>Galician</item>
-    <item>Dutch</item>
-    <item>Polish</item>
-    <item>Russian</item>
-    <item>Chinese Simplified</item>
-  </string-array>
   <string-array name="settings_entries_theme">
     <item>亮色主题</item>
     <item>暗色主题</item>
@@ -78,6 +65,8 @@
     <item>中等</item>
     <item>较大</item>
   </string-array>
+  <!-- Special -->
+  <string name="settings_lang_sys_default">系统默认</string>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">密码</string>
   <string name="settings_hint_pin">PIN 码</string>

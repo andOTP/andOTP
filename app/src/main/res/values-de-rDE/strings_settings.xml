@@ -61,18 +61,6 @@
     <item>Alle Konten löschen</item>
     <item>Einstellungen zurücksetzen</item>
   </string-array>
-  <string-array name="settings_entries_lang">
-    <item>Systemstandard</item>
-    <item>Englisch</item>
-    <item>Tschechisch</item>
-    <item>Deutsch</item>
-    <item>Spanisch</item>
-    <item>Französisch</item>
-    <item>Galicisch</item>
-    <item>Niederländisch</item>
-    <item>Polnisch</item>
-    <item>Russisch</item>
-  </string-array>
   <string-array name="settings_entries_theme">
     <item>Helles Design</item>
     <item>Dunkles Design</item>
@@ -84,6 +72,8 @@
     <item>Mittel</item>
     <item>Gross</item>
   </string-array>
+  <!-- Special -->
+  <string name="settings_lang_sys_default">Systemstandard</string>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Passwort</string>
   <string name="settings_hint_pin">PIN</string>

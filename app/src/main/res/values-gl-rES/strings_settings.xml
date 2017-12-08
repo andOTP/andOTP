@@ -63,18 +63,6 @@
     <item>Eliminar todas as contas</item>
     <item>Restablecer axustes</item>
   </string-array>
-  <string-array name="settings_entries_lang">
-    <item>Predefinido do sistema</item>
-    <item>Inglés</item>
-    <item>Checo</item>
-    <item>Alemán</item>
-    <item>Español</item>
-    <item>Francés</item>
-    <item>Galego</item>
-    <item>Holandés</item>
-    <item>Polaco</item>
-    <item>Ruso</item>
-  </string-array>
   <string-array name="settings_entries_theme">
     <item>Tema claro</item>
     <item>Tema escuro</item>
@@ -86,6 +74,8 @@
     <item>Mediano</item>
     <item>Grande</item>
   </string-array>
+  <!-- Special -->
+  <string name="settings_lang_sys_default">Predefinido do sistema</string>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Contrasinal</string>
   <string name="settings_hint_pin">PIN</string>

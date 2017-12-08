@@ -64,18 +64,6 @@
     <item>Eliminar todas las cuentas</item>
     <item>Restablecer la configuración</item>
   </string-array>
-  <string-array name="settings_entries_lang">
-    <item>Predeterminado por el sistema</item>
-    <item>Inglés</item>
-    <item>Checo</item>
-    <item>Alemán</item>
-    <item>Español</item>
-    <item>Francés</item>
-    <item>Gallego</item>
-    <item>Holandés</item>
-    <item>Polaco</item>
-    <item>Ruso</item>
-  </string-array>
   <string-array name="settings_entries_theme">
     <item>Tema claro</item>
     <item>Tema oscuro</item>
@@ -87,6 +75,8 @@
     <item>Mediano</item>
     <item>Grande</item>
   </string-array>
+  <!-- Special -->
+  <string name="settings_lang_sys_default">Predeterminado por el sistema</string>
   <!-- PasswordPreference -->
   <string name="settings_hint_password">Contraseña</string>
   <string name="settings_hint_pin">PIN</string>

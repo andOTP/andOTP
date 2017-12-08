@@ -77,20 +77,6 @@
         <item>Reset app settings</item>
     </string-array>
 
-    <string-array name="settings_entries_lang">
-        <item>System default</item>
-        <item>English</item>
-        <item>Czech</item>
-        <item>German</item>
-        <item>Spanish</item>
-        <item>French</item>
-        <item>Galician</item>
-        <item>Dutch</item>
-        <item>Polish</item>
-        <item>Russian</item>
-        <item>Chinese Simplified</item>
-    </string-array>
-
     <string-array name="settings_entries_theme">
         <item>Light theme</item>
         <item>Dark theme</item>
@@ -103,6 +89,9 @@
         <item>Medium</item>
         <item>Large</item>
     </string-array>
+
+    <!-- Special -->
+    <string name="settings_lang_sys_default">System default</string>
 
     <!-- PasswordPreference -->
     <string name="settings_hint_password">Password</string>

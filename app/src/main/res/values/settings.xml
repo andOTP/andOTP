@@ -99,6 +99,20 @@
         <item>96dp</item>
     </string-array>
 
+    <string-array name="settings_entries_lang" translatable="false">
+        <item>@string/settings_lang_sys_default</item>
+        <item>English</item>
+        <item>Čeština</item>
+        <item>Deutsch</item>
+        <item>Español</item>
+        <item>Français</item>
+        <item>Galego</item>
+        <item>Nederlands</item>
+        <item>Polski</item>
+        <item>Русский</item>
+        <item>简体中文</item>
+    </string-array>
+
     <!-- Misc -->
     <string-array name="settings_empty_array" translatable="false">
     </string-array>
