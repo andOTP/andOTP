@@ -454,8 +454,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void removeItem(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
+        String label = displayedEntries.get(pos).getLabel();
+        String message = context.getString(R.string.dialog_msg_confirm_delete, label);
+
         builder.setTitle(R.string.dialog_title_remove)
-                .setMessage(R.string.dialog_msg_confirm_delete)
+                .setMessage(message)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

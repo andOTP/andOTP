@@ -65,7 +65,7 @@
     <string name="dialog_title_last_used">Last used</string>
 
     <string name="dialog_msg_auth">Please enter your device credentials to start andOTP.</string>
-    <string name="dialog_msg_confirm_delete">Are you sure you want do remove this account?</string>
+    <string name="dialog_msg_confirm_delete">Are you sure you want do remove the account \"%1$s\"?</string>
 
     <string name="dialog_msg_security_backup_desc">To keep your account information secure this app
         only stores it encrypted. Part of the encryption key used for this is stored in the Android
