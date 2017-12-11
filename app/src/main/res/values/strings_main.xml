@@ -28,6 +28,7 @@
     <string name="label_label">Label</string>
     <string name="label_algorithm">Algorithm</string>
     <string name="label_tags">Tags</string>
+    <string name="label_advanced">Advanced options</string>
 
     <!-- Drawer -->
     <string name="drawer_open">Show tags</string>

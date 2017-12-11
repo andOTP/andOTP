@@ -110,6 +110,7 @@ So make sure you have a **current backup** before switching!
 #### Open-source components used:
 
  * [Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)
+ * [Expandable Layout](https://github.com/AAkira/ExpandableLayout)
  * [LicensesDialog](https://github.com/PSDev/LicensesDialog)
  * [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
  * [OpenPGP API library](https://github.com/open-keychain/openpgp-api)

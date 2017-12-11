@@ -35,6 +35,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
+import com.github.aakira.expandablelayout.ExpandableLinearLayout;
+
 import org.shadowice.flocke.andotp.Activities.MainActivity;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
@@ -127,6 +130,30 @@ public class ManualEntryDialog {
             @Override
             public void onClick(View view) {
                 TagsDialog.show(callingActivity, tagsAdapter, tagsCallable, tagsCallable);
+            }
+        });
+
+        final Button expandButton = inputView.findViewById(R.id.dialog_expand_button);
+        final ExpandableLinearLayout expandLayout = inputView.findViewById(R.id.dialog_expand_layout);
+
+        expandButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                expandLayout.toggle();
+            }
+        });
+
+        expandLayout.setListener(new ExpandableLayoutListenerAdapter() {
+            @Override
+            public void onOpened() {
+                super.onOpened();
+                expandButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_up_accent, 0);
+            }
+
+            @Override
+            public void onClosed() {
+                super.onClosed();
+                expandButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_accent, 0);
             }
         });
 

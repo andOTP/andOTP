@@ -7,6 +7,12 @@
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
+        <name>Expandable Layout</name>
+        <url>https://github.com/AAkira/ExpandableLayout</url>
+        <copyright>Copyright (C) 2015 A.Akira</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
         <name>MaterialProgressBar</name>
         <url>https://github.com/DreaminginCodeZH/MaterialProgressBar</url>
         <copyright>Copyright 2015 Zhang Hai</copyright>

@@ -38,6 +38,7 @@ dependencies {
     compile "com.android.support:design:$supportLibVersion"
     compile "com.android.support:recyclerview-v7:$supportLibVersion"
     compile "com.android.support.constraint:constraint-layout:1.0.2"
+    compile "com.github.aakira:expandable-layout:1.6.0"
     compile "com.journeyapps:zxing-android-embedded:3.5.0"
     compile "com.vanniktech:vntnumberpickerpreference:1.0.0"
     compile "de.psdev.licensesdialog:licensesdialog:1.8.3"
