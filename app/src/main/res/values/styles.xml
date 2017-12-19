@@ -5,6 +5,7 @@
 
     <attr name="colorGithub" format="reference" />
     <attr name="colorPaypal" format="reference" />
+    <attr name="thumbnailBackground" format="reference" />
 
     <!-- General styles -->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -19,6 +20,7 @@
 
         <item name="colorGithub">@color/github_dark</item>
         <item name="colorPaypal">@color/paypal_dark</item>
+        <item name="thumbnailBackground">@android:color/transparent</item>
 
         <item name="cardStyle">@style/CardViewStyle</item>
     </style>
@@ -41,6 +43,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="windowBackground">?android:attr/colorBackground</item>
+        <item name="thumbnailBackground">@android:color/white</item>
 
         <item name="colorGithub">@color/github_light</item>
         <item name="colorPaypal">@color/paypal_light</item>
@@ -60,6 +63,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="windowBackground">@android:color/black</item>
+        <item name="thumbnailBackground">@android:color/white</item>
 
         <item name="colorGithub">@color/github_light</item>
         <item name="colorPaypal">@color/paypal_light</item>
