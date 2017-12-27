@@ -83,13 +83,16 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         this.tagsFilterAdapter = tagsFilterAdapter;
         this.settings = new Settings(context);
         this.taskHandler = new Handler();
-
-        loadEntries();
+        this.entries = new ArrayList<>();
     }
 
     @Override
     public int getItemCount() {
         return displayedEntries.size();
+    }
+
+    public ArrayList<Entry> getEntries() {
+        return entries;
     }
 
     public void addEntry(Entry e) {

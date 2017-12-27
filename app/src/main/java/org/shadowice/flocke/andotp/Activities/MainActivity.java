@@ -150,6 +150,23 @@ public class MainActivity extends BaseActivity
             settings.setSortMode(mode);
     }
 
+    private HashMap<String, Boolean> createTagsMap(ArrayList<Entry> entries) {
+        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+
+        for(Entry entry : entries) {
+            for(String tag : entry.getTags())
+                tagsHashMap.put(tag, settings.getTagToggle(tag));
+        }
+
+        return tagsHashMap;
+    }
+
+    private void populateAdapter() {
+        adapter.loadEntries();
+        tagsDrawerAdapter.setTags(createTagsMap(adapter.getEntries()));
+        adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+    }
+
     // Initialize the main application
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,13 +185,14 @@ public class MainActivity extends BaseActivity
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         settings.registerPreferenceChangeListener(this);
 
-        if (savedInstanceState == null)
+        if (settings.getAuthMethod() != Settings.AuthMethod.NONE && savedInstanceState == null)
             requireAuthentication = true;
 
         setBroadcastCallback(new BroadcastReceivedCallback() {
             @Override
             public void onReceivedScreenOff() {
-                requireAuthentication = true;
+                if (settings.getAuthMethod() != Settings.AuthMethod.NONE)
+                    requireAuthentication = true;
             }
         });
 
@@ -203,16 +221,10 @@ public class MainActivity extends BaseActivity
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
 
-        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
-        for(Entry entry : DatabaseHelper.loadDatabase(this)) {
-            for(String tag : entry.getTags())
-                tagsHashMap.put(tag, settings.getTagToggle(tag));
-        }
-        tagsDrawerAdapter = new TagsAdapter(this, tagsHashMap);
-
+        tagsDrawerAdapter = new TagsAdapter(this, new HashMap<String, Boolean>());
         adapter = new EntriesCardAdapter(this, tagsDrawerAdapter);
-        recList.setAdapter(adapter);
 
+        recList.setAdapter(adapter);
         recList.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -292,9 +304,11 @@ public class MainActivity extends BaseActivity
     public void onResume() {
         super.onResume();
 
-        if (requireAuthentication) {
+        if (settings.getAuthMethod() != Settings.AuthMethod.NONE && requireAuthentication) {
             requireAuthentication = false;
             authenticate();
+        } else {
+            populateAdapter();
         }
 
         startUpdater();
@@ -360,6 +374,7 @@ public class MainActivity extends BaseActivity
                 }
             } else {
                 requireAuthentication = false;
+                populateAdapter();
             }
         }
     }
