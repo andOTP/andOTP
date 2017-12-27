@@ -62,6 +62,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 public class BackupActivity extends BaseActivity {
     private final static int INTENT_OPEN_DOCUMENT_PLAIN = 200;
@@ -87,6 +88,10 @@ public class BackupActivity extends BaseActivity {
     private static final String DEFAULT_BACKUP_MIMETYPE_CRYPT   = "binary/aes";
     private static final String DEFAULT_BACKUP_MIMETYPE_PGP     = "application/pgp-encrypted";
 
+    public static final String ENCRYPTION_KEY_PARAM = "encryption_key";
+
+    private SecretKey encryptionKey = null;
+
     private OpenPgpServiceConnection pgpServiceConnection;
     private long pgpKeyId;
 
@@ -110,6 +115,13 @@ public class BackupActivity extends BaseActivity {
         ViewStub stub = findViewById(R.id.container_stub);
         stub.setLayoutResource(R.layout.content_backup);
         View v = stub.inflate();
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            byte[] keyMaterial = extras.getByteArray(ENCRYPTION_KEY_PARAM);
+            if (keyMaterial != null)
+                encryptionKey = new SecretKeySpec(keyMaterial, 0, keyMaterial.length, "AES");
+        }
 
         // Plain-text
 
@@ -367,13 +379,13 @@ public class BackupActivity extends BaseActivity {
 
         if (entries.size() > 0) {
             if (! replace.isChecked()) {
-                ArrayList<Entry> currentEntries = DatabaseHelper.loadDatabase(this);
+                ArrayList<Entry> currentEntries = DatabaseHelper.loadDatabase(this, encryptionKey);
 
                 entries.removeAll(currentEntries);
                 entries.addAll(currentEntries);
             }
 
-            if (DatabaseHelper.saveDatabase(this, entries)) {
+            if (DatabaseHelper.saveDatabase(this, entries, encryptionKey)) {
                 reload = true;
                 Toast.makeText(this, R.string.backup_toast_import_success, Toast.LENGTH_LONG).show();
                 finishWithResult();
@@ -399,7 +411,7 @@ public class BackupActivity extends BaseActivity {
 
     private void doBackupPlain(Uri uri) {
         if (Tools.isExternalStorageWritable()) {
-            ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this);
+            ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this, encryptionKey);
 
             if (FileHelper.writeStringToFile(this, uri, DatabaseHelper.entriesToString(entries)))
                 Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
@@ -472,7 +484,7 @@ public class BackupActivity extends BaseActivity {
 
         if (! password.isEmpty()) {
             if (Tools.isExternalStorageWritable()) {
-                ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this);
+                ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this, encryptionKey);
                 String plain = DatabaseHelper.entriesToString(entries);
 
                 boolean success = true;
@@ -534,7 +546,7 @@ public class BackupActivity extends BaseActivity {
     }
 
     private void backupEncryptedWithPGP(Uri uri, Intent encryptIntent) {
-        ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this);
+        ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this, encryptionKey);
         String plainJSON = DatabaseHelper.entriesToString(entries);
 
         if (encryptIntent == null) {

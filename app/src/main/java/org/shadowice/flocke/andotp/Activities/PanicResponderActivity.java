@@ -27,11 +27,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
-import org.shadowice.flocke.andotp.Database.Entry;
-import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 public class PanicResponderActivity extends Activity {
@@ -48,7 +45,7 @@ public class PanicResponderActivity extends Activity {
             Set<String> response = settings.getPanicResponse();
 
             if (response.contains("accounts"))
-                DatabaseHelper.saveDatabase(this, new ArrayList<Entry>());
+                // TODO: wipe database by deleting the files
 
             if (response.contains("settings"))
                 settings.clear(true);

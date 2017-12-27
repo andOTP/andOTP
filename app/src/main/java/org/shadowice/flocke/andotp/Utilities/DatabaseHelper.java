@@ -34,19 +34,15 @@ import java.util.ArrayList;
 import javax.crypto.SecretKey;
 
 public class DatabaseHelper {
-    public static final String KEY_FILE = "otp.key";
     public static final String SETTINGS_FILE = "secrets.dat";
 
     /* Database functions */
 
-    public static boolean saveDatabase(Context context, ArrayList<Entry> entries) {
+    public static boolean saveDatabase(Context context, ArrayList<Entry> entries, SecretKey encryptionKey) {
         String jsonString = entriesToString(entries);
 
         try {
-            byte[] data = jsonString.getBytes();
-
-            SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
-            data = EncryptionHelper.encrypt(key, data);
+            byte[] data = EncryptionHelper.encrypt(encryptionKey, jsonString.getBytes());
 
             FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
 
@@ -58,14 +54,12 @@ public class DatabaseHelper {
         return true;
     }
 
-    public static ArrayList<Entry> loadDatabase(Context context){
+    public static ArrayList<Entry> loadDatabase(Context context, SecretKey encryptionKey){
         ArrayList<Entry> entries = new ArrayList<>();
 
         try {
             byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
-
-            SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
-            data = EncryptionHelper.decrypt(key, data);
+            data = EncryptionHelper.decrypt(encryptionKey, data);
 
             entries = stringToEntries(new String(data));
         } catch (Exception error) {

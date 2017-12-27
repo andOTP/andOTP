@@ -58,7 +58,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
@@ -67,13 +67,20 @@ import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCal
 import org.shadowice.flocke.andotp.View.ManualEntryDialog;
 import org.shadowice.flocke.andotp.View.TagsAdapter;
 
+import java.io.File;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.crypto.SecretKey;
 
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
 public class MainActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
+    public static final String KEY_FILE = "otp.key";
+
     private static final int INTENT_INTERNAL_AUTHENTICATE   = 100;
     private static final int INTENT_INTERNAL_SETTINGS       = 101;
     private static final int INTENT_INTERNAL_BACKUP         = 102;
@@ -159,6 +166,15 @@ public class MainActivity extends BaseActivity
         }
 
         return tagsHashMap;
+    }
+
+    private SecretKey loadEncryptionKeyFromKeyStore() {
+        try {
+            return KeyStoreHelper.loadOrGenerateWrappedKey(this, new File(getFilesDir() + "/" + KEY_FILE));
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private void populateAdapter() {
@@ -308,6 +324,7 @@ public class MainActivity extends BaseActivity
             requireAuthentication = false;
             authenticate();
         } else {
+            adapter.setEncryptionKey(loadEncryptionKeyFromKeyStore());
             populateAdapter();
         }
 
@@ -374,6 +391,8 @@ public class MainActivity extends BaseActivity
                 }
             } else {
                 requireAuthentication = false;
+
+                adapter.setEncryptionKey(loadEncryptionKeyFromKeyStore());
                 populateAdapter();
             }
         }
@@ -453,6 +472,7 @@ public class MainActivity extends BaseActivity
 
         if (id == R.id.action_backup) {
             Intent backupIntent = new Intent(this, BackupActivity.class);
+            backupIntent.putExtra(BackupActivity.ENCRYPTION_KEY_PARAM, adapter.getEncryptionKey().getEncoded());
             startActivityForResult(backupIntent, INTENT_INTERNAL_BACKUP);
         } else if (id == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
