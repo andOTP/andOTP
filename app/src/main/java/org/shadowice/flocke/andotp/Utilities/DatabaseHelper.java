@@ -24,7 +24,6 @@
 package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
-import android.net.Uri;
 
 import org.json.JSONArray;
 import org.shadowice.flocke.andotp.Database.Entry;
@@ -107,13 +106,5 @@ public class DatabaseHelper {
         }
 
         return entries;
-    }
-
-    /* Export functions */
-
-    public static boolean exportAsJSON(Context context, Uri file) {
-        ArrayList<Entry> entries = loadDatabase(context);
-
-        return FileHelper.writeStringToFile(context, file, entriesToString(entries));
     }
 }

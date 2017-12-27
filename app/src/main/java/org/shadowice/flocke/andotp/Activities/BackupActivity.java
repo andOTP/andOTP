@@ -399,9 +399,9 @@ public class BackupActivity extends BaseActivity {
 
     private void doBackupPlain(Uri uri) {
         if (Tools.isExternalStorageWritable()) {
-            boolean success = DatabaseHelper.exportAsJSON(this, uri);
+            ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this);
 
-            if (success)
+            if (FileHelper.writeStringToFile(this, uri, DatabaseHelper.entriesToString(entries)))
                 Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(this, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
