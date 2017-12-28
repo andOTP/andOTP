@@ -101,7 +101,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             @Override
             public void onClick(View view) {
                 if (callback != null)
-                    callback.onCopyButtonClicked(value.getText().toString(), getAdapterPosition());
+                    callback.onCopyButtonClicked(value.getTag().toString(), getAdapterPosition());
             }
         });
 
@@ -115,6 +115,8 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         this.label.setText(label);
         value.setText(tokenFormatted);
+        // save the unformatted token to the tag of this TextView for copy/paste
+        value.setTag(token);
 
         StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i < tags.size(); i++) {
