@@ -53,6 +53,7 @@ import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.FileHelper;
+import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.Tools;
 
 import java.io.ByteArrayInputStream;
@@ -62,7 +63,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 
 public class BackupActivity extends BaseActivity {
     private final static int INTENT_OPEN_DOCUMENT_PLAIN = 200;
@@ -116,12 +116,7 @@ public class BackupActivity extends BaseActivity {
         stub.setLayoutResource(R.layout.content_backup);
         View v = stub.inflate();
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            byte[] keyMaterial = extras.getByteArray(ENCRYPTION_KEY_PARAM);
-            if (keyMaterial != null)
-                encryptionKey = new SecretKeySpec(keyMaterial, 0, keyMaterial.length, "AES");
-        }
+        encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this);
 
         // Plain-text
 

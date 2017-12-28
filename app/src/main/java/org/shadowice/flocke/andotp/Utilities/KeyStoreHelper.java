@@ -28,6 +28,8 @@ import android.security.KeyPairGeneratorSpec;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 
+import org.shadowice.flocke.andotp.R;
+
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -45,6 +47,8 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.security.auth.x500.X500Principal;
 
 public class KeyStoreHelper {
+    public static final String KEY_FILE = "otp.key";
+
     private final static int KEY_LENGTH = 16;
 
     public static KeyPair loadOrGenerateAsymmetricKeyPair(Context context, String alias)
@@ -112,5 +116,17 @@ public class KeyStoreHelper {
         final byte[] wrapped = FileHelper.readFileToBytes(keyFile);
 
         return wrapper.unwrap(wrapped);
+    }
+
+    public static SecretKey loadEncryptionKeyFromKeyStore(Context context) {
+        try {
+            return loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+
+            UIHelper.showGenericDialog(context, R.string.dialog_title_keystore_error, R.string.dialog_msg_keystore_error);
+
+            return null;
+        }
     }
 }
