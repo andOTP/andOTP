@@ -29,7 +29,11 @@ import android.os.Bundle;
 
 import org.shadowice.flocke.andotp.Utilities.Settings;
 
+import java.io.File;
 import java.util.Set;
+
+import static org.shadowice.flocke.andotp.Utilities.DatabaseHelper.SETTINGS_FILE;
+import static org.shadowice.flocke.andotp.Utilities.KeyStoreHelper.KEY_FILE;
 
 public class PanicResponderActivity extends Activity {
     public static final String PANIC_TRIGGER_ACTION = "info.guardianproject.panic.action.TRIGGER";
@@ -44,8 +48,13 @@ public class PanicResponderActivity extends Activity {
 
             Set<String> response = settings.getPanicResponse();
 
-            if (response.contains("accounts"))
-                // TODO: wipe database by deleting the files
+            if (response.contains("accounts")) {
+                File database = new File(getFilesDir() + "/" + SETTINGS_FILE);
+                File key = new File(getFilesDir() + "/" + KEY_FILE);
+
+                database.delete();
+                key.delete();
+            }
 
             if (response.contains("settings"))
                 settings.clear(true);
