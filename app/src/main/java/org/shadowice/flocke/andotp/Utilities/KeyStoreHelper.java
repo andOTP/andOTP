@@ -49,6 +49,8 @@ import javax.security.auth.x500.X500Principal;
 public class KeyStoreHelper {
     public static final String KEY_FILE = "otp.key";
 
+    public static final String KEYSTORE_ALIAS_WRAPPING = "settings";
+
     private final static int KEY_LENGTH = 16;
 
     public static KeyPair loadOrGenerateAsymmetricKeyPair(Context context, String alias)
@@ -97,7 +99,7 @@ public class KeyStoreHelper {
      */
     public static SecretKey loadOrGenerateWrappedKey(Context context, File keyFile)
             throws GeneralSecurityException, IOException {
-        final SecretKeyWrapper wrapper = new SecretKeyWrapper(context, "settings");
+        final SecretKeyWrapper wrapper = new SecretKeyWrapper(context, KEYSTORE_ALIAS_WRAPPING);
 
         // Generate secret key if none exists
         if (!keyFile.exists()) {

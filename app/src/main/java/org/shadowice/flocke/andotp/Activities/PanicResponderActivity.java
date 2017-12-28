@@ -30,9 +30,13 @@ import android.os.Bundle;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 
 import java.io.File;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.security.KeyStore;
 import java.util.Set;
 
 import static org.shadowice.flocke.andotp.Utilities.DatabaseHelper.SETTINGS_FILE;
+import static org.shadowice.flocke.andotp.Utilities.KeyStoreHelper.KEYSTORE_ALIAS_WRAPPING;
 import static org.shadowice.flocke.andotp.Utilities.KeyStoreHelper.KEY_FILE;
 
 public class PanicResponderActivity extends Activity {
@@ -54,6 +58,17 @@ public class PanicResponderActivity extends Activity {
 
                 database.delete();
                 key.delete();
+
+                try {
+                    final KeyStore keyStore = java.security.KeyStore.getInstance("AndroidKeyStore");
+                    keyStore.load(null);
+
+                    if (keyStore.containsAlias(KEYSTORE_ALIAS_WRAPPING)) {
+                        keyStore.deleteEntry(KEYSTORE_ALIAS_WRAPPING);
+                    }
+                } catch (GeneralSecurityException | IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             if (response.contains("settings"))
