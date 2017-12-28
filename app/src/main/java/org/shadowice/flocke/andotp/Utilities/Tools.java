@@ -80,4 +80,16 @@ public class Tools {
             return Resources.getSystem().getConfiguration().locale;
         }
     }
+
+    public static String formatToken(String s, int chunkSize) {
+        StringBuilder ret = new StringBuilder("");
+        final int len = s.length();
+        int index = len;
+        while (index > 0) {
+            ret.insert(0, s.substring(Math.max(index - chunkSize, 0), index));
+            ret.insert(0, " ");
+            index = index - chunkSize;
+        }
+        return ret.toString().trim();
+    }
 }

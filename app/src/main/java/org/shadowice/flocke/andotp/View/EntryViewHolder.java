@@ -111,8 +111,10 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     public void updateValues(String label, String token, List<String> tags, EntryThumbnail.EntryThumbnails thumbnail, boolean isVisible) {
         Settings settings = new Settings(context);
 
+        final String tokenFormatted = Tools.formatToken(token, 3);
+
         this.label.setText(label);
-        value.setText(token);
+        value.setText(tokenFormatted);
 
         StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i < tags.size(); i++) {
