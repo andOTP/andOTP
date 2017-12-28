@@ -61,6 +61,7 @@ import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
+import org.shadowice.flocke.andotp.Utilities.UIHelper;
 import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
 import org.shadowice.flocke.andotp.View.FloatingActionMenu;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCallback;
@@ -173,6 +174,9 @@ public class MainActivity extends BaseActivity
             return KeyStoreHelper.loadOrGenerateWrappedKey(this, new File(getFilesDir() + "/" + KEY_FILE));
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
+
+            UIHelper.showGenericDialog(this, R.string.dialog_title_keystore_error, R.string.dialog_msg_keystore_error);
+
             return null;
         }
     }

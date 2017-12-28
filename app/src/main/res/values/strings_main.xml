@@ -63,6 +63,7 @@
     <string name="dialog_title_rename">Rename</string>
     <string name="dialog_title_security_backup">Security and Backups</string>
     <string name="dialog_title_last_used">Last used</string>
+    <string name="dialog_title_keystore_error">KeyStore error</string>
 
     <string name="dialog_msg_auth">Please enter your device credentials to start andOTP.</string>
     <string name="dialog_msg_confirm_delete">Are you sure you want do remove the account \"%1$s\"?</string>
@@ -83,4 +84,6 @@
     <string name="dialog_msg_last_used">In order for andOTP to recognize which token was used last
         you have to have \"tap to reveal\" enabled or use the copy button.\n\nThis message will not
         be shown again.</string>
+    <string name="dialog_msg_keystore_error">Failed to load the encryption key from the KeyStore.
+        You won\'t be able to use this app. Please contact the developer and provide a logcat!</string>
 </resources>
