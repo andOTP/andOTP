@@ -42,15 +42,12 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 import javax.security.auth.x500.X500Principal;
 
 public class KeyStoreHelper {
     public static final String KEY_FILE = "otp.key";
 
     public static final String KEYSTORE_ALIAS_WRAPPING = "settings";
-
-    private final static int KEY_LENGTH = 16;
 
     public static KeyPair loadOrGenerateAsymmetricKeyPair(Context context, String alias)
             throws GeneralSecurityException, IOException {
@@ -91,42 +88,25 @@ public class KeyStoreHelper {
         return new KeyPair(entry.getCertificate().getPublicKey(), entry.getPrivateKey());
     }
 
-    /**
-     * Load our symmetric secret key.
-     * The symmetric secret key is stored securely on disk by wrapping
-     * it with a public/private key pair, possibly backed by hardware.
-     */
-    public static SecretKey loadOrGenerateWrappedKey(Context context, File keyFile)
-            throws GeneralSecurityException, IOException {
-        final SecretKeyWrapper wrapper = new SecretKeyWrapper(context, KEYSTORE_ALIAS_WRAPPING);
-
-        // Generate secret key if none exists
-        if (!keyFile.exists()) {
-            final byte[] raw = EncryptionHelper.generateRandom(KEY_LENGTH);
-
-            final SecretKey key = new SecretKeySpec(raw, "AES");
-            final byte[] wrapped = wrapper.wrap(key);
-
-
-            FileHelper.writeBytesToFile(keyFile, wrapped);
-        }
-
-        // Even if we just generated the key, always read it back to ensure we
-        // can read it successfully.
-        final byte[] wrapped = FileHelper.readFileToBytes(keyFile);
-
-        return wrapper.unwrap(wrapped);
-    }
-
     public static SecretKey loadEncryptionKeyFromKeyStore(Context context) {
+        KeyPair pair = null;
+
         try {
-            return loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
+            pair = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, KEYSTORE_ALIAS_WRAPPING);
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
-
-            UIHelper.showGenericDialog(context, R.string.dialog_title_keystore_error, R.string.dialog_msg_keystore_error);
-
-            return null;
+            UIHelper.showGenericDialog(context, R.string.dialog_title_encryption_error, R.string.dialog_msg_keystore_error);
         }
+
+        if (pair != null) {
+            try {
+                return EncryptionHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE), pair);
+            } catch (GeneralSecurityException | IOException e) {
+                e.printStackTrace();
+                UIHelper.showGenericDialog(context, R.string.dialog_title_encryption_error, R.string.dialog_msg_unwrap_error);
+            }
+        }
+
+        return null;
     }
 }

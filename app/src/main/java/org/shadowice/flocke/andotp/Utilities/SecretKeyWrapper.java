@@ -17,7 +17,6 @@
 package org.shadowice.flocke.andotp.Utilities;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -48,10 +47,10 @@ public class SecretKeyWrapper {
      * If no pair with that alias exists, it will be generated.
      */
     @SuppressLint("GetInstance")
-    public SecretKeyWrapper(Context context, String alias)
+    public SecretKeyWrapper(KeyPair keyPair)
             throws GeneralSecurityException, IOException {
         mCipher = Cipher.getInstance(ALGORITHM_ASYMMETRIC);
-        mPair = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, alias);
+        mPair = keyPair;
     }
 
     /**

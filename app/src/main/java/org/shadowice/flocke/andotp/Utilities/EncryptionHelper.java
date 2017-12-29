@@ -23,10 +23,16 @@
 
 package org.shadowice.flocke.andotp.Utilities;
 
+import android.content.Context;
+
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.security.GeneralSecurityException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.KeyPair;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
@@ -51,6 +57,7 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.ALGORITHM_ASYMMETR
 import static org.shadowice.flocke.andotp.Utilities.Constants.ALGORITHM_SYMMETRIC;
 
 public class EncryptionHelper {
+    private final static int KEY_LENGTH = 16;
     private final static int IV_LENGTH = 12;
 
     public final static int PBKDF2_MIN_ITERATIONS = 1000;
@@ -150,5 +157,32 @@ public class EncryptionHelper {
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
 
         return cipher.doFinal(cipherText);
+    }
+
+    /**
+     * Load our symmetric secret key.
+     * The symmetric secret key is stored securely on disk by wrapping
+     * it with a public/private key pair, possibly backed by hardware.
+     */
+    public static SecretKey loadOrGenerateWrappedKey(Context context, File keyFile, KeyPair keyPair)
+            throws GeneralSecurityException, IOException {
+        final SecretKeyWrapper wrapper = new SecretKeyWrapper(keyPair);
+
+        // Generate secret key if none exists
+        if (!keyFile.exists()) {
+            final byte[] raw = EncryptionHelper.generateRandom(KEY_LENGTH);
+
+            final SecretKey key = new SecretKeySpec(raw, "AES");
+            final byte[] wrapped = wrapper.wrap(key);
+
+
+            FileHelper.writeBytesToFile(keyFile, wrapped);
+        }
+
+        // Even if we just generated the key, always read it back to ensure we
+        // can read it successfully.
+        final byte[] wrapped = FileHelper.readFileToBytes(keyFile);
+
+        return wrapper.unwrap(wrapped);
     }
 }
