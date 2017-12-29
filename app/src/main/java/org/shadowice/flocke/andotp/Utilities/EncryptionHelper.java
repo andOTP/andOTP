@@ -34,8 +34,8 @@ import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -53,12 +53,19 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.ALGORITHM_SYMMETRI
 public class EncryptionHelper {
     private final static int IV_LENGTH = 12;
 
-    private final static int PBKDF2_ITERATIONS = 1000;
+    public final static int PBKDF2_MIN_ITERATIONS = 1000;
+    public final static int PBKDF2_MAX_ITERATIONS = 5000;
+    public final static int PBKDF2_OLD_DEFAULT_ITERATIONS = 1000;
     private final static int PBKDF2_LENGTH = 512;
 
     public static class PBKDF2Credentials {
         public byte[] password;
         public byte[] seed;
+    }
+
+    public static int generateRandomIterations() {
+        Random rand = new Random();
+        return rand.nextInt((PBKDF2_MAX_ITERATIONS - PBKDF2_MIN_ITERATIONS) + 1) + PBKDF2_MIN_ITERATIONS;
     }
 
     public static byte[] generateRandom(int length) {
@@ -68,10 +75,10 @@ public class EncryptionHelper {
         return raw;
     }
 
-    public static PBKDF2Credentials generatePBKDF2Credentials(String password, byte[] salt)
+    public static PBKDF2Credentials generatePBKDF2Credentials(String password, byte[] salt, int iter)
         throws NoSuchAlgorithmException, InvalidKeySpecException {
         SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-        KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, PBKDF2_ITERATIONS, PBKDF2_LENGTH);
+        KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, iter, PBKDF2_LENGTH);
 
         byte[] array = secretKeyFactory.generateSecret(keySpec).getEncoded();
 

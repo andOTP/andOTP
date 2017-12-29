@@ -42,6 +42,7 @@ import java.util.Locale;
 import java.util.Set;
 
 import static org.shadowice.flocke.andotp.Preferences.PasswordEncryptedPreference.KEY_ALIAS;
+import static org.shadowice.flocke.andotp.Utilities.EncryptionHelper.PBKDF2_OLD_DEFAULT_ITERATIONS;
 
 public class Settings {
     private static final String DEFAULT_BACKUP_FOLDER = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "andOTP";
@@ -77,8 +78,10 @@ public class Settings {
             String plainPassword = getAuthPassword();
 
             try {
-                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, getSalt());
+                int iter = EncryptionHelper.generateRandomIterations();
+                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, getSalt(), iter);
                 setString(R.string.settings_key_auth_password_pbkdf2, Base64.encodeToString(credentials.password, Base64.URL_SAFE));
+                setInt(R.string.settings_key_auth_password_iter, iter);
             } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
                 Toast.makeText(context, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
                 e.printStackTrace();
@@ -91,8 +94,10 @@ public class Settings {
             String plainPIN = getAuthPIN();
 
             try {
-                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPIN, getSalt());
+                int iter = EncryptionHelper.generateRandomIterations();
+                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPIN, getSalt(), iter);
                 setString(R.string.settings_key_auth_pin_pbkdf2, Base64.encodeToString(credentials.password, Base64.URL_SAFE));
+                setInt(R.string.settings_key_auth_pin_iter, iter);
             } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
                 Toast.makeText(context, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
                 e.printStackTrace();
@@ -141,6 +146,10 @@ public class Settings {
         return settings.getInt(getResString(keyId), getResInt(defaultId));
     }
 
+    private int getIntValue(int keyId, int defaultValue) {
+        return settings.getInt(getResString(keyId), defaultValue);
+    }
+
     private long getLong(int keyId, long defaultValue) {
         return settings.getLong(getResString(keyId), defaultValue);
     }
@@ -152,6 +161,12 @@ public class Settings {
     private void setBoolean(int keyId, boolean value) {
         settings.edit()
                 .putBoolean(getResString(keyId), value)
+                .apply();
+    }
+
+    private void setInt(int keyId, int value) {
+        settings.edit()
+                .putInt(getResString(keyId), value)
                 .apply();
     }
 
@@ -277,6 +292,22 @@ public class Settings {
         } else {
             return Base64.decode(storedSalt, Base64.URL_SAFE);
         }
+    }
+
+    public int getIterations(AuthMethod method) {
+        if (method == AuthMethod.PASSWORD)
+            return getIntValue(R.string.settings_key_auth_password_iter, PBKDF2_OLD_DEFAULT_ITERATIONS);
+        else if (method == AuthMethod.PIN)
+            return getIntValue(R.string.settings_key_auth_pin_iter, PBKDF2_OLD_DEFAULT_ITERATIONS);
+        else
+            return 0;
+    }
+
+    public void setIterations(AuthMethod method, int value) {
+        if (method == AuthMethod.PASSWORD)
+            setInt(R.string.settings_key_auth_password_iter, value);
+        else if (method == AuthMethod.PIN)
+            setInt(R.string.settings_key_auth_pin_iter, value);
     }
 
     public Set<String> getPanicResponse() {

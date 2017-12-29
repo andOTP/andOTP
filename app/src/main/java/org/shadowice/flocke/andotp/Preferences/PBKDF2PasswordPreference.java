@@ -81,8 +81,10 @@ public class PBKDF2PasswordPreference extends DialogPreference
             persistString(value);
         } else {
             try {
-                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(value, settings.getSalt());
+                int iter = EncryptionHelper.generateRandomIterations();
+                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(value, settings.getSalt(), iter);
                 persistString(Base64.encodeToString(credentials.password, Base64.URL_SAFE));
+                settings.setIterations(Settings.AuthMethod.valueOf(mode.name()), iter);
             } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
                 e.printStackTrace();
             }

@@ -125,7 +125,7 @@ public class AuthenticateActivity extends ThemedActivity
         if (actionId == EditorInfo.IME_ACTION_DONE) {
             if (! oldPassword) {
                 try {
-                    EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(v.getText().toString(), settings.getSalt());
+                    EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(v.getText().toString(), settings.getSalt(), settings.getIterations(authMethod));
                     byte[] passwordArray = Base64.decode(password, Base64.URL_SAFE);
 
                     if (Arrays.equals(passwordArray, credentials.password)) {
@@ -143,13 +143,16 @@ public class AuthenticateActivity extends ThemedActivity
 
                 if (hashedPassword.equals(password)) {
                     try {
-                        EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, settings.getSalt());
+                        int iter = EncryptionHelper.generateRandomIterations();
+                        EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, settings.getSalt(), iter);
                         String base64 = Base64.encodeToString(credentials.password, Base64.URL_SAFE);
 
                         if (authMethod == AuthMethod.PASSWORD)
                             settings.setAuthPasswordPBKDF2(base64);
                         else if (authMethod == AuthMethod.PIN)
                             settings.setAuthPINPBKDF2(base64);
+
+                        settings.setIterations(authMethod, iter);
                     } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
                         Toast.makeText(this, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
                         e.printStackTrace();
