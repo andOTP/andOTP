@@ -52,6 +52,8 @@ import static org.shadowice.flocke.andotp.Utilities.Settings.AuthMethod;
 
 public class AuthenticateActivity extends ThemedActivity
     implements EditText.OnEditorActionListener {
+    public static final String EXTRA_NAME_SEED = "credential_seed";
+
     private String password;
 
     AuthMethod authMethod;
@@ -88,7 +90,7 @@ public class AuthenticateActivity extends ThemedActivity
 
             if (password.isEmpty()) {
                 Toast.makeText(this, R.string.auth_toast_password_missing, Toast.LENGTH_LONG).show();
-                finishWithResult(true);
+                finishWithResult(true, null);
             } else {
                 passwordLabel.setText(R.string.auth_msg_password);
                 passwordLayout.setHint(getString(R.string.auth_hint_password));
@@ -104,14 +106,14 @@ public class AuthenticateActivity extends ThemedActivity
 
             if (password.isEmpty()) {
                 Toast.makeText(this, R.string.auth_toast_pin_missing, Toast.LENGTH_LONG).show();
-                finishWithResult(true);
+                finishWithResult(true, null);
             } else {
                 passwordLabel.setText(R.string.auth_msg_pin);
                 passwordLayout.setHint(getString(R.string.auth_hint_pin));
                 passwordInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
             }
         } else {
-            finishWithResult(true);
+            finishWithResult(true, null);
         }
 
         passwordInput.setTransformationMethod(new PasswordTransformationMethod());
@@ -129,19 +131,21 @@ public class AuthenticateActivity extends ThemedActivity
                     byte[] passwordArray = Base64.decode(password, Base64.URL_SAFE);
 
                     if (Arrays.equals(passwordArray, credentials.password)) {
-                        finishWithResult(true);
+                        finishWithResult(true, credentials.seed);
                     } else {
-                        finishWithResult(false);
+                        finishWithResult(false, null);
                     }
                 } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
                     e.printStackTrace();
-                    finishWithResult(false);
+                    finishWithResult(false, null);
                 }
             } else {
                 String plainPassword = v.getText().toString();
                 String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(plainPassword)));
 
                 if (hashedPassword.equals(password)) {
+                    byte[] seed = null;
+
                     try {
                         int iter = EncryptionHelper.generateRandomIterations();
                         EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, settings.getSalt(), iter);
@@ -153,6 +157,8 @@ public class AuthenticateActivity extends ThemedActivity
                             settings.setAuthPINPBKDF2(base64);
 
                         settings.setIterations(authMethod, iter);
+
+                        seed = credentials.seed;
                     } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
                         Toast.makeText(this, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
                         e.printStackTrace();
@@ -163,9 +169,9 @@ public class AuthenticateActivity extends ThemedActivity
                     else if (authMethod == AuthMethod.PIN)
                         settings.removeAuthPINHash();
 
-                    finishWithResult(true);
+                    finishWithResult(true, seed);
                 } else {
-                    finishWithResult(false);
+                    finishWithResult(false, null);
                 }
             }
 
@@ -176,8 +182,11 @@ public class AuthenticateActivity extends ThemedActivity
     }
 
     // End with a result
-    public void finishWithResult(boolean success) {
+    public void finishWithResult(boolean success, byte[] seed) {
         Intent data = new Intent();
+
+        if (seed != null)
+            data.putExtra(EXTRA_NAME_SEED, seed);
 
         if (success)
             setResult(RESULT_OK, data);
@@ -188,7 +197,7 @@ public class AuthenticateActivity extends ThemedActivity
     // Go back to the main activity
     @Override
     public void onBackPressed() {
-        finishWithResult(false);
+        finishWithResult(false, null);
         super.onBackPressed();
     }
 }

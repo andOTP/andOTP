@@ -70,6 +70,7 @@ import org.shadowice.flocke.andotp.View.TagsAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.EXTRA_NAME_SEED;
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
 public class MainActivity extends BaseActivity
@@ -375,6 +376,8 @@ public class MainActivity extends BaseActivity
                 }
             } else {
                 requireAuthentication = false;
+
+                byte[] credentialSeed = intent.getByteArrayExtra(EXTRA_NAME_SEED);
 
                 adapter.setEncryptionKey(KeyStoreHelper.loadEncryptionKeyFromKeyStore(this));
                 populateAdapter();
