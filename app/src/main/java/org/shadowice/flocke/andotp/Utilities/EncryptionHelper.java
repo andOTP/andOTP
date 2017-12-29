@@ -32,6 +32,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
@@ -39,14 +42,47 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class EncryptionHelper {
-    private final static String ALGORITHM_SYMMETRIC = "AES/GCM/NoPadding";
-    private final static String ALGORITHM_ASYMMETRIC = "RSA/ECB/PKCS1Padding";
+import static org.shadowice.flocke.andotp.Utilities.Constants.ALGORITHM_ASYMMETRIC;
+import static org.shadowice.flocke.andotp.Utilities.Constants.ALGORITHM_SYMMETRIC;
 
+public class EncryptionHelper {
     private final static int IV_LENGTH = 12;
+
+    private final static int PBKDF2_ITERATIONS = 1000;
+    private final static int PBKDF2_LENGTH = 512;
+
+    public static class PBKDF2Credentials {
+        public byte[] password;
+        public byte[] seed;
+    }
+
+    public static byte[] generateRandom(int length) {
+        final byte[] raw = new byte[length];
+        new SecureRandom().nextBytes(raw);
+
+        return raw;
+    }
+
+    public static PBKDF2Credentials generatePBKDF2Credentials(String password, byte[] salt)
+        throws NoSuchAlgorithmException, InvalidKeySpecException {
+        SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+        KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, PBKDF2_ITERATIONS, PBKDF2_LENGTH);
+
+        byte[] array = secretKeyFactory.generateSecret(keySpec).getEncoded();
+
+        int halfPoint = array.length / 2;
+
+        PBKDF2Credentials credentials = new PBKDF2Credentials();
+        credentials.password = Arrays.copyOfRange(array, halfPoint, array.length);
+        credentials.seed = Arrays.copyOfRange(array, 0, halfPoint - 1);
+
+        return credentials;
+    }
 
     public static SecretKey generateSymmetricKeyFromPassword(String password)
             throws NoSuchAlgorithmException {

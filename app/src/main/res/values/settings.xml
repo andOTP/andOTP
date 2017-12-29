@@ -8,8 +8,11 @@
     <string name="settings_key_auth" translatable="false">pref_auth</string>
     <string name="settings_key_auth_password" translatable="false">pref_auth_password</string>
     <string name="settings_key_auth_password_hash" translatable="false">pref_auth_password_hash</string>
+    <string name="settings_key_auth_password_pbkdf2" translatable="false">pref_auth_password_pbkdf2</string>
     <string name="settings_key_auth_pin" translatable="false">pref_auth_pin</string>
     <string name="settings_key_auth_pin_hash" translatable="false">pref_auth_pin_hash</string>
+    <string name="settings_key_auth_pin_pbkdf2" translatable="false">pref_auth_pin_pbkdf2</string>
+    <string name="settings_key_auth_salt" translatable="false">pref_auth_salt</string>
     <string name="settings_key_panic" translatable="false">pref_panic</string>
 
     <string name="settings_key_lang" translatable="false">pref_lang</string>

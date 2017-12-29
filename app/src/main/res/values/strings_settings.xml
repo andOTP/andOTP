@@ -64,6 +64,9 @@
     <string name="settings_toast_auth_device_not_secure">This feature requires a secure lock screen
         to be set up (Settings -> Security -> Screenlock)</string>
 
+    <string name="settings_toast_auth_upgrade_failed">Failed to silently upgrade your password / PIN
+        to the new encryption, please manually reset it in the settings!</string>
+
     <!-- List entries -->
     <string-array name="settings_entries_auth">
         <item>None</item>

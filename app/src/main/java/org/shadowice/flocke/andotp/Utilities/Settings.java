@@ -27,14 +27,15 @@ import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Base64;
+import android.widget.Toast;
 
-import org.apache.commons.codec.binary.Hex;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.shadowice.flocke.andotp.R;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Locale;
@@ -74,18 +75,28 @@ public class Settings {
     private void migrateDeprecatedSettings() {
         if (settings.contains(getResString(R.string.settings_key_auth_password))) {
             String plainPassword = getAuthPassword();
-            String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(plainPassword)));
 
-            setString(R.string.settings_key_auth_password_hash, hashedPassword);
+            try {
+                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, getSalt());
+                setString(R.string.settings_key_auth_password_pbkdf2, Base64.encodeToString(credentials.password, Base64.URL_SAFE));
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                Toast.makeText(context, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
 
             remove(R.string.settings_key_auth_password);
         }
 
         if (settings.contains(getResString(R.string.settings_key_auth_pin))) {
             String plainPIN = getAuthPIN();
-            String hashedPIN = new String(Hex.encodeHex(DigestUtils.sha256(plainPIN)));
 
-            setString(R.string.settings_key_auth_pin_hash, hashedPIN);
+            try {
+                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPIN, getSalt());
+                setString(R.string.settings_key_auth_pin_pbkdf2, Base64.encodeToString(credentials.password, Base64.URL_SAFE));
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                Toast.makeText(context, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
 
             remove(R.string.settings_key_auth_pin);
         }
@@ -218,12 +229,54 @@ public class Settings {
         return getString(R.string.settings_key_auth_password_hash, "");
     }
 
+    public void removeAuthPasswordHash() {
+        remove(R.string.settings_key_auth_password_hash);
+    }
+
+    public String getAuthPasswordPBKDF2() {
+        return getString(R.string.settings_key_auth_password_pbkdf2, "");
+    }
+
+    public void setAuthPasswordPBKDF2(String password) {
+        setString(R.string.settings_key_auth_password_pbkdf2, password);
+    }
+
     public String getAuthPIN() {
         return getString(R.string.settings_key_auth_pin, "");
     }
 
     public String getAuthPINHash() {
         return getString(R.string.settings_key_auth_pin_hash, "");
+    }
+
+    public void removeAuthPINHash() {
+        remove(R.string.settings_key_auth_pin_hash);
+    }
+
+    public String getAuthPINPBKDF2() {
+        return getString(R.string.settings_key_auth_pin_pbkdf2, "");
+    }
+
+    public void setAuthPINPBKDF2(String pin) {
+        setString(R.string.settings_key_auth_pin_pbkdf2, pin);
+    }
+
+    public void setSalt(byte[] bytes) {
+        String encodedSalt = Base64.encodeToString(bytes, Base64.URL_SAFE);
+        setString(R.string.settings_key_auth_salt, encodedSalt);
+    }
+
+    public byte[] getSalt() {
+        String storedSalt = getString(R.string.settings_key_auth_salt, "");
+
+        if (storedSalt.isEmpty()) {
+            byte[] newSalt = EncryptionHelper.generateRandom(Constants.AUTH_SALT_LENGTH);
+            setSalt(newSalt);
+
+            return newSalt;
+        } else {
+            return Base64.decode(storedSalt, Base64.URL_SAFE);
+        }
     }
 
     public Set<String> getPanicResponse() {

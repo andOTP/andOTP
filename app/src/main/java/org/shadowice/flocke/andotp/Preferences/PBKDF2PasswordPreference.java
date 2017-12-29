@@ -33,15 +33,19 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import org.apache.commons.codec.binary.Hex;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
+import org.shadowice.flocke.andotp.Utilities.Settings;
 
-public class PasswordHashPreference extends DialogPreference
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
+public class PBKDF2PasswordPreference extends DialogPreference
     implements View.OnClickListener, TextWatcher {
 
     public enum Mode {
@@ -50,6 +54,7 @@ public class PasswordHashPreference extends DialogPreference
 
     private static final String DEFAULT_VALUE = "";
 
+    private Settings settings;
     private Mode mode = Mode.PASSWORD;
 
     private TextInputEditText passwordInput;
@@ -59,14 +64,29 @@ public class PasswordHashPreference extends DialogPreference
 
     private String value = DEFAULT_VALUE;
 
-    public PasswordHashPreference(Context context, AttributeSet attrs) {
+    public PBKDF2PasswordPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        settings = new Settings(context);
 
         setDialogLayoutResource(R.layout.component_password);
     }
 
     public void setMode(Mode mode) {
         this.mode = mode;
+    }
+
+    private void persistEncryptedString(String value) {
+        if (value.isEmpty()) {
+            persistString(value);
+        } else {
+            try {
+                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(value, settings.getSalt());
+                persistString(Base64.encodeToString(credentials.password, Base64.URL_SAFE));
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -128,7 +148,7 @@ public class PasswordHashPreference extends DialogPreference
             value = getPersistedString(DEFAULT_VALUE);
         } else {
             value = (String) defaultValue;
-            persistString(value);
+            persistEncryptedString(value);
         }
     }
 
@@ -140,9 +160,7 @@ public class PasswordHashPreference extends DialogPreference
                 break;
             case (R.id.btnSave):
                 value = passwordInput.getText().toString();
-                String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(value)));
-
-                persistString(hashedPassword);
+                persistEncryptedString(value);
 
                 getDialog().dismiss();
                 break;

@@ -37,7 +37,6 @@ import java.security.GeneralSecurityException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
-import java.security.SecureRandom;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -103,8 +102,7 @@ public class KeyStoreHelper {
 
         // Generate secret key if none exists
         if (!keyFile.exists()) {
-            final byte[] raw = new byte[KEY_LENGTH];
-            new SecureRandom().nextBytes(raw);
+            final byte[] raw = EncryptionHelper.generateRandom(KEY_LENGTH);
 
             final SecretKey key = new SecretKeySpec(raw, "AES");
             final byte[] wrapped = wrapper.wrap(key);

@@ -29,6 +29,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewStub;
@@ -41,12 +42,20 @@ import android.widget.Toast;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
+
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
 
 import static org.shadowice.flocke.andotp.Utilities.Settings.AuthMethod;
 
 public class AuthenticateActivity extends ThemedActivity
     implements EditText.OnEditorActionListener {
     private String password;
+
+    AuthMethod authMethod;
+    boolean oldPassword = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +76,15 @@ public class AuthenticateActivity extends ThemedActivity
         TextInputLayout passwordLayout = v.findViewById(R.id.passwordLayout);
         TextInputEditText passwordInput = v.findViewById(R.id.passwordEdit);
 
-        AuthMethod authMethod = settings.getAuthMethod();
+        authMethod = settings.getAuthMethod();
 
         if (authMethod == AuthMethod.PASSWORD) {
-            password = settings.getAuthPasswordHash();
+            password = settings.getAuthPasswordPBKDF2();
+
+            if (password.isEmpty()) {
+                password = settings.getAuthPasswordHash();
+                oldPassword = true;
+            }
 
             if (password.isEmpty()) {
                 Toast.makeText(this, R.string.auth_toast_password_missing, Toast.LENGTH_LONG).show();
@@ -81,7 +95,12 @@ public class AuthenticateActivity extends ThemedActivity
                 passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             }
         } else if (authMethod == AuthMethod.PIN) {
-            password = settings.getAuthPINHash();
+            password = settings.getAuthPINPBKDF2();
+
+            if (password.isEmpty()) {
+                password = settings.getAuthPINHash();
+                oldPassword = true;
+            }
 
             if (password.isEmpty()) {
                 Toast.makeText(this, R.string.auth_toast_pin_missing, Toast.LENGTH_LONG).show();
@@ -104,12 +123,47 @@ public class AuthenticateActivity extends ThemedActivity
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
-            String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(v.getText().toString())));
+            if (! oldPassword) {
+                try {
+                    EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(v.getText().toString(), settings.getSalt());
+                    byte[] passwordArray = Base64.decode(password, Base64.URL_SAFE);
 
-            if (hashedPassword.equals(password)) {
-                finishWithResult(true);
+                    if (Arrays.equals(passwordArray, credentials.password)) {
+                        finishWithResult(true);
+                    } else {
+                        finishWithResult(false);
+                    }
+                } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                    e.printStackTrace();
+                    finishWithResult(false);
+                }
             } else {
-                finishWithResult(false);
+                String plainPassword = v.getText().toString();
+                String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(plainPassword)));
+
+                if (hashedPassword.equals(password)) {
+                    try {
+                        EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, settings.getSalt());
+                        String base64 = Base64.encodeToString(credentials.password, Base64.URL_SAFE);
+
+                        if (authMethod == AuthMethod.PASSWORD)
+                            settings.setAuthPasswordPBKDF2(base64);
+                        else if (authMethod == AuthMethod.PIN)
+                            settings.setAuthPINPBKDF2(base64);
+                    } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                        Toast.makeText(this, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+
+                    if (authMethod == AuthMethod.PASSWORD)
+                        settings.removeAuthPasswordHash();
+                    else if (authMethod == AuthMethod.PIN)
+                        settings.removeAuthPINHash();
+
+                    finishWithResult(true);
+                } else {
+                    finishWithResult(false);
+                }
             }
 
             return true;
