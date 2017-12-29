@@ -58,6 +58,8 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Constants;
+import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
@@ -70,7 +72,12 @@ import org.shadowice.flocke.andotp.View.TagsAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.EXTRA_NAME_SEED;
+import javax.crypto.SecretKey;
+
+import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.EXTRA_NAME_MESSAGE_ID;
+import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.EXTRA_NAME_PASSWORD_KEY;
+import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.EXTRA_NAME_RELOAD_ADAPTER;
+import static org.shadowice.flocke.andotp.Activities.BackupActivity.EXTRA_NAME_ENCRYPTION_KEY;
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
 public class MainActivity extends BaseActivity
@@ -85,6 +92,7 @@ public class MainActivity extends BaseActivity
     private MenuItem sortMenu;
     private SimpleItemTouchHelperCallback touchHelperCallback;
 
+    private Constants.EncryptionType encryptionType = Constants.EncryptionType.KEYSTORE;
     private boolean requireAuthentication = false;
 
     private Handler handler;
@@ -119,7 +127,7 @@ public class MainActivity extends BaseActivity
                 .show();
     }
 
-    public void authenticate() {
+    public void authenticate(int messageId, boolean reloadAdapter) {
         Settings.AuthMethod authMethod = settings.getAuthMethod();
 
         if (authMethod == Settings.AuthMethod.DEVICE) {
@@ -130,6 +138,8 @@ public class MainActivity extends BaseActivity
             }
         } else if (authMethod == Settings.AuthMethod.PASSWORD || authMethod == Settings.AuthMethod.PIN) {
             Intent authIntent = new Intent(this, AuthenticateActivity.class);
+            authIntent.putExtra(EXTRA_NAME_RELOAD_ADAPTER, reloadAdapter);
+            authIntent.putExtra(EXTRA_NAME_MESSAGE_ID, messageId);
             startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
         }
     }
@@ -185,6 +195,8 @@ public class MainActivity extends BaseActivity
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         settings.registerPreferenceChangeListener(this);
+
+        encryptionType = settings.getEncryption();
 
         if (settings.getAuthMethod() != Settings.AuthMethod.NONE && savedInstanceState == null)
             requireAuthentication = true;
@@ -305,12 +317,25 @@ public class MainActivity extends BaseActivity
     public void onResume() {
         super.onResume();
 
-        if (settings.getAuthMethod() != Settings.AuthMethod.NONE && requireAuthentication) {
-            requireAuthentication = false;
-            authenticate();
+        if (requireAuthentication) {
+            if (settings.getAuthMethod() != Settings.AuthMethod.NONE) {
+                requireAuthentication = false;
+                authenticate(R.string.auth_msg_authenticate, true);
+            }
         } else {
-            adapter.setEncryptionKey(KeyStoreHelper.loadEncryptionKeyFromKeyStore(this));
-            populateAdapter();
+            if (encryptionType == Constants.EncryptionType.KEYSTORE) {
+                if (adapter.getEncryptionKey() == null) {
+                    adapter.setEncryptionKey(KeyStoreHelper.loadEncryptionKeyFromKeyStore(this));
+                }
+
+                populateAdapter();
+            } else if (encryptionType == Constants.EncryptionType.PASSWORD) {
+                if (adapter.getEncryptionKey() == null) {
+                    authenticate(R.string.auth_msg_authenticate,true);
+                } else {
+                    populateAdapter();
+                }
+            }
         }
 
         startUpdater();
@@ -333,6 +358,15 @@ public class MainActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_lang)) ||
                 key.equals(getString(R.string.settings_key_enable_screenshot))) {
             recreate();
+        } else if (key.equals(getString(R.string.settings_key_encryption))) {
+            if (settings.getEncryption() == Constants.EncryptionType.KEYSTORE) {
+                encryptionType = Constants.EncryptionType.KEYSTORE;
+                adapter.setEncryptionKey(KeyStoreHelper.loadEncryptionKeyFromKeyStore(this));
+                adapter.saveEntries();
+            } else if (settings.getEncryption() == Constants.EncryptionType.PASSWORD) {
+                encryptionType = Constants.EncryptionType.PASSWORD;
+                authenticate(R.string.auth_msg_confirm,false);
+            }
         }
     }
 
@@ -377,10 +411,23 @@ public class MainActivity extends BaseActivity
             } else {
                 requireAuthentication = false;
 
-                byte[] credentialSeed = intent.getByteArrayExtra(EXTRA_NAME_SEED);
+                SecretKey encryptionKey = null;
 
-                adapter.setEncryptionKey(KeyStoreHelper.loadEncryptionKeyFromKeyStore(this));
-                populateAdapter();
+                if (encryptionType == Constants.EncryptionType.KEYSTORE) {
+                    encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this);
+                } else if (encryptionType == Constants.EncryptionType.PASSWORD) {
+                    byte[] credentialSeed = intent.getByteArrayExtra(EXTRA_NAME_PASSWORD_KEY);
+                    encryptionKey = EncryptionHelper.generateSymmetricKey(credentialSeed);
+                }
+
+                boolean reloadAdapter = intent.getBooleanExtra(EXTRA_NAME_RELOAD_ADAPTER, false);
+
+                adapter.setEncryptionKey(encryptionKey);
+
+                if (reloadAdapter)
+                    populateAdapter();
+                else
+                    adapter.saveEntries();
             }
         }
     }
@@ -459,6 +506,7 @@ public class MainActivity extends BaseActivity
 
         if (id == R.id.action_backup) {
             Intent backupIntent = new Intent(this, BackupActivity.class);
+            backupIntent.putExtra(EXTRA_NAME_ENCRYPTION_KEY, adapter.getEncryptionKey().getEncoded());
             startActivityForResult(backupIntent, INTENT_INTERNAL_BACKUP);
         } else if (id == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);

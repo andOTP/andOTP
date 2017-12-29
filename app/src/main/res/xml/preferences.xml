@@ -33,9 +33,18 @@
             android:entryValues="@array/settings_values_auth"
             android:defaultValue="@string/settings_default_auth" />
 
+        <ListPreference
+            android:key="@string/settings_key_encryption"
+            android:order="5"
+            android:title="@string/settings_title_encryption"
+            android:summary="%s"
+            android:entries="@array/settings_entries_encryption"
+            android:entryValues="@array/settings_values_encryption"
+            android:defaultValue="@string/settings_default_encryption" />
+
         <MultiSelectListPreference
             android:key="@string/settings_key_panic"
-            android:order="5"
+            android:order="6"
             android:title="@string/settings_title_panic"
             android:summary="@string/settings_desc_panic"
             android:entries="@array/settings_entries_panic"

@@ -49,6 +49,20 @@ public class KeyStoreHelper {
 
     public static final String KEYSTORE_ALIAS_WRAPPING = "settings";
 
+    public static void wipeKeys(Context context) {
+        File keyFile = new File(context.getFilesDir() + "/" + KEY_FILE);
+        keyFile.delete();
+
+        try {
+            final KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+            keyStore.load(null);
+            if (keyStore.containsAlias(KEYSTORE_ALIAS_WRAPPING))
+                keyStore.deleteEntry(KEYSTORE_ALIAS_WRAPPING);
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static KeyPair loadOrGenerateAsymmetricKeyPair(Context context, String alias)
             throws GeneralSecurityException, IOException {
         final KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
@@ -100,7 +114,7 @@ public class KeyStoreHelper {
 
         if (pair != null) {
             try {
-                return EncryptionHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE), pair);
+                return EncryptionHelper.loadOrGenerateWrappedKey(new File(context.getFilesDir() + "/" + KEY_FILE), pair);
             } catch (GeneralSecurityException | IOException e) {
                 e.printStackTrace();
                 UIHelper.showGenericDialog(context, R.string.dialog_title_encryption_error, R.string.dialog_msg_unwrap_error);

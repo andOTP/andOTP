@@ -23,8 +23,6 @@
 
 package org.shadowice.flocke.andotp.Utilities;
 
-import android.content.Context;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -67,7 +65,7 @@ public class EncryptionHelper {
 
     public static class PBKDF2Credentials {
         public byte[] password;
-        public byte[] seed;
+        public byte[] key;
     }
 
     public static int generateRandomIterations() {
@@ -93,9 +91,13 @@ public class EncryptionHelper {
 
         PBKDF2Credentials credentials = new PBKDF2Credentials();
         credentials.password = Arrays.copyOfRange(array, halfPoint, array.length);
-        credentials.seed = Arrays.copyOfRange(array, 0, halfPoint - 1);
+        credentials.key = Arrays.copyOfRange(array, 0, halfPoint);
 
         return credentials;
+    }
+
+    public static SecretKey generateSymmetricKey(byte[] data) {
+        return new SecretKeySpec(data, 0, data.length, "AES");
     }
 
     public static SecretKey generateSymmetricKeyFromPassword(String password)
@@ -164,7 +166,7 @@ public class EncryptionHelper {
      * The symmetric secret key is stored securely on disk by wrapping
      * it with a public/private key pair, possibly backed by hardware.
      */
-    public static SecretKey loadOrGenerateWrappedKey(Context context, File keyFile, KeyPair keyPair)
+    public static SecretKey loadOrGenerateWrappedKey(File keyFile, KeyPair keyPair)
             throws GeneralSecurityException, IOException {
         final SecretKeyWrapper wrapper = new SecretKeyWrapper(keyPair);
 

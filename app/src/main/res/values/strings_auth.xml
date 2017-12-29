@@ -7,8 +7,8 @@
     <string name="auth_hint_pin">PIN</string>
 
     <!-- Messages -->
-    <string name="auth_msg_password">Please enter your password to start andOTP.</string>
-    <string name="auth_msg_pin">Please enter your PIN to start andOTP.</string>
+    <string name="auth_msg_authenticate">Please authenticate to start andOTP!</string>
+    <string name="auth_msg_confirm">Please confirm your authentication!</string>
 
     <!-- Toast messages -->
     <string name="auth_toast_password_missing">Please set a password in the settings!</string>

@@ -36,8 +36,12 @@ import javax.crypto.SecretKey;
 public class DatabaseHelper {
     public static final String SETTINGS_FILE = "secrets.dat";
 
-    /* Database functions */
+    public static void wipeDatabase(Context context) {
+        File db = new File(context.getFilesDir() + "/" + SETTINGS_FILE);
+        db.delete();
+    }
 
+    /* Database functions */
     public static boolean saveDatabase(Context context, ArrayList<Entry> entries, SecretKey encryptionKey) {
         String jsonString = entriesToString(entries);
 

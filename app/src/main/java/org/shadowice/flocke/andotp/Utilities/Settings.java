@@ -310,6 +310,15 @@ public class Settings {
             setInt(R.string.settings_key_auth_pin_iter, value);
     }
 
+    public Constants.EncryptionType getEncryption() {
+        String encType = getString(R.string.settings_key_encryption, R.string.settings_default_encryption);
+        return Constants.EncryptionType.valueOf(encType.toUpperCase());
+    }
+
+    public void setEncryption(String encryption) {
+        setString(R.string.settings_key_encryption, encryption);
+    }
+
     public Set<String> getPanicResponse() {
         return settings.getStringSet(getResString(R.string.settings_key_panic), Collections.<String>emptySet());
     }

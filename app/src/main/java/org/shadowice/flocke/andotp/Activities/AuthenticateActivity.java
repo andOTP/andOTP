@@ -52,7 +52,11 @@ import static org.shadowice.flocke.andotp.Utilities.Settings.AuthMethod;
 
 public class AuthenticateActivity extends ThemedActivity
     implements EditText.OnEditorActionListener {
-    public static final String EXTRA_NAME_SEED = "credential_seed";
+    public static final String EXTRA_NAME_PASSWORD_KEY = "password_key";
+    public static final String EXTRA_NAME_RELOAD_ADAPTER = "reload_adapter";
+    public static final String EXTRA_NAME_MESSAGE_ID = "message_id";
+
+    boolean reloadAdapter = false;
 
     private String password;
 
@@ -74,9 +78,15 @@ public class AuthenticateActivity extends ThemedActivity
         stub.setLayoutResource(R.layout.content_authenticate);
         View v = stub.inflate();
 
+        Intent callingIntent = getIntent();
+        reloadAdapter = callingIntent.getBooleanExtra(EXTRA_NAME_RELOAD_ADAPTER, false);
+        int labelMsg = callingIntent.getIntExtra(EXTRA_NAME_MESSAGE_ID, R.string.auth_msg_authenticate);
+
         TextView passwordLabel = v.findViewById(R.id.passwordLabel);
         TextInputLayout passwordLayout = v.findViewById(R.id.passwordLayout);
         TextInputEditText passwordInput = v.findViewById(R.id.passwordEdit);
+
+        passwordLabel.setText(labelMsg);
 
         authMethod = settings.getAuthMethod();
 
@@ -92,7 +102,6 @@ public class AuthenticateActivity extends ThemedActivity
                 Toast.makeText(this, R.string.auth_toast_password_missing, Toast.LENGTH_LONG).show();
                 finishWithResult(true, null);
             } else {
-                passwordLabel.setText(R.string.auth_msg_password);
                 passwordLayout.setHint(getString(R.string.auth_hint_password));
                 passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             }
@@ -108,7 +117,6 @@ public class AuthenticateActivity extends ThemedActivity
                 Toast.makeText(this, R.string.auth_toast_pin_missing, Toast.LENGTH_LONG).show();
                 finishWithResult(true, null);
             } else {
-                passwordLabel.setText(R.string.auth_msg_pin);
                 passwordLayout.setHint(getString(R.string.auth_hint_pin));
                 passwordInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
             }
@@ -131,7 +139,7 @@ public class AuthenticateActivity extends ThemedActivity
                     byte[] passwordArray = Base64.decode(password, Base64.URL_SAFE);
 
                     if (Arrays.equals(passwordArray, credentials.password)) {
-                        finishWithResult(true, credentials.seed);
+                        finishWithResult(true, credentials.key);
                     } else {
                         finishWithResult(false, null);
                     }
@@ -144,7 +152,7 @@ public class AuthenticateActivity extends ThemedActivity
                 String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(plainPassword)));
 
                 if (hashedPassword.equals(password)) {
-                    byte[] seed = null;
+                    byte[] key = null;
 
                     try {
                         int iter = EncryptionHelper.generateRandomIterations();
@@ -158,7 +166,7 @@ public class AuthenticateActivity extends ThemedActivity
 
                         settings.setIterations(authMethod, iter);
 
-                        seed = credentials.seed;
+                        key = credentials.key;
                     } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
                         Toast.makeText(this, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
                         e.printStackTrace();
@@ -169,7 +177,7 @@ public class AuthenticateActivity extends ThemedActivity
                     else if (authMethod == AuthMethod.PIN)
                         settings.removeAuthPINHash();
 
-                    finishWithResult(true, seed);
+                    finishWithResult(true, key);
                 } else {
                     finishWithResult(false, null);
                 }
@@ -182,11 +190,13 @@ public class AuthenticateActivity extends ThemedActivity
     }
 
     // End with a result
-    public void finishWithResult(boolean success, byte[] seed) {
+    public void finishWithResult(boolean success, byte[] key) {
         Intent data = new Intent();
 
-        if (seed != null)
-            data.putExtra(EXTRA_NAME_SEED, seed);
+        data.putExtra(EXTRA_NAME_RELOAD_ADAPTER, reloadAdapter);
+
+        if (key != null)
+            data.putExtra(EXTRA_NAME_PASSWORD_KEY, key);
 
         if (success)
             setResult(RESULT_OK, data);

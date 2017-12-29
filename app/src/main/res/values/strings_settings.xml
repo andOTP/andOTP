@@ -13,6 +13,7 @@
     <string name="settings_title_auth">Authentication</string>
     <string name="settings_title_auth_password">Password</string>
     <string name="settings_title_auth_pin">PIN</string>
+    <string name="settings_title_encryption">Database encryption</string>
     <string name="settings_title_panic">Panic Trigger</string>
 
     <string name="settings_title_lang">Language</string>
@@ -73,6 +74,11 @@
         <item>Password</item>
         <item>PIN</item>
         <item>Device credentials</item>
+    </string-array>
+
+    <string-array name="settings_entries_encryption">
+        <item>Android KeyStore</item>
+        <item>Password / PIN</item>
     </string-array>
 
     <string-array name="settings_entries_panic">

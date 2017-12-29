@@ -23,6 +23,10 @@
 package org.shadowice.flocke.andotp.Utilities;
 
 public class Constants {
+    public enum EncryptionType {
+        KEYSTORE, PASSWORD
+    }
+
     final static String ALGORITHM_SYMMETRIC = "AES/GCM/NoPadding";
     final static String ALGORITHM_ASYMMETRIC = "RSA/ECB/PKCS1Padding";
 

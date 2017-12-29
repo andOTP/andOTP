@@ -53,7 +53,6 @@ import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.FileHelper;
-import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.Tools;
 
 import java.io.ByteArrayInputStream;
@@ -63,6 +62,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 public class BackupActivity extends BaseActivity {
     private final static int INTENT_OPEN_DOCUMENT_PLAIN = 200;
@@ -88,7 +88,7 @@ public class BackupActivity extends BaseActivity {
     private static final String DEFAULT_BACKUP_MIMETYPE_CRYPT   = "binary/aes";
     private static final String DEFAULT_BACKUP_MIMETYPE_PGP     = "application/pgp-encrypted";
 
-    public static final String ENCRYPTION_KEY_PARAM = "encryption_key";
+    public static final String EXTRA_NAME_ENCRYPTION_KEY = "encryption_key";
 
     private SecretKey encryptionKey = null;
 
@@ -116,7 +116,9 @@ public class BackupActivity extends BaseActivity {
         stub.setLayoutResource(R.layout.content_backup);
         View v = stub.inflate();
 
-        encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this);
+        Intent callingIntent = getIntent();
+        byte[] keyMaterial = callingIntent.getByteArrayExtra(EXTRA_NAME_ENCRYPTION_KEY);
+        encryptionKey = new SecretKeySpec(keyMaterial, 0, keyMaterial.length, "AES");
 
         // Plain-text
 

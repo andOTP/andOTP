@@ -15,6 +15,7 @@
     <string name="settings_key_auth_pin_pbkdf2" translatable="false">pref_auth_pin_pbkdf2</string>
     <string name="settings_key_auth_pin_iter" translatable="false">pref_auth_pin_iter</string>
     <string name="settings_key_auth_salt" translatable="false">pref_auth_salt</string>
+    <string name="settings_key_encryption" translatable="false">pref_encryption</string>
     <string name="settings_key_panic" translatable="false">pref_panic</string>
 
     <string name="settings_key_lang" translatable="false">pref_lang</string>
@@ -47,6 +48,7 @@
     <!-- Default values -->
     <integer name="settings_default_tap_to_reveal_timeout">30</integer>
     <string name="settings_default_auth" translatable="false">none</string>
+    <string name="settings_default_encryption" translatable="false">keystore</string>
     <string name="settings_default_lang" translatable="false">system</string>
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">18</integer>
@@ -70,6 +72,11 @@
         <item>password</item>
         <item>pin</item>
         <item>device</item>
+    </string-array>
+
+    <string-array name="settings_values_encryption" translatable="false">
+        <item>keystore</item>
+        <item>password</item>
     </string-array>
 
     <string-array name="settings_values_panic" translatable="false">

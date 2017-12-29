@@ -39,6 +39,7 @@ import org.openintents.openpgp.util.OpenPgpAppPreference;
 import org.openintents.openpgp.util.OpenPgpKeyPreference;
 import org.shadowice.flocke.andotp.Preferences.PBKDF2PasswordPreference;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 
 public class SettingsActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener{
@@ -104,6 +105,8 @@ public class SettingsActivity extends BaseActivity
     public static class SettingsFragment extends PreferenceFragment {
         PreferenceCategory catSecurity;
 
+        ListPreference encryption;
+
         OpenPgpAppPreference pgpProvider;
         OpenPgpKeyPreference pgpKey;
 
@@ -125,6 +128,7 @@ public class SettingsActivity extends BaseActivity
                     authPassword.setMode(PBKDF2PasswordPreference.Mode.PASSWORD);
 
                     catSecurity.addPreference(authPassword);
+                    encryption.setEnabled(true);
 
                     break;
 
@@ -136,10 +140,12 @@ public class SettingsActivity extends BaseActivity
                     authPIN.setMode(PBKDF2PasswordPreference.Mode.PIN);
 
                     catSecurity.addPreference(authPIN);
+                    encryption.setEnabled(true);
 
                     break;
 
                 default:
+                    encryption.setEnabled(false);
                     break;
             }
         }
@@ -148,13 +154,14 @@ public class SettingsActivity extends BaseActivity
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
+            final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
 
             addPreferencesFromResource(R.xml.preferences);
 
             // Authentication
             catSecurity = (PreferenceCategory) findPreference(getString(R.string.settings_key_cat_security));
             ListPreference authPref = (ListPreference) findPreference(getString(R.string.settings_key_auth));
+            encryption = (ListPreference) findPreference(getString(R.string.settings_key_encryption));
 
             updateAuthPassword(authPref.getValue());
 
@@ -176,6 +183,20 @@ public class SettingsActivity extends BaseActivity
                     }
 
                     updateAuthPassword(newAuth);
+
+                    return true;
+                }
+            });
+
+            encryption.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(final Preference preference, Object o) {
+                    final String newEncryption = (String) o;
+
+                    if (newEncryption.equals("password"))
+                        KeyStoreHelper.wipeKeys(preference.getContext());
+
+                    encryption.setValue(newEncryption);
 
                     return true;
                 }
