@@ -74,9 +74,9 @@ import java.util.HashMap;
 
 import javax.crypto.SecretKey;
 
-import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.EXTRA_NAME_MESSAGE_ID;
+import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.EXTRA_NAME_MESSAGE;
 import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.EXTRA_NAME_PASSWORD_KEY;
-import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.EXTRA_NAME_RELOAD_ADAPTER;
+import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.EXTRA_NAME_SAVE_DATABASE;
 import static org.shadowice.flocke.andotp.Activities.BackupActivity.EXTRA_NAME_ENCRYPTION_KEY;
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
@@ -127,7 +127,7 @@ public class MainActivity extends BaseActivity
                 .show();
     }
 
-    public void authenticate(int messageId, boolean reloadAdapter) {
+    public void authenticate(int messageId, boolean saveDatabase) {
         Settings.AuthMethod authMethod = settings.getAuthMethod();
 
         if (authMethod == Settings.AuthMethod.DEVICE) {
@@ -138,8 +138,8 @@ public class MainActivity extends BaseActivity
             }
         } else if (authMethod == Settings.AuthMethod.PASSWORD || authMethod == Settings.AuthMethod.PIN) {
             Intent authIntent = new Intent(this, AuthenticateActivity.class);
-            authIntent.putExtra(EXTRA_NAME_RELOAD_ADAPTER, reloadAdapter);
-            authIntent.putExtra(EXTRA_NAME_MESSAGE_ID, messageId);
+            authIntent.putExtra(EXTRA_NAME_SAVE_DATABASE, saveDatabase);
+            authIntent.putExtra(EXTRA_NAME_MESSAGE, messageId);
             startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
         }
     }
@@ -320,7 +320,7 @@ public class MainActivity extends BaseActivity
         if (requireAuthentication) {
             if (settings.getAuthMethod() != Settings.AuthMethod.NONE) {
                 requireAuthentication = false;
-                authenticate(R.string.auth_msg_authenticate, true);
+                authenticate(R.string.auth_msg_authenticate, false);
             }
         } else {
             if (encryptionType == Constants.EncryptionType.KEYSTORE) {
@@ -331,7 +331,7 @@ public class MainActivity extends BaseActivity
                 populateAdapter();
             } else if (encryptionType == Constants.EncryptionType.PASSWORD) {
                 if (adapter.getEncryptionKey() == null) {
-                    authenticate(R.string.auth_msg_authenticate,true);
+                    authenticate(R.string.auth_msg_authenticate,false);
                 } else {
                     populateAdapter();
                 }
@@ -365,8 +365,13 @@ public class MainActivity extends BaseActivity
                 adapter.saveEntries();
             } else if (settings.getEncryption() == Constants.EncryptionType.PASSWORD) {
                 encryptionType = Constants.EncryptionType.PASSWORD;
-                authenticate(R.string.auth_msg_confirm,false);
+                authenticate(R.string.auth_msg_confirm,true);
             }
+        } else if (key.equals(getString(R.string.settings_key_auth)) ||
+                key.equals(getString(R.string.settings_key_auth_password_pbkdf2)) ||
+                key.equals(getString(R.string.settings_key_auth_pin_pbkdf2))) {
+            if (encryptionType == Constants.EncryptionType.PASSWORD)
+                authenticate(R.string.auth_msg_confirm, true);
         }
     }
 
@@ -420,14 +425,14 @@ public class MainActivity extends BaseActivity
                     encryptionKey = EncryptionHelper.generateSymmetricKey(credentialSeed);
                 }
 
-                boolean reloadAdapter = intent.getBooleanExtra(EXTRA_NAME_RELOAD_ADAPTER, false);
+                boolean saveDatabase = intent.getBooleanExtra(EXTRA_NAME_SAVE_DATABASE, false);
 
                 adapter.setEncryptionKey(encryptionKey);
 
-                if (reloadAdapter)
-                    populateAdapter();
-                else
+                if (saveDatabase)
                     adapter.saveEntries();
+
+                populateAdapter();
             }
         }
     }

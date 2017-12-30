@@ -53,10 +53,10 @@ import static org.shadowice.flocke.andotp.Utilities.Settings.AuthMethod;
 public class AuthenticateActivity extends ThemedActivity
     implements EditText.OnEditorActionListener {
     public static final String EXTRA_NAME_PASSWORD_KEY = "password_key";
-    public static final String EXTRA_NAME_RELOAD_ADAPTER = "reload_adapter";
-    public static final String EXTRA_NAME_MESSAGE_ID = "message_id";
+    public static final String EXTRA_NAME_SAVE_DATABASE = "save_database";
+    public static final String EXTRA_NAME_MESSAGE = "message";
 
-    boolean reloadAdapter = false;
+    boolean saveDatabase = false;
 
     private String password;
 
@@ -79,8 +79,8 @@ public class AuthenticateActivity extends ThemedActivity
         View v = stub.inflate();
 
         Intent callingIntent = getIntent();
-        reloadAdapter = callingIntent.getBooleanExtra(EXTRA_NAME_RELOAD_ADAPTER, false);
-        int labelMsg = callingIntent.getIntExtra(EXTRA_NAME_MESSAGE_ID, R.string.auth_msg_authenticate);
+        saveDatabase = callingIntent.getBooleanExtra(EXTRA_NAME_SAVE_DATABASE, false);
+        int labelMsg = callingIntent.getIntExtra(EXTRA_NAME_MESSAGE, R.string.auth_msg_authenticate);
 
         TextView passwordLabel = v.findViewById(R.id.passwordLabel);
         TextInputLayout passwordLayout = v.findViewById(R.id.passwordLayout);
@@ -193,7 +193,7 @@ public class AuthenticateActivity extends ThemedActivity
     public void finishWithResult(boolean success, byte[] key) {
         Intent data = new Intent();
 
-        data.putExtra(EXTRA_NAME_RELOAD_ADAPTER, reloadAdapter);
+        data.putExtra(EXTRA_NAME_SAVE_DATABASE, saveDatabase);
 
         if (key != null)
             data.putExtra(EXTRA_NAME_PASSWORD_KEY, key);
