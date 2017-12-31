@@ -51,8 +51,21 @@ public class DraggableFloatingActionButton extends FloatingActionButton implemen
                 return true;
 
             case MotionEvent.ACTION_UP:
-                float upDX = motionEvent.getRawX() - downRawX;
+                int parentWidth = ((View)view.getParent()).getWidth();
+                float parentWidthThird = parentWidth / 3.0f;
+                float newX = motionEvent.getRawX() + downX + (view.getWidth() / 2.0f);
 
+                if(newX <= parentWidthThird) {
+                    view.animate().x(padding).setDuration(100).setStartDelay(0).start();
+                } else if(newX > parentWidthThird && newX < parentWidthThird * 2) {
+                    float newPos = (parentWidth / 2.0f) - (view.getWidth() / 2.0f);
+                    view.animate().x(newPos).setDuration(100).setStartDelay(0).start();
+                } else {
+                    float newPos = (parentWidth - padding) - view.getWidth();
+                    view.animate().x(newPos).setDuration(100).setStartDelay(0).start();
+                }
+
+                float upDX = motionEvent.getRawX() - downRawX;
                 if (Math.abs(upDX) < CLICK_DRAG_TOLERANCE) {
                     return performClick();
                 } else {
