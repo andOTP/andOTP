@@ -65,6 +65,9 @@
     <string name="settings_toast_auth_device_not_secure">This feature requires a secure lock screen
         to be set up (Settings -> Security -> Screenlock)</string>
 
+    <string name="settings_toast_password_empty">An empty password is not allowed, set the
+        Authentication to \"None\" to disable it!</string>
+
     <string name="settings_toast_auth_invalid_with_encryption">You can only use Password or PIN as
         long as the database encryption is set to \"Password / PIN\"!</string>
     <string name="settings_toast_encryption_invalid_with_auth">You first need to set the

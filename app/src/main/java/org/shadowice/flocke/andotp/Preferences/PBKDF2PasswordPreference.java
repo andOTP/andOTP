@@ -37,6 +37,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
@@ -77,9 +78,7 @@ public class PBKDF2PasswordPreference extends DialogPreference
     }
 
     private void persistEncryptedString(String value) {
-        if (value.isEmpty()) {
-            persistString(value);
-        } else {
+        if (! value.isEmpty()) {
             try {
                 int iter = EncryptionHelper.generateRandomIterations();
                 EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(value, settings.getSalt(), iter);
@@ -88,6 +87,8 @@ public class PBKDF2PasswordPreference extends DialogPreference
             } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
                 e.printStackTrace();
             }
+        } else {
+            Toast.makeText(getContext(), R.string.settings_toast_password_empty, Toast.LENGTH_LONG).show();
         }
     }
 
