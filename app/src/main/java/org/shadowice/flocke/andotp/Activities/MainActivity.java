@@ -422,15 +422,18 @@ public class MainActivity extends BaseActivity
                     encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this);
                 } else if (encryptionType == Constants.EncryptionType.PASSWORD) {
                     byte[] credentialSeed = intent.getByteArrayExtra(EXTRA_NAME_PASSWORD_KEY);
-                    encryptionKey = EncryptionHelper.generateSymmetricKey(credentialSeed);
+                    if (credentialSeed != null && credentialSeed.length > 0)
+                        encryptionKey = EncryptionHelper.generateSymmetricKey(credentialSeed);
                 }
 
                 boolean saveDatabase = intent.getBooleanExtra(EXTRA_NAME_SAVE_DATABASE, false);
 
-                adapter.setEncryptionKey(encryptionKey);
+                if (encryptionKey != null) {
+                    adapter.setEncryptionKey(encryptionKey);
 
-                if (saveDatabase)
-                    adapter.saveEntries();
+                    if (saveDatabase)
+                        adapter.saveEntries();
+                }
 
                 populateAdapter();
             }
