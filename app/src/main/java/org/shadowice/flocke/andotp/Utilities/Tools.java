@@ -82,6 +82,9 @@ public class Tools {
     }
 
     public static String formatToken(String s, int chunkSize) {
+        if (chunkSize==0)  {
+            return s;
+        }
         StringBuilder ret = new StringBuilder("");
         final int len = s.length();
         int index = len;

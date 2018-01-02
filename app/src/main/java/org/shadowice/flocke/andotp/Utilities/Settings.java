@@ -365,6 +365,13 @@ public class Settings {
         }
     }
 
+    public int getTokenSplitGroupSize() {
+        // the setting is of type "String", because ListPreference does not support integer arrays for its entryValues
+        return  Integer.valueOf(
+                getString(R.string.settings_key_split_group_size, R.string.settings_default_split_group_size)
+        );
+    }
+
     public boolean getScreenshotsEnabled() {
         return getBoolean(R.string.settings_key_enable_screenshot, false);
     }
