@@ -131,8 +131,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public void loadEntries() {
-        entries = DatabaseHelper.loadDatabase(context, encryptionKey);
-        entriesChanged();
+        if (encryptionKey != null) {
+            entries = DatabaseHelper.loadDatabase(context, encryptionKey);
+            entriesChanged();
+        }
     }
 
     public void filterByTags(List<String> tags) {
