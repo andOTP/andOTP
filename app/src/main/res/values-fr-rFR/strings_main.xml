@@ -41,7 +41,7 @@
   <string name="menu_popup_edit_tags">Éditer les tags</string>
   <string name="menu_popup_remove">Supprimer</string>
   <!-- Toast messages -->
-  <string name="toast_auth_failed">
+  <string name="toast_auth_failed_fatal">
       L\'authentification a échoué, fermeture d’andOTP !
 </string>
   <string name="toast_copied_to_clipboard">

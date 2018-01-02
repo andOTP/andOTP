@@ -29,6 +29,7 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.widget.Toast;
 
+import org.shadowice.flocke.andotp.Preferences.CredentialsPreference;
 import org.shadowice.flocke.andotp.R;
 
 import java.io.File;
@@ -43,16 +44,14 @@ import java.util.Set;
 
 import static org.shadowice.flocke.andotp.Preferences.PasswordEncryptedPreference.KEY_ALIAS;
 import static org.shadowice.flocke.andotp.Utilities.EncryptionHelper.PBKDF2_OLD_DEFAULT_ITERATIONS;
+import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
+import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 
 public class Settings {
     private static final String DEFAULT_BACKUP_FOLDER = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "andOTP";
 
     private Context context;
     private SharedPreferences settings;
-
-    public enum AuthMethod {
-        NONE, PASSWORD, PIN, DEVICE
-    }
 
     public enum SortMode {
         UNSORTED, LABEL, LAST_USED
@@ -232,11 +231,11 @@ public class Settings {
     }
 
     public AuthMethod getAuthMethod() {
-        String authString = getString(R.string.settings_key_auth, R.string.settings_default_auth);
+        String authString = getString(R.string.settings_key_auth, CredentialsPreference.DEFAULT_VALUE.name().toLowerCase());
         return AuthMethod.valueOf(authString.toUpperCase());
     }
 
-    public String getAuthPassword() {
+    private String getAuthPassword() {
         return getString(R.string.settings_key_auth_password, "");
     }
 
@@ -256,7 +255,7 @@ public class Settings {
         setString(R.string.settings_key_auth_password_pbkdf2, password);
     }
 
-    public String getAuthPIN() {
+    private String getAuthPIN() {
         return getString(R.string.settings_key_auth_pin, "");
     }
 
@@ -274,6 +273,29 @@ public class Settings {
 
     public void setAuthPINPBKDF2(String pin) {
         setString(R.string.settings_key_auth_pin_pbkdf2, pin);
+    }
+
+    public byte[] setAuthCredentials(AuthMethod method, String plainPassword) {
+        byte[] key = null;
+
+        try {
+            int iterations = EncryptionHelper.generateRandomIterations();
+            EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, getSalt(), iterations);
+            String password = Base64.encodeToString(credentials.password, Base64.URL_SAFE);
+
+            setIterations(method, iterations);
+
+            if (method == AuthMethod.PASSWORD)
+                setAuthPasswordPBKDF2(password);
+            else if (method == AuthMethod.PIN)
+                setAuthPINPBKDF2(password);
+
+            key = credentials.key;
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+
+        return key;
     }
 
     public void setSalt(byte[] bytes) {
@@ -310,9 +332,9 @@ public class Settings {
             setInt(R.string.settings_key_auth_pin_iter, value);
     }
 
-    public Constants.EncryptionType getEncryption() {
+    public EncryptionType getEncryption() {
         String encType = getString(R.string.settings_key_encryption, R.string.settings_default_encryption);
-        return Constants.EncryptionType.valueOf(encType.toUpperCase());
+        return EncryptionType.valueOf(encType.toUpperCase());
     }
 
     public void setEncryption(String encryption) {

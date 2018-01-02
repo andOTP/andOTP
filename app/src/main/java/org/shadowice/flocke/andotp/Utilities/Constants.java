@@ -23,6 +23,10 @@
 package org.shadowice.flocke.andotp.Utilities;
 
 public class Constants {
+    public enum AuthMethod {
+        NONE, PASSWORD, PIN, DEVICE
+    }
+
     public enum EncryptionType {
         KEYSTORE, PASSWORD
     }

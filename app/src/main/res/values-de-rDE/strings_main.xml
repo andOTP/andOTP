@@ -41,7 +41,7 @@
   <string name="menu_popup_edit_tags">Marker bearbeiten</string>
   <string name="menu_popup_remove">Entfernen</string>
   <!-- Toast messages -->
-  <string name="toast_auth_failed">Authentifizierung fehlgeschlagen, andOTP wird geschlossen!</string>
+  <string name="toast_auth_failed_fatal">Authentifizierung fehlgeschlagen, andOTP wird geschlossen!</string>
   <string name="toast_copied_to_clipboard">In Zwischenablage kopiert</string>
   <string name="toast_entry_exists">Dieser Eintrag ist bereits vorhanden</string>
   <string name="toast_invalid_qr_code">Ungültiger QR-Code</string>

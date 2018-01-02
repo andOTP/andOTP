@@ -41,7 +41,7 @@
   <string name="menu_popup_edit_tags">Upravit štítky</string>
   <string name="menu_popup_remove">Smazat</string>
   <!-- Toast messages -->
-  <string name="toast_auth_failed">Ověření se nezdařilo, zavírám andOTP!</string>
+  <string name="toast_auth_failed_fatal">Ověření se nezdařilo, zavírám andOTP!</string>
   <string name="toast_copied_to_clipboard">Zkopírováno do schránky</string>
   <string name="toast_entry_exists">Tento záznam již existuje</string>
   <string name="toast_invalid_qr_code">Neplatný QR kód</string>

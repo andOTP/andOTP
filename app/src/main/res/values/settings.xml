@@ -47,7 +47,6 @@
 
     <!-- Default values -->
     <integer name="settings_default_tap_to_reveal_timeout">30</integer>
-    <string name="settings_default_auth" translatable="false">none</string>
     <string name="settings_default_encryption" translatable="false">keystore</string>
     <string name="settings_default_lang" translatable="false">system</string>
     <string name="settings_default_theme" translatable="false">light</string>
@@ -67,13 +66,6 @@
     </array>
 
     <!-- List values -->
-    <string-array name="settings_values_auth" translatable="false">
-        <item>none</item>
-        <item>password</item>
-        <item>pin</item>
-        <item>device</item>
-    </string-array>
-
     <string-array name="settings_values_encryption" translatable="false">
         <item>keystore</item>
         <item>password</item>

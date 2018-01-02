@@ -41,7 +41,7 @@
   <string name="menu_popup_edit_tags">Labels bewerken</string>
   <string name="menu_popup_remove">Verwijderen</string>
   <!-- Toast messages -->
-  <string name="toast_auth_failed">Verificatie is mislukt, sluiten andOTP!</string>
+  <string name="toast_auth_failed_fatal">Verificatie is mislukt, sluiten andOTP!</string>
   <string name="toast_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="toast_entry_exists">Deze item bestaat al</string>
   <string name="toast_invalid_qr_code">Ongeldige QR Code</string>

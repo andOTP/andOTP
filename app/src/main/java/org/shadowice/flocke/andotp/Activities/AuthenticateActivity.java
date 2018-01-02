@@ -48,20 +48,24 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
-import static org.shadowice.flocke.andotp.Utilities.Settings.AuthMethod;
+import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 
 public class AuthenticateActivity extends ThemedActivity
     implements EditText.OnEditorActionListener {
-    public static final String EXTRA_NAME_PASSWORD_KEY = "password_key";
-    public static final String EXTRA_NAME_SAVE_DATABASE = "save_database";
-    public static final String EXTRA_NAME_MESSAGE = "message";
+    public static final String AUTH_EXTRA_NAME_PASSWORD_KEY = "password_key";
+    public static final String AUTH_EXTRA_NAME_FATAL = "fatal";
+    public static final String AUTH_EXTRA_NAME_SAVE_DATABASE = "save_database";
+    public static final String AUTH_EXTRA_NAME_MESSAGE = "message";
 
     boolean saveDatabase = false;
+    boolean fatal = true;
 
     private String password;
 
     AuthMethod authMethod;
     boolean oldPassword = false;
+
+    TextInputEditText passwordInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,12 +83,13 @@ public class AuthenticateActivity extends ThemedActivity
         View v = stub.inflate();
 
         Intent callingIntent = getIntent();
-        saveDatabase = callingIntent.getBooleanExtra(EXTRA_NAME_SAVE_DATABASE, false);
-        int labelMsg = callingIntent.getIntExtra(EXTRA_NAME_MESSAGE, R.string.auth_msg_authenticate);
+        int labelMsg = callingIntent.getIntExtra(AUTH_EXTRA_NAME_MESSAGE, R.string.auth_msg_authenticate);
+        saveDatabase = callingIntent.getBooleanExtra(AUTH_EXTRA_NAME_SAVE_DATABASE, false);
+        fatal = callingIntent.getBooleanExtra(AUTH_EXTRA_NAME_FATAL, true);
 
         TextView passwordLabel = v.findViewById(R.id.passwordLabel);
         TextInputLayout passwordLayout = v.findViewById(R.id.passwordLayout);
-        TextInputEditText passwordInput = v.findViewById(R.id.passwordEdit);
+        passwordInput = v.findViewById(R.id.passwordEdit);
 
         passwordLabel.setText(labelMsg);
 
@@ -191,17 +196,26 @@ public class AuthenticateActivity extends ThemedActivity
 
     // End with a result
     public void finishWithResult(boolean success, byte[] key) {
-        Intent data = new Intent();
+        if (success || fatal) {
+            Intent data = new Intent();
 
-        data.putExtra(EXTRA_NAME_SAVE_DATABASE, saveDatabase);
+            data.putExtra(AUTH_EXTRA_NAME_SAVE_DATABASE, saveDatabase);
 
-        if (key != null)
-            data.putExtra(EXTRA_NAME_PASSWORD_KEY, key);
+            if (key != null)
+                data.putExtra(AUTH_EXTRA_NAME_PASSWORD_KEY, key);
 
-        if (success)
-            setResult(RESULT_OK, data);
+            if (success)
+                setResult(RESULT_OK, data);
 
-        finish();
+            finish();
+        } else {
+            passwordInput.setText("");
+
+            if (authMethod == AuthMethod.PASSWORD)
+                Toast.makeText(this, R.string.auth_toast_password_again, Toast.LENGTH_LONG).show();
+            else if (authMethod == AuthMethod.PIN)
+                Toast.makeText(this, R.string.auth_toast_pin_again, Toast.LENGTH_LONG).show();
+        }
     }
 
     // Go back to the main activity

@@ -113,9 +113,8 @@
     <string name="settings_lang_sys_default">System default</string>
 
     <!-- PasswordPreference -->
-    <string name="settings_hint_password">Password</string>
-    <string name="settings_hint_pin">PIN</string>
+    <string name="settings_hint_password">Enter new password</string>
+    <string name="settings_hint_pin">Enter new PIN</string>
     <string name="settings_hint_password_confirm">Confirm password</string>
     <string name="settings_hint_pin_confirm">Confirm PIN</string>
-    <string name="settings_hint_unchanged">(unchanged)</string>
 </resources>

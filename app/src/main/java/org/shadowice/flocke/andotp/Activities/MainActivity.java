@@ -58,10 +58,8 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
-import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
 import org.shadowice.flocke.andotp.View.FloatingActionMenu;
@@ -74,10 +72,15 @@ import java.util.HashMap;
 
 import javax.crypto.SecretKey;
 
-import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.EXTRA_NAME_MESSAGE;
-import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.EXTRA_NAME_PASSWORD_KEY;
-import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.EXTRA_NAME_SAVE_DATABASE;
+import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.AUTH_EXTRA_NAME_FATAL;
+import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.AUTH_EXTRA_NAME_MESSAGE;
+import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.AUTH_EXTRA_NAME_PASSWORD_KEY;
+import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.AUTH_EXTRA_NAME_SAVE_DATABASE;
 import static org.shadowice.flocke.andotp.Activities.BackupActivity.EXTRA_NAME_ENCRYPTION_KEY;
+import static org.shadowice.flocke.andotp.Activities.SettingsActivity.SETTINGS_EXTRA_NAME_ENCRYPTION_CHANGED;
+import static org.shadowice.flocke.andotp.Activities.SettingsActivity.SETTINGS_EXTRA_NAME_ENCRYPTION_KEY;
+import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
+import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
 
 public class MainActivity extends BaseActivity
@@ -92,7 +95,7 @@ public class MainActivity extends BaseActivity
     private MenuItem sortMenu;
     private SimpleItemTouchHelperCallback touchHelperCallback;
 
-    private Constants.EncryptionType encryptionType = Constants.EncryptionType.KEYSTORE;
+    private EncryptionType encryptionType = EncryptionType.KEYSTORE;
     private boolean requireAuthentication = false;
 
     private Handler handler;
@@ -127,19 +130,20 @@ public class MainActivity extends BaseActivity
                 .show();
     }
 
-    public void authenticate(int messageId, boolean saveDatabase) {
-        Settings.AuthMethod authMethod = settings.getAuthMethod();
+    public void authenticate(int messageId, boolean saveDatabase, boolean fatal) {
+        AuthMethod authMethod = settings.getAuthMethod();
 
-        if (authMethod == Settings.AuthMethod.DEVICE) {
+        if (authMethod == AuthMethod.DEVICE) {
             KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && km.isKeyguardSecure()) {
                 Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
                 startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
             }
-        } else if (authMethod == Settings.AuthMethod.PASSWORD || authMethod == Settings.AuthMethod.PIN) {
+        } else if (authMethod == AuthMethod.PASSWORD || authMethod == AuthMethod.PIN) {
             Intent authIntent = new Intent(this, AuthenticateActivity.class);
-            authIntent.putExtra(EXTRA_NAME_SAVE_DATABASE, saveDatabase);
-            authIntent.putExtra(EXTRA_NAME_MESSAGE, messageId);
+            authIntent.putExtra(AUTH_EXTRA_NAME_SAVE_DATABASE, saveDatabase);
+            authIntent.putExtra(AUTH_EXTRA_NAME_FATAL, fatal);
+            authIntent.putExtra(AUTH_EXTRA_NAME_MESSAGE, messageId);
             startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
         }
     }
@@ -198,13 +202,13 @@ public class MainActivity extends BaseActivity
 
         encryptionType = settings.getEncryption();
 
-        if (settings.getAuthMethod() != Settings.AuthMethod.NONE && savedInstanceState == null)
+        if (settings.getAuthMethod() != AuthMethod.NONE && savedInstanceState == null)
             requireAuthentication = true;
 
         setBroadcastCallback(new BroadcastReceivedCallback() {
             @Override
             public void onReceivedScreenOff() {
-                if (settings.getAuthMethod() != Settings.AuthMethod.NONE)
+                if (settings.getAuthMethod() != AuthMethod.NONE)
                     requireAuthentication = true;
             }
         });
@@ -318,20 +322,20 @@ public class MainActivity extends BaseActivity
         super.onResume();
 
         if (requireAuthentication) {
-            if (settings.getAuthMethod() != Settings.AuthMethod.NONE) {
+            if (settings.getAuthMethod() != AuthMethod.NONE) {
                 requireAuthentication = false;
-                authenticate(R.string.auth_msg_authenticate, false);
+                authenticate(R.string.auth_msg_authenticate,false, true);
             }
         } else {
-            if (encryptionType == Constants.EncryptionType.KEYSTORE) {
+            if (encryptionType == EncryptionType.KEYSTORE) {
                 if (adapter.getEncryptionKey() == null) {
                     adapter.setEncryptionKey(KeyStoreHelper.loadEncryptionKeyFromKeyStore(this));
                 }
 
                 populateAdapter();
-            } else if (encryptionType == Constants.EncryptionType.PASSWORD) {
+            } else if (encryptionType == EncryptionType.PASSWORD) {
                 if (adapter.getEncryptionKey() == null) {
-                    authenticate(R.string.auth_msg_authenticate,false);
+                    authenticate(R.string.auth_msg_authenticate,false, true);
                 } else {
                     populateAdapter();
                 }
@@ -358,20 +362,21 @@ public class MainActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_lang)) ||
                 key.equals(getString(R.string.settings_key_enable_screenshot))) {
             recreate();
-        } else if (key.equals(getString(R.string.settings_key_encryption))) {
-            if (settings.getEncryption() == Constants.EncryptionType.KEYSTORE) {
-                encryptionType = Constants.EncryptionType.KEYSTORE;
-                adapter.setEncryptionKey(KeyStoreHelper.loadEncryptionKeyFromKeyStore(this));
-                adapter.saveEntries();
-            } else if (settings.getEncryption() == Constants.EncryptionType.PASSWORD) {
-                encryptionType = Constants.EncryptionType.PASSWORD;
-                authenticate(R.string.auth_msg_confirm_encryption,true);
-            }
-        } else if (key.equals(getString(R.string.settings_key_auth)) ||
-                key.equals(getString(R.string.settings_key_auth_password_pbkdf2)) ||
-                key.equals(getString(R.string.settings_key_auth_pin_pbkdf2))) {
-            if (encryptionType == Constants.EncryptionType.PASSWORD)
-                authenticate(R.string.auth_msg_confirm_encryption, true);
+//        } else if (key.equals(getString(R.string.settings_key_encryption))) {
+//            if (settings.getEncryption() == EncryptionType.KEYSTORE) {
+//                encryptionType = EncryptionType.KEYSTORE;
+//                adapter.setEncryptionKey(KeyStoreHelper.loadEncryptionKeyFromKeyStore(this));
+//                adapter.saveEntries();
+//            } else if (settings.getEncryption() == EncryptionType.PASSWORD) {
+//                encryptionType = EncryptionType.PASSWORD;
+//                authenticate(R.string.auth_msg_confirm_encryption,true);
+//            }
+//        } else if (key.equals(getString(R.string.settings_key_auth)) ||
+//                key.equals(getString(R.string.settings_key_auth_password_pbkdf2)) ||
+//                key.equals(getString(R.string.settings_key_auth_pin_pbkdf2))) {
+//            if (encryptionType == EncryptionType.PASSWORD) {
+//                authenticate(R.string.auth_msg_confirm_encryption,true);
+//            }
         }
     }
 
@@ -404,9 +409,16 @@ public class MainActivity extends BaseActivity
                 adapter.loadEntries();
                 refreshTags();
             }
+        } else if (requestCode == INTENT_INTERNAL_SETTINGS && resultCode == RESULT_OK) {
+            boolean encryptionChanged = intent.getBooleanExtra(SETTINGS_EXTRA_NAME_ENCRYPTION_CHANGED, false);
+
+            if (encryptionChanged) {
+                byte[] newKey = intent.getByteArrayExtra(SETTINGS_EXTRA_NAME_ENCRYPTION_KEY);
+                updateEncryption(newKey, true);
+            }
         } else if (requestCode == INTENT_INTERNAL_AUTHENTICATE) {
             if (resultCode != RESULT_OK) {
-                Toast.makeText(getBaseContext(), R.string.toast_auth_failed, Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), R.string.toast_auth_failed_fatal, Toast.LENGTH_LONG).show();
 
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                     finishAndRemoveTask();
@@ -416,28 +428,37 @@ public class MainActivity extends BaseActivity
             } else {
                 requireAuthentication = false;
 
-                SecretKey encryptionKey = null;
+                boolean saveDatabase = intent.getBooleanExtra(AUTH_EXTRA_NAME_SAVE_DATABASE, false);
+                byte[] authKey = intent.getByteArrayExtra(AUTH_EXTRA_NAME_PASSWORD_KEY);
 
-                if (encryptionType == Constants.EncryptionType.KEYSTORE) {
-                    encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this);
-                } else if (encryptionType == Constants.EncryptionType.PASSWORD) {
-                    byte[] credentialSeed = intent.getByteArrayExtra(EXTRA_NAME_PASSWORD_KEY);
-                    if (credentialSeed != null && credentialSeed.length > 0)
-                        encryptionKey = EncryptionHelper.generateSymmetricKey(credentialSeed);
-                }
-
-                boolean saveDatabase = intent.getBooleanExtra(EXTRA_NAME_SAVE_DATABASE, false);
-
-                if (encryptionKey != null) {
-                    adapter.setEncryptionKey(encryptionKey);
-
-                    if (saveDatabase)
-                        adapter.saveEntries();
-                }
-
-                populateAdapter();
+                updateEncryption(authKey, saveDatabase);
             }
         }
+    }
+
+    private void updateEncryption(byte[] newKey, boolean saveDatabase) {
+        SecretKey encryptionKey = null;
+
+        encryptionType = settings.getEncryption();
+
+        if (encryptionType == EncryptionType.KEYSTORE) {
+            encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this);
+        } else if (encryptionType == EncryptionType.PASSWORD) {
+            if (newKey != null && newKey.length > 0) {
+                encryptionKey = EncryptionHelper.generateSymmetricKey(newKey);
+            } else {
+                authenticate(R.string.auth_msg_confirm_encryption, true, false);
+            }
+        }
+
+        if (encryptionKey != null) {
+            adapter.setEncryptionKey(encryptionKey);
+
+            if (saveDatabase)
+                adapter.saveEntries();
+        }
+
+        populateAdapter();
     }
 
     // Options menu

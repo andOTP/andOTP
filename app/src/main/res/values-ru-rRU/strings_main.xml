@@ -41,7 +41,7 @@
   <string name="menu_popup_edit_tags">Изменить теги</string>
   <string name="menu_popup_remove">Убрать</string>
   <!-- Toast messages -->
-  <string name="toast_auth_failed">Ошибка аутентификации, andOTP закрывается!</string>
+  <string name="toast_auth_failed_fatal">Ошибка аутентификации, andOTP закрывается!</string>
   <string name="toast_copied_to_clipboard">Скопировано в буфер обмена</string>
   <string name="toast_entry_exists">Эта запись уже существует</string>
   <string name="toast_invalid_qr_code">Недопустимый QR-код</string>
