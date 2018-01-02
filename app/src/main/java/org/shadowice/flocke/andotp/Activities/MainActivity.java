@@ -365,13 +365,13 @@ public class MainActivity extends BaseActivity
                 adapter.saveEntries();
             } else if (settings.getEncryption() == Constants.EncryptionType.PASSWORD) {
                 encryptionType = Constants.EncryptionType.PASSWORD;
-                authenticate(R.string.auth_msg_confirm,true);
+                authenticate(R.string.auth_msg_confirm_encryption,true);
             }
         } else if (key.equals(getString(R.string.settings_key_auth)) ||
                 key.equals(getString(R.string.settings_key_auth_password_pbkdf2)) ||
                 key.equals(getString(R.string.settings_key_auth_pin_pbkdf2))) {
             if (encryptionType == Constants.EncryptionType.PASSWORD)
-                authenticate(R.string.auth_msg_confirm, true);
+                authenticate(R.string.auth_msg_confirm_encryption, true);
         }
     }
 

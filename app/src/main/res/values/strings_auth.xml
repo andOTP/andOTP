@@ -8,7 +8,8 @@
 
     <!-- Messages -->
     <string name="auth_msg_authenticate">Please authenticate to start andOTP!</string>
-    <string name="auth_msg_confirm">Please confirm your authentication!</string>
+    <string name="auth_msg_confirm_encryption">Please confirm your authentication to update the
+        encryption key!</string>
 
     <!-- Toast messages -->
     <string name="auth_toast_password_missing">Please set a password in the settings!</string>
