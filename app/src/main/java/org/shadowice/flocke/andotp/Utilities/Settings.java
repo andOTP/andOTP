@@ -352,7 +352,7 @@ public class Settings {
     }
 
     public boolean getThumbnailVisible() {
-        return getBoolean(R.string.settings_key_thumbnail_visible, true);
+        return getThumbnailSize() > 0;
     }
 
     public int getThumbnailSize() {

@@ -19,7 +19,6 @@
     <string name="settings_title_theme">Theme</string>
     <string name="settings_title_label_size">Label font size</string>
     <string name="settings_title_label_scroll">Scroll label</string>
-    <string name="settings_title_thumbnail_visible_ask">Show thumbnails</string>
     <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
 
     <string name="settings_title_backup_ask">Ask for filename</string>
@@ -84,6 +83,7 @@
     </string-array>
 
     <string-array name="settings_entries_thumbnail_size">
+        <item>Hidden</item>
         <item>Small</item>
         <item>Default</item>
         <item>Medium</item>
