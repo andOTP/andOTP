@@ -24,9 +24,11 @@
 package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.R;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -43,6 +45,11 @@ public class DatabaseHelper {
 
     /* Database functions */
     public static boolean saveDatabase(Context context, ArrayList<Entry> entries, SecretKey encryptionKey) {
+        if (encryptionKey == null) {
+            Toast.makeText(context, R.string.toast_encryption_key_empty, Toast.LENGTH_LONG).show();
+            return false;
+        }
+
         String jsonString = entriesToString(entries);
 
         try {
@@ -58,16 +65,20 @@ public class DatabaseHelper {
         return true;
     }
 
-    public static ArrayList<Entry> loadDatabase(Context context, SecretKey encryptionKey){
+    public static ArrayList<Entry> loadDatabase(Context context, SecretKey encryptionKey) {
         ArrayList<Entry> entries = new ArrayList<>();
 
-        try {
-            byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
-            data = EncryptionHelper.decrypt(encryptionKey, data);
+        if (encryptionKey != null) {
+            try {
+                byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
+                data = EncryptionHelper.decrypt(encryptionKey, data);
 
-            entries = stringToEntries(new String(data));
-        } catch (Exception error) {
-            error.printStackTrace();
+                entries = stringToEntries(new String(data));
+            } catch (Exception error) {
+                error.printStackTrace();
+            }
+        } else {
+            Toast.makeText(context, R.string.toast_encryption_key_empty, Toast.LENGTH_LONG).show();
         }
 
         return entries;

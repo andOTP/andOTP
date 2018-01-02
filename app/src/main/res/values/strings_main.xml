@@ -55,6 +55,7 @@
     <string name="toast_copied_to_clipboard">Copied to clipboard</string>
     <string name="toast_entry_exists">This entry already exists</string>
     <string name="toast_invalid_qr_code">Invalid QR Code</string>
+    <string name="toast_encryption_key_empty">Encryption key not loaded</string>
 
     <!-- Dialogs -->
     <string name="dialog_title_auth">Authenticate</string>
