@@ -31,16 +31,61 @@ import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
 
 public class DatabaseHelper {
     public static final String SETTINGS_FILE = "secrets.dat";
+    public static final String SETTINGS_FILE_BACKUP = "secrets.dat.bck";
 
     public static void wipeDatabase(Context context) {
         File db = new File(context.getFilesDir() + "/" + SETTINGS_FILE);
         db.delete();
+    }
+
+    private static void copyFile(File src, File dst)
+        throws IOException {
+        try (InputStream in = new FileInputStream(src)) {
+            try (OutputStream out = new FileOutputStream(dst)) {
+                byte[] buffer = new byte[1024];
+                int len;
+                while ((len = in.read(buffer)) > 0) {
+                    out.write(buffer, 0, len);
+                }
+            }
+        }
+    }
+
+    public static boolean backupDatabase(Context context) {
+        File original = new File(context.getFilesDir() + "/" + SETTINGS_FILE);
+        File backup = new File(context.getFilesDir() + "/" + SETTINGS_FILE_BACKUP);
+
+        try {
+            copyFile(original, backup);
+        } catch (IOException e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean restoreDatabaseBackup(Context context) {
+        File original = new File(context.getFilesDir() + "/" + SETTINGS_FILE);
+        File backup = new File(context.getFilesDir() + "/" + SETTINGS_FILE_BACKUP);
+
+        try {
+            copyFile(backup, original);
+        } catch (IOException e) {
+            return false;
+        }
+
+        return true;
     }
 
     /* Database functions */

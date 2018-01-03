@@ -25,7 +25,6 @@ package org.shadowice.flocke.andotp.Preferences;
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.preference.DialogPreference;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -34,7 +33,6 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
-import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,15 +43,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.List;
 
-import static android.content.Context.AUDIO_SERVICE;
 import static android.content.Context.KEYGUARD_SERVICE;
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
@@ -62,8 +56,8 @@ public class CredentialsPreference extends DialogPreference
     implements AdapterView.OnItemClickListener, View.OnClickListener, TextWatcher {
     public static final AuthMethod DEFAULT_VALUE = AuthMethod.NONE;
 
-    public interface EncryptionChangeHandler {
-        void onEncryptionChanged(byte[] newKey);
+    public interface EncryptionChangeCallback {
+        boolean testEncryptionChange(byte[] newKey);
     }
 
     private List<String> entries;
@@ -76,7 +70,7 @@ public class CredentialsPreference extends DialogPreference
 
     private Settings settings;
     private AuthMethod value = AuthMethod.NONE;
-    private EncryptionChangeHandler handler = null;
+    private EncryptionChangeCallback encryptionChangeCallback = null;
 
     private LinearLayout credentialsLayout;
     private TextInputLayout passwordLayout;
@@ -94,8 +88,8 @@ public class CredentialsPreference extends DialogPreference
         setDialogLayoutResource(R.layout.component_authentication);
     }
 
-    public void setEncryptionChangeHandler(EncryptionChangeHandler handler) {
-        this.handler = handler;
+    public void setEncryptionChangeCallback(EncryptionChangeCallback cb) {
+        this.encryptionChangeCallback = cb;
     }
 
     @Override
@@ -184,11 +178,16 @@ public class CredentialsPreference extends DialogPreference
             }
         }
 
+        if (settings.getEncryption() == EncryptionType.PASSWORD) {
+            if (newKey == null || encryptionChangeCallback == null)
+                return;
+
+            if (! encryptionChangeCallback.testEncryptionChange(newKey))
+                return;
+        }
+
         persistString(value.toString().toLowerCase());
         setSummary(entries.get(entryValues.indexOf(value)));
-
-        if (settings.getEncryption() == EncryptionType.PASSWORD && newKey != null && handler != null)
-            handler.onEncryptionChanged(newKey);
     }
 
     @Override

@@ -75,6 +75,17 @@
     <string name="settings_toast_encryption_invalid_without_credentials">You first need to set a
         Password or PIN before changing the encryption!</string>
 
+    <string name="settings_toast_encryption_changing">Trying to change the database encryption,
+        please wait!</string>
+    <string name="settings_toast_encryption_change_success">Successfully changed the database
+        encryption!</string>
+    <string name="settings_toast_encryption_change_failed">Failed to change database encryption,
+        restored database from internal backup!</string>
+    <string name="settings_toast_encryption_backup_failed">Failed to create an internal
+        backup, aborting!</string>
+    <string name="settings_toast_encryption_no_key">Failed to get the encryption key, aborting!</string>
+    <string name="settings_toast_encryption_auth_failed">Authentication failed, aborting!</string>
+
     <string name="settings_toast_auth_upgrade_failed">Failed to silently upgrade your password / PIN
         to the new encryption, please manually reset it in the settings!</string>
 

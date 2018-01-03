@@ -72,11 +72,9 @@ import java.util.HashMap;
 
 import javax.crypto.SecretKey;
 
-import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.AUTH_EXTRA_NAME_FATAL;
 import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.AUTH_EXTRA_NAME_MESSAGE;
 import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.AUTH_EXTRA_NAME_PASSWORD_KEY;
-import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.AUTH_EXTRA_NAME_SAVE_DATABASE;
-import static org.shadowice.flocke.andotp.Activities.BackupActivity.EXTRA_NAME_ENCRYPTION_KEY;
+import static org.shadowice.flocke.andotp.Activities.BackupActivity.BACKUP_EXTRA_NAME_ENCRYPTION_KEY;
 import static org.shadowice.flocke.andotp.Activities.SettingsActivity.SETTINGS_EXTRA_NAME_ENCRYPTION_CHANGED;
 import static org.shadowice.flocke.andotp.Activities.SettingsActivity.SETTINGS_EXTRA_NAME_ENCRYPTION_KEY;
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
@@ -130,7 +128,7 @@ public class MainActivity extends BaseActivity
                 .show();
     }
 
-    public void authenticate(int messageId, boolean saveDatabase, boolean fatal) {
+    public void authenticate(int messageId) {
         AuthMethod authMethod = settings.getAuthMethod();
 
         if (authMethod == AuthMethod.DEVICE) {
@@ -141,8 +139,6 @@ public class MainActivity extends BaseActivity
             }
         } else if (authMethod == AuthMethod.PASSWORD || authMethod == AuthMethod.PIN) {
             Intent authIntent = new Intent(this, AuthenticateActivity.class);
-            authIntent.putExtra(AUTH_EXTRA_NAME_SAVE_DATABASE, saveDatabase);
-            authIntent.putExtra(AUTH_EXTRA_NAME_FATAL, fatal);
             authIntent.putExtra(AUTH_EXTRA_NAME_MESSAGE, messageId);
             startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
         }
@@ -324,7 +320,7 @@ public class MainActivity extends BaseActivity
         if (requireAuthentication) {
             if (settings.getAuthMethod() != AuthMethod.NONE) {
                 requireAuthentication = false;
-                authenticate(R.string.auth_msg_authenticate,false, true);
+                authenticate(R.string.auth_msg_authenticate);
             }
         } else {
             if (encryptionType == EncryptionType.KEYSTORE) {
@@ -335,7 +331,7 @@ public class MainActivity extends BaseActivity
                 populateAdapter();
             } else if (encryptionType == EncryptionType.PASSWORD) {
                 if (adapter.getEncryptionKey() == null) {
-                    authenticate(R.string.auth_msg_authenticate,false, true);
+                    authenticate(R.string.auth_msg_authenticate);
                 } else {
                     populateAdapter();
                 }
@@ -396,11 +392,10 @@ public class MainActivity extends BaseActivity
             }
         } else if (requestCode == INTENT_INTERNAL_SETTINGS && resultCode == RESULT_OK) {
             boolean encryptionChanged = intent.getBooleanExtra(SETTINGS_EXTRA_NAME_ENCRYPTION_CHANGED, false);
+            byte[] newKey = intent.getByteArrayExtra(SETTINGS_EXTRA_NAME_ENCRYPTION_KEY);
 
-            if (encryptionChanged) {
-                byte[] newKey = intent.getByteArrayExtra(SETTINGS_EXTRA_NAME_ENCRYPTION_KEY);
-                updateEncryption(newKey, true);
-            }
+            if (encryptionChanged)
+                updateEncryption(newKey);
         } else if (requestCode == INTENT_INTERNAL_AUTHENTICATE) {
             if (resultCode != RESULT_OK) {
                 Toast.makeText(getBaseContext(), R.string.toast_auth_failed_fatal, Toast.LENGTH_LONG).show();
@@ -413,15 +408,13 @@ public class MainActivity extends BaseActivity
             } else {
                 requireAuthentication = false;
 
-                boolean saveDatabase = intent.getBooleanExtra(AUTH_EXTRA_NAME_SAVE_DATABASE, false);
                 byte[] authKey = intent.getByteArrayExtra(AUTH_EXTRA_NAME_PASSWORD_KEY);
-
-                updateEncryption(authKey, saveDatabase);
+                updateEncryption(authKey);
             }
         }
     }
 
-    private void updateEncryption(byte[] newKey, boolean saveDatabase) {
+    private void updateEncryption(byte[] newKey) {
         SecretKey encryptionKey = null;
 
         encryptionType = settings.getEncryption();
@@ -432,16 +425,12 @@ public class MainActivity extends BaseActivity
             if (newKey != null && newKey.length > 0) {
                 encryptionKey = EncryptionHelper.generateSymmetricKey(newKey);
             } else {
-                authenticate(R.string.auth_msg_confirm_encryption, true, false);
+                authenticate(R.string.auth_msg_confirm_encryption);
             }
         }
 
-        if (encryptionKey != null) {
+        if (encryptionKey != null)
             adapter.setEncryptionKey(encryptionKey);
-
-            if (saveDatabase)
-                adapter.saveEntries();
-        }
 
         populateAdapter();
     }
@@ -520,10 +509,11 @@ public class MainActivity extends BaseActivity
 
         if (id == R.id.action_backup) {
             Intent backupIntent = new Intent(this, BackupActivity.class);
-            backupIntent.putExtra(EXTRA_NAME_ENCRYPTION_KEY, adapter.getEncryptionKey().getEncoded());
+            backupIntent.putExtra(BACKUP_EXTRA_NAME_ENCRYPTION_KEY, adapter.getEncryptionKey().getEncoded());
             startActivityForResult(backupIntent, INTENT_INTERNAL_BACKUP);
         } else if (id == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            settingsIntent.putExtra(SETTINGS_EXTRA_NAME_ENCRYPTION_KEY, adapter.getEncryptionKey().getEncoded());
             startActivityForResult(settingsIntent, INTENT_INTERNAL_SETTINGS);
         } else if (id == R.id.action_about){
             Intent aboutIntent = new Intent(this, AboutActivity.class);

@@ -62,7 +62,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 
 public class BackupActivity extends BaseActivity {
     private final static int INTENT_OPEN_DOCUMENT_PLAIN = 200;
@@ -88,7 +87,7 @@ public class BackupActivity extends BaseActivity {
     private static final String DEFAULT_BACKUP_MIMETYPE_CRYPT   = "binary/aes";
     private static final String DEFAULT_BACKUP_MIMETYPE_PGP     = "application/pgp-encrypted";
 
-    public static final String EXTRA_NAME_ENCRYPTION_KEY = "encryption_key";
+    public static final String BACKUP_EXTRA_NAME_ENCRYPTION_KEY = "encryption_key";
 
     private SecretKey encryptionKey = null;
 
@@ -117,8 +116,8 @@ public class BackupActivity extends BaseActivity {
         View v = stub.inflate();
 
         Intent callingIntent = getIntent();
-        byte[] keyMaterial = callingIntent.getByteArrayExtra(EXTRA_NAME_ENCRYPTION_KEY);
-        encryptionKey = new SecretKeySpec(keyMaterial, 0, keyMaterial.length, "AES");
+        byte[] keyMaterial = callingIntent.getByteArrayExtra(BACKUP_EXTRA_NAME_ENCRYPTION_KEY);
+        encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
 
         // Plain-text
 

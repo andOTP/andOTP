@@ -53,16 +53,13 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 public class AuthenticateActivity extends ThemedActivity
     implements EditText.OnEditorActionListener {
     public static final String AUTH_EXTRA_NAME_PASSWORD_KEY = "password_key";
-    public static final String AUTH_EXTRA_NAME_FATAL = "fatal";
-    public static final String AUTH_EXTRA_NAME_SAVE_DATABASE = "save_database";
+    public static final String AUTH_EXTRA_NAME_NEW_ENCRYPTION = "new_encryption";
     public static final String AUTH_EXTRA_NAME_MESSAGE = "message";
-
-    boolean saveDatabase = false;
-    boolean fatal = true;
 
     private String password;
 
     AuthMethod authMethod;
+    String newEncryption = "";
     boolean oldPassword = false;
 
     TextInputEditText passwordInput;
@@ -84,8 +81,7 @@ public class AuthenticateActivity extends ThemedActivity
 
         Intent callingIntent = getIntent();
         int labelMsg = callingIntent.getIntExtra(AUTH_EXTRA_NAME_MESSAGE, R.string.auth_msg_authenticate);
-        saveDatabase = callingIntent.getBooleanExtra(AUTH_EXTRA_NAME_SAVE_DATABASE, false);
-        fatal = callingIntent.getBooleanExtra(AUTH_EXTRA_NAME_FATAL, true);
+        newEncryption = callingIntent.getStringExtra(AUTH_EXTRA_NAME_NEW_ENCRYPTION);
 
         TextView passwordLabel = v.findViewById(R.id.passwordLabel);
         TextInputLayout passwordLayout = v.findViewById(R.id.passwordLayout);
@@ -173,26 +169,18 @@ public class AuthenticateActivity extends ThemedActivity
 
     // End with a result
     public void finishWithResult(boolean success, byte[] key) {
-        if (success || fatal) {
-            Intent data = new Intent();
+        Intent data = new Intent();
 
-            data.putExtra(AUTH_EXTRA_NAME_SAVE_DATABASE, saveDatabase);
+        if (newEncryption != null && ! newEncryption.isEmpty())
+            data.putExtra(AUTH_EXTRA_NAME_NEW_ENCRYPTION, newEncryption);
 
-            if (key != null)
-                data.putExtra(AUTH_EXTRA_NAME_PASSWORD_KEY, key);
+        if (key != null)
+            data.putExtra(AUTH_EXTRA_NAME_PASSWORD_KEY, key);
 
-            if (success)
-                setResult(RESULT_OK, data);
+        if (success)
+            setResult(RESULT_OK, data);
 
-            finish();
-        } else {
-            passwordInput.setText("");
-
-            if (authMethod == AuthMethod.PASSWORD)
-                Toast.makeText(this, R.string.auth_toast_password_again, Toast.LENGTH_LONG).show();
-            else if (authMethod == AuthMethod.PIN)
-                Toast.makeText(this, R.string.auth_toast_pin_again, Toast.LENGTH_LONG).show();
-        }
+        finish();
     }
 
     // Go back to the main activity
