@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Settings;
+import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -220,6 +221,9 @@ public class CredentialsPreference extends DialogPreference
     private void updateLayout() {
         if (value == AuthMethod.NONE) {
             credentialsLayout.setVisibility(View.GONE);
+
+            UIHelper.hideKeyboard(getContext(), getDialog().getCurrentFocus());
+
             btnSave.setEnabled(true);
         } else if (value == AuthMethod.PASSWORD) {
             credentialsLayout.setVisibility(View.VISIBLE);
@@ -232,6 +236,9 @@ public class CredentialsPreference extends DialogPreference
 
             passwordInput.setTransformationMethod(new PasswordTransformationMethod());
             passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
+
+            passwordInput.requestFocus();
+            UIHelper.showKeyboard(getContext(), passwordInput);
 
             btnSave.setEnabled(false);
         } else if (value == AuthMethod.PIN) {
@@ -246,9 +253,15 @@ public class CredentialsPreference extends DialogPreference
             passwordInput.setTransformationMethod(new PasswordTransformationMethod());
             passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
 
+            passwordInput.requestFocus();
+            UIHelper.showKeyboard(getContext(), passwordInput);
+
             btnSave.setEnabled(false);
         } else if (value == AuthMethod.DEVICE) {
             credentialsLayout.setVisibility(View.GONE);
+
+            UIHelper.hideKeyboard(getContext(), getDialog().getCurrentFocus());
+
             btnSave.setEnabled(true);
         }
     }
