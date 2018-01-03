@@ -39,6 +39,7 @@ import org.openintents.openpgp.util.OpenPgpKeyPreference;
 import org.shadowice.flocke.andotp.Preferences.CredentialsPreference;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
+import org.shadowice.flocke.andotp.Utilities.Settings;
 
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
@@ -117,6 +118,7 @@ public class SettingsActivity extends BaseActivity
     public static class SettingsFragment extends PreferenceFragment {
         PreferenceCategory catSecurity;
 
+        Settings settings;
         ListPreference encryption;
 
         OpenPgpAppPreference pgpProvider;
@@ -125,6 +127,8 @@ public class SettingsActivity extends BaseActivity
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+
+            settings = new Settings(getActivity());
 
             final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
             addPreferencesFromResource(R.xml.preferences);
@@ -145,22 +149,15 @@ public class SettingsActivity extends BaseActivity
                 @Override
                 public boolean onPreferenceChange(final Preference preference, Object o) {
                     String newEncryption = (String) o;
-                    String auth = sharedPref.getString(getString(R.string.settings_key_auth), CredentialsPreference.DEFAULT_VALUE.name().toLowerCase());
                     EncryptionType encryptionType = EncryptionType.valueOf(newEncryption.toUpperCase());
-                    AuthMethod authMethod = AuthMethod.valueOf(auth.toUpperCase());
+                    AuthMethod authMethod = settings.getAuthMethod();
 
                     if (encryptionType == EncryptionType.PASSWORD) {
                         if (authMethod != AuthMethod.PASSWORD && authMethod != AuthMethod.PIN) {
                             Toast.makeText(getActivity(), R.string.settings_toast_encryption_invalid_with_auth, Toast.LENGTH_LONG).show();
                             return false;
                         } else {
-                            String credentials = "";
-                            if (authMethod == AuthMethod.PASSWORD)
-                                credentials = sharedPref.getString(getString(R.string.settings_key_auth_password_pbkdf2), "");
-                            else if (authMethod == AuthMethod.PIN)
-                                credentials = sharedPref.getString(getString(R.string.settings_key_auth_pin_pbkdf2), "");
-
-                            if (credentials.isEmpty()) {
+                            if (settings.getAuthCredentials(authMethod).isEmpty()) {
                                 Toast.makeText(getActivity(), R.string.settings_toast_encryption_invalid_without_credentials, Toast.LENGTH_LONG).show();
                                 return false;
                             } else {

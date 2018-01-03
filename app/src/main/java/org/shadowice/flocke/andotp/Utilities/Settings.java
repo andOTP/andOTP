@@ -74,34 +74,12 @@ public class Settings {
 
     private void migrateDeprecatedSettings() {
         if (settings.contains(getResString(R.string.settings_key_auth_password))) {
-            String plainPassword = getAuthPassword();
-
-            try {
-                int iter = EncryptionHelper.generateRandomIterations();
-                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, getSalt(), iter);
-                setString(R.string.settings_key_auth_password_pbkdf2, Base64.encodeToString(credentials.password, Base64.URL_SAFE));
-                setInt(R.string.settings_key_auth_password_iter, iter);
-            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-                Toast.makeText(context, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
-                e.printStackTrace();
-            }
-
+            setAuthCredentials(AuthMethod.PASSWORD, getString(R.string.settings_key_auth_password, ""));
             remove(R.string.settings_key_auth_password);
         }
 
         if (settings.contains(getResString(R.string.settings_key_auth_pin))) {
-            String plainPIN = getAuthPIN();
-
-            try {
-                int iter = EncryptionHelper.generateRandomIterations();
-                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPIN, getSalt(), iter);
-                setString(R.string.settings_key_auth_pin_pbkdf2, Base64.encodeToString(credentials.password, Base64.URL_SAFE));
-                setInt(R.string.settings_key_auth_pin_iter, iter);
-            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-                Toast.makeText(context, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
-                e.printStackTrace();
-            }
-
+            setAuthCredentials(AuthMethod.PIN, getString(R.string.settings_key_auth_pin, ""));
             remove(R.string.settings_key_auth_pin);
         }
 
@@ -188,9 +166,8 @@ public class Settings {
     }
 
     public void clear(boolean keep_auth) {
-        String authMethod = getAuthMethod().toString().toLowerCase();
-        String authPassword = getAuthPasswordHash();
-        String authPIN = getAuthPINHash();
+        AuthMethod authMethod = getAuthMethod();
+        String authCredentials = getAuthCredentials(authMethod);
 
         boolean warningShown = getFirstTimeWarningShown();
 
@@ -200,13 +177,14 @@ public class Settings {
         editor.putBoolean(getResString(R.string.settings_key_security_backup_warning), warningShown);
 
         if (keep_auth) {
-            editor.putString(getResString(R.string.settings_key_auth), authMethod);
+            editor.putString(getResString(R.string.settings_key_auth), authMethod.toString().toLowerCase());
 
-            if (!authPassword.isEmpty())
-                editor.putString(getResString(R.string.settings_key_auth_password_hash), authPassword);
-
-            if (!authPIN.isEmpty())
-                editor.putString(getResString(R.string.settings_key_auth_pin_hash), authPIN);
+            if (! authCredentials.isEmpty()) {
+                if (authMethod == AuthMethod.PASSWORD)
+                    editor.putString(getResString(R.string.settings_key_auth_password_pbkdf2), authCredentials);
+                else if (authMethod == AuthMethod.PIN)
+                    editor.putString(getResString(R.string.settings_key_auth_pin_pbkdf2), authCredentials);
+            }
         }
 
         editor.commit();
@@ -235,44 +213,29 @@ public class Settings {
         return AuthMethod.valueOf(authString.toUpperCase());
     }
 
-    private String getAuthPassword() {
-        return getString(R.string.settings_key_auth_password, "");
-    }
-
-    public String getAuthPasswordHash() {
-        return getString(R.string.settings_key_auth_password_hash, "");
-    }
-
     public void removeAuthPasswordHash() {
         remove(R.string.settings_key_auth_password_hash);
     }
-
-    public String getAuthPasswordPBKDF2() {
-        return getString(R.string.settings_key_auth_password_pbkdf2, "");
-    }
-
-    public void setAuthPasswordPBKDF2(String password) {
-        setString(R.string.settings_key_auth_password_pbkdf2, password);
-    }
-
-    private String getAuthPIN() {
-        return getString(R.string.settings_key_auth_pin, "");
-    }
-
-    public String getAuthPINHash() {
-        return getString(R.string.settings_key_auth_pin_hash, "");
-    }
-
     public void removeAuthPINHash() {
         remove(R.string.settings_key_auth_pin_hash);
     }
 
-    public String getAuthPINPBKDF2() {
-        return getString(R.string.settings_key_auth_pin_pbkdf2, "");
+    public String getOldCredentials(AuthMethod method) {
+        if (method == AuthMethod.PASSWORD)
+            return getString(R.string.settings_key_auth_password_hash, "");
+        else if (method == AuthMethod.PIN)
+            return getString(R.string.settings_key_auth_pin_hash, "");
+        else
+            return "";
     }
 
-    public void setAuthPINPBKDF2(String pin) {
-        setString(R.string.settings_key_auth_pin_pbkdf2, pin);
+    public String getAuthCredentials(AuthMethod method) {
+        if (method == AuthMethod.PASSWORD)
+            return getString(R.string.settings_key_auth_password_pbkdf2, "");
+        else if (method == AuthMethod.PIN)
+            return getString(R.string.settings_key_auth_pin_pbkdf2, "");
+        else
+            return "";
     }
 
     public byte[] setAuthCredentials(AuthMethod method, String plainPassword) {
@@ -286,9 +249,9 @@ public class Settings {
             setIterations(method, iterations);
 
             if (method == AuthMethod.PASSWORD)
-                setAuthPasswordPBKDF2(password);
+                setString(R.string.settings_key_auth_password_pbkdf2, password);
             else if (method == AuthMethod.PIN)
-                setAuthPINPBKDF2(password);
+                setString(R.string.settings_key_auth_pin_pbkdf2, password);
 
             key = credentials.key;
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {

@@ -94,15 +94,14 @@ public class AuthenticateActivity extends ThemedActivity
         passwordLabel.setText(labelMsg);
 
         authMethod = settings.getAuthMethod();
+        password = settings.getAuthCredentials(authMethod);
+
+        if (password.isEmpty()) {
+            password = settings.getOldCredentials(authMethod);
+            oldPassword = true;
+        }
 
         if (authMethod == AuthMethod.PASSWORD) {
-            password = settings.getAuthPasswordPBKDF2();
-
-            if (password.isEmpty()) {
-                password = settings.getAuthPasswordHash();
-                oldPassword = true;
-            }
-
             if (password.isEmpty()) {
                 Toast.makeText(this, R.string.auth_toast_password_missing, Toast.LENGTH_LONG).show();
                 finishWithResult(true, null);
@@ -111,13 +110,6 @@ public class AuthenticateActivity extends ThemedActivity
                 passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             }
         } else if (authMethod == AuthMethod.PIN) {
-            password = settings.getAuthPINPBKDF2();
-
-            if (password.isEmpty()) {
-                password = settings.getAuthPINHash();
-                oldPassword = true;
-            }
-
             if (password.isEmpty()) {
                 Toast.makeText(this, R.string.auth_toast_pin_missing, Toast.LENGTH_LONG).show();
                 finishWithResult(true, null);
@@ -157,25 +149,10 @@ public class AuthenticateActivity extends ThemedActivity
                 String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(plainPassword)));
 
                 if (hashedPassword.equals(password)) {
-                    byte[] key = null;
+                    byte[] key = settings.setAuthCredentials(authMethod, password);
 
-                    try {
-                        int iter = EncryptionHelper.generateRandomIterations();
-                        EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, settings.getSalt(), iter);
-                        String base64 = Base64.encodeToString(credentials.password, Base64.URL_SAFE);
-
-                        if (authMethod == AuthMethod.PASSWORD)
-                            settings.setAuthPasswordPBKDF2(base64);
-                        else if (authMethod == AuthMethod.PIN)
-                            settings.setAuthPINPBKDF2(base64);
-
-                        settings.setIterations(authMethod, iter);
-
-                        key = credentials.key;
-                    } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                    if (key == null)
                         Toast.makeText(this, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
-                        e.printStackTrace();
-                    }
 
                     if (authMethod == AuthMethod.PASSWORD)
                         settings.removeAuthPasswordHash();
