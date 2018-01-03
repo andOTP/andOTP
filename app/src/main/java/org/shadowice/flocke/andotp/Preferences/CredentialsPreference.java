@@ -187,7 +187,7 @@ public class CredentialsPreference extends DialogPreference
         persistString(value.toString().toLowerCase());
         setSummary(entries.get(entryValues.indexOf(value)));
 
-        if (newKey != null && handler != null)
+        if (settings.getEncryption() == EncryptionType.PASSWORD && newKey != null && handler != null)
             handler.onEncryptionChanged(newKey);
     }
 
