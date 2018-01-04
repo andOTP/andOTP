@@ -45,19 +45,16 @@ import javax.crypto.SecretKey;
 import javax.security.auth.x500.X500Principal;
 
 public class KeyStoreHelper {
-    public static final String KEY_FILE = "otp.key";
-
-    public static final String KEYSTORE_ALIAS_WRAPPING = "settings";
 
     public static void wipeKeys(Context context) {
-        File keyFile = new File(context.getFilesDir() + "/" + KEY_FILE);
+        File keyFile = new File(context.getFilesDir() + "/" + Constants.FILENAME_ENCRYPTED_KEY);
         keyFile.delete();
 
         try {
             final KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
             keyStore.load(null);
-            if (keyStore.containsAlias(KEYSTORE_ALIAS_WRAPPING))
-                keyStore.deleteEntry(KEYSTORE_ALIAS_WRAPPING);
+            if (keyStore.containsAlias(Constants.KEYSTORE_ALIAS_WRAPPING))
+                keyStore.deleteEntry(Constants.KEYSTORE_ALIAS_WRAPPING);
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
         }
@@ -106,7 +103,7 @@ public class KeyStoreHelper {
         KeyPair pair = null;
 
         try {
-            pair = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, KEYSTORE_ALIAS_WRAPPING);
+            pair = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, Constants.KEYSTORE_ALIAS_WRAPPING);
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
             UIHelper.showGenericDialog(context, R.string.dialog_title_encryption_error, R.string.dialog_msg_keystore_error);
@@ -114,7 +111,7 @@ public class KeyStoreHelper {
 
         if (pair != null) {
             try {
-                return EncryptionHelper.loadOrGenerateWrappedKey(new File(context.getFilesDir() + "/" + KEY_FILE), pair);
+                return EncryptionHelper.loadOrGenerateWrappedKey(new File(context.getFilesDir() + "/" + Constants.FILENAME_ENCRYPTED_KEY), pair);
             } catch (GeneralSecurityException | IOException e) {
                 e.printStackTrace();
                 UIHelper.showGenericDialog(context, R.string.dialog_title_encryption_error, R.string.dialog_msg_unwrap_error);

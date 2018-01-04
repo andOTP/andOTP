@@ -26,8 +26,6 @@ import java.security.KeyStore;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
-import static org.shadowice.flocke.andotp.Utilities.Constants.ALGORITHM_ASYMMETRIC;
-
 /**
  * Wraps {@link SecretKey} instances using a public/private key pair stored in
  * the platform {@link KeyStore}. This allows us to protect symmetric keys with
@@ -49,7 +47,7 @@ public class SecretKeyWrapper {
     @SuppressLint("GetInstance")
     public SecretKeyWrapper(KeyPair keyPair)
             throws GeneralSecurityException, IOException {
-        mCipher = Cipher.getInstance(ALGORITHM_ASYMMETRIC);
+        mCipher = Cipher.getInstance(Constants.ALGORITHM_ASYMMETRIC);
         mPair = keyPair;
     }
 

@@ -42,6 +42,7 @@ import android.widget.Toast;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 
 import java.security.NoSuchAlgorithmException;
@@ -52,10 +53,6 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 
 public class AuthenticateActivity extends ThemedActivity
     implements EditText.OnEditorActionListener {
-    public static final String AUTH_EXTRA_NAME_PASSWORD_KEY = "password_key";
-    public static final String AUTH_EXTRA_NAME_NEW_ENCRYPTION = "new_encryption";
-    public static final String AUTH_EXTRA_NAME_MESSAGE = "message";
-
     private String password;
 
     AuthMethod authMethod;
@@ -80,8 +77,8 @@ public class AuthenticateActivity extends ThemedActivity
         View v = stub.inflate();
 
         Intent callingIntent = getIntent();
-        int labelMsg = callingIntent.getIntExtra(AUTH_EXTRA_NAME_MESSAGE, R.string.auth_msg_authenticate);
-        newEncryption = callingIntent.getStringExtra(AUTH_EXTRA_NAME_NEW_ENCRYPTION);
+        int labelMsg = callingIntent.getIntExtra(Constants.EXTRA_AUTH_MESSAGE, R.string.auth_msg_authenticate);
+        newEncryption = callingIntent.getStringExtra(Constants.EXTRA_AUTH_NEW_ENCRYPTION);
 
         TextView passwordLabel = v.findViewById(R.id.passwordLabel);
         TextInputLayout passwordLayout = v.findViewById(R.id.passwordLayout);
@@ -172,10 +169,10 @@ public class AuthenticateActivity extends ThemedActivity
         Intent data = new Intent();
 
         if (newEncryption != null && ! newEncryption.isEmpty())
-            data.putExtra(AUTH_EXTRA_NAME_NEW_ENCRYPTION, newEncryption);
+            data.putExtra(Constants.EXTRA_AUTH_NEW_ENCRYPTION, newEncryption);
 
         if (key != null)
-            data.putExtra(AUTH_EXTRA_NAME_PASSWORD_KEY, key);
+            data.putExtra(Constants.EXTRA_AUTH_PASSWORD_KEY, key);
 
         if (success)
             setResult(RESULT_OK, data);

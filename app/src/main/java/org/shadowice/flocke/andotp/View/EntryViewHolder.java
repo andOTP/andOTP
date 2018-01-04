@@ -43,7 +43,6 @@ import java.util.List;
 
 public class EntryViewHolder extends RecyclerView.ViewHolder
         implements ItemTouchHelperViewHolder {
-
     private Context context;
     private Callback callback;
     private boolean tapToReveal;

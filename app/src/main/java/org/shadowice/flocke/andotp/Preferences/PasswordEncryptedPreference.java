@@ -39,6 +39,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 
@@ -52,7 +53,6 @@ public class PasswordEncryptedPreference extends DialogPreference
         PASSWORD, PIN
     }
 
-    public static final String KEY_ALIAS = "password";
     private KeyPair key;
 
     private static final String DEFAULT_VALUE = "";
@@ -70,7 +70,7 @@ public class PasswordEncryptedPreference extends DialogPreference
         super(context, attrs);
 
         try {
-            key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, KEY_ALIAS);
+            key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, Constants.KEYSTORE_ALIAS_PASSWORD);
         } catch (Exception e) {
             e.printStackTrace();
         }

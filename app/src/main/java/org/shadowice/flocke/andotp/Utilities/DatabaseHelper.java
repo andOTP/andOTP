@@ -41,11 +41,9 @@ import java.util.ArrayList;
 import javax.crypto.SecretKey;
 
 public class DatabaseHelper {
-    public static final String SETTINGS_FILE = "secrets.dat";
-    public static final String SETTINGS_FILE_BACKUP = "secrets.dat.bck";
 
     public static void wipeDatabase(Context context) {
-        File db = new File(context.getFilesDir() + "/" + SETTINGS_FILE);
+        File db = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE);
         db.delete();
     }
 
@@ -63,8 +61,8 @@ public class DatabaseHelper {
     }
 
     public static boolean backupDatabase(Context context) {
-        File original = new File(context.getFilesDir() + "/" + SETTINGS_FILE);
-        File backup = new File(context.getFilesDir() + "/" + SETTINGS_FILE_BACKUP);
+        File original = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE);
+        File backup = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE_BACKUP);
 
         try {
             copyFile(original, backup);
@@ -76,8 +74,8 @@ public class DatabaseHelper {
     }
 
     public static boolean restoreDatabaseBackup(Context context) {
-        File original = new File(context.getFilesDir() + "/" + SETTINGS_FILE);
-        File backup = new File(context.getFilesDir() + "/" + SETTINGS_FILE_BACKUP);
+        File original = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE);
+        File backup = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE_BACKUP);
 
         try {
             copyFile(backup, original);
@@ -100,7 +98,7 @@ public class DatabaseHelper {
         try {
             byte[] data = EncryptionHelper.encrypt(encryptionKey, jsonString.getBytes());
 
-            FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
+            FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE), data);
 
         } catch (Exception error) {
             error.printStackTrace();
@@ -115,7 +113,7 @@ public class DatabaseHelper {
 
         if (encryptionKey != null) {
             try {
-                byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
+                byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE));
                 data = EncryptionHelper.decrypt(encryptionKey, data);
 
                 entries = stringToEntries(new String(data));

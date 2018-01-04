@@ -39,6 +39,7 @@ import org.openintents.openpgp.util.OpenPgpKeyPreference;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Preferences.CredentialsPreference;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
@@ -48,19 +49,11 @@ import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
 
-import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.AUTH_EXTRA_NAME_MESSAGE;
-import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.AUTH_EXTRA_NAME_NEW_ENCRYPTION;
-import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.AUTH_EXTRA_NAME_PASSWORD_KEY;
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 
 public class SettingsActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener{
-    private static final int INTENT_INTERNAL_AUTHENTICATE = 300;
-
-    public static final String SETTINGS_EXTRA_NAME_ENCRYPTION_CHANGED = "encryption_changed";
-    public static final String SETTINGS_EXTRA_NAME_ENCRYPTION_KEY = "encryption_key";
-
     SettingsFragment fragment;
 
     SecretKey encryptionKey = null;
@@ -80,7 +73,7 @@ public class SettingsActivity extends BaseActivity
         stub.inflate();
 
         Intent callingIntent = getIntent();
-        byte[] keyMaterial = callingIntent.getByteArrayExtra(SETTINGS_EXTRA_NAME_ENCRYPTION_KEY);
+        byte[] keyMaterial = callingIntent.getByteArrayExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY);
         encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
 
         fragment = new SettingsFragment();
@@ -96,8 +89,8 @@ public class SettingsActivity extends BaseActivity
     public void finishWithResult() {
         Intent data = new Intent();
 
-        data.putExtra(SETTINGS_EXTRA_NAME_ENCRYPTION_CHANGED, encryptionChanged);
-        data.putExtra(SETTINGS_EXTRA_NAME_ENCRYPTION_KEY, encryptionKey.getEncoded());
+        data.putExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_CHANGED, encryptionChanged);
+        data.putExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY, encryptionKey.getEncoded());
 
         setResult(RESULT_OK, data);
         finish();
@@ -125,9 +118,9 @@ public class SettingsActivity extends BaseActivity
 
     private void tryEncryptionChangeWithAuth(EncryptionType newEnc) {
         Intent authIntent = new Intent(this, AuthenticateActivity.class);
-        authIntent.putExtra(AUTH_EXTRA_NAME_NEW_ENCRYPTION, newEnc.name());
-        authIntent.putExtra(AUTH_EXTRA_NAME_MESSAGE, R.string.auth_msg_confirm_encryption);
-        startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
+        authIntent.putExtra(Constants.EXTRA_AUTH_NEW_ENCRYPTION, newEnc.name());
+        authIntent.putExtra(Constants.EXTRA_AUTH_MESSAGE, R.string.auth_msg_confirm_encryption);
+        startActivityForResult(authIntent, Constants.INTENT_SETTINGS_AUTHENTICATE);
     }
 
     private boolean tryEncryptionChange(EncryptionType newEnc, byte[] newKey) {
@@ -177,10 +170,10 @@ public class SettingsActivity extends BaseActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == INTENT_INTERNAL_AUTHENTICATE) {
+        if (requestCode == Constants.INTENT_SETTINGS_AUTHENTICATE) {
             if (resultCode == RESULT_OK) {
-                byte[] authKey = data.getByteArrayExtra(AUTH_EXTRA_NAME_PASSWORD_KEY);
-                String newEnc = data.getStringExtra(AUTH_EXTRA_NAME_NEW_ENCRYPTION);
+                byte[] authKey = data.getByteArrayExtra(Constants.EXTRA_AUTH_PASSWORD_KEY);
+                String newEnc = data.getStringExtra(Constants.EXTRA_AUTH_NEW_ENCRYPTION);
 
                 if (authKey != null && authKey.length > 0 && newEnc != null && !newEnc.isEmpty()) {
                     EncryptionType newEncType = EncryptionType.valueOf(newEnc);

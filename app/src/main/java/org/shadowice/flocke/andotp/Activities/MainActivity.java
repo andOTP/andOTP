@@ -58,6 +58,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
@@ -72,20 +73,12 @@ import java.util.HashMap;
 
 import javax.crypto.SecretKey;
 
-import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.AUTH_EXTRA_NAME_MESSAGE;
-import static org.shadowice.flocke.andotp.Activities.AuthenticateActivity.AUTH_EXTRA_NAME_PASSWORD_KEY;
-import static org.shadowice.flocke.andotp.Activities.BackupActivity.BACKUP_EXTRA_NAME_ENCRYPTION_KEY;
-import static org.shadowice.flocke.andotp.Activities.SettingsActivity.SETTINGS_EXTRA_NAME_ENCRYPTION_CHANGED;
-import static org.shadowice.flocke.andotp.Activities.SettingsActivity.SETTINGS_EXTRA_NAME_ENCRYPTION_KEY;
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
-import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
+import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class MainActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private static final int INTENT_INTERNAL_AUTHENTICATE   = 100;
-    private static final int INTENT_INTERNAL_SETTINGS       = 101;
-    private static final int INTENT_INTERNAL_BACKUP         = 102;
 
     private EntriesCardAdapter adapter;
     private FloatingActionMenu floatingActionMenu;
@@ -135,12 +128,12 @@ public class MainActivity extends BaseActivity
             KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && km.isKeyguardSecure()) {
                 Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
-                startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
+                startActivityForResult(authIntent, Constants.INTENT_MAIN_AUTHENTICATE);
             }
         } else if (authMethod == AuthMethod.PASSWORD || authMethod == AuthMethod.PIN) {
             Intent authIntent = new Intent(this, AuthenticateActivity.class);
-            authIntent.putExtra(AUTH_EXTRA_NAME_MESSAGE, messageId);
-            startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
+            authIntent.putExtra(Constants.EXTRA_AUTH_MESSAGE, messageId);
+            startActivityForResult(authIntent, Constants.INTENT_MAIN_AUTHENTICATE);
         }
     }
 
@@ -385,18 +378,18 @@ public class MainActivity extends BaseActivity
                     Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();
                 }
             }
-        } else if (requestCode == INTENT_INTERNAL_BACKUP && resultCode == RESULT_OK) {
+        } else if (requestCode == Constants.INTENT_MAIN_BACKUP && resultCode == RESULT_OK) {
             if (intent.getBooleanExtra("reload", false)) {
                 adapter.loadEntries();
                 refreshTags();
             }
-        } else if (requestCode == INTENT_INTERNAL_SETTINGS && resultCode == RESULT_OK) {
-            boolean encryptionChanged = intent.getBooleanExtra(SETTINGS_EXTRA_NAME_ENCRYPTION_CHANGED, false);
-            byte[] newKey = intent.getByteArrayExtra(SETTINGS_EXTRA_NAME_ENCRYPTION_KEY);
+        } else if (requestCode == Constants.INTENT_MAIN_SETTINGS && resultCode == RESULT_OK) {
+            boolean encryptionChanged = intent.getBooleanExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_CHANGED, false);
+            byte[] newKey = intent.getByteArrayExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY);
 
             if (encryptionChanged)
                 updateEncryption(newKey);
-        } else if (requestCode == INTENT_INTERNAL_AUTHENTICATE) {
+        } else if (requestCode == Constants.INTENT_MAIN_AUTHENTICATE) {
             if (resultCode != RESULT_OK) {
                 Toast.makeText(getBaseContext(), R.string.toast_auth_failed_fatal, Toast.LENGTH_LONG).show();
 
@@ -408,7 +401,7 @@ public class MainActivity extends BaseActivity
             } else {
                 requireAuthentication = false;
 
-                byte[] authKey = intent.getByteArrayExtra(AUTH_EXTRA_NAME_PASSWORD_KEY);
+                byte[] authKey = intent.getByteArrayExtra(Constants.EXTRA_AUTH_PASSWORD_KEY);
                 updateEncryption(authKey);
             }
         }
@@ -509,12 +502,12 @@ public class MainActivity extends BaseActivity
 
         if (id == R.id.action_backup) {
             Intent backupIntent = new Intent(this, BackupActivity.class);
-            backupIntent.putExtra(BACKUP_EXTRA_NAME_ENCRYPTION_KEY, adapter.getEncryptionKey().getEncoded());
-            startActivityForResult(backupIntent, INTENT_INTERNAL_BACKUP);
+            backupIntent.putExtra(Constants.EXTRA_BACKUP_ENCRYPTION_KEY, adapter.getEncryptionKey().getEncoded());
+            startActivityForResult(backupIntent, Constants.INTENT_MAIN_BACKUP);
         } else if (id == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
-            settingsIntent.putExtra(SETTINGS_EXTRA_NAME_ENCRYPTION_KEY, adapter.getEncryptionKey().getEncoded());
-            startActivityForResult(settingsIntent, INTENT_INTERNAL_SETTINGS);
+            settingsIntent.putExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY, adapter.getEncryptionKey().getEncoded());
+            startActivityForResult(settingsIntent, Constants.INTENT_MAIN_SETTINGS);
         } else if (id == R.id.action_about){
             Intent aboutIntent = new Intent(this, AboutActivity.class);
             startActivity(aboutIntent);

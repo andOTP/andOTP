@@ -24,15 +24,12 @@ package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Base64;
-import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Preferences.CredentialsPreference;
 import org.shadowice.flocke.andotp.R;
 
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
@@ -42,20 +39,13 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-import static org.shadowice.flocke.andotp.Preferences.PasswordEncryptedPreference.KEY_ALIAS;
-import static org.shadowice.flocke.andotp.Utilities.EncryptionHelper.PBKDF2_OLD_DEFAULT_ITERATIONS;
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
+import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class Settings {
-    private static final String DEFAULT_BACKUP_FOLDER = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "andOTP";
-
     private Context context;
     private SharedPreferences settings;
-
-    public enum SortMode {
-        UNSORTED, LABEL, LAST_USED
-    }
 
     public Settings(Context context) {
         this.context = context;
@@ -68,7 +58,7 @@ public class Settings {
     private void setupDeviceDependedDefaults() {
         if (! settings.contains(getResString(R.string.settings_key_backup_directory))
                 || settings.getString(getResString(R.string.settings_key_backup_directory), "").isEmpty()) {
-            setString(R.string.settings_key_backup_directory, DEFAULT_BACKUP_FOLDER);
+            setString(R.string.settings_key_backup_directory, Constants.BACKUP_FOLDER);
         }
     }
 
@@ -87,7 +77,7 @@ public class Settings {
             String plainPassword = getBackupPassword();
 
             try {
-                KeyPair key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, KEY_ALIAS);
+                KeyPair key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, Constants.KEYSTORE_ALIAS_PASSWORD);
                 byte[] encPassword = EncryptionHelper.encrypt(key.getPublic(), plainPassword.getBytes(StandardCharsets.UTF_8));
 
                 setString(R.string.settings_key_backup_password_enc, Base64.encodeToString(encPassword, Base64.URL_SAFE));
@@ -270,7 +260,7 @@ public class Settings {
         String storedSalt = getString(R.string.settings_key_auth_salt, "");
 
         if (storedSalt.isEmpty()) {
-            byte[] newSalt = EncryptionHelper.generateRandom(Constants.AUTH_SALT_LENGTH);
+            byte[] newSalt = EncryptionHelper.generateRandom(Constants.PBKDF2_SALT_LENGTH);
             setSalt(newSalt);
 
             return newSalt;
@@ -281,9 +271,9 @@ public class Settings {
 
     public int getIterations(AuthMethod method) {
         if (method == AuthMethod.PASSWORD)
-            return getIntValue(R.string.settings_key_auth_password_iter, PBKDF2_OLD_DEFAULT_ITERATIONS);
+            return getIntValue(R.string.settings_key_auth_password_iter, Constants.PBKDF2_DEFAULT_ITERATIONS);
         else if (method == AuthMethod.PIN)
-            return getIntValue(R.string.settings_key_auth_pin_iter, PBKDF2_OLD_DEFAULT_ITERATIONS);
+            return getIntValue(R.string.settings_key_auth_pin_iter, Constants.PBKDF2_DEFAULT_ITERATIONS);
         else
             return 0;
     }
@@ -359,7 +349,7 @@ public class Settings {
     }
 
     public String getBackupDir() {
-        return getString(R.string.settings_key_backup_directory, DEFAULT_BACKUP_FOLDER);
+        return getString(R.string.settings_key_backup_directory, Constants.BACKUP_FOLDER);
     }
 
     public String getBackupPassword() {
@@ -373,7 +363,7 @@ public class Settings {
         String password = "";
 
         try {
-            KeyPair key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, KEY_ALIAS);
+            KeyPair key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, Constants.KEYSTORE_ALIAS_PASSWORD);
             password = new String(EncryptionHelper.decrypt(key.getPrivate(), encPassword), StandardCharsets.UTF_8);
         } catch (Exception e) {
             e.printStackTrace();

@@ -64,7 +64,7 @@ import java.util.concurrent.Callable;
 
 import javax.crypto.SecretKey;
 
-import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
+import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     implements ItemTouchHelperAdapter, Filterable {

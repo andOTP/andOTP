@@ -50,6 +50,7 @@ import org.openintents.openpgp.util.OpenPgpApi;
 import org.openintents.openpgp.util.OpenPgpServiceConnection;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.FileHelper;
@@ -64,31 +65,6 @@ import java.util.ArrayList;
 import javax.crypto.SecretKey;
 
 public class BackupActivity extends BaseActivity {
-    private final static int INTENT_OPEN_DOCUMENT_PLAIN = 200;
-    private final static int INTENT_SAVE_DOCUMENT_PLAIN = 201;
-    private final static int INTENT_OPEN_DOCUMENT_CRYPT = 202;
-    private final static int INTENT_SAVE_DOCUMENT_CRYPT = 203;
-    private final static int INTENT_OPEN_DOCUMENT_PGP   = 204;
-    private final static int INTENT_SAVE_DOCUMENT_PGP   = 205;
-    private final static int INTENT_ENCRYPT_PGP         = 206;
-    private final static int INTENT_DECRYPT_PGP         = 207;
-
-    private final static int PERMISSIONS_REQUEST_READ_IMPORT_PLAIN  = 210;
-    private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_PLAIN = 211;
-    private final static int PERMISSIONS_REQUEST_READ_IMPORT_CRYPT  = 212;
-    private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_CRYPT = 213;
-    private final static int PERMISSIONS_REQUEST_READ_IMPORT_PGP    = 214;
-    private final static int PERMISSIONS_REQUEST_WRITE_EXPORT_PGP   = 215;
-
-    private static final String DEFAULT_BACKUP_FILENAME_PLAIN   = "otp_accounts.json";
-    private static final String DEFAULT_BACKUP_FILENAME_CRYPT   = "otp_accounts.json.aes";
-    private static final String DEFAULT_BACKUP_FILENAME_PGP     = "otp_accounts.json.gpg";
-    private static final String DEFAULT_BACKUP_MIMETYPE_PLAIN   = "application/json";
-    private static final String DEFAULT_BACKUP_MIMETYPE_CRYPT   = "binary/aes";
-    private static final String DEFAULT_BACKUP_MIMETYPE_PGP     = "application/pgp-encrypted";
-
-    public static final String BACKUP_EXTRA_NAME_ENCRYPTION_KEY = "encryption_key";
-
     private SecretKey encryptionKey = null;
 
     private OpenPgpServiceConnection pgpServiceConnection;
@@ -116,7 +92,7 @@ public class BackupActivity extends BaseActivity {
         View v = stub.inflate();
 
         Intent callingIntent = getIntent();
-        byte[] keyMaterial = callingIntent.getByteArrayExtra(BACKUP_EXTRA_NAME_ENCRYPTION_KEY);
+        byte[] keyMaterial = callingIntent.getByteArrayExtra(Constants.EXTRA_BACKUP_ENCRYPTION_KEY);
         encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
 
         // Plain-text
@@ -134,7 +110,7 @@ public class BackupActivity extends BaseActivity {
         restorePlain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openFileWithPermissions(INTENT_OPEN_DOCUMENT_PLAIN, PERMISSIONS_REQUEST_READ_IMPORT_PLAIN);
+                openFileWithPermissions(Constants.INTENT_BACKUP_OPEN_DOCUMENT_PLAIN, Constants.PERMISSIONS_BACKUP_READ_IMPORT_PLAIN);
             }
         });
 
@@ -157,14 +133,14 @@ public class BackupActivity extends BaseActivity {
         backupCrypt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveFileWithPermissions(DEFAULT_BACKUP_MIMETYPE_CRYPT, DEFAULT_BACKUP_FILENAME_CRYPT, INTENT_SAVE_DOCUMENT_CRYPT, PERMISSIONS_REQUEST_WRITE_EXPORT_CRYPT);
+                saveFileWithPermissions(Constants.BACKUP_MIMETYPE_CRYPT, Constants.BACKUP_FILENAME_CRYPT, Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT, Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_CRYPT);
             }
         });
 
         restoreCrypt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openFileWithPermissions(INTENT_OPEN_DOCUMENT_CRYPT, PERMISSIONS_REQUEST_READ_IMPORT_CRYPT);
+                openFileWithPermissions(Constants.INTENT_BACKUP_OPEN_DOCUMENT_CRYPT, Constants.PERMISSIONS_BACKUP_READ_IMPORT_CRYPT);
             }
         });
 
@@ -192,14 +168,14 @@ public class BackupActivity extends BaseActivity {
             backupPGP.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    saveFileWithPermissions(DEFAULT_BACKUP_MIMETYPE_PGP, DEFAULT_BACKUP_FILENAME_PGP, INTENT_SAVE_DOCUMENT_PGP, PERMISSIONS_REQUEST_WRITE_EXPORT_PGP);
+                    saveFileWithPermissions(Constants.BACKUP_MIMETYPE_PGP, Constants.BACKUP_FILENAME_PGP, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP, Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_PGP);
                 }
             });
 
             restorePGP.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openFileWithPermissions(INTENT_OPEN_DOCUMENT_PGP, PERMISSIONS_REQUEST_READ_IMPORT_PGP);
+                    openFileWithPermissions(Constants.INTENT_BACKUP_OPEN_DOCUMENT_PGP, Constants.PERMISSIONS_BACKUP_READ_IMPORT_PGP);
                 }
             });
         }
@@ -240,39 +216,39 @@ public class BackupActivity extends BaseActivity {
     // Get the result from permission requests
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-        if (requestCode == PERMISSIONS_REQUEST_READ_IMPORT_PLAIN) {
+        if (requestCode == Constants.PERMISSIONS_BACKUP_READ_IMPORT_PLAIN) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showOpenFileSelector(INTENT_OPEN_DOCUMENT_PLAIN);
+                showOpenFileSelector(Constants.INTENT_BACKUP_OPEN_DOCUMENT_PLAIN);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
-        } else if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT_PLAIN) {
+        } else if (requestCode == Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_PLAIN) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showSaveFileSelector(DEFAULT_BACKUP_MIMETYPE_PLAIN, DEFAULT_BACKUP_FILENAME_PLAIN, INTENT_SAVE_DOCUMENT_PLAIN);
+                showSaveFileSelector(Constants.BACKUP_MIMETYPE_PLAIN, Constants.BACKUP_FILENAME_PLAIN, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
-        } else if (requestCode == PERMISSIONS_REQUEST_READ_IMPORT_CRYPT) {
+        } else if (requestCode == Constants.PERMISSIONS_BACKUP_READ_IMPORT_CRYPT) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showOpenFileSelector(INTENT_OPEN_DOCUMENT_CRYPT);
+                showOpenFileSelector(Constants.INTENT_BACKUP_OPEN_DOCUMENT_CRYPT);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
-        } else if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT_CRYPT) {
+        } else if (requestCode == Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_CRYPT) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showSaveFileSelector(DEFAULT_BACKUP_MIMETYPE_CRYPT, DEFAULT_BACKUP_FILENAME_CRYPT, INTENT_SAVE_DOCUMENT_CRYPT);
+                showSaveFileSelector(Constants.BACKUP_MIMETYPE_CRYPT, Constants.BACKUP_FILENAME_CRYPT, Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
-        } else if (requestCode == PERMISSIONS_REQUEST_READ_IMPORT_PGP) {
+        } else if (requestCode == Constants.PERMISSIONS_BACKUP_READ_IMPORT_PGP) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showOpenFileSelector(INTENT_OPEN_DOCUMENT_PGP);
+                showOpenFileSelector(Constants.INTENT_BACKUP_OPEN_DOCUMENT_PGP);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
-        } else if (requestCode == PERMISSIONS_REQUEST_WRITE_EXPORT_PGP) {
+        } else if (requestCode == Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_PGP) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showSaveFileSelector(DEFAULT_BACKUP_MIMETYPE_PGP, DEFAULT_BACKUP_FILENAME_PGP, INTENT_SAVE_DOCUMENT_PGP);
+                showSaveFileSelector(Constants.BACKUP_MIMETYPE_PGP, Constants.BACKUP_FILENAME_PGP, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
@@ -286,31 +262,31 @@ public class BackupActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
-        if (requestCode == INTENT_OPEN_DOCUMENT_PLAIN && resultCode == RESULT_OK) {
+        if (requestCode == Constants.INTENT_BACKUP_OPEN_DOCUMENT_PLAIN && resultCode == RESULT_OK) {
             if (intent != null) {
                 doRestorePlain(intent.getData());
             }
-        } else if (requestCode == INTENT_SAVE_DOCUMENT_PLAIN && resultCode == RESULT_OK) {
+        } else if (requestCode == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN && resultCode == RESULT_OK) {
             if (intent != null) {
                 doBackupPlain(intent.getData());
             }
-        } else if (requestCode == INTENT_OPEN_DOCUMENT_CRYPT && resultCode == RESULT_OK) {
+        } else if (requestCode == Constants.INTENT_BACKUP_OPEN_DOCUMENT_CRYPT && resultCode == RESULT_OK) {
             if (intent != null) {
                 doRestoreCrypt(intent.getData());
             }
-        } else if (requestCode == INTENT_SAVE_DOCUMENT_CRYPT && resultCode == RESULT_OK) {
+        } else if (requestCode == Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT && resultCode == RESULT_OK) {
             if (intent != null) {
                 doBackupCrypt(intent.getData());
             }
-        } else if (requestCode == INTENT_OPEN_DOCUMENT_PGP && resultCode == RESULT_OK) {
+        } else if (requestCode == Constants.INTENT_BACKUP_OPEN_DOCUMENT_PGP && resultCode == RESULT_OK) {
             if (intent != null)
                 restoreEncryptedWithPGP(intent.getData(), null);
-        } else if (requestCode == INTENT_SAVE_DOCUMENT_PGP && resultCode == RESULT_OK) {
+        } else if (requestCode == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP && resultCode == RESULT_OK) {
             if (intent != null)
                 backupEncryptedWithPGP(intent.getData(), null);
-        } else if (requestCode == INTENT_ENCRYPT_PGP && resultCode == RESULT_OK) {
+        } else if (requestCode == Constants.INTENT_BACKUP_ENCRYPT_PGP && resultCode == RESULT_OK) {
             backupEncryptedWithPGP(encryptTargetFile, intent);
-        } else if (requestCode == INTENT_DECRYPT_PGP && resultCode == RESULT_OK) {
+        } else if (requestCode == Constants.INTENT_BACKUP_DECRYPT_PGP && resultCode == RESULT_OK) {
             restoreEncryptedWithPGP(decryptSourceFile, intent);
         }
     }
@@ -324,12 +300,12 @@ public class BackupActivity extends BaseActivity {
             intent.setType("*/*");
             startActivityForResult(intent, intentId);
         } else {
-            if (intentId == INTENT_OPEN_DOCUMENT_PLAIN)
-                doRestorePlain(Tools.buildUri(settings.getBackupDir(), DEFAULT_BACKUP_FILENAME_PLAIN));
-            else if (intentId == INTENT_OPEN_DOCUMENT_CRYPT)
-                doRestoreCrypt(Tools.buildUri(settings.getBackupDir(), DEFAULT_BACKUP_FILENAME_CRYPT));
-            else if (intentId == INTENT_OPEN_DOCUMENT_PGP)
-                restoreEncryptedWithPGP(Tools.buildUri(settings.getBackupDir(), DEFAULT_BACKUP_FILENAME_PGP), null);
+            if (intentId == Constants.INTENT_BACKUP_OPEN_DOCUMENT_PLAIN)
+                doRestorePlain(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PLAIN));
+            else if (intentId == Constants.INTENT_BACKUP_OPEN_DOCUMENT_CRYPT)
+                doRestoreCrypt(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_CRYPT));
+            else if (intentId == Constants.INTENT_BACKUP_OPEN_DOCUMENT_PGP)
+                restoreEncryptedWithPGP(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PGP), null);
         }
     }
 
@@ -342,12 +318,12 @@ public class BackupActivity extends BaseActivity {
             startActivityForResult(intent, intentId);
         } else {
             if (Tools.mkdir(settings.getBackupDir())) {
-                if (intentId == INTENT_SAVE_DOCUMENT_PLAIN)
-                    doBackupPlain(Tools.buildUri(settings.getBackupDir(), DEFAULT_BACKUP_FILENAME_PLAIN));
-                else if (intentId == INTENT_SAVE_DOCUMENT_CRYPT)
-                    doBackupCrypt(Tools.buildUri(settings.getBackupDir(), DEFAULT_BACKUP_FILENAME_CRYPT));
-                else if (intentId == INTENT_SAVE_DOCUMENT_PGP)
-                    backupEncryptedWithPGP(Tools.buildUri(settings.getBackupDir(), DEFAULT_BACKUP_FILENAME_PGP), null);
+                if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN)
+                    doBackupPlain(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PLAIN));
+                else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT)
+                    doBackupCrypt(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_CRYPT));
+                else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP)
+                    backupEncryptedWithPGP(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PGP), null);
             } else {
                 Toast.makeText(this, R.string.backup_toast_mkdir_failed, Toast.LENGTH_LONG).show();
             }
@@ -428,7 +404,7 @@ public class BackupActivity extends BaseActivity {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        saveFileWithPermissions(DEFAULT_BACKUP_MIMETYPE_PLAIN, DEFAULT_BACKUP_FILENAME_PLAIN, INTENT_SAVE_DOCUMENT_PLAIN, PERMISSIONS_REQUEST_WRITE_EXPORT_PLAIN);
+                        saveFileWithPermissions(Constants.BACKUP_MIMETYPE_PLAIN, Constants.BACKUP_FILENAME_PLAIN, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN, Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_PLAIN);
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -523,7 +499,7 @@ public class BackupActivity extends BaseActivity {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         OpenPgpApi api = new OpenPgpApi(this, pgpServiceConnection.getService());
         Intent result = api.executeApi(decryptIntent, is, os);
-        handleOpenPGPResult(result, os, uri, INTENT_DECRYPT_PGP);
+        handleOpenPGPResult(result, os, uri, Constants.INTENT_BACKUP_DECRYPT_PGP);
     }
 
     private void doBackupEncrypted(Uri uri, String data) {
@@ -563,7 +539,7 @@ public class BackupActivity extends BaseActivity {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         OpenPgpApi api = new OpenPgpApi(this, pgpServiceConnection.getService());
         Intent result = api.executeApi(encryptIntent, is, os);
-        handleOpenPGPResult(result, os, uri, INTENT_ENCRYPT_PGP);
+        handleOpenPGPResult(result, os, uri, Constants.INTENT_BACKUP_ENCRYPT_PGP);
     }
 
     public String outputStreamToString(ByteArrayOutputStream os) {
@@ -572,10 +548,10 @@ public class BackupActivity extends BaseActivity {
 
     public void handleOpenPGPResult(Intent result, ByteArrayOutputStream os, Uri file, int requestCode) {
         if (result.getIntExtra(OpenPgpApi.RESULT_CODE, OpenPgpApi.RESULT_CODE_ERROR) == OpenPgpApi.RESULT_CODE_SUCCESS) {
-            if (requestCode == INTENT_ENCRYPT_PGP) {
+            if (requestCode == Constants.INTENT_BACKUP_ENCRYPT_PGP) {
                 if (os != null)
                     doBackupEncrypted(file, outputStreamToString(os));
-            } else if (requestCode == INTENT_DECRYPT_PGP) {
+            } else if (requestCode == Constants.INTENT_BACKUP_DECRYPT_PGP) {
                 if (os != null) {
                     if (settings.getOpenPGPVerify()) {
                         OpenPgpSignatureResult sigResult = result.getParcelableExtra(OpenPgpApi.RESULT_SIGNATURE);
@@ -594,9 +570,9 @@ public class BackupActivity extends BaseActivity {
             PendingIntent pi = result.getParcelableExtra(OpenPgpApi.RESULT_INTENT);
 
             // Small hack to keep the target file even after user interaction
-            if (requestCode == INTENT_ENCRYPT_PGP) {
+            if (requestCode == Constants.INTENT_BACKUP_ENCRYPT_PGP) {
                 encryptTargetFile = file;
-            } else if (requestCode == INTENT_DECRYPT_PGP) {
+            } else if (requestCode == Constants.INTENT_BACKUP_DECRYPT_PGP) {
                 decryptSourceFile = file;
             }
 
