@@ -44,7 +44,9 @@ public class DatabaseHelper {
 
     public static void wipeDatabase(Context context) {
         File db = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE);
+        File dbBackup = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE_BACKUP);
         db.delete();
+        dbBackup.delete();
     }
 
     private static void copyFile(File src, File dst)

@@ -42,6 +42,7 @@
     <string name="settings_key_tags_toggles" translatable="false">pref_tags_toggles</string>
 
     <string name="settings_key_enable_screenshot" translatable="false">pref_enable_screenshot</string>
+    <string name="settings_key_clear_keystore" translatable="false">pref_clear_keystore</string>
 
     <string name="settings_key_last_used_dialog_shown" translatable="false">pref_last_used_dialog_shown</string>
 

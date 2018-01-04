@@ -33,6 +33,7 @@
 
     <string name="settings_title_special_features">Enable special features</string>
     <string name="settings_title_enable_screenshot">Enable screenshots</string>
+    <string name="settings_title_clear_keystore">Clear KeyStore</string>
 
     <!-- Descriptions -->
     <string name="settings_desc_tap_to_reveal">Hide the OTP tokens by default, requiring them to be
@@ -55,9 +56,10 @@
     <string name="settings_desc_openpgp_verify">Encrypted backups are only imported if they are
         signed with a valid key</string>
 
+    <string name="settings_desc_special_features">Uncheck to disable the special features again</string>
     <string name="settings_desc_enable_screenshot">Allow to take screenshots of the main screen
         (disabled by default for security reasons)</string>
-    <string name="settings_desc_special_features">Uncheck to disable the special features again</string>
+    <string name="settings_desc_clear_keystore">Delete the encryption key from the KeyStore</string>
 
     <!-- Toasts -->
     <string name="settings_toast_auth_device_pre_lollipop">This feature requires at least Android 5.0
@@ -88,6 +90,19 @@
 
     <string name="settings_toast_auth_upgrade_failed">Failed to silently upgrade your password / PIN
         to the new encryption, please manually reset it in the settings!</string>
+
+    <string name="settings_dialog_title_clear_keystore">Clear the KeyStore?</string>
+
+    <string name="settings_dialog_msg_clear_keystore_password">In some cases clearing the KeyStore
+        can help resolve problems. You should only proceed if you know what you are doing!\n\nSince
+        the <b>Database encryption</b> is set to <b>Password / PIN</b> you shouldn\'t lose any data
+        doing this (but it never hurts to have a backup anyways).\n\n<b>Are you really sure you want
+        to clear the KeyStore?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">In some cases clearing the KeyStore
+        can help resolve problems. You should only proceed if you know what you are doing!\n\n<b>Warning</b>:
+        Since the <b>Database encryption</b> is set to <b>Android KeyStore</b> you will lose all
+        your accounts. Make sure you have a backup!\n\n<b>Are you really sure you want to clear the
+        KeyStore?</b></string>
 
     <!-- List entries -->
     <string-array name="settings_entries_auth">

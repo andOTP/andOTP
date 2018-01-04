@@ -22,6 +22,8 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -114,6 +116,13 @@ public class SettingsActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_lang)) ||
                 key.equals(getString(R.string.settings_key_special_features))) {
             recreate();
+        }
+    }
+
+    private void generateNewEncryptionKey() {
+        if (settings.getEncryption() == EncryptionType.KEYSTORE) {
+            encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this, false);
+            encryptionChanged = true;
         }
     }
 
@@ -271,6 +280,40 @@ public class SettingsActivity extends BaseActivity
             if (sharedPref.contains(getString(R.string.settings_key_special_features)) &&
                     sharedPref.getBoolean(getString(R.string.settings_key_special_features), false)) {
                 addPreferencesFromResource(R.xml.preferences_special);
+
+                Preference clearKeyStore = findPreference(getString(R.string.settings_key_clear_keystore));
+                clearKeyStore.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                    @Override
+                    public boolean onPreferenceClick(Preference preference) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                        builder.setTitle(R.string.settings_dialog_title_clear_keystore);
+                        if (settings.getEncryption() == EncryptionType.PASSWORD)
+                            builder.setMessage(R.string.settings_dialog_msg_clear_keystore_password);
+                        else if (settings.getEncryption() == EncryptionType.KEYSTORE)
+                            builder.setMessage(R.string.settings_dialog_msg_clear_keystore_keystore);
+
+                        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                KeyStoreHelper.wipeKeys(getActivity());
+                                if (settings.getEncryption() == EncryptionType.KEYSTORE) {
+                                    DatabaseHelper.wipeDatabase(getActivity());
+                                    ((SettingsActivity) getActivity()).generateNewEncryptionKey();
+                                }
+                            }
+                        });
+                        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+
+                        builder.create().show();
+
+                        return false;
+                    }
+                });
             }
         }
     }
