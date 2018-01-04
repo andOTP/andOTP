@@ -222,7 +222,8 @@ public class CredentialsPreference extends DialogPreference
         if (value == AuthMethod.NONE) {
             credentialsLayout.setVisibility(View.GONE);
 
-            UIHelper.hideKeyboard(getContext(), getDialog().getCurrentFocus());
+            if (getDialog() != null)
+                UIHelper.hideKeyboard(getContext(), getDialog().getCurrentFocus());
 
             btnSave.setEnabled(true);
         } else if (value == AuthMethod.PASSWORD) {
@@ -260,7 +261,8 @@ public class CredentialsPreference extends DialogPreference
         } else if (value == AuthMethod.DEVICE) {
             credentialsLayout.setVisibility(View.GONE);
 
-            UIHelper.hideKeyboard(getContext(), getDialog().getCurrentFocus());
+            if (getDialog() != null)
+                UIHelper.hideKeyboard(getContext(), getDialog().getCurrentFocus());
 
             btnSave.setEnabled(true);
         }
