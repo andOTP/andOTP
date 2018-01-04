@@ -506,7 +506,8 @@ public class MainActivity extends BaseActivity
             startActivityForResult(backupIntent, Constants.INTENT_MAIN_BACKUP);
         } else if (id == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
-            settingsIntent.putExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY, adapter.getEncryptionKey().getEncoded());
+            if (adapter.getEncryptionKey() != null)
+                settingsIntent.putExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY, adapter.getEncryptionKey().getEncoded());
             startActivityForResult(settingsIntent, Constants.INTENT_MAIN_SETTINGS);
         } else if (id == R.id.action_about){
             Intent aboutIntent = new Intent(this, AboutActivity.class);

@@ -74,7 +74,8 @@ public class SettingsActivity extends BaseActivity
 
         Intent callingIntent = getIntent();
         byte[] keyMaterial = callingIntent.getByteArrayExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY);
-        encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
+        if (keyMaterial != null && keyMaterial.length > 0)
+            encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
 
         fragment = new SettingsFragment();
 
@@ -128,7 +129,12 @@ public class SettingsActivity extends BaseActivity
         upgrading.show();
 
         if (DatabaseHelper.backupDatabase(this)) {
-            ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this, encryptionKey);
+            ArrayList<Entry> entries;
+
+            if (encryptionKey != null)
+                entries = DatabaseHelper.loadDatabase(this, encryptionKey);
+            else
+                entries = new ArrayList<>();
 
             SecretKey newEncryptionKey;
 
