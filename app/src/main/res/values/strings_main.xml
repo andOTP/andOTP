@@ -65,7 +65,7 @@
     <string name="dialog_title_rename">Rename</string>
     <string name="dialog_title_security_backup">Security and Backups</string>
     <string name="dialog_title_last_used">Last used</string>
-    <string name="dialog_title_encryption_error">Encryption error</string>
+    <string name="dialog_title_keystore_error">KeyStore error</string>
 
     <string name="dialog_msg_auth">Please enter your device credentials to start andOTP.</string>
     <string name="dialog_msg_confirm_delete">Are you sure you want do remove the account \"%1$s\"?</string>
@@ -87,9 +87,7 @@
         you have to have \"tap to reveal\" enabled or use the copy button.\n\nThis message will not
         be shown again.</string>
 
-    <string name="dialog_msg_keystore_error">Failed to generate or load the wrapping key from the
-        KeyStore. You won\'t be able to use this app. Please contact the developer and provide a
-        logcat!</string>
-    <string name="dialog_msg_unwrap_error">Failed to generate or unwrap the encryption key. You
-        won\'t be able to use this app. Please contact the developer and provide a logcat!</string>
+    <string name="dialog_msg_keystore_error">Failed to load the encryption key from the KeyStore.
+        <b>Any entries that are added will get lost.</b>\n\nTo still be able to use andOTP you can go
+        to the Settings and switch the <b>Database encryption</b> to <b>Password / PIN</b>.</string>
 </resources>

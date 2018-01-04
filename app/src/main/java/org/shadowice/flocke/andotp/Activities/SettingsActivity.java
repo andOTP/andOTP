@@ -139,7 +139,7 @@ public class SettingsActivity extends BaseActivity
             SecretKey newEncryptionKey;
 
             if (newEnc == EncryptionType.KEYSTORE) {
-                newEncryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this);
+                newEncryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this, true);
             } else if (newKey != null && newKey.length > 0) {
                 newEncryptionKey = EncryptionHelper.generateSymmetricKey(newKey);
             } else {

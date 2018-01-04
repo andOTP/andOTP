@@ -318,7 +318,7 @@ public class MainActivity extends BaseActivity
         } else {
             if (encryptionType == EncryptionType.KEYSTORE) {
                 if (adapter.getEncryptionKey() == null) {
-                    adapter.setEncryptionKey(KeyStoreHelper.loadEncryptionKeyFromKeyStore(this));
+                    adapter.setEncryptionKey(KeyStoreHelper.loadEncryptionKeyFromKeyStore(this, false));
                 }
 
                 populateAdapter();
@@ -413,7 +413,7 @@ public class MainActivity extends BaseActivity
         encryptionType = settings.getEncryption();
 
         if (encryptionType == EncryptionType.KEYSTORE) {
-            encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this);
+            encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this, false);
         } else if (encryptionType == EncryptionType.PASSWORD) {
             if (newKey != null && newKey.length > 0) {
                 encryptionKey = EncryptionHelper.generateSymmetricKey(newKey);

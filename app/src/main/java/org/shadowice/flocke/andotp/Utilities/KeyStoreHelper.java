@@ -99,14 +99,15 @@ public class KeyStoreHelper {
         return new KeyPair(entry.getCertificate().getPublicKey(), entry.getPrivateKey());
     }
 
-    public static SecretKey loadEncryptionKeyFromKeyStore(Context context) {
+    public static SecretKey loadEncryptionKeyFromKeyStore(Context context, boolean failSilent) {
         KeyPair pair = null;
 
         try {
             pair = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, Constants.KEYSTORE_ALIAS_WRAPPING);
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
-            UIHelper.showGenericDialog(context, R.string.dialog_title_encryption_error, R.string.dialog_msg_keystore_error);
+            if (! failSilent)
+                UIHelper.showGenericDialog(context, R.string.dialog_title_keystore_error, R.string.dialog_msg_keystore_error);
         }
 
         if (pair != null) {
@@ -114,7 +115,8 @@ public class KeyStoreHelper {
                 return EncryptionHelper.loadOrGenerateWrappedKey(new File(context.getFilesDir() + "/" + Constants.FILENAME_ENCRYPTED_KEY), pair);
             } catch (GeneralSecurityException | IOException e) {
                 e.printStackTrace();
-                UIHelper.showGenericDialog(context, R.string.dialog_title_encryption_error, R.string.dialog_msg_unwrap_error);
+                if (! failSilent)
+                    UIHelper.showGenericDialog(context, R.string.dialog_title_keystore_error, R.string.dialog_msg_keystore_error);
             }
         }
 
