@@ -64,10 +64,12 @@ public class DatabaseHelper {
         File original = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE);
         File backup = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE_BACKUP);
 
-        try {
-            copyFile(original, backup);
-        } catch (IOException e) {
-            return false;
+        if (original.exists()) {
+            try {
+                copyFile(original, backup);
+            } catch (IOException e) {
+                return false;
+            }
         }
 
         return true;
@@ -77,10 +79,12 @@ public class DatabaseHelper {
         File original = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE);
         File backup = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE_BACKUP);
 
-        try {
-            copyFile(backup, original);
-        } catch (IOException e) {
-            return false;
+        if (backup.exists()) {
+            try {
+                copyFile(backup, original);
+            } catch (IOException e) {
+                return false;
+            }
         }
 
         return true;
