@@ -23,6 +23,7 @@
 
 package org.shadowice.flocke.andotp.Utilities;
 
+import android.app.backup.BackupManager;
 import android.content.Context;
 import android.net.Uri;
 
@@ -38,23 +39,29 @@ public class DatabaseHelper {
     public static final String KEY_FILE = "otp.key";
     public static final String SETTINGS_FILE = "secrets.dat";
 
+    static final Object DatabaseFileLock = new Object();
+
     /* Database functions */
 
     public static boolean saveDatabase(Context context, ArrayList<Entry> entries) {
         String jsonString = entriesToString(entries);
 
         try {
-            byte[] data = jsonString.getBytes();
+            synchronized (DatabaseHelper.DatabaseFileLock) {
+                byte[] data = jsonString.getBytes();
 
-            SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
-            data = EncryptionHelper.encrypt(key, data);
+                SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
+                data = EncryptionHelper.encrypt(key, data);
 
-            FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
-
+                FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
+            }
         } catch (Exception error) {
             error.printStackTrace();
             return false;
         }
+
+        BackupManager backupManager = new BackupManager(context);
+        backupManager.dataChanged();
 
         return true;
     }
@@ -63,12 +70,14 @@ public class DatabaseHelper {
         ArrayList<Entry> entries = new ArrayList<>();
 
         try {
-            byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
+            synchronized (DatabaseHelper.DatabaseFileLock) {
+                byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
 
-            SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
-            data = EncryptionHelper.decrypt(key, data);
+                SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
+                data = EncryptionHelper.decrypt(key, data);
 
-            entries = stringToEntries(new String(data));
+                entries = stringToEntries(new String(data));
+            }
         } catch (Exception error) {
             error.printStackTrace();
         }
