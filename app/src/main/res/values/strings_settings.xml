@@ -32,6 +32,7 @@
 
     <string name="settings_title_special_features">Enable special features</string>
     <string name="settings_title_enable_screenshot">Enable screenshots</string>
+    <string name="settings_title_enable_android_backup_service">Enable android backup</string>
 
     <!-- Descriptions -->
     <string name="settings_desc_tap_to_reveal">Hide the OTP tokens by default, requiring them to be
@@ -56,6 +57,8 @@
 
     <string name="settings_desc_enable_screenshot">Allow to take screenshots of the main screen
         (disabled by default for security reasons)</string>
+    <string name="settings_desc_enable_android_backup_service">Enables andOTP to use android\'s
+        built in backup service to bacup keys and preferences</string>
     <string name="settings_desc_special_features">Uncheck to disable the special features again</string>
 
     <!-- Toasts -->

@@ -20,15 +20,23 @@ public class BackupAgent extends BackupAgentHelper {
 
     @Override
     public void onBackup(ParcelFileDescriptor oldState, BackupDataOutput data, ParcelFileDescriptor newState) throws IOException {
-        synchronized (DatabaseHelper.DatabaseFileLock) {
-            super.onBackup(oldState, data, newState);
+        Settings settings = new Settings(this);
+
+        if(settings.getAndroidBackupServiceEnabled()) {
+            synchronized (DatabaseHelper.DatabaseFileLock) {
+                super.onBackup(oldState, data, newState);
+            }
         }
     }
 
     @Override
     public void onRestore(BackupDataInput data, int appVersionCode, ParcelFileDescriptor newState) throws IOException {
-        synchronized (DatabaseHelper.DatabaseFileLock) {
-            super.onRestore(data, appVersionCode, newState);
+        Settings settings = new Settings(this);
+
+        if(settings.getAndroidBackupServiceEnabled()) {
+            synchronized (DatabaseHelper.DatabaseFileLock) {
+                super.onRestore(data, appVersionCode, newState);
+            }
         }
     }
 
