@@ -23,6 +23,8 @@
 package org.shadowice.flocke.andotp.Activities;
 
 import android.app.KeyguardManager;
+import android.app.backup.BackupManager;
+import android.app.backup.RestoreObserver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -32,6 +34,7 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.ViewStub;
 import android.widget.Toast;
 
@@ -85,6 +88,9 @@ public class SettingsActivity extends BaseActivity
     }
 
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+        BackupManager backupManager = new BackupManager(this);
+        backupManager.dataChanged();
+
         if (key.equals(getString(R.string.settings_key_theme)) ||
                 key.equals(getString(R.string.settings_key_lang)) ||
                 key.equals(getString(R.string.settings_key_special_features))) {
