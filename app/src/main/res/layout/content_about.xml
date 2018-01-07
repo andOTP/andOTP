@@ -313,7 +313,7 @@
                                 android:text="@string/about_label_github" />
 
                             <TextView
-                                android:id="@+id/about_author1_paypal"
+                                android:id="@+id/about_author1_extra"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/activity_margin_large"
@@ -332,7 +332,7 @@
                     android:background="@color/divider"
                     android:layout_margin="@dimen/activity_margin" />
 
-                <!-- 2nd author -->
+                <!-- Original author -->
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -367,7 +367,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="@string/about_label_original_author"/>
+                            android:text="@string/about_label_developer"/>
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -387,7 +387,81 @@
                                 android:text="@string/about_label_github" />
 
                             <TextView
-                                android:id="@+id/about_author2_app"
+                                android:id="@+id/about_author2_extra"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/activity_margin_large"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textStyle="bold"
+                                android:textColor="?attr/colorPaypal"
+                                android:text="@string/about_label_donate" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider"
+                    android:layout_margin="@dimen/activity_margin" />
+
+                <!-- Original author -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/activity_margin_small"
+                    android:paddingBottom="@dimen/activity_margin_small"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center_vertical" >
+
+                    <ImageView
+                        android:id="@+id/aboutImgAuthorOriginal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/activity_margin"
+                        android:layout_marginEnd="@dimen/activity_margin_large"
+                        android:src="@drawable/ic_account_circle_gray" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_name_author_original"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/about_label_original_author"/>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/activity_margin"
+                            android:layout_gravity="center_vertical">
+
+                            <TextView
+                                android:id="@+id/about_author_original_github"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textStyle="bold"
+                                android:textColor="?attr/colorGithub"
+                                android:text="@string/about_label_github" />
+
+                            <TextView
+                                android:id="@+id/about_author_original_extra"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/activity_margin_large"
