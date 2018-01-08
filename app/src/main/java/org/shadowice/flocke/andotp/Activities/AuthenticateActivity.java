@@ -35,6 +35,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,7 +53,7 @@ import java.util.Arrays;
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 
 public class AuthenticateActivity extends ThemedActivity
-    implements EditText.OnEditorActionListener {
+    implements EditText.OnEditorActionListener, View.OnClickListener {
     private String password;
 
     AuthMethod authMethod;
@@ -117,51 +118,61 @@ public class AuthenticateActivity extends ThemedActivity
         passwordInput.setTransformationMethod(new PasswordTransformationMethod());
         passwordInput.setOnEditorActionListener(this);
 
+        Button unlockButton = v.findViewById(R.id.buttonUnlock);
+        unlockButton.setOnClickListener(this);
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+    }
+
+    @Override
+    public void onClick(View view) {
+        checkPassword(passwordInput.getText().toString());
     }
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
-            if (! oldPassword) {
-                try {
-                    EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(v.getText().toString(), settings.getSalt(), settings.getIterations(authMethod));
-                    byte[] passwordArray = Base64.decode(password, Base64.URL_SAFE);
-
-                    if (Arrays.equals(passwordArray, credentials.password)) {
-                        finishWithResult(true, credentials.key);
-                    } else {
-                        finishWithResult(false, null);
-                    }
-                } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-                    e.printStackTrace();
-                    finishWithResult(false, null);
-                }
-            } else {
-                String plainPassword = v.getText().toString();
-                String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(plainPassword)));
-
-                if (hashedPassword.equals(password)) {
-                    byte[] key = settings.setAuthCredentials(authMethod, password);
-
-                    if (key == null)
-                        Toast.makeText(this, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
-
-                    if (authMethod == AuthMethod.PASSWORD)
-                        settings.removeAuthPasswordHash();
-                    else if (authMethod == AuthMethod.PIN)
-                        settings.removeAuthPINHash();
-
-                    finishWithResult(true, key);
-                } else {
-                    finishWithResult(false, null);
-                }
-            }
-
+            checkPassword(v.getText().toString());
             return true;
         }
 
         return false;
+    }
+
+    public void checkPassword(String plainPassword) {
+        if (! oldPassword) {
+            try {
+                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, settings.getSalt(), settings.getIterations(authMethod));
+                byte[] passwordArray = Base64.decode(password, Base64.URL_SAFE);
+
+                if (Arrays.equals(passwordArray, credentials.password)) {
+                    finishWithResult(true, credentials.key);
+                } else {
+                    finishWithResult(false, null);
+                }
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                e.printStackTrace();
+                finishWithResult(false, null);
+            }
+        } else {
+            String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(plainPassword)));
+
+            if (hashedPassword.equals(password)) {
+                byte[] key = settings.setAuthCredentials(authMethod, password);
+
+                if (key == null)
+                    Toast.makeText(this, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
+
+                if (authMethod == AuthMethod.PASSWORD)
+                    settings.removeAuthPasswordHash();
+                else if (authMethod == AuthMethod.PIN)
+                    settings.removeAuthPINHash();
+
+                finishWithResult(true, key);
+            } else {
+                finishWithResult(false, null);
+            }
+        }
     }
 
     // End with a result
