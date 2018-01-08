@@ -248,7 +248,7 @@ public class SettingsActivity extends BaseActivity
                             UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_with_auth);
                             return false;
                         } else {
-                            if (settings.getAuthCredentials(authMethod).isEmpty()) {
+                            if (settings.getAuthCredentials().isEmpty()) {
                                 UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_without_credentials);
                                 return false;
                             }

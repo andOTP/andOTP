@@ -88,7 +88,7 @@ public class AuthenticateActivity extends ThemedActivity
         passwordLabel.setText(labelMsg);
 
         authMethod = settings.getAuthMethod();
-        password = settings.getAuthCredentials(authMethod);
+        password = settings.getAuthCredentials();
 
         if (password.isEmpty()) {
             password = settings.getOldCredentials(authMethod);
@@ -142,7 +142,7 @@ public class AuthenticateActivity extends ThemedActivity
     public void checkPassword(String plainPassword) {
         if (! oldPassword) {
             try {
-                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, settings.getSalt(), settings.getIterations(authMethod));
+                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, settings.getSalt(), settings.getIterations());
                 byte[] passwordArray = Base64.decode(password, Base64.URL_SAFE);
 
                 if (Arrays.equals(passwordArray, credentials.password)) {
@@ -158,7 +158,7 @@ public class AuthenticateActivity extends ThemedActivity
             String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(plainPassword)));
 
             if (hashedPassword.equals(password)) {
-                byte[] key = settings.setAuthCredentials(authMethod, password);
+                byte[] key = settings.setAuthCredentials(password);
 
                 if (key == null)
                     Toast.makeText(this, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();

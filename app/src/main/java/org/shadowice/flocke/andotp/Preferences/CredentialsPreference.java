@@ -180,7 +180,7 @@ public class CredentialsPreference extends DialogPreference
         if (value == AuthMethod.PASSWORD || value == AuthMethod.PIN) {
             String password = passwordInput.getText().toString();
             if (!password.isEmpty()) {
-                newKey = settings.setAuthCredentials(value, password);
+                newKey = settings.setAuthCredentials(password);
             } else {
                 return;
             }

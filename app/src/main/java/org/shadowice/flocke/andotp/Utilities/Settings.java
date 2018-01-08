@@ -64,12 +64,12 @@ public class Settings {
 
     private void migrateDeprecatedSettings() {
         if (settings.contains(getResString(R.string.settings_key_auth_password))) {
-            setAuthCredentials(AuthMethod.PASSWORD, getString(R.string.settings_key_auth_password, ""));
+            setAuthCredentials(getString(R.string.settings_key_auth_password, ""));
             remove(R.string.settings_key_auth_password);
         }
 
         if (settings.contains(getResString(R.string.settings_key_auth_pin))) {
-            setAuthCredentials(AuthMethod.PIN, getString(R.string.settings_key_auth_pin, ""));
+            setAuthCredentials(getString(R.string.settings_key_auth_pin, ""));
             remove(R.string.settings_key_auth_pin);
         }
 
@@ -157,7 +157,9 @@ public class Settings {
 
     public void clear(boolean keep_auth) {
         AuthMethod authMethod = getAuthMethod();
-        String authCredentials = getAuthCredentials(authMethod);
+        String authCredentials = getAuthCredentials();
+        byte[] authSalt = getSalt();
+        int authIterations = getIterations();
 
         boolean warningShown = getFirstTimeWarningShown();
 
@@ -170,10 +172,11 @@ public class Settings {
             editor.putString(getResString(R.string.settings_key_auth), authMethod.toString().toLowerCase());
 
             if (! authCredentials.isEmpty()) {
-                if (authMethod == AuthMethod.PASSWORD)
-                    editor.putString(getResString(R.string.settings_key_auth_password_pbkdf2), authCredentials);
-                else if (authMethod == AuthMethod.PIN)
-                    editor.putString(getResString(R.string.settings_key_auth_pin_pbkdf2), authCredentials);
+                editor.putString(getResString(R.string.settings_key_auth_credentials), authCredentials);
+                editor.putInt(getResString(R.string.settings_key_auth_iterations), authIterations);
+
+                String encodedSalt = Base64.encodeToString(authSalt, Base64.URL_SAFE);
+                editor.putString(getResString(R.string.settings_key_auth_salt), encodedSalt);
             }
         }
 
@@ -219,16 +222,11 @@ public class Settings {
             return "";
     }
 
-    public String getAuthCredentials(AuthMethod method) {
-        if (method == AuthMethod.PASSWORD)
-            return getString(R.string.settings_key_auth_password_pbkdf2, "");
-        else if (method == AuthMethod.PIN)
-            return getString(R.string.settings_key_auth_pin_pbkdf2, "");
-        else
-            return "";
+    public String getAuthCredentials() {
+        return getString(R.string.settings_key_auth_credentials, "");
     }
 
-    public byte[] setAuthCredentials(AuthMethod method, String plainPassword) {
+    public byte[] setAuthCredentials(String plainPassword) {
         byte[] key = null;
 
         try {
@@ -236,12 +234,8 @@ public class Settings {
             EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, getSalt(), iterations);
             String password = Base64.encodeToString(credentials.password, Base64.URL_SAFE);
 
-            setIterations(method, iterations);
-
-            if (method == AuthMethod.PASSWORD)
-                setString(R.string.settings_key_auth_password_pbkdf2, password);
-            else if (method == AuthMethod.PIN)
-                setString(R.string.settings_key_auth_pin_pbkdf2, password);
+            setIterations(iterations);
+            setString(R.string.settings_key_auth_credentials, password);
 
             key = credentials.key;
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
@@ -269,20 +263,12 @@ public class Settings {
         }
     }
 
-    public int getIterations(AuthMethod method) {
-        if (method == AuthMethod.PASSWORD)
-            return getIntValue(R.string.settings_key_auth_password_iter, Constants.PBKDF2_DEFAULT_ITERATIONS);
-        else if (method == AuthMethod.PIN)
-            return getIntValue(R.string.settings_key_auth_pin_iter, Constants.PBKDF2_DEFAULT_ITERATIONS);
-        else
-            return 0;
+    public int getIterations() {
+        return getIntValue(R.string.settings_key_auth_iterations, Constants.PBKDF2_DEFAULT_ITERATIONS);
     }
 
-    public void setIterations(AuthMethod method, int value) {
-        if (method == AuthMethod.PASSWORD)
-            setInt(R.string.settings_key_auth_password_iter, value);
-        else if (method == AuthMethod.PIN)
-            setInt(R.string.settings_key_auth_pin_iter, value);
+    public void setIterations(int value) {
+        setInt(R.string.settings_key_auth_iterations, value);
     }
 
     public EncryptionType getEncryption() {
