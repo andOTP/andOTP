@@ -46,6 +46,7 @@ import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
+import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
 import java.util.ArrayList;
 
@@ -244,11 +245,11 @@ public class SettingsActivity extends BaseActivity
 
                     if (encryptionType == EncryptionType.PASSWORD) {
                         if (authMethod != AuthMethod.PASSWORD && authMethod != AuthMethod.PIN) {
-                            Toast.makeText(getActivity(), R.string.settings_toast_encryption_invalid_with_auth, Toast.LENGTH_LONG).show();
+                            UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_with_auth);
                             return false;
                         } else {
                             if (settings.getAuthCredentials(authMethod).isEmpty()) {
-                                Toast.makeText(getActivity(), R.string.settings_toast_encryption_invalid_without_credentials, Toast.LENGTH_LONG).show();
+                                UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_without_credentials);
                                 return false;
                             }
                         }

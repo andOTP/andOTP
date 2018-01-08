@@ -70,13 +70,6 @@
     <string name="settings_toast_password_empty">An empty password is not allowed, set the
         Authentication to \"None\" to disable it!</string>
 
-    <string name="settings_toast_auth_invalid_with_encryption">You can only use Password or PIN as
-        long as the database encryption is set to \"Password / PIN\"!</string>
-    <string name="settings_toast_encryption_invalid_with_auth">You first need to set the
-        Authentication to \"Password\" or \"PIN\"!</string>
-    <string name="settings_toast_encryption_invalid_without_credentials">You first need to set a
-        Password or PIN before changing the encryption!</string>
-
     <string name="settings_toast_encryption_changing">Trying to change the database encryption,
         please wait!</string>
     <string name="settings_toast_encryption_change_success">Successfully changed the database
@@ -91,7 +84,15 @@
     <string name="settings_toast_auth_upgrade_failed">Failed to silently upgrade your password / PIN
         to the new encryption, please manually reset it in the settings!</string>
 
+    <string name="settings_dialog_title_error">Error</string>
     <string name="settings_dialog_title_clear_keystore">Clear the KeyStore?</string>
+
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">You can only use Password or PIN as
+        long as the database encryption is set to \"Password / PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">You first need to set the
+        Authentication to \"Password\" or \"PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">You first need to set a
+        Password or PIN before changing the encryption!</string>
 
     <string name="settings_dialog_msg_clear_keystore_password">In some cases clearing the KeyStore
         can help resolve problems. You should only proceed if you know what you are doing!\n\nSince

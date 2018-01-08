@@ -153,7 +153,7 @@ public class CredentialsPreference extends DialogPreference
 
         if (settings.getEncryption() == EncryptionType.PASSWORD) {
             if (value == AuthMethod.NONE || value == AuthMethod.DEVICE) {
-                Toast.makeText(getContext(), R.string.settings_toast_auth_invalid_with_encryption, Toast.LENGTH_LONG).show();
+                UIHelper.showGenericDialog(getContext(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_auth_invalid_with_encryption);
                 return;
             }
         }
