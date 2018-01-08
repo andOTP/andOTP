@@ -144,4 +144,7 @@
     <string name="settings_hint_pin">Enter new PIN</string>
     <string name="settings_hint_password_confirm">Confirm password</string>
     <string name="settings_hint_pin_confirm">Confirm PIN</string>
+
+    <string name="settings_label_short_password">The password needs to be at least %1$d characters long!</string>
+    <string name="settings_label_short_pin">The PIN needs to be at least %1$d digits long!</string>
 </resources>

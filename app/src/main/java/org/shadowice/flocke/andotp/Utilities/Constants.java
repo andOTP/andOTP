@@ -87,6 +87,10 @@ public class Constants {
     final static int PBKDF2_LENGTH              = 512;
     final static int PBKDF2_SALT_LENGTH         = 16;
 
+    // Authentication
+    public final static int AUTH_MIN_PIN_LENGTH        = 4;
+    public final static int AUTH_MIN_PASSWORD_LENGTH   = 6;
+
     // KeyStore
     public final static String KEYSTORE_ALIAS_PASSWORD  = "password";
     public final static String KEYSTORE_ALIAS_WRAPPING  = "settings";

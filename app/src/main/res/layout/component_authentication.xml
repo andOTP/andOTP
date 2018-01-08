@@ -46,6 +46,16 @@
             android:hint="@string/settings_hint_password_confirm"
             android:inputType="textPassword" />
 
+        <TextView
+            android:id="@+id/toShortWarning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/activity_margin"
+            android:paddingTop="@dimen/activity_margin"
+            android:visibility="gone"
+            android:textAlignment="center"
+            android:text="@string/settings_label_short_password" />
+
     </LinearLayout>
 
     <android.support.v7.widget.ButtonBarLayout

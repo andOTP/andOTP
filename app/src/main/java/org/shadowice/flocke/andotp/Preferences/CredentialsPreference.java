@@ -40,9 +40,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
@@ -69,6 +71,8 @@ public class CredentialsPreference extends DialogPreference
             AuthMethod.DEVICE
     );
 
+    private int minLength = 0;
+
     private Settings settings;
     private AuthMethod value = AuthMethod.NONE;
     private EncryptionChangeCallback encryptionChangeCallback = null;
@@ -77,6 +81,7 @@ public class CredentialsPreference extends DialogPreference
     private TextInputLayout passwordLayout;
     private TextInputEditText passwordInput;
     private EditText passwordConfirm;
+    private TextView toShortWarning;
 
     private Button btnSave;
 
@@ -120,6 +125,8 @@ public class CredentialsPreference extends DialogPreference
         passwordLayout = view.findViewById(R.id.passwordLayout);
         passwordInput = view.findViewById(R.id.passwordEdit);
         passwordConfirm = view.findViewById(R.id.passwordConfirm);
+
+        toShortWarning = view.findViewById(R.id.toShortWarning);
 
         passwordInput.addTextChangedListener(this);
         passwordConfirm.addTextChangedListener(this);
@@ -209,12 +216,19 @@ public class CredentialsPreference extends DialogPreference
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         String password = passwordInput.getEditableText().toString();
-        String confirm = passwordConfirm.getEditableText().toString();
 
-        if (password.equals(confirm) && ! password.isEmpty() && ! confirm.isEmpty()) {
-            btnSave.setEnabled(true);
+        if (password.length() >= minLength) {
+            toShortWarning.setVisibility(View.GONE);
+
+            String confirm = passwordConfirm.getEditableText().toString();
+
+            if (!password.isEmpty() && !confirm.isEmpty() && password.equals(confirm)) {
+                btnSave.setEnabled(true);
+            } else {
+                btnSave.setEnabled(false);
+            }
         } else {
-            btnSave.setEnabled(false);
+            toShortWarning.setVisibility(View.VISIBLE);
         }
     }
 
@@ -238,6 +252,9 @@ public class CredentialsPreference extends DialogPreference
             passwordInput.setTransformationMethod(new PasswordTransformationMethod());
             passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
 
+            minLength = Constants.AUTH_MIN_PASSWORD_LENGTH;
+            toShortWarning.setText(getContext().getString(R.string.settings_label_short_password, minLength));
+
             passwordInput.requestFocus();
             UIHelper.showKeyboard(getContext(), passwordInput);
 
@@ -253,6 +270,9 @@ public class CredentialsPreference extends DialogPreference
 
             passwordInput.setTransformationMethod(new PasswordTransformationMethod());
             passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
+
+            minLength = Constants.AUTH_MIN_PIN_LENGTH;
+            toShortWarning.setText(getContext().getString(R.string.settings_label_short_pin, minLength));
 
             passwordInput.requestFocus();
             UIHelper.showKeyboard(getContext(), passwordInput);
