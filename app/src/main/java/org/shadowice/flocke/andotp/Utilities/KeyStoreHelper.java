@@ -37,6 +37,7 @@ import java.security.GeneralSecurityException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
+import java.security.ProviderException;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -96,7 +97,11 @@ public class KeyStoreHelper {
         }
 
         final KeyStore.PrivateKeyEntry entry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(alias, null);
-        return new KeyPair(entry.getCertificate().getPublicKey(), entry.getPrivateKey());
+
+        if (entry != null)
+            return new KeyPair(entry.getCertificate().getPublicKey(), entry.getPrivateKey());
+        else
+            return null;
     }
 
     public static SecretKey loadEncryptionKeyFromKeyStore(Context context, boolean failSilent) {
@@ -104,8 +109,9 @@ public class KeyStoreHelper {
 
         try {
             KeyPair pair = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, Constants.KEYSTORE_ALIAS_WRAPPING);
-            encKey = EncryptionHelper.loadOrGenerateWrappedKey(new File(context.getFilesDir() + "/" + Constants.FILENAME_ENCRYPTED_KEY), pair);
-        } catch (GeneralSecurityException | IOException e) {
+            if (pair != null)
+                encKey = EncryptionHelper.loadOrGenerateWrappedKey(new File(context.getFilesDir() + "/" + Constants.FILENAME_ENCRYPTED_KEY), pair);
+        } catch (GeneralSecurityException | IOException | ProviderException e) {
             e.printStackTrace();
             if (! failSilent)
                 UIHelper.showGenericDialog(context, R.string.dialog_title_keystore_error, R.string.dialog_msg_keystore_error);
