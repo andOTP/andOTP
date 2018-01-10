@@ -94,7 +94,8 @@ public class SettingsActivity extends BaseActivity
         Intent data = new Intent();
 
         data.putExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_CHANGED, encryptionChanged);
-        data.putExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY, encryptionKey.getEncoded());
+        if (encryptionKey != null)
+            data.putExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY, encryptionKey.getEncoded());
 
         setResult(RESULT_OK, data);
         finish();
