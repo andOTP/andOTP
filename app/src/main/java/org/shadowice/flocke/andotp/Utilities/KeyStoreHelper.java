@@ -100,26 +100,17 @@ public class KeyStoreHelper {
     }
 
     public static SecretKey loadEncryptionKeyFromKeyStore(Context context, boolean failSilent) {
-        KeyPair pair = null;
+        SecretKey encKey = null;
 
         try {
-            pair = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, Constants.KEYSTORE_ALIAS_WRAPPING);
+            KeyPair pair = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, Constants.KEYSTORE_ALIAS_WRAPPING);
+            encKey = EncryptionHelper.loadOrGenerateWrappedKey(new File(context.getFilesDir() + "/" + Constants.FILENAME_ENCRYPTED_KEY), pair);
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
             if (! failSilent)
                 UIHelper.showGenericDialog(context, R.string.dialog_title_keystore_error, R.string.dialog_msg_keystore_error);
         }
 
-        if (pair != null) {
-            try {
-                return EncryptionHelper.loadOrGenerateWrappedKey(new File(context.getFilesDir() + "/" + Constants.FILENAME_ENCRYPTED_KEY), pair);
-            } catch (GeneralSecurityException | IOException e) {
-                e.printStackTrace();
-                if (! failSilent)
-                    UIHelper.showGenericDialog(context, R.string.dialog_title_keystore_error, R.string.dialog_msg_keystore_error);
-            }
-        }
-
-        return null;
+        return encKey;
     }
 }
