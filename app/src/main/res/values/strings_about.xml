@@ -15,7 +15,7 @@
     <!-- Authors -->
     <string name="about_title_authors">Authors</string>
 
-    <string name="about_label_main_author">Main author</string>
+    <string name="about_label_main_developer">Main developer</string>
     <string name="about_label_developer">Developer</string>
     <string name="about_label_original_author">Author of the original app</string>
     <string name="about_label_original_app">Original App</string>

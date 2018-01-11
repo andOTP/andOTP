@@ -288,7 +288,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="@string/about_label_main_author"/>
+                            android:text="@string/about_label_main_developer"/>
 
                         <LinearLayout
                             android:orientation="horizontal"
