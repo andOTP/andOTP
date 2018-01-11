@@ -106,15 +106,32 @@ public class MainActivity extends BaseActivity
 
     private void showFirstTimeWarning() {
         ViewGroup container = findViewById(R.id.main_content);
-        View msgView = getLayoutInflater().inflate(R.layout.dialog_security_backup, container, false);
+        View msgView = getLayoutInflater().inflate(R.layout.dialog_database_encryption, container, false);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.dialog_title_security_backup)
+        builder.setTitle(R.string.dialog_title_encryption)
                 .setView(msgView)
-                .setPositiveButton(R.string.button_warned, new DialogInterface.OnClickListener() {
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         settings.setFirstTimeWarningShown(true);
+                        updateEncryption(null);
+                    }
+                })
+                .setNegativeButton(R.string.button_settings, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        settings.setFirstTimeWarningShown(true);
+
+                        Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
+                        startActivityForResult(settingsIntent, Constants.INTENT_MAIN_SETTINGS);
+                    }
+                })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+                        settings.setFirstTimeWarningShown(true);
+                        updateEncryption(null);
                     }
                 })
                 .create()
@@ -316,15 +333,9 @@ public class MainActivity extends BaseActivity
                 authenticate(R.string.auth_msg_authenticate);
             }
         } else {
-            if (encryptionType == EncryptionType.KEYSTORE) {
+            if (settings.getFirstTimeWarningShown()) {
                 if (adapter.getEncryptionKey() == null) {
-                    adapter.setEncryptionKey(KeyStoreHelper.loadEncryptionKeyFromKeyStore(this, false));
-                }
-
-                populateAdapter();
-            } else if (encryptionType == EncryptionType.PASSWORD) {
-                if (adapter.getEncryptionKey() == null) {
-                    authenticate(R.string.auth_msg_authenticate);
+                    updateEncryption(null);
                 } else {
                     populateAdapter();
                 }

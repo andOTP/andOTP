@@ -7,7 +7,7 @@
     <string name="button_scan_qr">Scan QR-Code</string>
     <string name="button_save">Save</string>
     <string name="button_new_tag">New tag</string>
-    <string name="button_warned">You have been warned!</string>
+    <string name="button_settings">Settings</string>
     <string name="button_all_tags">All tags</string>
     <string name="button_no_tags">No tags</string>
     
@@ -63,26 +63,32 @@
     <string name="dialog_title_manual_entry">Enter details</string>
     <string name="dialog_title_remove">Remove</string>
     <string name="dialog_title_rename">Rename</string>
-    <string name="dialog_title_security_backup">Security and Backups</string>
     <string name="dialog_title_last_used">Last used</string>
     <string name="dialog_title_keystore_error">KeyStore error</string>
+    <string name="dialog_title_encryption">Database encryption</string>
 
     <string name="dialog_msg_auth">Please enter your device credentials to start andOTP.</string>
     <string name="dialog_msg_confirm_delete">Are you sure you want do remove the account \"%1$s\"?</string>
 
-    <string name="dialog_msg_security_backup_desc">To keep your account information secure this app
-        only stores it encrypted. Part of the encryption key used for this is stored in the Android
-        KeyStore system. The advantage of this approach is that the key is kept separate from the
-        apps data and can be backed by hardware cryptography (if your device supports this).
-    </string>
-    <string name="dialog_msg_security_backup_3rd_party">As a drawback this makes backups of the apps
-        data a little bit more difficult. If you use 3rd party apps (like Titanium Backup) you only
-        backup the data files, not the encryption key and as a result such backups become useless.
-    </string>
-    <string name="dialog_msg_security_backup_warning">Please only use the internal backup functions
-        provided by the app to backup your accounts! Anything else WILL lead to data loss.
-    </string>
-    <string name="dialog_msg_security_backup_one_time">This message will not be shown again.</string>
+    <string name="dialog_title_security_keystore">1. Android KeyStore</string>
+    <string name="dialog_title_security_password">2. Password / PIN</string>
+
+    <string name="dialog_msg_security_first">To ensure the security of your accounts this app
+        only stores them in encrypted data files using one of the following two methods:</string>
+    <string name="dialog_msg_security_keystore">The KeyStore is a system component of Android for
+        securely storing cryptographic keys. The advantage of this approach is that the keys are
+        stored separated from the data files and can be backed by hardware cryptography (if the
+        hardware supports it). However as the keys are not stored with the apps data this method
+        prevents external backup solutions (like Titanium) from working. If you choose this method
+        you will have to rely on the internal backup functions provided by andOTP.</string>
+    <string name="dialog_msg_security_password">This method will encrypt your data with a key
+        generated from a password or PIN. The main advantage here is that this will work with
+        external backup solutions (like Titanium). However you will have to enter your credentials
+        every time you start andOTP.</string>
+    <string name="dialog_msg_security_default">By default the Android KeyStore will be used, however
+        this is known to cause problems on certain custom ROMs (and a few stock ones as well). You
+        can change the encryption in the Settings by clicking on the button below.</string>
+
     <string name="dialog_msg_last_used">In order for andOTP to recognize which token was used last
         you have to have \"tap to reveal\" enabled or use the copy button.\n\nThis message will not
         be shown again.</string>
