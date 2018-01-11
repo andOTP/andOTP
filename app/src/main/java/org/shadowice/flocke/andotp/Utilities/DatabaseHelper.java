@@ -108,7 +108,7 @@ public class DatabaseHelper {
             synchronized (DatabaseHelper.DatabaseFileLock) {
                 byte[] data = EncryptionHelper.encrypt(encryptionKey, jsonString.getBytes());
 
-            FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE), data);
+                FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE), data);
             }
         } catch (Exception error) {
             error.printStackTrace();
@@ -125,16 +125,16 @@ public class DatabaseHelper {
         ArrayList<Entry> entries = new ArrayList<>();
 
         if (encryptionKey != null) {
-        try {
-            synchronized (DatabaseHelper.DatabaseFileLock) {
-				byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE));
-                data = EncryptionHelper.decrypt(encryptionKey, data);
+            try {
+                synchronized (DatabaseHelper.DatabaseFileLock) {
+                    byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE));
+                    data = EncryptionHelper.decrypt(encryptionKey, data);
 
-            entries = stringToEntries(new String(data));
+                    entries = stringToEntries(new String(data));
+                }
+            } catch (Exception error) {
+                error.printStackTrace();
             }
-        } catch (Exception error) {
-            error.printStackTrace();
-        }
         } else {
             Toast.makeText(context, R.string.toast_encryption_key_empty, Toast.LENGTH_LONG).show();
         }

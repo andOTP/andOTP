@@ -62,7 +62,6 @@
         (disabled by default for security reasons)</string>
     <string name="settings_desc_enable_android_backup_service">Enables andOTP to use android\'s
         built in backup service to bacup keys and preferences</string>
-    <string name="settings_desc_special_features">Uncheck to disable the special features again</string>
     <string name="settings_desc_clear_keystore">Delete the encryption key from the KeyStore</string>
 
     <!-- Toasts -->
