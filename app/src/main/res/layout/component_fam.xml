@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.FloatingActionButton
+    <org.shadowice.flocke.andotp.View.DraggableFloatingActionButton
         android:id="@+id/baseFloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
