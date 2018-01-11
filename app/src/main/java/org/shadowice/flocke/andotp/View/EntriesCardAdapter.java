@@ -62,7 +62,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
+import javax.crypto.SecretKey;
+
+import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     implements ItemTouchHelperAdapter, Filterable {
@@ -74,6 +76,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     private Callback callback;
     private List<String> tagsFilter = new ArrayList<>();
 
+    private SecretKey encryptionKey = null;
+
     private SortMode sortMode = SortMode.UNSORTED;
     private TagsAdapter tagsFilterAdapter;
     private Settings settings;
@@ -83,13 +87,24 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         this.tagsFilterAdapter = tagsFilterAdapter;
         this.settings = new Settings(context);
         this.taskHandler = new Handler();
+        this.entries = new ArrayList<>();
+    }
 
-        loadEntries();
+    public void setEncryptionKey(SecretKey key) {
+        encryptionKey = key;
+    }
+
+    public SecretKey getEncryptionKey() {
+        return encryptionKey;
     }
 
     @Override
     public int getItemCount() {
         return displayedEntries.size();
+    }
+
+    public ArrayList<Entry> getEntries() {
+        return entries;
     }
 
     public void addEntry(Entry e) {
@@ -112,12 +127,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public void saveEntries() {
-        DatabaseHelper.saveDatabase(context, entries);
+        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
     }
 
     public void loadEntries() {
-        entries = DatabaseHelper.loadDatabase(context);
-        entriesChanged();
+        if (encryptionKey != null) {
+            entries = DatabaseHelper.loadDatabase(context, encryptionKey);
+            entriesChanged();
+        }
     }
 
     public void filterByTags(List<String> tags) {
@@ -168,7 +185,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         }
 
         entryViewHolder.setLabelSize(settings.getLabelSize());
-        entryViewHolder.setThumbnailSize(settings.getThumbnailSize());
+        if(settings.getThumbnailVisible()) {
+            entryViewHolder.setThumbnailSize(settings.getThumbnailSize());
+        }
         entryViewHolder.setLabelScroll(settings.getScrollLabel());
     }
 
@@ -255,7 +274,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             displayedEntries.get(position).setLastUsed(timeStamp);
 
         entries.get(realIndex).setLastUsed(timeStamp);
-        DatabaseHelper.saveDatabase(context, entries);
+        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
 
         if (sortMode == SortMode.LAST_USED) {
             displayedEntries = sortEntries(displayedEntries);
@@ -274,7 +293,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             displayedEntries = new ArrayList<>(entries);
             notifyItemMoved(fromPosition, toPosition);
 
-            DatabaseHelper.saveDatabase(context, entries);
+            DatabaseHelper.saveDatabase(context, entries, encryptionKey);
         }
 
         return true;
@@ -314,7 +333,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         Entry e = entries.get(realIndex);
                         e.setLabel(newLabel);
 
-                        DatabaseHelper.saveDatabase(context, entries);
+                        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -395,7 +414,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 Entry e = entries.get(realIndex);
                 e.setThumbnail(thumbnail);
 
-                DatabaseHelper.saveDatabase(context, entries);
+                DatabaseHelper.saveDatabase(context, entries, encryptionKey);
                 notifyItemChanged(pos);
                 alert.cancel();
             }
@@ -423,7 +442,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             @Override
             public Object call() throws Exception {
                 entries.get(realPos).setTags(tagsAdapter.getActiveTags());
-                DatabaseHelper.saveDatabase(context, entries);
+                DatabaseHelper.saveDatabase(context, entries, encryptionKey);
 
                 List<String> inUseTags = getTags();
 
@@ -468,7 +487,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         notifyItemRemoved(pos);
 
                         entries.remove(realIndex);
-                        DatabaseHelper.saveDatabase(context, entries);
+                        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

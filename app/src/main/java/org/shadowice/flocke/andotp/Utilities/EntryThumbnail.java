@@ -84,24 +84,25 @@ public class EntryThumbnail {
     }
 
     public static Bitmap getThumbnailGraphic(Context context, String label, int size, EntryThumbnails thumbnail) {
-        if(thumbnail == EntryThumbnails.Default) {
+        if (thumbnail == EntryThumbnails.Default && size > 0) {
             LetterBitmap letterBitmap = new LetterBitmap(context);
             return letterBitmap.getLetterTile(label, label, size, size);
-        }
+        } else if (thumbnail != EntryThumbnails.Default) {
 
-        try {
-            if(thumbnail.getAssetType() == AssetType.Vector) {
-                Drawable drawable = context.getResources().getDrawable(thumbnail.getResource());
-                Bitmap bitmap = Bitmap.createBitmap(drawable.getMinimumWidth(), drawable.getMinimumHeight(), Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(bitmap);
-                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                drawable.draw(canvas);
-                return bitmap;
-            } else {
-                return BitmapFactory.decodeResource(context.getResources(), thumbnail.getResource());
+            try {
+                if (thumbnail.getAssetType() == AssetType.Vector) {
+                    Drawable drawable = context.getResources().getDrawable(thumbnail.getResource());
+                    Bitmap bitmap = Bitmap.createBitmap(drawable.getMinimumWidth(), drawable.getMinimumHeight(), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(bitmap);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    drawable.draw(canvas);
+                    return bitmap;
+                } else {
+                    return BitmapFactory.decodeResource(context.getResources(), thumbnail.getResource());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
         return BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round);

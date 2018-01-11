@@ -28,6 +28,8 @@ import android.security.KeyPairGeneratorSpec;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 
+import org.shadowice.flocke.andotp.R;
+
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -35,17 +37,29 @@ import java.security.GeneralSecurityException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
-import java.security.SecureRandom;
+import java.security.ProviderException;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 import javax.security.auth.x500.X500Principal;
 
 public class KeyStoreHelper {
-    private final static int KEY_LENGTH = 16;
+
+    public static void wipeKeys(Context context) {
+        File keyFile = new File(context.getFilesDir() + "/" + Constants.FILENAME_ENCRYPTED_KEY);
+        keyFile.delete();
+
+        try {
+            final KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+            keyStore.load(null);
+            if (keyStore.containsAlias(Constants.KEYSTORE_ALIAS_WRAPPING))
+                keyStore.deleteEntry(Constants.KEYSTORE_ALIAS_WRAPPING);
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static KeyPair loadOrGenerateAsymmetricKeyPair(Context context, String alias)
             throws GeneralSecurityException, IOException {
@@ -83,34 +97,26 @@ public class KeyStoreHelper {
         }
 
         final KeyStore.PrivateKeyEntry entry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(alias, null);
-        return new KeyPair(entry.getCertificate().getPublicKey(), entry.getPrivateKey());
+
+        if (entry != null)
+            return new KeyPair(entry.getCertificate().getPublicKey(), entry.getPrivateKey());
+        else
+            return null;
     }
 
-    /**
-     * Load our symmetric secret key.
-     * The symmetric secret key is stored securely on disk by wrapping
-     * it with a public/private key pair, possibly backed by hardware.
-     */
-    public static SecretKey loadOrGenerateWrappedKey(Context context, File keyFile)
-            throws GeneralSecurityException, IOException {
-        final SecretKeyWrapper wrapper = new SecretKeyWrapper(context, "settings");
+    public static SecretKey loadEncryptionKeyFromKeyStore(Context context, boolean failSilent) {
+        SecretKey encKey = null;
 
-        // Generate secret key if none exists
-        if (!keyFile.exists()) {
-            final byte[] raw = new byte[KEY_LENGTH];
-            new SecureRandom().nextBytes(raw);
-
-            final SecretKey key = new SecretKeySpec(raw, "AES");
-            final byte[] wrapped = wrapper.wrap(key);
-
-
-            FileHelper.writeBytesToFile(keyFile, wrapped);
+        try {
+            KeyPair pair = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, Constants.KEYSTORE_ALIAS_WRAPPING);
+            if (pair != null)
+                encKey = EncryptionHelper.loadOrGenerateWrappedKey(new File(context.getFilesDir() + "/" + Constants.FILENAME_ENCRYPTED_KEY), pair);
+        } catch (GeneralSecurityException | IOException | ProviderException e) {
+            e.printStackTrace();
+            if (! failSilent)
+                UIHelper.showGenericDialog(context, R.string.dialog_title_keystore_error, R.string.dialog_msg_keystore_error);
         }
 
-        // Even if we just generated the key, always read it back to ensure we
-        // can read it successfully.
-        final byte[] wrapped = FileHelper.readFileToBytes(keyFile);
-
-        return wrapper.unwrap(wrapped);
+        return encKey;
     }
 }

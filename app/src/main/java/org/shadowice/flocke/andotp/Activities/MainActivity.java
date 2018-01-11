@@ -58,8 +58,9 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
-import org.shadowice.flocke.andotp.Utilities.Settings;
+import org.shadowice.flocke.andotp.Utilities.Constants;
+import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
+import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
 import org.shadowice.flocke.andotp.View.FloatingActionMenu;
@@ -70,13 +71,14 @@ import org.shadowice.flocke.andotp.View.TagsAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.shadowice.flocke.andotp.Utilities.Settings.SortMode;
+import javax.crypto.SecretKey;
+
+import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
+import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
+import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class MainActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private static final int INTENT_INTERNAL_AUTHENTICATE   = 100;
-    private static final int INTENT_INTERNAL_SETTINGS       = 101;
-    private static final int INTENT_INTERNAL_BACKUP         = 102;
 
     private EntriesCardAdapter adapter;
     private FloatingActionMenu floatingActionMenu;
@@ -84,6 +86,7 @@ public class MainActivity extends BaseActivity
     private MenuItem sortMenu;
     private SimpleItemTouchHelperCallback touchHelperCallback;
 
+    private EncryptionType encryptionType = EncryptionType.KEYSTORE;
     private boolean requireAuthentication = false;
 
     private Handler handler;
@@ -103,33 +106,51 @@ public class MainActivity extends BaseActivity
 
     private void showFirstTimeWarning() {
         ViewGroup container = findViewById(R.id.main_content);
-        View msgView = getLayoutInflater().inflate(R.layout.dialog_security_backup, container, false);
+        View msgView = getLayoutInflater().inflate(R.layout.dialog_database_encryption, container, false);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.dialog_title_security_backup)
+        builder.setTitle(R.string.dialog_title_encryption)
                 .setView(msgView)
-                .setPositiveButton(R.string.button_warned, new DialogInterface.OnClickListener() {
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         settings.setFirstTimeWarningShown(true);
+                        updateEncryption(null);
+                    }
+                })
+                .setNegativeButton(R.string.button_settings, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        settings.setFirstTimeWarningShown(true);
+
+                        Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
+                        startActivityForResult(settingsIntent, Constants.INTENT_MAIN_SETTINGS);
+                    }
+                })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+                        settings.setFirstTimeWarningShown(true);
+                        updateEncryption(null);
                     }
                 })
                 .create()
                 .show();
     }
 
-    public void authenticate() {
-        Settings.AuthMethod authMethod = settings.getAuthMethod();
+    public void authenticate(int messageId) {
+        AuthMethod authMethod = settings.getAuthMethod();
 
-        if (authMethod == Settings.AuthMethod.DEVICE) {
+        if (authMethod == AuthMethod.DEVICE) {
             KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && km.isKeyguardSecure()) {
                 Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
-                startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
+                startActivityForResult(authIntent, Constants.INTENT_MAIN_AUTHENTICATE);
             }
-        } else if (authMethod == Settings.AuthMethod.PASSWORD || authMethod == Settings.AuthMethod.PIN) {
+        } else if (authMethod == AuthMethod.PASSWORD || authMethod == AuthMethod.PIN) {
             Intent authIntent = new Intent(this, AuthenticateActivity.class);
-            startActivityForResult(authIntent, INTENT_INTERNAL_AUTHENTICATE);
+            authIntent.putExtra(Constants.EXTRA_AUTH_MESSAGE, messageId);
+            startActivityForResult(authIntent, Constants.INTENT_MAIN_AUTHENTICATE);
         }
     }
 
@@ -150,6 +171,23 @@ public class MainActivity extends BaseActivity
             settings.setSortMode(mode);
     }
 
+    private HashMap<String, Boolean> createTagsMap(ArrayList<Entry> entries) {
+        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+
+        for(Entry entry : entries) {
+            for(String tag : entry.getTags())
+                tagsHashMap.put(tag, settings.getTagToggle(tag));
+        }
+
+        return tagsHashMap;
+    }
+
+    private void populateAdapter() {
+        adapter.loadEntries();
+        tagsDrawerAdapter.setTags(createTagsMap(adapter.getEntries()));
+        adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+    }
+
     // Initialize the main application
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,13 +206,16 @@ public class MainActivity extends BaseActivity
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         settings.registerPreferenceChangeListener(this);
 
-        if (savedInstanceState == null)
+        encryptionType = settings.getEncryption();
+
+        if (settings.getAuthMethod() != AuthMethod.NONE && savedInstanceState == null)
             requireAuthentication = true;
 
         setBroadcastCallback(new BroadcastReceivedCallback() {
             @Override
             public void onReceivedScreenOff() {
-                requireAuthentication = true;
+                if (settings.getAuthMethod() != AuthMethod.NONE)
+                    requireAuthentication = true;
             }
         });
 
@@ -203,16 +244,10 @@ public class MainActivity extends BaseActivity
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
 
-        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
-        for(Entry entry : DatabaseHelper.loadDatabase(this)) {
-            for(String tag : entry.getTags())
-                tagsHashMap.put(tag, settings.getTagToggle(tag));
-        }
-        tagsDrawerAdapter = new TagsAdapter(this, tagsHashMap);
-
+        tagsDrawerAdapter = new TagsAdapter(this, new HashMap<String, Boolean>());
         adapter = new EntriesCardAdapter(this, tagsDrawerAdapter);
-        recList.setAdapter(adapter);
 
+        recList.setAdapter(adapter);
         recList.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -293,8 +328,18 @@ public class MainActivity extends BaseActivity
         super.onResume();
 
         if (requireAuthentication) {
-            requireAuthentication = false;
-            authenticate();
+            if (settings.getAuthMethod() != AuthMethod.NONE) {
+                requireAuthentication = false;
+                authenticate(R.string.auth_msg_authenticate);
+            }
+        } else {
+            if (settings.getFirstTimeWarningShown()) {
+                if (adapter.getEncryptionKey() == null) {
+                    updateEncryption(null);
+                } else {
+                    populateAdapter();
+                }
+            }
         }
 
         startUpdater();
@@ -309,7 +354,6 @@ public class MainActivity extends BaseActivity
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
         if (key.equals(getString(R.string.settings_key_label_size)) ||
                 key.equals(getString(R.string.settings_key_label_scroll)) ||
-                key.equals(getString(R.string.settings_key_thumbnail_visible)) ||
                 key.equals(getString(R.string.settings_key_split_group_size)) ||
                 key.equals(getString(R.string.settings_key_thumbnail_size))) {
             adapter.notifyDataSetChanged();
@@ -345,14 +389,20 @@ public class MainActivity extends BaseActivity
                     Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();
                 }
             }
-        } else if (requestCode == INTENT_INTERNAL_BACKUP && resultCode == RESULT_OK) {
+        } else if (requestCode == Constants.INTENT_MAIN_BACKUP && resultCode == RESULT_OK) {
             if (intent.getBooleanExtra("reload", false)) {
                 adapter.loadEntries();
                 refreshTags();
             }
-        } else if (requestCode == INTENT_INTERNAL_AUTHENTICATE) {
+        } else if (requestCode == Constants.INTENT_MAIN_SETTINGS && resultCode == RESULT_OK) {
+            boolean encryptionChanged = intent.getBooleanExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_CHANGED, false);
+            byte[] newKey = intent.getByteArrayExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY);
+
+            if (encryptionChanged)
+                updateEncryption(newKey);
+        } else if (requestCode == Constants.INTENT_MAIN_AUTHENTICATE) {
             if (resultCode != RESULT_OK) {
-                Toast.makeText(getBaseContext(), R.string.toast_auth_failed, Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), R.string.toast_auth_failed_fatal, Toast.LENGTH_LONG).show();
 
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                     finishAndRemoveTask();
@@ -361,8 +411,32 @@ public class MainActivity extends BaseActivity
                 }
             } else {
                 requireAuthentication = false;
+
+                byte[] authKey = intent.getByteArrayExtra(Constants.EXTRA_AUTH_PASSWORD_KEY);
+                updateEncryption(authKey);
             }
         }
+    }
+
+    private void updateEncryption(byte[] newKey) {
+        SecretKey encryptionKey = null;
+
+        encryptionType = settings.getEncryption();
+
+        if (encryptionType == EncryptionType.KEYSTORE) {
+            encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this, false);
+        } else if (encryptionType == EncryptionType.PASSWORD) {
+            if (newKey != null && newKey.length > 0) {
+                encryptionKey = EncryptionHelper.generateSymmetricKey(newKey);
+            } else {
+                authenticate(R.string.auth_msg_confirm_encryption);
+            }
+        }
+
+        if (encryptionKey != null)
+            adapter.setEncryptionKey(encryptionKey);
+
+        populateAdapter();
     }
 
     // Options menu
@@ -439,10 +513,13 @@ public class MainActivity extends BaseActivity
 
         if (id == R.id.action_backup) {
             Intent backupIntent = new Intent(this, BackupActivity.class);
-            startActivityForResult(backupIntent, INTENT_INTERNAL_BACKUP);
+            backupIntent.putExtra(Constants.EXTRA_BACKUP_ENCRYPTION_KEY, adapter.getEncryptionKey().getEncoded());
+            startActivityForResult(backupIntent, Constants.INTENT_MAIN_BACKUP);
         } else if (id == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
-            startActivityForResult(settingsIntent, INTENT_INTERNAL_SETTINGS);
+            if (adapter.getEncryptionKey() != null)
+                settingsIntent.putExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY, adapter.getEncryptionKey().getEncoded());
+            startActivityForResult(settingsIntent, Constants.INTENT_MAIN_SETTINGS);
         } else if (id == R.id.action_about){
             Intent aboutIntent = new Intent(this, AboutActivity.class);
             startActivity(aboutIntent);

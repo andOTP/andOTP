@@ -41,7 +41,9 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Entry {
-    public enum OTPType { TOTP, STEAM}
+    public enum OTPType {
+        TOTP, STEAM
+    }
     public static Set<OTPType> PublicTypes = EnumSet.of(OTPType.TOTP);
 
     private static final OTPType DEFAULT_TYPE = OTPType.TOTP;

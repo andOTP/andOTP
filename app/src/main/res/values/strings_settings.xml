@@ -13,13 +13,13 @@
     <string name="settings_title_auth">Authentication</string>
     <string name="settings_title_auth_password">Password</string>
     <string name="settings_title_auth_pin">PIN</string>
+    <string name="settings_title_encryption">Database encryption</string>
     <string name="settings_title_panic">Panic Trigger</string>
 
     <string name="settings_title_lang">Language</string>
     <string name="settings_title_theme">Theme</string>
     <string name="settings_title_label_size">Label font size</string>
     <string name="settings_title_label_scroll">Scroll label</string>
-    <string name="settings_title_thumbnail_visible_ask">Show thumbnails</string>
     <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
     <string name="settings_title_split_group_size">Split Token with space</string>
 
@@ -33,6 +33,7 @@
 
     <string name="settings_title_special_features">Enable special features</string>
     <string name="settings_title_enable_screenshot">Enable screenshots</string>
+    <string name="settings_title_clear_keystore">Clear KeyStore</string>
 
     <!-- Descriptions -->
     <string name="settings_desc_tap_to_reveal">Hide the OTP tokens by default, requiring them to be
@@ -55,9 +56,10 @@
     <string name="settings_desc_openpgp_verify">Encrypted backups are only imported if they are
         signed with a valid key</string>
 
+    <string name="settings_desc_special_features">Uncheck to disable the special features again</string>
     <string name="settings_desc_enable_screenshot">Allow to take screenshots of the main screen
         (disabled by default for security reasons)</string>
-    <string name="settings_desc_special_features">Uncheck to disable the special features again</string>
+    <string name="settings_desc_clear_keystore">Delete the encryption key from the KeyStore</string>
 
     <!-- Toasts -->
     <string name="settings_toast_auth_device_pre_lollipop">This feature requires at least Android 5.0
@@ -65,12 +67,55 @@
     <string name="settings_toast_auth_device_not_secure">This feature requires a secure lock screen
         to be set up (Settings -> Security -> Screenlock)</string>
 
+    <string name="settings_toast_password_empty">An empty password is not allowed, set the
+        Authentication to \"None\" to disable it!</string>
+
+    <string name="settings_toast_encryption_changing">Trying to change the database encryption,
+        please wait!</string>
+    <string name="settings_toast_encryption_change_success">Successfully changed the database
+        encryption!</string>
+    <string name="settings_toast_encryption_change_failed">Failed to change database encryption,
+        restored database from internal backup!</string>
+    <string name="settings_toast_encryption_backup_failed">Failed to create an internal
+        backup, aborting!</string>
+    <string name="settings_toast_encryption_no_key">Failed to get the encryption key, aborting!</string>
+    <string name="settings_toast_encryption_auth_failed">Authentication failed, aborting!</string>
+
+    <string name="settings_toast_auth_upgrade_failed">Failed to silently upgrade your password / PIN
+        to the new encryption, please manually reset it in the settings!</string>
+
+    <string name="settings_dialog_title_error">Error</string>
+    <string name="settings_dialog_title_clear_keystore">Clear the KeyStore?</string>
+
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">You can only use Password or PIN as
+        long as the database encryption is set to \"Password / PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">You first need to set the
+        Authentication to \"Password\" or \"PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">You first need to set a
+        Password or PIN before changing the encryption!</string>
+
+    <string name="settings_dialog_msg_clear_keystore_password">In some cases clearing the KeyStore
+        can help resolve problems. You should only proceed if you know what you are doing!\n\nSince
+        the <b>Database encryption</b> is set to <b>Password / PIN</b> you shouldn\'t lose any data
+        doing this (but it never hurts to have a backup anyways).\n\n<b>Are you really sure you want
+        to clear the KeyStore?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">In some cases clearing the KeyStore
+        can help resolve problems. You should only proceed if you know what you are doing!\n\n<b>Warning</b>:
+        Since the <b>Database encryption</b> is set to <b>Android KeyStore</b> you will lose all
+        your accounts. Make sure you have a backup!\n\n<b>Are you really sure you want to clear the
+        KeyStore?</b></string>
+
     <!-- List entries -->
     <string-array name="settings_entries_auth">
         <item>None</item>
         <item>Password</item>
         <item>PIN</item>
         <item>Device credentials</item>
+    </string-array>
+
+    <string-array name="settings_entries_encryption">
+        <item>Android KeyStore</item>
+        <item>Password / PIN</item>
     </string-array>
 
     <string-array name="settings_entries_panic">
@@ -85,6 +130,7 @@
     </string-array>
 
     <string-array name="settings_entries_thumbnail_size">
+        <item>Hidden</item>
         <item>Small</item>
         <item>Default</item>
         <item>Medium</item>
@@ -101,9 +147,11 @@
     <string name="settings_lang_sys_default">System default</string>
 
     <!-- PasswordPreference -->
-    <string name="settings_hint_password">Password</string>
-    <string name="settings_hint_pin">PIN</string>
+    <string name="settings_hint_password">Enter new password</string>
+    <string name="settings_hint_pin">Enter new PIN</string>
     <string name="settings_hint_password_confirm">Confirm password</string>
     <string name="settings_hint_pin_confirm">Confirm PIN</string>
-    <string name="settings_hint_unchanged">(unchanged)</string>
+
+    <string name="settings_label_short_password">The password needs to be at least %1$d characters long!</string>
+    <string name="settings_label_short_pin">The PIN needs to be at least %1$d digits long!</string>
 </resources>
