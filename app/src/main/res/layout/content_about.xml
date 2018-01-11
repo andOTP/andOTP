@@ -22,23 +22,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/activity_margin_small" >
+                android:padding="@dimen/activity_margin_small"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="@dimen/card_thumbnail_size"
+                    android:layout_height="@dimen/card_thumbnail_size"
+                    android:layout_marginEnd="@dimen/activity_margin_medium"
+                    android:src="@mipmap/ic_launcher"/>
 
                 <LinearLayout
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="?android:attr/listPreferredItemHeight"
-                    android:padding="@dimen/activity_margin_small"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:gravity="center_vertical" >
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/activity_margin"
-                        android:layout_marginEnd="@dimen/activity_margin_large"
-                        android:src="@mipmap/ic_launcher"/>
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -47,16 +45,13 @@
                         android:textStyle="bold"
                         android:text="@string/app_name"/>
 
-                </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/about_description" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/activity_margin_large"
-                    android:layout_marginEnd="@dimen/activity_margin_large"
-                    android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:text="@string/about_description" />
+                </LinearLayout>
 
             </LinearLayout>
 

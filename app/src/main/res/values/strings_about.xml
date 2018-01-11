@@ -2,9 +2,7 @@
 <resources>
     <string name="about_activity_title">About</string>
 
-    <string name="about_description">
-        An open-source two-factor authentication App for Android 4.4+.
-    </string>
+    <string name="about_description">Open source two-factor authentication for Android</string>
 
     <!-- Misc -->
     <string name="about_label_changelog">Changelog</string>
