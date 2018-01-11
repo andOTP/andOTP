@@ -82,12 +82,11 @@ public class Tools {
     }
 
     public static String formatToken(String s, int chunkSize) {
-        if (chunkSize==0)  {
+        if (chunkSize ==0 || s == null)
             return s;
-        }
+
         StringBuilder ret = new StringBuilder("");
-        final int len = s.length();
-        int index = len;
+        int index = s.length();
         while (index > 0) {
             ret.insert(0, s.substring(Math.max(index - chunkSize, 0), index));
             ret.insert(0, " ");
