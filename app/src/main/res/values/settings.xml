@@ -20,8 +20,8 @@
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size_sp</string>
     <string name="settings_key_label_scroll" translatable="false">pref_label_scroll</string>
-    <string name="settings_key_thumbnail_visible" translatable="false">pref_thumbnail_visible</string>
     <string name="settings_key_thumbnail_size" translatable="false">pref_thumbnail_size</string>
+    <string name="settings_key_split_group_size" translatable="false">pref_split_group_size</string>
 
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
     <string name="settings_key_backup_directory" translatable="false">pref_backup_directory</string>
@@ -52,6 +52,7 @@
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">18</integer>
     <string name="settings_default_thumbnail_size">46dp</string>
+    <string name="settings_default_split_group_size">3</string>
 
     <!-- All of the possible tile background colors -->
     <array name="letter_tile_colors">
@@ -97,10 +98,17 @@
     </string-array>
 
     <string-array name="settings_values_thumbnail_size" translatable="false">
+        <item>0dp</item>
         <item>32dp</item>
         <item>46dp</item>
         <item>64dp</item>
         <item>96dp</item>
+    </string-array>
+
+    <string-array name="settings_values_split_group_size" translatable="false">
+        <item>0</item>
+        <item>2</item>
+        <item>3</item>
     </string-array>
 
     <string-array name="settings_entries_lang" translatable="false">

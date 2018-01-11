@@ -24,7 +24,9 @@ Don't worry, I will still continue to develop andOTP it will just slow down from
  * Requires minimal permissions
    - Camera access for QR code scanning
    - Storage access for import and export of the database
- * Encrypted storage
+ * Encrypted storage with two backends:
+   - Android KeyStore
+   - Password / PIN
  * Multiple backup options:
    - Plain-text
    - Password-protected
@@ -76,12 +78,16 @@ So make sure you have a **current backup** before switching!
    - [XDA thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993) (please keep off-topic to a minimum)
    - Telegram group [@andOTP](https://t.me/andOTP) (also check out the read-only announcement channel for important updates: [@andOTP_Broadcast](https://t.me/andOTP_Broadcast))
 
+#### Developers:
+
+ * [Jakob Nixdorf](https://github.com/flocke)
+ * [Richy HBM](https://github.com/RichyHBM)
+
 #### Contributors:
 
  * [Carlos Melero](https://github.com/carmebar) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=carmebar))
  * [SuperVirus](https://github.com/SuperVirus) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=SuperVirus))
- * [RichyHBM](https://github.com/RichyHBM) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=RichyHBM))
-
+ * [DanielWeigl](https://github.com/DanielWeigl) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=DanielWeigl))
 
 #### Translators:
 

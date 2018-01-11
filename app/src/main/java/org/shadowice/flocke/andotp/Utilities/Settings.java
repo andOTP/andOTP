@@ -406,7 +406,7 @@ public class Settings {
     }
 
     public boolean getThumbnailVisible() {
-        return getBoolean(R.string.settings_key_thumbnail_visible, true);
+        return getThumbnailSize() > 0;
     }
 
     public int getThumbnailSize() {
@@ -417,6 +417,13 @@ public class Settings {
             e.printStackTrace();
             return context.getResources().getDimensionPixelSize(R.dimen.card_thumbnail_size);
         }
+    }
+
+    public int getTokenSplitGroupSize() {
+        // the setting is of type "String", because ListPreference does not support integer arrays for its entryValues
+        return  Integer.valueOf(
+                getString(R.string.settings_key_split_group_size, R.string.settings_default_split_group_size)
+        );
     }
 
     public boolean getScreenshotsEnabled() {

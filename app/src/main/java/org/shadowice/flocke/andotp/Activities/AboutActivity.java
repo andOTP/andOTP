@@ -49,10 +49,13 @@ public class AboutActivity extends BaseActivity {
     private static final String MIT_URI = GITHUB_URI + "/blob/master/LICENSE.txt";
 
     private static final String AUTHOR1_GITHUB = "https://github.com/flocke";
-    private static final String AUTHOR1_PAYPAL = "https://paypal.me/flocke000";
+    private static final String AUTHOR1_EXTRA = "https://paypal.me/flocke000";
 
-    private static final String AUTHOR2_GITHUB = "https://github.com/0xbb";
-    private static final String AUTHOR2_APP = AUTHOR2_GITHUB + "/otp-authenticator";
+    private static final String AUTHOR2_GITHUB = "https://github.com/richyhbm";
+    private static final String AUTHOR2_EXTRA = "bitcoin:1KyLwnxXR577gYUtwRMSMhkpsJVoK2bTLN";
+
+    private static final String AUTHOR_ORIGINAL_GITHUB = "https://github.com/0xbb";
+    private static final String AUTHOR_ORIGINAL_EXTRA = AUTHOR_ORIGINAL_GITHUB + "/otp-authenticator";
 
     private static final String CONTRIBUTORS_URI = GITHUB_URI + "/blob/master/README.md#contributors";
     private static final String TRANSLATORS_URI = GITHUB_URI + "/blob/master/README.md#translators";
@@ -62,7 +65,7 @@ public class AboutActivity extends BaseActivity {
 
     static final int[] imageResources = {
             R.id.aboutImgVersion, R.id.aboutImgLicense, R.id.aboutImgChangelog, R.id.aboutImgSource,
-            R.id.aboutImgOpenSource, R.id.aboutImgAuthor1, R.id.aboutImgAuthor2, R.id.aboutImgContributors,
+            R.id.aboutImgOpenSource, R.id.aboutImgAuthor1, R.id.aboutImgAuthorOriginal, R.id.aboutImgContributors,
             R.id.aboutImgTranslators, R.id.aboutImgBugs, R.id.aboutImgTranslate
     };
 
@@ -164,7 +167,7 @@ public class AboutActivity extends BaseActivity {
         });
 
         TextView author1GitHub = v.findViewById(R.id.about_author1_github);
-        TextView author1Paypal = v.findViewById(R.id.about_author1_paypal);
+        TextView author1Paypal = v.findViewById(R.id.about_author1_extra);
         author1GitHub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,22 +177,38 @@ public class AboutActivity extends BaseActivity {
         author1Paypal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openURI(AUTHOR1_PAYPAL);
+                openURI(AUTHOR1_EXTRA);
             }
         });
 
+
         TextView author2GitHub = v.findViewById(R.id.about_author2_github);
-        TextView author2App = v.findViewById(R.id.about_author2_app);
+        TextView author2Paypal = v.findViewById(R.id.about_author2_extra);
         author2GitHub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(AUTHOR2_GITHUB);
             }
         });
-        author2App.setOnClickListener(new View.OnClickListener() {
+        author2Paypal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openURI(AUTHOR2_APP);
+                openURI(AUTHOR2_EXTRA);
+            }
+        });
+
+        TextView authorOriginalGitHub = v.findViewById(R.id.about_author_original_github);
+        TextView authorOriginalApp = v.findViewById(R.id.about_author_original_extra);
+        authorOriginalGitHub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openURI(AUTHOR_ORIGINAL_GITHUB);
+            }
+        });
+        authorOriginalApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openURI(AUTHOR_ORIGINAL_EXTRA);
             }
         });
 

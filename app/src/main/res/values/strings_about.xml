@@ -2,9 +2,7 @@
 <resources>
     <string name="about_activity_title">About</string>
 
-    <string name="about_description">
-        An open-source two-factor authentication App for Android 4.4+.
-    </string>
+    <string name="about_description">Open source two-factor authentication for Android</string>
 
     <!-- Misc -->
     <string name="about_label_changelog">Changelog</string>
@@ -17,14 +15,17 @@
     <!-- Authors -->
     <string name="about_title_authors">Authors</string>
 
-    <string name="about_label_main_author">Main author</string>
+    <string name="about_label_main_developer">Main developer</string>
+    <string name="about_label_developer">Developer</string>
     <string name="about_label_original_author">Author of the original app</string>
     <string name="about_label_original_app">Original App</string>
+    <string name="about_label_website">Website</string>
     <string name="about_label_github" translatable="false">Github</string>
     <string name="about_label_donate">Donate</string>
 
     <string name="about_name_author1" translatable="false">Jakob Nixdorf</string>
-    <string name="about_name_author2" translatable="false">Bruno Bierbaumer</string>
+    <string name="about_name_author_original" translatable="false">Bruno Bierbaumer</string>
+    <string name="about_name_author2" translatable="false">Richy HBM</string>
 
     <string name="about_label_contributors">Contributors</string>
     <string name="about_label_translators">Translators</string>
