@@ -176,7 +176,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE).delete();
         new File(context.getFilesDir() + "/" + Constants.FILENAME_ENCRYPTED_KEY).delete();
 
-        SecretKey encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(context);
+        SecretKey encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(context, false);
         ArrayList<Entry> b = DatabaseHelper.loadDatabase(context, encryptionKey);
         assertEquals(0, b.size());
 
