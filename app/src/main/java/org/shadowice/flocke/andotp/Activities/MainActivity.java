@@ -82,7 +82,6 @@ public class MainActivity extends BaseActivity
 
     private EntriesCardAdapter adapter;
     private FloatingActionMenu floatingActionMenu;
-    private SearchView searchView;
     private MenuItem sortMenu;
     private SimpleItemTouchHelperCallback touchHelperCallback;
 
@@ -248,19 +247,6 @@ public class MainActivity extends BaseActivity
         adapter = new EntriesCardAdapter(this, tagsDrawerAdapter);
 
         recList.setAdapter(adapter);
-        recList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                if (dy > 0) {
-                    floatingActionMenu.hide();
-                } else {
-                    if (searchView == null || searchView.isIconified())
-                        floatingActionMenu.show();
-                }
-            }
-        });
 
         touchHelperCallback = new SimpleItemTouchHelperCallback(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(touchHelperCallback);
@@ -462,7 +448,7 @@ public class MainActivity extends BaseActivity
         }
 
         MenuItem searchItem = menu.findItem(R.id.menu_search);
-        searchView = (SearchView) searchItem.getActionView();
+        SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
