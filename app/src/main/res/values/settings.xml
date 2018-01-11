@@ -20,7 +20,6 @@
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size_sp</string>
     <string name="settings_key_label_scroll" translatable="false">pref_label_scroll</string>
-    <string name="settings_key_thumbnail_visible" translatable="false">pref_thumbnail_visible</string>
     <string name="settings_key_thumbnail_size" translatable="false">pref_thumbnail_size</string>
 
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
@@ -96,6 +95,7 @@
     </string-array>
 
     <string-array name="settings_values_thumbnail_size" translatable="false">
+        <item>0dp</item>
         <item>32dp</item>
         <item>46dp</item>
         <item>64dp</item>

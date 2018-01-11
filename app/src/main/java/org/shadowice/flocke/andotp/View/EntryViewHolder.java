@@ -131,7 +131,9 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         thumbnailImg.setVisibility(settings.getThumbnailVisible() ? View.VISIBLE : View.GONE);
 
         int thumbnailSize = settings.getThumbnailSize();
-        thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumbnail));
+        if(settings.getThumbnailVisible()) {
+            thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumbnail));
+        }
 
         if (this.tapToReveal) {
             if (isVisible) {
