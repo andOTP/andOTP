@@ -354,6 +354,7 @@ public class MainActivity extends BaseActivity
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
         if (key.equals(getString(R.string.settings_key_label_size)) ||
                 key.equals(getString(R.string.settings_key_label_scroll)) ||
+                key.equals(getString(R.string.settings_key_split_group_size)) ||
                 key.equals(getString(R.string.settings_key_thumbnail_size))) {
             adapter.notifyDataSetChanged();
         } else if (key.equals(getString(R.string.settings_key_tap_to_reveal)) ||
