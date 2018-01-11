@@ -7,10 +7,16 @@
     <string name="auth_hint_pin">PIN</string>
 
     <!-- Messages -->
-    <string name="auth_msg_password">Please enter your password to start andOTP.</string>
-    <string name="auth_msg_pin">Please enter your PIN to start andOTP.</string>
+    <string name="auth_msg_authenticate">Please authenticate to start andOTP!</string>
+    <string name="auth_msg_confirm_encryption">Please confirm your authentication to generate the
+        new encryption key!</string>
+
+    <!-- Buttons -->
+    <string name="auth_button_unlock">Unlock</string>
 
     <!-- Toast messages -->
     <string name="auth_toast_password_missing">Please set a password in the settings!</string>
     <string name="auth_toast_pin_missing">Please set a PIN in the settings!</string>
+    <string name="auth_toast_password_again">Wrong password, please try again!</string>
+    <string name="auth_toast_pin_again">Wrong PIN, please try again!</string>
 </resources>

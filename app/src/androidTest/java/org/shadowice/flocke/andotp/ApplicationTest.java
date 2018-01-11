@@ -32,8 +32,10 @@ import org.apache.commons.codec.binary.Hex;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
+import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 
 import java.io.File;
@@ -52,10 +54,9 @@ import java.util.Arrays;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-
-import static org.shadowice.flocke.andotp.Utilities.TokenCalculator.TOTP_DEFAULT_PERIOD;
 
 public class ApplicationTest extends ApplicationTestCase<Application> {
 
@@ -69,29 +70,29 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         byte[] keySHA256 =  "12345678901234567890123456789012".getBytes(StandardCharsets.US_ASCII);
         byte[] keySHA512 =  "1234567890123456789012345678901234567890123456789012345678901234".getBytes(StandardCharsets.US_ASCII);
 
-        assertEquals(94287082, TokenCalculator.TOTP_RFC6238(keySHA1,   TOTP_DEFAULT_PERIOD, 59L, 8, TokenCalculator.HashAlgorithm.SHA1));
-        assertEquals(46119246, TokenCalculator.TOTP_RFC6238(keySHA256, TOTP_DEFAULT_PERIOD, 59L, 8, TokenCalculator.HashAlgorithm.SHA256));
-        assertEquals(90693936, TokenCalculator.TOTP_RFC6238(keySHA512, TOTP_DEFAULT_PERIOD, 59L, 8, TokenCalculator.HashAlgorithm.SHA512));
+        assertEquals(94287082, TokenCalculator.TOTP_RFC6238(keySHA1,   TokenCalculator.TOTP_DEFAULT_PERIOD, 59L, 8, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals(46119246, TokenCalculator.TOTP_RFC6238(keySHA256, TokenCalculator.TOTP_DEFAULT_PERIOD, 59L, 8, TokenCalculator.HashAlgorithm.SHA256));
+        assertEquals(90693936, TokenCalculator.TOTP_RFC6238(keySHA512, TokenCalculator.TOTP_DEFAULT_PERIOD, 59L, 8, TokenCalculator.HashAlgorithm.SHA512));
 
-        assertEquals(7081804,  TokenCalculator.TOTP_RFC6238(keySHA1,   TOTP_DEFAULT_PERIOD, 1111111109L, 8, TokenCalculator.HashAlgorithm.SHA1));
-        assertEquals(68084774, TokenCalculator.TOTP_RFC6238(keySHA256, TOTP_DEFAULT_PERIOD, 1111111109L, 8, TokenCalculator.HashAlgorithm.SHA256));
-        assertEquals(25091201, TokenCalculator.TOTP_RFC6238(keySHA512, TOTP_DEFAULT_PERIOD, 1111111109L, 8, TokenCalculator.HashAlgorithm.SHA512));
+        assertEquals(7081804,  TokenCalculator.TOTP_RFC6238(keySHA1,   TokenCalculator.TOTP_DEFAULT_PERIOD, 1111111109L, 8, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals(68084774, TokenCalculator.TOTP_RFC6238(keySHA256, TokenCalculator.TOTP_DEFAULT_PERIOD, 1111111109L, 8, TokenCalculator.HashAlgorithm.SHA256));
+        assertEquals(25091201, TokenCalculator.TOTP_RFC6238(keySHA512, TokenCalculator.TOTP_DEFAULT_PERIOD, 1111111109L, 8, TokenCalculator.HashAlgorithm.SHA512));
 
-        assertEquals(14050471, TokenCalculator.TOTP_RFC6238(keySHA1,   TOTP_DEFAULT_PERIOD, 1111111111L, 8, TokenCalculator.HashAlgorithm.SHA1));
-        assertEquals(67062674, TokenCalculator.TOTP_RFC6238(keySHA256, TOTP_DEFAULT_PERIOD, 1111111111L, 8, TokenCalculator.HashAlgorithm.SHA256));
-        assertEquals(99943326, TokenCalculator.TOTP_RFC6238(keySHA512, TOTP_DEFAULT_PERIOD, 1111111111L, 8, TokenCalculator.HashAlgorithm.SHA512));
+        assertEquals(14050471, TokenCalculator.TOTP_RFC6238(keySHA1,   TokenCalculator.TOTP_DEFAULT_PERIOD, 1111111111L, 8, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals(67062674, TokenCalculator.TOTP_RFC6238(keySHA256, TokenCalculator.TOTP_DEFAULT_PERIOD, 1111111111L, 8, TokenCalculator.HashAlgorithm.SHA256));
+        assertEquals(99943326, TokenCalculator.TOTP_RFC6238(keySHA512, TokenCalculator.TOTP_DEFAULT_PERIOD, 1111111111L, 8, TokenCalculator.HashAlgorithm.SHA512));
 
-        assertEquals(89005924, TokenCalculator.TOTP_RFC6238(keySHA1,   TOTP_DEFAULT_PERIOD, 1234567890L, 8, TokenCalculator.HashAlgorithm.SHA1));
-        assertEquals(91819424, TokenCalculator.TOTP_RFC6238(keySHA256, TOTP_DEFAULT_PERIOD, 1234567890L, 8, TokenCalculator.HashAlgorithm.SHA256));
-        assertEquals(93441116, TokenCalculator.TOTP_RFC6238(keySHA512, TOTP_DEFAULT_PERIOD, 1234567890L, 8, TokenCalculator.HashAlgorithm.SHA512));
+        assertEquals(89005924, TokenCalculator.TOTP_RFC6238(keySHA1,   TokenCalculator.TOTP_DEFAULT_PERIOD, 1234567890L, 8, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals(91819424, TokenCalculator.TOTP_RFC6238(keySHA256, TokenCalculator.TOTP_DEFAULT_PERIOD, 1234567890L, 8, TokenCalculator.HashAlgorithm.SHA256));
+        assertEquals(93441116, TokenCalculator.TOTP_RFC6238(keySHA512, TokenCalculator.TOTP_DEFAULT_PERIOD, 1234567890L, 8, TokenCalculator.HashAlgorithm.SHA512));
 
-        assertEquals(69279037, TokenCalculator.TOTP_RFC6238(keySHA1,   TOTP_DEFAULT_PERIOD, 2000000000L, 8, TokenCalculator.HashAlgorithm.SHA1));
-        assertEquals(90698825, TokenCalculator.TOTP_RFC6238(keySHA256, TOTP_DEFAULT_PERIOD, 2000000000L, 8, TokenCalculator.HashAlgorithm.SHA256));
-        assertEquals(38618901, TokenCalculator.TOTP_RFC6238(keySHA512, TOTP_DEFAULT_PERIOD, 2000000000L, 8, TokenCalculator.HashAlgorithm.SHA512));
+        assertEquals(69279037, TokenCalculator.TOTP_RFC6238(keySHA1,   TokenCalculator.TOTP_DEFAULT_PERIOD, 2000000000L, 8, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals(90698825, TokenCalculator.TOTP_RFC6238(keySHA256, TokenCalculator.TOTP_DEFAULT_PERIOD, 2000000000L, 8, TokenCalculator.HashAlgorithm.SHA256));
+        assertEquals(38618901, TokenCalculator.TOTP_RFC6238(keySHA512, TokenCalculator.TOTP_DEFAULT_PERIOD, 2000000000L, 8, TokenCalculator.HashAlgorithm.SHA512));
 
-        assertEquals(65353130, TokenCalculator.TOTP_RFC6238(keySHA1,   TOTP_DEFAULT_PERIOD, 20000000000L, 8, TokenCalculator.HashAlgorithm.SHA1));
-        assertEquals(77737706, TokenCalculator.TOTP_RFC6238(keySHA256, TOTP_DEFAULT_PERIOD, 20000000000L, 8, TokenCalculator.HashAlgorithm.SHA256));
-        assertEquals(47863826, TokenCalculator.TOTP_RFC6238(keySHA512, TOTP_DEFAULT_PERIOD, 20000000000L, 8, TokenCalculator.HashAlgorithm.SHA512));
+        assertEquals(65353130, TokenCalculator.TOTP_RFC6238(keySHA1,   TokenCalculator.TOTP_DEFAULT_PERIOD, 20000000000L, 8, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals(77737706, TokenCalculator.TOTP_RFC6238(keySHA256, TokenCalculator.TOTP_DEFAULT_PERIOD, 20000000000L, 8, TokenCalculator.HashAlgorithm.SHA256));
+        assertEquals(47863826, TokenCalculator.TOTP_RFC6238(keySHA512, TokenCalculator.TOTP_DEFAULT_PERIOD, 20000000000L, 8, TokenCalculator.HashAlgorithm.SHA512));
     }
 
 
@@ -106,6 +107,8 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
                     "\"digits\":6," +
                     "\"type\":\"TOTP\"," +
                     "\"algorithm\":\"SHA1\"," +
+                    "\"thumbnail\":\"Default\"," +
+                    "\"last_used\":0," +
                     "\"tags\":[\"test1\",\"test2\"]}";
 
         Entry e = new Entry(new JSONObject(s));
@@ -170,10 +173,11 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         keyStore.load(null);
         keyStore.deleteEntry("settings");
 
-        new File(context.getFilesDir() + "/" + DatabaseHelper.SETTINGS_FILE).delete();
-        new File(context.getFilesDir() + "/" + DatabaseHelper.KEY_FILE).delete();
+        new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE).delete();
+        new File(context.getFilesDir() + "/" + Constants.FILENAME_ENCRYPTED_KEY).delete();
 
-        ArrayList<Entry> b = DatabaseHelper.loadDatabase(context);
+        SecretKey encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(context);
+        ArrayList<Entry> b = DatabaseHelper.loadDatabase(context, encryptionKey);
         assertEquals(0, b.size());
 
         ArrayList<Entry> a = new ArrayList<>();
@@ -187,13 +191,13 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         e.setSecret("secret2".getBytes());
         a.add(e);
 
-        DatabaseHelper.saveDatabase(context, a);
-        b = DatabaseHelper.loadDatabase(context);
+        DatabaseHelper.saveDatabase(context, a, encryptionKey);
+        b = DatabaseHelper.loadDatabase(context, encryptionKey);
 
         assertEquals(a, b);
 
-        new File(context.getFilesDir() + "/" + DatabaseHelper.SETTINGS_FILE).delete();
-        new File(context.getFilesDir() + "/" + DatabaseHelper.KEY_FILE).delete();
+        new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE).delete();
+        new File(context.getFilesDir() + "/" + Constants.FILENAME_ENCRYPTED_KEY).delete();
     }
 
     public void testEncryptionHelper() throws NoSuchPaddingException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, InvalidAlgorithmParameterException, DecoderException {

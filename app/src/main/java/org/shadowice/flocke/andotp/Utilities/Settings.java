@@ -24,37 +24,28 @@ package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Base64;
 
-import org.apache.commons.codec.binary.Hex;
-import org.apache.commons.codec.digest.DigestUtils;
+import org.shadowice.flocke.andotp.Preferences.CredentialsPreference;
 import org.shadowice.flocke.andotp.R;
 
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-import static org.shadowice.flocke.andotp.Preferences.PasswordEncryptedPreference.KEY_ALIAS;
+import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
+import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
+import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class Settings {
-    private static final String DEFAULT_BACKUP_FOLDER = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "andOTP";
-
     private Context context;
     private SharedPreferences settings;
-
-    public enum AuthMethod {
-        NONE, PASSWORD, PIN, DEVICE
-    }
-
-    public enum SortMode {
-        UNSORTED, LABEL, LAST_USED
-    }
 
     public Settings(Context context) {
         this.context = context;
@@ -67,26 +58,18 @@ public class Settings {
     private void setupDeviceDependedDefaults() {
         if (! settings.contains(getResString(R.string.settings_key_backup_directory))
                 || settings.getString(getResString(R.string.settings_key_backup_directory), "").isEmpty()) {
-            setString(R.string.settings_key_backup_directory, DEFAULT_BACKUP_FOLDER);
+            setString(R.string.settings_key_backup_directory, Constants.BACKUP_FOLDER);
         }
     }
 
     private void migrateDeprecatedSettings() {
         if (settings.contains(getResString(R.string.settings_key_auth_password))) {
-            String plainPassword = getAuthPassword();
-            String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(plainPassword)));
-
-            setString(R.string.settings_key_auth_password_hash, hashedPassword);
-
+            setAuthCredentials(getString(R.string.settings_key_auth_password, ""));
             remove(R.string.settings_key_auth_password);
         }
 
         if (settings.contains(getResString(R.string.settings_key_auth_pin))) {
-            String plainPIN = getAuthPIN();
-            String hashedPIN = new String(Hex.encodeHex(DigestUtils.sha256(plainPIN)));
-
-            setString(R.string.settings_key_auth_pin_hash, hashedPIN);
-
+            setAuthCredentials(getString(R.string.settings_key_auth_pin, ""));
             remove(R.string.settings_key_auth_pin);
         }
 
@@ -94,7 +77,7 @@ public class Settings {
             String plainPassword = getBackupPassword();
 
             try {
-                KeyPair key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, KEY_ALIAS);
+                KeyPair key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, Constants.KEYSTORE_ALIAS_PASSWORD);
                 byte[] encPassword = EncryptionHelper.encrypt(key.getPublic(), plainPassword.getBytes(StandardCharsets.UTF_8));
 
                 setString(R.string.settings_key_backup_password_enc, Base64.encodeToString(encPassword, Base64.URL_SAFE));
@@ -130,6 +113,10 @@ public class Settings {
         return settings.getInt(getResString(keyId), getResInt(defaultId));
     }
 
+    private int getIntValue(int keyId, int defaultValue) {
+        return settings.getInt(getResString(keyId), defaultValue);
+    }
+
     private long getLong(int keyId, long defaultValue) {
         return settings.getLong(getResString(keyId), defaultValue);
     }
@@ -141,6 +128,12 @@ public class Settings {
     private void setBoolean(int keyId, boolean value) {
         settings.edit()
                 .putBoolean(getResString(keyId), value)
+                .apply();
+    }
+
+    private void setInt(int keyId, int value) {
+        settings.edit()
+                .putInt(getResString(keyId), value)
                 .apply();
     }
 
@@ -163,9 +156,10 @@ public class Settings {
     }
 
     public void clear(boolean keep_auth) {
-        String authMethod = getAuthMethod().toString().toLowerCase();
-        String authPassword = getAuthPasswordHash();
-        String authPIN = getAuthPINHash();
+        AuthMethod authMethod = getAuthMethod();
+        String authCredentials = getAuthCredentials();
+        byte[] authSalt = getSalt();
+        int authIterations = getIterations();
 
         boolean warningShown = getFirstTimeWarningShown();
 
@@ -175,13 +169,15 @@ public class Settings {
         editor.putBoolean(getResString(R.string.settings_key_security_backup_warning), warningShown);
 
         if (keep_auth) {
-            editor.putString(getResString(R.string.settings_key_auth), authMethod);
+            editor.putString(getResString(R.string.settings_key_auth), authMethod.toString().toLowerCase());
 
-            if (!authPassword.isEmpty())
-                editor.putString(getResString(R.string.settings_key_auth_password_hash), authPassword);
+            if (! authCredentials.isEmpty()) {
+                editor.putString(getResString(R.string.settings_key_auth_credentials), authCredentials);
+                editor.putInt(getResString(R.string.settings_key_auth_iterations), authIterations);
 
-            if (!authPIN.isEmpty())
-                editor.putString(getResString(R.string.settings_key_auth_pin_hash), authPIN);
+                String encodedSalt = Base64.encodeToString(authSalt, Base64.URL_SAFE);
+                editor.putString(getResString(R.string.settings_key_auth_salt), encodedSalt);
+            }
         }
 
         editor.commit();
@@ -206,24 +202,82 @@ public class Settings {
     }
 
     public AuthMethod getAuthMethod() {
-        String authString = getString(R.string.settings_key_auth, R.string.settings_default_auth);
+        String authString = getString(R.string.settings_key_auth, CredentialsPreference.DEFAULT_VALUE.name().toLowerCase());
         return AuthMethod.valueOf(authString.toUpperCase());
     }
 
-    public String getAuthPassword() {
-        return getString(R.string.settings_key_auth_password, "");
+    public void removeAuthPasswordHash() {
+        remove(R.string.settings_key_auth_password_hash);
+    }
+    public void removeAuthPINHash() {
+        remove(R.string.settings_key_auth_pin_hash);
     }
 
-    public String getAuthPasswordHash() {
-        return getString(R.string.settings_key_auth_password_hash, "");
+    public String getOldCredentials(AuthMethod method) {
+        if (method == AuthMethod.PASSWORD)
+            return getString(R.string.settings_key_auth_password_hash, "");
+        else if (method == AuthMethod.PIN)
+            return getString(R.string.settings_key_auth_pin_hash, "");
+        else
+            return "";
     }
 
-    public String getAuthPIN() {
-        return getString(R.string.settings_key_auth_pin, "");
+    public String getAuthCredentials() {
+        return getString(R.string.settings_key_auth_credentials, "");
     }
 
-    public String getAuthPINHash() {
-        return getString(R.string.settings_key_auth_pin_hash, "");
+    public byte[] setAuthCredentials(String plainPassword) {
+        byte[] key = null;
+
+        try {
+            int iterations = EncryptionHelper.generateRandomIterations();
+            EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, getSalt(), iterations);
+            String password = Base64.encodeToString(credentials.password, Base64.URL_SAFE);
+
+            setIterations(iterations);
+            setString(R.string.settings_key_auth_credentials, password);
+
+            key = credentials.key;
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+
+        return key;
+    }
+
+    public void setSalt(byte[] bytes) {
+        String encodedSalt = Base64.encodeToString(bytes, Base64.URL_SAFE);
+        setString(R.string.settings_key_auth_salt, encodedSalt);
+    }
+
+    public byte[] getSalt() {
+        String storedSalt = getString(R.string.settings_key_auth_salt, "");
+
+        if (storedSalt.isEmpty()) {
+            byte[] newSalt = EncryptionHelper.generateRandom(Constants.PBKDF2_SALT_LENGTH);
+            setSalt(newSalt);
+
+            return newSalt;
+        } else {
+            return Base64.decode(storedSalt, Base64.URL_SAFE);
+        }
+    }
+
+    public int getIterations() {
+        return getIntValue(R.string.settings_key_auth_iterations, Constants.PBKDF2_DEFAULT_ITERATIONS);
+    }
+
+    public void setIterations(int value) {
+        setInt(R.string.settings_key_auth_iterations, value);
+    }
+
+    public EncryptionType getEncryption() {
+        String encType = getString(R.string.settings_key_encryption, R.string.settings_default_encryption);
+        return EncryptionType.valueOf(encType.toUpperCase());
+    }
+
+    public void setEncryption(String encryption) {
+        setString(R.string.settings_key_encryption, encryption);
     }
 
     public Set<String> getPanicResponse() {
@@ -281,7 +335,7 @@ public class Settings {
     }
 
     public String getBackupDir() {
-        return getString(R.string.settings_key_backup_directory, DEFAULT_BACKUP_FOLDER);
+        return getString(R.string.settings_key_backup_directory, Constants.BACKUP_FOLDER);
     }
 
     public String getBackupPassword() {
@@ -295,7 +349,7 @@ public class Settings {
         String password = "";
 
         try {
-            KeyPair key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, KEY_ALIAS);
+            KeyPair key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, Constants.KEYSTORE_ALIAS_PASSWORD);
             password = new String(EncryptionHelper.decrypt(key.getPrivate(), encPassword), StandardCharsets.UTF_8);
         } catch (Exception e) {
             e.printStackTrace();

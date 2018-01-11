@@ -23,6 +23,11 @@
             android:summary="@string/settings_desc_enable_android_backup_service"
             android:defaultValue="false" />
 
+        <Preference
+            android:key="@string/settings_key_clear_keystore"
+            android:title="@string/settings_title_clear_keystore"
+            android:summary="@string/settings_desc_clear_keystore" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
