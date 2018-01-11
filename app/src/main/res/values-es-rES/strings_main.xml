@@ -41,7 +41,7 @@
   <string name="menu_popup_edit_tags">Editar etiquetas</string>
   <string name="menu_popup_remove">Eliminar</string>
   <!-- Toast messages -->
-  <string name="toast_auth_failed">La autenticación ha fallado, cerrando andOTP!</string>
+  <string name="toast_auth_failed_fatal">La autenticación ha fallado, cerrando andOTP!</string>
   <string name="toast_copied_to_clipboard">Copiado al portapapeles</string>
   <string name="toast_entry_exists">La entrada ya existe</string>
   <string name="toast_invalid_qr_code">Código QR inválido</string>

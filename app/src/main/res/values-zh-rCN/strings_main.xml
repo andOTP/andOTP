@@ -41,7 +41,7 @@
   <string name="menu_popup_edit_tags">编辑标签</string>
   <string name="menu_popup_remove">移除</string>
   <!-- Toast messages -->
-  <string name="toast_auth_failed">身份验证失败，andOTP 正在关闭！</string>
+  <string name="toast_auth_failed_fatal">身份验证失败，andOTP 正在关闭！</string>
   <string name="toast_copied_to_clipboard">已复制到剪贴板</string>
   <string name="toast_entry_exists">该项已存在</string>
   <string name="toast_invalid_qr_code">无效二维码</string>

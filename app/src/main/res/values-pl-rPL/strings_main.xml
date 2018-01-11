@@ -41,7 +41,7 @@
   <string name="menu_popup_edit_tags">Edytuj znaczniki</string>
   <string name="menu_popup_remove">Usuń</string>
   <!-- Toast messages -->
-  <string name="toast_auth_failed">Autoryzacja nie powiodła się, zamykam andOTP!</string>
+  <string name="toast_auth_failed_fatal">Autoryzacja nie powiodła się, zamykam andOTP!</string>
   <string name="toast_copied_to_clipboard">Skopiowano do schowka</string>
   <string name="toast_entry_exists">Taki rekord już istnieje</string>
   <string name="toast_invalid_qr_code">Nieprawidłowy kod QR</string>

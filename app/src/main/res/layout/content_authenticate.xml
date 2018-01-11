@@ -15,7 +15,7 @@
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold"
-        android:text="@string/auth_msg_password"/>
+        android:text="@string/auth_msg_authenticate"/>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/passwordLayout"
@@ -32,5 +32,13 @@
             android:inputType="textPassword" />
 
     </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/buttonUnlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        style="?android:attr/buttonBarButtonStyle"
+        android:text="@string/auth_button_unlock" />
 
 </LinearLayout>

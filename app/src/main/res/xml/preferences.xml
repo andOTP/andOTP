@@ -9,14 +9,12 @@
 
         <CheckBoxPreference
             android:key="@string/settings_key_tap_to_reveal"
-            android:order="1"
             android:title="@string/settings_title_tap_to_reveal"
             android:summary="@string/settings_desc_tap_to_reveal"
             android:defaultValue="false" />
 
         <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
             android:key="@string/settings_key_tap_to_reveal_timeout"
-            android:order="2"
             android:title="@string/settings_title_tap_to_reveal_timeout"
             android:dialogMessage="@string/settings_desc_tap_to_reveal_timeout"
             android:defaultValue="@integer/settings_default_tap_to_reveal_timeout"
@@ -24,18 +22,20 @@
             app:vnt_minValue="@integer/settings_min_tap_to_reveal_timeout"
             app:vnt_maxValue="@integer/settings_max_tap_to_reveal_timeout" />
 
-        <ListPreference
+        <org.shadowice.flocke.andotp.Preferences.CredentialsPreference
             android:key="@string/settings_key_auth"
-            android:order="3"
-            android:title="@string/settings_title_auth"
+            android:title="@string/settings_title_auth" />
+
+        <ListPreference
+            android:key="@string/settings_key_encryption"
+            android:title="@string/settings_title_encryption"
             android:summary="%s"
-            android:entries="@array/settings_entries_auth"
-            android:entryValues="@array/settings_values_auth"
-            android:defaultValue="@string/settings_default_auth" />
+            android:entries="@array/settings_entries_encryption"
+            android:entryValues="@array/settings_values_encryption"
+            android:defaultValue="@string/settings_default_encryption" />
 
         <MultiSelectListPreference
             android:key="@string/settings_key_panic"
-            android:order="5"
             android:title="@string/settings_title_panic"
             android:summary="@string/settings_desc_panic"
             android:entries="@array/settings_entries_panic"
