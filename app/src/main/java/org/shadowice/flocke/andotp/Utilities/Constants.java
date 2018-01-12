@@ -78,13 +78,13 @@ public class Constants {
     final static String ALGORITHM_SYMMETRIC     = "AES/GCM/NoPadding";
     final static String ALGORITHM_ASYMMETRIC    = "RSA/ECB/PKCS1Padding";
 
-    final static int ENCRYPTION_KEY_LENGTH  = 16;
+    final static int ENCRYPTION_KEY_LENGTH  = 16;           // 128-bit encryption key (KeyStore-mode)
     final static int ENCRYPTION_IV_LENGTH   = 12;
 
     final static int PBKDF2_MIN_ITERATIONS      = 1000;
     final static int PBKDF2_MAX_ITERATIONS      = 5000;
     final static int PBKDF2_DEFAULT_ITERATIONS  = 1000;
-    final static int PBKDF2_LENGTH              = 512;
+    final static int PBKDF2_LENGTH              = 256;      // 128-bit encryption key (Password-mode)
     final static int PBKDF2_SALT_LENGTH         = 16;
 
     // Authentication
