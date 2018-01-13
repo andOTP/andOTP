@@ -31,12 +31,8 @@ public class BackupAgent extends BackupAgentHelper {
 
     @Override
     public void onRestore(BackupDataInput data, int appVersionCode, ParcelFileDescriptor newState) throws IOException {
-        Settings settings = new Settings(this);
-
-        if(settings.getAndroidBackupServiceEnabled()) {
-            synchronized (DatabaseHelper.DatabaseFileLock) {
-                super.onRestore(data, appVersionCode, newState);
-            }
+        synchronized (DatabaseHelper.DatabaseFileLock) {
+            super.onRestore(data, appVersionCode, newState);
         }
     }
 

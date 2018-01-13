@@ -30,14 +30,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewStub;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import org.openintents.openpgp.util.OpenPgpAppPreference;
@@ -125,6 +129,17 @@ public class SettingsActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_lang)) ||
                 key.equals(getString(R.string.settings_key_special_features))) {
             recreate();
+        }else if(key.equals(getString(R.string.settings_key_encryption))) {
+            if(settings.getEncryption() != EncryptionType.PASSWORD) {
+                boolean wasSyncEnabled = settings.getAndroidBackupServiceEnabled();
+                settings.setAndroidBackupServiceEnabled(false);
+
+                if(wasSyncEnabled) {
+                    UIHelper.showGenericDialog(this,
+                            R.string.settings_dialog_title_android_sync,
+                            R.string.settings_dialog_msg_android_sync_disabled_encryption);
+                }
+            }
         }
     }
 
@@ -133,7 +148,7 @@ public class SettingsActivity extends BaseActivity
             encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this, false);
             encryptionChanged = true;
         }
-        }
+    }
 
     private void tryEncryptionChangeWithAuth(EncryptionType newEnc) {
         Intent authIntent = new Intent(this, AuthenticateActivity.class);
@@ -211,10 +226,11 @@ public class SettingsActivity extends BaseActivity
         } else if (fragment.pgpKey.handleOnActivityResult(requestCode, resultCode, data)) {
             // handled by OpenPgpKeyPreference
             return;
-            }
         }
+    }
 
-    public static class SettingsFragment extends PreferenceFragment {
+    public static class SettingsFragment extends PreferenceFragment
+            implements SharedPreferences.OnSharedPreferenceChangeListener{
         PreferenceCategory catSecurity;
 
         Settings settings;
@@ -223,6 +239,13 @@ public class SettingsActivity extends BaseActivity
         OpenPgpAppPreference pgpProvider;
         OpenPgpKeyPreference pgpKey;
 
+        public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+            CheckBoxPreference useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
+            useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);
+            if(!useAndroidSync.isEnabled())
+                useAndroidSync.setChecked(false);
+        }
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -230,6 +253,7 @@ public class SettingsActivity extends BaseActivity
             settings = new Settings(getActivity());
 
             final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
+            sharedPref.registerOnSharedPreferenceChangeListener(this);
             addPreferencesFromResource(R.xml.preferences);
 
             CredentialsPreference credentialsPreference = (CredentialsPreference) findPreference(getString(R.string.settings_key_auth));
@@ -285,6 +309,8 @@ public class SettingsActivity extends BaseActivity
             });
             pgpKey.setDefaultUserId("Alice <alice@example.com>");
 
+            CheckBoxPreference useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
+            useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);
 
             if (sharedPref.contains(getString(R.string.settings_key_special_features)) &&
                     sharedPref.getBoolean(getString(R.string.settings_key_special_features), false)) {

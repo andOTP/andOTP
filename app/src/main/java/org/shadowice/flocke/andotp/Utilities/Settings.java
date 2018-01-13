@@ -441,4 +441,8 @@ public class Settings {
     public boolean getAndroidBackupServiceEnabled() {
         return getBoolean(R.string.settings_key_enable_android_backup_service, false);
     }
+
+    public void setAndroidBackupServiceEnabled(boolean value) {
+        setBoolean(R.string.settings_key_enable_android_backup_service, value);
+    }
 }
