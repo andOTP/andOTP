@@ -51,5 +51,23 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".Receivers.PlainTextBackupBroadcastReceiver">
+            <intent-filter>
+                <action android:name="org.shadowice.flocke.andotp.broadcast.PLAIN_TEXT_BACKUP" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".Receivers.EncryptedBackupBroadcastReceiver">
+            <intent-filter>
+                <action android:name="org.shadowice.flocke.andotp.broadcast.ENCRYPTED_BACKUP" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".Receivers.OpenPGPBackupBroadcasrReceiver">
+            <intent-filter>
+                <action android:name="org.shadowice.flocke.andotp.broadcast.OPEN_PGP_BACKUP" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
