@@ -23,6 +23,9 @@
 package org.shadowice.flocke.andotp.Activities;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -177,7 +180,11 @@ public class AboutActivity extends BaseActivity {
         author1Paypal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openURI(AUTHOR1_EXTRA);
+                try {
+                    openURI(AUTHOR1_EXTRA);
+                } catch(Exception ignored) {
+                    copyToClipboard(AUTHOR1_EXTRA);
+                }
             }
         });
 
@@ -193,7 +200,11 @@ public class AboutActivity extends BaseActivity {
         author2Paypal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openURI(AUTHOR2_EXTRA);
+                try {
+                    openURI(AUTHOR2_EXTRA);
+                } catch(Exception ignored) {
+                    copyToClipboard(AUTHOR2_EXTRA);
+                }
             }
         });
 
@@ -208,7 +219,11 @@ public class AboutActivity extends BaseActivity {
         authorOriginalApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openURI(AUTHOR_ORIGINAL_EXTRA);
+                try {
+                    openURI(AUTHOR_ORIGINAL_EXTRA);
+                } catch(Exception ignored) {
+                    copyToClipboard(AUTHOR_ORIGINAL_EXTRA);
+                }
             }
         });
 
@@ -280,6 +295,14 @@ public class AboutActivity extends BaseActivity {
         openURI.setData(Uri.parse(uri));
         startActivity(openURI);
     }
+    
+    public void copyToClipboard(String uri) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("andOTP", uri);
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(this, getString(R.string.about_toast_copied_to_clipboard), Toast.LENGTH_SHORT).show();
+    }
+
 
     public void showLicenses() {
         new LicensesDialog.Builder(this)
