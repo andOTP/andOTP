@@ -14,7 +14,6 @@ import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
 
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
@@ -27,12 +26,7 @@ public class EncryptedBackupBroadcastReceiver extends BackupBroadcastReceiver {
             return;
 
         Settings settings = new Settings(context);
-        Uri savePath = Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PLAIN);
-
-        File dir = new File(savePath.getPath());
-        if(!dir.exists()) {
-            dir.mkdirs();
-        }
+        Uri savePath = Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_CRYPT);
 
         String password = settings.getBackupPasswordEnc();
 

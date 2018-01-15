@@ -19,7 +19,6 @@ import org.shadowice.flocke.andotp.Utilities.Tools;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -34,11 +33,7 @@ public class OpenPGPBackupBroadcasrReceiver extends BackupBroadcastReceiver {
 
         Settings settings = new Settings(context);
 
-        Uri savePath = Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PLAIN);
-        File dir = new File(savePath.getPath());
-        if(!dir.exists()) {
-            dir.mkdirs();
-        }
+        Uri savePath = Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PGP);
 
         SecretKey encryptionKey;
 
@@ -61,7 +56,7 @@ public class OpenPGPBackupBroadcasrReceiver extends BackupBroadcastReceiver {
             return;
         }
 
-        OpenPgpServiceConnection pgpServiceConnection = new OpenPgpServiceConnection(context.getApplicationContext(), PGPProvider);
+        OpenPgpServiceConnection pgpServiceConnection = new OpenPgpServiceConnection(context, PGPProvider);
         pgpServiceConnection.bindToService();
 
         ArrayList<Entry> entries = DatabaseHelper.loadDatabase(context, encryptionKey);
@@ -86,6 +81,7 @@ public class OpenPGPBackupBroadcasrReceiver extends BackupBroadcastReceiver {
         Intent result = api.executeApi(encryptIntent, is, os);
         handleOpenPGPResult(context, result, os, savePath, Constants.INTENT_BACKUP_ENCRYPT_PGP);
 
+        pgpServiceConnection.unbindFromService();
     }
 
 
@@ -108,7 +104,7 @@ public class OpenPGPBackupBroadcasrReceiver extends BackupBroadcastReceiver {
             }
         } else {
             OpenPgpError error = result.getParcelableExtra(OpenPgpApi.RESULT_ERROR);
-            notify(context, R.string.app_name, R.string.backup_toast_export_failed /* error with openpgp */);
+            notify(context, R.string.app_name, context.getText(R.string.backup_toast_export_failed) + " " + error.getMessage() );
         }
     }
 }
