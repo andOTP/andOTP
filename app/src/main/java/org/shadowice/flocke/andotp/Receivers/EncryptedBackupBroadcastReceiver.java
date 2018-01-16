@@ -11,6 +11,7 @@ import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.FileHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
+import org.shadowice.flocke.andotp.Utilities.NotificationHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
 
@@ -31,7 +32,7 @@ public class EncryptedBackupBroadcastReceiver extends BackupBroadcastReceiver {
         String password = settings.getBackupPasswordEnc();
 
         if (password.isEmpty()) {
-            notify(context, R.string.app_name, R.string.backup_toast_crypt_password_not_set);
+            NotificationHelper.notify(context, R.string.app_name, R.string.backup_toast_crypt_password_not_set);
             return;
         }
 
@@ -40,7 +41,7 @@ public class EncryptedBackupBroadcastReceiver extends BackupBroadcastReceiver {
         if (settings.getEncryption() == Constants.EncryptionType.KEYSTORE) {
             encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(context, false);
         } else {
-            notify(context, R.string.app_name, R.string.backup_receiver_custom_encryption_failed );
+            NotificationHelper.notify(context, R.string.app_name, R.string.backup_receiver_custom_encryption_failed );
             return;
         }
 
@@ -54,13 +55,13 @@ public class EncryptedBackupBroadcastReceiver extends BackupBroadcastReceiver {
                 SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
                 byte[] encrypted = EncryptionHelper.encrypt(key, plain.getBytes(StandardCharsets.UTF_8));
                 FileHelper.writeBytesToFile(context, savePath, encrypted);
-                notify(context, R.string.app_name, context.getText(R.string.backup_receiver_completed) + savePath.getPath());
+                NotificationHelper.notify(context, R.string.app_name, context.getText(R.string.backup_receiver_completed) + savePath.getPath());
             } catch (Exception e) {
                 e.printStackTrace();
-                notify(context, R.string.app_name, R.string.backup_toast_export_failed);
+                NotificationHelper.notify(context, R.string.app_name, R.string.backup_toast_export_failed);
             }
         } else {
-            notify(context, R.string.app_name, R.string.backup_toast_storage_not_accessible);
+            NotificationHelper.notify(context, R.string.app_name, R.string.backup_toast_storage_not_accessible);
         }
     }
 }

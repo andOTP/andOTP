@@ -63,11 +63,5 @@
                 <action android:name="org.shadowice.flocke.andotp.broadcast.ENCRYPTED_BACKUP" />
             </intent-filter>
         </receiver>
-
-        <receiver android:name=".Receivers.OpenPGPBackupBroadcasrReceiver">
-            <intent-filter>
-                <action android:name="org.shadowice.flocke.andotp.broadcast.OPEN_PGP_BACKUP" />
-            </intent-filter>
-        </receiver>
     </application>
 </manifest>
