@@ -16,7 +16,8 @@
     <string name="settings_key_encryption" translatable="false">pref_encryption</string>
     <string name="settings_key_panic" translatable="false">pref_panic</string>
 
-    <string name="settings_key_lang" translatable="false">pref_lang</string>
+    <string name="settings_key_lang" translatable="false">pref_lang</string>                                <!-- Deprecated -->
+    <string name="settings_key_locale" translatable="false">pref_locale</string>
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size_sp</string>
     <string name="settings_key_label_scroll" translatable="false">pref_label_scroll</string>
@@ -47,7 +48,7 @@
     <!-- Default values -->
     <integer name="settings_default_tap_to_reveal_timeout">30</integer>
     <string name="settings_default_encryption" translatable="false">keystore</string>
-    <string name="settings_default_lang" translatable="false">system</string>
+    <string name="settings_default_locale" translatable="false">system</string>
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">18</integer>
     <string name="settings_default_thumbnail_size">46dp</string>
@@ -76,18 +77,18 @@
         <item>settings</item>
     </string-array>
 
-    <string-array name="settings_values_lang" translatable="false">
+    <string-array name="settings_values_locale" translatable="false">
         <item>system</item>
-        <item>en</item>
-        <item>cs</item>
-        <item>de</item>
-        <item>es</item>
-        <item>fr</item>
-        <item>gl</item>
-        <item>nl</item>
-        <item>pl</item>
-        <item>ru</item>
-        <item>zh</item>
+        <item>en_US</item>
+        <item>cs_CZ</item>
+        <item>de_DE</item>
+        <item>es_ES</item>
+        <item>fr_FR</item>
+        <item>gl_ES</item>
+        <item>nl_NL</item>
+        <item>pl_PL</item>
+        <item>ru_RU</item>
+        <item>zh_CN</item>
     </string-array>
 
     <string-array name="settings_values_theme" translatable="false">

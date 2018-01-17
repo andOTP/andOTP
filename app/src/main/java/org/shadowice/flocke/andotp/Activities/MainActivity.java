@@ -345,7 +345,7 @@ public class MainActivity extends BaseActivity
             adapter.notifyDataSetChanged();
         } else if (key.equals(getString(R.string.settings_key_tap_to_reveal)) ||
                 key.equals(getString(R.string.settings_key_theme)) ||
-                key.equals(getString(R.string.settings_key_lang)) ||
+                key.equals(getString(R.string.settings_key_locale)) ||
                 key.equals(getString(R.string.settings_key_enable_screenshot))) {
             recreate();
         }

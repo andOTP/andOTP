@@ -64,7 +64,7 @@ public abstract class ThemedActivity extends AppCompatActivity {
     }
 
     public void setLocale() {
-        Locale locale = settings.getLang();
+        Locale locale = settings.getLocale();
         Locale.setDefault(locale);
 
         Configuration config = new Configuration();
