@@ -47,5 +47,5 @@
         wiki to learn more before using them.</string>
     <string name="about_toast_special_features">Special features enabled</string>
     <string name="about_toast_special_features_enabled">Special features already enabled</string>
-    <string name="about_toast_copied_to_clipboard">Copied to clipboard</string>
+    <string name="about_toast_copied_to_clipboard">Donation link copied to clipboard</string>
 </resources>
