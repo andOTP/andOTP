@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Keys -->
+
+                  <!-- Deprecated -->
+        <!-- Deprecated -->
+                            <!-- Deprecated -->
+                  <!-- Deprecated -->
+    
+    
+    
+    
+    
+
+                                    <!-- Deprecated -->
+    
+    
+    
+    
+    
+    
+
+    
+    
+              <!-- Deprecated -->
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+
+    <!-- Default values -->
+    <integer name="settings_default_tap_to_reveal_timeout">30</integer>
+    
+    
+    
+    <integer name="settings_default_label_size">18</integer>
+    <string name="settings_default_thumbnail_size">46dp</string>
+    <string name="settings_default_split_group_size">3</string>
+
+    <!-- All of the possible tile background colors -->
+    <array name="letter_tile_colors">
+    </array>
+
+    <!-- List values -->
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Misc -->
+    
+
+    <!-- Constraints -->
+    <integer name="settings_min_tap_to_reveal_timeout">5</integer>
+    <integer name="settings_max_tap_to_reveal_timeout">60</integer>
+    <integer name="settings_min_label_size">12</integer>
+    <integer name="settings_max_label_size">24</integer>
+</resources>
