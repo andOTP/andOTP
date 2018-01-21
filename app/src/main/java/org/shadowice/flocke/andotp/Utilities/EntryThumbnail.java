@@ -59,6 +59,7 @@ public class EntryThumbnail {
         NextCloud(R.drawable.thumb_nextcloud),
         Nintendo(R.drawable.thumb_nintendo),
         Origin(R.drawable.thumb_origin),
+        OVH(R.drawable.thumb_ovh),
         Patreon(R.drawable.thumb_patreon),
         PayPal(R.drawable.thumb_paypal),
         ProtonMail(R.drawable.thumb_protonmail),
