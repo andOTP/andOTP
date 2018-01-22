@@ -62,6 +62,7 @@ public class EntryThumbnail {
         Nintendo(R.drawable.thumb_nintendo),
         NPM(R.drawable.thumb_npm),
         Origin(R.drawable.thumb_origin),
+        OVH(R.drawable.thumb_ovh),
         Patreon(R.drawable.thumb_patreon),
         PayPal(R.drawable.thumb_paypal),
         ProtonMail(R.drawable.thumb_protonmail),
