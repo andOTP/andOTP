@@ -40,6 +40,10 @@ public class Constants {
         UNSORTED, LABEL, LAST_USED
     }
 
+    public enum ViewMode {
+        LIST, GRID
+    }
+
     // Intents (Format: A0x with A = parent Activity, x = number of the intent)
     public final static int INTENT_MAIN_AUTHENTICATE            = 100;
     public final static int INTENT_MAIN_SETTINGS                = 101;

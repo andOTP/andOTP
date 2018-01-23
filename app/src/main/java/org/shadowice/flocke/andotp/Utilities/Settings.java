@@ -355,6 +355,15 @@ public class Settings {
         setString(R.string.settings_key_sort_mode, value.toString());
     }
 
+    public Constants.ViewMode getViewMode() {
+        String modeStr = getString(R.string.settings_key_view_mode, Constants.ViewMode.LIST.toString());
+        return Constants.ViewMode.valueOf(modeStr);
+    }
+
+    public void setSortMode(Constants.ViewMode value) {
+        setString(R.string.settings_key_view_mode, value.toString());
+    }
+
     public boolean getBackupAsk() {
         return getBoolean(R.string.settings_key_backup_ask, true);
     }

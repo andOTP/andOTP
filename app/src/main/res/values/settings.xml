@@ -35,6 +35,7 @@
 
     <string name="settings_key_security_backup_warning" translatable="false">pref_security_backup_warning_shown</string>
     <string name="settings_key_sort_mode" translatable="false">pref_sort_mode</string>
+    <string name="settings_key_view_mode" translatable="false">pref_view_mode</string>
     <string name="settings_key_special_features" translatable="false">pref_special_features</string>
     <string name="settings_key_all_tags_toggle" translatable="false">pref_all_tags_toggle</string>
     <string name="settings_key_no_tags_toggle" translatable="false">pref_no_tags_toggle</string>

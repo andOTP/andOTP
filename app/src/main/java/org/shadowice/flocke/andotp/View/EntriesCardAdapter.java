@@ -48,6 +48,7 @@ import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
@@ -79,6 +80,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     private SecretKey encryptionKey = null;
 
     private SortMode sortMode = SortMode.UNSORTED;
+    private Constants.ViewMode viewMode = Constants.ViewMode.LIST;
     private TagsAdapter tagsFilterAdapter;
     private Settings settings;
 
@@ -543,6 +545,15 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
     public SortMode getSortMode() {
         return this.sortMode;
+    }
+
+    public void setViewMode(Constants.ViewMode mode) {
+        this.viewMode = mode;
+        entriesChanged();
+    }
+
+    public Constants.ViewMode getViewMode() {
+        return this.viewMode;
     }
 
     private ArrayList<Entry> sortEntries(List<Entry> unsorted) {

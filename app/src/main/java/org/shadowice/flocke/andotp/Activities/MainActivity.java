@@ -153,10 +153,13 @@ public class MainActivity extends BaseActivity
         }
     }
 
-    private void restoreSortMode() {
+    private void restoreViewSortMode() {
         if (settings != null && adapter != null && touchHelperCallback != null) {
             SortMode mode = settings.getSortMode();
             adapter.setSortMode(mode);
+
+            Constants.ViewMode viewMode = settings.getViewMode();
+            adapter.setViewMode(viewMode);
 
             if (mode == SortMode.UNSORTED)
                 touchHelperCallback.setDragEnabled(true);
@@ -252,7 +255,7 @@ public class MainActivity extends BaseActivity
         ItemTouchHelper touchHelper = new ItemTouchHelper(touchHelperCallback);
         touchHelper.attachToRecyclerView(recList);
 
-        restoreSortMode();
+        restoreViewSortMode();
 
         float durationScale = android.provider.Settings.Global.getFloat(this.getContentResolver(), android.provider.Settings.Global.ANIMATOR_DURATION_SCALE, 0);
         if (durationScale == 0)
@@ -434,15 +437,28 @@ public class MainActivity extends BaseActivity
 
         if (adapter != null) {
             SortMode mode = adapter.getSortMode();
+            Constants.ViewMode viewMode = adapter.getViewMode();
+
+            if(viewMode == Constants.ViewMode.LIST) {
+                menu.findItem(R.id.menu_view_list).setChecked(true);
+            } else {
+                menu.findItem(R.id.menu_view_grid).setChecked(true);
+            }
 
             if (mode == SortMode.UNSORTED) {
-                sortMenu.setIcon(R.drawable.ic_sort_inverted_white);
+                sortMenu.setIcon(viewMode == Constants.ViewMode.LIST ?
+                        R.drawable.ic_sort_inverted_white : R.drawable.ic_grid_sort_inverted_white);
+
                 menu.findItem(R.id.menu_sort_none).setChecked(true);
             } else if (mode == SortMode.LABEL) {
-                sortMenu.setIcon(R.drawable.ic_sort_inverted_label_white);
+                sortMenu.setIcon(viewMode == Constants.ViewMode.LIST ?
+                        R.drawable.ic_sort_inverted_label_white : R.drawable.ic_grid_sort_label_white);
+
                 menu.findItem(R.id.menu_sort_label).setChecked(true);
             } else if (mode == SortMode.LAST_USED) {
-                sortMenu.setIcon(R.drawable.ic_sort_inverted_time_white);
+                sortMenu.setIcon(viewMode == Constants.ViewMode.LIST ?
+                        R.drawable.ic_sort_inverted_time_white : R.drawable.ic_grid_sort_inverted_time_white);
+
                 menu.findItem(R.id.menu_sort_last_used).setChecked(true);
             }
         }
@@ -512,7 +528,8 @@ public class MainActivity extends BaseActivity
             return true;
         } else if (id == R.id.menu_sort_none) {
             item.setChecked(true);
-            sortMenu.setIcon(R.drawable.ic_sort_inverted_white);
+            sortMenu.setIcon(adapter.getViewMode() == Constants.ViewMode.LIST ?
+                    R.drawable.ic_sort_inverted_white : R.drawable.ic_grid_sort_inverted_white);
             saveSortMode(SortMode.UNSORTED);
             if (adapter != null) {
                 adapter.setSortMode(SortMode.UNSORTED);
@@ -520,7 +537,8 @@ public class MainActivity extends BaseActivity
             }
         } else if (id == R.id.menu_sort_label) {
             item.setChecked(true);
-            sortMenu.setIcon(R.drawable.ic_sort_inverted_label_white);
+            sortMenu.setIcon(adapter.getViewMode() == Constants.ViewMode.LIST ?
+                    R.drawable.ic_sort_inverted_label_white : R.drawable.ic_grid_sort_label_white);
             saveSortMode(SortMode.LABEL);
             if (adapter != null) {
                 adapter.setSortMode(SortMode.LABEL);
@@ -528,7 +546,8 @@ public class MainActivity extends BaseActivity
             }
         } else if (id == R.id.menu_sort_last_used) {
             item.setChecked(true);
-            sortMenu.setIcon(R.drawable.ic_sort_inverted_time_white);
+            sortMenu.setIcon(adapter.getViewMode() == Constants.ViewMode.LIST ?
+                    R.drawable.ic_sort_inverted_time_white : R.drawable.ic_grid_sort_inverted_time_white);
             saveSortMode(SortMode.LAST_USED);
             if (adapter != null) {
                 adapter.setSortMode(SortMode.LAST_USED);
