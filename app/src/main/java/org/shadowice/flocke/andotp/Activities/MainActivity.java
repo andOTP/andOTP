@@ -36,6 +36,7 @@ import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -80,6 +81,7 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 public class MainActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
+    private RecyclerView recList;
     private EntriesCardAdapter adapter;
     private FloatingActionMenu floatingActionMenu;
     private MenuItem sortMenu;
@@ -168,9 +170,50 @@ public class MainActivity extends BaseActivity
         }
     }
 
-    private void saveSortMode(SortMode mode) {
-        if (settings != null)
+    private void changeSortMode(SortMode mode) {
+        if (settings != null) {
             settings.setSortMode(mode);
+        }
+
+        if (adapter != null) {
+            adapter.setSortMode(mode);
+        }
+
+        switch (mode) {
+            case UNSORTED:
+                touchHelperCallback.setDragEnabled(true);
+                break;
+            case LABEL:
+                touchHelperCallback.setDragEnabled(false);
+                break;
+            case LAST_USED:
+                touchHelperCallback.setDragEnabled(false);
+                if (! settings.getLastUsedDialogShown())
+                    showLastUsedDialog();
+                break;
+        }
+    }
+
+    private void changeViewMode(Constants.ViewMode mode) {
+        if (settings != null) {
+            settings.setViewMode(mode);
+        }
+
+        switch (mode) {
+            case LIST:
+                LinearLayoutManager llm = new LinearLayoutManager(this);
+                llm.setOrientation(LinearLayoutManager.VERTICAL);
+                recList.setLayoutManager(llm);
+                break;
+            case GRID:
+                GridLayoutManager glm = new GridLayoutManager(this, 4);
+                recList.setLayoutManager(glm);
+                break;
+        }
+
+        if (adapter != null) {
+            adapter.setViewMode(mode);
+        }
     }
 
     private HashMap<String, Boolean> createTagsMap(ArrayList<Entry> entries) {
@@ -240,14 +283,13 @@ public class MainActivity extends BaseActivity
 
         final ProgressBar progressBar = findViewById(R.id.progressBar);
 
-        RecyclerView recList = findViewById(R.id.cardList);
+        recList = findViewById(R.id.cardList);
         recList.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
 
         tagsDrawerAdapter = new TagsAdapter(this, new HashMap<String, Boolean>());
         adapter = new EntriesCardAdapter(this, tagsDrawerAdapter);
+
+        changeViewMode(settings.getViewMode());
 
         recList.setAdapter(adapter);
 
@@ -530,31 +572,35 @@ public class MainActivity extends BaseActivity
             item.setChecked(true);
             sortMenu.setIcon(adapter.getViewMode() == Constants.ViewMode.LIST ?
                     R.drawable.ic_sort_inverted_white : R.drawable.ic_grid_sort_inverted_white);
-            saveSortMode(SortMode.UNSORTED);
-            if (adapter != null) {
-                adapter.setSortMode(SortMode.UNSORTED);
-                touchHelperCallback.setDragEnabled(true);
-            }
+            changeSortMode(SortMode.UNSORTED);
         } else if (id == R.id.menu_sort_label) {
             item.setChecked(true);
             sortMenu.setIcon(adapter.getViewMode() == Constants.ViewMode.LIST ?
                     R.drawable.ic_sort_inverted_label_white : R.drawable.ic_grid_sort_label_white);
-            saveSortMode(SortMode.LABEL);
-            if (adapter != null) {
-                adapter.setSortMode(SortMode.LABEL);
-                touchHelperCallback.setDragEnabled(false);
-            }
+            changeSortMode(SortMode.LABEL);
         } else if (id == R.id.menu_sort_last_used) {
             item.setChecked(true);
             sortMenu.setIcon(adapter.getViewMode() == Constants.ViewMode.LIST ?
                     R.drawable.ic_sort_inverted_time_white : R.drawable.ic_grid_sort_inverted_time_white);
-            saveSortMode(SortMode.LAST_USED);
-            if (adapter != null) {
-                adapter.setSortMode(SortMode.LAST_USED);
-                touchHelperCallback.setDragEnabled(false);
+            changeSortMode(SortMode.LAST_USED);
+        } else if(id == R.id.menu_view_list) {
+            item.setChecked(true);
+            switch(adapter.getSortMode()) {
+                case UNSORTED: sortMenu.setIcon(R.drawable.ic_sort_inverted_white); break;
+                case LABEL: sortMenu.setIcon(R.drawable.ic_sort_inverted_label_white); break;
+                case LAST_USED: sortMenu.setIcon(R.drawable.ic_sort_inverted_time_white); break;
             }
-            if (! settings.getLastUsedDialogShown())
-                showLastUsedDialog();
+            changeViewMode(Constants.ViewMode.LIST);
+            recreate();
+        } else if(id == R.id.menu_view_grid) {
+            item.setChecked(true);
+            switch(adapter.getSortMode()) {
+                case UNSORTED: sortMenu.setIcon(R.drawable.ic_grid_sort_inverted_white); break;
+                case LABEL: sortMenu.setIcon(R.drawable.ic_grid_sort_label_white); break;
+                case LAST_USED: sortMenu.setIcon(R.drawable.ic_grid_sort_inverted_time_white); break;
+            }
+            changeViewMode(Constants.ViewMode.GRID);
+            recreate();
         } else if (tagsToggle.onOptionsItemSelected(item)) {
             return true;
         }

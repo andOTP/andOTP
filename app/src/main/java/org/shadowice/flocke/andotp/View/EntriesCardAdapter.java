@@ -178,7 +178,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void onBindViewHolder(EntryViewHolder entryViewHolder, int i) {
         Entry entry = displayedEntries.get(i);
 
-        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags(), entry.getThumbnail(), entry.isVisible());
+        boolean isGrid = this.getViewMode() == Constants.ViewMode.GRID;
+        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags(), entry.getThumbnail(), entry.isVisible(), isGrid);
 
         if (entry.hasNonDefaultPeriod()) {
             entryViewHolder.showCustomPeriod(entry.getPeriod());
@@ -195,7 +196,12 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
     @Override
     public EntryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.component_card, viewGroup, false);
+
+        View itemView;
+        if(getViewMode() == Constants.ViewMode.LIST)
+            itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.component_card, viewGroup, false);
+        else
+            itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.component_card_grid, viewGroup, false);
 
         EntryViewHolder viewHolder = new EntryViewHolder(context, itemView, settings.getTapToReveal());
         viewHolder.setCallback(new EntryViewHolder.Callback() {

@@ -34,6 +34,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
@@ -82,13 +83,13 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         // Style the buttons in the current theme colors
         ColorFilter colorFilter = Tools.getThemeColorFilter(context, android.R.attr.textColorSecondary);
 
-        menuButton.getDrawable().setColorFilter(colorFilter);
-        copyButton.getDrawable().setColorFilter(colorFilter);
-        visibleImg.getDrawable().setColorFilter(colorFilter);
-        invisibleImg.getDrawable().setColorFilter(colorFilter);
+        if(menuButton != null) menuButton.getDrawable().setColorFilter(colorFilter);
+        if(copyButton != null) copyButton.getDrawable().setColorFilter(colorFilter);
+        if(visibleImg != null) visibleImg.getDrawable().setColorFilter(colorFilter);
+        if(invisibleImg != null) invisibleImg.getDrawable().setColorFilter(colorFilter);
 
         // Setup onClickListeners
-        menuButton.setOnClickListener(new View.OnClickListener() {
+        if(menuButton != null) menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (callback != null)
@@ -96,7 +97,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             }
         });
 
-        copyButton.setOnClickListener(new View.OnClickListener() {
+        if(copyButton != null) copyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (callback != null)
@@ -107,14 +108,16 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         setTapToReveal(tapToReveal);
     }
 
-    public void updateValues(String label, String token, List<String> tags, EntryThumbnail.EntryThumbnails thumbnail, boolean isVisible) {
+    public void updateValues(String label, String token, List<String> tags, EntryThumbnail.EntryThumbnails thumbnail, boolean isVisible, boolean showAsPopup) {
         Settings settings = new Settings(context);
         final String tokenFormatted = Tools.formatToken(token, settings.getTokenSplitGroupSize());
 
-        this.label.setText(label);
-        value.setText(tokenFormatted);
-        // save the unformatted token to the tag of this TextView for copy/paste
-        value.setTag(token);
+        if(this.label != null) this.label.setText(label);
+        if(value != null) {
+            value.setText(tokenFormatted);
+            // save the unformatted token to the tag of this TextView for copy/paste
+            value.setTag(token);
+        }
 
         StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i < tags.size(); i++) {
@@ -123,84 +126,92 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
                 stringBuilder.append(", ");
             }
         }
-        this.tags.setText(stringBuilder.toString());
+        if(this.tags != null) {
+            this.tags.setText(stringBuilder.toString());
 
-        if (! tags.isEmpty()) {
-            this.tags.setVisibility(View.VISIBLE);
-        } else {
-            this.tags.setVisibility(View.GONE);
+            if (!tags.isEmpty()) {
+                this.tags.setVisibility(View.VISIBLE);
+            } else {
+                this.tags.setVisibility(View.GONE);
+            }
         }
 
-        thumbnailImg.setVisibility(settings.getThumbnailVisible() ? View.VISIBLE : View.GONE);
+        if(thumbnailImg != null) {
+            thumbnailImg.setVisibility(settings.getThumbnailVisible() ? View.VISIBLE : View.GONE);
 
-        int thumbnailSize = settings.getThumbnailSize();
-        if(settings.getThumbnailVisible()) {
-            thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumbnail));
+            int thumbnailSize = settings.getThumbnailSize();
+            if (settings.getThumbnailVisible()) {
+                thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumbnail));
+            }
         }
 
         if (this.tapToReveal) {
             if (isVisible) {
-                valueLayout.setVisibility(View.VISIBLE);
-                coverLayout.setVisibility(View.GONE);
-                visibleImg.setVisibility(View.GONE);
+                if(valueLayout != null) valueLayout.setVisibility(View.VISIBLE);
+                if(coverLayout != null) coverLayout.setVisibility(View.GONE);
+                if(visibleImg != null) visibleImg.setVisibility(View.GONE);
             } else {
-                valueLayout.setVisibility(View.GONE);
-                coverLayout.setVisibility(View.VISIBLE);
-                visibleImg.setVisibility(View.VISIBLE);
+                if(valueLayout != null) valueLayout.setVisibility(View.GONE);
+                if(coverLayout != null) coverLayout.setVisibility(View.VISIBLE);
+                if(visibleImg != null) visibleImg.setVisibility(View.VISIBLE);
             }
         }
     }
 
     public void showCustomPeriod(int period) {
-        customPeriodLayout.setVisibility(View.VISIBLE);
-        customPeriod.setText(String.format(context.getString(R.string.format_custom_period), period));
+        if(customPeriodLayout != null) customPeriodLayout.setVisibility(View.VISIBLE);
+        if(customPeriod != null) customPeriod.setText(String.format(context.getString(R.string.format_custom_period), period));
     }
 
     public void hideCustomPeriod() {
-        customPeriodLayout.setVisibility(View.GONE);
+        if(customPeriodLayout != null) customPeriodLayout.setVisibility(View.GONE);
     }
 
     public void setLabelSize(int size) {
-        label.setTextSize(size);
-        tags.setTextSize(0.75f * size);
+        if(label != null) label.setTextSize(size);
+        if(tags != null) tags.setTextSize(0.75f * size);
     }
 
     public void setThumbnailSize(int size) {
-        thumbnailImg.getLayoutParams().height = size;
-        thumbnailImg.getLayoutParams().width = size;
-        thumbnailImg.requestLayout();
+        if(label != null) {
+            thumbnailImg.getLayoutParams().height = size;
+            thumbnailImg.getLayoutParams().width = size;
+            thumbnailImg.requestLayout();
+        }
     }
 
     public void setLabelScroll(boolean active) {
-        if (active) {
-            label.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-            label.setHorizontallyScrolling(true);
-            label.setSelected(true);
-        } else {
-            label.setEllipsize(TextUtils.TruncateAt.END);
-            label.setHorizontallyScrolling(false);
-            label.setSelected(false);
+        if(label != null) {
+            if (active) {
+                label.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                label.setHorizontallyScrolling(true);
+                label.setSelected(true);
+            } else {
+                label.setEllipsize(TextUtils.TruncateAt.END);
+                label.setHorizontallyScrolling(false);
+                label.setSelected(false);
+            }
         }
     }
 
     private void setTapToReveal(boolean enabled) {
         if (enabled) {
-            valueLayout.setVisibility(View.GONE);
-            coverLayout.setVisibility(View.VISIBLE);
-            visibleImg.setVisibility(View.VISIBLE);
+            if(valueLayout != null) valueLayout.setVisibility(View.GONE);
+            if(coverLayout != null) coverLayout.setVisibility(View.VISIBLE);
+            if(visibleImg != null) visibleImg.setVisibility(View.VISIBLE);
 
-            card.setOnClickListener(new View.OnClickListener() {
+            if(card != null) card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     callback.onTap(getAdapterPosition());
                 }
             });
         } else {
-            valueLayout.setVisibility(View.VISIBLE);
-            coverLayout.setVisibility(View.GONE);
-            visibleImg.setVisibility(View.GONE);
+            if(valueLayout != null) valueLayout.setVisibility(View.VISIBLE);
+            if(coverLayout != null) coverLayout.setVisibility(View.GONE);
+            if(visibleImg != null) visibleImg.setVisibility(View.GONE);
 
-            card.setOnClickListener(null);
+            if(card != null) card.setOnClickListener(null);
         }
     }
 

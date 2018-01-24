@@ -360,7 +360,7 @@ public class Settings {
         return Constants.ViewMode.valueOf(modeStr);
     }
 
-    public void setSortMode(Constants.ViewMode value) {
+    public void setViewMode(Constants.ViewMode value) {
         setString(R.string.settings_key_view_mode, value.toString());
     }
 
