@@ -22,6 +22,7 @@
     <string name="settings_title_label_scroll">Scroll label</string>
     <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
     <string name="settings_title_split_group_size">Split Token with space</string>
+    <string name="settings_title_grid_columns">Columns in grid view</string>
 
     <string name="settings_title_backup_ask">Ask for filename</string>
     <string name="settings_title_backup_directory">Backup directory</string>

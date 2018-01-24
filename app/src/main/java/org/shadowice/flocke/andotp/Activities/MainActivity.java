@@ -206,7 +206,7 @@ public class MainActivity extends BaseActivity
                 recList.setLayoutManager(llm);
                 break;
             case GRID:
-                GridLayoutManager glm = new GridLayoutManager(this, 4);
+                GridLayoutManager glm = new GridLayoutManager(this, settings.getColumnsInGridView());
                 recList.setLayoutManager(glm);
                 break;
         }
@@ -391,6 +391,7 @@ public class MainActivity extends BaseActivity
         } else if (key.equals(getString(R.string.settings_key_tap_to_reveal)) ||
                 key.equals(getString(R.string.settings_key_theme)) ||
                 key.equals(getString(R.string.settings_key_locale)) ||
+                key.equals(getString(R.string.settings_key_grid_columns)) ||
                 key.equals(getString(R.string.settings_key_enable_screenshot))) {
             recreate();
         }

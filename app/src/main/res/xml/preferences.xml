@@ -91,6 +91,13 @@
             android:entryValues="@array/settings_values_split_group_size"
             android:defaultValue="@string/settings_default_split_group_size" />
 
+        <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
+            android:key="@string/settings_key_grid_columns"
+            android:title="@string/settings_title_grid_columns"
+            android:defaultValue="@integer/settings_default_grid_columns"
+            app:vnt_minValue="@integer/settings_min_grid_columns"
+            app:vnt_maxValue="@integer/settings_max_grid_columns" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

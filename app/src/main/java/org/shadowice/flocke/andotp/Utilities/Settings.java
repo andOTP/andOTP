@@ -471,4 +471,8 @@ public class Settings {
     public void setLastUsedDialogShown(boolean value) {
         setBoolean(R.string.settings_key_last_used_dialog_shown, value);
     }
+
+    public int getColumnsInGridView() {
+        return getIntValue(R.string.settings_key_grid_columns, context.getResources().getInteger(R.integer.settings_default_grid_columns));
+    }
 }
