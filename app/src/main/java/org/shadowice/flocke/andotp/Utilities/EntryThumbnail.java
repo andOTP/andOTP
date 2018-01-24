@@ -58,6 +58,7 @@ public class EntryThumbnail {
         Mastodon(R.drawable.thumb_mastodon),
         Microsoft(R.drawable.thumb_microsoft),
         Mixer(R.drawable.thumb_mixer),
+        NAS(R.drawable.thumb_nas),
         NextCloud(R.drawable.thumb_nextcloud),
         Nintendo(R.drawable.thumb_nintendo),
         NPM(R.drawable.thumb_npm),
