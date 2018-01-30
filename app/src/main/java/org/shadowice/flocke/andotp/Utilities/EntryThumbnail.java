@@ -29,6 +29,7 @@ public class EntryThumbnail {
         Bittrex(R.drawable.thumb_bittrex),
         Bitwarden(R.mipmap.thumb_bitwarden, AssetType.Bitmap),
         BlockchainInfo(R.drawable.thumb_blockchain_info),
+        CloudDownload(R.drawable.thumb_cloud_download),
         Cloudflare(R.drawable.thumb_cloudflare),
         Coinbase(R.drawable.thumb_coinbase),
         CozyCloud(R.drawable.thumb_cozycloud),
@@ -37,6 +38,9 @@ public class EntryThumbnail {
         Dropbox(R.drawable.thumb_dropbox),
         Email(R.drawable.thumb_email),
         Facebook(R.drawable.thumb_facebook),
+        Fingerprint(R.drawable.thumb_fingerprint),
+        Flight(R.drawable.thumb_flight_takeoff),
+        Gamepad(R.drawable.thumb_gamepad),
         Git(R.drawable.thumb_git),
         Gitea(R.drawable.thumb_gitea),
         Github(R.drawable.thumb_github),
@@ -66,8 +70,10 @@ public class EntryThumbnail {
         Patreon(R.drawable.thumb_patreon),
         PayPal(R.drawable.thumb_paypal),
         ProtonMail(R.drawable.thumb_protonmail),
+        Reddit(R.drawable.thumb_reddit),
         RSS(R.drawable.thumb_rss),
         Seafile(R.mipmap.thumb_seafile, AssetType.Bitmap),
+        School(R.drawable.thumb_school),
         Skrill(R.drawable.thumb_skrill),
         Slack(R.drawable.thumb_slack),
         Steam(R.drawable.thumb_steam),
@@ -80,6 +86,7 @@ public class EntryThumbnail {
         Twitter(R.drawable.thumb_twitter),
         Ubisoft(R.drawable.thumb_ubisoft),
         UbuntuOne(R.drawable.thumb_ubuntu_one),
+        Wallet(R.drawable.thumb_wallet),
         Wordpress(R.drawable.thumb_wordpress);
 
         private int resource;
