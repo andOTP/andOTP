@@ -7,7 +7,7 @@
   <string name="button_scan_qr">Načíst QR kód</string>
   <string name="button_save">Uložit</string>
   <string name="button_new_tag">Nový štítek</string>
-  <string name="button_warned">Byli jste varováni!</string>
+  <string name="button_settings">Nastavení</string>
   <string name="button_all_tags">Všechny štítky</string>
   <string name="button_no_tags">Bez štítku</string>
   <!-- Custom formatting -->
@@ -24,6 +24,7 @@
   <string name="label_label">Popis</string>
   <string name="label_algorithm">Algoritmus</string>
   <string name="label_tags">Štítky</string>
+  <string name="label_advanced">Pokročilé možnosti</string>
   <!-- Drawer -->
   <string name="drawer_open">Zobrazit štítky</string>
   <string name="drawer_close">Skrýt štítky</string>
@@ -41,22 +42,31 @@
   <string name="menu_popup_edit_tags">Upravit štítky</string>
   <string name="menu_popup_remove">Smazat</string>
   <!-- Toast messages -->
+  <string name="toast_auth_failed">Chyba ověření, zkuste to prosím znovu!</string>
   <string name="toast_auth_failed_fatal">Ověření se nezdařilo, zavírám andOTP!</string>
   <string name="toast_copied_to_clipboard">Zkopírováno do schránky</string>
   <string name="toast_entry_exists">Tento záznam již existuje</string>
   <string name="toast_invalid_qr_code">Neplatný QR kód</string>
+  <string name="toast_encryption_key_empty">Šifrovací klíč nenačten</string>
   <!-- Dialogs -->
   <string name="dialog_title_auth">Přihlášení</string>
   <string name="dialog_title_manual_entry">Ruční zadání</string>
   <string name="dialog_title_remove">Smazat</string>
   <string name="dialog_title_rename">Přejmenování</string>
-  <string name="dialog_title_security_backup">Zabezpečení a zálohy</string>
   <string name="dialog_title_last_used">Naposledy použité</string>
+  <string name="dialog_title_keystore_error">Chyba úložiště klíčů</string>
+  <string name="dialog_title_encryption">Šifrování databáze</string>
   <string name="dialog_msg_auth">Prosím zadejte heslo zařízení ke spuštění andOTP.</string>
-  <string name="dialog_msg_confirm_delete">Opravdu chcete odebrat tento účet?</string>
-  <string name="dialog_msg_security_backup_desc">Pro zajištění bezpečnosti vašich údajů je tato aplikace ukládá šifrované. Část použitého šifrovacího klíče je uložena pomocí systému Android KeyStore. Výhodou tohoto přístupu je uložení dat aplikace odděleně od klíče, toto může být podpořeno HW šifrováním (pokud to Vaše zařízení podporuje).    </string>
-  <string name="dialog_msg_security_backup_3rd_party">Nevýhodou je trochu ztížené zálohování dat aplikace. Užíváte-li aplikace třetích stran (jako Titanium Backup) zazálohujete pouze data aplikace ne však šifrovací klíč, následkem toho budou takové zálohy nepoužitelné.    </string>
-  <string name="dialog_msg_security_backup_warning">Používejte prosím k zálohování Vašich účtů pouze vlastní zálohovací funkce této aplikace! Cokoliv jiného povede ke ztrátě dat.    </string>
-  <string name="dialog_msg_security_backup_one_time">Tato zpráva se víckrát nezobrazí.</string>
+  <string name="dialog_msg_confirm_delete">Jste si jistí, že chcete odebrat účet \"%1$s\"?</string>
+  <string name="dialog_title_security_keystore">1. Android KeyStore</string>
+  <string name="dialog_title_security_password">2. Heslo / PIN</string>
+  <string name="dialog_msg_security_first">Pro zajištění bezpečnosti Vašich účtů ukládá aplikace data do šifrovaných souborů šifrovaných pomocí jedné z následujících dvou metod:</string>
+  <string name="dialog_msg_security_keystore">KeyStore je systémová komponenta Androidu sloužící k bezpečnému ukládání kryptografických klíčů. Výhodou tohoto přístupu je, že jsou klíče uloženy odděleně od dat a že může být podpořen hardwarovou kryptografií (pokud ji Hw podporuje). 
+Nicméně vzhledem k tomu, že nejsou klíče uloženy spolu s daty aplikace znemožňuje tato metoda použití externích zálohovacích nástrojů (jako je Titanium). 
+Pokud zvolíte tuto metodu budete muset spoléhat na vlastní zálohovací funkce aplikace andOTP.</string>
+  <string name="dialog_msg_security_password">Tato metoda zašifruje data pomocí klíče generovaného z PINu nebo hesla. Hlavní výhodou je, že bude fungovat s externími zálohovacími nástroji (např. Titanium). Budete ale muset zadat své heslo/PIN při každém spuštění andOTP.</string>
+  <string name="dialog_msg_security_default">Jako výchozí možnost se používá Android KeyStore, což ale může způsobit problémy s některými upravenými ROM (a s pár oficiálními také). Šifrování můžete změnit v Nastavení klepnutím na tlačítko níže.</string>
   <string name="dialog_msg_last_used">Aby andOTP poznal, který token byl použitý jako poslední, je potřeba mít zapnuté \"zobraz klepnutím\" nebo používat kopírovací tlačítko. \n\n Tato zpráva se již nezobrazí.</string>
+  <string name="dialog_msg_keystore_error">Nepodařilo se načíst šifrovací klíč z KeyStore.
+         <b>Veškeré přidané položky budou ztraceny.</b> \n\nPro zajištění použitelnosti andOTP můžete v Nastavení přepnout <b>Šifrování databáze</b> na <b>heslo / PIN</b>.</string>
 </resources>

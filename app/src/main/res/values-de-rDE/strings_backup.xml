@@ -11,7 +11,7 @@
   <string name="backup_title_import_plain">Wiederherstellen (Klartext)</string>
   <string name="backup_title_import_crypt">Wiederherstellen (verschlüsselt)</string>
   <string name="backup_title_import_openpgp">Wiederherstellen (OpenPGP)</string>
-  <string name="backup_title_replace">Replace existing entries</string>
+  <string name="backup_title_replace">Vorhandene Einträge ersetzen</string>
   <string name="backup_desc_export_plain">Alle Konten in einer Klartext-JSON-Datei sichern</string>
   <string name="backup_desc_export_crypt">Alle Konten in einer passwortgeschützten JSON-Datei sichern</string>
   <string name="backup_desc_export_openpgp">Alle Konten in einer OpenPGP-verschlüsselten JSON-Datei sichern</string>
@@ -27,9 +27,7 @@
   <string name="backup_desc_openpgp_keyid">Sie müssen einen OpenPGP-Schlüssel in den Einstellungen
         auswählen, bevor Sie verschlüsselte Backups erstellen können.
     </string>
-  <string name="backup_desc_replace">If enabled all old entries are replaced when importing a
-        backup and only the backup is present. If disabled the old entries and the backups content
-        are merged.</string>
+  <string name="backup_desc_replace">Wenn aktiviert, dann werden beim Import einer Datensicherung alle vorhandenen Einträge ersetzt, so das nur die Datensicherung übrig bleibt. Wenn deaktivert, dann werden die bestehenden Einträge mit dem Inhalt der Datensicherung zusammengeführt.</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">Sicherheitswarnung</string>
   <string name="backup_dialog_msg_export_warning">Möchten Sie wirklich die Datenbank als
