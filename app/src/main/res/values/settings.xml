@@ -79,9 +79,10 @@
 
     <string-array name="settings_values_locale" translatable="false">
         <item>system</item>
-        <item>en_US</item>
+        <item>ca_ES</item>
         <item>cs_CZ</item>
         <item>de_DE</item>
+        <item>en_US</item>
         <item>es_ES</item>
         <item>fr_FR</item>
         <item>gl_ES</item>
@@ -113,9 +114,10 @@
 
     <string-array name="settings_entries_lang" translatable="false">
         <item>@string/settings_lang_sys_default</item>
-        <item>English</item>
+        <item>Català</item>
         <item>Čeština</item>
         <item>Deutsch</item>
+        <item>English</item>
         <item>Español</item>
         <item>Français</item>
         <item>Galego</item>

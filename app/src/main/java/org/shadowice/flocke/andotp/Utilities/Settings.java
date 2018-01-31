@@ -81,10 +81,10 @@ public class Settings {
         if (settings.contains(getResString(R.string.settings_key_lang))) {
             String lang = getString(R.string.settings_key_lang, R.string.settings_default_locale);
 
-            if (oldLangs.contains(lang)) {
+            if (oldLangs.contains(lang))
                 setLocale(newLangs.get(oldLangs.indexOf(lang)));
-                remove(R.string.settings_key_lang);
-            }
+
+            remove(R.string.settings_key_lang);
         }
 
         if (settings.contains(getResString(R.string.settings_key_backup_password))) {
