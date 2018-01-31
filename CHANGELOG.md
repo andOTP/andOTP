@@ -1,5 +1,21 @@
 # Changelog
 
+#### v0.4.0
+
+ * New feature: **Password-based encryption** (a big thanks to all the testers)
+ * New feature: Enforce a minimum password / PIN length (Issue #107)
+ * New feature: Add an additional unlock button to the authentication (Issue #87)
+ * New feature: The thumbnail toggle is now in the size selector (Issue #98, PR #102)
+ * New feature: Split the tokens into blocks (Issue #83, PR #83 by DanielWeigl)
+ * New feature: Account name is now shown in the removal confirmation (Issue #84)
+ * New feature: Advanced options are now hidden in the manual entry dialog (Issue #85)
+ * New special feature: Clear the KeyStore (use with caution)
+ * Bug fix: Change the format used to store and set the language (Issue #112)
+ * Bug fix: Add some extra padding the the RecyclerView (Issue #95)
+ * Bug fix: Remove gradients from vector thumbnails (Issue #103, PR #97)
+ * Thumbnails: a lot of new thumbnails (check the wiki for details)
+ * Translation: Catalan (ca-rES) thanks to isard
+
 #### v0.3.1
 
  * Move: the Github repository was moved from flocke/andOTP to andOTP/andOTP for better organization of collaborators
