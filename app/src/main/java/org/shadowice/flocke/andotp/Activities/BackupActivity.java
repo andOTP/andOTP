@@ -133,7 +133,7 @@ public class BackupActivity extends BaseActivity {
         backupCrypt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveFileWithPermissions(Constants.BACKUP_MIMETYPE_CRYPT, Constants.BACKUP_FILENAME_CRYPT, Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT, Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_CRYPT);
+                saveFileWithPermissions(Constants.BACKUP_MIMETYPE_CRYPT, Constants.BackupType.ENCRYPTED, Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT, Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_CRYPT);
             }
         });
 
@@ -168,7 +168,7 @@ public class BackupActivity extends BaseActivity {
             backupPGP.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    saveFileWithPermissions(Constants.BACKUP_MIMETYPE_PGP, Constants.BACKUP_FILENAME_PGP, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP, Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_PGP);
+                    saveFileWithPermissions(Constants.BACKUP_MIMETYPE_PGP, Constants.BackupType.OPEN_PGP, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP, Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_PGP);
                 }
             });
 
@@ -224,7 +224,7 @@ public class BackupActivity extends BaseActivity {
             }
         } else if (requestCode == Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_PLAIN) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showSaveFileSelector(Constants.BACKUP_MIMETYPE_PLAIN, Constants.BACKUP_FILENAME_PLAIN, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN);
+                showSaveFileSelector(Constants.BACKUP_MIMETYPE_PLAIN, Constants.BackupType.PLAIN_TEXT, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
@@ -236,7 +236,7 @@ public class BackupActivity extends BaseActivity {
             }
         } else if (requestCode == Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_CRYPT) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showSaveFileSelector(Constants.BACKUP_MIMETYPE_CRYPT, Constants.BACKUP_FILENAME_CRYPT, Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT);
+                showSaveFileSelector(Constants.BACKUP_MIMETYPE_CRYPT, Constants.BackupType.ENCRYPTED, Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
@@ -248,7 +248,7 @@ public class BackupActivity extends BaseActivity {
             }
         } else if (requestCode == Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_PGP) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showSaveFileSelector(Constants.BACKUP_MIMETYPE_PGP, Constants.BACKUP_FILENAME_PGP, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP);
+                showSaveFileSelector(Constants.BACKUP_MIMETYPE_PGP, Constants.BackupType.OPEN_PGP, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
@@ -294,7 +294,7 @@ public class BackupActivity extends BaseActivity {
     /* Generic functions for all backup/restore options */
 
     private void showOpenFileSelector(int intentId) {
-        if (settings.getBackupAsk()) {
+        if (settings.getBackupAsk() || settings.getIsAppendingDateTimeToBackups()) {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("*/*");
@@ -309,21 +309,21 @@ public class BackupActivity extends BaseActivity {
         }
     }
 
-    private void showSaveFileSelector(String mimeType, String fileName, int intentId) {
+    private void showSaveFileSelector(String mimeType, Constants.BackupType backupType, int intentId) {
         if (settings.getBackupAsk()) {
             Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType(mimeType);
-            intent.putExtra(Intent.EXTRA_TITLE, fileName);
+            intent.putExtra(Intent.EXTRA_TITLE, backupFilename(backupType));
             startActivityForResult(intent, intentId);
         } else {
             if (Tools.mkdir(settings.getBackupDir())) {
                 if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN)
-                    doBackupPlain(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PLAIN));
+                    doBackupPlain(Tools.buildUri(settings.getBackupDir(), backupFilename(Constants.BackupType.PLAIN_TEXT)));
                 else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT)
-                    doBackupCrypt(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_CRYPT));
+                    doBackupCrypt(Tools.buildUri(settings.getBackupDir(), backupFilename(Constants.BackupType.ENCRYPTED)));
                 else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP)
-                    backupEncryptedWithPGP(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PGP), null);
+                    backupEncryptedWithPGP(Tools.buildUri(settings.getBackupDir(), backupFilename(Constants.BackupType.OPEN_PGP)), null);
             } else {
                 Toast.makeText(this, R.string.backup_toast_mkdir_failed, Toast.LENGTH_LONG).show();
             }
@@ -338,9 +338,9 @@ public class BackupActivity extends BaseActivity {
         }
     }
 
-    private void saveFileWithPermissions(String mimeType, String fileName, int intentId, int requestId) {
+    private void saveFileWithPermissions(String mimeType, Constants.BackupType backupType, int intentId, int requestId) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            showSaveFileSelector(mimeType, fileName, intentId);
+            showSaveFileSelector(mimeType, backupType, intentId);
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, requestId);
         }
@@ -404,7 +404,7 @@ public class BackupActivity extends BaseActivity {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        saveFileWithPermissions(Constants.BACKUP_MIMETYPE_PLAIN, Constants.BACKUP_FILENAME_PLAIN, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN, Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_PLAIN);
+                        saveFileWithPermissions(Constants.BACKUP_MIMETYPE_PLAIN, Constants.BackupType.PLAIN_TEXT, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN, Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_PLAIN);
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -585,5 +585,30 @@ public class BackupActivity extends BaseActivity {
             OpenPgpError error = result.getParcelableExtra(OpenPgpApi.RESULT_ERROR);
             Toast.makeText(this, String.format(getString(R.string.backup_toast_openpgp_error), error.getMessage()), Toast.LENGTH_LONG).show();
         }
+    }
+
+    private String backupFilename(Constants.BackupType type) {
+        switch (type) {
+            case PLAIN_TEXT:
+                if (settings.getIsAppendingDateTimeToBackups()) {
+                    return String.format(Constants.BACKUP_FILENAME_PLAIN_FORMAT, Tools.getDateTimeString());
+                } else {
+                    return Constants.BACKUP_FILENAME_PLAIN;
+                }
+            case ENCRYPTED:
+                if (settings.getIsAppendingDateTimeToBackups()) {
+                    return String.format(Constants.BACKUP_FILENAME_CRYPT_FORMAT, Tools.getDateTimeString());
+                } else {
+                    return Constants.BACKUP_FILENAME_CRYPT;
+                }
+            case OPEN_PGP:
+                if (settings.getIsAppendingDateTimeToBackups()) {
+                    return String.format(Constants.BACKUP_FILENAME_PGP_FORMAT, Tools.getDateTimeString());
+                } else {
+                    return Constants.BACKUP_FILENAME_PGP;
+                }
+        }
+
+        return Constants.BACKUP_FILENAME_PLAIN;
     }
 }
