@@ -23,6 +23,7 @@
     <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
     <string name="settings_title_split_group_size">Split Token with space</string>
 
+    <string name="settings_title_backup_append_date">Append date to filename</string>
     <string name="settings_title_backup_ask">Ask for filename</string>
     <string name="settings_title_backup_directory">Backup directory</string>
     <string name="settings_title_backup_password">Backup password</string>
@@ -44,6 +45,9 @@
 
     <string name="settings_desc_label_scroll">Scroll overlong labels instead of truncating them</string>
 
+
+    <string name="settings_desc_backup_append_date">Append the current date and time to the suggested
+        backup filename</string>
     <string name="settings_desc_backup_ask">Ask for the filename every time a backup is created or
         restored</string>
     <string name="settings_desc_backup_directory">Directory for the backups (filenames will depend

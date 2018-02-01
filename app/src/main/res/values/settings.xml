@@ -24,6 +24,7 @@
     <string name="settings_key_thumbnail_size" translatable="false">pref_thumbnail_size</string>
     <string name="settings_key_split_group_size" translatable="false">pref_split_group_size</string>
 
+    <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
     <string name="settings_key_backup_directory" translatable="false">pref_backup_directory</string>
     <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>          <!-- Deprecated -->
