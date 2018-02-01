@@ -107,6 +107,10 @@ public class Constants {
     public final static String BACKUP_FILENAME_CRYPT    = "otp_accounts.json.aes";
     public final static String BACKUP_FILENAME_PGP      = "otp_accounts.json.gpg";
 
+    public final static String BACKUP_FILENAME_PLAIN_FORMAT    = "otp_accounts_%s.json";
+    public final static String BACKUP_FILENAME_CRYPT_FORMAT    = "otp_accounts_%s.json.aes";
+    public final static String BACKUP_FILENAME_PGP_FORMAT      = "otp_accounts_%s.json.gpg";
+
     public final static String BACKUP_MIMETYPE_PLAIN    = "application/json";
     public final static String BACKUP_MIMETYPE_CRYPT    = "binary/aes";
     public final static String BACKUP_MIMETYPE_PGP      = "application/pgp-encrypted";
