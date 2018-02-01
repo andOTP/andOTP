@@ -158,7 +158,7 @@ public class AuthenticateActivity extends ThemedActivity
             String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(plainPassword)));
 
             if (hashedPassword.equals(password)) {
-                byte[] key = settings.setAuthCredentials(password);
+                byte[] key = settings.setAuthCredentials(plainPassword);
 
                 if (key == null)
                     Toast.makeText(this, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
