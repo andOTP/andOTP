@@ -398,7 +398,11 @@ public class MainActivity extends BaseActivity
             } else {
                 requireAuthentication = false;
 
-                byte[] authKey = intent.getByteArrayExtra(Constants.EXTRA_AUTH_PASSWORD_KEY);
+                byte[] authKey = null;
+
+                if (intent != null)
+                    authKey = intent.getByteArrayExtra(Constants.EXTRA_AUTH_PASSWORD_KEY);
+
                 updateEncryption(authKey);
             }
         }
