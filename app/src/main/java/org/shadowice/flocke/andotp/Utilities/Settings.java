@@ -462,4 +462,8 @@ public class Settings {
     public void setLastUsedDialogShown(boolean value) {
         setBoolean(R.string.settings_key_last_used_dialog_shown, value);
     }
+
+    public boolean getIsAppendingDateTimeToBackups() {
+        return getBoolean(R.string.settings_key_backup_append_date_time, false);
+    }
 }

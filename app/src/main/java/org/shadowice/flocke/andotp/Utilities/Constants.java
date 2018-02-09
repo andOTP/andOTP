@@ -40,6 +40,10 @@ public class Constants {
         UNSORTED, LABEL, LAST_USED
     }
 
+    public enum BackupType {
+        PLAIN_TEXT, ENCRYPTED, OPEN_PGP
+    }
+
     // Intents (Format: A0x with A = parent Activity, x = number of the intent)
     public final static int INTENT_MAIN_AUTHENTICATE            = 100;
     public final static int INTENT_MAIN_SETTINGS                = 101;
@@ -106,6 +110,10 @@ public class Constants {
     public final static String BACKUP_FILENAME_PLAIN    = "otp_accounts.json";
     public final static String BACKUP_FILENAME_CRYPT    = "otp_accounts.json.aes";
     public final static String BACKUP_FILENAME_PGP      = "otp_accounts.json.gpg";
+
+    public final static String BACKUP_FILENAME_PLAIN_FORMAT    = "otp_accounts_%s.json";
+    public final static String BACKUP_FILENAME_CRYPT_FORMAT    = "otp_accounts_%s.json.aes";
+    public final static String BACKUP_FILENAME_PGP_FORMAT      = "otp_accounts_%s.json.gpg";
 
     public final static String BACKUP_MIMETYPE_PLAIN    = "application/json";
     public final static String BACKUP_MIMETYPE_CRYPT    = "binary/aes";
