@@ -27,7 +27,7 @@ public class PlainTextBackupBroadcastReceiver extends BackupBroadcastReceiver {
 
         Settings settings = new Settings(context);
 
-        Uri savePath = Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PLAIN);
+        Uri savePath = Tools.buildUri(settings.getBackupDir(), FileHelper.backupFilename(context, Constants.BackupType.PLAIN_TEXT));
 
         SecretKey encryptionKey = null;
 

@@ -27,7 +27,7 @@ public class EncryptedBackupBroadcastReceiver extends BackupBroadcastReceiver {
             return;
 
         Settings settings = new Settings(context);
-        Uri savePath = Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_CRYPT);
+        Uri savePath = Tools.buildUri(settings.getBackupDir(), FileHelper.backupFilename(context, Constants.BackupType.ENCRYPTED));
 
         String password = settings.getBackupPasswordEnc();
 
