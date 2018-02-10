@@ -6,9 +6,13 @@
   <string name="auth_hint_password">Wachtwoord</string>
   <string name="auth_hint_pin">Pincode</string>
   <!-- Messages -->
-  <string name="auth_msg_password">Voer je wachtwoord in om andOTP op te starten.</string>
-  <string name="auth_msg_pin">Voer je pincode in om andOTP op te starten.</string>
+  <string name="auth_msg_authenticate">Gelieve verifiëren om andOTP te starten!</string>
+  <string name="auth_msg_confirm_encryption">Bevestig de verificatie voor het genereren van de nieuwe versleutelingssleutel!</string>
+  <!-- Buttons -->
+  <string name="auth_button_unlock">Ontgrendelen</string>
   <!-- Toast messages -->
   <string name="auth_toast_password_missing">Stel een wachtwoord in bij de instellingen!</string>
   <string name="auth_toast_pin_missing">Stel een PIN in bij de instellingen!</string>
+  <string name="auth_toast_password_again">Verkeerd wachtwoord, probeer het opnieuw!</string>
+  <string name="auth_toast_pin_again">Verkeerd PIN, probeer het opnieuw!</string>
 </resources>

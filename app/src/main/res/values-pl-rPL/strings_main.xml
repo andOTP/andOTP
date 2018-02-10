@@ -53,7 +53,6 @@
   <string name="dialog_title_security_backup">Bezpieczeństwo i kopie</string>
   <string name="dialog_title_last_used">Ostatnio używane</string>
   <string name="dialog_msg_auth">Podaj swoje dane uwierzytelniające, aby uruchomić andOTP.</string>
-  <string name="dialog_msg_confirm_delete">Czy na pewno usunąć to konto?</string>
   <string name="dialog_msg_security_backup_desc">W celu zwiększenia bezpieczeństwa, wszystkie informacje dotyczące kont są zaszyfrowane. Część klucza szyfrującego przechowywana jest w systemie Android. Zaletą takiego rozwiązania jest oddzielenie klucza od danych i wsparcie sprzętowego szyfrowania (jeżeli Twój sprzęt to wspiera).</string>
   <string name="dialog_msg_security_backup_3rd_party">Używanie aplikacji typu Titanium Backup jest bezużyteczne, ponieważ aplikacja szyfruje swoje dane.</string>
   <string name="dialog_msg_security_backup_warning">Proszę używaj Tylko wbudowanych funkcji robienia kopii zapasowej kont. Wszystkie inne metody nie są wspierane i mogą prowadzić do utraty danych.</string>

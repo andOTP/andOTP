@@ -48,12 +48,12 @@
         android:title="@string/settings_category_title_ui">
 
         <ListPreference
-            android:key="@string/settings_key_lang"
+            android:key="@string/settings_key_locale"
             android:title="@string/settings_title_lang"
             android:summary="%s"
             android:entries="@array/settings_entries_lang"
-            android:entryValues="@array/settings_values_lang"
-            android:defaultValue="@string/settings_default_lang" />
+            android:entryValues="@array/settings_values_locale"
+            android:defaultValue="@string/settings_default_locale" />
 
         <ListPreference
             android:key="@string/settings_key_theme"
@@ -96,10 +96,16 @@
     <PreferenceCategory
         android:title="@string/settings_category_title_backup">
 
-        <CheckBoxPreference
+		<CheckBoxPreference
             android:key="@string/settings_key_enable_android_backup_service"
             android:title="@string/settings_title_enable_android_backup_service"
             android:summary="@string/settings_desc_enable_android_backup_service"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_backup_append_date_time"
+            android:title="@string/settings_title_backup_append_date"
+            android:summary="@string/settings_desc_backup_append_date"
             android:defaultValue="false" />
 
         <CheckBoxPreference

@@ -12,13 +12,14 @@
   <string name="settings_title_auth">身份验证</string>
   <string name="settings_title_auth_password">密码</string>
   <string name="settings_title_auth_pin">PIN 码</string>
+  <string name="settings_title_encryption">数据库加密</string>
   <string name="settings_title_panic">紧急触发</string>
   <string name="settings_title_lang">语言</string>
   <string name="settings_title_theme">主题</string>
   <string name="settings_title_label_size">标签字体大小</string>
   <string name="settings_title_label_scroll">滚动标签</string>
-  <string name="settings_title_thumbnail_visible_ask">显示缩略图</string>
   <string name="settings_title_thumbnail_size_ask">缩略图大小</string>
+  <string name="settings_title_split_group_size">用空格做分割符</string>
   <string name="settings_title_backup_ask">询问文件名</string>
   <string name="settings_title_backup_directory">备份目录</string>
   <string name="settings_title_backup_password">备份密码</string>
@@ -28,6 +29,7 @@
   <string name="settings_title_openpgp_verify">验证加密的备份</string>
   <string name="settings_title_special_features">启用实验性功能</string>
   <string name="settings_title_enable_screenshot">启用截屏</string>
+  <string name="settings_title_clear_keystore">清除 KeyStore</string>
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">默认情况下隐藏 OTP 令牌，需要手动显示它们。</string>
   <string name="settings_desc_tap_to_reveal_timeout">选择再次隐藏显示条目的时间 (秒)</string>
@@ -38,17 +40,37 @@
   <string name="settings_desc_backup_password">设置用于加密备份的密码</string>
   <string name="settings_desc_openpgp_sign">每个加密的备份都用您的密钥进行了签名 (需要密码)</string>
   <string name="settings_desc_openpgp_verify">只有在使用有效密钥签名时才会导入加密备份</string>
-  <string name="settings_desc_enable_screenshot">允许使用首屏截屏 (默认因安全原因禁用)</string>
   <string name="settings_desc_special_features">取消选中再次禁用实验性功能</string>
+  <string name="settings_desc_enable_screenshot">允许使用首屏截屏 (默认因安全原因禁用)</string>
+  <string name="settings_desc_clear_keystore">从 KeyStore 中删除密钥</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">此功能需要 Android 5.0 以上才能工作</string>
   <string name="settings_toast_auth_device_not_secure">此功能需要设置安全锁定屏幕 (设置 -&gt; 安全 -&gt; 锁屏)</string>
+  <string name="settings_toast_password_empty">不允许用空密码，请将身份验证设置为“无”以禁用它！</string>
+  <string name="settings_toast_encryption_changing">尝试更改数据库加密，请稍候！</string>
+  <string name="settings_toast_encryption_change_success">已成功更改数据库加密！</string>
+  <string name="settings_toast_encryption_change_failed">无法更改数据库加密，回退到原始状态！</string>
+  <string name="settings_toast_encryption_backup_failed">未能创建内部备份，正在中止！</string>
+  <string name="settings_toast_encryption_no_key">未能获取密钥，正在中止！</string>
+  <string name="settings_toast_encryption_auth_failed">身份验证失败！</string>
+  <string name="settings_toast_auth_upgrade_failed">无法静默升级您的 密码 / PIN码 到新的加密，请在设置手动复位！</string>
+  <string name="settings_dialog_title_error">错误</string>
+  <string name="settings_dialog_title_clear_keystore">清除 KeyStore?</string>
+  <string name="settings_dialog_msg_auth_invalid_with_encryption">只要将数据库加密设置为“密码 / PIN 码”， 即可以使用！</string>
+  <string name="settings_dialog_msg_encryption_invalid_with_auth">您首先需要将身份验证设置为“密码”或“PIN码”！</string>
+  <string name="settings_dialog_msg_encryption_invalid_without_credentials">您首先需要设置密码或PIN码，然后再更改加密！</string>
+  <string name="settings_dialog_msg_clear_keystore_password">在某些情况下，清除 KeyStore 可以帮助解决问题。继续前，您应明确知道自己在做什么！\n\n由于 <b>数据库加密</b> 设置为 <b>密码 / PIN 码</b> 这样做您应该不会丢失任何数据（但无论如何，这不会损害您的备份）。\n\n<b>您是否确实要清除 KeyStore？</b></string>
+  <string name="settings_dialog_msg_clear_keystore_keystore">在某些情况下，清除 KeyStore 可以帮助解决问题。继续前，您应明确知道自己在做什么！\n\n<b>警告</b>：由于 <b>数据库加密</b> 设置为 <b>Android KeyStore</b> 您会丢失所有账户。请确保您有备份！\n\n<b>您是否确实要清除 KeyStore？</b></string>
   <!-- List entries -->
   <string-array name="settings_entries_auth">
     <item>无</item>
     <item>密码</item>
     <item>PIN 码</item>
     <item>设备凭据</item>
+  </string-array>
+  <string-array name="settings_entries_encryption">
+    <item>Android KeyStore</item>
+    <item>密码 / PIN码</item>
   </string-array>
   <string-array name="settings_entries_panic">
     <item>清除所有帐户</item>
@@ -60,17 +82,24 @@
     <item>黑色主题</item>
   </string-array>
   <string-array name="settings_entries_thumbnail_size">
+    <item>隐藏</item>
     <item>较小</item>
     <item>默认</item>
     <item>中等</item>
     <item>较大</item>
   </string-array>
+  <string-array name="settings_entries_split_group_size">
+    <item>不分割</item>
+    <item>在两个字符之后</item>
+    <item>在三个字符之后</item>
+  </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">系统默认</string>
   <!-- PasswordPreference -->
-  <string name="settings_hint_password">密码</string>
-  <string name="settings_hint_pin">PIN 码</string>
+  <string name="settings_hint_password">输入新密码</string>
+  <string name="settings_hint_pin">输入新 PIN 码</string>
   <string name="settings_hint_password_confirm">确认密码</string>
   <string name="settings_hint_pin_confirm">确认PIN码</string>
-  <string name="settings_hint_unchanged">（未更改）</string>
+  <string name="settings_label_short_password">密码至少需要 %1$d 个字符！</string>
+  <string name="settings_label_short_pin">PIN 码至少需要 %1$d 个字符！</string>
 </resources>

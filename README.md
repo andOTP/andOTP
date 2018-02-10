@@ -1,7 +1,7 @@
 #  andOTP -  Android OTP Authenticator
 
 [![Build Status](https://travis-ci.org/andOTP/andOTP.svg?branch=master)](https://travis-ci.org/andOTP/andOTP)
-[![Current release](https://img.shields.io/github/release/andOTP/andOTP/all.svg)](https://github.com/andOTP/andOTP/releases/download/v0.3.1/andOTP_v0.3.1.apk)
+[![Current release](https://img.shields.io/github/release/andOTP/andOTP/all.svg)](https://github.com/andOTP/andOTP/releases/download/v0.4.0.1/andOTP_v0.4.0.1.apk)
 
 ![andOTP](./assets/logo.png)
 
@@ -88,6 +88,7 @@ So make sure you have a **current backup** before switching!
  * [Carlos Melero](https://github.com/carmebar) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=carmebar))
  * [SuperVirus](https://github.com/SuperVirus) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=SuperVirus))
  * [DanielWeigl](https://github.com/DanielWeigl) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=DanielWeigl))
+ * [Matthias Bertram](https://github.com/mbertram) ([view contributions](https://github.com/andOTP/andOTP/commits?author=mbertram))
 
 #### Translators:
 
@@ -95,13 +96,14 @@ So make sure you have a **current backup** before switching!
 ------ | ----------------- | -----------
 🇵🇱   | Polish (pl-rPL)   | [Daniel Pustuła](https://github.com/9Cube-dpustula)
 :es:   | Spanish (es-rES)  | [Carlos Melero](https://crowdin.com/profile/carmebar)
-:de:   | German (de-rDE)   | [SuperVirus](https://crowdin.com/profile/SuperVirus)
-:fr:   | French (fr-rFR)   | [Johan Fleury](https://github.com/johanfleury), [David Sferruzza](https://crowdin.com/profile/dsferruzza), [primokorn](https://crowdin.com/profile/primokorn)
-🇳🇱   | Dutch (nl-rNL)    | Toon, [rain2reign](https://crowdin.com/profile/rain2reign)
-&nbsp; | Galician (gl-rES) | [Triskel](https://crowdin.com/profile/triskel)
+:de:   | German (de-rDE)   | [SuperVirus](https://crowdin.com/profile/SuperVirus), [Jan](https://crowdin.com/profile/Dagefoerde)
+:fr:   | French (fr-rFR)   | [Johan Fleury](https://github.com/johanfleury), [David Sferruzza](https://crowdin.com/profile/dsferruzza), [primokorn](https://crowdin.com/profile/primokorn), [Poussinou](https://crowdin.com/profile/Poussinou)
+🇳🇱   | Dutch (nl-rNL)    | Toon, [rain2reign](https://crowdin.com/profile/rain2reign), [thinkwell](https://crowdin.com/profile/thinkwell), [cpu20](https://crowdin.com/profile/cpu20)
+&nbsp; | Galician (gl-rES) | [Triskel](https://crowdin.com/profile/triskel), [Xosé M.](https://crowdin.com/profile/XoseM)
 :ru:   | Russian (ru-rRU)  | [Victor Nidens](https://crowdin.com/profile/vnidens), [Ilia Drogaitsev](https://crowdin.com/profile/waytoroot), [Dmitry](https://crowdin.com/profile/SaintDI)
 🇨🇿   | Czech (cs-rCZ)    | [Picard0147](https://crowdin.com/profile/Picard0147)
 :cn: | Chinese Simplified (zh-rCN) | [Cp0204](https://crowdin.com/profile/Cp0204)
+&nbsp; | Catalan (ca-rES) | [isard](https://crowdin.com/profile/isard)
 
 ## Screenshots:
 

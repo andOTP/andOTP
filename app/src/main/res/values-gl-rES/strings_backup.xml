@@ -11,7 +11,7 @@
   <string name="backup_title_import_plain">Restaurar (texto plano)</string>
   <string name="backup_title_import_crypt">Restaurar (cifrada)</string>
   <string name="backup_title_import_openpgp">Restaurar (OpenPGP)</string>
-  <string name="backup_title_replace">Replace existing entries</string>
+  <string name="backup_title_replace">Substituír as entradas existentes</string>
   <string name="backup_desc_export_plain">Facer copia de seguranza de todas as contas nun ficheiro de texto plano JSON</string>
   <string name="backup_desc_export_crypt">Facer copia de seguranza de todas as contas nun ficheiro JSON con contrasinal</string>
   <string name="backup_desc_export_openpgp">Facer copia de seguranza de todas as contas nun ficheiro JSON cifrado con OpenPGP</string>
@@ -27,9 +27,8 @@
   <string name="backup_desc_openpgp_keyid">Necesitas seleccionar unha chave OpenPGP nos Axustes
         antes de crear unha copia de seguranza cifrada.
     </string>
-  <string name="backup_desc_replace">If enabled all old entries are replaced when importing a
-        backup and only the backup is present. If disabled the old entries and the backups content
-        are merged.</string>
+  <string name="backup_desc_replace">Si se habilita todas as entradas antigas reemplazaranse ao importar
+   o respaldo e só aparecerán as do respaldo. Si se deshabilita aparecerán tanto as entradas antigas como as do respaldo.</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">Advertencia de seguranza</string>
   <string name="backup_dialog_msg_export_warning">¿Queres exportar a base de datos como

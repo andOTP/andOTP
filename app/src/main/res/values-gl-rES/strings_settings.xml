@@ -12,13 +12,14 @@
   <string name="settings_title_auth">Autenticación</string>
   <string name="settings_title_auth_password">Contrasinal</string>
   <string name="settings_title_auth_pin">PIN</string>
+  <string name="settings_title_encryption">Cifrado de Base de datos</string>
   <string name="settings_title_panic">Panic Trigger</string>
   <string name="settings_title_lang">Idioma</string>
   <string name="settings_title_theme">Tema</string>
   <string name="settings_title_label_size">Tamaño da tipografía</string>
   <string name="settings_title_label_scroll">Desprazar etiqueta</string>
-  <string name="settings_title_thumbnail_visible_ask">Mostrar miniaturas</string>
   <string name="settings_title_thumbnail_size_ask">Tamaño de miniatura</string>
+  <string name="settings_title_split_group_size">Separe o testemuño con espazo</string>
   <string name="settings_title_backup_ask">Preguntar polo nome do ficheiro</string>
   <string name="settings_title_backup_directory">Directorio de copias de seguranza</string>
   <string name="settings_title_backup_password">Contrasinal da copia de seguranza</string>
@@ -28,6 +29,7 @@
   <string name="settings_title_openpgp_verify">Comprobar copias de seguranza cifradas</string>
   <string name="settings_title_special_features">Activar funcionalidades especiais</string>
   <string name="settings_title_enable_screenshot">Activar capturas de pantalla</string>
+  <string name="settings_title_clear_keystore">Limpar KeyStore</string>
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">Agochar códigos OTP, require mostralos manualmente</string>
   <string name="settings_desc_tap_to_reveal_timeout">Selecciona o tempo (en segundos) tras o cal esconder
@@ -44,20 +46,55 @@
         túa chave (require contrasinal)</string>
   <string name="settings_desc_openpgp_verify">As copias de seguranza cifradas só se importan
         se están asinadas con unha chave válida</string>
+  <string name="settings_desc_special_features">Desmarcar para desactivar as funcionalidades especiais</string>
   <string name="settings_desc_enable_screenshot">Permitir capturas de pantalla da vista principal
         (Desactivado por defecto por razóns de seguridade)</string>
-  <string name="settings_desc_special_features">Desmarcar para desactivar as funcionalidades especiais</string>
+  <string name="settings_desc_clear_keystore">Eliminar a chave de cifrado da KeyStore</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">Esta característica require polo menos
         Android 5.0 (Lollipop)</string>
   <string name="settings_toast_auth_device_not_secure">Esta característica require bloqueo de pantalla
         seguro (Axustes -&gt; Seguranza -&gt; Bloqueo de pantalla)</string>
+  <string name="settings_toast_password_empty">Non se pode deixar baldeiro o contrasinal, estableza
+   Autenticación a \"Nada\" para deshabilitala!</string>
+  <string name="settings_toast_encryption_changing">Intentando cambiar o cifrado da base de datos,
+   agarde por favor!</string>
+  <string name="settings_toast_encryption_change_success">Cambiouse correctamente o cifrado
+   da base de datos!</string>
+  <string name="settings_toast_encryption_change_failed">Fallou o cambio do cifrado da base de datos,
+   voltando ao estado orixinal!</string>
+  <string name="settings_toast_encryption_backup_failed">Fallou a creación do respaldo
+   interno, abortando!</string>
+  <string name="settings_toast_encryption_no_key">Fallou ao obter a chave de cifrado, abortanto!</string>
+  <string name="settings_toast_encryption_auth_failed">Fallou a autenticación!</string>
+  <string name="settings_toast_auth_upgrade_failed">Fallo ao actualizar o seu contrasinal / PIN
+   ao novo cifrado, por favor restablezao en Axustes!</string>
+  <string name="settings_dialog_title_error">Erro</string>
+  <string name="settings_dialog_title_clear_keystore">Limpar a KeyStore?</string>
+  <string name="settings_dialog_msg_auth_invalid_with_encryption">Só pode utilizar Contrasinal ou PIN
+     si o cifrado da base de datos se establece como \"Contrasinal / PIN\"!</string>
+  <string name="settings_dialog_msg_encryption_invalid_with_auth">Primeiro debe establecer
+    a Autenticación a \"Password\" ou \"PIN\"!</string>
+  <string name="settings_dialog_msg_encryption_invalid_without_credentials">Primeiro debe establecer un Contrasinal
+     ou PIN antes de cambiar o cifrado!</string>
+  <string name="settings_dialog_msg_clear_keystore_password">En algúns casos limpar o KeyStore
+   pode axudar a resolver problemas. Só debería facer esto si sabe o que fai!\n\nXa que
+   o <b>Cifrado da Base de datos</b> está establecida a <b>Cotrasinal / PIN</b> non debería perder ningún
+   dato facendo esto (pero non está de máis ter un respaldo).\n\n<b>Está seguro de querer limpar a KeyStore?</b></string>
+  <string name="settings_dialog_msg_clear_keystore_keystore">En algúns casos limpar a KeyStore
+   pode axudar a resolver problemas. Só debería seguir si sabe o que fai!\n\n<b>Aviso</b>:
+   Xa que o <b>cifrado da base de datos</b> está establecido a <b>Android KeyStore</b> perderá todas as súas contas.
+   Asegúrese de ter un respaldo!\n\n<b>Seguro que quere limpar a KeyStore?</b></string>
   <!-- List entries -->
   <string-array name="settings_entries_auth">
     <item>Ningún</item>
     <item>Contrasinal</item>
     <item>PIN</item>
     <item>Credenciais do dispositivo</item>
+  </string-array>
+  <string-array name="settings_entries_encryption">
+    <item>Android KeyStore</item>
+    <item>Contrasinal / PIN</item>
   </string-array>
   <string-array name="settings_entries_panic">
     <item>Eliminar todas as contas</item>
@@ -69,17 +106,24 @@
     <item>Tema negro</item>
   </string-array>
   <string-array name="settings_entries_thumbnail_size">
+    <item>Agochado</item>
     <item>Pequeno</item>
     <item>Predefinido</item>
     <item>Mediano</item>
     <item>Grande</item>
   </string-array>
+  <string-array name="settings_entries_split_group_size">
+    <item>Non separar</item>
+    <item>Despóis de dous caracteres</item>
+    <item>Despois de tres caracteres</item>
+  </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Predefinido do sistema</string>
   <!-- PasswordPreference -->
-  <string name="settings_hint_password">Contrasinal</string>
-  <string name="settings_hint_pin">PIN</string>
+  <string name="settings_hint_password">Inserir o novo contrasinal</string>
+  <string name="settings_hint_pin">Inserir o novo PIN</string>
   <string name="settings_hint_password_confirm">Confirmar contrasinal</string>
   <string name="settings_hint_pin_confirm">Confirmar PIN</string>
-  <string name="settings_hint_unchanged">(sen cambios)</string>
+  <string name="settings_label_short_password">O contrasinal deber ter polo menos %1$d caracteres!</string>
+  <string name="settings_label_short_pin">O PIN deber ter polo menos %1$d caracteres!</string>
 </resources>
