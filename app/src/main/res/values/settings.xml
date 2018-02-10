@@ -6,22 +6,28 @@
     <string name="settings_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>
     <string name="settings_key_tap_to_reveal_timeout" translatable="false">pref_tap_to_reveal_timeout</string>
     <string name="settings_key_auth" translatable="false">pref_auth</string>
-    <string name="settings_key_auth_password" translatable="false">pref_auth_password</string>
-    <string name="settings_key_auth_password_hash" translatable="false">pref_auth_password_hash</string>
-    <string name="settings_key_auth_pin" translatable="false">pref_auth_pin</string>
-    <string name="settings_key_auth_pin_hash" translatable="false">pref_auth_pin_hash</string>
+    <string name="settings_key_auth_password" translatable="false">pref_auth_password</string>              <!-- Deprecated -->
+    <string name="settings_key_auth_password_hash" translatable="false">pref_auth_password_hash</string>    <!-- Deprecated -->
+    <string name="settings_key_auth_pin" translatable="false">pref_auth_pin</string>                        <!-- Deprecated -->
+    <string name="settings_key_auth_pin_hash" translatable="false">pref_auth_pin_hash</string>              <!-- Deprecated -->
+    <string name="settings_key_auth_credentials" translatable="false">pref_auth_credentials</string>
+    <string name="settings_key_auth_iterations" translatable="false">pref_auth_iterations</string>
+    <string name="settings_key_auth_salt" translatable="false">pref_auth_salt</string>
+    <string name="settings_key_encryption" translatable="false">pref_encryption</string>
     <string name="settings_key_panic" translatable="false">pref_panic</string>
 
-    <string name="settings_key_lang" translatable="false">pref_lang</string>
+    <string name="settings_key_lang" translatable="false">pref_lang</string>                                <!-- Deprecated -->
+    <string name="settings_key_locale" translatable="false">pref_locale</string>
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size_sp</string>
     <string name="settings_key_label_scroll" translatable="false">pref_label_scroll</string>
-    <string name="settings_key_thumbnail_visible" translatable="false">pref_thumbnail_visible</string>
     <string name="settings_key_thumbnail_size" translatable="false">pref_thumbnail_size</string>
+    <string name="settings_key_split_group_size" translatable="false">pref_split_group_size</string>
 
+    <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
     <string name="settings_key_backup_directory" translatable="false">pref_backup_directory</string>
-    <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>
+    <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>          <!-- Deprecated -->
     <string name="settings_key_backup_password_enc" translatable="false">pref_backup_password_enc</string>
     <string name="settings_key_openpgp_provider" translatable="false">pref_openpgp_provider</string>
     <string name="settings_key_openpgp_keyid" translatable="false">pref_openpgp_keyid</string>
@@ -36,16 +42,18 @@
     <string name="settings_key_tags_toggles" translatable="false">pref_tags_toggles</string>
 
     <string name="settings_key_enable_screenshot" translatable="false">pref_enable_screenshot</string>
+    <string name="settings_key_clear_keystore" translatable="false">pref_clear_keystore</string>
 
     <string name="settings_key_last_used_dialog_shown" translatable="false">pref_last_used_dialog_shown</string>
 
     <!-- Default values -->
     <integer name="settings_default_tap_to_reveal_timeout">30</integer>
-    <string name="settings_default_auth" translatable="false">none</string>
-    <string name="settings_default_lang" translatable="false">system</string>
+    <string name="settings_default_encryption" translatable="false">keystore</string>
+    <string name="settings_default_locale" translatable="false">system</string>
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">18</integer>
     <string name="settings_default_thumbnail_size">46dp</string>
+    <string name="settings_default_split_group_size">3</string>
 
     <!-- All of the possible tile background colors -->
     <array name="letter_tile_colors">
@@ -60,11 +68,9 @@
     </array>
 
     <!-- List values -->
-    <string-array name="settings_values_auth" translatable="false">
-        <item>none</item>
+    <string-array name="settings_values_encryption" translatable="false">
+        <item>keystore</item>
         <item>password</item>
-        <item>pin</item>
-        <item>device</item>
     </string-array>
 
     <string-array name="settings_values_panic" translatable="false">
@@ -72,18 +78,19 @@
         <item>settings</item>
     </string-array>
 
-    <string-array name="settings_values_lang" translatable="false">
+    <string-array name="settings_values_locale" translatable="false">
         <item>system</item>
-        <item>en</item>
-        <item>cs</item>
-        <item>de</item>
-        <item>es</item>
-        <item>fr</item>
-        <item>gl</item>
-        <item>nl</item>
-        <item>pl</item>
-        <item>ru</item>
-        <item>zh</item>
+        <item>ca_ES</item>
+        <item>cs_CZ</item>
+        <item>de_DE</item>
+        <item>en_US</item>
+        <item>es_ES</item>
+        <item>fr_FR</item>
+        <item>gl_ES</item>
+        <item>nl_NL</item>
+        <item>pl_PL</item>
+        <item>ru_RU</item>
+        <item>zh_CN</item>
     </string-array>
 
     <string-array name="settings_values_theme" translatable="false">
@@ -93,17 +100,25 @@
     </string-array>
 
     <string-array name="settings_values_thumbnail_size" translatable="false">
+        <item>0dp</item>
         <item>32dp</item>
         <item>46dp</item>
         <item>64dp</item>
         <item>96dp</item>
     </string-array>
 
+    <string-array name="settings_values_split_group_size" translatable="false">
+        <item>0</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
     <string-array name="settings_entries_lang" translatable="false">
         <item>@string/settings_lang_sys_default</item>
-        <item>English</item>
+        <item>Català</item>
         <item>Čeština</item>
         <item>Deutsch</item>
+        <item>English</item>
         <item>Español</item>
         <item>Français</item>
         <item>Galego</item>

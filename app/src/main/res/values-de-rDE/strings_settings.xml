@@ -12,13 +12,14 @@
   <string name="settings_title_auth">Authentifizierung</string>
   <string name="settings_title_auth_password">Passwort</string>
   <string name="settings_title_auth_pin">PIN</string>
+  <string name="settings_title_encryption">Datenbankverschlüsselung</string>
   <string name="settings_title_panic">Panik-Trigger</string>
   <string name="settings_title_lang">Sprache</string>
   <string name="settings_title_theme">Design</string>
   <string name="settings_title_label_size">Schriftgrösse der Beschriftung</string>
   <string name="settings_title_label_scroll">Beschriftung scrollen</string>
-  <string name="settings_title_thumbnail_visible_ask">Thumbnails anzeigen</string>
   <string name="settings_title_thumbnail_size_ask">Thumbnail-Größe</string>
+  <string name="settings_title_split_group_size">Token mit Leerzeichen unterteilen</string>
   <string name="settings_title_backup_ask">Nach Dateinamen fragen</string>
   <string name="settings_title_backup_directory">Sicherungsverzeichnis</string>
   <string name="settings_title_backup_password">Datensicherungs-Passwort</string>
@@ -28,6 +29,7 @@
   <string name="settings_title_openpgp_verify">Verschlüsselte Datensicherungen überprüfen</string>
   <string name="settings_title_special_features">Spezielle Funktionen aktivieren</string>
   <string name="settings_title_enable_screenshot">Bildschirmfoto aktivieren</string>
+  <string name="settings_title_clear_keystore">KeyStore leeren</string>
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">OTP-Token standardmäßig ausblenden, erfordert dass sie
         manuell aufgedeckt werden</string>
@@ -36,26 +38,46 @@
   <string name="settings_desc_label_scroll">Überlange Beschriftungen scrollen, statt diese abzuschneiden</string>
   <string name="settings_desc_backup_ask">Jedes Mal nach dem Dateinamen fragen, wenn eine Sicherung erstellt oder wiederhergestellt wird</string>
   <string name="settings_desc_backup_directory">Verzeichnis für die Sicherungen (Dateinamen hängen vom Backup-Typ ab)</string>
-  <string name="settings_desc_backup_password">Setzt das Kennwort, das verwendet wird, um die
+  <string name="settings_desc_backup_password">Setzt das Passwort, das verwendet wird, um die
         Sicherungen zu verschlüsseln</string>
   <string name="settings_desc_openpgp_sign">Jedes verschlüsselte Backup wird zusätzlich mit
         Ihrem Schlüssel signiert (Passwort erforderlich)</string>
   <string name="settings_desc_openpgp_verify">Verschlüsselte Backups werden nur importiert,
         wenn sie mit einem gültigen Schlüssel signiert sind</string>
+  <string name="settings_desc_special_features">Haken entfernen, um die speziellen Funktionen wieder zu deaktivieren</string>
   <string name="settings_desc_enable_screenshot">Erlauben von Bildschirmfotos des Hauptbildschirms
 (aus Sicherheitsgründen standardmässig deaktiviert)</string>
-  <string name="settings_desc_special_features">Haken entfernen, um die speziellen Funktionen wieder zu deaktivieren</string>
+  <string name="settings_desc_clear_keystore">Verschlüsselungsschlüssel aus dem KeyStore löschen</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">Dieses Feature erfordert mindestens Android 5.0
      (Lollipop) um zu funktionieren</string>
   <string name="settings_toast_auth_device_not_secure">Dieses Feature erfordert das ein geschützter Sperrbildschirm
         eingerichtet ist (Einstellungen -&gt; Sicherheit -&gt; Displaysperre)</string>
+  <string name="settings_toast_password_empty">Ein leeres Passwort ist nicht zulässig, setzen Sie die Authentifizierung auf \"Keine\", um es zu deaktivieren!</string>
+  <string name="settings_toast_encryption_changing">Es wird versucht die Datenbank-Verschlüsselung zu ändern, bitte warten!</string>
+  <string name="settings_toast_encryption_change_success">Die Datenbank-Verschlüsselung wurde erfolgreich geändert!</string>
+  <string name="settings_toast_encryption_change_failed">Fehler beim Ändern der Datenbank-Verschlüsselung, es wird auf den ursprünglichen Zustand zurückgegriffen!</string>
+  <string name="settings_toast_encryption_backup_failed">Erstellung eines internen Backups fehlgeschlagen. Abbruch!</string>
+  <string name="settings_toast_encryption_no_key">Fehler beim Abrufen des Verschlüsselungsschlüssels. Abbruch!</string>
+  <string name="settings_toast_encryption_auth_failed">Authentifizierung fehlgeschlagen!</string>
+  <string name="settings_toast_auth_upgrade_failed">Transparentes Umstellen vom Ihrem Passwort / Ihrer PIN auf die neuen Verschlüsselung fehlgeschlagen, bitte setzen Sie es manuell in den Einstellungen zurück!</string>
+  <string name="settings_dialog_title_error">Fehler</string>
+  <string name="settings_dialog_title_clear_keystore">KeyStore leeren?</string>
+  <string name="settings_dialog_msg_auth_invalid_with_encryption">Sie können nur ein Passwort oder eine PIN verwenden, solange die Datenbankverschlüsselung auf \"Passwort / PIN\" eingestellt ist!</string>
+  <string name="settings_dialog_msg_encryption_invalid_with_auth">Sie müssen zuerst die Authentifizierung auf \"Passwort\" oder \"PIN\" setzen!</string>
+  <string name="settings_dialog_msg_encryption_invalid_without_credentials">Sie müssen zuerst ein Passwort oder eine PIN festlegen, bevor Sie die Verschlüsselung ändern!</string>
+  <string name="settings_dialog_msg_clear_keystore_password">In einigen Fällen kann das Leeren des KeyStores helfen, Probleme zu lösen. Sie sollten nur fortfahren, wenn Sie wissen, was Sie tun!\n\nDa die <b>Datenbankverschlüsselung</b> auf <b>Passwort / PIN</b> eingestellt ist, sollten Sie dadurch keine Daten verlieren (aber es schadet nie, Datensicherungen zu haben).\n\n<b>Sind Sie sich wirklich sicher, dass Sie den KeyStore leeren wollen?</b></string>
+  <string name="settings_dialog_msg_clear_keystore_keystore">In einigen Fällen kann das Leeren des KeyStore helfen, Probleme zu lösen. Sie sollten nur fortfahren, wenn Sie wissen, was Sie tun!\n\n<b>Warnung</b>: Da die <b>Datenbankverschlüsselung</b> auf <b>Androd KeyStore</b> eingestellt ist, werden Sie alle Konten verlieren. Stellen Sie sicher, dass Sie eine Datensicherung haben!.\n\n<b>Sind Sie sich wirklich sicher, dass Sie den KeyStore leeren wollen?</b></string>
   <!-- List entries -->
   <string-array name="settings_entries_auth">
     <item>Keine</item>
     <item>Passwort</item>
     <item>PIN</item>
     <item>Gerät-Anmeldedaten</item>
+  </string-array>
+  <string-array name="settings_entries_encryption">
+    <item>Android KeyStore</item>
+    <item>Passwort / PIN</item>
   </string-array>
   <string-array name="settings_entries_panic">
     <item>Alle Konten löschen</item>
@@ -67,17 +89,24 @@
     <item>Schwarzes Design</item>
   </string-array>
   <string-array name="settings_entries_thumbnail_size">
+    <item>Versteckt</item>
     <item>Klein</item>
     <item>Standard</item>
     <item>Mittel</item>
     <item>Gross</item>
   </string-array>
+  <string-array name="settings_entries_split_group_size">
+    <item>Nicht unterteilen</item>
+    <item>Nach zwei Zeichen</item>
+    <item>Nach drei Zeichen</item>
+  </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Systemstandard</string>
   <!-- PasswordPreference -->
-  <string name="settings_hint_password">Passwort</string>
-  <string name="settings_hint_pin">PIN</string>
+  <string name="settings_hint_password">Neues Passwort eingeben</string>
+  <string name="settings_hint_pin">Neue PIN eingeben</string>
   <string name="settings_hint_password_confirm">Passwort bestätigen</string>
   <string name="settings_hint_pin_confirm">PIN bestätigen</string>
-  <string name="settings_hint_unchanged">(unverändert)</string>
+  <string name="settings_label_short_password">Das Passwort muss mindestens %1$d Zeichen lang sein!</string>
+  <string name="settings_label_short_pin">Die PIN muss mindestens %1$d Ziffern lang sein!</string>
 </resources>

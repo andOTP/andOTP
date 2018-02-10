@@ -24,32 +24,87 @@
 package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
-import android.net.Uri;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.R;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
 
 public class DatabaseHelper {
-    public static final String KEY_FILE = "otp.key";
-    public static final String SETTINGS_FILE = "secrets.dat";
+
+    public static void wipeDatabase(Context context) {
+        File db = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE);
+        File dbBackup = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE_BACKUP);
+        db.delete();
+        dbBackup.delete();
+    }
+
+    private static void copyFile(File src, File dst)
+        throws IOException {
+        try (InputStream in = new FileInputStream(src)) {
+            try (OutputStream out = new FileOutputStream(dst)) {
+                byte[] buffer = new byte[1024];
+                int len;
+                while ((len = in.read(buffer)) > 0) {
+                    out.write(buffer, 0, len);
+                }
+            }
+        }
+    }
+
+    public static boolean backupDatabase(Context context) {
+        File original = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE);
+        File backup = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE_BACKUP);
+
+        if (original.exists()) {
+            try {
+                copyFile(original, backup);
+            } catch (IOException e) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean restoreDatabaseBackup(Context context) {
+        File original = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE);
+        File backup = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE_BACKUP);
+
+        if (backup.exists()) {
+            try {
+                copyFile(backup, original);
+            } catch (IOException e) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     /* Database functions */
+    public static boolean saveDatabase(Context context, ArrayList<Entry> entries, SecretKey encryptionKey) {
+        if (encryptionKey == null) {
+            Toast.makeText(context, R.string.toast_encryption_key_empty, Toast.LENGTH_LONG).show();
+            return false;
+        }
 
-    public static boolean saveDatabase(Context context, ArrayList<Entry> entries) {
         String jsonString = entriesToString(entries);
 
         try {
-            byte[] data = jsonString.getBytes();
+            byte[] data = EncryptionHelper.encrypt(encryptionKey, jsonString.getBytes());
 
-            SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
-            data = EncryptionHelper.encrypt(key, data);
-
-            FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + SETTINGS_FILE), data);
+            FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE), data);
 
         } catch (Exception error) {
             error.printStackTrace();
@@ -59,18 +114,20 @@ public class DatabaseHelper {
         return true;
     }
 
-    public static ArrayList<Entry> loadDatabase(Context context){
+    public static ArrayList<Entry> loadDatabase(Context context, SecretKey encryptionKey) {
         ArrayList<Entry> entries = new ArrayList<>();
 
-        try {
-            byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + SETTINGS_FILE));
+        if (encryptionKey != null) {
+            try {
+                byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE));
+                data = EncryptionHelper.decrypt(encryptionKey, data);
 
-            SecretKey key = KeyStoreHelper.loadOrGenerateWrappedKey(context, new File(context.getFilesDir() + "/" + KEY_FILE));
-            data = EncryptionHelper.decrypt(key, data);
-
-            entries = stringToEntries(new String(data));
-        } catch (Exception error) {
-            error.printStackTrace();
+                entries = stringToEntries(new String(data));
+            } catch (Exception error) {
+                error.printStackTrace();
+            }
+        } else {
+            Toast.makeText(context, R.string.toast_encryption_key_empty, Toast.LENGTH_LONG).show();
         }
 
         return entries;
@@ -107,13 +164,5 @@ public class DatabaseHelper {
         }
 
         return entries;
-    }
-
-    /* Export functions */
-
-    public static boolean exportAsJSON(Context context, Uri file) {
-        ArrayList<Entry> entries = loadDatabase(context);
-
-        return FileHelper.writeStringToFile(context, file, entriesToString(entries));
     }
 }

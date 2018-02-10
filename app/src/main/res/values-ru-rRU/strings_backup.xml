@@ -5,7 +5,7 @@
   <string name="backup_category_plain">Текстовые резервные копии</string>
   <string name="backup_category_crypt">Зашифрованные резервные копии</string>
   <string name="backup_category_openpgp">Резервные копии с OpenPGP</string>
-  <string name="backup_title_export_plain">Резервная копия (без шифрования)</string>
+  <string name="backup_title_export_plain">Резервная копия (текстовый документ)</string>
   <string name="backup_title_export_crypt">Резервная копия (с шифрованием)</string>
   <string name="backup_title_export_openpgp">Резервная копия (OpenPGP)</string>
   <string name="backup_title_import_plain">Восстановление (из текстового файла)</string>
@@ -18,13 +18,13 @@
   <string name="backup_desc_import_plain">Восстановление учетных записей из текстового файла JSON</string>
   <string name="backup_desc_import_crypt">Восстановление учетных записей из защищённого паролем файла JSON</string>
   <string name="backup_desc_import_openpgp">Восстановление учетных записей из зашифрованного OpenPGP файла JSON</string>
-  <string name="backup_desc_crypt_setup">Для создания зашифрованных резервных копий вам нужно установить пароль в Настройках.    </string>
-  <string name="backup_desc_openpgp_provider">Для использования этой функции вам нужно выбрать и установить поставщика OpenPGP.</string>
+  <string name="backup_desc_crypt_setup">Для создания зашифрованных резервных копий        Вам нужно установить пароль в Настройках.    </string>
+  <string name="backup_desc_openpgp_provider">Для использования этой функции Вам нужно        выбрать и установить поставщика OpenPGP в настройках приложения.    </string>
   <string name="backup_desc_openpgp_keyid">Вам нужно выбрать ключ OpenPGP в Настройках, прежде чем создавать зашифрованные резервные копии.</string>
-  <string name="backup_desc_replace">Если включено, все старые записи заменяются при импорте резервной копии и остается только резервная копия. Если отключено, старые записи и содержимое резервной копии объединяются.</string>
+  <string name="backup_desc_replace">Если включено, все старые записи заменяются при импорте        резервной копии и остается только резервная копия. Если отключено, старые записи и содержимое резервной копии        объединяются.</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">Предупреждение безопасности</string>
-  <string name="backup_dialog_msg_export_warning">Вы действительно хотите экспортировать базу данных как незашифрованный текстовый JSON файл? Этот файл содержит все ваши секретные ключи, пожалуйста, <b>надежно сохраните его</b>!    </string>
+  <string name="backup_dialog_msg_export_warning">Вы действительно хотите экспортировать базу данных как        текстовый JSON файл? Этот файл содержит все Ваши секретные ключи, пожалуйста, <b>надежно сохраните его</b>!    </string>
   <!-- Toast messages -->
   <string name="backup_toast_mkdir_failed">Не удалось создать каталог для резервной копии</string>
   <string name="backup_toast_export_success">Экспорт на внешний носитель выполнен успешно</string>

@@ -12,9 +12,9 @@
   <string name="backup_title_import_crypt">还原 (已加密)</string>
   <string name="backup_title_import_openpgp">还原 (OpenPGP)</string>
   <string name="backup_title_replace">替换现有条目</string>
-  <string name="backup_desc_export_plain">备份纯文本 JSON 文件中的所有帐户</string>
-  <string name="backup_desc_export_crypt">备份受密码保护的 JSON 文件中的所有帐户</string>
-  <string name="backup_desc_export_openpgp">备份 OpenPGP 加密的 JSON 文件中的所有帐户</string>
+  <string name="backup_desc_export_plain">备份所有帐户到纯文本 JSON 文件中。</string>
+  <string name="backup_desc_export_crypt">备份所有帐户到受密码保护的 JSON 文件中。</string>
+  <string name="backup_desc_export_openpgp">备份所有帐户到 OpenPGP 加密的 JSON 文件中。</string>
   <string name="backup_desc_import_plain">从纯文本 JSON 文件还原帐户</string>
   <string name="backup_desc_import_crypt">从受密码保护的 JSON 文件还原帐户</string>
   <string name="backup_desc_import_openpgp">从 OpenPGP 加密的 JSON 文件还原帐户</string>

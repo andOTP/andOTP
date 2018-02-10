@@ -29,4 +29,6 @@
     <dimen name="fab_small_label_offset">8dp</dimen>
     <dimen name="fab_base_horizontal_offset">16dp</dimen>
     <dimen name="fab_base_vertical_offset">16dp</dimen>
+
+    <dimen name="fab_recyclerview_padding">84dp</dimen> <!-- 52dp (FAB size) + 2x fab_base_vertical_offset) -->
 </resources>

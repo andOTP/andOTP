@@ -6,12 +6,11 @@
   <string name="auth_hint_password">Mot de passe</string>
   <string name="auth_hint_pin">Code PIN</string>
   <!-- Messages -->
-  <string name="auth_msg_password">
-      Veuillez entrer votre mot de passe pour démarrer andOTP.
-    </string>
-  <string name="auth_msg_pin">
-      Veuillez entrer votre code PIN pour démarrer andOTP.
-    </string>
+  <string name="auth_msg_authenticate">Veuillez vous authentifier pour lancer andOTP !</string>
+  <string name="auth_msg_confirm_encryption">Veuillez confirmer votre authentification pour générer la
+        nouvelle clé de chiffrement !</string>
+  <!-- Buttons -->
+  <string name="auth_button_unlock">Déverrouiller</string>
   <!-- Toast messages -->
   <string name="auth_toast_password_missing">
       Veuillez ajouter un mot de passe dans les paramètres !
@@ -19,4 +18,6 @@
   <string name="auth_toast_pin_missing">
       Veuillez ajouter un code PIN dans les paramètres !
     </string>
+  <string name="auth_toast_password_again">Mot de passe incorrect, veuillez réessayer !</string>
+  <string name="auth_toast_pin_again">Code PIN incorrect, veuillez réessayer !</string>
 </resources>

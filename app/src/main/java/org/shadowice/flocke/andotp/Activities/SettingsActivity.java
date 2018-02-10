@@ -22,7 +22,8 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
-import android.app.KeyguardManager;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -37,12 +38,29 @@ import android.widget.Toast;
 
 import org.openintents.openpgp.util.OpenPgpAppPreference;
 import org.openintents.openpgp.util.OpenPgpKeyPreference;
-import org.shadowice.flocke.andotp.Preferences.PasswordHashPreference;
+import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.Preferences.CredentialsPreference;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Constants;
+import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
+import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
+import org.shadowice.flocke.andotp.Utilities.Settings;
+import org.shadowice.flocke.andotp.Utilities.UIHelper;
+
+import java.util.ArrayList;
+
+import javax.crypto.SecretKey;
+
+import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
+import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 
 public class SettingsActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener{
     SettingsFragment fragment;
+
+    SecretKey encryptionKey = null;
+    boolean encryptionChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +75,11 @@ public class SettingsActivity extends BaseActivity
         ViewStub stub = findViewById(R.id.container_stub);
         stub.inflate();
 
+        Intent callingIntent = getIntent();
+        byte[] keyMaterial = callingIntent.getByteArrayExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY);
+        if (keyMaterial != null && keyMaterial.length > 0)
+            encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
+
         fragment = new SettingsFragment();
 
         getFragmentManager().beginTransaction()
@@ -68,7 +91,13 @@ public class SettingsActivity extends BaseActivity
     }
 
     public void finishWithResult() {
-        setResult(RESULT_OK);
+        Intent data = new Intent();
+
+        data.putExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_CHANGED, encryptionChanged);
+        if (encryptionKey != null)
+            data.putExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY, encryptionKey.getEncoded());
+
+        setResult(RESULT_OK, data);
         finish();
     }
 
@@ -86,16 +115,93 @@ public class SettingsActivity extends BaseActivity
 
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
         if (key.equals(getString(R.string.settings_key_theme)) ||
-                key.equals(getString(R.string.settings_key_lang)) ||
+                key.equals(getString(R.string.settings_key_locale)) ||
                 key.equals(getString(R.string.settings_key_special_features))) {
             recreate();
         }
     }
 
+    private void generateNewEncryptionKey() {
+        if (settings.getEncryption() == EncryptionType.KEYSTORE) {
+            encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this, false);
+            encryptionChanged = true;
+        }
+    }
+
+    private void tryEncryptionChangeWithAuth(EncryptionType newEnc) {
+        Intent authIntent = new Intent(this, AuthenticateActivity.class);
+        authIntent.putExtra(Constants.EXTRA_AUTH_NEW_ENCRYPTION, newEnc.name());
+        authIntent.putExtra(Constants.EXTRA_AUTH_MESSAGE, R.string.auth_msg_confirm_encryption);
+        startActivityForResult(authIntent, Constants.INTENT_SETTINGS_AUTHENTICATE);
+    }
+
+    private boolean tryEncryptionChange(EncryptionType newEnc, byte[] newKey) {
+        Toast upgrading = Toast.makeText(this, R.string.settings_toast_encryption_changing, Toast.LENGTH_LONG);
+        upgrading.show();
+
+        if (DatabaseHelper.backupDatabase(this)) {
+            ArrayList<Entry> entries;
+
+            if (encryptionKey != null)
+                entries = DatabaseHelper.loadDatabase(this, encryptionKey);
+            else
+                entries = new ArrayList<>();
+
+            SecretKey newEncryptionKey;
+
+            if (newEnc == EncryptionType.KEYSTORE) {
+                newEncryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this, true);
+            } else if (newKey != null && newKey.length > 0) {
+                newEncryptionKey = EncryptionHelper.generateSymmetricKey(newKey);
+            } else {
+                upgrading.cancel();
+                DatabaseHelper.restoreDatabaseBackup(this);
+                return false;
+            }
+
+            if (DatabaseHelper.saveDatabase(this, entries, newEncryptionKey)) {
+                encryptionKey = newEncryptionKey;
+                encryptionChanged = true;
+
+                fragment.encryption.setValue(newEnc.name().toLowerCase());
+
+                upgrading.cancel();
+                Toast.makeText(this, R.string.settings_toast_encryption_change_success, Toast.LENGTH_LONG).show();
+
+                return true;
+            }
+
+            DatabaseHelper.restoreDatabaseBackup(this);
+
+            upgrading.cancel();
+            Toast.makeText(this, R.string.settings_toast_encryption_change_failed, Toast.LENGTH_LONG).show();
+        } else {
+            upgrading.cancel();
+            Toast.makeText(this, R.string.settings_toast_encryption_backup_failed, Toast.LENGTH_LONG).show();
+        }
+
+        return false;
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (fragment.pgpKey.handleOnActivityResult(requestCode, resultCode, data)) {
+
+        if (requestCode == Constants.INTENT_SETTINGS_AUTHENTICATE) {
+            if (resultCode == RESULT_OK) {
+                byte[] authKey = data.getByteArrayExtra(Constants.EXTRA_AUTH_PASSWORD_KEY);
+                String newEnc = data.getStringExtra(Constants.EXTRA_AUTH_NEW_ENCRYPTION);
+
+                if (authKey != null && authKey.length > 0 && newEnc != null && !newEnc.isEmpty()) {
+                    EncryptionType newEncType = EncryptionType.valueOf(newEnc);
+                    tryEncryptionChange(newEncType, authKey);
+                } else {
+                    Toast.makeText(this, R.string.settings_toast_encryption_no_key, Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Toast.makeText(this, R.string.settings_toast_encryption_auth_failed, Toast.LENGTH_LONG).show();
+            }
+        } else if (fragment.pgpKey.handleOnActivityResult(requestCode, resultCode, data)) {
             // handled by OpenPgpKeyPreference
             return;
         }
@@ -104,80 +210,57 @@ public class SettingsActivity extends BaseActivity
     public static class SettingsFragment extends PreferenceFragment {
         PreferenceCategory catSecurity;
 
+        Settings settings;
+        ListPreference encryption;
+
         OpenPgpAppPreference pgpProvider;
         OpenPgpKeyPreference pgpKey;
-
-        public void updateAuthPassword(String newAuth) {
-            PasswordHashPreference pwPref = (PasswordHashPreference) catSecurity.findPreference(getString(R.string.settings_key_auth_password_hash));
-            PasswordHashPreference pinPref = (PasswordHashPreference) catSecurity.findPreference(getString(R.string.settings_key_auth_pin_hash));
-
-            if (pwPref != null)
-                catSecurity.removePreference(pwPref);
-            if (pinPref != null)
-                catSecurity.removePreference(pinPref);
-
-            switch (newAuth) {
-                case "password":
-                    PasswordHashPreference authPassword = new PasswordHashPreference(getActivity(), null);
-                    authPassword.setTitle(R.string.settings_title_auth_password);
-                    authPassword.setOrder(4);
-                    authPassword.setKey(getString(R.string.settings_key_auth_password_hash));
-                    authPassword.setMode(PasswordHashPreference.Mode.PASSWORD);
-
-                    catSecurity.addPreference(authPassword);
-
-                    break;
-
-                case "pin":
-                    PasswordHashPreference authPIN = new PasswordHashPreference(getActivity(), null);
-                    authPIN.setTitle(R.string.settings_title_auth_pin);
-                    authPIN.setOrder(4);
-                    authPIN.setKey(getString(R.string.settings_key_auth_pin_hash));
-                    authPIN.setMode(PasswordHashPreference.Mode.PIN);
-
-                    catSecurity.addPreference(authPIN);
-
-                    break;
-
-                default:
-                    break;
-            }
-        }
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
+            settings = new Settings(getActivity());
 
+            final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
             addPreferencesFromResource(R.xml.preferences);
+
+            CredentialsPreference credentialsPreference = (CredentialsPreference) findPreference(getString(R.string.settings_key_auth));
+            credentialsPreference.setEncryptionChangeCallback(new CredentialsPreference.EncryptionChangeCallback() {
+                @Override
+                public boolean testEncryptionChange(byte[] newKey) {
+                    return ((SettingsActivity) getActivity()).tryEncryptionChange(settings.getEncryption(), newKey);
+                }
+            });
 
             // Authentication
             catSecurity = (PreferenceCategory) findPreference(getString(R.string.settings_key_cat_security));
-            ListPreference authPref = (ListPreference) findPreference(getString(R.string.settings_key_auth));
+            encryption = (ListPreference) findPreference(getString(R.string.settings_key_encryption));
 
-            updateAuthPassword(authPref.getValue());
-
-            authPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            encryption.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
-                public boolean onPreferenceChange(Preference preference, Object o) {
-                    String newAuth = (String) o;
+                public boolean onPreferenceChange(final Preference preference, Object o) {
+                    String newEncryption = (String) o;
+                    EncryptionType encryptionType = EncryptionType.valueOf(newEncryption.toUpperCase());
+                    AuthMethod authMethod = settings.getAuthMethod();
 
-                    if (newAuth.equals("device")) {
-                        KeyguardManager km = (KeyguardManager) getActivity().getSystemService(KEYGUARD_SERVICE);
-
-                        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
-                            Toast.makeText(getActivity(), R.string.settings_toast_auth_device_pre_lollipop, Toast.LENGTH_LONG).show();
+                    if (encryptionType == EncryptionType.PASSWORD) {
+                        if (authMethod != AuthMethod.PASSWORD && authMethod != AuthMethod.PIN) {
+                            UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_with_auth);
                             return false;
-                        } else if (! km.isKeyguardSecure()) {
-                            Toast.makeText(getActivity(), R.string.settings_toast_auth_device_not_secure, Toast.LENGTH_LONG).show();
-                            return false;
+                        } else {
+                            if (settings.getAuthCredentials().isEmpty()) {
+                                UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_without_credentials);
+                                return false;
+                            }
                         }
+
+                        ((SettingsActivity) getActivity()).tryEncryptionChangeWithAuth(encryptionType);
+                    } else if (encryptionType == EncryptionType.KEYSTORE) {
+                        ((SettingsActivity) getActivity()).tryEncryptionChange(encryptionType, null);
                     }
 
-                    updateAuthPassword(newAuth);
-
-                    return true;
+                    return false;
                 }
             });
 
@@ -199,6 +282,40 @@ public class SettingsActivity extends BaseActivity
             if (sharedPref.contains(getString(R.string.settings_key_special_features)) &&
                     sharedPref.getBoolean(getString(R.string.settings_key_special_features), false)) {
                 addPreferencesFromResource(R.xml.preferences_special);
+
+                Preference clearKeyStore = findPreference(getString(R.string.settings_key_clear_keystore));
+                clearKeyStore.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                    @Override
+                    public boolean onPreferenceClick(Preference preference) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                        builder.setTitle(R.string.settings_dialog_title_clear_keystore);
+                        if (settings.getEncryption() == EncryptionType.PASSWORD)
+                            builder.setMessage(R.string.settings_dialog_msg_clear_keystore_password);
+                        else if (settings.getEncryption() == EncryptionType.KEYSTORE)
+                            builder.setMessage(R.string.settings_dialog_msg_clear_keystore_keystore);
+
+                        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                KeyStoreHelper.wipeKeys(getActivity());
+                                if (settings.getEncryption() == EncryptionType.KEYSTORE) {
+                                    DatabaseHelper.wipeDatabase(getActivity());
+                                    ((SettingsActivity) getActivity()).generateNewEncryptionKey();
+                                }
+                            }
+                        });
+                        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+
+                        builder.create().show();
+
+                        return false;
+                    }
+                });
             }
         }
     }

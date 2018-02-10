@@ -43,7 +43,6 @@ import java.util.List;
 
 public class EntryViewHolder extends RecyclerView.ViewHolder
         implements ItemTouchHelperViewHolder {
-
     private Context context;
     private Callback callback;
     private boolean tapToReveal;
@@ -101,7 +100,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             @Override
             public void onClick(View view) {
                 if (callback != null)
-                    callback.onCopyButtonClicked(value.getText().toString(), getAdapterPosition());
+                    callback.onCopyButtonClicked(value.getTag().toString(), getAdapterPosition());
             }
         });
 
@@ -110,9 +109,12 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
     public void updateValues(String label, String token, List<String> tags, EntryThumbnail.EntryThumbnails thumbnail, boolean isVisible) {
         Settings settings = new Settings(context);
+        final String tokenFormatted = Tools.formatToken(token, settings.getTokenSplitGroupSize());
 
         this.label.setText(label);
-        value.setText(token);
+        value.setText(tokenFormatted);
+        // save the unformatted token to the tag of this TextView for copy/paste
+        value.setTag(token);
 
         StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i < tags.size(); i++) {
@@ -132,7 +134,9 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         thumbnailImg.setVisibility(settings.getThumbnailVisible() ? View.VISIBLE : View.GONE);
 
         int thumbnailSize = settings.getThumbnailSize();
-        thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumbnail));
+        if(settings.getThumbnailVisible()) {
+            thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumbnail));
+        }
 
         if (this.tapToReveal) {
             if (isVisible) {

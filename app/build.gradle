@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.2'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "org.shadowice.flocke.andotp"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 12
-        versionName "0.3.1"
+        versionCode 14
+        versionName "0.4.0.1"
     }
     buildTypes {
         release {

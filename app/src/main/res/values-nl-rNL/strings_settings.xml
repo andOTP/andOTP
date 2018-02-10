@@ -7,54 +7,79 @@
   <string name="settings_category_title_ui">Gebruikersinterface</string>
   <string name="settings_category_title_backup">Reservekopie</string>
   <!-- Titles -->
-  <string name="settings_title_tap_to_reveal">Tik om te onthullen</string>
-  <string name="settings_title_tap_to_reveal_timeout">Timeout for tap to reveal</string>
+  <string name="settings_title_tap_to_reveal">Tik om te tonen</string>
+  <string name="settings_title_tap_to_reveal_timeout">Tijdslimiet voor tik om te onthullen</string>
   <string name="settings_title_auth">Authenticatie</string>
   <string name="settings_title_auth_password">Wachtwoord</string>
   <string name="settings_title_auth_pin">PIN</string>
-  <string name="settings_title_panic">Paniek Trigger</string>
+  <string name="settings_title_encryption">Database encryptie</string>
+  <string name="settings_title_panic">Panieksignaal</string>
   <string name="settings_title_lang">Taal</string>
   <string name="settings_title_theme">Thema</string>
-  <string name="settings_title_label_size">Label lettergrootte</string>
-  <string name="settings_title_label_scroll">Scroll etiket</string>
-  <string name="settings_title_thumbnail_visible_ask">Show thumbnails</string>
-  <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
+  <string name="settings_title_label_size">Lettergrootte vermeldingen</string>
+  <string name="settings_title_label_scroll">Scroll vermeldingen</string>
+  <string name="settings_title_thumbnail_size_ask">Miniatuurgrootte</string>
+  <string name="settings_title_split_group_size">Verdeel Token met spatie</string>
   <string name="settings_title_backup_ask">Vraag naar de bestandsnaam</string>
-  <string name="settings_title_backup_directory">Archief map</string>
-  <string name="settings_title_backup_password">Wachtwoord reserve kopie</string>
-  <string name="settings_title_openpgp_provider">Selecteer OpenPGP provider</string>
-  <string name="settings_title_openpgp_keyid">Select OpenPGP sleutel</string>
-  <string name="settings_title_openpgp_sign">Versleutelde reserve kopieën verifiëren</string>
-  <string name="settings_title_openpgp_verify">Versleutelde reserve kopie verifiëren</string>
-  <string name="settings_title_special_features">Enable special features</string>
-  <string name="settings_title_enable_screenshot">Enable screenshots</string>
+  <string name="settings_title_backup_directory">Map reservekopie</string>
+  <string name="settings_title_backup_password">Wachtwoord reservekopie</string>
+  <string name="settings_title_openpgp_provider">Selecteer OpenPGP aanbieder</string>
+  <string name="settings_title_openpgp_keyid">Selecteer OpenPGP sleutel</string>
+  <string name="settings_title_openpgp_sign">Versleutelde reservekopieën ondertekenen</string>
+  <string name="settings_title_openpgp_verify">Versleutelde reservekopieën verifiëren</string>
+  <string name="settings_title_special_features">Speciale functies inschakelen</string>
+  <string name="settings_title_enable_screenshot">Schermafbeeldingen toestaan</string>
+  <string name="settings_title_clear_keystore">Sleutelopslag leegmaken</string>
   <!-- Descriptions -->
-  <string name="settings_desc_tap_to_reveal">De OTP tokens standaard verbergen, maak ze handmatig zichtbaar</string>
-  <string name="settings_desc_tap_to_reveal_timeout">Select the time (in sec) after which to hide
-        revealed entries again</string>
-  <string name="settings_desc_panic">Beslissen wat er gebeurt wanneer een Paniek Trigger wordt ontvangen</string>
-  <string name="settings_desc_label_scroll">Scroll overlangs de etiketten in plaats van ze af te korten</string>
-  <string name="settings_desc_backup_ask">Vraag naar de bestandsnaam elke keer een reservekopie is gemaakt of wordt teruggezet</string>
-  <string name="settings_desc_backup_directory">Map voor de reservekopieën (bestandsnamen zullen afhangen van het type archief)</string>
-  <string name="settings_desc_backup_password">Stel het wachtwoord in dat wordt gebruikt voor het versleutelen van de reserve kopie</string>
-  <string name="settings_desc_openpgp_sign">Elk versleuteld reservekopie is aanvullend ondertekend met je sleutel (wachtwoord vereist)</string>
+  <string name="settings_desc_tap_to_reveal">De OTP tokens standaard verbergen; maak ze handmatig zichtbaar</string>
+  <string name="settings_desc_tap_to_reveal_timeout">Selecteer de tijd (in seconden) waarna de vermeldingen weer verborgen worden</string>
+  <string name="settings_desc_panic">Beslis wat er gebeurt wanneer er een panieksignaal wordt ontvangen</string>
+  <string name="settings_desc_label_scroll">Vermeldingen horizontaal scrollen in plaats van ze af te korten</string>
+  <string name="settings_desc_backup_ask">Vraag naar de bestandsnaam elke keer als een reservekopie is gemaakt of wordt teruggezet</string>
+  <string name="settings_desc_backup_directory">Map voor de reservekopieën (bestandsnamen hangen af van het type archief)</string>
+  <string name="settings_desc_backup_password">Stel het wachtwoord in dat wordt gebruikt voor het versleutelen van de reservekopieën</string>
+  <string name="settings_desc_openpgp_sign">Elke versleutelde reservekopie is aanvullend ondertekend met uw sleutel (wachtwoord vereist)</string>
   <string name="settings_desc_openpgp_verify">Gecodeerde reservekopieën worden alleen geïmporteerd als ze zijn ondertekend met een geldige sleutel</string>
-  <string name="settings_desc_enable_screenshot">Allow to take screenshots of the main screen
-        (disabled by default for security reasons)</string>
-  <string name="settings_desc_special_features">Uncheck to disable the special features again</string>
+  <string name="settings_desc_special_features">Deselecteer om speciale functies weer uit te schakelen</string>
+  <string name="settings_desc_enable_screenshot">Schermafbeeldingen toestaan op het hoofdscherm (standaard uitgeschakeld om veiligheidsredenen)</string>
+  <string name="settings_desc_clear_keystore">Verwijderen de encryptie sleutel uit de sleutelopslag</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">Deze functie vereist ten minste Android 5.0 (Lollipop)</string>
-  <string name="settings_toast_auth_device_not_secure">Deze functie vereist een beveiligd slotscherm (instellingen -&gt; Beveiliging -&gt; Schermlock)</string>
+  <string name="settings_toast_auth_device_not_secure">Deze functie vereist een beveiligd vergrendelingsscherm (Instellingen -&gt; Beveiliging -&gt; Schermvergrendeling)</string>
+  <string name="settings_toast_password_empty">Een leeg wachtwoord is niet toegestaan, stel de verificatie in op \"Geen\" om het uit te schakelen!</string>
+  <string name="settings_toast_encryption_changing">Bezig met de database encryptie te proberen wijzigen, even geduld aub!</string>
+  <string name="settings_toast_encryption_change_success">Wijzigen van de database encryptie is geslaagd!</string>
+  <string name="settings_toast_encryption_change_failed">Mislukt om de database versleuteling te veranderen en in oorspronkelijke staat terug te vallen!</string>
+  <string name="settings_toast_encryption_backup_failed">Het maken van een interne back-up mislukte, afbreken!</string>
+  <string name="settings_toast_encryption_no_key">Het ophalen van de encryptiesleutel mislukte, afbreken!</string>
+  <string name="settings_toast_encryption_auth_failed">Authenticatie mislukt!</string>
+  <string name="settings_toast_auth_upgrade_failed">Het bijwerken van je wachtwoord / PIN naar de nieuwe codering mislukte, herstel het handmatig bij de instellingen!</string>
+  <string name="settings_dialog_title_error">Fout</string>
+  <string name="settings_dialog_title_clear_keystore">Sleutelopslag leegmaken?</string>
+  <string name="settings_dialog_msg_auth_invalid_with_encryption">U kunt alleen een wachtwoord of pincode gebruiken zolang de database encryptie is ingesteld op \"Wachtwoord / PIN\"!</string>
+  <string name="settings_dialog_msg_encryption_invalid_with_auth">U moet eerst de authenticatie instellen op \"Wachtwoord\" of \"PIN\"!</string>
+  <string name="settings_dialog_msg_encryption_invalid_without_credentials">Je moet een wachtwoord of pincode instellen voor het wijzigen van de versleuteiing!</string>
+  <string name="settings_dialog_msg_clear_keystore_password">In sommige gevallen kan het leegmaken van de sleutelopslag problemen verhelpen. Ga enkel verder als u weet waar u mee bezig bent!\n\n
+Doordat de <b>Database encryptie</b> is ingesteld op <b>Wachtwoord / PIN</b> zou u hiermee geen gegevens mogen verliezen (maar een backup nemen kan nooit kwaad).\n\n
+<b>Bent u heel zeker dat u de sleutelopslag wil leegmaken?</b></string>
+  <string name="settings_dialog_msg_clear_keystore_keystore">In sommige gevallen kan het leegmaken van de sleutelopslag problemen verhelpen. Ga enkel verder als u weet waar u mee bezig bent!\n\n
+<b>Waarschuwing</b>:
+Doordat de <b>Database encryptie</b> is ingesteld op <b>Android sleutelopslag</b> zal u al uw accounts verliezen. Wees dus zeker dat u een backup hebt!\n\n
+<b>Bent u heel zeker dat u de sleutelopslag wil leegmaken?</b></string>
   <!-- List entries -->
   <string-array name="settings_entries_auth">
     <item>Geen</item>
     <item>Wachtwoord</item>
     <item>PIN</item>
-    <item>Apparaat referenties</item>
+    <item>Zelfde als apparaat</item>
+  </string-array>
+  <string-array name="settings_entries_encryption">
+    <item>Android Sleutelopslag</item>
+    <item>Wachtwoord / PIN</item>
   </string-array>
   <string-array name="settings_entries_panic">
     <item>Alle accounts verwijderen</item>
-    <item>App instellingen resetten</item>
+    <item>Appinstellingen terugzetten</item>
   </string-array>
   <string-array name="settings_entries_theme">
     <item>Licht thema</item>
@@ -62,17 +87,24 @@
     <item>Zwart thema</item>
   </string-array>
   <string-array name="settings_entries_thumbnail_size">
-    <item>Small</item>
-    <item>Default</item>
-    <item>Medium</item>
-    <item>Large</item>
+    <item>Verborgen</item>
+    <item>Klein</item>
+    <item>Standaard</item>
+    <item>Normaal</item>
+    <item>Groot</item>
+  </string-array>
+  <string-array name="settings_entries_split_group_size">
+    <item>Niet splitsen</item>
+    <item>Na twee karakters</item>
+    <item>Na drie karakters</item>
   </string-array>
   <!-- Special -->
-  <string name="settings_lang_sys_default">Systeem standaard</string>
+  <string name="settings_lang_sys_default">Systeemstandaard</string>
   <!-- PasswordPreference -->
-  <string name="settings_hint_password">Wachtwoord</string>
-  <string name="settings_hint_pin">PIN</string>
+  <string name="settings_hint_password">Nieuw wachtwoord invoeren</string>
+  <string name="settings_hint_pin">Nieuwe PIN invoeren</string>
   <string name="settings_hint_password_confirm">Bevestig wachtwoord</string>
-  <string name="settings_hint_pin_confirm">PIN bevestigen</string>
-  <string name="settings_hint_unchanged">(ongewijzigd)</string>
+  <string name="settings_hint_pin_confirm">Bevestig PIN</string>
+  <string name="settings_label_short_password">Het wachtwoord moet minstens %1$d karakters bevatten!</string>
+  <string name="settings_label_short_pin">De pincode moet minstens %1$d cijfers bevatten!</string>
 </resources>

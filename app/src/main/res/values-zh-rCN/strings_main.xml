@@ -7,7 +7,7 @@
   <string name="button_scan_qr">扫描二维码</string>
   <string name="button_save">保存</string>
   <string name="button_new_tag">新建标签</string>
-  <string name="button_warned">你已被警告！</string>
+  <string name="button_settings">设置</string>
   <string name="button_all_tags">所有标签</string>
   <string name="button_no_tags">无标签</string>
   <!-- Custom formatting -->
@@ -24,6 +24,7 @@
   <string name="label_label">标签</string>
   <string name="label_algorithm">算法</string>
   <string name="label_tags">标签</string>
+  <string name="label_advanced">高级选项</string>
   <!-- Drawer -->
   <string name="drawer_open">显示标签</string>
   <string name="drawer_close">隐藏标签</string>
@@ -41,22 +42,28 @@
   <string name="menu_popup_edit_tags">编辑标签</string>
   <string name="menu_popup_remove">移除</string>
   <!-- Toast messages -->
-  <string name="toast_auth_failed">身份验证失败，andOTP 正在关闭！</string>
+  <string name="toast_auth_failed">认证失败，请重试！</string>
+  <string name="toast_auth_failed_fatal">验证失败，andOTP 正在关闭！</string>
   <string name="toast_copied_to_clipboard">已复制到剪贴板</string>
   <string name="toast_entry_exists">该项已存在</string>
   <string name="toast_invalid_qr_code">无效二维码</string>
+  <string name="toast_encryption_key_empty">未加载加密密钥</string>
   <!-- Dialogs -->
   <string name="dialog_title_auth">认证</string>
   <string name="dialog_title_manual_entry">输入详细信息</string>
   <string name="dialog_title_remove">移除</string>
   <string name="dialog_title_rename">重命名</string>
-  <string name="dialog_title_security_backup">安全和备份</string>
   <string name="dialog_title_last_used">上一次使用</string>
+  <string name="dialog_title_keystore_error">KeyStore 错误</string>
+  <string name="dialog_title_encryption">数据库加密</string>
   <string name="dialog_msg_auth">请输入您的设备凭据以启动 andOTP。</string>
-  <string name="dialog_msg_confirm_delete">您确认想要删除您的账户？</string>
-  <string name="dialog_msg_security_backup_desc">为使您的帐户信息安全，此应用程序只存储加密内容。用于此的加密密钥的一部分存储在 Android 密钥库系统中。这种方法的优点是, 密钥与应用程序数据保持独立，并且可以通过硬件加密 (如果您的设备支持此项) 来支持。    </string>
-  <string name="dialog_msg_security_backup_3rd_party">这样做的缺点是，这使得应用数据的备份有点困难。如果您使用第三方应用 (如钛备份)，则只能备份到数据文件，而不是加密密钥，因此这样的备份将变得无用。    </string>
-  <string name="dialog_msg_security_backup_warning">请只使用应用程序提供的内部备份功能来备份您的帐户！其他任何备份都将导致数据丢失。    </string>
-  <string name="dialog_msg_security_backup_one_time">此消息将不再显示。</string>
+  <string name="dialog_msg_confirm_delete">您确定要删除账户“%1$s”吗？</string>
+  <string name="dialog_title_security_keystore">1. Android KeyStore</string>
+  <string name="dialog_title_security_password">2. 密码 / PIN码</string>
+  <string name="dialog_msg_security_first">为了确保帐户的安全性，此应用只存储到加密的数据文件中，用以下两种方法之一加密：</string>
+  <string name="dialog_msg_security_keystore">KeyStore 是 Android 系统的组成部分, 用来安全地储存密钥。这种方法的优点是，密钥和数据文件分开储存，并且支持硬件加密（需硬件支持）。但是，由于密钥不与应用程序数据一起储存，这种方法会妨碍外部备份方案（如钛备份）工作。如果选择此方法，您将不得不依赖 andOTP 提供的内部备份功能。</string>
+  <string name="dialog_msg_security_password">此方法将用密码或 PIN 码生成的密钥对数据加密。好处是支持外部备份方案 （如钛备份）。但是，您必须在每次启动 andOTP 时输入您的凭据。</string>
+  <string name="dialog_msg_security_default">默认下使用 Android KeyStore，然而已知某些第三方定制 ROM 会有点问题。您可以点下面的按钮来更改加密设置。</string>
   <string name="dialog_msg_last_used">为了使 andOTP 能够识别最后使用的标记，您必须启用 \"点击显示\" 或使用 \"复制\" 按钮. \n\n 此消息将不会再次显示。</string>
+  <string name="dialog_msg_keystore_error">无法从 KeyStore 加载密钥。<b> 添加的任何条目都将丢失. </b>\n\n为继续使用 andOTP 您可以转到设置并将 <b>数据库加密</b> 切换到 <b>密码 / PIN码</b>。</string>
 </resources>

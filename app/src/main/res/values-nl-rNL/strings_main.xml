@@ -6,10 +6,10 @@
   <string name="button_enter_details">Details ingeven</string>
   <string name="button_scan_qr">QR-code scannen</string>
   <string name="button_save">Bewaren</string>
-  <string name="button_new_tag">Nieuwe label</string>
-  <string name="button_warned">Je bent gewaarschuwd!</string>
+  <string name="button_new_tag">Nieuw label</string>
+  <string name="button_settings">Instellingen</string>
   <string name="button_all_tags">Alle labels</string>
-  <string name="button_no_tags">Geen Labels</string>
+  <string name="button_no_tags">Geen labels</string>
   <!-- Custom formatting -->
   <string name="format_custom_period">%d s</string>
   <!-- Hints -->
@@ -24,6 +24,7 @@
   <string name="label_label">Etiket</string>
   <string name="label_algorithm">Algoritme</string>
   <string name="label_tags">Labels</string>
+  <string name="label_advanced">Geavanceerde opties</string>
   <!-- Drawer -->
   <string name="drawer_open">Labels tonen</string>
   <string name="drawer_close">Labels verbergen</string>
@@ -35,30 +36,48 @@
   <string name="menu_main_sort">Sorteer</string>
   <string name="menu_sort_none">Ongesorteerd</string>
   <string name="menu_sort_label">Etiket</string>
-  <string name="menu_sort_last_used">Last used</string>
+  <string name="menu_sort_last_used">Laatst gebruikt</string>
   <string name="menu_popup_edit_label">Etiket bewerken</string>
-  <string name="menu_popup_change_image">Change image</string>
+  <string name="menu_popup_change_image">Afbeelding wijzigen</string>
   <string name="menu_popup_edit_tags">Labels bewerken</string>
   <string name="menu_popup_remove">Verwijderen</string>
   <!-- Toast messages -->
-  <string name="toast_auth_failed">Verificatie is mislukt, sluiten andOTP!</string>
+  <string name="toast_auth_failed">Authenticatie mislukt. Probeer opnieuw!</string>
+  <string name="toast_auth_failed_fatal">Verificatie is mislukt, andOTP wordt afgesloten!</string>
   <string name="toast_copied_to_clipboard">Gekopieerd naar klembord</string>
-  <string name="toast_entry_exists">Deze item bestaat al</string>
+  <string name="toast_entry_exists">Dit item bestaat al</string>
   <string name="toast_invalid_qr_code">Ongeldige QR Code</string>
+  <string name="toast_encryption_key_empty">Coderingssleutel niet geladen</string>
   <!-- Dialogs -->
   <string name="dialog_title_auth">Verifiëren</string>
   <string name="dialog_title_manual_entry">Details ingeven</string>
   <string name="dialog_title_remove">Verwijderen</string>
   <string name="dialog_title_rename">Hernoemen</string>
-  <string name="dialog_title_security_backup">Beveiliging en back-ups</string>
-  <string name="dialog_title_last_used">Last used</string>
+  <string name="dialog_title_last_used">Laatst gebruikt</string>
+  <string name="dialog_title_keystore_error">Sleutelkast fout</string>
+  <string name="dialog_title_encryption">Database encryptie</string>
   <string name="dialog_msg_auth">Voer de referenties van uw apparaat in om te beginnen met andOTP.</string>
-  <string name="dialog_msg_confirm_delete">Weet je zeker dat je het account wil verwijderen?</string>
-  <string name="dialog_msg_security_backup_desc">Om je accountgegevens veilig te houden werkt deze app alleen met versleutelde bestanden. Onderdelen van de gebruikte versleuteling wordt opgeslagen in het Android KeyStore-systeem. Het voordeel van deze aanpak is dat de sleutel is gescheiden van de gegevens van de apps en kan worden ondersteund door de hardware cryptografie (indien apparaat dit ondersteunt).    </string>
-  <string name="dialog_msg_security_backup_3rd_party">Een nadeel is dat back-ups van de gegevens van de apps moeilijkheden zullen geven. Bij een 3th partij apps (zoals Titanium Back-up) gebruikt u alleen de back-up van de gegevensbestanden, niet de sleutel voor bestandscodering en dientengevolge zal deze back-up niet bruikbaar zijn.    </string>
-  <string name="dialog_msg_security_backup_warning">Gebruik alleen de interne back-up functies in de app voor je accounts! Iets anders zal leiden tot gegevens verlies.    </string>
-  <string name="dialog_msg_security_backup_one_time">Dit bericht wordt niet opnieuw getoond.</string>
-  <string name="dialog_msg_last_used">In order for andOTP to recognize which token was used last
-        you have to have \"tap to reveal\" enabled or use the copy button.\n\nThis message will not
-        be shown again.</string>
+  <string name="dialog_msg_confirm_delete">Weet je zeker dat je account \"%1$s\" wil verwijderen?</string>
+  <string name="dialog_title_security_keystore">1. Android KeyStore</string>
+  <string name="dialog_title_security_password">Wachtwoord / PIN</string>
+  <string name="dialog_msg_security_first">Om de veiligheid van uw accounts te garanderen
+        slaat deze app ze alleen op in versleutelde bestanden gebruikmakend van één van de volgende twee methodes:</string>
+  <string name="dialog_msg_security_keystore">KeyStore is een systeemcomponent van Android voor het veilig opslaan van cryptografische sleutels.         
+        Het voordeel van deze aanpak is dat de sleutels gescheiden van bestanden staan opgeslagen en 
+        dat ze kunnen worden ondersteund door hardwarecryptografie (als de hardware dit ondersteunt). 
+        Echter, omdat de sleutels niet met de apps zijn opgeslagen werken externe back-up apps (zoals 
+        Titanium) hiermee niet. Als u deze optie kiest dient u gebruik te maken van de interne 
+        back-upfunctie van andOTP.</string>
+  <string name="dialog_msg_security_password">Deze methode zal uw gegevens versleutelen met een sleutel gegenereerd op basis van een 
+        wachtwoord of pincode. Het belangrijkste voordeel hiervan is dat dit werkt met externe 
+        back-up oplossingen (zoals Titanium). Echter moet u uw gegevens ingeven iedere keer 
+        als u andOTP opstart.</string>
+  <string name="dialog_msg_security_default">Standaard zal Android KeyStore worden gebruikt.
+        Het is echter bekend dat dit problemen veroorzaakt op bepaalde aangepaste ROMs (alsmede
+        een paar standaard ROMs). U kunt de versleuteling aanpassing in de instellingen door te
+        klikken op de onderstaande knop.</string>
+  <string name="dialog_msg_last_used">Om andOTP te laten herkennen welke token als laatste was gebruikt
+        dien je \"tik om te onthullen\" in te schakelen of gebruik de kopie button.\n\n
+        Dit bericht wordt niet opnieuw getoond.</string>
+  <string name="dialog_msg_keystore_error">Fout bij het laden van de coderingssleutel van de sleutelbewaarplaats.         <b>Alle vermeldingen gaan verloren.</b> \n\nOm nog steeds andOTP te kunnen gebruiken kun je naar de instellingen gaan en de <b>Database codering</b> omschakelen naar <b>wachtwoord / PIN</b>.</string>
 </resources>

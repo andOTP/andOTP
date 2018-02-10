@@ -12,13 +12,14 @@
   <string name="settings_title_auth">Autenticación</string>
   <string name="settings_title_auth_password">Contraseña</string>
   <string name="settings_title_auth_pin">PIN</string>
+  <string name="settings_title_encryption">Cifrado de base de datos</string>
   <string name="settings_title_panic">Botón del pánico</string>
   <string name="settings_title_lang">Idioma</string>
   <string name="settings_title_theme">Aspecto</string>
   <string name="settings_title_label_size">Tamaño de fuente</string>
   <string name="settings_title_label_scroll">Desplazar etiqueta</string>
-  <string name="settings_title_thumbnail_visible_ask">Mostrar miniaturas</string>
   <string name="settings_title_thumbnail_size_ask">Tamaño de miniatura</string>
+  <string name="settings_title_split_group_size">Separar el código con espacio</string>
   <string name="settings_title_backup_ask">Pedir nombre de fichero</string>
   <string name="settings_title_backup_directory">Carpeta para copias de seguridad</string>
   <string name="settings_title_backup_password">Contraseña de copia de seguridad</string>
@@ -28,6 +29,7 @@
   <string name="settings_title_openpgp_verify">Comprobar copias de seguridad cifradas</string>
   <string name="settings_title_special_features">Activar funcionalidades especiales</string>
   <string name="settings_title_enable_screenshot">Habilitar capturas de pantalla</string>
+  <string name="settings_title_clear_keystore">Vaciar el almacen de claves</string>
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">Esconder códigos OTP por defecto,
         necesitando mostrarlos manualmente</string>
@@ -45,20 +47,57 @@
         tu clave (necesita contraseña)</string>
   <string name="settings_desc_openpgp_verify">Las contraseñas de copias de seguridad cifradas sólo se importan
         si están firmadas con una clave válida</string>
+  <string name="settings_desc_special_features">Desmarca para desactivar las funcionalidades especiales de nuevo</string>
   <string name="settings_desc_enable_screenshot">Permitir capturas de pantalla de la vista principal
         (Desactivado por defecto por razones de seguridad)</string>
-  <string name="settings_desc_special_features">Desmarca para desactivar las funcionalidades especiales de nuevo</string>
+  <string name="settings_desc_clear_keystore">Elimina la clave de cifrado del almacen de claves</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">Esta característica requiere al menos
         Android 5.0 (Lollipop)</string>
   <string name="settings_toast_auth_device_not_secure">Esta característica requiere bloqueo de salvapantallas
         seguro (Settings -&gt; Security -&gt; Screenlock)</string>
+  <string name="settings_toast_password_empty">Una contraseña vacía no está permitida,
+        cambia autenticación a \"Ninguno\" para desactivarla!</string>
+  <string name="settings_toast_encryption_changing">Intentando cambiar el cifrado de la base de datos,
+        espera!</string>
+  <string name="settings_toast_encryption_change_success">Cambio del cifrado de la base de datos
+        con éxito!</string>
+  <string name="settings_toast_encryption_change_failed">Fallo al cambiar el cirado de la base de datos,
+        revirtiendo al estado original!</string>
+  <string name="settings_toast_encryption_backup_failed">Fallo al crear la copia de seguridad interna,
+        abortando!</string>
+  <string name="settings_toast_encryption_no_key">Fallo al obtener la clave de cifrado, abortando!</string>
+  <string name="settings_toast_encryption_auth_failed">Error de autenticación!</string>
+  <string name="settings_toast_auth_upgrade_failed">Fallo al actualizar la contraseña / PIN al nuevo cifrado,
+        por favor reinicia manualmente desde ajustes!</string>
+  <string name="settings_dialog_title_error">Error</string>
+  <string name="settings_dialog_title_clear_keystore">Vaciar el almacen de claves?</string>
+  <string name="settings_dialog_msg_auth_invalid_with_encryption">Solo puedes usar la contraseña o el PIN si
+        el cifrado de la base de datos está establecido a \"Contraseña / PIN\"!</string>
+  <string name="settings_dialog_msg_encryption_invalid_with_auth">Primero tienes que establecer
+        la autenticación a \"Contraseña\" o \"PIN\"!</string>
+  <string name="settings_dialog_msg_encryption_invalid_without_credentials">Primero necesitas establecer una
+        contraseña o PIN antes de cambiar el cifrado!</string>
+  <string name="settings_dialog_msg_clear_keystore_password">En algunos casos vaciar el almacen de claves
+        puede ayudar a solventar problemas. Deberías solo hacerlo si sabes lo que haces!\n\nPuesto
+        que el <b>Cifrado de la base de datos</b> está como <b>Contraseña / PIN</b> no deberías perder
+        ninguna información haciéndolo (pero nunca es malo tener una copia de seguridad igualmente).\n\n<b>
+        ¿Seguro que quieres vaciar el almacen de claves?</b></string>
+  <string name="settings_dialog_msg_clear_keystore_keystore">En algunos casos vaciar el almacen de claves
+        puede ayudar a solventar problemas. Deberías solo hacerlo si sabes lo que haces!\n\n<b>Advertencia</b>:
+        Puesto que el <b>Cifrado de la base de datos</b> está como <b>Almacen de claves de Android</b> perderás todas
+        tus cuentas. ¡Comprueba que tienes una copia de seguridad!\n\n
+        <b>¿Seguro que quieres vaciar el almacen de claves?</b></string>
   <!-- List entries -->
   <string-array name="settings_entries_auth">
     <item>Ninguno</item>
     <item>Contraseña</item>
     <item>PIN</item>
     <item>Credenciales del dispositivo</item>
+  </string-array>
+  <string-array name="settings_entries_encryption">
+    <item>Almacen de claves de Android</item>
+    <item>Contraseña / PIN</item>
   </string-array>
   <string-array name="settings_entries_panic">
     <item>Eliminar todas las cuentas</item>
@@ -70,17 +109,24 @@
     <item>Tema negro</item>
   </string-array>
   <string-array name="settings_entries_thumbnail_size">
+    <item>Oculto</item>
     <item>Pequeño</item>
     <item>Predeterminado</item>
     <item>Mediano</item>
     <item>Grande</item>
   </string-array>
+  <string-array name="settings_entries_split_group_size">
+    <item>No partir</item>
+    <item>Tras dos carácteres</item>
+    <item>Tras tres carácteres</item>
+  </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Predeterminado por el sistema</string>
   <!-- PasswordPreference -->
-  <string name="settings_hint_password">Contraseña</string>
-  <string name="settings_hint_pin">PIN</string>
+  <string name="settings_hint_password">Introduce la nueva contraseña</string>
+  <string name="settings_hint_pin">Introducir nuevo PIN</string>
   <string name="settings_hint_password_confirm">Confirmar contraseña</string>
   <string name="settings_hint_pin_confirm">Confirmar PIN</string>
-  <string name="settings_hint_unchanged">(sin cambios)</string>
+  <string name="settings_label_short_password">¡La contraseña debe ser al menos de %1$d caracteres!</string>
+  <string name="settings_label_short_pin">¡El PIN debe ser al menos de %1$d dígitos!</string>
 </resources>

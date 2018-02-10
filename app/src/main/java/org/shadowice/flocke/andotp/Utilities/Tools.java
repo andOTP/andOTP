@@ -33,6 +33,10 @@ import android.os.Build;
 import android.os.Environment;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class Tools {
@@ -79,5 +83,25 @@ public class Tools {
         } else {
             return Resources.getSystem().getConfiguration().locale;
         }
+    }
+
+    public static String formatToken(String s, int chunkSize) {
+        if (chunkSize ==0 || s == null)
+            return s;
+
+        StringBuilder ret = new StringBuilder("");
+        int index = s.length();
+        while (index > 0) {
+            ret.insert(0, s.substring(Math.max(index - chunkSize, 0), index));
+            ret.insert(0, " ");
+            index = index - chunkSize;
+        }
+        return ret.toString().trim();
+    }
+
+    public static String getDateTimeString() {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.ENGLISH);
+        Date now = Calendar.getInstance().getTime();
+        return df.format(now);
     }
 }
