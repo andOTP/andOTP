@@ -80,8 +80,6 @@ public class ThumbnailSelectionAdapter extends BaseAdapter {
         EntryThumbnail.EntryThumbnails thumb = (EntryThumbnail.EntryThumbnails)getItem(i);
 
         imageView.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumb));
-        int padding = context.getResources().getDimensionPixelSize(R.dimen.thumbnail_padding);
-        imageView.setPadding(padding, padding, padding, padding);
 
         try {
             TypedValue typedValue = new TypedValue();

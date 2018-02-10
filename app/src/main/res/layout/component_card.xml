@@ -18,7 +18,6 @@
             android:layout_width="@dimen/card_thumbnail_size"
             android:layout_height="@dimen/card_thumbnail_size"
             android:layout_marginEnd="@dimen/activity_margin"
-            android:padding="@dimen/thumbnail_padding"
             android:background="?attr/thumbnailBackground"
             android:src="@mipmap/ic_launcher" />
 
