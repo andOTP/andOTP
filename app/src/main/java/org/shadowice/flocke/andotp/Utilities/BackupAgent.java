@@ -43,7 +43,7 @@ public class BackupAgent extends BackupAgentHelper {
         SharedPreferencesBackupHelper sharedPreferencesBackupHelper = new SharedPreferencesBackupHelper(this, prefs);
         addHelper(PREFS_BACKUP_KEY, sharedPreferencesBackupHelper);
 
-        FileBackupHelper fileBackupHelper = new FileBackupHelper(this, Constants.FILENAME_ENCRYPTED_KEY, Constants.FILENAME_DATABASE, Constants.FILENAME_DATABASE_BACKUP);
+        FileBackupHelper fileBackupHelper = new FileBackupHelper(this, Constants.FILENAME_DATABASE, Constants.FILENAME_DATABASE_BACKUP);
         addHelper(FILES_BACKUP_KEY, fileBackupHelper);
     }
 }
