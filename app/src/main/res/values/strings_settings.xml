@@ -23,6 +23,7 @@
     <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
     <string name="settings_title_split_group_size">Split Token with space</string>
 
+    <string name="settings_title_backup_append_date">Append date to filename</string>
     <string name="settings_title_backup_ask">Ask for filename</string>
     <string name="settings_title_backup_directory">Backup directory</string>
     <string name="settings_title_backup_password">Backup password</string>
@@ -44,6 +45,9 @@
 
     <string name="settings_desc_label_scroll">Scroll overlong labels instead of truncating them</string>
 
+
+    <string name="settings_desc_backup_append_date">Append the current date and time to the suggested
+        backup filename</string>
     <string name="settings_desc_backup_ask">Ask for the filename every time a backup is created or
         restored</string>
     <string name="settings_desc_backup_directory">Directory for the backups (filenames will depend
@@ -75,14 +79,14 @@
     <string name="settings_toast_encryption_change_success">Successfully changed the database
         encryption!</string>
     <string name="settings_toast_encryption_change_failed">Failed to change database encryption,
-        restored database from internal backup!</string>
+        falling back to original state!</string>
     <string name="settings_toast_encryption_backup_failed">Failed to create an internal
         backup, aborting!</string>
     <string name="settings_toast_encryption_no_key">Failed to get the encryption key, aborting!</string>
-    <string name="settings_toast_encryption_auth_failed">Authentication failed, aborting!</string>
+    <string name="settings_toast_encryption_auth_failed">Authentication failed!</string>
 
     <string name="settings_toast_auth_upgrade_failed">Failed to silently upgrade your password / PIN
-        to the new encryption, please manually reset it in the settings!</string>
+        to the new encryption, please manually reset it in the Settings!</string>
 
     <string name="settings_dialog_title_error">Error</string>
     <string name="settings_dialog_title_clear_keystore">Clear the KeyStore?</string>

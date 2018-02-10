@@ -7,7 +7,7 @@
   <string name="button_scan_qr">QR-Code scannen</string>
   <string name="button_save">Sichern</string>
   <string name="button_new_tag">Neuer Marker</string>
-  <string name="button_warned">Sie wurden gewarnt!</string>
+  <string name="button_settings">Einstellungen</string>
   <string name="button_all_tags">Alle Marker</string>
   <string name="button_no_tags">Keine Marker</string>
   <!-- Custom formatting -->
@@ -24,6 +24,7 @@
   <string name="label_label">Beschriftung</string>
   <string name="label_algorithm">Algorithmus</string>
   <string name="label_tags">Marker</string>
+  <string name="label_advanced">Erweiterte Einstellungen</string>
   <!-- Drawer -->
   <string name="drawer_open">Marker anzeigen</string>
   <string name="drawer_close">Marker ausblenden</string>
@@ -41,35 +42,34 @@
   <string name="menu_popup_edit_tags">Marker bearbeiten</string>
   <string name="menu_popup_remove">Entfernen</string>
   <!-- Toast messages -->
+  <string name="toast_auth_failed">Authentifizierung fehlgeschlagen, bitte erneut versuchen!</string>
   <string name="toast_auth_failed_fatal">Authentifizierung fehlgeschlagen, andOTP wird geschlossen!</string>
   <string name="toast_copied_to_clipboard">In Zwischenablage kopiert</string>
   <string name="toast_entry_exists">Dieser Eintrag ist bereits vorhanden</string>
   <string name="toast_invalid_qr_code">Ungültiger QR-Code</string>
+  <string name="toast_encryption_key_empty">Verschlüsselungsschlüssel nicht geladen</string>
   <!-- Dialogs -->
   <string name="dialog_title_auth">Authentifizieren</string>
   <string name="dialog_title_manual_entry">Details eingeben</string>
   <string name="dialog_title_remove">Entfernen</string>
   <string name="dialog_title_rename">Umbenennen</string>
-  <string name="dialog_title_security_backup">Sicherheit und Backups</string>
   <string name="dialog_title_last_used">Zuletzt benutzt</string>
+  <string name="dialog_title_keystore_error">KeyStore Fehler</string>
+  <string name="dialog_title_encryption">Datenbankverschlüsselung</string>
   <string name="dialog_msg_auth">Bitte geben Sie die Anmeldeinformationen Ihres Geräts ein, um andOTP zu starten.</string>
-  <string name="dialog_msg_confirm_delete">Möchten Sie das Konto wirklich entfernen?</string>
-  <string name="dialog_msg_security_backup_desc">Zum Schutz Ihrer Kontoinformationen werden diese
-        von dieser App nur verschlüsselt gespeichert. Ein Teil des dafür verwendeten Schlüssels
-        wird im  Android KeyStore System gespeichert. Der Vorteil dieses Ansatzes ist, dass der
-        Schlüssel getrennt von den Anwendungsdaten gehalten wird und kann durch
-        Hardware-Kryptographie (sofern Ihr Endgerät dies unterstützt) geschützt werden.
-    </string>
-  <string name="dialog_msg_security_backup_3rd_party">Als Nachteil werden dadurch Sicherungen der
-        Anwendungs-Daten etwas schwieriger. Falls Sie Drittanbieter-Anwendungen
-        (z. B. Titanium Backup) verwenden, werden nur die Datendateien gesichert, aber
-        nicht der Verschlüsselungsschlüssel und solche Backups daher unbrauchbar.
-    </string>
-  <string name="dialog_msg_security_backup_warning">Bitte verwenden Sie nur die interne Backup-Funktionen,
-        die von der App bereitgestellt werden, um Ihre Konten zu sichern! Alles andere WIRD zum Datenverlust führen.
-    </string>
-  <string name="dialog_msg_security_backup_one_time">Diese Meldung wird nicht nochmal angezeigt.</string>
+  <string name="dialog_msg_confirm_delete">Sind Sie sicher, dass das Konto \"%1$s\" gelöscht werden soll?</string>
+  <string name="dialog_title_security_keystore">1. Android KeyStore</string>
+  <string name="dialog_title_security_password">2. Passwort / PIN</string>
+  <string name="dialog_msg_security_first">Zur Gewährleistung der Sicherheit Ihrer Konten speichert diese App diese nur in verschlüsselten Dateien unter Benutzung einer der folgenden zwei Methoden:</string>
+  <string name="dialog_msg_security_keystore">Der KeyStore ist eine Systemkomponente von Android für die sichere Speicherung von kryptographischen Schlüsseln.
+Der Vorteil dieses Ansatzes ist, dass die Schlüssel getrennt von den Datendateien gespeichert und durch
+Hardware-Verschlüsselung (falls von der Hardware unterstützt) gesichert werden können. 
+Aber dadurch das die Schlüssel nicht zusammen mit den Anwendungsdaten gespeichert werden, wird verhindert dass diese
+Methode mit externen Backup-Lösungen (z. B. Titanium) funktioniert. Wenn Sie diese Methode wählen, müssen Sie sich auf die internen Backup-Funktionen verlassen, die andOTP zur Verfügung stellt.</string>
+  <string name="dialog_msg_security_password">Diese Methode wird Ihre Daten mit einem Schlüssel verschlüsseln, der aus einem Passwort oder einer PIN erzeugt wird. Der Hauptvorteil ist, dass dies mit externen Backup-Lösungen (wie Titanium) funktioniert. Allerdings müssen Sie bei jedes Mal beim Start von andOTP Ihre Anmeldedaten eingeben.</string>
+  <string name="dialog_msg_security_default">Standardmäßig wird der Android KeyStore verwendet. Es jedoch bekannt, das dies bei bestimmten Custom-ROMs (und einigen wenigen Werksmäßigen) Probleme verursacht. Sie können die Verschlüsselung in den Einstellungen ändern, indem Sie auf den Button weiter unten klicken.</string>
   <string name="dialog_msg_last_used">Damit andOTP erkennt welches Token zuletzt benutzt wurde, muss entweder \"Tippen zum Anzeigen\" aktiv sein
 oder der Kopieren-Button benutzt werden.\n\n
 Diese Nachricht wird nicht erneut angezeigt.</string>
+  <string name="dialog_msg_keystore_error">Fehler beim Laden des Verschlüsselungsschlüssels aus dem KeyStore. <b>Alle Einträge, die hinzugefügt werden gehen verloren.</b>\n\nUm andOTP dennoch verwenden zu können, rufen Sie die Einstellungen auf und setzen die <b>Datenbank-Verschlüsselung</b> auf <b>Passwort / PIN</b>.</string>
 </resources>

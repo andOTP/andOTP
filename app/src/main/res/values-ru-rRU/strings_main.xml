@@ -7,7 +7,7 @@
   <string name="button_scan_qr">Сканировать QR-код</string>
   <string name="button_save">Сохранить</string>
   <string name="button_new_tag">Новый тег</string>
-  <string name="button_warned">Вас предупредили!</string>
+  <string name="button_settings">Настройки</string>
   <string name="button_all_tags">Все теги</string>
   <string name="button_no_tags">Нет тегов</string>
   <!-- Custom formatting -->
@@ -24,6 +24,7 @@
   <string name="label_label">Ярлык</string>
   <string name="label_algorithm">Алгоритм</string>
   <string name="label_tags">Теги</string>
+  <string name="label_advanced">Дополнительные настройки</string>
   <!-- Drawer -->
   <string name="drawer_open">Показать теги</string>
   <string name="drawer_close">Скрыть теги</string>
@@ -41,22 +42,30 @@
   <string name="menu_popup_edit_tags">Изменить теги</string>
   <string name="menu_popup_remove">Убрать</string>
   <!-- Toast messages -->
+  <string name="toast_auth_failed">Ошибка аутентификации! Пожалуйста, попробуйте снова!</string>
   <string name="toast_auth_failed_fatal">Ошибка аутентификации, andOTP закрывается!</string>
   <string name="toast_copied_to_clipboard">Скопировано в буфер обмена</string>
   <string name="toast_entry_exists">Эта запись уже существует</string>
   <string name="toast_invalid_qr_code">Недопустимый QR-код</string>
+  <string name="toast_encryption_key_empty">Ключ шифрования не загружен</string>
   <!-- Dialogs -->
-  <string name="dialog_title_auth">Аутентификация</string>
+  <string name="dialog_title_auth">Проверка подлинности</string>
   <string name="dialog_title_manual_entry">Введите детали</string>
   <string name="dialog_title_remove">Убрать</string>
   <string name="dialog_title_rename">Переименовать</string>
-  <string name="dialog_title_security_backup">Безопасность и резервное копирование</string>
   <string name="dialog_title_last_used">Последнее использование</string>
+  <string name="dialog_title_keystore_error">Ошибка хранилища ключей</string>
+  <string name="dialog_title_encryption">Шифрование базы данных</string>
   <string name="dialog_msg_auth">Пожалуйста, подтвердите учетные данные устройства для открытия andOTP.</string>
-  <string name="dialog_msg_confirm_delete">Вы уверены, что хотите удалить эту учетную запись?</string>
-  <string name="dialog_msg_security_backup_desc">Для обеспечения безопасности ваших данных это приложение хранит их только в зашифрованном виде. Часть этого ключа шифрования хранится в системе Android KeyStore. Преимущество этого подхода в том, что ключ хранится отдельно от данных приложения и может быть защищён аппаратным шифрованием (если ваше устройство его поддерживает).</string>
-  <string name="dialog_msg_security_backup_3rd_party">С другой стороны, это делает резервное копирование данных приложения немного более сложным. Если вы используете сторонние приложения (вроде Titanium Backup) вы только лишь скопируете сами файлы, но не ключ шифрования, в результате чего резервная копия окажется нерабочей.</string>
-  <string name="dialog_msg_security_backup_warning">Пожалуйста, используйте только функцию резервного копирования встроенную в это приложение! Прочие способы ПРИВЕДУТ к потере данных.</string>
-  <string name="dialog_msg_security_backup_one_time">Это сообщение повторно отображаться не будет.</string>
+  <string name="dialog_msg_confirm_delete">Вы уверены, что хотите удалить учётную запись \"%1$s\"?</string>
+  <string name="dialog_title_security_keystore">1. Хранилище ключей Android</string>
+  <string name="dialog_title_security_password">2. Пароль / PIN-код</string>
+  <string name="dialog_msg_security_first">Для защиты ваших аккаунтов это приложение хранит их в зашифрованном виде используя один из двух этих способов:</string>
+  <string name="dialog_msg_security_keystore">Хранилище ключей это часть системы Android,        предназначенная для безопасного хранения ключей шифрования. Преимущество этого способа в том, что ключи        хранятся отдельно от данных и защищены аппаратным шифрованием (если Ваше устройство поддерживает его).        Так как ключи не хранятся вместе с данными, то Вы не сможете использовать сторонние решения для создания        резервных копий (например, Titanium Backup). При использовании этого метода Вы сможете использовать        только резервные копии, созданные andOTP.</string>
+  <string name="dialog_msg_security_password">Этот способ зашифрует Ваши данные ключом,        созданным на основе пароля или PIN-кода. Основное преимущество этого способа - Вы сможете использовать        сторонние системы резервного копирования (например, Titanium Backup). При этом Вам будет необходимо выполнять        аутентификацию при каждом запуске andOTP.</string>
+  <string name="dialog_msg_security_default">По умолчанию будет использовано Хранилище ключей Android, однако оно может не работать на некоторых модифицированных и официальных прошивках. Вы можете изменить способ шифрования в Настройках нажав на кнопку ниже.</string>
   <string name="dialog_msg_last_used">Чтобы andOTP знал время последнего использования токена необходимо включить настройку \"Нажмите, чтобы показать\" или копировать токен.\n\nЭто сообщение больше не будет показано.</string>
+  <string name="dialog_msg_keystore_error">Ошибка загрузки ключа шифрования из хранилища ключей.
+    <b>Все добавленные записи будут утеряны.</b>\n\nЧтобы использовать andOTP дальше Вы можете
+    перейти в Настройки и переключить <b>Шифрование базы данных</b> на <b>Пароль / PIN-код</b>.</string>
 </resources>

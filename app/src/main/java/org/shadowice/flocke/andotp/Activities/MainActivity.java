@@ -345,7 +345,7 @@ public class MainActivity extends BaseActivity
             adapter.notifyDataSetChanged();
         } else if (key.equals(getString(R.string.settings_key_tap_to_reveal)) ||
                 key.equals(getString(R.string.settings_key_theme)) ||
-                key.equals(getString(R.string.settings_key_lang)) ||
+                key.equals(getString(R.string.settings_key_locale)) ||
                 key.equals(getString(R.string.settings_key_enable_screenshot))) {
             recreate();
         }
@@ -398,7 +398,11 @@ public class MainActivity extends BaseActivity
             } else {
                 requireAuthentication = false;
 
-                byte[] authKey = intent.getByteArrayExtra(Constants.EXTRA_AUTH_PASSWORD_KEY);
+                byte[] authKey = null;
+
+                if (intent != null)
+                    authKey = intent.getByteArrayExtra(Constants.EXTRA_AUTH_PASSWORD_KEY);
+
                 updateEncryption(authKey);
             }
         }

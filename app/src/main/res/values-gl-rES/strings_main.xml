@@ -7,7 +7,7 @@
   <string name="button_scan_qr">Escanear código QR</string>
   <string name="button_save">Gardar</string>
   <string name="button_new_tag">Nova etiqueta</string>
-  <string name="button_warned">Estás avisado!</string>
+  <string name="button_settings">Axustes</string>
   <string name="button_all_tags">Todas as etiquetas</string>
   <string name="button_no_tags">Sen etiquetas</string>
   <!-- Custom formatting -->
@@ -24,6 +24,7 @@
   <string name="label_label">Etiqueta</string>
   <string name="label_algorithm">Algoritmo</string>
   <string name="label_tags">Etiquetas</string>
+  <string name="label_advanced">Opcións avanzadas</string>
   <!-- Drawer -->
   <string name="drawer_open">Mostrar etiquetas</string>
   <string name="drawer_close">Agochar as etiquetas</string>
@@ -41,34 +42,43 @@
   <string name="menu_popup_edit_tags">Editar etiquetas</string>
   <string name="menu_popup_remove">Eliminar</string>
   <!-- Toast messages -->
-  <string name="toast_auth_failed_fatal">A autenticación fallou, cerrando andOTP!</string>
+  <string name="toast_auth_failed">Fallou a autenticación, por favor inténteo de novo!</string>
+  <string name="toast_auth_failed_fatal">Fallou a autenticación, pechando andOTP!</string>
   <string name="toast_copied_to_clipboard">Copiado ao portapapeis</string>
   <string name="toast_entry_exists">Este nome xa existe</string>
   <string name="toast_invalid_qr_code">Código QR inválido</string>
+  <string name="toast_encryption_key_empty">Non se cargou a chave de cifrado</string>
   <!-- Dialogs -->
   <string name="dialog_title_auth">Autenticar</string>
   <string name="dialog_title_manual_entry">Introducir datos</string>
   <string name="dialog_title_remove">Eliminar</string>
   <string name="dialog_title_rename">Renomear</string>
-  <string name="dialog_title_security_backup">Seguranza e copias de seguranza</string>
   <string name="dialog_title_last_used">Último usado</string>
+  <string name="dialog_title_keystore_error">Fallo no KeyStore</string>
+  <string name="dialog_title_encryption">Cifrado da base de datos</string>
   <string name="dialog_msg_auth">Introduce as credenciais do dispositivo para iniciar andOTP.</string>
-  <string name="dialog_msg_confirm_delete">Seguro que desexa borrar esta conta?</string>
-  <string name="dialog_msg_security_backup_desc">Para manter a información da túa conta segura este aplicativo
-        só a garda cifrada. Parte da chave de cifrado utilizada é almacenada no almacén
-        de chaves de Android. A vantaxe deste método é que a chave está separada dos datos do aplicativo
-        e pode ser almacenada nun enclave hardware (se o dispositivo o soporta).
-    </string>
-  <string name="dialog_msg_security_backup_3rd_party">Coma desvantaxe isto fai a copia de seguranza dos datos
-        do aplicativo un pouco máis difícil. Se usas un aplicativo de terceiros (como Titanium Backup) só
-        fas copia de seguranza dos ficheiros de datos, non da chave de cifrado.
-        Como resultado esas copias son inútiles.
-    </string>
-  <string name="dialog_msg_security_backup_warning">Por favor utiliza só os métodos de copias de seguranza internos
-        fornecidos polo aplicativo. Calquera outro método FARÁ que perdas os datos.
-    </string>
-  <string name="dialog_msg_security_backup_one_time">Esta mensaxe non volverá a mostrarse.</string>
+  <string name="dialog_msg_confirm_delete">Está seguro de que quere quitar a conta \"%1$s\"?</string>
+  <string name="dialog_title_security_keystore">1. Android KeyStore</string>
+  <string name="dialog_title_security_password">Contrasinal / PIN</string>
+  <string name="dialog_msg_security_first">Para certificar a seguridade das súas contas este aplicativo
+   só as garda en ficheiros cifrados utilizando un dos seguintes métodos:</string>
+  <string name="dialog_msg_security_keystore">O KeyStore e un compoñente do sistema Android para
+    gardar de xeito seguro chaves criptográficas. A vantaxe de este sistema é que as chaves
+    gárdanse separadas dos ficheiros de datos e poden respaldarse con criptografía de hardware (si o 
+    hardware o soporta). Porén como as chaves non se gardan cos datos do aplicativo este método
+    non permiten utilizar solucións de respaldo externas (como Titanium). Si escolle este
+    método deberá confiar nos sistemas internos de respaldo proporcionados por andOTP.</string>
+  <string name="dialog_msg_security_password">Este método cifrará os seus datos con unha chave
+   xerada desde un contrasinal ou PIN. A principal vantaxe de este método é que funcionará con
+   solucións de respaldo externas (como Titanium). Porén deberá introducir as súas credenciais
+   cada vez que inicia andOTP.</string>
+  <string name="dialog_msg_security_default">Por omisión utilizase Android KeyStore, porén é coñecido 
+   que esto pode causar problemas con algunhas ROMs personalizadas (e tamén nalgunhas oficiais).
+   Pode cambiar o cifrado en Axustes pulsando no botón inferior.</string>
   <string name="dialog_msg_last_used">Para que andOTP poida saber que código foi o último usado
         tes que activar \"Tocar para mostrar\" ou usar o botón de copiar.\n\nEsta mensaxe non
         se mostrará de novo.</string>
+  <string name="dialog_msg_keystore_error">Fallo ao cargar a chave de cifrado desde a KeyStore.
+   <b>Perderase calquer entrada xa engadida.</b>\n\nPara seguir utilizando andOTP pode ir a
+   Axustes e cambiar a <b>Base de datos de cifrado</b> a <b>Contrasinal / PIN</b>.</string>
 </resources>

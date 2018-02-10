@@ -16,13 +16,15 @@
     <string name="settings_key_encryption" translatable="false">pref_encryption</string>
     <string name="settings_key_panic" translatable="false">pref_panic</string>
 
-    <string name="settings_key_lang" translatable="false">pref_lang</string>
+    <string name="settings_key_lang" translatable="false">pref_lang</string>                                <!-- Deprecated -->
+    <string name="settings_key_locale" translatable="false">pref_locale</string>
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size_sp</string>
     <string name="settings_key_label_scroll" translatable="false">pref_label_scroll</string>
     <string name="settings_key_thumbnail_size" translatable="false">pref_thumbnail_size</string>
     <string name="settings_key_split_group_size" translatable="false">pref_split_group_size</string>
 
+    <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
     <string name="settings_key_backup_directory" translatable="false">pref_backup_directory</string>
     <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>          <!-- Deprecated -->
@@ -47,7 +49,7 @@
     <!-- Default values -->
     <integer name="settings_default_tap_to_reveal_timeout">30</integer>
     <string name="settings_default_encryption" translatable="false">keystore</string>
-    <string name="settings_default_lang" translatable="false">system</string>
+    <string name="settings_default_locale" translatable="false">system</string>
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">18</integer>
     <string name="settings_default_thumbnail_size">46dp</string>
@@ -76,18 +78,19 @@
         <item>settings</item>
     </string-array>
 
-    <string-array name="settings_values_lang" translatable="false">
+    <string-array name="settings_values_locale" translatable="false">
         <item>system</item>
-        <item>en</item>
-        <item>cs</item>
-        <item>de</item>
-        <item>es</item>
-        <item>fr</item>
-        <item>gl</item>
-        <item>nl</item>
-        <item>pl</item>
-        <item>ru</item>
-        <item>zh</item>
+        <item>ca_ES</item>
+        <item>cs_CZ</item>
+        <item>de_DE</item>
+        <item>en_US</item>
+        <item>es_ES</item>
+        <item>fr_FR</item>
+        <item>gl_ES</item>
+        <item>nl_NL</item>
+        <item>pl_PL</item>
+        <item>ru_RU</item>
+        <item>zh_CN</item>
     </string-array>
 
     <string-array name="settings_values_theme" translatable="false">
@@ -112,9 +115,10 @@
 
     <string-array name="settings_entries_lang" translatable="false">
         <item>@string/settings_lang_sys_default</item>
-        <item>English</item>
+        <item>Català</item>
         <item>Čeština</item>
         <item>Deutsch</item>
+        <item>English</item>
         <item>Español</item>
         <item>Français</item>
         <item>Galego</item>

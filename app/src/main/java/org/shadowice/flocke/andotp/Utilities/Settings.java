@@ -34,8 +34,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -44,6 +46,9 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class Settings {
+    private static final List<String> oldLangs = Arrays.asList("system", "en", "cs", "de", "es", "fr", "gl", "nl", "pl", "ru", "zh");
+    private static final List<String> newLangs = Arrays.asList("system", "en_US", "cs_CZ", "de_DE", "es_ES", "fr_FR", "gl_ES", "nl_NL", "pl_PL", "ru_RU", "zh_CN");
+
     private Context context;
     private SharedPreferences settings;
 
@@ -71,6 +76,15 @@ public class Settings {
         if (settings.contains(getResString(R.string.settings_key_auth_pin))) {
             setAuthCredentials(getString(R.string.settings_key_auth_pin, ""));
             remove(R.string.settings_key_auth_pin);
+        }
+
+        if (settings.contains(getResString(R.string.settings_key_lang))) {
+            String lang = getString(R.string.settings_key_lang, R.string.settings_default_locale);
+
+            if (oldLangs.contains(lang))
+                setLocale(newLangs.get(oldLangs.indexOf(lang)));
+
+            remove(R.string.settings_key_lang);
         }
 
         if (settings.contains(getResString(R.string.settings_key_backup_password))) {
@@ -284,13 +298,24 @@ public class Settings {
         return settings.getStringSet(getResString(R.string.settings_key_panic), Collections.<String>emptySet());
     }
 
-    public Locale getLang() {
-        String lang = getString(R.string.settings_key_lang, R.string.settings_default_lang);
+    public void setLocale(String locale) {
+        setString(R.string.settings_key_locale, locale);
+    }
 
-        if (lang.equals("system"))
+    public Locale getLocale() {
+        String lang = getString(R.string.settings_key_locale, R.string.settings_default_locale);
+
+        if (lang.equals("system")) {
             return Tools.getSystemLocale();
-        else
-            return new Locale(lang);
+        } else {
+            String[] splitLang =  lang.split("_");
+
+            if (splitLang.length > 1) {
+                return new Locale(splitLang[0], splitLang[1]);
+            } else {
+                return new Locale(lang);
+            }
+        }
     }
 
     public String getTheme() {
@@ -436,5 +461,9 @@ public class Settings {
 
     public void setLastUsedDialogShown(boolean value) {
         setBoolean(R.string.settings_key_last_used_dialog_shown, value);
+    }
+
+    public boolean getIsAppendingDateTimeToBackups() {
+        return getBoolean(R.string.settings_key_backup_append_date_time, false);
     }
 }
