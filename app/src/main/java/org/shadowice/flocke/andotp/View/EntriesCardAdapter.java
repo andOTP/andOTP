@@ -48,6 +48,7 @@ import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
@@ -145,9 +146,15 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             //Entries with no tags will always be shown
             Boolean foundMatchingTag = e.getTags().isEmpty() && settings.getNoTagsToggle();
 
-            for(String tag : tags) {
-                if(e.getTags().contains(tag)) {
+            if(settings.getTagFunctionality() == Constants.TagFunctionality.AND) {
+                if(e.getTags().containsAll(tags)) {
                     foundMatchingTag = true;
+                }
+            } else {
+                for (String tag : tags) {
+                    if (e.getTags().contains(tag)) {
+                        foundMatchingTag = true;
+                    }
                 }
             }
 

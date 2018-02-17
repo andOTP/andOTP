@@ -22,6 +22,7 @@
     <string name="settings_title_label_scroll">Scroll label</string>
     <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
     <string name="settings_title_split_group_size">Split Token with space</string>
+    <string name="settings_title_tag_functionality">Tag menu functionality</string>
 
     <string name="settings_title_backup_append_date">Append date to filename</string>
     <string name="settings_title_backup_ask">Ask for filename</string>
@@ -145,6 +146,12 @@
         <item>Don\'t split</item>
         <item>After two characters</item>
         <item>After three characters</item>
+    </string-array>
+
+    <string-array name="settings_entries_tag_functionality">
+        <item>Or (Default)</item>
+        <item>And</item>
+        <item>Single</item>
     </string-array>
 
     <!-- Special -->
