@@ -203,7 +203,9 @@ public class ManualEntryDialog {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (TextUtils.isEmpty(labelInput.getText()) || TextUtils.isEmpty(secretInput.getText())) {
+                if (TextUtils.isEmpty(labelInput.getText()) || TextUtils.isEmpty(secretInput.getText())
+                        || TextUtils.isEmpty(periodInput.getText()) || Integer.parseInt(periodInput.getText().toString()) == 0
+                        || TextUtils.isEmpty(digitsInput.getText()) || Integer.parseInt(digitsInput.getText().toString()) == 0) {
                     positiveButton.setEnabled(false);
                 } else {
                     positiveButton.setEnabled(true);
@@ -213,5 +215,7 @@ public class ManualEntryDialog {
 
         labelInput.addTextChangedListener(watcher);
         secretInput.addTextChangedListener(watcher);
+        periodInput.addTextChangedListener(watcher);
+        digitsInput.addTextChangedListener(watcher);
     }
 }
