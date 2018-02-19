@@ -89,6 +89,7 @@ So make sure you have a **current backup** before switching!
  * [SuperVirus](https://github.com/SuperVirus) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=SuperVirus))
  * [DanielWeigl](https://github.com/DanielWeigl) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=DanielWeigl))
  * [Matthias Bertram](https://github.com/mbertram) ([view contributions](https://github.com/andOTP/andOTP/commits?author=mbertram))
+ * [Björn Richter](https://github.com/x3rAx) ([view contributions](https://github.com/andOTP/andOTP/commits?author=x3rAx))
 
 #### Translators:
 
