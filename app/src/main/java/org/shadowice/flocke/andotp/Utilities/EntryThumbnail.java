@@ -33,6 +33,7 @@ public class EntryThumbnail {
         Cloudflare(R.drawable.thumb_cloudflare),
         Coinbase(R.drawable.thumb_coinbase),
         CozyCloud(R.drawable.thumb_cozycloud),
+        Degiro(R.drawable.thumb_degiro),
         DigitalOcean(R.drawable.thumb_digital_ocean),
         Discord(R.drawable.thumb_discord),
         Dropbox(R.drawable.thumb_dropbox),
@@ -49,6 +50,7 @@ public class EntryThumbnail {
         Google(R.drawable.thumb_google),
         HackerOne(R.drawable.thumb_hackerone),
         Heroku(R.drawable.thumb_heroku),
+        HMRC(R.drawable.thumb_hmrc),
         HumbleBundle(R.drawable.thumb_humblebundle),
         HurricaneElectric(R.drawable.thumb_hurricane_electric),
         Iconomi(R.drawable.thumb_iconomi),
@@ -71,6 +73,7 @@ public class EntryThumbnail {
         Patreon(R.drawable.thumb_patreon),
         PayPal(R.drawable.thumb_paypal),
         ProtonMail(R.drawable.thumb_protonmail),
+        Rackspace(R.drawable.thumb_rackspace),
         Reddit(R.drawable.thumb_reddit),
         RSS(R.drawable.thumb_rss),
         Seafile(R.mipmap.thumb_seafile, AssetType.Bitmap),
@@ -87,6 +90,7 @@ public class EntryThumbnail {
         Twitter(R.drawable.thumb_twitter),
         Ubisoft(R.drawable.thumb_ubisoft),
         UbuntuOne(R.drawable.thumb_ubuntu_one),
+        Vultr(R.drawable.thumb_vultr),
         Wallet(R.drawable.thumb_wallet),
         Wordpress(R.drawable.thumb_wordpress);
 
