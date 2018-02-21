@@ -91,6 +91,14 @@
             android:entryValues="@array/settings_values_split_group_size"
             android:defaultValue="@string/settings_default_split_group_size" />
 
+        <ListPreference
+            android:key="@string/settings_key_tag_functionality"
+            android:title="@string/settings_title_tag_functionality"
+            android:summary="%s"
+            android:entries="@array/settings_entries_tag_functionality"
+            android:entryValues="@array/settings_values_tag_functionality"
+            android:defaultValue="@string/settings_default_tag_functionality" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -79,6 +79,7 @@ public class TagsAdapter extends ArrayAdapter<String> {
     public void setTagState(String tag, Boolean state) {
         if(tagsState.containsKey(tag))
             tagsState.put(tag, state);
+        notifyDataSetChanged();
     }
 
     public List<String> getActiveTags() {

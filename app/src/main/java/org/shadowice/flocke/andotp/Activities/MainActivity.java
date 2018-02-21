@@ -346,7 +346,8 @@ public class MainActivity extends BaseActivity
         } else if (key.equals(getString(R.string.settings_key_tap_to_reveal)) ||
                 key.equals(getString(R.string.settings_key_theme)) ||
                 key.equals(getString(R.string.settings_key_locale)) ||
-                key.equals(getString(R.string.settings_key_enable_screenshot))) {
+                key.equals(getString(R.string.settings_key_enable_screenshot)) ||
+                key.equals(getString(R.string.settings_key_tag_functionality)) ) {
             recreate();
         }
     }
@@ -619,6 +620,17 @@ public class MainActivity extends BaseActivity
                 CheckedTextView checkedTextView = ((CheckedTextView)view);
                 checkedTextView.setChecked(!checkedTextView.isChecked());
 
+                if(settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
+                    checkedTextView.setChecked(true);
+                    allTagsButton.setChecked(false);
+                    settings.setAllTagsToggle(false);
+
+                    for (String tag: tagsDrawerAdapter.getTags()) {
+                        settings.setTagToggle(tag, false);
+                        tagsDrawerAdapter.setTagState(tag, false);
+                    }
+                }
+
                 settings.setNoTagsToggle(checkedTextView.isChecked());
                 adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
             }
@@ -630,7 +642,21 @@ public class MainActivity extends BaseActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 CheckedTextView checkedTextView = ((CheckedTextView)view);
-                checkedTextView.setChecked(!checkedTextView.isChecked());
+
+                if(settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
+                    allTagsButton.setChecked(false);
+                    settings.setAllTagsToggle(false);
+                    noTagsButton.setChecked(false);
+                    settings.setNoTagsToggle(false);
+
+                    for (String tag: tagsDrawerAdapter.getTags()) {
+                        settings.setTagToggle(tag, false);
+                        tagsDrawerAdapter.setTagState(tag, false);
+                    }
+                    checkedTextView.setChecked(true);
+                }else {
+                    checkedTextView.setChecked(!checkedTextView.isChecked());
+                }
 
                 settings.setTagToggle(checkedTextView.getText().toString(), checkedTextView.isChecked());
                 tagsDrawerAdapter.setTagState(checkedTextView.getText().toString(), checkedTextView.isChecked());

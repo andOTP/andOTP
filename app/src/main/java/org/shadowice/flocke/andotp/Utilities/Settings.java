@@ -451,6 +451,12 @@ public class Settings {
         );
     }
 
+    public Constants.TagFunctionality getTagFunctionality() {
+        String tagFunctionality = getString(R.string.settings_key_tag_functionality, R.string.settings_default_tag_functionality);
+        return Constants.TagFunctionality.valueOf(tagFunctionality.toUpperCase());
+    }
+
+
     public boolean getScreenshotsEnabled() {
         return getBoolean(R.string.settings_key_enable_screenshot, false);
     }
