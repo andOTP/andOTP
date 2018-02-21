@@ -89,14 +89,18 @@ class LetterBitmap {
      */
     public Bitmap getLetterTile(String displayName, String key, int width, int height) {
         final Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        char firstChar = displayName.charAt(0);
+        char firstChar = '?';
+
+        if (!displayName.isEmpty()) {
+            firstChar = displayName.charAt(0);
+        }
 
         final Canvas c = mCanvas;
         c.setBitmap(bitmap);
         c.drawColor(pickColor(key));
 
         if (!isEnglishLetterOrDigit(firstChar)) {
-            firstChar = 'A';
+            firstChar = '?';
         }
         mFirstChar[0] = Character.toUpperCase(firstChar);
         mPaint.setTextSize(mTileLetterFontSize);
