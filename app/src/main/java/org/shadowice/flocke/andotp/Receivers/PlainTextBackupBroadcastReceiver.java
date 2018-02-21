@@ -34,7 +34,7 @@ public class PlainTextBackupBroadcastReceiver extends BackupBroadcastReceiver {
         if (settings.getEncryption() == Constants.EncryptionType.KEYSTORE) {
             encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(context, false);
         } else {
-            NotificationHelper.notify(context, R.string.app_name, R.string.backup_receiver_custom_encryption_failed);
+            NotificationHelper.notify(context, R.string.backup_receiver_title_backup_failed, R.string.backup_receiver_custom_encryption_failed);
             return;
         }
 
@@ -42,12 +42,12 @@ public class PlainTextBackupBroadcastReceiver extends BackupBroadcastReceiver {
             ArrayList<Entry> entries = DatabaseHelper.loadDatabase(context, encryptionKey);
 
             if (FileHelper.writeStringToFile(context, savePath, DatabaseHelper.entriesToString(entries))) {
-                NotificationHelper.notify(context, R.string.app_name, context.getText(R.string.backup_receiver_completed) + savePath.getPath());
+                NotificationHelper.notify(context, R.string.backup_receiver_title_backup_success, savePath.getPath());
             } else {
-                NotificationHelper.notify(context, R.string.app_name, R.string.backup_toast_export_failed);
+                NotificationHelper.notify(context, R.string.backup_receiver_title_backup_failed, R.string.backup_toast_export_failed);
             }
         } else {
-            NotificationHelper.notify(context, R.string.app_name, R.string.backup_toast_storage_not_accessible);
+            NotificationHelper.notify(context, R.string.backup_receiver_title_backup_failed, R.string.backup_toast_storage_not_accessible);
         }
     }
 }

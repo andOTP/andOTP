@@ -23,12 +23,12 @@ public abstract class BackupBroadcastReceiver extends BroadcastReceiver {
 
     protected boolean canSaveBackup(Context context) {
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            NotificationHelper.notify(context, R.string.app_name, R.string.backup_receiver_read_permission_failed);
+            NotificationHelper.notify(context, R.string.backup_receiver_title_backup_failed, R.string.backup_receiver_read_permission_failed);
             return false;
         }
 
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            NotificationHelper.notify(context, R.string.app_name, R.string.backup_receiver_write_permission_failed);
+            NotificationHelper.notify(context, R.string.backup_receiver_title_backup_failed, R.string.backup_receiver_write_permission_failed);
             return false;
         }
 
