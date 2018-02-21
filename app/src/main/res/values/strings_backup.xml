@@ -44,6 +44,23 @@
         plain-text JSON file? This file contains all your secret keys, please <b>keep it safe</b>!
     </string>
 
+
+    <string name="backup_receiver_read_permission_failed">
+        Read permission not granted, please do this before attempting backup
+    </string>
+
+    <string name="backup_receiver_write_permission_failed">
+        Write permission not granted, please do this before attempting backup
+    </string>
+
+    <string name="backup_receiver_custom_encryption_failed">
+        Password/Pin based encryption not supported with broadcast backup
+    </string>
+
+    <string name="backup_receiver_completed">
+        Successful backup to:
+    </string>
+
     <!-- Toast messages -->
     <string name="backup_toast_mkdir_failed">Failed to create backup directory</string>
     <string name="backup_toast_export_success">Export to external storage successful</string>

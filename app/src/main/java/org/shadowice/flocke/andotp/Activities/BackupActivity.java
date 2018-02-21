@@ -314,16 +314,16 @@ public class BackupActivity extends BaseActivity {
             Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType(mimeType);
-            intent.putExtra(Intent.EXTRA_TITLE, backupFilename(backupType));
+            intent.putExtra(Intent.EXTRA_TITLE, FileHelper.backupFilename(this, backupType));
             startActivityForResult(intent, intentId);
         } else {
             if (Tools.mkdir(settings.getBackupDir())) {
                 if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN)
-                    doBackupPlain(Tools.buildUri(settings.getBackupDir(), backupFilename(Constants.BackupType.PLAIN_TEXT)));
+                    doBackupPlain(Tools.buildUri(settings.getBackupDir(), FileHelper.backupFilename(this, Constants.BackupType.PLAIN_TEXT)));
                 else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT)
-                    doBackupCrypt(Tools.buildUri(settings.getBackupDir(), backupFilename(Constants.BackupType.ENCRYPTED)));
+                    doBackupCrypt(Tools.buildUri(settings.getBackupDir(), FileHelper.backupFilename(this, Constants.BackupType.ENCRYPTED)));
                 else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP)
-                    backupEncryptedWithPGP(Tools.buildUri(settings.getBackupDir(), backupFilename(Constants.BackupType.OPEN_PGP)), null);
+                    backupEncryptedWithPGP(Tools.buildUri(settings.getBackupDir(), FileHelper.backupFilename(this, Constants.BackupType.OPEN_PGP)), null);
             } else {
                 Toast.makeText(this, R.string.backup_toast_mkdir_failed, Toast.LENGTH_LONG).show();
             }
@@ -585,30 +585,5 @@ public class BackupActivity extends BaseActivity {
             OpenPgpError error = result.getParcelableExtra(OpenPgpApi.RESULT_ERROR);
             Toast.makeText(this, String.format(getString(R.string.backup_toast_openpgp_error), error.getMessage()), Toast.LENGTH_LONG).show();
         }
-    }
-
-    private String backupFilename(Constants.BackupType type) {
-        switch (type) {
-            case PLAIN_TEXT:
-                if (settings.getIsAppendingDateTimeToBackups()) {
-                    return String.format(Constants.BACKUP_FILENAME_PLAIN_FORMAT, Tools.getDateTimeString());
-                } else {
-                    return Constants.BACKUP_FILENAME_PLAIN;
-                }
-            case ENCRYPTED:
-                if (settings.getIsAppendingDateTimeToBackups()) {
-                    return String.format(Constants.BACKUP_FILENAME_CRYPT_FORMAT, Tools.getDateTimeString());
-                } else {
-                    return Constants.BACKUP_FILENAME_CRYPT;
-                }
-            case OPEN_PGP:
-                if (settings.getIsAppendingDateTimeToBackups()) {
-                    return String.format(Constants.BACKUP_FILENAME_PGP_FORMAT, Tools.getDateTimeString());
-                } else {
-                    return Constants.BACKUP_FILENAME_PGP;
-                }
-        }
-
-        return Constants.BACKUP_FILENAME_PLAIN;
     }
 }
