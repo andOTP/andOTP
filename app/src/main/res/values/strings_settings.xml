@@ -35,6 +35,7 @@
 
     <string name="settings_title_special_features">Enable special features</string>
     <string name="settings_title_enable_screenshot">Enable screenshots</string>
+    <string name="settings_title_enable_android_backup_service">Enable android sync</string>
     <string name="settings_title_clear_keystore">Clear KeyStore</string>
 
     <!-- Descriptions -->
@@ -64,6 +65,8 @@
     <string name="settings_desc_special_features">Uncheck to disable the special features again</string>
     <string name="settings_desc_enable_screenshot">Allow to take screenshots of the main screen
         (disabled by default for security reasons)</string>
+    <string name="settings_desc_enable_android_backup_service">Enables andOTP to use android\'s
+        built in backup service to bacup keys and preferences</string>
     <string name="settings_desc_clear_keystore">Delete the encryption key from the KeyStore</string>
 
     <!-- Toasts -->
@@ -91,6 +94,7 @@
 
     <string name="settings_dialog_title_error">Error</string>
     <string name="settings_dialog_title_clear_keystore">Clear the KeyStore?</string>
+    <string name="settings_dialog_title_android_sync">Android sync</string>
 
     <string name="settings_dialog_msg_auth_invalid_with_encryption">You can only use Password or PIN as
         long as the database encryption is set to \"Password / PIN\"!</string>
@@ -109,6 +113,9 @@
         Since the <b>Database encryption</b> is set to <b>Android KeyStore</b> you will lose all
         your accounts. Make sure you have a backup!\n\n<b>Are you really sure you want to clear the
         KeyStore?</b></string>
+
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">Android sync can not be used with keystore
+        encryption, <b>you should perform a manual backup!</b></string>
 
     <!-- List entries -->
     <string-array name="settings_entries_auth">

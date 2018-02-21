@@ -23,6 +23,7 @@
 
 package org.shadowice.flocke.andotp.Utilities;
 
+import android.app.backup.BackupManager;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -41,6 +42,8 @@ import java.util.ArrayList;
 import javax.crypto.SecretKey;
 
 public class DatabaseHelper {
+
+    static final Object DatabaseFileLock = new Object();
 
     public static void wipeDatabase(Context context) {
         File db = new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE);
@@ -102,14 +105,18 @@ public class DatabaseHelper {
         String jsonString = entriesToString(entries);
 
         try {
-            byte[] data = EncryptionHelper.encrypt(encryptionKey, jsonString.getBytes());
+            synchronized (DatabaseHelper.DatabaseFileLock) {
+                byte[] data = EncryptionHelper.encrypt(encryptionKey, jsonString.getBytes());
 
-            FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE), data);
-
+                FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE), data);
+            }
         } catch (Exception error) {
             error.printStackTrace();
             return false;
         }
+
+        BackupManager backupManager = new BackupManager(context);
+        backupManager.dataChanged();
 
         return true;
     }
@@ -119,10 +126,12 @@ public class DatabaseHelper {
 
         if (encryptionKey != null) {
             try {
-                byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE));
-                data = EncryptionHelper.decrypt(encryptionKey, data);
+                synchronized (DatabaseHelper.DatabaseFileLock) {
+                    byte[] data = FileHelper.readFileToBytes(new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE));
+                    data = EncryptionHelper.decrypt(encryptionKey, data);
 
-                entries = stringToEntries(new String(data));
+                    entries = stringToEntries(new String(data));
+                }
             } catch (Exception error) {
                 error.printStackTrace();
             }
