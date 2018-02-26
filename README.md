@@ -82,7 +82,7 @@ So make sure you have a **current backup** before switching!
  * **Requesting thumbnails**: If you are missing a thumbnail you can request it by editing the [wiki](https://github.com/andOTP/andOTP/wiki/Thumbnails#thumbnail-requests)
  * **Discussion and support**: 
    - [XDA thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993) (please keep off-topic to a minimum)
-   - Telegram group [@andOTP](https://t.me/andOTP) (also check out the read-only announcement channel for important updates: [@andOTP_Broadcast](https://t.me/andOTP_Broadcast))
+   - Telegram group [@andOTP](https://t.me/andOTP) (if you just want important updates you can mute the group so you only get notified about pinned messages)
 
 #### Developers:
 
