@@ -5,10 +5,21 @@
         android:id="@+id/menu_sort"
         android:title="@string/menu_main_sort"
         android:icon="@drawable/ic_sort_inverted_white"
-        app:showAsAction="always" >
+        app:showAsAction="always">
 
         <menu>
-            <group android:checkableBehavior="single">
+            <group android:id="@+id/menu_view_group" android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_view_list"
+                    android:title="@string/menu_view_list"
+                    android:checked="true" />
+
+                <item
+                    android:id="@+id/menu_view_grid"
+                    android:title="@string/menu_view_grid" />
+            </group>
+
+            <group android:id="@+id/menu_sort_group" android:checkableBehavior="single">
                 <item
                     android:id="@+id/menu_sort_none"
                     android:title="@string/menu_sort_none"

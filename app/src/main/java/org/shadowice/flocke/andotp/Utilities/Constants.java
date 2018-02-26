@@ -46,6 +46,10 @@ public class Constants {
 
     public enum TagFunctionality {
         OR, AND, SINGLE
+	}
+
+    public enum ViewMode {
+        LIST, GRID
     }
 
     // Intents (Format: A0x with A = parent Activity, x = number of the intent)

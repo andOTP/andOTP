@@ -355,6 +355,15 @@ public class Settings {
         setString(R.string.settings_key_sort_mode, value.toString());
     }
 
+    public Constants.ViewMode getViewMode() {
+        String modeStr = getString(R.string.settings_key_view_mode, Constants.ViewMode.LIST.toString());
+        return Constants.ViewMode.valueOf(modeStr);
+    }
+
+    public void setViewMode(Constants.ViewMode value) {
+        setString(R.string.settings_key_view_mode, value.toString());
+    }
+
     public boolean getBackupAsk() {
         return getBoolean(R.string.settings_key_backup_ask, true);
     }
@@ -479,5 +488,9 @@ public class Settings {
 
     public boolean getIsAppendingDateTimeToBackups() {
         return getBoolean(R.string.settings_key_backup_append_date_time, false);
+	}
+
+    public int getColumnsInGridView() {
+        return getIntValue(R.string.settings_key_grid_columns, context.getResources().getInteger(R.integer.settings_default_grid_columns));
     }
 }

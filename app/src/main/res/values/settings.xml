@@ -24,6 +24,7 @@
     <string name="settings_key_thumbnail_size" translatable="false">pref_thumbnail_size</string>
     <string name="settings_key_split_group_size" translatable="false">pref_split_group_size</string>
     <string name="settings_key_tag_functionality" translatable="false">pref_tag_functionality</string>
+    <string name="settings_key_grid_columns" translatable="false">pref_grid_columns</string>
 
     <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
@@ -37,6 +38,7 @@
 
     <string name="settings_key_security_backup_warning" translatable="false">pref_security_backup_warning_shown</string>
     <string name="settings_key_sort_mode" translatable="false">pref_sort_mode</string>
+    <string name="settings_key_view_mode" translatable="false">pref_view_mode</string>
     <string name="settings_key_special_features" translatable="false">pref_special_features</string>
     <string name="settings_key_all_tags_toggle" translatable="false">pref_all_tags_toggle</string>
     <string name="settings_key_no_tags_toggle" translatable="false">pref_no_tags_toggle</string>
@@ -58,6 +60,7 @@
     <string name="settings_default_split_group_size">3</string>
     <string name="settings_default_tag_functionality">or</string>
 
+    <integer name="settings_default_grid_columns">4</integer>
 
     <!-- All of the possible tile background colors -->
     <array name="letter_tile_colors">
@@ -147,4 +150,6 @@
     <integer name="settings_max_tap_to_reveal_timeout">60</integer>
     <integer name="settings_min_label_size">12</integer>
     <integer name="settings_max_label_size">24</integer>
+    <integer name="settings_min_grid_columns">2</integer>
+    <integer name="settings_max_grid_columns">8</integer>
 </resources>

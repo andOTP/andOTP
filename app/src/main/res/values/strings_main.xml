@@ -40,10 +40,14 @@
     <string name="menu_main_search">Search</string>
     <string name="menu_main_settings">Settings</string>
     <string name="menu_main_sort">Sort</string>
+    <string name="menu_main_view">View</string>
 
     <string name="menu_sort_none">Unsorted</string>
     <string name="menu_sort_label">Label</string>
     <string name="menu_sort_last_used">Last used</string>
+
+    <string name="menu_view_list">List</string>
+    <string name="menu_view_grid">Grid</string>
 
     <string name="menu_popup_edit_label">Edit label</string>
     <string name="menu_popup_change_image">Change image</string>
