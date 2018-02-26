@@ -22,14 +22,14 @@
     <string name="backup_desc_import_crypt">Restore accounts from a password-protected JSON file</string>
     <string name="backup_desc_import_openpgp">Restore accounts from an OpenPGP-encrypted JSON file</string>
 
-    <string name="backup_desc_crypt_setup">You need to set a password in the Settings to use
-        encrypted backups.
+    <string name="backup_desc_crypt_setup">You need to set a <b>Backup password</b> in the
+        <b>Settings</b> to use encrypted backups.
     </string>
 
     <string name="backup_desc_openpgp_provider">You need to install an OpenPGP provider and enable
-        it in the Settings to use this feature.
+        it in the <b>Settings</b> to use this feature.
     </string>
-    <string name="backup_desc_openpgp_keyid">You need to select an OpenPGP key in the Settings
+    <string name="backup_desc_openpgp_keyid">You need to select an OpenPGP key in the <b>Settings</b>
         before you can create encrypted backups.
     </string>
 
@@ -68,5 +68,5 @@
     <string name="backup_toast_storage_permissions">Storage permissions not granted</string>
     <string name="backup_toast_openpgp_error">OpenPGP Error: %s</string>
     <string name="backup_toast_openpgp_not_verified">No verified signature detected</string>
-    <string name="backup_toast_crypt_password_not_set">Password not set, check the Settings</string>
+    <string name="backup_toast_crypt_password_not_set">Password not set, check the <b>Settings</b></string>
 </resources>

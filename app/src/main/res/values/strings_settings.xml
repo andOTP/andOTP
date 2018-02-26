@@ -35,7 +35,7 @@
 
     <string name="settings_title_special_features">Enable special features</string>
     <string name="settings_title_enable_screenshot">Enable screenshots</string>
-    <string name="settings_title_enable_android_backup_service">Enable android sync</string>
+    <string name="settings_title_enable_android_backup_service">Enable Android sync</string>
     <string name="settings_title_clear_keystore">Clear KeyStore</string>
 
     <!-- Descriptions -->

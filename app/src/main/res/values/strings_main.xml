@@ -87,7 +87,7 @@
         every time you start andOTP.</string>
     <string name="dialog_msg_security_default">By default the Android KeyStore will be used, however
         this is known to cause problems on certain custom ROMs (and a few stock ones as well). You
-        can change the encryption in the Settings by clicking on the button below.</string>
+        can change the encryption in the <b>Settings</b> by clicking on the button below.</string>
 
     <string name="dialog_msg_last_used">In order for andOTP to recognize which token was used last
         you have to have \"tap to reveal\" enabled or use the copy button.\n\nThis message will not
@@ -95,5 +95,5 @@
 
     <string name="dialog_msg_keystore_error">Failed to load the encryption key from the KeyStore.
         <b>Any entries that are added will get lost.</b>\n\nTo still be able to use andOTP you can go
-        to the Settings and switch the <b>Database encryption</b> to <b>Password / PIN</b>.</string>
+        to the <b>Settings</b> and switch the <b>Database encryption</b> to <b>Password / PIN</b>.</string>
 </resources>
