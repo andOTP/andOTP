@@ -1,17 +1,13 @@
 package org.shadowice.flocke.andotp.View;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 
@@ -80,18 +76,6 @@ public class ThumbnailSelectionAdapter extends BaseAdapter {
         EntryThumbnail.EntryThumbnails thumb = (EntryThumbnail.EntryThumbnails)getItem(i);
 
         imageView.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumb));
-
-        try {
-            TypedValue typedValue = new TypedValue();
-            Resources.Theme theme = context.getTheme();
-            theme.resolveAttribute(R.attr.thumbnailBackground, typedValue, true);
-            @ColorInt int color = typedValue.data;
-
-            imageView.setBackgroundColor(color);
-        }catch (Exception e) {
-            e.printStackTrace();
-            imageView.setBackgroundColor(context.getResources().getColor(android.R.color.white));
-        }
         return imageView;
     }
 }

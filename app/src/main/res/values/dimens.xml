@@ -8,7 +8,8 @@
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
 
-    <dimen name="card_corner_radius">0dp</dimen>
+    <dimen name="card_corner_radius">2dp</dimen>
+    <dimen name="card_padding_without_corners">14dp</dimen>
     <dimen name="card_thumbnail_size">46dp</dimen>
 
     <!-- The default letter tile text size -->

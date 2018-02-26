@@ -52,6 +52,7 @@ import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
+import org.shadowice.flocke.andotp.Utilities.Tools;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperAdapter;
 
 import java.text.Collator;
@@ -377,8 +378,13 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             }
         });
 
+        int gridPadding = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
+        int gridBackground = Tools.getThemeColor(context, R.attr.thumbnailBackground);
+
         GridView grid = new GridView(context);
         grid.setAdapter(thumbnailAdapter);
+        grid.setBackgroundColor(gridBackground);
+        grid.setPadding(gridPadding, gridPadding, gridPadding, gridPadding);
         grid.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         int thumbnailSize = settings.getThumbnailSize();

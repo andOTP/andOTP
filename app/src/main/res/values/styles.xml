@@ -33,7 +33,6 @@
     <style name="CardViewStyle" parent="CardView">
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
         <item name="cardUseCompatPadding">true</item>
-        <item name="contentPadding">@dimen/activity_margin</item>
     </style>
 
     <!-- Dark application theme. -->

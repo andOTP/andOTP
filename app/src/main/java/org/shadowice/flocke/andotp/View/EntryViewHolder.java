@@ -28,6 +28,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -51,6 +52,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private LinearLayout valueLayout;
     private LinearLayout coverLayout;
     private LinearLayout customPeriodLayout;
+    private FrameLayout thumbnailFrame;
     private ImageView visibleImg;
     private ImageView thumbnailImg;
     private TextView value;
@@ -68,6 +70,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         value = v.findViewById(R.id.valueText);
         valueLayout = v.findViewById(R.id.valueLayout);
         visibleImg = v.findViewById(R.id.valueImg);
+        thumbnailFrame = v.findViewById(R.id.thumbnailFrame);
         thumbnailImg = v.findViewById(R.id.thumbnailImg);
         coverLayout = v.findViewById(R.id.coverLayout);
         label = v.findViewById(R.id.textViewLabel);
@@ -131,7 +134,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             this.tags.setVisibility(View.GONE);
         }
 
-        thumbnailImg.setVisibility(settings.getThumbnailVisible() ? View.VISIBLE : View.GONE);
+        thumbnailFrame.setVisibility(settings.getThumbnailVisible() ? View.VISIBLE : View.GONE);
 
         int thumbnailSize = settings.getThumbnailSize();
         if(settings.getThumbnailVisible()) {

@@ -10,133 +10,151 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:baselineAligned="false" >
+        android:baselineAligned="false">
 
-        <ImageView
-            android:id="@+id/thumbnailImg"
-            android:layout_width="@dimen/card_thumbnail_size"
-            android:layout_height="@dimen/card_thumbnail_size"
-            android:layout_marginEnd="@dimen/activity_margin"
-            android:background="?attr/thumbnailBackground"
-            android:src="@mipmap/ic_launcher" />
+        <FrameLayout
+            android:id="@+id/thumbnailFrame"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="@dimen/activity_margin"
+            android:paddingStart="@dimen/card_padding_without_corners"
+            android:background="?attr/thumbnailBackground">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/thumbnailImg"
+                android:layout_width="@dimen/card_thumbnail_size"
+                android:layout_height="@dimen/card_thumbnail_size"
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <LinearLayout
-                    android:id="@+id/valueLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:id="@+id/valueImg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/activity_margin_small"
-                        android:src="@drawable/ic_visibility_visible"/>
-
-                    <TextView
-                        android:id="@+id/valueText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:textSize="28sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/coverLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/coverImg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/activity_margin_small"
-                        android:alpha="0.4"
-                        android:src="@drawable/ic_visibility_invisible"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha="0.4"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:textSize="28sp"
-                        android:textStyle="bold"
-                        android:text="@string/label_hidden" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/textViewLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/textViewTags"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textSize="13.5sp" />
-
-        </LinearLayout>
+        </FrameLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_margin"
+            android:gravity="center_vertical"
+            android:baselineAligned="false" >
 
             <LinearLayout
-                android:id="@+id/customPeriodLayout"
-                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:visibility="gone"
-                android:orientation="horizontal" >
+                android:layout_weight="1">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_alarm_gray" />
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:id="@+id/valueLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/valueImg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/activity_margin_small"
+                            android:src="@drawable/ic_visibility_visible"/>
+
+                        <TextView
+                            android:id="@+id/valueText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/coverLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/coverImg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/activity_margin_small"
+                            android:alpha="0.4"
+                            android:src="@drawable/ic_visibility_invisible"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.4"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:text="@string/label_hidden" />
+
+                    </LinearLayout>
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/customPeriod"
+                    android:id="@+id/textViewLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold" />
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textViewTags"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="13.5sp" />
+
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/copyButton"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/activity_margin_small"
-                android:src="@drawable/ic_content_copy_gray"
-                android:background="?android:attr/selectableItemBackground"/>
+                android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/menuButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/activity_margin_small"
-                android:src="@drawable/ic_more_vert_gray"
-                android:background="?android:attr/selectableItemBackground"/>
+                <LinearLayout
+                    android:id="@+id/customPeriodLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:visibility="gone"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_alarm_gray" />
+
+                    <TextView
+                        android:id="@+id/customPeriod"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/copyButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_margin_small"
+                    android:src="@drawable/ic_content_copy_gray"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+                <ImageButton
+                    android:id="@+id/menuButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_margin_small"
+                    android:src="@drawable/ic_more_vert_gray"
+                    android:background="?android:attr/selectableItemBackground"/>
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
