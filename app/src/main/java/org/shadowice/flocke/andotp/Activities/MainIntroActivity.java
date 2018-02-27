@@ -2,13 +2,12 @@ package org.shadowice.flocke.andotp.Activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -25,6 +24,7 @@ public class MainIntroActivity extends IntroActivity {
     private Settings settings;
 
     private EncryptionFragment encryptionFragment;
+    private AuthenticationFragment authenticationFragment;
 
     @Override protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -32,6 +32,15 @@ public class MainIntroActivity extends IntroActivity {
         settings = new Settings(this);
 
         encryptionFragment = new EncryptionFragment();
+        authenticationFragment = new AuthenticationFragment();
+
+        encryptionFragment.setEncryptionChangedCallback(new EncryptionFragment.EncryptionChangedCallback() {
+            @Override
+            public void onEncryptionChanged(Constants.EncryptionType newEncryptionType) {
+                authenticationFragment.updateEncryptionType(newEncryptionType);
+                settings.setEncryption(newEncryptionType);
+            }
+        });
 
         setButtonBackFunction(BUTTON_BACK_FUNCTION_BACK);
 
@@ -53,36 +62,12 @@ public class MainIntroActivity extends IntroActivity {
                 .build()
         );
 
-        // TODO: Set authentication
-        addSlide(new SimpleSlide.Builder()
-                .title(R.string.intro_slide1_title)
-                .description(R.string.intro_slide1_desc)
-                .image(R.mipmap.ic_launcher)
+        addSlide(new FragmentSlide.Builder()
                 .background(R.color.colorPrimary)
                 .backgroundDark(R.color.colorPrimaryDark)
-                .scrollable(false)
+                .fragment(authenticationFragment)
                 .build()
         );
-
-        addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if (position == 2) {
-                    // TODO: Inter-page communication
-                    settings.setEncryption(encryptionFragment.getSelectedEncryption());
-                    Log.d("INTRO", "Encryption saved");
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
-
     }
 
     @Override
@@ -92,12 +77,18 @@ public class MainIntroActivity extends IntroActivity {
     }
 
     public static class EncryptionFragment extends SlideFragment {
+        private EncryptionChangedCallback encryptionChangedCallback = null;
+
         private Spinner selection;
         private TextView desc;
 
         private SparseArray<Constants.EncryptionType> selectionMapping;
 
         public EncryptionFragment() {
+        }
+
+        public void setEncryptionChangedCallback(EncryptionChangedCallback cb) {
+            encryptionChangedCallback = cb;
         }
 
         @Override
@@ -108,7 +99,7 @@ public class MainIntroActivity extends IntroActivity {
             selection = root.findViewById(R.id.introEncryptionSelection);
             desc = root.findViewById(R.id.introEncryptionDesc);
 
-            final String[] encValues = getResources().getStringArray(R.array.settings_values_encryption);
+            String[] encValues = getResources().getStringArray(R.array.settings_values_encryption);
 
             selectionMapping = new SparseArray<>();
             for (int i = 0; i < encValues.length; i++)
@@ -123,6 +114,9 @@ public class MainIntroActivity extends IntroActivity {
                         desc.setText(R.string.intro_slide2_desc_password);
                     else if (encryptionType == Constants.EncryptionType.KEYSTORE)
                         desc.setText(R.string.intro_slide2_desc_keystore);
+
+                    if (encryptionChangedCallback != null)
+                        encryptionChangedCallback.onEncryptionChanged(encryptionType);
                 }
 
                 @Override
@@ -133,8 +127,78 @@ public class MainIntroActivity extends IntroActivity {
             return root;
         }
 
-        private Constants.EncryptionType getSelectedEncryption() {
-            return selectionMapping.get(selection.getSelectedItemPosition());
+        public interface EncryptionChangedCallback {
+            void onEncryptionChanged(Constants.EncryptionType newEncryptionType);
+        }
+    }
+
+    public static class AuthenticationFragment extends SlideFragment {
+        private Constants.EncryptionType encryptionType = Constants.EncryptionType.KEYSTORE;
+
+        private TextView desc = null;
+        private Spinner selection = null;
+
+        private SparseArray<Constants.AuthMethod> selectionMapping;
+
+        public AuthenticationFragment() {
+        }
+
+        public void updateEncryptionType(Constants.EncryptionType encryptionType) {
+            this.encryptionType = encryptionType;
+
+            if (desc != null) {
+                if (encryptionType == Constants.EncryptionType.KEYSTORE) {
+                    desc.setText(R.string.intro_slide3_desc_keystore);
+                } else if (encryptionType == Constants.EncryptionType.PASSWORD) {
+                    desc.setText(R.string.intro_slide3_desc_password);
+
+                    Constants.AuthMethod selectedMethod = selectionMapping.get(selection.getSelectedItemPosition());
+                    if (selectedMethod != Constants.AuthMethod.PASSWORD && selectedMethod != Constants.AuthMethod.PIN )
+                        selection.setSelection(selectionMapping.indexOfValue(Constants.AuthMethod.PASSWORD));
+                }
+            }
+        }
+
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View root = inflater.inflate(R.layout.component_intro_authentication, container, false);
+
+            desc = root.findViewById(R.id.introAuthDesc);
+            selection = root.findViewById(R.id.introAuthSelection);
+
+            Constants.AuthMethod[] authValues = Constants.AuthMethod.values();
+            String[] authEntries = getResources().getStringArray(R.array.settings_entries_auth);
+
+            selectionMapping = new SparseArray<>();
+            for (int i = 0; i < authValues.length; i++)
+                selectionMapping.put(i, authValues[i]);
+
+            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getIntroActivity(), android.R.layout.simple_spinner_item, authEntries) {
+                @Override
+                public boolean isEnabled(int position){
+                        return encryptionType != Constants.EncryptionType.PASSWORD ||
+                                position == selectionMapping.indexOfValue(Constants.AuthMethod.PASSWORD) ||
+                                position == selectionMapping.indexOfValue(Constants.AuthMethod.PIN);
+                }
+
+                @Override
+                public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
+                    View view = super.getDropDownView(position, convertView, parent);
+                    TextView tv = (TextView) view;
+
+                    tv.setEnabled(encryptionType != Constants.EncryptionType.PASSWORD ||
+                            position == selectionMapping.indexOfValue(Constants.AuthMethod.PASSWORD) ||
+                            position == selectionMapping.indexOfValue(Constants.AuthMethod.PIN));
+
+                    return view;
+                }
+            };
+
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            selection.setAdapter(spinnerArrayAdapter);
+
+            return root;
         }
     }
 }

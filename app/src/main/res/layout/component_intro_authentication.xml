@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="@dimen/activity_margin_large">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textStyle="bold"
+        android:text="@string/settings_title_auth" />
+
+    <TextView
+        android:id="@+id/introAuthDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:text="@string/intro_slide3_desc_keystore"/>
+
+    <Spinner
+        android:id="@+id/introAuthSelection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_margin_large"
+        android:layout_marginStart="@dimen/activity_margin"
+        android:layout_marginEnd="@dimen/activity_margin"
+        android:entries="@array/settings_entries_auth" />
+
+    <LinearLayout
+        android:id="@+id/introCredentialsLayout"
+        android:visibility="invisible"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_margin_large"
+        android:paddingStart="@dimen/activity_margin"
+        android:paddingEnd="@dimen/activity_margin">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/introPasswordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/settings_hint_password"
+            app:passwordToggleEnabled="true" >
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/introPasswordEdit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <EditText
+            android:id="@+id/introPasswordConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/settings_hint_password_confirm"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/introPasswordToShortWarning"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/activity_margin"
+            android:paddingTop="@dimen/activity_margin"
+            android:visibility="gone"
+            android:textAlignment="center"
+            android:text="@string/settings_label_short_password" />
+
+    </LinearLayout>
+
+</LinearLayout>
