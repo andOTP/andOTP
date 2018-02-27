@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2017 Jakob Nixdorf
- * Copyright (C) 2017 RichyHBM
+ * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2018 RichyHBM
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
