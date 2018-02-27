@@ -92,10 +92,15 @@
     <string name="settings_toast_auth_upgrade_failed">Failed to silently upgrade your password / PIN
         to the new encryption, please manually reset it in the Settings!</string>
 
+    <string name="settings_dialog_title_warning">Warning</string>
     <string name="settings_dialog_title_error">Error</string>
     <string name="settings_dialog_title_clear_keystore">Clear the KeyStore?</string>
     <string name="settings_dialog_title_android_sync">Android sync</string>
 
+    <string name="settings_dialog_msg_encryption_change">andOTP will now try to change the database
+        encryption. In case of a failure an internal backup will be restored and the encryption
+        remains unchanged.\n\n<b>However, it\'s always a good idea to have a backup in case
+        something unexpected happens!</b></string>
     <string name="settings_dialog_msg_auth_invalid_with_encryption">You can only use Password or PIN as
         long as the database encryption is set to \"Password / PIN\"!</string>
     <string name="settings_dialog_msg_encryption_invalid_with_auth">You first need to set the

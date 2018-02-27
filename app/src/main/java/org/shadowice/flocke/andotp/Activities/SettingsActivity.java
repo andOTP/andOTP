@@ -246,6 +246,28 @@ public class SettingsActivity extends BaseActivity
                 useAndroidSync.setChecked(false);
         }
 
+        public void encryptionChangeWithDialog(final EncryptionType encryptionType) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(R.string.settings_dialog_title_warning)
+                    .setMessage(R.string.settings_dialog_msg_encryption_change)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            if (encryptionType == EncryptionType.PASSWORD)
+                                ((SettingsActivity) getActivity()).tryEncryptionChangeWithAuth(encryptionType);
+                            else if (encryptionType == EncryptionType.KEYSTORE)
+                                ((SettingsActivity) getActivity()).tryEncryptionChange(encryptionType, null);
+                        }
+                    })
+                    .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    })
+                    .create()
+                    .show();
+        }
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -273,22 +295,25 @@ public class SettingsActivity extends BaseActivity
                 public boolean onPreferenceChange(final Preference preference, Object o) {
                     String newEncryption = (String) o;
                     EncryptionType encryptionType = EncryptionType.valueOf(newEncryption.toUpperCase());
+                    EncryptionType oldEncryptionType = settings.getEncryption();
                     AuthMethod authMethod = settings.getAuthMethod();
 
-                    if (encryptionType == EncryptionType.PASSWORD) {
-                        if (authMethod != AuthMethod.PASSWORD && authMethod != AuthMethod.PIN) {
-                            UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_with_auth);
-                            return false;
-                        } else {
-                            if (settings.getAuthCredentials().isEmpty()) {
-                                UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_without_credentials);
-                            return false;
-                        }
-                    }
+                    if (encryptionType != oldEncryptionType) {
+                        if (encryptionType == EncryptionType.PASSWORD) {
+                            if (authMethod != AuthMethod.PASSWORD && authMethod != AuthMethod.PIN) {
+                                UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_with_auth);
+                                return false;
+                            } else {
+                                if (settings.getAuthCredentials().isEmpty()) {
+                                    UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_without_credentials);
+                                    return false;
+                                }
+                            }
 
-                        ((SettingsActivity) getActivity()).tryEncryptionChangeWithAuth(encryptionType);
-                    } else if (encryptionType == EncryptionType.KEYSTORE) {
-                        ((SettingsActivity) getActivity()).tryEncryptionChange(encryptionType, null);
+                            encryptionChangeWithDialog(EncryptionType.PASSWORD);
+                        } else if (encryptionType == EncryptionType.KEYSTORE) {
+                            encryptionChangeWithDialog(EncryptionType.KEYSTORE);
+                        }
                     }
 
                     return false;
