@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Original colors, uncomment to debug theme issues -->
+    <!--
+        <color name="colorPrimary">#388E3C</color>
+        <color name="colorPrimaryDark">#00600F</color>
+    -->
+
+    <color name="colorPrimary">#D32F2F</color>                  <!-- material_red_700 -->
+    <color name="colorPrimaryDark">#9A0007</color>
+</resources>
