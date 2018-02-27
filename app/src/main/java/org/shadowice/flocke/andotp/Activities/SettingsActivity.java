@@ -22,10 +22,8 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
-import android.app.KeyguardManager;
-import android.app.backup.BackupManager;
-import android.app.backup.RestoreObserver;
 import android.app.AlertDialog;
+import android.app.backup.BackupManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,12 +34,8 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.view.ViewStub;
-import android.widget.CheckBox;
 import android.widget.Toast;
 
 import org.openintents.openpgp.util.OpenPgpAppPreference;

@@ -84,6 +84,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     private Constants.ViewMode viewMode = Constants.ViewMode.LIST;
     private TagsAdapter tagsFilterAdapter;
     private Settings settings;
+    private EntryViewDialog entryViewDialog = null;
 
     public EntriesCardAdapter(Context context, TagsAdapter tagsFilterAdapter) {
         this.context = context;
@@ -188,6 +189,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         boolean isGrid = this.getViewMode() == Constants.ViewMode.GRID;
         entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags(), entry.getThumbnail(), entry.isVisible(), isGrid);
 
+        if(entryViewDialog != null) {
+            entryViewDialog.dismiss();
+            entryViewDialog = null;
+        }
+
         if (entry.hasNonDefaultPeriod()) {
             entryViewHolder.showCustomPeriod(entry.getPeriod());
         } else {
@@ -202,7 +208,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     @Override
-    public EntryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public EntryViewHolder onCreateViewHolder(final ViewGroup viewGroup, int i) {
 
         View itemView;
         if(getViewMode() == Constants.ViewMode.LIST)
@@ -237,7 +243,15 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
             @Override
             public void onTap(final int position) {
-                if (settings.getTapToReveal()) {
+                if(settings.getViewMode() == Constants.ViewMode.GRID) {
+                    if(entryViewDialog != null) {
+                        entryViewDialog.dismiss();
+                        entryViewDialog = null;
+                    }
+                    entryViewDialog = new EntryViewDialog(context, viewGroup);
+                    int realIndex = getRealIndex(position);
+                    entryViewDialog.show(entries.get(realIndex), position, this);
+                }else if (settings.getTapToReveal()) {
                     final Entry entry = displayedEntries.get(position);
                     final int realIndex = entries.indexOf(entry);
 
@@ -527,6 +541,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 int id = item.getItemId();
+
+                if(entryViewDialog != null) {
+                    entryViewDialog.dismiss();
+                    entryViewDialog = null;
+                }
 
                 if (id == R.id.menu_popup_editLabel) {
                     editEntryLabel(pos);

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     style="?attr/cardStyle"
+    app:contentPadding="0dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -11,19 +13,30 @@
         android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/thumbnailImg"
+        <FrameLayout
+            android:id="@+id/thumbnailFrame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/ic_launcher" />
+            android:padding="@dimen/activity_margin"
+            android:paddingTop="@dimen/activity_margin_small"
+            android:background="?attr/thumbnailBackground">
+
+            <ImageView
+                android:id="@+id/thumbnailImg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/ic_launcher" />
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/textViewLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="@dimen/activity_margin_small"
             android:ellipsize="end"
             android:layout_gravity="center_horizontal"
             android:maxLines="1"

@@ -35,7 +35,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
@@ -109,6 +108,15 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         });
 
         setTapToReveal(tapToReveal);
+
+        if(card != null) {
+            card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    callback.onTap(getAdapterPosition());
+                }
+            });
+        }
     }
 
     public void updateValues(String label, String token, List<String> tags, EntryThumbnail.EntryThumbnails thumbnail, boolean isVisible, boolean showAsPopup) {
@@ -139,7 +147,10 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             }
         }
 
-		thumbnailFrame.setVisibility(settings.getThumbnailVisible() ? View.VISIBLE : View.GONE);
+        if(thumbnailFrame != null) {
+		    thumbnailFrame.setVisibility(settings.getThumbnailVisible() ? View.VISIBLE : View.GONE);
+        }
+
         if(thumbnailImg != null) {
             thumbnailImg.setVisibility(settings.getThumbnailVisible() ? View.VISIBLE : View.GONE);
 
@@ -203,19 +214,10 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             if(valueLayout != null) valueLayout.setVisibility(View.GONE);
             if(coverLayout != null) coverLayout.setVisibility(View.VISIBLE);
             if(visibleImg != null) visibleImg.setVisibility(View.VISIBLE);
-
-            if(card != null) card.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    callback.onTap(getAdapterPosition());
-                }
-            });
         } else {
             if(valueLayout != null) valueLayout.setVisibility(View.VISIBLE);
             if(coverLayout != null) coverLayout.setVisibility(View.GONE);
             if(visibleImg != null) visibleImg.setVisibility(View.GONE);
-
-            if(card != null) card.setOnClickListener(null);
         }
     }
 

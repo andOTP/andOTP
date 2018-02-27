@@ -2,13 +2,9 @@ package org.shadowice.flocke.andotp.Receivers;
 
 
 import android.Manifest;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.os.Build;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 
 import org.shadowice.flocke.andotp.R;
@@ -16,8 +12,6 @@ import org.shadowice.flocke.andotp.Utilities.NotificationHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 
 import java.io.File;
-
-import static android.content.Context.NOTIFICATION_SERVICE;
 
 public abstract class BackupBroadcastReceiver extends BroadcastReceiver {
 
