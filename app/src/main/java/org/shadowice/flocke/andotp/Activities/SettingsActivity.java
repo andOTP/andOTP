@@ -134,12 +134,19 @@ public class SettingsActivity extends BaseActivity
                 boolean wasSyncEnabled = settings.getAndroidBackupServiceEnabled();
                 settings.setAndroidBackupServiceEnabled(false);
 
-                if(wasSyncEnabled) {
+                if (wasSyncEnabled) {
                     UIHelper.showGenericDialog(this,
-                            R.string.settings_dialog_title_android_sync,
-                            R.string.settings_dialog_msg_android_sync_disabled_encryption);
-                }
-            }
+                        R.string.settings_dialog_title_android_sync,
+                        R.string.settings_dialog_msg_android_sync_disabled_encryption,
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                recreate();
+                            }
+                        }
+                    );
+                } else recreate();
+            }else recreate();
         }
     }
 
@@ -229,8 +236,7 @@ public class SettingsActivity extends BaseActivity
         }
     }
 
-    public static class SettingsFragment extends PreferenceFragment
-            implements SharedPreferences.OnSharedPreferenceChangeListener{
+    public static class SettingsFragment extends PreferenceFragment {
         PreferenceCategory catSecurity;
 
         Settings settings;
@@ -238,13 +244,6 @@ public class SettingsActivity extends BaseActivity
 
         OpenPgpAppPreference pgpProvider;
         OpenPgpKeyPreference pgpKey;
-
-        public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-            CheckBoxPreference useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
-            useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);
-            if(!useAndroidSync.isEnabled())
-                useAndroidSync.setChecked(false);
-        }
 
         public void encryptionChangeWithDialog(final EncryptionType encryptionType) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -275,7 +274,7 @@ public class SettingsActivity extends BaseActivity
             settings = new Settings(getActivity());
 
             final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
-            sharedPref.registerOnSharedPreferenceChangeListener(this);
+
             addPreferencesFromResource(R.xml.preferences);
 
             CredentialsPreference credentialsPreference = (CredentialsPreference) findPreference(getString(R.string.settings_key_auth));
@@ -336,6 +335,9 @@ public class SettingsActivity extends BaseActivity
 
             CheckBoxPreference useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
             useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);
+            if(!useAndroidSync.isEnabled()) {
+                useAndroidSync.setChecked(false);
+            }
 
             if (sharedPref.contains(getString(R.string.settings_key_special_features)) &&
                     sharedPref.getBoolean(getString(R.string.settings_key_special_features), false)) {
