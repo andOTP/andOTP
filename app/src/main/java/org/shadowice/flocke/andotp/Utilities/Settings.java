@@ -290,6 +290,10 @@ public class Settings {
         return EncryptionType.valueOf(encType.toUpperCase());
     }
 
+    public void setEncryption(EncryptionType encryptionType) {
+        setEncryption(encryptionType.name().toLowerCase());
+    }
+
     public void setEncryption(String encryption) {
         setString(R.string.settings_key_encryption, encryption);
     }

@@ -103,7 +103,7 @@ public class MainActivity extends BaseActivity
                 .initiateScan();
     }
 
-    private void showFirstTimeWarning() {
+    /*private void showFirstTimeWarning() {
         ViewGroup container = findViewById(R.id.main_content);
         View msgView = getLayoutInflater().inflate(R.layout.dialog_database_encryption, container, false);
 
@@ -135,6 +135,11 @@ public class MainActivity extends BaseActivity
                 })
                 .create()
                 .show();
+    }*/
+
+    private void showFirstTimeWarning() {
+        Intent introIntent = new Intent(this, MainIntroActivity.class);
+        startActivityForResult(introIntent, Constants.INTENT_MAIN_INTRO);
     }
 
     public void authenticate(int messageId) {

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intro_slide1_title">Welcome to andOTP</string>
+    <string name="intro_slide1_desc">This wizard will guide you through the initial setup.</string>
+
+    <string name="intro_slide2_desc">To ensure the security of your accounts andOTP only stores them
+        in encrypted data files. Here you can choose which method of encryption will be used:</string>
+    <string name="intro_slide2_desc_keystore">The KeyStore is a system component of Android for
+        securely storing cryptographic keys. The advantage of this method is that the keys are
+        stored separated from the data files and can be backed by hardware cryptography (if your
+        device supports it). However, as the keys are not stored with the apps data <b>this method
+        prevents external backup solutions (like Titanium) from working</b>. If you choose this
+        method you will have to rely on the internal backup functions provided by andOTP.
+        \n\n<b>Warning</b>: The KeyStore is known to cause problems on some custom ROMs (and a few
+        stock ones as well). If you don\'t mind entering a password / PIN every time you start
+        andOTP it is highly recommended to use the password-based encryption.</string>
+    <string name="intro_slide2_desc_password">This method will encrypt your data with a key
+        generated from a password or PIN. The main advantage here is that this will work with
+        external backup solutions (like Titanium). However, you will have to enter your credentials
+        every time you start andOTP.</string>
+</resources>

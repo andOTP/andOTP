@@ -36,6 +36,10 @@
             android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".Activities.MainIntroActivity"
+            android:parentActivityName=".Activities.MainActivity"
+            android:theme="@style/Theme.Intro" />
+        <activity
             android:name=".Activities.SettingsActivity"
             android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
