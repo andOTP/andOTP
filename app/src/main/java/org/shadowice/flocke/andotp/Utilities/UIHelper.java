@@ -30,12 +30,18 @@ import android.view.inputmethod.InputMethodManager;
 
 public class UIHelper {
     public static void showGenericDialog(Context context, int titleId, int messageId) {
+        showGenericDialog(context, titleId, messageId, null);
+    }
+
+    public static void showGenericDialog(Context context, int titleId, int messageId, final Runnable onOk) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(titleId)
                 .setMessage(messageId)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        if(onOk != null)
+                            onOk.run();
                     }
                 })
                 .create()
