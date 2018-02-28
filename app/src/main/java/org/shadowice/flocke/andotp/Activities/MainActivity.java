@@ -44,7 +44,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
@@ -103,42 +102,8 @@ public class MainActivity extends BaseActivity
                 .initiateScan();
     }
 
-    /*private void showFirstTimeWarning() {
-        ViewGroup container = findViewById(R.id.main_content);
-        View msgView = getLayoutInflater().inflate(R.layout.dialog_database_encryption, container, false);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.dialog_title_encryption)
-                .setView(msgView)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        settings.setFirstTimeWarningShown(true);
-                        updateEncryption(null);
-                    }
-                })
-                .setNegativeButton(R.string.button_settings, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        settings.setFirstTimeWarningShown(true);
-
-                        Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
-                        startActivityForResult(settingsIntent, Constants.INTENT_MAIN_SETTINGS);
-                    }
-                })
-                .setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialogInterface) {
-                        settings.setFirstTimeWarningShown(true);
-                        updateEncryption(null);
-                    }
-                })
-                .create()
-                .show();
-    }*/
-
     private void showFirstTimeWarning() {
-        Intent introIntent = new Intent(this, MainIntroActivity.class);
+        Intent introIntent = new Intent(this, IntroScreenActivity.class);
         startActivityForResult(introIntent, Constants.INTENT_MAIN_INTRO);
     }
 

@@ -24,4 +24,8 @@
     <string name="intro_slide3_desc_password">Here you can setup an authentication to lock andOTP.
         Since you have chosen <b>Password / PIN</b> as encryption method you need to set either a
         password or a PIN to proceed.</string>
+    <string name="intro_slide3_warn_no_password">Please set a password to continue!</string>
+    <string name="intro_slide3_warn_no_pin">Please set a PIN to continue!</string>
+    <string name="intro_slide3_warn_confirm_password">Please confirm your password to continue!</string>
+    <string name="intro_slide3_warn_confirm_pin">Please confirm your PIN to continue!</string>
 </resources>

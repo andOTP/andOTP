@@ -1,24 +1,31 @@
 package org.shadowice.flocke.andotp.Activities;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.app.KeyguardManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
+import com.heinrichreimersoftware.materialintro.app.OnNavigationBlockedListener;
 import com.heinrichreimersoftware.materialintro.app.SlideFragment;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
@@ -26,8 +33,9 @@ import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.Settings;
+import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
-public class MainIntroActivity extends IntroActivity {
+public class IntroScreenActivity extends IntroActivity {
     private Settings settings;
 
     private EncryptionFragment encryptionFragment;
@@ -69,12 +77,21 @@ public class MainIntroActivity extends IntroActivity {
                 .build()
         );
 
+        authenticationFragment.setSlidePos(2);
         addSlide(new FragmentSlide.Builder()
                 .background(R.color.colorPrimary)
                 .backgroundDark(R.color.colorPrimaryDark)
                 .fragment(authenticationFragment)
                 .build()
         );
+
+        addOnNavigationBlockedListener(new OnNavigationBlockedListener() {
+            @Override
+            public void onNavigationBlocked(int position, int direction) {
+                if (position == 2)
+                    authenticationFragment.flashWarning();
+            }
+        });
     }
 
     @Override
@@ -146,16 +163,28 @@ public class MainIntroActivity extends IntroActivity {
     public static class AuthenticationFragment extends SlideFragment {
         private Constants.EncryptionType encryptionType = Constants.EncryptionType.KEYSTORE;
 
+        private int slidePos = -1;
+
+        private int minLength = Constants.AUTH_MIN_PASSWORD_LENGTH;
+        private String lengthWarning = "";
+        private String noPasswordWarning = "";
+        private String confirmPasswordWarning = "";
+
         private TextView desc = null;
         private Spinner selection = null;
         private TextView authWarnings = null;
         private LinearLayout credentialsLayout = null;
+        private TextInputLayout passwordLayout = null;
         private TextInputEditText passwordInput = null;
         private EditText passwordConfirm = null;
 
         private SparseArray<Constants.AuthMethod> selectionMapping;
 
         public AuthenticationFragment() {
+        }
+
+        public void setSlidePos(int pos) {
+            slidePos = pos;
         }
 
         public void updateEncryptionType(Constants.EncryptionType encryptionType) {
@@ -195,15 +224,28 @@ public class MainIntroActivity extends IntroActivity {
             authWarnings.setVisibility(View.GONE);
         }
 
+        public void flashWarning() {
+            if (authWarnings.getVisibility() == View.VISIBLE) {
+                ObjectAnimator animator = ObjectAnimator.ofInt(authWarnings, "backgroundColor",
+                        Color.TRANSPARENT, getResources().getColor(R.color.colorAccent), Color.TRANSPARENT);
+                animator.setDuration(500);
+                animator.setRepeatCount(0);
+                animator.setInterpolator(new AccelerateDecelerateInterpolator());
+                animator.setEvaluator(new ArgbEvaluator());
+                animator.start();
+            }
+        }
+
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View root = inflater.inflate(R.layout.component_intro_authentication, container, false);
+            final View root = inflater.inflate(R.layout.component_intro_authentication, container, false);
 
             desc = root.findViewById(R.id.introAuthDesc);
             selection = root.findViewById(R.id.introAuthSelection);
             authWarnings = root.findViewById(R.id.introAuthWarnings);
             credentialsLayout = root.findViewById(R.id.introCredentialsLayout);
+            passwordLayout = root.findViewById(R.id.introPasswordLayout);
             passwordInput = root.findViewById(R.id.introPasswordEdit);
             passwordConfirm = root.findViewById(R.id.introPasswordConfirm);
 
@@ -239,10 +281,52 @@ public class MainIntroActivity extends IntroActivity {
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     Constants.AuthMethod authMethod = selectionMapping.get(i);
 
-                    if (authMethod == Constants.AuthMethod.PASSWORD || authMethod == Constants.AuthMethod.PIN) {
+                    if (authMethod == Constants.AuthMethod.PASSWORD) {
                         credentialsLayout.setVisibility(View.VISIBLE);
+
+                        passwordLayout.setHint(getString(R.string.settings_hint_password));
+                        passwordConfirm.setHint(R.string.settings_hint_password_confirm);
+
+                        passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        passwordConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+                        passwordInput.setTransformationMethod(new PasswordTransformationMethod());
+                        passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
+
+                        minLength = Constants.AUTH_MIN_PASSWORD_LENGTH;
+                        lengthWarning = getString(R.string.settings_label_short_password, minLength);
+                        noPasswordWarning = getString(R.string.intro_slide3_warn_no_password);
+                        confirmPasswordWarning = getString(R.string.intro_slide3_warn_confirm_password);
+
+                        if (getIntroActivity().getCurrentSlidePosition() == slidePos) {
+                            passwordInput.requestFocus();
+                            UIHelper.showKeyboard(getContext(), passwordInput);
+                        }
+                    } else if (authMethod == Constants.AuthMethod.PIN) {
+                        credentialsLayout.setVisibility(View.VISIBLE);
+
+                        passwordLayout.setHint(getString(R.string.settings_hint_pin));
+                        passwordConfirm.setHint(R.string.settings_hint_pin_confirm);
+
+                        passwordInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+                        passwordConfirm.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+
+                        passwordInput.setTransformationMethod(new PasswordTransformationMethod());
+                        passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
+
+                        minLength = Constants.AUTH_MIN_PIN_LENGTH;
+                        lengthWarning = getString(R.string.settings_label_short_pin, minLength);
+                        noPasswordWarning = getString(R.string.intro_slide3_warn_no_pin);
+                        confirmPasswordWarning = getString(R.string.intro_slide3_warn_confirm_pin);
+
+                        if (getIntroActivity().getCurrentSlidePosition() == slidePos) {
+                            passwordInput.requestFocus();
+                            UIHelper.showKeyboard(getContext(), passwordInput);
+                        }
                     } else {
                         credentialsLayout.setVisibility(View.INVISIBLE);
+
+                        UIHelper.hideKeyboard(getIntroActivity(), root);
                     }
 
                     updateNavigation();
@@ -282,7 +366,23 @@ public class MainIntroActivity extends IntroActivity {
                 String password = passwordInput.getText().toString();
                 String confirm = passwordConfirm.getText().toString();
 
-                return ! password.isEmpty() && ! confirm.isEmpty() && confirm.equals(password);
+                if (! password.isEmpty()) {
+                    if (password.length() < minLength) {
+                        displayWarning(lengthWarning);
+                        return false;
+                    } else {
+                        if (! confirm.isEmpty() && confirm.equals(password)) {
+                            hideWarning();
+                            return true;
+                        } else {
+                            displayWarning(confirmPasswordWarning);
+                            return false;
+                        }
+                    }
+                } else {
+                    displayWarning(noPasswordWarning);
+                    return false;
+                }
             } else if (authMethod == Constants.AuthMethod.DEVICE) {
                 KeyguardManager km = (KeyguardManager) getContext().getSystemService(KEYGUARD_SERVICE);
 
