@@ -35,7 +35,6 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,7 +46,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.app.OnNavigationBlockedListener;
@@ -115,7 +113,9 @@ public class IntroScreenActivity extends IntroActivity {
                 .build()
         );
 
-        authenticationFragment.setSlidePos(2);
+        // Tell the fragment where it is located
+        authenticationFragment.setSlidePos(getSlides().size());
+
         addSlide(new FragmentSlide.Builder()
                 .background(R.color.colorPrimary)
                 .backgroundDark(R.color.colorPrimaryDark)
