@@ -220,6 +220,10 @@ public class Settings {
         return AuthMethod.valueOf(authString.toUpperCase());
     }
 
+    public void setAuthMethod(AuthMethod authMethod) {
+        setString(R.string.settings_key_auth, authMethod.name().toLowerCase());
+    }
+
     public void removeAuthPasswordHash() {
         remove(R.string.settings_key_auth_password_hash);
     }

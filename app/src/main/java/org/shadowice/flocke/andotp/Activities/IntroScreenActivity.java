@@ -30,10 +30,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +47,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.app.OnNavigationBlockedListener;
@@ -63,6 +66,21 @@ public class IntroScreenActivity extends IntroActivity {
     private EncryptionFragment encryptionFragment;
     private AuthenticationFragment authenticationFragment;
 
+    private void saveSettings() {
+        Constants.EncryptionType encryptionType = encryptionFragment.getEncryptionType();
+        Constants.AuthMethod authMethod = authenticationFragment.getAuthMethod();
+
+        settings.setEncryption(encryptionType);
+        settings.setAuthMethod(authMethod);
+
+        if (authMethod == Constants.AuthMethod.PASSWORD || authMethod == Constants.AuthMethod.PIN) {
+            String password = authenticationFragment.getPassword();
+            settings.setAuthCredentials(password);
+        }
+
+        settings.setFirstTimeWarningShown(true);
+    }
+
     @Override protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
@@ -75,7 +93,6 @@ public class IntroScreenActivity extends IntroActivity {
             @Override
             public void onEncryptionChanged(Constants.EncryptionType newEncryptionType) {
                 authenticationFragment.updateEncryptionType(newEncryptionType);
-                settings.setEncryption(newEncryptionType);
             }
         });
 
@@ -84,7 +101,6 @@ public class IntroScreenActivity extends IntroActivity {
         addSlide(new SimpleSlide.Builder()
                 .title(R.string.intro_slide1_title)
                 .description(R.string.intro_slide1_desc)
-                .image(R.mipmap.ic_launcher)
                 .background(R.color.colorPrimary)
                 .backgroundDark(R.color.colorPrimaryDark)
                 .canGoBackward(false)
@@ -107,6 +123,15 @@ public class IntroScreenActivity extends IntroActivity {
                 .build()
         );
 
+        addSlide(new SimpleSlide.Builder()
+                .title(R.string.intro_slide4_title)
+                .description(R.string.intro_slide4_desc)
+                .background(R.color.colorPrimary)
+                .backgroundDark(R.color.colorPrimaryDark)
+                .scrollable(false)
+                .build()
+        );
+
         addOnNavigationBlockedListener(new OnNavigationBlockedListener() {
             @Override
             public void onNavigationBlocked(int position, int direction) {
@@ -114,12 +139,27 @@ public class IntroScreenActivity extends IntroActivity {
                     authenticationFragment.flashWarning();
             }
         });
+
+        addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 3)
+                    saveSettings();
+            }
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
-        if (getCurrentSlidePosition() != 0)
-            super.onBackPressed();
+        // We don't want users to quit the intro screen and end up in an uninitialized state
     }
 
     public static class EncryptionFragment extends SlideFragment {
@@ -143,6 +183,10 @@ public class IntroScreenActivity extends IntroActivity {
             selectionMapping = new SparseArray<>();
             for (int i = 0; i < encValues.length; i++)
                 selectionMapping.put(i, Constants.EncryptionType.valueOf(encValues[i].toUpperCase()));
+        }
+
+        public Constants.EncryptionType getEncryptionType() {
+            return selectionMapping.get(selection.getSelectedItemPosition());
         }
 
         @Override
@@ -256,6 +300,14 @@ public class IntroScreenActivity extends IntroActivity {
                 animator.setEvaluator(new ArgbEvaluator());
                 animator.start();
             }
+        }
+
+        public Constants.AuthMethod getAuthMethod() {
+            return selectionMapping.get(selection.getSelectedItemPosition());
+        }
+
+        public String getPassword() {
+            return passwordInput.getText().toString();
         }
 
         @Override
