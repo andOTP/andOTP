@@ -52,6 +52,7 @@ public class Constants {
     public final static int INTENT_MAIN_AUTHENTICATE            = 100;
     public final static int INTENT_MAIN_SETTINGS                = 101;
     public final static int INTENT_MAIN_BACKUP                  = 102;
+    public final static int INTENT_MAIN_INTRO                   = 103;
 
     public final static int INTENT_BACKUP_OPEN_DOCUMENT_PLAIN   = 200;
     public final static int INTENT_BACKUP_SAVE_DOCUMENT_PLAIN   = 201;

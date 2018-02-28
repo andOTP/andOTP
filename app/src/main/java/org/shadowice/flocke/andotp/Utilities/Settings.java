@@ -220,6 +220,10 @@ public class Settings {
         return AuthMethod.valueOf(authString.toUpperCase());
     }
 
+    public void setAuthMethod(AuthMethod authMethod) {
+        setString(R.string.settings_key_auth, authMethod.name().toLowerCase());
+    }
+
     public void removeAuthPasswordHash() {
         remove(R.string.settings_key_auth_password_hash);
     }
@@ -288,6 +292,10 @@ public class Settings {
     public EncryptionType getEncryption() {
         String encType = getString(R.string.settings_key_encryption, R.string.settings_default_encryption);
         return EncryptionType.valueOf(encType.toUpperCase());
+    }
+
+    public void setEncryption(EncryptionType encryptionType) {
+        setEncryption(encryptionType.name().toLowerCase());
     }
 
     public void setEncryption(String encryption) {

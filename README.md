@@ -128,6 +128,7 @@ So make sure you have a **current backup** before switching!
  * [Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)
  * [Expandable Layout](https://github.com/AAkira/ExpandableLayout)
  * [LicensesDialog](https://github.com/PSDev/LicensesDialog)
+ * [material-intro](https://github.com/heinrichreimer/material-intro)
  * [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
  * [OpenPGP API library](https://github.com/open-keychain/openpgp-api)
  * [VNTNumberPickerPreference](https://github.com/vanniktech/VNTNumberPickerPreference)
