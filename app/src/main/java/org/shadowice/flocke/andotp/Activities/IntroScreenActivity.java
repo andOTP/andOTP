@@ -77,6 +77,7 @@ public class IntroScreenActivity extends IntroActivity {
         }
 
         settings.setFirstTimeWarningShown(true);
+		settings.setScreenshotsEnabled(false);
     }
 
     @Override protected void onCreate(Bundle savedInstanceState){

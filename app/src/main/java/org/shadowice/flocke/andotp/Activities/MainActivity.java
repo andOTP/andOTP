@@ -164,8 +164,9 @@ public class MainActivity extends BaseActivity
 
         setTitle(R.string.app_name);
 
-        if (! settings.getScreenshotsEnabled())
+        if (! settings.getScreenshotsEnabled()) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        }
 
         setContentView(R.layout.activity_main);
 
@@ -188,7 +189,8 @@ public class MainActivity extends BaseActivity
             }
         });
 
-        if (! settings.getFirstTimeWarningShown()) {
+        if (! settings.getFirstTimeWarningShown() && !settings.getScreenshotsEnabled()) {
+            settings.setScreenshotsEnabled(true);
            showFirstTimeWarning();
         }
 
