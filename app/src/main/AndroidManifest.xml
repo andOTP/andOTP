@@ -38,7 +38,7 @@
         <activity
             android:name=".Activities.IntroScreenActivity"
             android:parentActivityName=".Activities.MainActivity"
-            android:theme="@style/Theme.Intro" />
+            android:theme="@style/Theme.Intro.Solid" />
         <activity
             android:name=".Activities.SettingsActivity"
             android:parentActivityName=".Activities.MainActivity"
