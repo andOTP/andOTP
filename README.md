@@ -92,13 +92,14 @@ So make sure you have a **current backup** before switching!
  * [Jakob Nixdorf](https://github.com/flocke)
  * [Richy HBM](https://github.com/RichyHBM)
 
-#### Contributors:
+#### Contributors (in order of appearance):
 
  * [Carlos Melero](https://github.com/carmebar) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=carmebar))
  * [SuperVirus](https://github.com/SuperVirus) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=SuperVirus))
  * [DanielWeigl](https://github.com/DanielWeigl) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=DanielWeigl))
  * [Matthias Bertram](https://github.com/mbertram) ([view contributions](https://github.com/andOTP/andOTP/commits?author=mbertram))
  * [Björn Richter](https://github.com/x3rAx) ([view contributions](https://github.com/andOTP/andOTP/commits?author=x3rAx))
+ * [Emmanuel Nwokoma](https://github.com/enwokoma) ([view contributions](https://github.com/andOTP/andOTP/commits?author=enwokoma))
 
 #### Translators:
 
