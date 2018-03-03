@@ -42,6 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_margin"
+            android:layout_gravity="center_horizontal"
             android:padding="@dimen/activity_margin_small"
             android:visibility="gone"
             android:textColor="@color/warning_red"
