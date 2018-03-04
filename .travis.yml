@@ -1,7 +1,7 @@
 language: android
 
 env:
-- MAJOR_MINOR=0.4.0.1.1
+- MAJOR_MINOR=experimental
 
 android:
   components:
@@ -24,7 +24,7 @@ before_install:
   - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
   - yes | sdkmanager "platforms;android-27"
 
-script: 
+script:
   - ./gradlew build
 
 before_deploy:
