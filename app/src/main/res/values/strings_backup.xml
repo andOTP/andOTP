@@ -22,26 +22,26 @@
     <string name="backup_desc_import_crypt">Restore accounts from a password-protected JSON file</string>
     <string name="backup_desc_import_openpgp">Restore accounts from an OpenPGP-encrypted JSON file</string>
 
-    <string name="backup_desc_crypt_setup">You need to set a <b>Backup password</b> in the
+    <string name="backup_desc_crypt_setup">Please, you need to set a <b>Backup password</b> in the
         <b>Settings</b> to use encrypted backups.
     </string>
 
-    <string name="backup_desc_openpgp_provider">You need to install an OpenPGP provider and enable
-        it in the <b>Settings</b> to use this feature.
+    <string name="backup_desc_openpgp_provider">Please, you need to install an OpenPGP provider and enable
+        it in the <b>Settings</b> page in order to use this feature.
     </string>
-    <string name="backup_desc_openpgp_keyid">You need to select an OpenPGP key in the <b>Settings</b>
-        before you can create encrypted backups.
+    <string name="backup_desc_openpgp_keyid">Please, you need to select an OpenPGP key in the <b>Settings</b>
+        page before you can create encrypted backups.
     </string>
 
-    <string name="backup_desc_replace">If enabled all old entries are replaced when importing a
-        backup and only the backup is present. If disabled the old entries and the backups content
+    <string name="backup_desc_replace">If enabled, all old entries are replaced when importing a
+        backup and only the backup is present. If disabled, the old entries and the backups content
         are merged.</string>
 
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">Security warning</string>
 
     <string name="backup_dialog_msg_export_warning">Do you really want to export the database as
-        plain-text JSON file? This file contains all your secret keys, please <b>keep it safe</b>!
+        plain-text JSON file? This file contains all your secret keys, please <b>try to keep it safe</b>!
     </string>
 
 
@@ -52,21 +52,21 @@
         this before attempting backup</string>
     <string name="backup_receiver_write_permission_failed">Write permission not granted, please do
         this before attempting backup</string>
-    <string name="backup_receiver_custom_encryption_failed">Password/PIN based encryption not
+    <string name="backup_receiver_custom_encryption_failed">Password/PIN based encryption is not
         supported with broadcast backup</string>
 
 
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">Failed to create backup directory</string>
-    <string name="backup_toast_export_success">Export to external storage successful</string>
-    <string name="backup_toast_export_failed">Export to external storage failed</string>
+    <string name="backup_toast_mkdir_failed">Sorry, failed to create backup directory!</string>
+    <string name="backup_toast_export_success">Export to external storage successful!</string>
+    <string name="backup_toast_export_failed">Export to external storage failed!</string>
     <string name="backup_toast_import_success">Import from external storage successful</string>
-    <string name="backup_toast_import_save_failed">Failed to save restored entries</string>
-    <string name="backup_toast_import_decryption_failed">Decryption of the backup failed</string>
-    <string name="backup_toast_import_no_entries">No entries found in imported data</string>
-    <string name="backup_toast_storage_not_accessible">External storage currently not accessible</string>
-    <string name="backup_toast_storage_permissions">Storage permissions not granted</string>
+    <string name="backup_toast_import_save_failed">Sorry, failed to save restored entries!</string>
+    <string name="backup_toast_import_decryption_failed">Decryption of the backup failed!</string>
+    <string name="backup_toast_import_no_entries">No entries were found in the imported data file!</string>
+    <string name="backup_toast_storage_not_accessible">Your external storage is currently not accessible</string>
+    <string name="backup_toast_storage_permissions">Storage permissions not granted!</string>
     <string name="backup_toast_openpgp_error">OpenPGP Error: %s</string>
-    <string name="backup_toast_openpgp_not_verified">No verified signature detected</string>
-    <string name="backup_toast_crypt_password_not_set">Password not set, check the <b>Settings</b></string>
+    <string name="backup_toast_openpgp_not_verified">No verified signature was detected!</string>
+    <string name="backup_toast_crypt_password_not_set">Password has not been set, check the <b>Settings</b> page and try again!</string>
 </resources>
