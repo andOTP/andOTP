@@ -10,12 +10,11 @@
 
 andOTP is a two-factor authentication App for Android 4.4+.
 
-It implements Time-based One-time Passwords (TOTP) like specified in RFC 6238.  
-Simply scan the QR code and login with the generated 6-digit code. 
+It implements Time-based One-time Passwords (TOTP) like specified in RFC 6238. Simply scan the QR code and login with the generated 6-digit code.
 
-This is a fork of the great OTP Authenticator app written by Bruno Bierbaumer,
-which has sadly been inactive since 2015. All credit for the original version
-goes to Bruno.
+This project started out as a fork of the great [OTP Authenticator](https://github.com/0xbb/otp-authenticator) app written by [Bruno Bierbaumer](https://github.com/0xbb),
+which has sadly been inactive since 2015. By now almost every aspect of the app has been changed/re-written so the fork status of the Github repository got
+detached upon [user request](https://github.com/andOTP/andOTP/issues/145). But all credit for the original version and for starting this project still goes to Bruno!
 
 ## Help wanted:
 I currently don't have that much time to spend developing andOTP, so any contributions are always welcome.
@@ -93,13 +92,14 @@ So make sure you have a **current backup** before switching!
  * [Jakob Nixdorf](https://github.com/flocke)
  * [Richy HBM](https://github.com/RichyHBM)
 
-#### Contributors:
+#### Contributors (in order of appearance):
 
  * [Carlos Melero](https://github.com/carmebar) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=carmebar))
  * [SuperVirus](https://github.com/SuperVirus) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=SuperVirus))
  * [DanielWeigl](https://github.com/DanielWeigl) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=DanielWeigl))
  * [Matthias Bertram](https://github.com/mbertram) ([view contributions](https://github.com/andOTP/andOTP/commits?author=mbertram))
  * [Björn Richter](https://github.com/x3rAx) ([view contributions](https://github.com/andOTP/andOTP/commits?author=x3rAx))
+ * [Emmanuel Nwokoma](https://github.com/enwokoma) ([view contributions](https://github.com/andOTP/andOTP/commits?author=enwokoma))
 
 #### Translators:
 
