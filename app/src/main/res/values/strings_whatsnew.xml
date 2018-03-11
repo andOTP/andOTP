@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="whatsnew_activity_title">What\'s New in CometOTP</string>
+
+    <!-- Messages -->
+    <string name="whatsnew_msg_desc">Hello, thank you for updating CometOTP!
+		Here is a list of What\'s New in this version of CometOTP! </string>
+
+    <!-- Buttons -->
+    <string name="whatsnew_button_done">Done</string>
+
+    <!-- What's New -->
+    <string name="whatsnew">
+        1. Introduced a whole new sleek UI update \n\n
+        2. <b>Added new account thumbnails</b>
+        &#160;&#8226; Amazon thumbnail
+        &#160;&#160; \n &#8226; Degiro thumbnail
+        &#160;&#160; \n &#8226; Gigabyte Developers thumbnail
+        &#160;&#160; \n &#8226; Gitea thumbnail
+        &#160;&#160; \n &#8226; HMRC thumbnail
+        &#160;&#160; \n &#8226; Humblebundle thumbnail
+        &#160;&#160; \n &#8226; NAS thumbnail
+        &#160;&#160; \n &#8226; Rackspace thumbnail
+        &#160;&#160; \n &#8226; Vultr thumbnail
+        \n\n
+        3. Append <b>date and time</b> to backups \n\n
+        4. Added setting for different <b>tag</b> behavior \n\n
+        5. Introduced <b>Android Sync</b> backup service \n\n
+        6. Updated some old account thumbnails \n\n
+        7. Major UI fixes \n\n
+        8. Minor Bug fixes \n\n
+        9. Performance Improvements.
+    </string>
+</resources>
