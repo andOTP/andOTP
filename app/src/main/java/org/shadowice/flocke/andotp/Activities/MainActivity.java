@@ -57,7 +57,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
-import com.gigabytedevelopersinc.app.CometOTP.Utilities.AppStarts.AppStart;
+import org.shadowice.flocke.andotp.Utilities.AppStarts.AppStart;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
