@@ -28,7 +28,7 @@
     <string name="label_label">Label</string>
     <string name="label_algorithm">Algorithm</string>
     <string name="label_tags">Tags</string>
-    <string name="label_advanced">Advanced options</string>
+    <string name="label_advanced">Advanced Options</string>
 
     <!-- Drawer -->
     <string name="drawer_open">Show tags</string>
@@ -66,14 +66,14 @@
     <string name="dialog_title_last_used">Last used</string>
     <string name="dialog_title_keystore_error">KeyStore error</string>
 
-    <string name="dialog_msg_auth">Please enter your device credentials to start andOTP.</string>
+    <string name="dialog_msg_auth">Please enter your device credentials in order to start andOTP.</string>
     <string name="dialog_msg_confirm_delete">Are you sure you want do remove the account \"%1$s\"?</string>
 
-    <string name="dialog_msg_last_used">In order for andOTP to recognize which token was used last
-        you have to have \"tap to reveal\" enabled or use the copy button.\n\nThis message will not
-        be shown again.</string>
+    <string name="dialog_msg_last_used">In order for andOTP to recognize which token was last used,
+        you will have to enable <b>\"tap to reveal\"</b> feature in the <b>Settings</b> page, 
+		or use the copy button.\n\nThis message will not be shown again.</string>
 
     <string name="dialog_msg_keystore_error">Failed to load the encryption key from the KeyStore.
         <b>Any entries that are added will get lost.</b>\n\nTo still be able to use andOTP you can go
-        to the <b>Settings</b> and switch the <b>Database encryption</b> to <b>Password / PIN</b>.</string>
+        to the <b>Settings</b> and switch the <b>Database encryption</b> to <b>Password/PIN</b>.</string>
 </resources>

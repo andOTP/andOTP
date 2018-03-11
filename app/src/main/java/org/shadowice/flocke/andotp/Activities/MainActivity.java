@@ -57,6 +57,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.AppStarts.AppStart;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
@@ -75,6 +76,7 @@ import javax.crypto.SecretKey;
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
+import static org.openintents.openpgp.util.OpenPgpApi.TAG;
 
 public class MainActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -93,6 +95,62 @@ public class MainActivity extends BaseActivity
     private ListView tagsDrawerListView;
     private TagsAdapter tagsDrawerAdapter;
     private ActionBarDrawerToggle tagsToggle;
+	private SharedPreferences sharedPreferences;
+
+    /**
+     * The app version code (not the version name!) that was used on the last
+     * start of the app.
+     */
+    private static final String LAST_APP_VERSION = "1";
+
+    /**
+     * Caches the result of {@link #checkAppStart(Context context, SharedPreferences sharedPreferences)}. To allow idempotent method
+     * calls.
+     */
+    private static AppStart appStart = null;
+
+    /**
+     * Finds out started for the first time (ever or in the current version).
+     *
+     * @return the type of app start
+     */
+    public AppStart checkAppStart(Context context, SharedPreferences sharedPreferences) {
+        PackageInfo pInfo;
+
+        try {
+            pInfo = context.getPackageManager().getPackageInfo(
+                    context.getPackageName(), PackageManager.COMPONENT_ENABLED_STATE_DEFAULT);
+            int lastVersionCode = sharedPreferences.getInt(
+                    LAST_APP_VERSION, -1);
+            // String versionName = pInfo.versionName;
+            int currentVersionCode = pInfo.versionCode;
+            appStart = checkAppStart(currentVersionCode, lastVersionCode);
+
+            // Update version in preferences
+            sharedPreferences.edit()
+                    .putInt(LAST_APP_VERSION, currentVersionCode).apply(); // must use commit here or app may not update prefs in time and app will loop into walkthrough
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.w(TAG,
+                    "Unable to determine current app version from package manager. Defensively assuming normal app start.");
+        }
+        return appStart;
+    }
+
+    public AppStart checkAppStart(int currentVersionCode, int lastVersionCode) {
+        if (lastVersionCode == -1) {
+            return AppStart.FIRST_TIME;
+        } else if (lastVersionCode < currentVersionCode) {
+            return AppStart.FIRST_TIME_VERSION;
+        } else if (lastVersionCode > currentVersionCode) {
+            Log.w(TAG, "Current version code (" + currentVersionCode
+                    + ") is less then the one recognized on last startup ("
+                    + lastVersionCode
+                    + "). Defensively assuming normal app start.");
+            return AppStart.NORMAL;
+        } else {
+            return AppStart.NORMAL;
+        }
+    }
 
     // QR code scanning
     private void scanQRCode(){
@@ -161,6 +219,25 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+		
+		sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+
+        switch (checkAppStart(this,sharedPreferences)) {
+            case NORMAL:
+                // We don't want to get on the user's nerves
+                break;
+            case FIRST_TIME_VERSION:
+                // TODO show what's new
+                Intent whatsNewIntent = new Intent(this, WhatsNewActivity.class);
+                startActivityForResult(whatsNewIntent, Constants.INTENT_MAIN_WHATSNEW);
+                break;
+            case FIRST_TIME:
+                // TODO show a tutorial
+                break;
+            default:
+                break;
+        }
 
         setTitle(R.string.app_name);
 

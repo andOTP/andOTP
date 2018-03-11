@@ -43,7 +43,7 @@
         revealed manually</string>
     <string name="settings_desc_tap_to_reveal_timeout">Select the time (in sec) after which to hide
         revealed entries again</string>
-    <string name="settings_desc_panic">Decide what happens when a Panic Trigger is received</string>
+    <string name="settings_desc_panic">Decide what happens when a <b>Panic Trigger</b> is received</string>
 
     <string name="settings_desc_label_scroll">Scroll overlong labels instead of truncating them</string>
 
@@ -62,7 +62,7 @@
     <string name="settings_desc_openpgp_verify">Encrypted backups are only imported if they are
         signed with a valid key</string>
 
-    <string name="settings_desc_special_features">Uncheck to disable the special features again</string>
+    <string name="settings_desc_special_features">Uncheck if you want to disable the special features again</string>
     <string name="settings_desc_enable_screenshot">Allow to take screenshots of the main screen
         (disabled by default for security reasons)</string>
     <string name="settings_desc_enable_android_backup_service">Enables andOTP to use Android\'s
@@ -76,7 +76,7 @@
         to be set up (Settings -> Security -> Screenlock)</string>
 
     <string name="settings_toast_password_empty">An empty password is not allowed, set the
-        Authentication to \"None\" to disable it!</string>
+        Authentication to \"None\" if you want to disable it!</string>
 
     <string name="settings_toast_encryption_changing">Trying to change the database encryption,
         please wait!</string>
@@ -89,7 +89,7 @@
     <string name="settings_toast_encryption_no_key">Failed to get the encryption key, aborting!</string>
     <string name="settings_toast_encryption_auth_failed">Authentication failed!</string>
 
-    <string name="settings_toast_auth_upgrade_failed">Failed to silently upgrade your password / PIN
+    <string name="settings_toast_auth_upgrade_failed">Failed to silently upgrade your Password/PIN
         to the new encryption, please manually reset it in the Settings!</string>
 
     <string name="settings_dialog_title_warning">Warning</string>
@@ -98,29 +98,29 @@
     <string name="settings_dialog_title_android_sync">Android sync</string>
 
     <string name="settings_dialog_msg_encryption_change">andOTP will now try to change the database
-        encryption. In case of a failure an internal backup will be restored and the encryption
+        encryption. In case of a failure, an internal backup will be restored and the encryption
         remains unchanged.\n\n<b>However, it\'s always a good idea to have a backup in case
         something unexpected happens!</b></string>
     <string name="settings_dialog_msg_auth_invalid_with_encryption">You can only use Password or PIN as
-        long as the database encryption is set to \"Password / PIN\"!</string>
+        long as the database encryption is set to \"Password/PIN\"!</string>
     <string name="settings_dialog_msg_encryption_invalid_with_auth">You first need to set the
         Authentication to \"Password\" or \"PIN\"!</string>
     <string name="settings_dialog_msg_encryption_invalid_without_credentials">You first need to set a
         Password or PIN before changing the encryption!</string>
 
-    <string name="settings_dialog_msg_clear_keystore_password">In some cases clearing the KeyStore
+    <string name="settings_dialog_msg_clear_keystore_password">In some cases, clearing the KeyStore
         can help resolve problems. You should only proceed if you know what you are doing!\n\nSince
-        the <b>Database encryption</b> is set to <b>Password / PIN</b> you shouldn\'t lose any data
+        the <b>Database encryption</b> is set to <b>Password/PIN</b> you shouldn\'t lose any data
         doing this (but it never hurts to have a backup anyways).\n\n<b>Are you really sure you want
         to clear the KeyStore?</b></string>
-    <string name="settings_dialog_msg_clear_keystore_keystore">In some cases clearing the KeyStore
+    <string name="settings_dialog_msg_clear_keystore_keystore">In some cases, clearing the KeyStore
         can help resolve problems. You should only proceed if you know what you are doing!\n\n<b>Warning</b>:
         Since the <b>Database encryption</b> is set to <b>Android KeyStore</b> you will lose all
         your accounts. Make sure you have a backup!\n\n<b>Are you really sure you want to clear the
         KeyStore?</b></string>
 
     <string name="settings_dialog_msg_android_sync_disabled_encryption">Android sync can not be used with keystore
-        encryption, <b>you should perform a manual backup!</b></string>
+        encryption, <b>you should perform a manual backup instead!</b></string>
 
     <!-- List entries -->
     <string-array name="settings_entries_auth">
@@ -156,8 +156,8 @@
 
     <string-array name="settings_entries_split_group_size">
         <item>Don\'t split</item>
-        <item>After two characters</item>
-        <item>After three characters</item>
+        <item>Split after two characters</item>
+        <item>Split after three characters</item>
     </string-array>
 
     <string-array name="settings_entries_tag_functionality">
