@@ -1,16 +1,17 @@
 # Changelog
 
-#### v0.4.1
+#### v0.5.0
 
- * New feature: Intro screen when staring the app for the first time to setup encryption and authentication
+ * New feature: **Intro screen when staring the app for the first time to setup encryption and authentication**
+ * New feature: **Broadcast receivers to trigger backups from Tasker** (PR #115)
+ * New feature: **Add support for using Android Backup** (Issue #109, PR #111)
  * New feature: Optionally append date to backups (PR #124)
  * New feature: Check if entries are valid when entering manually (Issue #135, PR #136 by Björn Richter)
  * New feature: Offer different options when using the tag selection (Issue #133, PR #134)
- * New feature: Broadcast receivers to trigger backups from Tasker (PR #115)
- * New feature: Add support for using Android Backup (Issue #109, PR #111)
  * New feature: Show a warning before changing the encryption
  * Bug fix: Fix crash when saving an empty label (Issue #138, PR #139 by Björn Richter)
  * Bug fix: Fix visibility of thumbnails in dark themes (Issue #88, PR #90)
+ * Bug fix: Don't require credentials again after screen rotation (Issue #152)
  * Thumbnails: new thumbnails (see the wiki)
 
 #### v0.4.0
