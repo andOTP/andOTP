@@ -12,12 +12,8 @@
   <!-- Buttons -->
   <string name="auth_button_unlock">Déverrouiller</string>
   <!-- Toast messages -->
-  <string name="auth_toast_password_missing">
-      Veuillez ajouter un mot de passe dans les paramètres !
-    </string>
-  <string name="auth_toast_pin_missing">
-      Veuillez ajouter un code PIN dans les paramètres !
-    </string>
+  <string name="auth_toast_password_missing">Veuillez définir un mot de passe dans les <b>paramètres</b> !</string>
+  <string name="auth_toast_pin_missing">Veuillez définir un code PIN dans les <b>paramètres</b> !</string>
   <string name="auth_toast_password_again">Mot de passe incorrect, veuillez réessayer !</string>
   <string name="auth_toast_pin_again">Code PIN incorrect, veuillez réessayer !</string>
 </resources>

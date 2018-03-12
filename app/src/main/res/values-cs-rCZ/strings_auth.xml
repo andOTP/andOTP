@@ -11,8 +11,8 @@
   <!-- Buttons -->
   <string name="auth_button_unlock">Odemknout</string>
   <!-- Toast messages -->
-  <string name="auth_toast_password_missing">V nastavení si prosím nastavte heslo!</string>
-  <string name="auth_toast_pin_missing">V nastavení si prosím nastavte PIN!</string>
+  <string name="auth_toast_password_missing">Prosím nastavte heslo v <b>Nastavení</b>!</string>
+  <string name="auth_toast_pin_missing">Prosím nastavte PIN v <b>Nastavení</b>!</string>
   <string name="auth_toast_password_again">Nesprávné heslo, zkuste to prosím znovu!</string>
   <string name="auth_toast_pin_again">Nesprávný PIN, zkuste to prosím znovu!</string>
 </resources>

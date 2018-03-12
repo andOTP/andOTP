@@ -55,18 +55,9 @@
   <string name="dialog_title_rename">Přejmenování</string>
   <string name="dialog_title_last_used">Naposledy použité</string>
   <string name="dialog_title_keystore_error">Chyba úložiště klíčů</string>
-  <string name="dialog_title_encryption">Šifrování databáze</string>
   <string name="dialog_msg_auth">Prosím zadejte heslo zařízení ke spuštění andOTP.</string>
   <string name="dialog_msg_confirm_delete">Jste si jistí, že chcete odebrat účet \"%1$s\"?</string>
-  <string name="dialog_title_security_keystore">1. Android KeyStore</string>
-  <string name="dialog_title_security_password">2. Heslo / PIN</string>
-  <string name="dialog_msg_security_first">Pro zajištění bezpečnosti Vašich účtů ukládá aplikace data do šifrovaných souborů šifrovaných pomocí jedné z následujících dvou metod:</string>
-  <string name="dialog_msg_security_keystore">KeyStore je systémová komponenta Androidu sloužící k bezpečnému ukládání kryptografických klíčů. Výhodou tohoto přístupu je, že jsou klíče uloženy odděleně od dat a že může být podpořen hardwarovou kryptografií (pokud ji Hw podporuje). 
-Nicméně vzhledem k tomu, že nejsou klíče uloženy spolu s daty aplikace znemožňuje tato metoda použití externích zálohovacích nástrojů (jako je Titanium). 
-Pokud zvolíte tuto metodu budete muset spoléhat na vlastní zálohovací funkce aplikace andOTP.</string>
-  <string name="dialog_msg_security_password">Tato metoda zašifruje data pomocí klíče generovaného z PINu nebo hesla. Hlavní výhodou je, že bude fungovat s externími zálohovacími nástroji (např. Titanium). Budete ale muset zadat své heslo/PIN při každém spuštění andOTP.</string>
-  <string name="dialog_msg_security_default">Jako výchozí možnost se používá Android KeyStore, což ale může způsobit problémy s některými upravenými ROM (a s pár oficiálními také). Šifrování můžete změnit v Nastavení klepnutím na tlačítko níže.</string>
   <string name="dialog_msg_last_used">Aby andOTP poznal, který token byl použitý jako poslední, je potřeba mít zapnuté \"zobraz klepnutím\" nebo používat kopírovací tlačítko. \n\n Tato zpráva se již nezobrazí.</string>
   <string name="dialog_msg_keystore_error">Nepodařilo se načíst šifrovací klíč z KeyStore.
-         <b>Veškeré přidané položky budou ztraceny.</b> \n\nPro zajištění použitelnosti andOTP můžete v Nastavení přepnout <b>Šifrování databáze</b> na <b>heslo / PIN</b>.</string>
+         <b>Veškeré přidané položky budou ztraceny.</b> \n\nPro zajištění použitelnosti andOTP v <b>Nastavení</b> přepněte <b>Šifrování databáze</b> na <b>heslo / PIN</b>.</string>
 </resources>

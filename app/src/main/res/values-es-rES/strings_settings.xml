@@ -20,6 +20,8 @@
   <string name="settings_title_label_scroll">Desplazar etiqueta</string>
   <string name="settings_title_thumbnail_size_ask">Tamaño de miniatura</string>
   <string name="settings_title_split_group_size">Separar el código con espacio</string>
+  <string name="settings_title_tag_functionality">Tag selection behavior</string>
+  <string name="settings_title_backup_append_date">Concatenar fecha al nombre del fichero</string>
   <string name="settings_title_backup_ask">Pedir nombre de fichero</string>
   <string name="settings_title_backup_directory">Carpeta para copias de seguridad</string>
   <string name="settings_title_backup_password">Contraseña de copia de seguridad</string>
@@ -29,6 +31,7 @@
   <string name="settings_title_openpgp_verify">Comprobar copias de seguridad cifradas</string>
   <string name="settings_title_special_features">Activar funcionalidades especiales</string>
   <string name="settings_title_enable_screenshot">Habilitar capturas de pantalla</string>
+  <string name="settings_title_enable_android_backup_service">Habilitar la sincronización de Android</string>
   <string name="settings_title_clear_keystore">Vaciar el almacen de claves</string>
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">Esconder códigos OTP por defecto,
@@ -37,6 +40,8 @@
         las entradas reveladas</string>
   <string name="settings_desc_panic">Decidir qué ocurre cuando el botón del pánico se ha pulsado</string>
   <string name="settings_desc_label_scroll">Desplazar etiquetas en lugar de truncarlas</string>
+  <string name="settings_desc_backup_append_date">Concatena la fecha y hora actual al nombre sugerido
+        para el fichero de la copia de seguridad</string>
   <string name="settings_desc_backup_ask">Pedir nombre de fichero cada vvez que una copia de seguridad
         es creada o restaurada</string>
   <string name="settings_desc_backup_directory">Directorio para las copias de seguridad (los nombres de
@@ -50,6 +55,8 @@
   <string name="settings_desc_special_features">Desmarca para desactivar las funcionalidades especiales de nuevo</string>
   <string name="settings_desc_enable_screenshot">Permitir capturas de pantalla de la vista principal
         (Desactivado por defecto por razones de seguridad)</string>
+  <string name="settings_desc_enable_android_backup_service">Permite a andOTP usar el sistema
+        incorporado en Android para hacer copias de seguridad de las claves y preferencias</string>
   <string name="settings_desc_clear_keystore">Elimina la clave de cifrado del almacen de claves</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">Esta característica requiere al menos
@@ -70,8 +77,14 @@
   <string name="settings_toast_encryption_auth_failed">Error de autenticación!</string>
   <string name="settings_toast_auth_upgrade_failed">Fallo al actualizar la contraseña / PIN al nuevo cifrado,
         por favor reinicia manualmente desde ajustes!</string>
+  <string name="settings_dialog_title_warning">Advertencia</string>
   <string name="settings_dialog_title_error">Error</string>
   <string name="settings_dialog_title_clear_keystore">Vaciar el almacen de claves?</string>
+  <string name="settings_dialog_title_android_sync">Sincronización de Android</string>
+  <string name="settings_dialog_msg_encryption_change">andOTP intentará ahora cambiar el cifrado
+        de la base de datos. En caso de fallo una copia de seguridad interna será restaurada
+        y el cifrado no cambiará.\n\n<b>¡Siempre es buena idea tener una copia de seguridad por si
+        algo inesperado ocurriera!</b></string>
   <string name="settings_dialog_msg_auth_invalid_with_encryption">Solo puedes usar la contraseña o el PIN si
         el cifrado de la base de datos está establecido a \"Contraseña / PIN\"!</string>
   <string name="settings_dialog_msg_encryption_invalid_with_auth">Primero tienes que establecer
@@ -88,6 +101,8 @@
         Puesto que el <b>Cifrado de la base de datos</b> está como <b>Almacen de claves de Android</b> perderás todas
         tus cuentas. ¡Comprueba que tienes una copia de seguridad!\n\n
         <b>¿Seguro que quieres vaciar el almacen de claves?</b></string>
+  <string name="settings_dialog_msg_android_sync_disabled_encryption">La sincronización de Android no puede ser usada con almacen de claves cifrado,
+        <b>¡Deberías hacer una copia de seguridad manual!</b></string>
   <!-- List entries -->
   <string-array name="settings_entries_auth">
     <item>Ninguno</item>
@@ -119,6 +134,11 @@
     <item>No partir</item>
     <item>Tras dos carácteres</item>
     <item>Tras tres carácteres</item>
+  </string-array>
+  <string-array name="settings_entries_tag_functionality">
+    <item>Show all entries matching <b>any</b> of the selected tags (or)</item>
+    <item>Only show entries matching <b>all</b> of the selected tags (and)</item>
+    <item>Switch between tags (only allow one tag to be selected at a time)</item>
   </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Predeterminado por el sistema</string>

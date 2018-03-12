@@ -55,30 +55,12 @@
   <string name="dialog_title_rename">Renombrar</string>
   <string name="dialog_title_last_used">Último usado</string>
   <string name="dialog_title_keystore_error">Error en el almacen de claves</string>
-  <string name="dialog_title_encryption">Cifrado de base de datos</string>
   <string name="dialog_msg_auth">Por favor, introduce los credenciales del dispositivo para iniciar andOTP.</string>
   <string name="dialog_msg_confirm_delete">¿Seguro que desea eliminar la cuenta \"%1$s\"?</string>
-  <string name="dialog_title_security_keystore">1. Almacen de claves de Android</string>
-  <string name="dialog_title_security_password">2. Contraseña / PIN</string>
-  <string name="dialog_msg_security_first">Para garantizar la seguridad de tus cuentas, esta aplicación
-        solo las almacena cifradas usando alguno de estos dos métodos:</string>
-  <string name="dialog_msg_security_keystore">El almacen de claves es un componente de Android que sirve
-        para almacenar claves criptográficas de forma segura. La ventaja de este método es que las
-        claves se almacen por separado de los ficheros con datos y pueden ser respaldadas por criptografía
-        en el hardware (si el hardware lo soporta). Como las claves no están almacenadas con la información de la
-        aplicación este método no permite sistemas de copias de seguridad externos (como Titanium). Si eliges este método
-        tienes que utilizar el sistema interno de copias de seguridad que provee andOTP.</string>
-  <string name="dialog_msg_security_password">Este método cifrará tus datos con una clave
-        generada con tu contraseña o PIN. La ventaja principal es que funcionará con
-        sistemas externos de copias de seguridad (como Titanium). Aunque tendrás que introducir
-        los credenciales cada vez que inicies andOTP.</string>
-  <string name="dialog_msg_security_default">Por defecto se utiliza el almacen de claves de Android, aunque
-        se sabe que puede causar problemas en ciertas ROMs personalizas (y algunas por defecto).
-        Puedes cambiar el método desde los Ajustes pulsando el botón inferior.</string>
   <string name="dialog_msg_last_used">Para que andOTP pueda saber qué código ha sido el último usado
         tienes que activar \"Tocar para mostrar\" o usar el botón de copiar.\n\nEste mensaje no
         se mostrará de nuevo.</string>
   <string name="dialog_msg_keystore_error">Error al cargar la clave del almacen de claves.
         <b>Cualquier entrada añadida se perderá.</b>\n\nPara poder seguir usando andOTP puedes ir
-        a Ajustes y cambiar el <b>Cifrado de base de datos</b> a <b>Contraseña / PIN</b>.</string>
+        a <b>Ajustes</b> y cambiar el <b>Cifrado de base de datos</b> a <b>Contraseña / PIN</b>.</string>
 </resources>

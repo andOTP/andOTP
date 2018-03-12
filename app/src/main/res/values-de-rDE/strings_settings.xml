@@ -5,7 +5,7 @@
   <!-- Categories -->
   <string name="settings_category_title_security">Sicherheit</string>
   <string name="settings_category_title_ui">Benutzeroberfläche</string>
-  <string name="settings_category_title_backup">Backup</string>
+  <string name="settings_category_title_backup">Sicherung</string>
   <!-- Titles -->
   <string name="settings_title_tap_to_reveal">Tippen zum Anzeigen</string>
   <string name="settings_title_tap_to_reveal_timeout">Timeout fürs Tippen zum Anzeigen</string>
@@ -16,10 +16,12 @@
   <string name="settings_title_panic">Panik-Trigger</string>
   <string name="settings_title_lang">Sprache</string>
   <string name="settings_title_theme">Design</string>
-  <string name="settings_title_label_size">Schriftgrösse der Beschriftung</string>
+  <string name="settings_title_label_size">Schriftgröße der Beschriftung</string>
   <string name="settings_title_label_scroll">Beschriftung scrollen</string>
-  <string name="settings_title_thumbnail_size_ask">Thumbnail-Größe</string>
+  <string name="settings_title_thumbnail_size_ask">Größe der Miniaturansichten</string>
   <string name="settings_title_split_group_size">Token mit Leerzeichen unterteilen</string>
+  <string name="settings_title_tag_functionality">Marker Auswahlverhalten</string>
+  <string name="settings_title_backup_append_date">Datum an den Dateinamen anhängen</string>
   <string name="settings_title_backup_ask">Nach Dateinamen fragen</string>
   <string name="settings_title_backup_directory">Sicherungsverzeichnis</string>
   <string name="settings_title_backup_password">Datensicherungs-Passwort</string>
@@ -29,24 +31,27 @@
   <string name="settings_title_openpgp_verify">Verschlüsselte Datensicherungen überprüfen</string>
   <string name="settings_title_special_features">Spezielle Funktionen aktivieren</string>
   <string name="settings_title_enable_screenshot">Bildschirmfoto aktivieren</string>
+  <string name="settings_title_enable_android_backup_service">Android-Synchronisation aktivieren</string>
   <string name="settings_title_clear_keystore">KeyStore leeren</string>
   <!-- Descriptions -->
-  <string name="settings_desc_tap_to_reveal">OTP-Token standardmäßig ausblenden, erfordert dass sie
-        manuell aufgedeckt werden</string>
-  <string name="settings_desc_tap_to_reveal_timeout">Wählen Sie die Zeit (in Sekunden) nach dem die eingeblendeten Einträge wieder versteckt werden</string>
-  <string name="settings_desc_panic">Entscheiden Sie, was passiert, wenn ein Panik-Trigger empfangen wird</string>
+  <string name="settings_desc_tap_to_reveal">OTP-Token standardmäßig ausblenden, sodass sie manuell
+        aufgedeckt werden müssen</string>
+  <string name="settings_desc_tap_to_reveal_timeout">Wählen Sie die Zeit (in Sekunden) nach dem die
+        eingeblendeten Einträge wieder versteckt werden</string>
+  <string name="settings_desc_panic">Entscheiden was passiert, wenn ein Panikauslöser empfangen wird</string>
   <string name="settings_desc_label_scroll">Überlange Beschriftungen scrollen, statt diese abzuschneiden</string>
+  <string name="settings_desc_backup_append_date">Aktuelles Datum und die aktuelle Uhrzeit an den vorgeschlagenen Sicherungsdateinamen anhängen</string>
   <string name="settings_desc_backup_ask">Jedes Mal nach dem Dateinamen fragen, wenn eine Sicherung erstellt oder wiederhergestellt wird</string>
-  <string name="settings_desc_backup_directory">Verzeichnis für die Sicherungen (Dateinamen hängen vom Backup-Typ ab)</string>
-  <string name="settings_desc_backup_password">Setzt das Passwort, das verwendet wird, um die
-        Sicherungen zu verschlüsseln</string>
-  <string name="settings_desc_openpgp_sign">Jedes verschlüsselte Backup wird zusätzlich mit
+  <string name="settings_desc_backup_directory">Verzeichnis der Sicherungen (Dateinamen hängen vom Sicherungstyp ab)</string>
+  <string name="settings_desc_backup_password">Passwort festlegen, mit dem die Sicherungen verschlüsselt werden sollen</string>
+  <string name="settings_desc_openpgp_sign">Jedes verschlüsselte Sicherung wird zusätzlich mit
         Ihrem Schlüssel signiert (Passwort erforderlich)</string>
-  <string name="settings_desc_openpgp_verify">Verschlüsselte Backups werden nur importiert,
+  <string name="settings_desc_openpgp_verify">Verschlüsselte Sicherungen werden nur importiert,
         wenn sie mit einem gültigen Schlüssel signiert sind</string>
   <string name="settings_desc_special_features">Haken entfernen, um die speziellen Funktionen wieder zu deaktivieren</string>
   <string name="settings_desc_enable_screenshot">Erlauben von Bildschirmfotos des Hauptbildschirms
 (aus Sicherheitsgründen standardmässig deaktiviert)</string>
+  <string name="settings_desc_enable_android_backup_service">andOTP ermöglichen, den integrierten Datensicherungsdienst von Android zu nutzen, um Schlüssel und Einstellungen zu sichern</string>
   <string name="settings_desc_clear_keystore">Verschlüsselungsschlüssel aus dem KeyStore löschen</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">Dieses Feature erfordert mindestens Android 5.0
@@ -57,17 +62,21 @@
   <string name="settings_toast_encryption_changing">Es wird versucht die Datenbank-Verschlüsselung zu ändern, bitte warten!</string>
   <string name="settings_toast_encryption_change_success">Die Datenbank-Verschlüsselung wurde erfolgreich geändert!</string>
   <string name="settings_toast_encryption_change_failed">Fehler beim Ändern der Datenbank-Verschlüsselung, es wird auf den ursprünglichen Zustand zurückgegriffen!</string>
-  <string name="settings_toast_encryption_backup_failed">Erstellung eines internen Backups fehlgeschlagen. Abbruch!</string>
+  <string name="settings_toast_encryption_backup_failed">Erstellung eines internen Sicherung fehlgeschlagen. Abbruch!</string>
   <string name="settings_toast_encryption_no_key">Fehler beim Abrufen des Verschlüsselungsschlüssels. Abbruch!</string>
   <string name="settings_toast_encryption_auth_failed">Authentifizierung fehlgeschlagen!</string>
   <string name="settings_toast_auth_upgrade_failed">Transparentes Umstellen vom Ihrem Passwort / Ihrer PIN auf die neuen Verschlüsselung fehlgeschlagen, bitte setzen Sie es manuell in den Einstellungen zurück!</string>
+  <string name="settings_dialog_title_warning">Achtung</string>
   <string name="settings_dialog_title_error">Fehler</string>
   <string name="settings_dialog_title_clear_keystore">KeyStore leeren?</string>
+  <string name="settings_dialog_title_android_sync">Android-Synchronisation</string>
+  <string name="settings_dialog_msg_encryption_change">andOTP wird nun versuchen, die Datenbankverschlüsselung zu ändern. Im Fehlerfall wird eine interne Datensicherung wiederhergestellt und die Verschlüsselung bleibt unverändert.\n\n<b>Es ist jedoch immer eine gute Idee, eine Datensicherung zu haben, falls etwas Unerwartetes passiert!</b></string>
   <string name="settings_dialog_msg_auth_invalid_with_encryption">Sie können nur ein Passwort oder eine PIN verwenden, solange die Datenbankverschlüsselung auf \"Passwort / PIN\" eingestellt ist!</string>
   <string name="settings_dialog_msg_encryption_invalid_with_auth">Sie müssen zuerst die Authentifizierung auf \"Passwort\" oder \"PIN\" setzen!</string>
   <string name="settings_dialog_msg_encryption_invalid_without_credentials">Sie müssen zuerst ein Passwort oder eine PIN festlegen, bevor Sie die Verschlüsselung ändern!</string>
-  <string name="settings_dialog_msg_clear_keystore_password">In einigen Fällen kann das Leeren des KeyStores helfen, Probleme zu lösen. Sie sollten nur fortfahren, wenn Sie wissen, was Sie tun!\n\nDa die <b>Datenbankverschlüsselung</b> auf <b>Passwort / PIN</b> eingestellt ist, sollten Sie dadurch keine Daten verlieren (aber es schadet nie, Datensicherungen zu haben).\n\n<b>Sind Sie sich wirklich sicher, dass Sie den KeyStore leeren wollen?</b></string>
+  <string name="settings_dialog_msg_clear_keystore_password">In einigen Fällen kann das Leeren des KeyStores helfen, Probleme zu lösen. Sie sollten nur fortfahren, wenn Sie wissen, was Sie tun!\n\nDa die <b>Datenbankverschlüsselung</b> auf <b>Passwort / PIN</b> eingestellt ist, sollten Sie dadurch keine Daten verlieren (aber es schadet nie, Datensicherungen zu haben).\n\n<b>Sind Sie sich wirklich sicher, dass Sie den KeyStore leeren möchten?</b></string>
   <string name="settings_dialog_msg_clear_keystore_keystore">In einigen Fällen kann das Leeren des KeyStore helfen, Probleme zu lösen. Sie sollten nur fortfahren, wenn Sie wissen, was Sie tun!\n\n<b>Warnung</b>: Da die <b>Datenbankverschlüsselung</b> auf <b>Androd KeyStore</b> eingestellt ist, werden Sie alle Konten verlieren. Stellen Sie sicher, dass Sie eine Datensicherung haben!.\n\n<b>Sind Sie sich wirklich sicher, dass Sie den KeyStore leeren wollen?</b></string>
+  <string name="settings_dialog_msg_android_sync_disabled_encryption">Die Android-Synchronisation kann nicht mit Keystore-Verschlüsselung verwendet werden, <b>Sie sollten eine manuelle Datensicherung durchführen!</b></string>
   <!-- List entries -->
   <string-array name="settings_entries_auth">
     <item>Keine</item>
@@ -99,6 +108,11 @@
     <item>Nicht unterteilen</item>
     <item>Nach zwei Zeichen</item>
     <item>Nach drei Zeichen</item>
+  </string-array>
+  <string-array name="settings_entries_tag_functionality">
+    <item>Alle Einträge anzeigen, die mit <b>irgendeinem</b> der ausgewählten Schlagwörter übereinstimmen (ODER)</item>
+    <item>Nur Einträge anzeigen, die mit <b>allen</b> der ausgewählten Schlagwörter übereinstimmen (UND)</item>
+    <item>Zwischen Schlagwörtern umschalten (es kann jeweils nur ein Schlagwort ausgewählt werden)</item>
   </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Systemstandard</string>

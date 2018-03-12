@@ -20,6 +20,8 @@
   <string name="settings_title_label_scroll">Прокрутка ярлыка</string>
   <string name="settings_title_thumbnail_size_ask">Размер изображения</string>
   <string name="settings_title_split_group_size">Добавлять пробел в токен</string>
+  <string name="settings_title_tag_functionality">Поведение выделенного тега</string>
+  <string name="settings_title_backup_append_date">Добавить дату к имени файла</string>
   <string name="settings_title_backup_ask">Спрашивать об имени файла</string>
   <string name="settings_title_backup_directory">Каталог резервной копии</string>
   <string name="settings_title_backup_password">Пароль для резервной копии</string>
@@ -29,12 +31,15 @@
   <string name="settings_title_openpgp_verify">Проверять зашифрованные резервные копии</string>
   <string name="settings_title_special_features">Включить специальные возможности</string>
   <string name="settings_title_enable_screenshot">Разрешить скриншоты</string>
+  <string name="settings_title_enable_android_backup_service">Включить Android sync</string>
   <string name="settings_title_clear_keystore">Очистить хранилище ключей</string>
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">Скрыть OTP-токены по-умолчанию, требуя их показ вручную</string>
   <string name="settings_desc_tap_to_reveal_timeout">Выберите время (в секундах) после которого автоматически скрывать показанные токены</string>
   <string name="settings_desc_panic">Решите, что произойдет при получении Panic Trigger</string>
   <string name="settings_desc_label_scroll">Прокрутка слишком длинных ярлыков вместо их усечения</string>
+  <string name="settings_desc_backup_append_date">Добавить текущую дату и время к предлагаемому
+        названию резервной копии</string>
   <string name="settings_desc_backup_ask">Спрашивать об имени файла при создании резервной копии или        восстановлении</string>
   <string name="settings_desc_backup_directory">Каталог для резервных копий (имена файлов будут зависеть        от типа резервного копирования)</string>
   <string name="settings_desc_backup_password">Установить пароль для шифрования резервных копий</string>
@@ -42,6 +47,8 @@
   <string name="settings_desc_openpgp_verify">Зашифрованные резервные копии можно импортировать только если они подписаны действительным ключом</string>
   <string name="settings_desc_special_features">Снимите флажок для отключения специальных возможностей</string>
   <string name="settings_desc_enable_screenshot">Разрешить снятие скриншотов главного экрана (из соображений безопасности по умолчанию выключено)</string>
+  <string name="settings_desc_enable_android_backup_service">Разрешите andOTP использовать встроенный в Android 
+        сервис резервного копирования для создания резервных копий ключей и настроек</string>
   <string name="settings_desc_clear_keystore">Удалить ключ шифрования из хранилища ключей</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">Эта функция поддерживается с версии Android 5.0 (Lollipop)</string>
@@ -54,13 +61,21 @@
   <string name="settings_toast_encryption_no_key">Не удалось получить ключ шифрования, прерывание!</string>
   <string name="settings_toast_encryption_auth_failed">Ошибка аутентификации!</string>
   <string name="settings_toast_auth_upgrade_failed">Не удалось автоматически обновить Ваш пароль / PIN-код        к новому шифрованию, пожалуйста  сбросьте его вручную в настройках!</string>
+  <string name="settings_dialog_title_warning">Предупреждение</string>
   <string name="settings_dialog_title_error">Ошибка</string>
   <string name="settings_dialog_title_clear_keystore">Очистить хранилище ключей?</string>
+  <string name="settings_dialog_title_android_sync">Android sync</string>
+  <string name="settings_dialog_msg_encryption_change">Сейчас andOTP попытается изменить шифрование
+        базы данных. В случае сбоя внутренняя резервная копия будет восстановлена, и шифрование 
+        останется неизменным.\n\n<b>Однако, всегда полезно иметь резервную копию,
+        если произойдет что-то неожиданное!</b></string>
   <string name="settings_dialog_msg_auth_invalid_with_encryption">Вы можете использовать только пароль или PIN-код,        если для шифрования базы данных установлено значение «Пароль / PIN-код»!</string>
   <string name="settings_dialog_msg_encryption_invalid_with_auth">Сначала необходимо задать        проверку аутентификации «Пароль» или «PIN-код»!</string>
   <string name="settings_dialog_msg_encryption_invalid_without_credentials">Cначала необходимо задать        пароль или PIN-код перед изменением шифрования!</string>
   <string name="settings_dialog_msg_clear_keystore_password">В некоторых случаях, очистка хранилища ключей        может помочь решить проблемы. Приступайте, только если Вы знаете, что делаете!\n\nПоскольку        <b>база данных зашифрована</b> с помощью <b>пароля / PIN-кода</b> вы не потеряете данные        (в любом случае, никогда не помешает иметь резервную копию).\n\n<b>Вы уверены, что вы действительно хотите        очистить хранилище ключей?</b></string>
   <string name="settings_dialog_msg_clear_keystore_keystore">В некоторых случаях, очистка хранилища ключей        может помочь решить проблемы. Приступайте, только если Вы знаете, что делаете!\n\n<b>Внимание</b>:        поскольку <b>база данных зашифрована</b> с помощью <b>хранилища ключей Android</b> Вы потеряете все        Ваши аккаунты. Создайте резервную копию!\n\n<b>Вы уверены, что Вы действительно хотите очистить        хранилище ключей?</b></string>
+  <string name="settings_dialog_msg_android_sync_disabled_encryption">Android sync не может использоваться с шифрованием 
+        хранилища ключей, <b>Вы должны вручную сделать резервную копию!</b></string>
   <!-- List entries -->
   <string-array name="settings_entries_auth">
     <item>Нет</item>
@@ -92,6 +107,11 @@
     <item>Не добавлять</item>
     <item>После 2 символов</item>
     <item>После 3 символов</item>
+  </string-array>
+  <string-array name="settings_entries_tag_functionality">
+    <item>Показать все записи, соответствующие <b>любому</b> выбранному тегу (или)</item>
+    <item>Показать только те записи, которые соответствуют <b>всем</b> выбранным тегам (и)</item>
+    <item>Переключение между тегами (разрешено одномоментно выбирать только один тег)</item>
   </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Настройки по умолчанию</string>

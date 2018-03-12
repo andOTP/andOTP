@@ -105,13 +105,13 @@ So make sure you have a **current backup** before switching!
 
 &nbsp; | Language          | Translators
 ------ | ----------------- | -----------
-🇵🇱   | Polish (pl-rPL)   | [Daniel Pustuła](https://github.com/9Cube-dpustula)
+🇵🇱   | Polish (pl-rPL)   | [Daniel Pustuła](https://github.com/9Cube-dpustula), [bla_ke](https://crowdin.com/profile/bla_ke), [DamianR](https://crowdin.com/profile/DamianR)
 :es:   | Spanish (es-rES)  | [Carlos Melero](https://crowdin.com/profile/carmebar)
-:de:   | German (de-rDE)   | [SuperVirus](https://crowdin.com/profile/SuperVirus), [Jan](https://crowdin.com/profile/Dagefoerde)
-:fr:   | French (fr-rFR)   | [Johan Fleury](https://github.com/johanfleury), [David Sferruzza](https://crowdin.com/profile/dsferruzza), [primokorn](https://crowdin.com/profile/primokorn), [Poussinou](https://crowdin.com/profile/Poussinou)
+:de:   | German (de-rDE)   | [SuperVirus](https://crowdin.com/profile/SuperVirus), [Jan](https://crowdin.com/profile/Dagefoerde), [TMHBOFH](https://crowdin.com/profile/TMHBOFH), [Grammost](https://crowdin.com/profile/Grammost), [Andreas Kleinert](https://crowdin.com/profile/AndyKl)
+:fr:   | French (fr-rFR)   | [Johan Fleury](https://github.com/johanfleury), [David Sferruzza](https://crowdin.com/profile/dsferruzza), [primokorn](https://crowdin.com/profile/primokorn), [Poussinou](https://crowdin.com/profile/Poussinou), [Patrick Decat](https://crowdin.com/profile/pdecat)
 🇳🇱   | Dutch (nl-rNL)    | Toon, [rain2reign](https://crowdin.com/profile/rain2reign), [thinkwell](https://crowdin.com/profile/thinkwell), [cpu20](https://crowdin.com/profile/cpu20)
 &nbsp; | Galician (gl-rES) | [Triskel](https://crowdin.com/profile/triskel), [Xosé M.](https://crowdin.com/profile/XoseM)
-:ru:   | Russian (ru-rRU)  | [Victor Nidens](https://crowdin.com/profile/vnidens), [Ilia Drogaitsev](https://crowdin.com/profile/waytoroot), [Dmitry](https://crowdin.com/profile/SaintDI)
+:ru:   | Russian (ru-rRU)  | [Victor Nidens](https://crowdin.com/profile/vnidens), [Ilia Drogaitsev](https://crowdin.com/profile/waytoroot), [Dmitry](https://crowdin.com/profile/SaintDI), [Анастасия Дрогайцева](https://crowdin.com/profile/khaleesi16)
 🇨🇿   | Czech (cs-rCZ)    | [Picard0147](https://crowdin.com/profile/Picard0147)
 :cn: | Chinese Simplified (zh-rCN) | [Cp0204](https://crowdin.com/profile/Cp0204)
 &nbsp; | Catalan (ca-rES) | [isard](https://crowdin.com/profile/isard)

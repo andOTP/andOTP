@@ -18,14 +18,14 @@
   <string name="backup_desc_import_plain">Restaura els comptes d\'un fitxer de text net JSON</string>
   <string name="backup_desc_import_crypt">Restaura els comptes d\'un fitxer JSON protegit amb contrasenya</string>
   <string name="backup_desc_import_openpgp">Restaura els comptes d\'un fitxer JSON xifrat amb OpenPGP</string>
-  <string name="backup_desc_crypt_setup">Cal establir una contrasenya en la Configuració per a usar
-        còpies xifrades.
+  <string name="backup_desc_crypt_setup">You need to set a <b>Backup password</b> in the
+        <b>Settings</b> to use encrypted backups.
     </string>
-  <string name="backup_desc_openpgp_provider">Cal instal·lar un programa OpenPGP i habilitar-lo
-        en la Configuració per a fer servir aquesta característica.
+  <string name="backup_desc_openpgp_provider">You need to install an OpenPGP provider and enable
+        it in the <b>Settings</b> to use this feature.
     </string>
-  <string name="backup_desc_openpgp_keyid">Cal triar una clau OpenPGP en la Configuració
-        per a poder crear còpies xifrades.
+  <string name="backup_desc_openpgp_keyid">You need to select an OpenPGP key in the <b>Settings</b>
+        before you can create encrypted backups.
     </string>
   <string name="backup_desc_replace">Si està activat les entrades antigues són substituïdes quan s\'importa una
         còpia de seguretat i només hi queda la còpia. Si no, les entrades velles i les còpies de seguretat
@@ -35,6 +35,14 @@
   <string name="backup_dialog_msg_export_warning">Realment voleu exportar la base de dades com a
         fitxer de text net JSON? Aquest fitxer contindrà les vostres claus secretes; per favor, manteniu-lo <b>ben protegit</b>!
     </string>
+  <string name="backup_receiver_title_backup_failed">Backup failed</string>
+  <string name="backup_receiver_title_backup_success">Backup successful</string>
+  <string name="backup_receiver_read_permission_failed">Read permission not granted, please do
+        this before attempting backup</string>
+  <string name="backup_receiver_write_permission_failed">Write permission not granted, please do
+        this before attempting backup</string>
+  <string name="backup_receiver_custom_encryption_failed">Password/PIN based encryption not
+        supported with broadcast backup</string>
   <!-- Toast messages -->
   <string name="backup_toast_mkdir_failed">No ha pogut crear el directori de còpia de seguretat</string>
   <string name="backup_toast_export_success">Exportació a l\'emmagatzematge extern correcta</string>
@@ -47,5 +55,5 @@
   <string name="backup_toast_storage_permissions">Permisos d\'emmagatzematge no concedits</string>
   <string name="backup_toast_openpgp_error">Error OpenPGP: %s</string>
   <string name="backup_toast_openpgp_not_verified">No s\'ha detectat cap signatura verificada</string>
-  <string name="backup_toast_crypt_password_not_set">No hi ha cap contrasenya establerta, comproveu la configuració</string>
+  <string name="backup_toast_crypt_password_not_set">Password not set, check the <b>Settings</b></string>
 </resources>

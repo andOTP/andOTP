@@ -20,6 +20,8 @@
   <string name="settings_title_label_scroll">Permet el desplaçament a les etiquetes</string>
   <string name="settings_title_thumbnail_size_ask">Mida de la miniatura</string>
   <string name="settings_title_split_group_size">Separa el testimoni amb espais</string>
+  <string name="settings_title_tag_functionality">Tag selection behavior</string>
+  <string name="settings_title_backup_append_date">Append date to filename</string>
   <string name="settings_title_backup_ask">Demana el nom de fitxer</string>
   <string name="settings_title_backup_directory">Directori de còpia de seguretat</string>
   <string name="settings_title_backup_password">Contrasenya de la còpia de seguretat</string>
@@ -29,6 +31,7 @@
   <string name="settings_title_openpgp_verify">Verifica les còpies de seguretat xifrades</string>
   <string name="settings_title_special_features">Habilita les característiques especials</string>
   <string name="settings_title_enable_screenshot">Permet screenshots</string>
+  <string name="settings_title_enable_android_backup_service">Enable Android sync</string>
   <string name="settings_title_clear_keystore">Neteja el magatzem de claus</string>
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">Amaga els testimonis OTP per defecte, caldrà
@@ -37,6 +40,8 @@
         es mostraran les entrades</string>
   <string name="settings_desc_panic">Decidiu què fer quan es prem el botó del pànic</string>
   <string name="settings_desc_label_scroll">Les etiquetes llargues es desplacen en comptes de truncar-les</string>
+  <string name="settings_desc_backup_append_date">Append the current date and time to the suggested
+        backup filename</string>
   <string name="settings_desc_backup_ask">Demana el nom del fitxer cada vegada que es crea o restaura una còpia de seguretat</string>
   <string name="settings_desc_backup_directory">Directori per a les còpies de seguretat (el nom dels fitxers
         depén del tipus de còpia)</string>
@@ -49,6 +54,8 @@
   <string name="settings_desc_special_features">Desmarqueu per a deshabilitar les característiques especials</string>
   <string name="settings_desc_enable_screenshot">Permet fer captures de la pantalla principal
         (desactivat per defecte per motius de seguretat)</string>
+  <string name="settings_desc_enable_android_backup_service">Enables andOTP to use Android\'s
+        built in backup service to backup keys and preferences</string>
   <string name="settings_desc_clear_keystore">Esborra la clau d\'encriptació del magatzem de claus</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">Aquesta característica només funciona amb
@@ -69,8 +76,14 @@
   <string name="settings_toast_encryption_auth_failed">Ha fallat l\'autenticació!</string>
   <string name="settings_toast_auth_upgrade_failed">Ha fallat l\'actualització automàtica de la contrasenya / PIN
         per al nou xifratge; per favor, reinicialitzeu-la manualment en la configuració!</string>
+  <string name="settings_dialog_title_warning">Warning</string>
   <string name="settings_dialog_title_error">Error</string>
   <string name="settings_dialog_title_clear_keystore">Voleu neteja el magatzem de claus?</string>
+  <string name="settings_dialog_title_android_sync">Android sync</string>
+  <string name="settings_dialog_msg_encryption_change">andOTP will now try to change the database
+        encryption. In case of a failure an internal backup will be restored and the encryption
+        remains unchanged.\n\n<b>However, it\'s always a good idea to have a backup in case
+        something unexpected happens!</b></string>
   <string name="settings_dialog_msg_auth_invalid_with_encryption">Només podeu usar una contrasenya o un PIN
         si el xifratge de la base de dades s\'ha establert a \"contrasenya / PIN\"!</string>
   <string name="settings_dialog_msg_encryption_invalid_with_auth">Primer cal definir l\'autenticació a \"contrasenya\" o \"PIN\"!</string>
@@ -84,6 +97,8 @@
         Atés que el xifratge de la <b>base de dades</b> està definit a <b>Android KeyStore</b> perdreu tots els
         comptes. Comproveu que n\'heu fet una còpia!\n\n<b>Segur que voleu netejar el magatzem de claus
         (KeyStore)?</b></string>
+  <string name="settings_dialog_msg_android_sync_disabled_encryption">Android sync can not be used with keystore
+        encryption, <b>you should perform a manual backup!</b></string>
   <!-- List entries -->
   <string-array name="settings_entries_auth">
     <item>Cap</item>
@@ -115,6 +130,11 @@
     <item>No dividir</item>
     <item>Després de dos caràcters</item>
     <item>Després de tres caràcters</item>
+  </string-array>
+  <string-array name="settings_entries_tag_functionality">
+    <item>Show all entries matching <b>any</b> of the selected tags (or)</item>
+    <item>Only show entries matching <b>all</b> of the selected tags (and)</item>
+    <item>Switch between tags (only allow one tag to be selected at a time)</item>
   </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Valor del sistema per defecte</string>

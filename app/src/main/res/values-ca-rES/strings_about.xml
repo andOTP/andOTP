@@ -34,5 +34,5 @@
         per a saber-ne més abans de fer-les servir.</string>
   <string name="about_toast_special_features">Característiques especials habilitades</string>
   <string name="about_toast_special_features_enabled">Característiques especials ja habilitades</string>
-  <string name="about_toast_copied_to_clipboard">Donation link copied to clipboard</string>
+  <string name="about_toast_copied_to_clipboard">S\'ha copiat l\'enllaç de donació al porta-retalls</string>
 </resources>

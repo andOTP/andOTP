@@ -12,74 +12,35 @@
   <string name="backup_title_import_crypt">Restauration (chiffrée)</string>
   <string name="backup_title_import_openpgp">Restauration (OpenPGP)</string>
   <string name="backup_title_replace">Remplacer les entrées existantes</string>
-  <string name="backup_desc_export_plain">
-      Sauvegarder tous les comptes en clair dans un fichier JSON
-    </string>
-  <string name="backup_desc_export_crypt">
-      Sauvegarder tous les comptes dans un fichier JSON protégé par un mot de
-      passe
-    </string>
-  <string name="backup_desc_export_openpgp">
-      Sauvegarder tous les comptes dans un fichier JSON chiffré avec OpenPGP
-    </string>
-  <string name="backup_desc_import_plain">
-      Restaurer tous les comptes à partir d\'un fichier JSON en clair
-    </string>
-  <string name="backup_desc_import_crypt">
-      Restaurer tous les comptes à partir d\'un fichier JSON protégé par un mot
-      de passe
-    </string>
-  <string name="backup_desc_import_openpgp">
-      Restaurer tous les comptes à partir d\'un fichier JSON chiffré avec
-      OpenPGP
-    </string>
-  <string name="backup_desc_crypt_setup">
-      Vous devez ajouter un mot de passe dans les paramètres pour utiliser les
-      sauvegardes chiffrés.
-    </string>
-  <string name="backup_desc_openpgp_provider">
-      Vous devez installer un fournisseur OpenPGP et l\'activer dans les
-      paramètres pour utiliser cette fonctionnalité.
-    </string>
-  <string name="backup_desc_openpgp_keyid">
-      Vous devez sélectionner une clé dans les paramètres pour faire des
-      sauvegardes avec OpenPGP.
-    </string>
+  <string name="backup_desc_export_plain">Sauvegarder tous les comptes en clair dans un fichier JSON</string>
+  <string name="backup_desc_export_crypt">Sauvegarder tous les comptes dans un fichier JSON protégé par un mot de passe</string>
+  <string name="backup_desc_export_openpgp">Sauvegarder tous les comptes dans un fichier JSON chiffré avec OpenPGP</string>
+  <string name="backup_desc_import_plain">Restaurer tous les comptes à partir d\'un fichier JSON en clair</string>
+  <string name="backup_desc_import_crypt">Restaurer tous les comptes à partir d\'un fichier JSON protégé par un mot de passe</string>
+  <string name="backup_desc_import_openpgp">Restaurer tous les comptes à partir d\'un fichier JSON chiffré avec OpenPGP</string>
+  <string name="backup_desc_crypt_setup">Vous devez définir un <b>mot de passe de sauvegarde</b> dans les <b>paramètres</b> pour utiliser des sauvegardes chiffrées.    </string>
+  <string name="backup_desc_openpgp_provider">Vous devez installer un fournisseur OpenPGP et l\'activer dans les <b>paramètres</b> pour utiliser cette fonctionnalité.</string>
+  <string name="backup_desc_openpgp_keyid">Vous devez sélectionner un fournisseur OpenPGP dans les <b>paramètres</b> afin de pouvoir créer des sauvegardes chiffrées.</string>
   <string name="backup_desc_replace">Si activé, à l\'import d\'une sauvegarde toutes les entrées seront supprimées et remplacées par les entrées de la sauvegarde. Si désactivé, les entrées seront fusionnées avec celles de la sauvegarde.</string>
   <!-- Dialogs -->
-  <string name="backup_dialog_title_security_warning">
-      Avertissement de sécurité
-    </string>
-  <string name="backup_dialog_msg_export_warning">
-      Êtes-vous sûr de vouloir exporter la base de données en clair dans un
-      fichier JSON ? Ce fichier contiendra toutes vos clés privées, <b>veuillez
-      le placer dans un endroit sûr</b> !
-    </string>
+  <string name="backup_dialog_title_security_warning">Avertissement de sécurité</string>
+  <string name="backup_dialog_msg_export_warning">Êtes-vous sûr de vouloir exporter la base de données en clair dans un fichier JSON ? Ce fichier contiendra toutes vos clés privées, <b>veuillez le placer dans un endroit sûr</b> !    </string>
+  <string name="backup_receiver_title_backup_failed">La sauvegarde a échoué</string>
+  <string name="backup_receiver_title_backup_success">Sauvegarde réussie</string>
+  <string name="backup_receiver_read_permission_failed">L\'autorisation de lecture n\'est pas accordée, veuillez le faire avant d’effectuer la sauvegarde</string>
+  <string name="backup_receiver_write_permission_failed">L\'autorisation d\'écriture n\'est pas accordée, veuillez le faire avant d’effectuer la sauvegarde</string>
+  <string name="backup_receiver_custom_encryption_failed">Le chiffrement à base de mot de passe ou code PIN n\'est pas supporté par la sauvegarde par diffusion</string>
   <!-- Toast messages -->
   <string name="backup_toast_mkdir_failed">Échec de la création du répertoire de sauvegarde</string>
-  <string name="backup_toast_export_success">
-      Sauvegarde vers le stockage externe effectuée avec succès
-    </string>
-  <string name="backup_toast_export_failed">
-      La sauvegarde vers le stockage externe a échoué
-    </string>
-  <string name="backup_toast_import_success">
-      Restauration depuis le stockage externe effectuée avec succès
-    </string>
+  <string name="backup_toast_export_success">Sauvegarde vers le stockage externe effectuée avec succès</string>
+  <string name="backup_toast_export_failed">La sauvegarde vers le stockage externe a échoué</string>
+  <string name="backup_toast_import_success">Restauration depuis le stockage externe effectuée avec succès</string>
   <string name="backup_toast_import_save_failed">Échec de l\'enregistrement des entrées restaurées</string>
   <string name="backup_toast_import_decryption_failed">Échec du déchiffrement de la sauvegarde</string>
   <string name="backup_toast_import_no_entries">Aucune entrée trouvée dans les données importées</string>
-  <string name="backup_toast_storage_not_accessible">
-      Stockage externe non disponible
-    </string>
-  <string name="backup_toast_storage_permissions">
-      Permission d\'accéder au stockage refusée
-    </string>
+  <string name="backup_toast_storage_not_accessible">Stockage externe non disponible</string>
+  <string name="backup_toast_storage_permissions">Permission d\'accéder au stockage refusée</string>
   <string name="backup_toast_openpgp_error">Erreur OpenPGP : %s</string>
-  <string name="backup_toast_openpgp_not_verified">
-      Aucune signature vérifiée n\'a été trouvée
-    </string>
-  <string name="backup_toast_crypt_password_not_set">
-      Aucun mot de passe configuré, vérifiez les paramètres
-    </string>
+  <string name="backup_toast_openpgp_not_verified">Aucune signature vérifiée n\'a été trouvée</string>
+  <string name="backup_toast_crypt_password_not_set">Aucun mot de passe défini, vérifiez les <b>paramètres</b></string>
 </resources>
