@@ -391,6 +391,18 @@ public class Settings {
         return password;
     }
 
+    public Set<String> getBackupBroadcasts() {
+        return settings.getStringSet(getResString(R.string.settings_key_backup_broadcasts), Collections.<String>emptySet());
+    }
+
+    public boolean isPlainTextBackupBroadcastEnabled() {
+        return getBackupBroadcasts().contains("plain");
+    }
+
+    public boolean isEncryptedBackupBroadcastEnabled() {
+        return getBackupBroadcasts().contains("encrypted");
+    }
+
     public String getOpenPGPProvider() {
         return getString(R.string.settings_key_openpgp_provider, "");
     }

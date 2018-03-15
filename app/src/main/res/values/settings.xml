@@ -30,6 +30,7 @@
     <string name="settings_key_backup_directory" translatable="false">pref_backup_directory</string>
     <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>          <!-- Deprecated -->
     <string name="settings_key_backup_password_enc" translatable="false">pref_backup_password_enc</string>
+    <string name="settings_key_backup_broadcasts" translatable="false">pref_backup_broadcasts</string>
     <string name="settings_key_openpgp_provider" translatable="false">pref_openpgp_provider</string>
     <string name="settings_key_openpgp_keyid" translatable="false">pref_openpgp_keyid</string>
     <string name="settings_key_openpgp_sign" translatable="false">pref_openpgp_sign</string>
@@ -121,6 +122,11 @@
         <item>or</item>
         <item>and</item>
         <item>single</item>
+    </string-array>
+
+    <string-array name="settings_values_backup_broadcasts" translatable="false">
+        <item>plain</item>
+        <item>encrypted</item>
     </string-array>
 
     <string-array name="settings_entries_lang" translatable="false">

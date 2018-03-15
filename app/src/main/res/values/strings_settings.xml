@@ -28,6 +28,7 @@
     <string name="settings_title_backup_ask">Ask for filename</string>
     <string name="settings_title_backup_directory">Backup directory</string>
     <string name="settings_title_backup_password">Backup password</string>
+    <string name="settings_title_backup_broadcasts">Backup Broadcasts</string>
     <string name="settings_title_openpgp_provider">Select OpenPGP provider</string>
     <string name="settings_title_openpgp_keyid">Select OpenPGP key</string>
     <string name="settings_title_openpgp_sign">Sign encrypted backups</string>
@@ -56,6 +57,9 @@
         on the backup type)</string>
     <string name="settings_desc_backup_password">Set the password that is used to encrypt the
         backups</string>
+
+    <string name="settings_desc_backup_broadcasts">Select which backup types can be triggered by
+        3rd-party apps using Broadcasts</string>
 
     <string name="settings_desc_openpgp_sign">Every encrypted backup is additionally signed with
         your key (requires password)</string>
@@ -166,6 +170,11 @@
         <item>Switch between tags (only allow one tag to be selected at a time)</item>
     </string-array>
 
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Plain-text backups</item>
+        <item>Encrypted backups</item>
+    </string-array>
+    
     <!-- Special -->
     <string name="settings_lang_sys_default">System default</string>
 
