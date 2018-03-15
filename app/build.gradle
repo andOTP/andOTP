@@ -31,7 +31,7 @@ android {
 }
 
 ext {
-    supportLibVersion = "27.0.2"
+    supportLibVersion = "27.1.0"
 }
 
 dependencies {
@@ -45,7 +45,7 @@ dependencies {
     compile "com.android.support.constraint:constraint-layout:1.0.2"
     compile "com.github.aakira:expandable-layout:1.6.0"
     compile "com.heinrichreimersoftware:material-intro:1.6.2"
-    compile "com.journeyapps:zxing-android-embedded:3.5.0"
+    compile "com.journeyapps:zxing-android-embedded:3.6.0"
     compile "com.vanniktech:vntnumberpickerpreference:1.0.0"
     compile "de.psdev.licensesdialog:licensesdialog:1.8.3"
     compile "me.zhanghai.android.materialprogressbar:library:1.4.2"
