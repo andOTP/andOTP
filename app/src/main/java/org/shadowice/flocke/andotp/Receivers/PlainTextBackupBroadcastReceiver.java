@@ -45,7 +45,9 @@ import javax.crypto.SecretKey;
 public class PlainTextBackupBroadcastReceiver extends BackupBroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        if(!canSaveBackup(context))
+        NotificationHelper.notify(context, R.string.backup_receiver_title_backup_failed, R.string.backup_receiver_disabled);
+
+        /*if(!canSaveBackup(context))
             return;
 
         Settings settings = new Settings(context);
@@ -71,6 +73,6 @@ public class PlainTextBackupBroadcastReceiver extends BackupBroadcastReceiver {
             }
         } else {
             NotificationHelper.notify(context, R.string.backup_receiver_title_backup_failed, R.string.backup_toast_storage_not_accessible);
-        }
+        }*/
     }
 }

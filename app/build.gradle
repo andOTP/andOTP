@@ -8,8 +8,8 @@ android {
         applicationId "org.shadowice.flocke.andotp"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 15
-        versionName "0.5.0"
+        versionCode 16
+        versionName "0.5.0.1"
     }
     buildTypes {
         release {
