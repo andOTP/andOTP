@@ -22,9 +22,7 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
-import android.app.KeyguardManager;
 import android.app.backup.BackupManager;
-import android.app.backup.RestoreObserver;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -36,12 +34,8 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.view.ViewStub;
-import android.widget.CheckBox;
 import android.widget.Toast;
 
 import org.openintents.openpgp.util.OpenPgpAppPreference;
@@ -129,24 +123,21 @@ public class SettingsActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_locale)) ||
                 key.equals(getString(R.string.settings_key_special_features))) {
             recreate();
-        }else if(key.equals(getString(R.string.settings_key_encryption))) {
-            if(settings.getEncryption() != EncryptionType.PASSWORD) {
-                boolean wasSyncEnabled = settings.getAndroidBackupServiceEnabled();
-                settings.setAndroidBackupServiceEnabled(false);
-
-                if (wasSyncEnabled) {
+        } else if(key.equals(getString(R.string.settings_key_encryption))) {
+            if (settings.getEncryption() != EncryptionType.PASSWORD) {
+                if (settings.getAndroidBackupServiceEnabled()) {
                     UIHelper.showGenericDialog(this,
                         R.string.settings_dialog_title_android_sync,
-                        R.string.settings_dialog_msg_android_sync_disabled_encryption,
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                recreate();
-                            }
-                        }
+                        R.string.settings_dialog_msg_android_sync_disabled_encryption
                     );
-                } else recreate();
-            }else recreate();
+                }
+
+                settings.setAndroidBackupServiceEnabled(false);
+                fragment.useAndroidSync.setEnabled(false);
+                fragment.useAndroidSync.setChecked(false);
+            } else {
+                fragment.useAndroidSync.setEnabled(true);
+            }
         }
     }
 
@@ -241,6 +232,7 @@ public class SettingsActivity extends BaseActivity
 
         Settings settings;
         ListPreference encryption;
+        CheckBoxPreference useAndroidSync;
 
         OpenPgpAppPreference pgpProvider;
         OpenPgpKeyPreference pgpKey;
@@ -333,11 +325,10 @@ public class SettingsActivity extends BaseActivity
             });
             pgpKey.setDefaultUserId("Alice <alice@example.com>");
 
-            CheckBoxPreference useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
+            useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
             useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);
-            if(!useAndroidSync.isEnabled()) {
+            if(!useAndroidSync.isEnabled())
                 useAndroidSync.setChecked(false);
-            }
 
             if (sharedPref.contains(getString(R.string.settings_key_special_features)) &&
                     sharedPref.getBoolean(getString(R.string.settings_key_special_features), false)) {
