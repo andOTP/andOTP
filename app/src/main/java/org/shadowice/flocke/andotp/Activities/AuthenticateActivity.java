@@ -150,7 +150,7 @@ public class AuthenticateActivity extends ThemedActivity
                 } else {
                     finishWithResult(false, null);
                 }
-            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException | IllegalArgumentException e) {
                 e.printStackTrace();
                 finishWithResult(false, null);
             }
