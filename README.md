@@ -103,6 +103,7 @@ So make sure you have a **current backup** before switching!
  * [Matthias Bertram](https://github.com/mbertram) ([view contributions](https://github.com/andOTP/andOTP/commits?author=mbertram))
  * [Björn Richter](https://github.com/x3rAx) ([view contributions](https://github.com/andOTP/andOTP/commits?author=x3rAx))
  * [Emmanuel Nwokoma](https://github.com/enwokoma) ([view contributions](https://github.com/andOTP/andOTP/commits?author=enwokoma))
+ * [magnus anderssen](https://github.com/callmemagnus) ([view contributions](https://github.com/andOTP/andOTP/commits?author=callmemagnus))
 
 #### Translators:
 
