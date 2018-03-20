@@ -30,7 +30,6 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-
 public class TokenCalculator {
     public static final int TOTP_DEFAULT_PERIOD = 30;
     public static final int TOTP_DEFAULT_DIGITS = 6;
@@ -84,14 +83,23 @@ public class TokenCalculator {
         return tokenBuilder.toString();
     }
 
-    public static int TOTP(byte[] key, int period, long time, HashAlgorithm algorithm)
+    public static String HOTP(byte[] secret, long counter, int digits, HashAlgorithm algorithm) {
+        int fullToken = HOTP(secret, counter, algorithm);
+        int div = (int) Math.pow(10, digits);
+
+        return String.format("%0" + digits + "d", fullToken % div);
+    }
+
+    private static int TOTP(byte[] key, int period, long time, HashAlgorithm algorithm) {
+        return HOTP(key, time / period, algorithm);
+    }
+
+    private static int HOTP(byte[] key, long counter, HashAlgorithm algorithm)
     {
         int r = 0;
 
         try {
-            long timeInterval = time / period;
-
-            byte[] data = ByteBuffer.allocate(8).putLong(timeInterval).array();
+            byte[] data = ByteBuffer.allocate(8).putLong(counter).array();
             byte[] hash = generateHash(algorithm, key, data);
 
             int offset = hash[hash.length - 1] & 0xF;

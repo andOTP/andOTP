@@ -29,6 +29,7 @@
     <string name="label_algorithm">Algorithm</string>
     <string name="label_tags">Tags</string>
     <string name="label_advanced">Advanced options</string>
+    <string name="label_counter_symbol" translatable="false">#</string>
 
     <!-- Drawer -->
     <string name="drawer_open">Show tags</string>
@@ -63,6 +64,7 @@
     <string name="dialog_title_manual_entry">Enter details</string>
     <string name="dialog_title_remove">Remove</string>
     <string name="dialog_title_rename">Rename</string>
+    <string name="dialog_title_counter">Counter</string>
     <string name="dialog_title_last_used">Last used</string>
     <string name="dialog_title_keystore_error">KeyStore error</string>
 

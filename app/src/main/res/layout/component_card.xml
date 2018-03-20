@@ -140,10 +140,34 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/counterLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:gravity="center"
+                    android:visibility="visible"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/label_counter_symbol" />
+
+                    <TextView
+                        android:id="@+id/counter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
                 <ImageButton
                     android:id="@+id/copyButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:padding="@dimen/activity_margin_small"
                     android:src="@drawable/ic_content_copy_gray"
                     android:background="?android:attr/selectableItemBackground"/>
@@ -152,6 +176,7 @@
                     android:id="@+id/menuButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:padding="@dimen/activity_margin_small"
                     android:src="@drawable/ic_more_vert_gray"
                     android:background="?android:attr/selectableItemBackground"/>

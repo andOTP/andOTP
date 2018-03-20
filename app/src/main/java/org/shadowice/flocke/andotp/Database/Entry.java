@@ -42,15 +42,17 @@ import java.util.Set;
 
 public class Entry {
     public enum OTPType {
-        TOTP, STEAM
+        TOTP, HOTP, STEAM
     }
-    public static Set<OTPType> PublicTypes = EnumSet.of(OTPType.TOTP);
+    public static Set<OTPType> PublicTypes = EnumSet.of(OTPType.TOTP, OTPType.HOTP);
 
     private static final OTPType DEFAULT_TYPE = OTPType.TOTP;
+    private static final int DEFAULT_PERIOD = 30;
 
     private static final String JSON_SECRET = "secret";
     private static final String JSON_LABEL = "label";
     private static final String JSON_PERIOD = "period";
+    private static final String JSON_COUNTER = "counter";
     private static final String JSON_DIGITS = "digits";
     private static final String JSON_TYPE = "type";
     private static final String JSON_ALGORITHM = "algorithm";
@@ -63,6 +65,7 @@ public class Entry {
     private int digits = TokenCalculator.TOTP_DEFAULT_DIGITS;
     private TokenCalculator.HashAlgorithm algorithm = TokenCalculator.DEFAULT_ALGORITHM;
     private byte[] secret;
+    private long counter;
     private String label;
     private String currentOTP;
     private boolean visible = false;
@@ -84,6 +87,16 @@ public class Entry {
         this.tags = tags;
     }
 
+    public Entry(OTPType type, String secret, long counter, int digits, String label, TokenCalculator.HashAlgorithm algorithm, List<String> tags) {
+        this.type = type;
+        this.secret = new Base32().decode(secret.toUpperCase());
+        this.counter = counter;
+        this.digits = digits;
+        this.label = label;
+        this.algorithm = algorithm;
+        this.tags = tags;
+    }
+
     public Entry(String contents) throws Exception {
         contents = contents.replaceFirst("otpauth", "http");
         Uri uri = Uri.parse(contents);
@@ -95,21 +108,30 @@ public class Entry {
 
         if(url.getHost().equals("totp")){
             type = OTPType.TOTP;
+        } else if (url.getHost().equals("hotp")) {
+            type = OTPType.HOTP;
         } else {
-            throw new Exception();
+            throw new Exception("unknown otp type");
         }
 
         String secret = uri.getQueryParameter("secret");
         String label = uri.getPath().substring(1);
 
+        String counter = uri.getQueryParameter("counter");
         String issuer = uri.getQueryParameter("issuer");
         String period = uri.getQueryParameter("period");
         String digits = uri.getQueryParameter("digits");
         String algorithm = uri.getQueryParameter("algorithm");
         List<String> tags = uri.getQueryParameters("tags");
 
-        if(issuer != null){
+        if (issuer != null){
             label = issuer +" - "+label;
+        }
+
+        if (type == OTPType.HOTP && counter == null) {
+            throw new Exception("missing counter for HOTP");
+        } else {
+            this.counter = Long.parseLong(counter);
         }
 
         this.label = label;
@@ -140,21 +162,35 @@ public class Entry {
         }
     }
 
-    public Entry (JSONObject jsonObj) throws JSONException {
+    public Entry (JSONObject jsonObj)
+            throws Exception {
         this.secret = new Base32().decode(jsonObj.getString(JSON_SECRET).toUpperCase());
         this.label = jsonObj.getString(JSON_LABEL);
-        this.period = jsonObj.getInt(JSON_PERIOD);
-
-        try {
-            this.digits = jsonObj.getInt(JSON_DIGITS);
-        } catch(Exception e) {
-            this.digits = TokenCalculator.TOTP_DEFAULT_DIGITS;
-        }
 
         try {
             this.type = OTPType.valueOf(jsonObj.getString(JSON_TYPE));
         } catch(Exception e) {
             this.type = DEFAULT_TYPE;
+        }
+
+        try {
+            this.period = jsonObj.getInt(JSON_PERIOD);
+        } catch(Exception e) {
+            if (type == OTPType.TOTP)
+                this.period = DEFAULT_PERIOD;
+        }
+
+        try {
+            this.counter = jsonObj.getLong(JSON_COUNTER);
+        } catch (Exception e) {
+            if (type == OTPType.HOTP)
+                throw new Exception("missing counter for HOTP");
+        }
+
+        try {
+            this.digits = jsonObj.getInt(JSON_DIGITS);
+        } catch(Exception e) {
+            this.digits = TokenCalculator.TOTP_DEFAULT_DIGITS;
         }
 
         try {
@@ -190,12 +226,16 @@ public class Entry {
         JSONObject jsonObj = new JSONObject();
         jsonObj.put(JSON_SECRET, new String(new Base32().encode(getSecret())));
         jsonObj.put(JSON_LABEL, getLabel());
-        jsonObj.put(JSON_PERIOD, getPeriod());
         jsonObj.put(JSON_DIGITS, getDigits());
         jsonObj.put(JSON_TYPE, getType().toString());
         jsonObj.put(JSON_ALGORITHM, algorithm.toString());
         jsonObj.put(JSON_THUMBNAIL, getThumbnail().name());
         jsonObj.put(JSON_LAST_USED, getLastUsed());
+
+        if (type == OTPType.TOTP)
+            jsonObj.put(JSON_PERIOD, getPeriod());
+        else if (type == OTPType.HOTP)
+            jsonObj.put(JSON_COUNTER, getCounter());
 
         JSONArray tagsArray = new JSONArray();
         for(String tag : tags){
@@ -236,6 +276,14 @@ public class Entry {
 
     public void setPeriod(int period) {
         this.period = period;
+    }
+
+    public long getCounter() {
+        return counter;
+    }
+
+    public void setCounter(long counter) {
+        this.counter = counter;
     }
 
     public int getDigits() {
@@ -311,6 +359,9 @@ public class Entry {
             } else {
                 return false;
             }
+        } else if (type == OTPType.HOTP) {
+            currentOTP = TokenCalculator.HOTP(secret, counter, digits, algorithm);
+            return true;
         } else {
             return false;
         }
@@ -324,6 +375,7 @@ public class Entry {
         return period == entry.period &&
                 digits == entry.digits &&
                 type == entry.type &&
+                counter == entry.counter &&
                 algorithm == entry.algorithm &&
                 Arrays.equals(secret, entry.secret) &&
                 Objects.equals(label, entry.label);
@@ -331,6 +383,6 @@ public class Entry {
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, period, digits, algorithm, secret, label);
+        return Objects.hash(type, period, counter, digits, algorithm, secret, label);
     }
 }
