@@ -199,6 +199,8 @@ public class IntroScreenActivity extends IntroActivity {
 
             generateSelectionMapping();
 
+            selection.setSelection(selectionMapping.indexOfValue(Constants.EncryptionType.PASSWORD));
+
             selection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
