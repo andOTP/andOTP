@@ -71,6 +71,30 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/manual_layout_counter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/label_counter"/>
+
+        <EditText
+            android:id="@+id/manual_counter"
+            android:layout_weight="7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/label_counter"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -111,6 +135,7 @@
         app:ael_expanded="false">
 
         <LinearLayout
+            android:id="@+id/manual_layout_period"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"

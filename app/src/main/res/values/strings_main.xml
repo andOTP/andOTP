@@ -25,6 +25,7 @@
     <string name="label_secret">Secret</string>
     <string name="label_period">Period</string>
     <string name="label_digits">Digits</string>
+    <string name="label_counter">Counter</string>
     <string name="label_label">Label</string>
     <string name="label_algorithm">Algorithm</string>
     <string name="label_tags">Tags</string>
