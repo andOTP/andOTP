@@ -128,20 +128,22 @@ public class Entry {
             label = issuer +" - "+label;
         }
 
-        if (type == OTPType.HOTP && counter == null) {
-            throw new Exception("missing counter for HOTP");
-        } else {
-            this.counter = Long.parseLong(counter);
+        if (type == OTPType.HOTP) {
+            if (counter != null) {
+                this.counter = Long.parseLong(counter);
+            } else {
+                throw new Exception("missing counter for HOTP");
+            }
+        } else if (type == OTPType.TOTP) {
+            if (period != null) {
+                this.period = Integer.parseInt(period);
+            } else {
+                this.period = TokenCalculator.TOTP_DEFAULT_PERIOD;
+            }
         }
 
         this.label = label;
         this.secret = new Base32().decode(secret.toUpperCase());
-
-        if (period != null) {
-            this.period = Integer.parseInt(period);
-        } else {
-            this.period = TokenCalculator.TOTP_DEFAULT_PERIOD;
-        }
 
         if (digits != null) {
             this.digits = Integer.parseInt(digits);
