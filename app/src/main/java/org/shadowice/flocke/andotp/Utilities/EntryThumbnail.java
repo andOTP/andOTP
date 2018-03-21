@@ -110,6 +110,7 @@ public class EntryThumbnail {
         Synology(R.drawable.thumb_synology),
         TeamViewer(R.drawable.thumb_teamviewer),
         Terminal(R.drawable.thumb_terminal),
+        Trello(R.drawable.thumb_trello),
         Tumblr(R.drawable.thumb_tumblr),
         Twitch(R.drawable.thumb_twitch),
         Twitter(R.drawable.thumb_twitter),
