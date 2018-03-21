@@ -10,7 +10,8 @@
 
 andOTP is a two-factor authentication App for Android 4.4+.
 
-It implements Time-based One-time Passwords (TOTP) like specified in RFC 6238. Simply scan the QR code and login with the generated 6-digit code.
+It implements Time-based One-time Passwords (TOTP) and HMAC-Based One-Time Passwords (HOTP).
+Simply scan the QR code and login with the generated 6-digit code.
 
 This project started out as a fork of the great [OTP Authenticator](https://github.com/0xbb/otp-authenticator) app written by [Bruno Bierbaumer](https://github.com/0xbb),
 which has sadly been inactive since 2015. By now almost every aspect of the app has been changed/re-written so the fork status of the Github repository got
@@ -39,6 +40,9 @@ Don't worry, I will still continue to develop andOTP it will just slow down from
    - Black (for OLED screens)
  * Great Usability
  * Compatible with Google Authenticator
+ * Supported algorithms:
+   - TOTP (Time-based One-time Passwords) as specified in [RFC 6238](https://tools.ietf.org/html/rfc6238)
+   - HOTP (HMAC-based One-time Passwords) as specified in [RFC 4226](https://tools.ietf.org/html/rfc4226)
 
 ## Backups:
 
