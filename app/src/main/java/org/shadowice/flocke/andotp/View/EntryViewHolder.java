@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Jakob Nixdorf
+ * Copyright (C) 2017-2018 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
@@ -41,6 +42,7 @@ import org.shadowice.flocke.andotp.Utilities.Tools;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperViewHolder;
 
 import java.util.List;
+import java.util.Locale;
 
 public class EntryViewHolder extends RecyclerView.ViewHolder
         implements ItemTouchHelperViewHolder {
@@ -52,11 +54,13 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private LinearLayout valueLayout;
     private LinearLayout coverLayout;
     private LinearLayout customPeriodLayout;
+    private LinearLayout counterLayout;
     private FrameLayout thumbnailFrame;
     private ImageView visibleImg;
     private ImageView thumbnailImg;
     private TextView value;
     private TextView label;
+    private TextView counter;
     private TextView tags;
     private TextView customPeriod;
 
@@ -77,6 +81,8 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         tags = v.findViewById(R.id.textViewTags);
         customPeriodLayout = v.findViewById(R.id.customPeriodLayout);
         customPeriod = v.findViewById(R.id.customPeriod);
+        counterLayout = v.findViewById(R.id.counterLayout);
+        counter = v.findViewById(R.id.counter);
 
         ImageButton menuButton = v.findViewById(R.id.menuButton);
         ImageButton copyButton = v.findViewById(R.id.copyButton);
@@ -107,6 +113,24 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             }
         });
 
+        counterLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (callback != null)
+                    callback.onCounterTapped(getAdapterPosition());
+            }
+        });
+
+        counterLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (callback != null)
+                    callback.onCounterLongPressed(getAdapterPosition());
+
+                return false;
+            }
+        });
+
         setTapToReveal(tapToReveal);
 
         if(card != null) {
@@ -119,16 +143,25 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         }
     }
 
-    public void updateValues(String label, String token, List<String> tags, EntryThumbnail.EntryThumbnails thumbnail, boolean isVisible, boolean showAsPopup) {
+    public void updateValues(Entry entry, boolean showAsPopup) {
         Settings settings = new Settings(context);
-        final String tokenFormatted = Tools.formatToken(token, settings.getTokenSplitGroupSize());
 
-        if(this.label != null) this.label.setText(label);
-        if(value != null) {
-            value.setText(tokenFormatted);
-            // save the unformatted token to the tag of this TextView for copy/paste
-            value.setTag(token);
+        if (entry.getType() == Entry.OTPType.HOTP) {
+            if(counterLayout != null) counterLayout.setVisibility(View.VISIBLE);
+            if(counter != null) counter.setText(String.format(Locale.ENGLISH, "%d", entry.getCounter()));
+        } else {
+            if(counterLayout != null) counterLayout.setVisibility(View.GONE);
         }
+
+        final String tokenFormatted = Tools.formatToken(entry.getCurrentOTP(), settings.getTokenSplitGroupSize());
+
+        if(this.label != null) this.label.setText(entry.getLabel());
+        if(value != null) {
+        	value.setText(tokenFormatted);
+        	// save the unformatted token to the tag of this TextView for copy/paste
+        	value.setTag(entry.getCurrentOTP());
+		}
+        List<String> tags = entry.getTags();
 
         StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i < tags.size(); i++) {
@@ -156,12 +189,12 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
             int thumbnailSize = settings.getThumbnailSize();
             if (settings.getThumbnailVisible()) {
-                thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumbnail));
+                thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, entry.getLabel(), thumbnailSize, entry.getThumbnail()));
             }
         }
 
         if (this.tapToReveal) {
-            if (isVisible) {
+            if (entry.isVisible()) {
                 if(valueLayout != null) valueLayout.setVisibility(View.VISIBLE);
                 if(coverLayout != null) coverLayout.setVisibility(View.GONE);
                 if(visibleImg != null) visibleImg.setVisibility(View.GONE);
@@ -175,7 +208,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
     public void showCustomPeriod(int period) {
         if(customPeriodLayout != null) customPeriodLayout.setVisibility(View.VISIBLE);
-        if(customPeriod != null) customPeriod.setText(String.format(context.getString(R.string.format_custom_period), period));
+        if(customPeriod != null) customPeriod.setText(String.format(Locale.ENGLISH, context.getString(R.string.format_custom_period), period));
     }
 
     public void hideCustomPeriod() {
@@ -244,5 +277,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         void onMenuButtonClicked(View parentView, int position);
         void onCopyButtonClicked(String text, int position);
         void onTap(int position);
+        void onCounterTapped(int position);
+        void onCounterLongPressed(int position);
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Jakob Nixdorf
+ * Copyright (C) 2017-2018 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,8 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
-import android.app.AlertDialog;
 import android.app.backup.BackupManager;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -123,16 +123,20 @@ public class SettingsActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_locale)) ||
                 key.equals(getString(R.string.settings_key_special_features))) {
             recreate();
-        }else if(key.equals(getString(R.string.settings_key_encryption))) {
-            if(settings.getEncryption() != EncryptionType.PASSWORD) {
-                boolean wasSyncEnabled = settings.getAndroidBackupServiceEnabled();
-                settings.setAndroidBackupServiceEnabled(false);
-
-                if(wasSyncEnabled) {
+        } else if(key.equals(getString(R.string.settings_key_encryption))) {
+            if (settings.getEncryption() != EncryptionType.PASSWORD) {
+                if (settings.getAndroidBackupServiceEnabled()) {
                     UIHelper.showGenericDialog(this,
-                            R.string.settings_dialog_title_android_sync,
-                            R.string.settings_dialog_msg_android_sync_disabled_encryption);
+                        R.string.settings_dialog_title_android_sync,
+                        R.string.settings_dialog_msg_android_sync_disabled_encryption
+                    );
                 }
+
+                settings.setAndroidBackupServiceEnabled(false);
+                fragment.useAndroidSync.setEnabled(false);
+                fragment.useAndroidSync.setChecked(false);
+            } else {
+                fragment.useAndroidSync.setEnabled(true);
             }
         }
     }
@@ -223,21 +227,36 @@ public class SettingsActivity extends BaseActivity
         }
     }
 
-    public static class SettingsFragment extends PreferenceFragment
-            implements SharedPreferences.OnSharedPreferenceChangeListener{
+    public static class SettingsFragment extends PreferenceFragment {
         PreferenceCategory catSecurity;
 
         Settings settings;
         ListPreference encryption;
+        CheckBoxPreference useAndroidSync;
 
         OpenPgpAppPreference pgpProvider;
         OpenPgpKeyPreference pgpKey;
 
-        public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-            CheckBoxPreference useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
-            useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);
-            if(!useAndroidSync.isEnabled())
-                useAndroidSync.setChecked(false);
+        public void encryptionChangeWithDialog(final EncryptionType encryptionType) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(R.string.settings_dialog_title_warning)
+                    .setMessage(R.string.settings_dialog_msg_encryption_change)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            if (encryptionType == EncryptionType.PASSWORD)
+                                ((SettingsActivity) getActivity()).tryEncryptionChangeWithAuth(encryptionType);
+                            else if (encryptionType == EncryptionType.KEYSTORE)
+                                ((SettingsActivity) getActivity()).tryEncryptionChange(encryptionType, null);
+                        }
+                    })
+                    .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    })
+                    .create()
+                    .show();
         }
 
         @Override
@@ -247,7 +266,7 @@ public class SettingsActivity extends BaseActivity
             settings = new Settings(getActivity());
 
             final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
-            sharedPref.registerOnSharedPreferenceChangeListener(this);
+
             addPreferencesFromResource(R.xml.preferences);
 
             CredentialsPreference credentialsPreference = (CredentialsPreference) findPreference(getString(R.string.settings_key_auth));
@@ -267,22 +286,25 @@ public class SettingsActivity extends BaseActivity
                 public boolean onPreferenceChange(final Preference preference, Object o) {
                     String newEncryption = (String) o;
                     EncryptionType encryptionType = EncryptionType.valueOf(newEncryption.toUpperCase());
+                    EncryptionType oldEncryptionType = settings.getEncryption();
                     AuthMethod authMethod = settings.getAuthMethod();
 
-                    if (encryptionType == EncryptionType.PASSWORD) {
-                        if (authMethod != AuthMethod.PASSWORD && authMethod != AuthMethod.PIN) {
-                            UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_with_auth);
-                            return false;
-                        } else {
-                            if (settings.getAuthCredentials().isEmpty()) {
-                                UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_without_credentials);
-                            return false;
-                        }
-                    }
+                    if (encryptionType != oldEncryptionType) {
+                        if (encryptionType == EncryptionType.PASSWORD) {
+                            if (authMethod != AuthMethod.PASSWORD && authMethod != AuthMethod.PIN) {
+                                UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_with_auth);
+                                return false;
+                            } else {
+                                if (settings.getAuthCredentials().isEmpty()) {
+                                    UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_without_credentials);
+                                    return false;
+                                }
+                            }
 
-                        ((SettingsActivity) getActivity()).tryEncryptionChangeWithAuth(encryptionType);
-                    } else if (encryptionType == EncryptionType.KEYSTORE) {
-                        ((SettingsActivity) getActivity()).tryEncryptionChange(encryptionType, null);
+                            encryptionChangeWithDialog(EncryptionType.PASSWORD);
+                        } else if (encryptionType == EncryptionType.KEYSTORE) {
+                            encryptionChangeWithDialog(EncryptionType.KEYSTORE);
+                        }
                     }
 
                     return false;
@@ -303,8 +325,10 @@ public class SettingsActivity extends BaseActivity
             });
             pgpKey.setDefaultUserId("Alice <alice@example.com>");
 
-            CheckBoxPreference useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
+            useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
             useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);
+            if(!useAndroidSync.isEnabled())
+                useAndroidSync.setChecked(false);
 
             if (sharedPref.contains(getString(R.string.settings_key_special_features)) &&
                     sharedPref.getBoolean(getString(R.string.settings_key_special_features), false)) {

@@ -18,20 +18,22 @@
   <string name="backup_desc_import_plain">Konten aus einer Klartext-JSON-Datei wiederherstellen</string>
   <string name="backup_desc_import_crypt">Konten aus einer passwortgeschützten JSON-Datei wiederherstellen</string>
   <string name="backup_desc_import_openpgp">Konten aus einer OpenPGP-verschlüsselten JSON-Datei wiederherstellen</string>
-  <string name="backup_desc_crypt_setup">Sie müssen in den Einstellungen ein Passwort festlegen
-        um verschlüsselte Backups zu verwenden.
-    </string>
-  <string name="backup_desc_openpgp_provider">Sie müssen einen OpenPGP-Anbieter installieren und in
-        den Einstellungen aktivieren um diese Funktion zu verwenden.
-    </string>
-  <string name="backup_desc_openpgp_keyid">Sie müssen einen OpenPGP-Schlüssel in den Einstellungen
-        auswählen, bevor Sie verschlüsselte Backups erstellen können.
-    </string>
-  <string name="backup_desc_replace">Wenn aktiviert, dann werden beim Import einer Datensicherung alle vorhandenen Einträge ersetzt, so das nur die Datensicherung übrig bleibt. Wenn deaktivert, dann werden die bestehenden Einträge mit dem Inhalt der Datensicherung zusammengeführt.</string>
+  <string name="backup_desc_crypt_setup">Sie müssen ein <b>Backup-Passwort</b> in den <b>Einstellungen</b> setzen, um verschlüsselte Backups zu verwenden.</string>
+  <string name="backup_desc_openpgp_provider">Sie müssen einen OpenPGP-Anbieter installieren und in den <b>Einstellungen</b> aktivieren um diese Funktion zu verwenden.</string>
+  <string name="backup_desc_openpgp_keyid">Sie müssen einen OpenPGP-Schlüssel in den <b>Einstellungen</b> auswählen, bevor Sie verschlüsselte Backups erstellen können.</string>
+  <string name="backup_desc_replace">Wenn aktiviert, dann werden beim Import einer Datensicherung alle vorhandenen Einträge ersetzt, sodass nur die Datensicherung übrig bleibt. Wenn deaktivert, dann werden die bestehenden Einträge mit dem Inhalt der Datensicherung zusammengeführt.</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">Sicherheitswarnung</string>
   <string name="backup_dialog_msg_export_warning">Möchten Sie wirklich die Datenbank als
         Klatext-JSON-Datei exportieren? Diese Datei enthält alle Ihre geheimen Schlüssel. Bitte <b>sicher aufbewahren</b>!    </string>
+  <string name="backup_receiver_title_backup_failed">Sicherung fehlgeschlagen</string>
+  <string name="backup_receiver_title_backup_success">Sicherung erfolgreich</string>
+  <string name="backup_receiver_read_permission_failed">Keine Lese-Berechtigung, wird aber
+        zum Sichern benötigt</string>
+  <string name="backup_receiver_write_permission_failed">Keine Schreib-Berechtigung, wird aber
+        zum Sichern benötigt</string>
+  <string name="backup_receiver_custom_encryption_failed">Passwort/PIN Verschlüsselung ist nicht
+        unterstützt mit Broadcast Datensicherung</string>
   <!-- Toast messages -->
   <string name="backup_toast_mkdir_failed">Erstellen des Backup-Verzeichnisses fehlgeschlagen</string>
   <string name="backup_toast_export_success">Export auf externen Speicher erfolgreich</string>
@@ -44,5 +46,5 @@
   <string name="backup_toast_storage_permissions">Speicherberechtigung nicht gewährt</string>
   <string name="backup_toast_openpgp_error">OpenPGP-Fehler: %s</string>
   <string name="backup_toast_openpgp_not_verified">Keine geprüfte Signatur erkannt</string>
-  <string name="backup_toast_crypt_password_not_set">Kein Passwort gesetzt, überprüfen Sie die Einstellungen</string>
+  <string name="backup_toast_crypt_password_not_set">Kein Passwort gesetzt, überprüfen Sie die <b>Einstellungen</b></string>
 </resources>

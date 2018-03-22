@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Jakob Nixdorf
+ * Copyright (C) 2017-2018 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,6 +33,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
@@ -57,8 +58,11 @@ public class ManualEntryDialog {
         final Spinner typeInput = inputView.findViewById(R.id.manual_type);
         final EditText labelInput = inputView.findViewById(R.id.manual_label);
         final EditText secretInput = inputView.findViewById(R.id.manual_secret);
+        final EditText counterInput = inputView.findViewById(R.id.manual_counter);
         final EditText periodInput = inputView.findViewById(R.id.manual_period);
         final EditText digitsInput = inputView.findViewById(R.id.manual_digits);
+        final LinearLayout counterLayout = inputView.findViewById(R.id.manual_layout_counter);
+        final LinearLayout periodLayout = inputView.findViewById(R.id.manual_layout_period);
         final Spinner algorithmInput = inputView.findViewById(R.id.manual_algorithm);
         final Button tagsInput = inputView.findViewById(R.id.manual_tags);
 
@@ -75,6 +79,7 @@ public class ManualEntryDialog {
 
         periodInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_PERIOD));
         digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
+        counterInput.setText(String.format(Locale.US, "%d", TokenCalculator.HOTP_INITIAL_COUNTER));
 
         typeInput.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -82,6 +87,9 @@ public class ManualEntryDialog {
                 Entry.OTPType type = (Entry.OTPType) adapterView.getSelectedItem();
 
                 if (type == Entry.OTPType.STEAM) {
+                    counterLayout.setVisibility(View.GONE);
+                    periodLayout.setVisibility(View.VISIBLE);
+
                     digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.STEAM_DEFAULT_DIGITS));
                     periodInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_PERIOD));
                     algorithmInput.setSelection(algorithmAdapter.getPosition(TokenCalculator.HashAlgorithm.SHA1));
@@ -89,7 +97,18 @@ public class ManualEntryDialog {
                     digitsInput.setEnabled(false);
                     periodInput.setEnabled(false);
                     algorithmInput.setEnabled(false);
-                } else {
+                } else if (type == Entry.OTPType.TOTP) {
+                    counterLayout.setVisibility(View.GONE);
+                    periodLayout.setVisibility(View.VISIBLE);
+
+                    digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
+                    digitsInput.setEnabled(true);
+                    periodInput.setEnabled(true);
+                    algorithmInput.setEnabled(true);
+                } else if (type == Entry.OTPType.HOTP) {
+                    counterLayout.setVisibility(View.VISIBLE);
+                    periodLayout.setVisibility(View.GONE);
+
                     digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
                     digitsInput.setEnabled(true);
                     periodInput.setEnabled(true);
@@ -166,11 +185,12 @@ public class ManualEntryDialog {
                         Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
                         TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
 
+                        String label = labelInput.getText().toString();
+                        String secret = secretInput.getText().toString();
+                        int digits = Integer.parseInt(digitsInput.getText().toString());
+
                         if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
-                            String label = labelInput.getText().toString();
-                            String secret = secretInput.getText().toString();
                             int period = Integer.parseInt(periodInput.getText().toString());
-                            int digits = Integer.parseInt(digitsInput.getText().toString());
 
                             Entry e = new Entry(type, secret, period, digits, label, algorithm, tagsAdapter.getActiveTags());
                             e.updateOTP();
@@ -178,6 +198,13 @@ public class ManualEntryDialog {
                             adapter.saveEntries();
 
                             callingActivity.refreshTags();
+                        } else if (type == Entry.OTPType.HOTP) {
+                            long counter = Long.parseLong(counterInput.getText().toString());
+
+                            Entry e = new Entry(type, secret, counter, digits, label, algorithm, tagsAdapter.getActiveTags());
+                            e.updateOTP();
+                            adapter.addEntry(e);
+                            adapter.saveEntries();
                         }
                     }
                 })
@@ -204,11 +231,25 @@ public class ManualEntryDialog {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (TextUtils.isEmpty(labelInput.getText()) || TextUtils.isEmpty(secretInput.getText())
-                        || TextUtils.isEmpty(periodInput.getText()) || Integer.parseInt(periodInput.getText().toString()) == 0
                         || TextUtils.isEmpty(digitsInput.getText()) || Integer.parseInt(digitsInput.getText().toString()) == 0) {
                     positiveButton.setEnabled(false);
                 } else {
-                    positiveButton.setEnabled(true);
+                    Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
+                    if (type == Entry.OTPType.HOTP) {
+                        if (TextUtils.isEmpty(counterInput.getText())) {
+                            positiveButton.setEnabled(false);
+                        } else {
+                            positiveButton.setEnabled(true);
+                        }
+                    } else if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
+                        if (TextUtils.isEmpty(periodInput.getText()) || Integer.parseInt(periodInput.getText().toString()) == 0) {
+                            positiveButton.setEnabled(false);
+                        } else {
+                            positiveButton.setEnabled(true);
+                        }
+                    } else {
+                        positiveButton.setEnabled(true);
+                    }
                 }
             }
         };
@@ -217,5 +258,6 @@ public class ManualEntryDialog {
         secretInput.addTextChangedListener(watcher);
         periodInput.addTextChangedListener(watcher);
         digitsInput.addTextChangedListener(watcher);
+        counterInput.addTextChangedListener(watcher);
     }
 }

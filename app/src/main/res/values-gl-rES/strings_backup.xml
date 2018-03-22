@@ -18,13 +18,13 @@
   <string name="backup_desc_import_plain">Restaurar contas desde un ficheiro JSON de texto plano</string>
   <string name="backup_desc_import_crypt">Restaurar contas desde un ficheiro JSON con contrasinal</string>
   <string name="backup_desc_import_openpgp">Restaurar contas desde un ficheiro JSON cifrado con OpenPGP</string>
-  <string name="backup_desc_crypt_setup">Necesitas configurar un contrasinal nos Axustes para
-        usar copias de seguranza cifradas.
+  <string name="backup_desc_crypt_setup">Debe establecer un <b>contrasinal de respaldo</b> nos
+        <b>Axustes</b> para utilizar respaldos cifrados.
     </string>
   <string name="backup_desc_openpgp_provider">Necesitas instalar un aplicarivo OpenPGP e activalo
-        na configuración para usar esta opción.
+        na <b>configuración</b> para usar esta opción.
     </string>
-  <string name="backup_desc_openpgp_keyid">Necesitas seleccionar unha chave OpenPGP nos Axustes
+  <string name="backup_desc_openpgp_keyid">Necesitas seleccionar unha chave OpenPGP nos <b>Axustes</b>
         antes de crear unha copia de seguranza cifrada.
     </string>
   <string name="backup_desc_replace">Si se habilita todas as entradas antigas reemplazaranse ao importar
@@ -34,6 +34,14 @@
   <string name="backup_dialog_msg_export_warning">¿Queres exportar a base de datos como
         ficheiro de texto plano JSON? Este ficheiro inclúe as túas chaves secretas, por favor <b>manteno seguro</b>!
     </string>
+  <string name="backup_receiver_title_backup_failed">Erro na copia de seguranza</string>
+  <string name="backup_receiver_title_backup_success">Respaldo realizado correctamente</string>
+  <string name="backup_receiver_read_permission_failed">Non se obtivo permiso de lectura, por favor 
+        axuste esto antes de intentar o respaldo</string>
+  <string name="backup_receiver_write_permission_failed">Non ten permiso de escritura, por favor
+        arranxe esto ante de intentas o respaldo</string>
+  <string name="backup_receiver_custom_encryption_failed">O cifrado con Contrasinal/PIN non
+        está soportado con respaldo remoto</string>
   <!-- Toast messages -->
   <string name="backup_toast_mkdir_failed">Erro ao crear o directorio de copia de seguranza</string>
   <string name="backup_toast_export_success">Exportado correctamente ao almacenamento externo</string>
@@ -46,5 +54,5 @@
   <string name="backup_toast_storage_permissions">Permiso de almacenamento non concedido</string>
   <string name="backup_toast_openpgp_error">Error OpenPGP: %s</string>
   <string name="backup_toast_openpgp_not_verified">Non se detectou unha sinatura verificable</string>
-  <string name="backup_toast_crypt_password_not_set">No se estableceu un contrasinal, revisa os axustes</string>
+  <string name="backup_toast_crypt_password_not_set">No se estableceu un contrasinal, revisa os <b>axustes</b></string>
 </resources>

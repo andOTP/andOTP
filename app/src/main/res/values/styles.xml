@@ -10,6 +10,10 @@
     <!-- General styles -->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+    <style name="Theme.Intro.Solid" parent="Theme.Intro">
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
     <!-- Light application theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>

@@ -22,7 +22,54 @@
             android:paddingBottom="@dimen/fab_recyclerview_padding"
             android:clipToPadding="false" />
 
-        <include layout="@layout/component_fam" />
+        <jahirfiquitiva.libs.fabsmenu.FABsMenuLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fabs_menu_overlayColor="#4d000000"
+            app:fabs_menu_clickableOverlay="true"
+            tools:layout_behavior="@string/fabs_menu_layout_behavior">
+
+            <jahirfiquitiva.libs.fabsmenu.FABsMenu
+                android:id="@+id/fabs_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:clipChildren="false"
+                app:fab_moreButtonPlusIcon="@drawable/ic_add_white"
+                app:fab_moreButtonBackgroundColor="@color/colorAccent"
+                app:fab_moreButtonRippleColor="@color/colorAccent"
+                app:fab_moreButtonSize="normal"
+                app:fab_labelsPosition="left"
+                app:fab_expandDirection="up">
+
+                <jahirfiquitiva.libs.fabsmenu.TitleFAB
+                    android:id="@+id/fab_qr_scan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_camera_white"
+                    app:fabSize="mini"
+                    app:backgroundTint="@color/colorAccent"
+                    app:rippleColor="@color/colorAccent"
+                    app:fab_title="@string/button_scan_qr"
+                    app:fab_title_textColor="?android:attr/colorForeground"
+                    app:fab_title_backgroundColor="?android:attr/colorBackground"/>
+
+                <jahirfiquitiva.libs.fabsmenu.TitleFAB
+                    android:id="@+id/fab_manual_entry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_edit_white"
+                    app:fabSize="mini"
+                    app:backgroundTint="@color/colorAccent"
+                    app:rippleColor="@color/colorAccent"
+                    app:fab_title="@string/button_enter_details"
+                    app:fab_enableTitleClick="true"
+                    app:fab_title_textColor="?android:attr/colorForeground"
+                    app:fab_title_backgroundColor="?android:attr/colorBackground" />
+
+            </jahirfiquitiva.libs.fabsmenu.FABsMenu>
+
+        </jahirfiquitiva.libs.fabsmenu.FABsMenuLayout>
 
         <include layout="@layout/component_tags" />
 

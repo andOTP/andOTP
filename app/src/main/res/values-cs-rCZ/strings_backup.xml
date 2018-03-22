@@ -18,13 +18,19 @@
   <string name="backup_desc_import_plain">Obnovit účty z nechráněného souboru JSON</string>
   <string name="backup_desc_import_crypt">Obnovit účty ze souboru JSON chráněného heslem</string>
   <string name="backup_desc_import_openpgp">Obnovit účty ze souboru JSON šifrovaného OpenPGP</string>
-  <string name="backup_desc_crypt_setup">K použití šifrovaných záloh je třeba v Nastavení aplikace nastavit heslo.    </string>
-  <string name="backup_desc_openpgp_provider">K použití této funkce potřebujete nainstalovat OpenPGP aplikaci a povolit ji v Nastavení.    </string>
-  <string name="backup_desc_openpgp_keyid">Než budete moct vytvářet šifrované zálohy potřebujete v Nastavení zvolit OpenPGP klíč.    </string>
+  <string name="backup_desc_crypt_setup">Pro použití šifrovaných záloh je třeba v <b>Nastavení</b> nastavit <b>Heslo zálohy</b>.
+    </string>
+  <string name="backup_desc_openpgp_provider">K použití této funkce je třeba nainstalovat OpenPGP aplikaci a povolit ji v <b>Nastavení</b>.    </string>
+  <string name="backup_desc_openpgp_keyid">Než budete moct vytvářet šifrované zálohy je třeba v <b>Nastavení</b> zvolit OpenPGP klíč.    </string>
   <string name="backup_desc_replace">Je-li povoleno všechny původní záznamy jsou při importu zálohy nahrazeny a zůstává jen obsah zálohy. Je-li zakázáno obsah zálohy bude přidán k původním položkám.</string>
   <!-- Dialogs -->
   <string name="backup_dialog_title_security_warning">Bezpečnostní varování</string>
   <string name="backup_dialog_msg_export_warning">Opravdu chcete exportovat databázi jako nechráněný JSON soubor? Tento soubor obsahuje všechny vaše tajné klíče, prosím <b>mějte ho v bezpečí</b>!    </string>
+  <string name="backup_receiver_title_backup_failed">Zálohování selhalo</string>
+  <string name="backup_receiver_title_backup_success">Zálohování proběhlo úspěšně</string>
+  <string name="backup_receiver_read_permission_failed">Nebylo uděleno oprávnění ke čtení, prosím udělte ho před pokusem o zálohování</string>
+  <string name="backup_receiver_write_permission_failed">Nebylo uděleno oprávnění k zápisu, prosím udělte ho před pokusem o zálohování</string>
+  <string name="backup_receiver_custom_encryption_failed">Šifrování heslem/PINem není podporováno v kombinaci s automatizovaným zálohováním</string>
   <!-- Toast messages -->
   <string name="backup_toast_mkdir_failed">Nepodařilo se vytvořit záložní adresář</string>
   <string name="backup_toast_export_success">Export na externí úložiště byl úspěšný</string>
@@ -37,5 +43,5 @@
   <string name="backup_toast_storage_permissions">Oprávnění pro úložiště nebylo uděleno</string>
   <string name="backup_toast_openpgp_error">Chyba OpenPGP: %s</string>
   <string name="backup_toast_openpgp_not_verified">Nenalezen ověřený podpis</string>
-  <string name="backup_toast_crypt_password_not_set">Heslo nenastaveno, zkontrolujte Nastavení</string>
+  <string name="backup_toast_crypt_password_not_set">Heslo není nastaveno, zkontrolujte <b>Nastavení</b></string>
 </resources>

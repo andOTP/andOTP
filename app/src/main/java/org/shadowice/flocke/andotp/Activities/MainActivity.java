@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Jakob Nixdorf
+ * Copyright (C) 2017-2018 Jakob Nixdorf
  * Copyright (C) 2015 Bruno Bierbaumer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,7 +33,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.GridLayoutManager;
@@ -45,7 +44,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
@@ -62,9 +60,9 @@ import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
+import org.shadowice.flocke.andotp.Utilities.NotificationHelper;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
-import org.shadowice.flocke.andotp.View.FloatingActionMenu;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCallback;
 import org.shadowice.flocke.andotp.View.ManualEntryDialog;
 import org.shadowice.flocke.andotp.View.TagsAdapter;
@@ -73,6 +71,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.crypto.SecretKey;
+
+import jahirfiquitiva.libs.fabsmenu.FABsMenu;
+import jahirfiquitiva.libs.fabsmenu.TitleFAB;
 
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
@@ -83,7 +84,7 @@ public class MainActivity extends BaseActivity
 
     private RecyclerView recList;
     private EntriesCardAdapter adapter;
-    private FloatingActionMenu floatingActionMenu;
+    private FABsMenu fabsMenu;
     private MenuItem sortMenu;
     private SimpleItemTouchHelperCallback touchHelperCallback;
 
@@ -106,37 +107,8 @@ public class MainActivity extends BaseActivity
     }
 
     private void showFirstTimeWarning() {
-        ViewGroup container = findViewById(R.id.main_content);
-        View msgView = getLayoutInflater().inflate(R.layout.dialog_database_encryption, container, false);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.dialog_title_encryption)
-                .setView(msgView)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        settings.setFirstTimeWarningShown(true);
-                        updateEncryption(null);
-                    }
-                })
-                .setNegativeButton(R.string.button_settings, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        settings.setFirstTimeWarningShown(true);
-
-                        Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
-                        startActivityForResult(settingsIntent, Constants.INTENT_MAIN_SETTINGS);
-                    }
-                })
-                .setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialogInterface) {
-                        settings.setFirstTimeWarningShown(true);
-                        updateEncryption(null);
-                    }
-                })
-                .create()
-                .show();
+        Intent introIntent = new Intent(this, IntroScreenActivity.class);
+        startActivityForResult(introIntent, Constants.INTENT_MAIN_INTRO);
     }
 
     public void authenticate(int messageId) {
@@ -268,15 +240,22 @@ public class MainActivity extends BaseActivity
            showFirstTimeWarning();
         }
 
-        floatingActionMenu = new FloatingActionMenu(this, (ConstraintLayout) findViewById(R.id.fab_main_layout));
-        floatingActionMenu.setFABHandler(new FloatingActionMenu.FABHandler() {
+        fabsMenu = findViewById(R.id.fabs_menu);
+
+        TitleFAB qrFAB = findViewById(R.id.fab_qr_scan);
+        qrFAB.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onQRFabClick() {
+            public void onClick(View view) {
+                fabsMenu.collapse();
                 scanQRCode();
             }
+        });
 
+        TitleFAB manualFAB = findViewById(R.id.fab_manual_entry);
+        manualFAB.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onManualFabClick() {
+            public void onClick(View view) {
+                fabsMenu.collapse();
                 ManualEntryDialog.show(MainActivity.this, settings, adapter);
             }
         });
@@ -297,8 +276,9 @@ public class MainActivity extends BaseActivity
         ItemTouchHelper touchHelper = new ItemTouchHelper(touchHelperCallback);
         touchHelper.attachToRecyclerView(recList);
 
+        NotificationHelper.initializeNotificationChannels(this);
         restoreViewSortMode();
-
+        
         float durationScale = android.provider.Settings.Global.getFloat(this.getContentResolver(), android.provider.Settings.Global.ANIMATOR_DURATION_SCALE, 0);
         if (durationScale == 0)
             durationScale = 1;
@@ -533,7 +513,7 @@ public class MainActivity extends BaseActivity
         searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem menuItem) {
-                floatingActionMenu.hide();
+                fabsMenu.setVisibility(View.GONE);
                 touchHelperCallback.setDragEnabled(false);
                 if (sortMenu != null)
                     sortMenu.setVisible(false);
@@ -542,7 +522,7 @@ public class MainActivity extends BaseActivity
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-                floatingActionMenu.show();
+                fabsMenu.setVisibility(View.VISIBLE);
 
                 if (adapter == null || adapter.getSortMode() == SortMode.UNSORTED)
                     touchHelperCallback.setDragEnabled(true);

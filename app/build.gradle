@@ -8,8 +8,9 @@ android {
         applicationId "org.shadowice.flocke.andotp"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 14
-        versionName "0.4.0.1"
+        versionCode 16
+        versionName "0.5.0.1"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -25,25 +26,28 @@ android {
     lintOptions {
           abortOnError false
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 ext {
-    supportLibVersion = "27.0.2"
+    supportLibVersion = "27.1.0"
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    compile "commons-codec:commons-codec:1.11"
-    compile "com.android.support:appcompat-v7:$supportLibVersion"
-    compile "com.android.support:cardview-v7:$supportLibVersion"
-    compile "com.android.support:design:$supportLibVersion"
-    compile "com.android.support:recyclerview-v7:$supportLibVersion"
-    compile "com.android.support.constraint:constraint-layout:1.0.2"
-    compile "com.github.aakira:expandable-layout:1.6.0"
-    compile "com.journeyapps:zxing-android-embedded:3.5.0"
-    compile "com.vanniktech:vntnumberpickerpreference:1.0.0"
-    compile "de.psdev.licensesdialog:licensesdialog:1.8.3"
-    compile "me.zhanghai.android.materialprogressbar:library:1.4.2"
-    compile "org.sufficientlysecure:openpgp-api:12.0"
+    implementation "commons-codec:commons-codec:1.11"
+    implementation "com.android.support:appcompat-v7:$supportLibVersion"
+    implementation "com.android.support:cardview-v7:$supportLibVersion"
+    implementation "com.android.support:design:$supportLibVersion"
+    implementation "com.android.support:recyclerview-v7:$supportLibVersion"
+    implementation "com.android.support.constraint:constraint-layout:1.0.2"
+    implementation "com.github.aakira:expandable-layout:1.6.0"
+    implementation "com.heinrichreimersoftware:material-intro:1.6.2"
+    implementation "com.journeyapps:zxing-android-embedded:3.6.0"
+    implementation "com.vanniktech:vntnumberpickerpreference:1.0.0"
+    implementation "de.psdev.licensesdialog:licensesdialog:1.8.3"
+    implementation "me.zhanghai.android.materialprogressbar:library:1.4.2"
+    implementation "org.sufficientlysecure:openpgp-api:12.0"
+    implementation "me.jahirfiquitiva:FABsMenu:1.1.2"
 }

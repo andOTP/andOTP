@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Jakob Nixdorf
+ * Copyright (C) 2017-2018 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,12 +30,18 @@ import android.view.inputmethod.InputMethodManager;
 
 public class UIHelper {
     public static void showGenericDialog(Context context, int titleId, int messageId) {
+        showGenericDialog(context, titleId, messageId, null);
+    }
+
+    public static void showGenericDialog(Context context, int titleId, int messageId, final Runnable onOk) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(titleId)
                 .setMessage(messageId)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        if(onOk != null)
+                            onOk.run();
                     }
                 })
                 .create()

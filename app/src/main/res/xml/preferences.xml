@@ -141,6 +141,14 @@
             android:title="@string/settings_title_backup_password"
             android:summary="@string/settings_desc_backup_password" />
 
+        <MultiSelectListPreference
+            android:key="@string/settings_key_backup_broadcasts"
+            android:title="@string/settings_title_backup_broadcasts"
+            android:summary="@string/settings_desc_backup_broadcasts"
+            android:entries="@array/settings_entries_backup_broadcasts"
+            android:entryValues="@array/settings_values_backup_broadcasts"
+            android:defaultValue="@array/settings_empty_array" />
+
         <org.openintents.openpgp.util.OpenPgpAppPreference
             android:key="@string/settings_key_openpgp_provider"
             android:title="@string/settings_title_openpgp_provider" />

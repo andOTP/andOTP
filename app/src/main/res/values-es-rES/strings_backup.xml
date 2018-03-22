@@ -18,13 +18,13 @@
   <string name="backup_desc_import_plain">Restaurar cuentas desde fichero JSON de texto plano</string>
   <string name="backup_desc_import_crypt">Restaurar cuentas desde fichero JSON con contraseña</string>
   <string name="backup_desc_import_openpgp">Restaurar cuentas desde fichero JSON cifrado con OpenPGP</string>
-  <string name="backup_desc_crypt_setup">Necesitas configurar una contraseña en los Ajustes para
-        usar copias de seguridad cifradas.
+  <string name="backup_desc_crypt_setup">Tienes que establecer una <b>Contraseña de copia de seguridad</b> en los
+        <b>Ajustes</b> para utilizar copias de seguridad cifradas.
     </string>
-  <string name="backup_desc_openpgp_provider">Necesitas installar una aplicación OpenPGP y activarla
-        en la configuración para usar esta opción.
+  <string name="backup_desc_openpgp_provider">Necesitas instalar un proveedor de OpenPGP y activarlo
+        en los <b>Ajustes</b> para usar esta opción.
     </string>
-  <string name="backup_desc_openpgp_keyid">Necesitas seleccionar una clave OpenPGP en los Ajustes
+  <string name="backup_desc_openpgp_keyid">Necesitas seleccionar una clave OpenPGP en los <b>Ajustes</b>
         antes de crear una copia de seguridad cifrada.
     </string>
   <string name="backup_desc_replace">Activado, las entradas antiguas se reemplazarán al importar una
@@ -35,6 +35,14 @@
   <string name="backup_dialog_msg_export_warning">¿Realmente quieres exportar la base de datos como
         fichero JSON de texto plano? Este fichero incluye las claves secretas, por favor <b>mántenlo seguro</b>!
     </string>
+  <string name="backup_receiver_title_backup_failed">Falló la copia de seguridad</string>
+  <string name="backup_receiver_title_backup_success">Copia de seguridad correcta</string>
+  <string name="backup_receiver_read_permission_failed">Permisos de lectura no concedidos, por favor
+        hazlo antes de intentar hacer una copia de seguridad</string>
+  <string name="backup_receiver_write_permission_failed">Permisos de escritura no concedidos, por favor
+        hazlo antes de intentar hacer una copia de seguridad</string>
+  <string name="backup_receiver_custom_encryption_failed">Cifrado basado en clave/PIN no
+        soportado en la copia de seguridad de difusión</string>
   <!-- Toast messages -->
   <string name="backup_toast_mkdir_failed">Fallo al crear la carpeta para copias de seguridad</string>
   <string name="backup_toast_export_success">Exportado a almacenamiento externo con éxito</string>
@@ -47,5 +55,5 @@
   <string name="backup_toast_storage_permissions">Permiso de almacenamiento no concecido</string>
   <string name="backup_toast_openpgp_error">Error OpenPGP: %s</string>
   <string name="backup_toast_openpgp_not_verified">Ninguna firma verificable detectada</string>
-  <string name="backup_toast_crypt_password_not_set">Contraseña no establecida, revise los Ajustes</string>
+  <string name="backup_toast_crypt_password_not_set">Contraseña no establecida, revise los <b>Ajustes</b></string>
 </resources>

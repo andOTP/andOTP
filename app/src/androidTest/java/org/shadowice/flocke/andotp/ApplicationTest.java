@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2017-2018 Jakob Nixdorf
  * Copyright (C) 2015 Bruno Bierbaumer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,7 +30,6 @@ import android.test.ApplicationTestCase;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Utilities.Constants;
@@ -64,7 +64,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         super(Application.class);
     }
 
-    public void testTokenCalculator(){
+    public void testTOTPCalculation(){
         // Test Vectors from https://tools.ietf.org/html/rfc6238
         byte[] keySHA1 =  "12345678901234567890".getBytes(StandardCharsets.US_ASCII);
         byte[] keySHA256 =  "12345678901234567890123456789012".getBytes(StandardCharsets.US_ASCII);
@@ -95,20 +95,36 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         assertEquals(47863826, TokenCalculator.TOTP_RFC6238(keySHA512, TokenCalculator.TOTP_DEFAULT_PERIOD, 20000000000L, 8, TokenCalculator.HashAlgorithm.SHA512));
     }
 
+    public void testHOTPCalculation() {
+        // Test cases from https://tools.ietf.org/html/rfc4226
+        byte[] keySHA1 = "12345678901234567890".getBytes(StandardCharsets.US_ASCII);
 
-    public void testEntry() throws JSONException {
+        assertEquals("755224", TokenCalculator.HOTP(keySHA1, 0, 6, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals("287082", TokenCalculator.HOTP(keySHA1, 1, 6, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals("359152", TokenCalculator.HOTP(keySHA1, 2, 6, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals("969429", TokenCalculator.HOTP(keySHA1, 3, 6, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals("338314", TokenCalculator.HOTP(keySHA1, 4, 6, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals("254676", TokenCalculator.HOTP(keySHA1, 5, 6, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals("287922", TokenCalculator.HOTP(keySHA1, 6, 6, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals("162583", TokenCalculator.HOTP(keySHA1, 7, 6, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals("399871", TokenCalculator.HOTP(keySHA1, 8, 6, TokenCalculator.HashAlgorithm.SHA1));
+        assertEquals("520489", TokenCalculator.HOTP(keySHA1, 9, 6, TokenCalculator.HashAlgorithm.SHA1));
+    }
+
+
+    public void testEntry() throws Exception {
         byte secret[] = "Das System ist sicher".getBytes();
         String label = "5 von 5 Sterne";
         int period = 30;
 
         String s = "{\"secret\":\"" + new String(new Base32().encode(secret)) + "\"," +
                     "\"label\":\"" + label + "\"," +
-                    "\"period\":" + Integer.toString(period) + "," +
                     "\"digits\":6," +
                     "\"type\":\"TOTP\"," +
                     "\"algorithm\":\"SHA1\"," +
                     "\"thumbnail\":\"Default\"," +
                     "\"last_used\":0," +
+                    "\"period\":" + Integer.toString(period) + "," +
                     "\"tags\":[\"test1\",\"test2\"]}";
 
         Entry e = new Entry(new JSONObject(s));

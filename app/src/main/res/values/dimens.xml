@@ -19,16 +19,5 @@
     <dimen name="divider_size">1dp</dimen>
 
     <!-- FAB Menu -->
-    <dimen name="fab_small_elevation">2dp</dimen>
-    <dimen name="fab_small_margin">8dp</dimen>
-    <dimen name="fab_small_horizontal_offset">16dp</dimen>
-    <dimen name="fab_small_vertical_offset">8dp</dimen>
-    <dimen name="fab_small_vertical_offset_base">16dp</dimen>
-    <dimen name="fab_small_label_corners">4dp</dimen>
-    <dimen name="fab_small_label_padding">4dp</dimen>
-    <dimen name="fab_small_label_offset">8dp</dimen>
-    <dimen name="fab_base_horizontal_offset">16dp</dimen>
-    <dimen name="fab_base_vertical_offset">16dp</dimen>
-
     <dimen name="fab_recyclerview_padding">84dp</dimen> <!-- 52dp (FAB size) + 2x fab_base_vertical_offset) -->
 </resources>

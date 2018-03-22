@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Jakob Nixdorf
+ * Copyright (C) 2017-2018 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -305,11 +305,20 @@ public class AboutActivity extends BaseActivity {
 
 
     public void showLicenses() {
-        new LicensesDialog.Builder(this)
+        String backgroundColor = Tools.getCSSRGBAString(Tools.getThemeColor(this, R.attr.colorBackgroundFloating));
+        String textColor = Tools.getCSSRGBAString(Tools.getThemeColor(this, android.R.attr.textColorPrimary));
+        String textColorSecondary = Tools.getCSSRGBAString(Tools.getThemeColor(this, android.R.attr.textColorSecondary));
+
+        String cssFormat = getString(R.string.custom_notices_style, backgroundColor, textColor, textColorSecondary);
+
+        LicensesDialog dialog = new LicensesDialog.Builder(this)
                 .setNotices(R.raw.licenses)
-                .setIncludeOwnLicense(true)
                 .setTitle(R.string.about_label_licenses)
-                .build()
-                .show();
+                .setShowFullLicenseText(false)
+                .setIncludeOwnLicense(true)
+                .setNoticesCssStyle(cssFormat)
+                .build();
+
+        dialog.show();
     }
 }

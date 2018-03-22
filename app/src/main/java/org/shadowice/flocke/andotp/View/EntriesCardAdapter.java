@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Jakob Nixdorf
+ * Copyright (C) 2017-2018 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,9 +28,11 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -62,6 +64,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.Callable;
 
 import javax.crypto.SecretKey;
@@ -124,7 +127,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         return entries.indexOf(displayedEntries.get(displayPosition));
     }
 
-    public void entriesChanged() {
+    private void entriesChanged() {
         displayedEntries = sortEntries(entries);
         filterByTags(tagsFilter);
         notifyDataSetChanged();
@@ -183,21 +186,19 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(EntryViewHolder entryViewHolder, int i) {
+    public void onBindViewHolder(@NonNull EntryViewHolder entryViewHolder, int i) {
         Entry entry = displayedEntries.get(i);
 
         boolean isGrid = this.getViewMode() == Constants.ViewMode.GRID;
-        entryViewHolder.updateValues(entry.getLabel(), entry.getCurrentOTP(), entry.getTags(), entry.getThumbnail(), entry.isVisible(), isGrid);
 
-        if(entryViewDialog != null) {
-            entryViewDialog.dismiss();
-            entryViewDialog = null;
-        }
+        entryViewHolder.updateValues(entry, isGrid);
 
-        if (entry.hasNonDefaultPeriod()) {
-            entryViewHolder.showCustomPeriod(entry.getPeriod());
-        } else {
-            entryViewHolder.hideCustomPeriod();
+
+        if (entry.getType() == Entry.OTPType.TOTP || entry.getType() == Entry.OTPType.STEAM) {
+            if (entry.hasNonDefaultPeriod())
+                entryViewHolder.showCustomPeriod(entry.getPeriod());
+            else
+                entryViewHolder.hideCustomPeriod();
         }
 
         entryViewHolder.setLabelSize(settings.getLabelSize());
@@ -207,8 +208,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         entryViewHolder.setLabelScroll(settings.getScrollLabel());
     }
 
-    @Override
-    public EntryViewHolder onCreateViewHolder(final ViewGroup viewGroup, int i) {
+    @Override  @NonNull
+    public EntryViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View itemView;
         if(getViewMode() == Constants.ViewMode.LIST)
@@ -271,6 +272,27 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                     }
                 }
             }
+
+            @Override
+            public void onCounterTapped(int position) {
+                Entry entry = displayedEntries.get(position);
+                Entry realEntry = entries.get(getRealIndex(position));
+
+                long counter = entry.getCounter() + 1;
+
+                entry.setCounter(counter);
+                entry.updateOTP();
+                notifyItemChanged(position);
+
+                realEntry.setCounter(counter);
+                realEntry.updateOTP();
+                DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+            }
+
+            @Override
+            public void onCounterLongPressed(int position) {
+                setCounter(position);
+            }
         });
 
         return viewHolder;
@@ -294,6 +316,47 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             if (updateNeeded)
                 notifyItemChanged(pos);
         }
+    }
+
+    private void setCounter(final int pos) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
+        int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
+
+        final EditText input = new EditText(context);
+        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        input.setText(String.format(Locale.ENGLISH, "%d", displayedEntries.get(pos).getCounter()));
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        input.setSingleLine();
+
+        FrameLayout container = new FrameLayout(context);
+        container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
+        container.addView(input);
+
+        builder.setTitle(R.string.dialog_title_counter)
+                .setView(container)
+                .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int realIndex = getRealIndex(pos);
+                        long newCounter = Long.parseLong(input.getEditableText().toString());
+
+                        displayedEntries.get(pos).setCounter(newCounter);
+                        notifyItemChanged(pos);
+
+                        Entry e = entries.get(realIndex);
+                        e.setCounter(newCounter);
+
+                        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .create()
+                .show();
     }
 
     private boolean updateLastUsed(int position, int realIndex) {

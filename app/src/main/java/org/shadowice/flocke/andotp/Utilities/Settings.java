@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Jakob Nixdorf
+ * Copyright (C) 2017-2018 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -220,6 +220,10 @@ public class Settings {
         return AuthMethod.valueOf(authString.toUpperCase());
     }
 
+    public void setAuthMethod(AuthMethod authMethod) {
+        setString(R.string.settings_key_auth, authMethod.name().toLowerCase());
+    }
+
     public void removeAuthPasswordHash() {
         remove(R.string.settings_key_auth_password_hash);
     }
@@ -288,6 +292,10 @@ public class Settings {
     public EncryptionType getEncryption() {
         String encType = getString(R.string.settings_key_encryption, R.string.settings_default_encryption);
         return EncryptionType.valueOf(encType.toUpperCase());
+    }
+
+    public void setEncryption(EncryptionType encryptionType) {
+        setEncryption(encryptionType.name().toLowerCase());
     }
 
     public void setEncryption(String encryption) {
@@ -390,6 +398,18 @@ public class Settings {
         }
 
         return password;
+    }
+
+    public Set<String> getBackupBroadcasts() {
+        return settings.getStringSet(getResString(R.string.settings_key_backup_broadcasts), Collections.<String>emptySet());
+    }
+
+    public boolean isPlainTextBackupBroadcastEnabled() {
+        return getBackupBroadcasts().contains("plain");
+    }
+
+    public boolean isEncryptedBackupBroadcastEnabled() {
+        return getBackupBroadcasts().contains("encrypted");
     }
 
     public String getOpenPGPProvider() {

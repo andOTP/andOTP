@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Jakob Nixdorf
+ * Copyright (C) 2017-2018 Jakob Nixdorf
  * Copyright (C) 2015 Bruno Bierbaumer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,10 +30,10 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-
 public class TokenCalculator {
     public static final int TOTP_DEFAULT_PERIOD = 30;
     public static final int TOTP_DEFAULT_DIGITS = 6;
+    public static final int HOTP_INITIAL_COUNTER = 1;
     public static final int STEAM_DEFAULT_DIGITS = 5;
 
     private static final char[] STEAMCHARS = new char[] {
@@ -84,14 +84,23 @@ public class TokenCalculator {
         return tokenBuilder.toString();
     }
 
-    public static int TOTP(byte[] key, int period, long time, HashAlgorithm algorithm)
+    public static String HOTP(byte[] secret, long counter, int digits, HashAlgorithm algorithm) {
+        int fullToken = HOTP(secret, counter, algorithm);
+        int div = (int) Math.pow(10, digits);
+
+        return String.format("%0" + digits + "d", fullToken % div);
+    }
+
+    private static int TOTP(byte[] key, int period, long time, HashAlgorithm algorithm) {
+        return HOTP(key, time / period, algorithm);
+    }
+
+    private static int HOTP(byte[] key, long counter, HashAlgorithm algorithm)
     {
         int r = 0;
 
         try {
-            long timeInterval = time / period;
-
-            byte[] data = ByteBuffer.allocate(8).putLong(timeInterval).array();
+            byte[] data = ByteBuffer.allocate(8).putLong(counter).array();
             byte[] hash = generateHash(algorithm, key, data);
 
             int offset = hash[hash.length - 1] & 0xF;

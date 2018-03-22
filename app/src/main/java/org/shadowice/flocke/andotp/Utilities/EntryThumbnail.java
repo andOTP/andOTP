@@ -1,3 +1,26 @@
+/*
+ * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2018 Richy HBM
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
@@ -38,6 +61,7 @@ public class EntryThumbnail {
         Discord(R.drawable.thumb_discord),
         Dropbox(R.drawable.thumb_dropbox),
         Email(R.drawable.thumb_email),
+        Evernote(R.drawable.thumb_evernote),
         Facebook(R.drawable.thumb_facebook),
         Fingerprint(R.drawable.thumb_fingerprint),
         Flight(R.drawable.thumb_flight_takeoff),
@@ -59,6 +83,7 @@ public class EntryThumbnail {
         Kickstarter(R.drawable.thumb_kickstarter),
         Kucoin(R.drawable.thumb_kucoin),
         LastPass(R.drawable.thumb_lastpass),
+        Linode(R.drawable.thumb_linode),
         Liqui(R.drawable.thumb_liqui),
         Mailgun(R.drawable.thumb_mailgun),
         Mastodon(R.drawable.thumb_mastodon),
@@ -85,6 +110,7 @@ public class EntryThumbnail {
         Synology(R.drawable.thumb_synology),
         TeamViewer(R.drawable.thumb_teamviewer),
         Terminal(R.drawable.thumb_terminal),
+        Trello(R.drawable.thumb_trello),
         Tumblr(R.drawable.thumb_tumblr),
         Twitch(R.drawable.thumb_twitch),
         Twitter(R.drawable.thumb_twitter),

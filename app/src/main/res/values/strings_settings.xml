@@ -22,13 +22,14 @@
     <string name="settings_title_label_scroll">Scroll label</string>
     <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
     <string name="settings_title_split_group_size">Split Token with space</string>
-    <string name="settings_title_tag_functionality">Tag menu functionality</string>
+    <string name="settings_title_tag_functionality">Tag selection behavior</string>
     <string name="settings_title_grid_columns">Columns in grid view</string>
 
     <string name="settings_title_backup_append_date">Append date to filename</string>
     <string name="settings_title_backup_ask">Ask for filename</string>
     <string name="settings_title_backup_directory">Backup directory</string>
     <string name="settings_title_backup_password">Backup password</string>
+    <string name="settings_title_backup_broadcasts">Backup Broadcasts</string>
     <string name="settings_title_openpgp_provider">Select OpenPGP provider</string>
     <string name="settings_title_openpgp_keyid">Select OpenPGP key</string>
     <string name="settings_title_openpgp_sign">Sign encrypted backups</string>
@@ -57,6 +58,9 @@
         on the backup type)</string>
     <string name="settings_desc_backup_password">Set the password that is used to encrypt the
         backups</string>
+
+    <string name="settings_desc_backup_broadcasts">Select which backup types can be triggered by
+        3rd-party apps using Broadcasts</string>
 
     <string name="settings_desc_openpgp_sign">Every encrypted backup is additionally signed with
         your key (requires password)</string>
@@ -93,10 +97,15 @@
     <string name="settings_toast_auth_upgrade_failed">Failed to silently upgrade your password / PIN
         to the new encryption, please manually reset it in the Settings!</string>
 
+    <string name="settings_dialog_title_warning">Warning</string>
     <string name="settings_dialog_title_error">Error</string>
     <string name="settings_dialog_title_clear_keystore">Clear the KeyStore?</string>
     <string name="settings_dialog_title_android_sync">Android sync</string>
 
+    <string name="settings_dialog_msg_encryption_change">andOTP will now try to change the database
+        encryption. In case of a failure an internal backup will be restored and the encryption
+        remains unchanged.\n\n<b>However, it\'s always a good idea to have a backup in case
+        something unexpected happens!</b></string>
     <string name="settings_dialog_msg_auth_invalid_with_encryption">You can only use Password or PIN as
         long as the database encryption is set to \"Password / PIN\"!</string>
     <string name="settings_dialog_msg_encryption_invalid_with_auth">You first need to set the
@@ -157,11 +166,16 @@
     </string-array>
 
     <string-array name="settings_entries_tag_functionality">
-        <item>Or (Default)</item>
-        <item>And</item>
-        <item>Single</item>
+        <item>Show all entries matching <b>any</b> of the selected tags (or)</item>
+        <item>Only show entries matching <b>all</b> of the selected tags (and)</item>
+        <item>Switch between tags (only allow one tag to be selected at a time)</item>
     </string-array>
 
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Plain-text backups</item>
+        <item>Encrypted backups</item>
+    </string-array>
+    
     <!-- Special -->
     <string name="settings_lang_sys_default">System default</string>
 

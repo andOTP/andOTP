@@ -20,6 +20,8 @@
   <string name="settings_title_label_scroll">Pohybující se popisky</string>
   <string name="settings_title_thumbnail_size_ask">Velikost náhledu</string>
   <string name="settings_title_split_group_size">Rozdělit token mezerami</string>
+  <string name="settings_title_tag_functionality">Chování výběru štítků</string>
+  <string name="settings_title_backup_append_date">Přidání data k názvu souboru</string>
   <string name="settings_title_backup_ask">Zadejte název souboru</string>
   <string name="settings_title_backup_directory">Adresář záloh</string>
   <string name="settings_title_backup_password">Heslo pro zálohu</string>
@@ -29,12 +31,14 @@
   <string name="settings_title_openpgp_verify">Ověřit šifrované zálohy</string>
   <string name="settings_title_special_features">Povolit speciální funkce</string>
   <string name="settings_title_enable_screenshot">Povolit snímání obrazovky</string>
+  <string name="settings_title_enable_android_backup_service">Povolit Android sync</string>
   <string name="settings_title_clear_keystore">Vymazat úložiště klíčů</string>
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">V základu skryje OTP tokeny, budou zobrazeny manuálně</string>
   <string name="settings_desc_tap_to_reveal_timeout">Zvolte čas v sekundách, po kterém se zobrazené kódy opět skryjí</string>
   <string name="settings_desc_panic">Zvolte reakci na signál paniky</string>
   <string name="settings_desc_label_scroll">Posouvat příliš dlouhé popisky namísto zkracování</string>
+  <string name="settings_desc_backup_append_date">Přidá aktuální datum a čas k navrhovanému názvu záložního souboru</string>
   <string name="settings_desc_backup_ask">Dotazovat se na název souboru vždy při vytváření či obnovování zálohy</string>
   <string name="settings_desc_backup_directory">Adresář pro zálohy (názvy souborů se odvíjí od typu zálohy)</string>
   <string name="settings_desc_backup_password">Nastaví heslo používané k šifrování záloh</string>
@@ -42,6 +46,7 @@
   <string name="settings_desc_openpgp_verify">Šifrované zálohy jsou importovány pouze, jsou-li podepsány platným klíčem</string>
   <string name="settings_desc_special_features">Zrušte zaškrtnutí políčka opětovné zakázání speciálních funkcí</string>
   <string name="settings_desc_enable_screenshot">Povolí pořizování snímků hlavní obrazovky (ve výchozím nastavení je z bezpečnostních důvodů zakázáno)</string>
+  <string name="settings_desc_enable_android_backup_service">Povolí andOTP používat zálohovací službu systému Android k zálohování klíčů a předvoleb</string>
   <string name="settings_desc_clear_keystore">Odstranit šifrovací klíč z úložiště klíčů</string>
   <!-- Toasts -->
   <string name="settings_toast_auth_device_pre_lollipop">Tato funkce ke své činnosti vyžaduje alespoň Android 5.0 (Lollipop)</string>
@@ -54,13 +59,18 @@
   <string name="settings_toast_encryption_no_key">Nepodařilo se získat šifrovací klíč, operace byla zrušena!</string>
   <string name="settings_toast_encryption_auth_failed">Ověření se nezdařilo!</string>
   <string name="settings_toast_auth_upgrade_failed">Nepodařilo se automaticky převést heslo/PIN na nové šifrování, prosím nastavte jej znovu v Nastaveních!</string>
+  <string name="settings_dialog_title_warning">Varování</string>
   <string name="settings_dialog_title_error">Chyba</string>
   <string name="settings_dialog_title_clear_keystore">Vymazat úložiště klíčů?</string>
+  <string name="settings_dialog_title_android_sync">Android synchronizace</string>
+  <string name="settings_dialog_msg_encryption_change">andOTP se pokusí změnit šifrování databáze. 
+V případě chyby bude obnovena interní záloha a šifrování zůstane nezměněno.\n\n<b>Nicméně je vhodné mít zálohu pro případ, že se stane něco nepředvídaného!</b></string>
   <string name="settings_dialog_msg_auth_invalid_with_encryption">Heslo nebo kód PIN lze použít pouze pokud je šifrování databáze nastaveno na \"Heslo / PIN\"!</string>
   <string name="settings_dialog_msg_encryption_invalid_with_auth">Nejprve je třeba nastavit ověřování na \"Heslo\" nebo \"PIN\"!</string>
   <string name="settings_dialog_msg_encryption_invalid_without_credentials">Před změnou šifrování musíte nejprve nastavit heslo nebo PIN!</string>
   <string name="settings_dialog_msg_clear_keystore_password">V některých případech vymazání KeyStore může pomoci vyřešit problémy. Pokračujte, pouze pokud víte, co děláte! \n\nVzhledem k tomu, že máte <b>šifrování databáze</b> nastaveno na <b>heslo / PIN</b> byste provedením tohoto postupu něměli přijít o data (ale mít zálohu nikdy neuškodí).\n\n <b>Jste si opravdu jisti, že chcete vymyzat KeyStore?</b></string>
   <string name="settings_dialog_msg_clear_keystore_keystore">V některých případech vymazání KeyStore může pomoci vyřešit problémy. Pokračujte, pouze pokud víte, co děláte! \n\n <b>Varování</b>: Vzhledem k tomu, že máte <b>šifrování databáze</b> nastaveno na <b>Android KeyStore</b> ztratíte tímto krokem všechny své účty. Ujistěte se, že máte zálohu!\n\n <b>Jste si opravdu jisti, že chcete vymyzat KeyStore?</b></string>
+  <string name="settings_dialog_msg_android_sync_disabled_encryption">Android sync nelze použít v kombinaci se šifrováním na bázi KeyStore, <b>je potřeba zálohovat manuálně!</b></string>
   <!-- List entries -->
   <string-array name="settings_entries_auth">
     <item>Žádný</item>
@@ -92,6 +102,11 @@
     <item>Nedělit</item>
     <item>Po dvou znacích</item>
     <item>Po třech znacích</item>
+  </string-array>
+  <string-array name="settings_entries_tag_functionality">
+    <item>Zobrazí všechny záznamy odpovídající <b>kterémukoliv</b> z vybraných štítků (nebo)</item>
+    <item>Zobrazí pouze záznamy odpovídající <b>všem</b> vybraným štítkům (a)</item>
+    <item>Přepínání mezi štítky (v jednu chvíli lze mít vybraný pouze jeden štítek)</item>
   </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Podle systému</string>

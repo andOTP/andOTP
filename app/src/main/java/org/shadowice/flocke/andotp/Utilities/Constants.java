@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Jakob Nixdorf
+ * Copyright (C) 2017-2018 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -52,10 +52,15 @@ public class Constants {
         LIST, GRID
     }
 
+    public enum NotificationChannel {
+        BACKUP_FAILED, BACKUP_SUCCESS
+    }
+
     // Intents (Format: A0x with A = parent Activity, x = number of the intent)
     public final static int INTENT_MAIN_AUTHENTICATE            = 100;
     public final static int INTENT_MAIN_SETTINGS                = 101;
     public final static int INTENT_MAIN_BACKUP                  = 102;
+    public final static int INTENT_MAIN_INTRO                   = 103;
 
     public final static int INTENT_BACKUP_OPEN_DOCUMENT_PLAIN   = 200;
     public final static int INTENT_BACKUP_SAVE_DOCUMENT_PLAIN   = 201;

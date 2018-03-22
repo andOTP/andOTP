@@ -55,30 +55,12 @@
   <string name="dialog_title_rename">Canvia el nom</string>
   <string name="dialog_title_last_used">Últimes utilitzades</string>
   <string name="dialog_title_keystore_error">Error al magatzem de claus</string>
-  <string name="dialog_title_encryption">Xifratge de la base de dades</string>
   <string name="dialog_msg_auth">Per favor, introduïu les vostres credencials per a iniciar andOTP.</string>
   <string name="dialog_msg_confirm_delete">Segur que voleu suprimir el compte \"%1$s\"?</string>
-  <string name="dialog_title_security_keystore">1. Android KeyStore</string>
-  <string name="dialog_title_security_password">2. Contrasenya / PIN</string>
-  <string name="dialog_msg_security_first">Per a garantir la seguretat dels vostres comptes només
-        es desen en fitxers xifrats amb un dels mètodes següents:</string>
-  <string name="dialog_msg_security_keystore">KeyStore és un component del sistema d\'Android per a
-        emmagatzemar les claus criptogràfiques de forma segura. L\'avantatge és que les claus
-        són desades separades dels fitxers de dades i poden ser suportades per criptografia del maquinari (si
-        el maquinari ho permet). Tanmateix, com que les claus no s\'emmagatzemen amb les dades de l\'aplicació
-        no es pot usar amb programes de còpia de seguretat externs (com ara Titanium). Si trieu aquest mètode
-        haureu de confiar en les funcions de còpia de seguretat d\'andOTP.</string>
-  <string name="dialog_msg_security_password">Aquest mètode xifrarà les vostres dades amb una clau
-        generada a partir d\'una contrasenya o PIN. L\'avantatge principal és que funciona amb
-        programes de còpia de seguretat externs (com ara Titanium). Tanmateix haureu d\'escriure les credencials
-        cada vegada que inicieu andOTP.</string>
-  <string name="dialog_msg_security_default">Per defecte s\'usarà Android KeyStore, tanmateix
-        sabem que provoca problemes en certes ROM personalitzades (i en alguna de les prefabricades). Podeu
-        canviar el xifratge en la configuració fent clic en el botó inferior.</string>
   <string name="dialog_msg_last_used">Per tal que andOTP reconega quin testimoni va ser l\'últim
         heu d\'habilitar \"toqueu per a mostrar\" o feu servir el botó de copia.\n\nAquest missatge no tornarà
         a aparéixer.</string>
-  <string name="dialog_msg_keystore_error">No s\'ha pogut carregar la clau de xifratge del KeyStore.
-        <b>Algunes entrades que hi afegiu es perdran.</b>\n\nPer a continuar usant andOTP podeu
-        anar a configuració i canviar <b>xifratge de la base de dades</b> a <b>contrasenyes / PIN</b>.</string>
+  <string name="dialog_msg_keystore_error">Failed to load the encryption key from the KeyStore.
+        <b>Any entries that are added will get lost.</b>\n\nTo still be able to use andOTP you can go
+        to the <b>Settings</b> and switch the <b>Database encryption</b> to <b>Password / PIN</b>.</string>
 </resources>
