@@ -25,12 +25,14 @@ package org.shadowice.flocke.andotp.Utilities;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.ColorInt;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -40,6 +42,8 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Tools {
+    private final static String CSS_RGBA_FORMAT = "rgba(%1$d,%2$d,%3$d,%4$1f)";
+
     /* Checks if external storage is available for read and write */
     public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
@@ -61,6 +65,14 @@ public class Tools {
         arr.recycle();
 
         return colorValue;
+    }
+
+    public static String getCSSRGBAString(@ColorInt int color) {
+        int red = Color.red(color);
+        int green = Color.green(color);
+        int blue = Color.blue(color);
+        float alpha = ((float) Color.alpha(color) / 255);
+        return String.format(Locale.ENGLISH, CSS_RGBA_FORMAT, red, green, blue, alpha);
     }
 
     /* Create a ColorFilter based on the current theme */
