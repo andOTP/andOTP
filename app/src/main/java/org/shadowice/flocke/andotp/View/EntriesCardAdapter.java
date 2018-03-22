@@ -179,10 +179,20 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         for(int i =0;i < entries.size(); i++){
             boolean item_changed = entries.get(i).updateOTP();
             change = change || item_changed;
+
+            //HOTP return updated every time, we want to only update when the counter is upped
+            if(item_changed && entryViewDialog != null
+                    && entries.get(i).getType() != Entry.OTPType.HOTP) {
+                if(getRealIndex(entryViewDialog.getAdapterPosition()) == i) {
+                    entryViewDialog.dismiss();
+                    entryViewDialog = null;
+                }
+            }
         }
 
-        if (change)
+        if (change) {
             notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -287,6 +297,16 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 realEntry.setCounter(counter);
                 realEntry.updateOTP();
                 DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+
+                if(entryViewDialog != null) {
+                    entryViewDialog.dismiss();
+                    entryViewDialog = null;
+                }
+                if(settings.getViewMode() == Constants.ViewMode.GRID) {
+                    entryViewDialog = new EntryViewDialog(context, viewGroup);
+                    int realIndex = getRealIndex(position);
+                    entryViewDialog.show(entries.get(realIndex), position, this);
+                }
             }
 
             @Override
@@ -333,6 +353,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         FrameLayout container = new FrameLayout(context);
         container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
         container.addView(input);
+
+        if(entryViewDialog != null) {
+            entryViewDialog.dismiss();
+            entryViewDialog = null;
+        }
 
         builder.setTitle(R.string.dialog_title_counter)
                 .setView(container)

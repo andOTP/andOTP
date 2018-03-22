@@ -19,6 +19,8 @@ import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
 
+import java.util.Locale;
+
 public class EntryViewDialog {
     private Context context;
 
@@ -31,8 +33,11 @@ public class EntryViewDialog {
     private TextView customPeriod;
     private ImageButton menuButton;
     private ImageButton copyButton;
+    private LinearLayout counterLayout;
+    private TextView counter;
 
     private AlertDialog dialog;
+    private int adapterPosition;
 
     public EntryViewDialog (Context context, ViewGroup viewGroup) {
         this.context = context;
@@ -48,6 +53,8 @@ public class EntryViewDialog {
         customPeriod = v.findViewById(R.id.customPeriod);
         menuButton = v.findViewById(R.id.menuButton);
         copyButton = v.findViewById(R.id.copyButton);
+        counterLayout = v.findViewById(R.id.counterLayout);
+        counter = v.findViewById(R.id.counter);
 
         ColorFilter colorFilter = Tools.getThemeColorFilter(context, android.R.attr.textColorSecondary);
 
@@ -63,6 +70,7 @@ public class EntryViewDialog {
     }
     
     public void show(final Entry entry, final int adapterPosition, final EntryViewHolder.Callback callback) {
+        this.adapterPosition = adapterPosition;
         String token = entry.getCurrentOTP();
         Settings settings = new Settings(context);
         final String tokenFormatted = Tools.formatToken(token, settings.getTokenSplitGroupSize());
@@ -129,10 +137,39 @@ public class EntryViewDialog {
             }
         });
 
+        if(counterLayout != null) counterLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (callback != null)
+                    callback.onCounterTapped(adapterPosition);
+            }
+        });
+
+        if(counterLayout != null) counterLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (callback != null)
+                    callback.onCounterLongPressed(adapterPosition);
+
+                return false;
+            }
+        });
+
+        if (entry.getType() == Entry.OTPType.HOTP) {
+            if(counterLayout != null) counterLayout.setVisibility(View.VISIBLE);
+            if(counter != null) counter.setText(String.format(Locale.ENGLISH, "%d", entry.getCounter()));
+        } else {
+            if(counterLayout != null) counterLayout.setVisibility(View.GONE);
+        }
+
         dialog.show();
     }
 
     public void dismiss() {
         dialog.dismiss();
+    }
+
+    public int getAdapterPosition() {
+        return adapterPosition;
     }
 }

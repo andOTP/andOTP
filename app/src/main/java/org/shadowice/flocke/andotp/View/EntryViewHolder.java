@@ -113,7 +113,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             }
         });
 
-        counterLayout.setOnClickListener(new View.OnClickListener() {
+        if(counterLayout != null) counterLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (callback != null)
@@ -121,7 +121,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             }
         });
 
-        counterLayout.setOnLongClickListener(new View.OnLongClickListener() {
+        if(counterLayout != null) counterLayout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 if (callback != null)
@@ -221,7 +221,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     }
 
     public void setThumbnailSize(int size) {
-        if(label != null) {
+        if(thumbnailImg != null) {
             thumbnailImg.getLayoutParams().height = size;
             thumbnailImg.getLayoutParams().width = size;
             thumbnailImg.requestLayout();
