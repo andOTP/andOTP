@@ -209,7 +209,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     @Override  @NonNull
-    public EntryViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public EntryViewHolder onCreateViewHolder(@NonNull final ViewGroup viewGroup, int i) {
 
         View itemView;
         if(getViewMode() == Constants.ViewMode.LIST)
