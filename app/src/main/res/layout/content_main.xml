@@ -51,7 +51,8 @@
                     app:backgroundTint="@color/colorAccent"
                     app:rippleColor="@color/colorAccent"
                     app:fab_title="@string/button_scan_qr"
-                    app:fab_title_textColor="@color/colorAccent" />
+                    app:fab_title_textColor="?android:attr/colorForeground"
+                    app:fab_title_backgroundColor="?android:attr/colorBackground"/>
 
                 <jahirfiquitiva.libs.fabsmenu.TitleFAB
                     android:id="@+id/fab_manual_entry"
@@ -63,7 +64,8 @@
                     app:rippleColor="@color/colorAccent"
                     app:fab_title="@string/button_enter_details"
                     app:fab_enableTitleClick="true"
-                    app:fab_title_textColor="@color/colorAccent" />
+                    app:fab_title_textColor="?android:attr/colorForeground"
+                    app:fab_title_backgroundColor="?android:attr/colorBackground" />
 
             </jahirfiquitiva.libs.fabsmenu.FABsMenu>
 
