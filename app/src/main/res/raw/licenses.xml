@@ -13,6 +13,12 @@
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
+        <name>FABsMenu</name>
+        <url>https://github.com/jahirfiquitiva/FABsMenu</url>
+        <copyright>Copyright (c) 2018 Jahir Fiquitiva</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
         <name>material-intro</name>
         <url>https://github.com/heinrichreimer/material-intro</url>
         <copyright>Copyright (c) 2017 Jan Heinrich Reimer</copyright>

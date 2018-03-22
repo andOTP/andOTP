@@ -33,7 +33,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -63,7 +62,6 @@ import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.NotificationHelper;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
-import org.shadowice.flocke.andotp.View.FloatingActionMenu;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCallback;
 import org.shadowice.flocke.andotp.View.ManualEntryDialog;
 import org.shadowice.flocke.andotp.View.TagsAdapter;
@@ -73,6 +71,9 @@ import java.util.HashMap;
 
 import javax.crypto.SecretKey;
 
+import jahirfiquitiva.libs.fabsmenu.FABsMenu;
+import jahirfiquitiva.libs.fabsmenu.TitleFAB;
+
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
@@ -81,7 +82,7 @@ public class MainActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private EntriesCardAdapter adapter;
-    private FloatingActionMenu floatingActionMenu;
+    private FABsMenu fabsMenu;
     private MenuItem sortMenu;
     private SimpleItemTouchHelperCallback touchHelperCallback;
 
@@ -193,15 +194,22 @@ public class MainActivity extends BaseActivity
            showFirstTimeWarning();
         }
 
-        floatingActionMenu = new FloatingActionMenu(this, (ConstraintLayout) findViewById(R.id.fab_main_layout));
-        floatingActionMenu.setFABHandler(new FloatingActionMenu.FABHandler() {
+        fabsMenu = findViewById(R.id.fabs_menu);
+
+        TitleFAB qrFAB = findViewById(R.id.fab_qr_scan);
+        qrFAB.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onQRFabClick() {
+            public void onClick(View view) {
+                fabsMenu.collapse();
                 scanQRCode();
             }
+        });
 
+        TitleFAB manualFAB = findViewById(R.id.fab_manual_entry);
+        manualFAB.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onManualFabClick() {
+            public void onClick(View view) {
+                fabsMenu.collapse();
                 ManualEntryDialog.show(MainActivity.this, settings, adapter);
             }
         });
@@ -446,7 +454,7 @@ public class MainActivity extends BaseActivity
         searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem menuItem) {
-                floatingActionMenu.hide();
+                fabsMenu.setVisibility(View.GONE);
                 touchHelperCallback.setDragEnabled(false);
                 if (sortMenu != null)
                     sortMenu.setVisible(false);
@@ -455,7 +463,7 @@ public class MainActivity extends BaseActivity
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-                floatingActionMenu.show();
+                fabsMenu.setVisibility(View.VISIBLE);
 
                 if (adapter == null || adapter.getSortMode() == SortMode.UNSORTED)
                     touchHelperCallback.setDragEnabled(true);
