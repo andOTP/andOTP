@@ -87,6 +87,8 @@ public class AboutActivity extends BaseActivity {
                 case 1:
                     return new LibsBuilder()
                             .withFields(R.string.class.getFields())
+                            .withLicenseShown(true)
+                            .withVersionShown(true)
                             .supportFragment();
                 default:
                     return null;
