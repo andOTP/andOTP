@@ -4,10 +4,12 @@
 
     <string name="about_description">Open source two-factor authentication for Android</string>
 
+    <string name="about_tab_about">About</string>
+    <string name="about_tab_libraries">Libraries</string>
+
     <!-- Misc -->
     <string name="about_label_changelog">Changelog</string>
     <string name="about_label_license">License</string>
-    <string name="about_label_licenses">Open source licenses</string>
     <string name="about_label_MIT">MIT License</string>
     <string name="about_label_source">Source code</string>
     <string name="about_label_version">Version</string>

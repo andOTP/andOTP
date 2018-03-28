@@ -22,60 +22,22 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
-import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.graphics.ColorFilter;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewStub;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.mikepenz.aboutlibraries.LibsBuilder;
+
+import org.shadowice.flocke.andotp.Fragments.AboutFragment;
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Utilities.Tools;
-
-import de.psdev.licensesdialog.LicensesDialog;
 
 public class AboutActivity extends BaseActivity {
-    private static final String GITHUB_URI = "https://github.com/andOTP/andOTP";
-    private static final String CHANGELOG_URI = GITHUB_URI + "/blob/master/CHANGELOG.md";
-    private static final String MIT_URI = GITHUB_URI + "/blob/master/LICENSE.txt";
-
-    private static final String AUTHOR1_GITHUB = "https://github.com/flocke";
-    private static final String AUTHOR1_EXTRA = "https://paypal.me/flocke000";
-
-    private static final String AUTHOR2_GITHUB = "https://github.com/richyhbm";
-    private static final String AUTHOR2_EXTRA = "bitcoin:1KyLwnxXR577gYUtwRMSMhkpsJVoK2bTLN";
-
-    private static final String AUTHOR_ORIGINAL_GITHUB = "https://github.com/0xbb";
-    private static final String AUTHOR_ORIGINAL_EXTRA = AUTHOR_ORIGINAL_GITHUB + "/otp-authenticator";
-
-    private static final String CONTRIBUTORS_URI = GITHUB_URI + "/blob/master/README.md#contributors";
-    private static final String TRANSLATORS_URI = GITHUB_URI + "/blob/master/README.md#translators";
-
-    private static final String BUGREPORT_URI = GITHUB_URI + "/issues";
-    private static final String TRANSLATE_URI = "https://crowdin.com/project/andotp";
-
-    static final int[] imageResources = {
-            R.id.aboutImgVersion, R.id.aboutImgLicense, R.id.aboutImgChangelog, R.id.aboutImgSource,
-            R.id.aboutImgOpenSource, R.id.aboutImgAuthor1, R.id.aboutImgAuthorOriginal, R.id.aboutImgContributors,
-            R.id.aboutImgTranslators, R.id.aboutImgBugs, R.id.aboutImgTranslate
-    };
-
-    static long lastTap = 0;
-    static int taps = 0;
-    static Toast currentToast = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,194 +49,16 @@ public class AboutActivity extends BaseActivity {
         setSupportActionBar(toolbar);
 
         ViewStub stub = findViewById(R.id.container_stub);
-        stub.setLayoutResource(R.layout.content_about);
+        stub.setLayoutResource(R.layout.component_about);
+
         View v = stub.inflate();
 
-        ColorFilter filter = Tools.getThemeColorFilter(this, android.R.attr.textColorSecondary);
-        for (int i : imageResources) {
-            ImageView imgView = v.findViewById(i);
-            imgView.getDrawable().setColorFilter(filter);
-        }
+        ViewPager viewPager = v.findViewById(R.id.viewPager);
+        TabLayout tabLayout = v.findViewById(R.id.tabLayout);
+        AboutPageAdapter aboutPageAdapter = new AboutPageAdapter(getSupportFragmentManager());
 
-        String versionName = "";
-        try {
-            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            versionName = packageInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        LinearLayout versionLayout = v.findViewById(R.id.about_layout_version);
-
-        versionLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                long thisTap = System.currentTimeMillis();
-
-                if (thisTap - lastTap < 500) {
-                    taps = taps + 1;
-
-                    if (currentToast != null && taps <= 7)
-                        currentToast.cancel();
-
-                    if (taps >= 3 && taps <= 7)
-                        currentToast = Toast.makeText(getBaseContext(), String.valueOf(taps), Toast.LENGTH_SHORT);
-
-                    if (taps == 7) {
-                        if (settings.getSpecialFeatures())
-                            currentToast = Toast.makeText(getBaseContext(), R.string.about_toast_special_features_enabled, Toast.LENGTH_LONG);
-                        else
-                            enableSpecialFeatures();
-                    }
-
-                    if (currentToast != null)
-                        currentToast.show();
-                } else {
-                    taps = 0;
-                }
-
-                lastTap = thisTap;
-            }
-        });
-
-        TextView version = v.findViewById(R.id.about_text_version);
-        version.setText(versionName);
-
-        LinearLayout license = v.findViewById(R.id.about_layout_license);
-        LinearLayout changelog = v.findViewById(R.id.about_layout_changelog);
-        LinearLayout source = v.findViewById(R.id.about_layout_source);
-        LinearLayout licenses = v.findViewById(R.id.about_layout_licenses);
-        license.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(MIT_URI);
-            }
-        });
-        changelog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(CHANGELOG_URI);
-            }
-        });
-        source.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(GITHUB_URI);
-            }
-        });
-        licenses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showLicenses();
-            }
-        });
-
-        TextView author1GitHub = v.findViewById(R.id.about_author1_github);
-        TextView author1Paypal = v.findViewById(R.id.about_author1_extra);
-        author1GitHub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(AUTHOR1_GITHUB);
-            }
-        });
-        author1Paypal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    openURI(AUTHOR1_EXTRA);
-                } catch(Exception ignored) {
-                    copyToClipboard(AUTHOR1_EXTRA);
-                }
-            }
-        });
-
-
-        TextView author2GitHub = v.findViewById(R.id.about_author2_github);
-        TextView author2Paypal = v.findViewById(R.id.about_author2_extra);
-        author2GitHub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(AUTHOR2_GITHUB);
-            }
-        });
-        author2Paypal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    openURI(AUTHOR2_EXTRA);
-                } catch(Exception ignored) {
-                    copyToClipboard(AUTHOR2_EXTRA);
-                }
-            }
-        });
-
-        TextView authorOriginalGitHub = v.findViewById(R.id.about_author_original_github);
-        TextView authorOriginalApp = v.findViewById(R.id.about_author_original_extra);
-        authorOriginalGitHub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(AUTHOR_ORIGINAL_GITHUB);
-            }
-        });
-        authorOriginalApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    openURI(AUTHOR_ORIGINAL_EXTRA);
-                } catch(Exception ignored) {
-                    copyToClipboard(AUTHOR_ORIGINAL_EXTRA);
-                }
-            }
-        });
-
-        LinearLayout contributors = v.findViewById(R.id.about_layout_contributors);
-        LinearLayout translators = v.findViewById(R.id.about_layout_translators);
-        contributors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(CONTRIBUTORS_URI);
-            }
-        });
-        translators.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(TRANSLATORS_URI);
-            }
-        });
-
-        LinearLayout bugReport = v.findViewById(R.id.about_layout_bugs);
-        LinearLayout translate = v.findViewById(R.id.about_layout_translate);
-        bugReport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(BUGREPORT_URI);
-            }
-        });
-        translate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(TRANSLATE_URI);
-            }
-        });
-    }
-
-    private void enableSpecialFeatures() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.about_title_special_features)
-                .setMessage(R.string.about_dialog_special_features)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        settings.setSpecialFeatures(true);
-                        Toast.makeText(getBaseContext(), R.string.about_toast_special_features, Toast.LENGTH_LONG).show();
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                })
-                .create()
-                .show();
+        viewPager.setAdapter(aboutPageAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     // Go back to the main activity
@@ -290,35 +74,40 @@ public class AboutActivity extends BaseActivity {
         super.onBackPressed();
     }
 
-    public void openURI(String uri) {
-        Intent openURI = new Intent(Intent.ACTION_VIEW);
-        openURI.setData(Uri.parse(uri));
-        startActivity(openURI);
-    }
-    
-    public void copyToClipboard(String uri) {
-        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("andOTP", uri);
-        clipboard.setPrimaryClip(clip);
-        Toast.makeText(this, getString(R.string.about_toast_copied_to_clipboard), Toast.LENGTH_SHORT).show();
-    }
+    private class AboutPageAdapter extends FragmentPagerAdapter {
+        AboutPageAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
+        @Override
+        public Fragment getItem(int pos) {
+            switch(pos) {
+                case 0:
+                    return new AboutFragment();
+                case 1:
+                    return new LibsBuilder()
+                            .withFields(R.string.class.getFields())
+                            .supportFragment();
+                default:
+                    return null;
+            }
+        }
 
-    public void showLicenses() {
-        String backgroundColor = Tools.getCSSRGBAString(Tools.getThemeColor(this, R.attr.colorBackgroundFloating));
-        String textColor = Tools.getCSSRGBAString(Tools.getThemeColor(this, android.R.attr.textColorPrimary));
-        String textColorSecondary = Tools.getCSSRGBAString(Tools.getThemeColor(this, android.R.attr.textColorSecondary));
+        @Override
+        public int getCount() {
+            return 2;
+        }
 
-        String cssFormat = getString(R.string.custom_notices_style, backgroundColor, textColor, textColorSecondary);
-
-        LicensesDialog dialog = new LicensesDialog.Builder(this)
-                .setNotices(R.raw.licenses)
-                .setTitle(R.string.about_label_licenses)
-                .setShowFullLicenseText(false)
-                .setIncludeOwnLicense(true)
-                .setNoticesCssStyle(cssFormat)
-                .build();
-
-        dialog.show();
+        @Override
+        public String getPageTitle(int pos) {
+            switch(pos) {
+                case 0:
+                    return getString(R.string.about_tab_about);
+                case 1:
+                    return getString(R.string.about_tab_libraries);
+                default:
+                    return null;
+            }
+        }
     }
 }

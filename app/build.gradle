@@ -31,11 +31,9 @@ android {
     }
 }
 
-ext {
-    supportLibVersion = "27.1.0"
-}
-
 dependencies {
+    ext.supportLibVersion = "27.1.0"
+
     implementation "commons-codec:commons-codec:1.11"
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
     implementation "com.android.support:cardview-v7:$supportLibVersion"
@@ -46,8 +44,8 @@ dependencies {
     implementation "com.heinrichreimersoftware:material-intro:1.6.2"
     implementation "com.journeyapps:zxing-android-embedded:3.6.0"
     implementation "com.vanniktech:vntnumberpickerpreference:1.0.0"
-    implementation "de.psdev.licensesdialog:licensesdialog:1.8.3"
     implementation "me.zhanghai.android.materialprogressbar:library:1.4.2"
     implementation "org.sufficientlysecure:openpgp-api:12.0"
     implementation "me.jahirfiquitiva:FABsMenu:1.1.2"
+    implementation "com.mikepenz:aboutlibraries:6.0.6"
 }

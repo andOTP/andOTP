@@ -205,34 +205,6 @@
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 </LinearLayout>
-
-                <!-- licenses -->
-                <LinearLayout
-                    android:id="@+id/about_layout_licenses"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="?android:attr/listPreferredItemHeight"
-                    android:paddingTop="@dimen/activity_margin_small"
-                    android:paddingBottom="@dimen/activity_margin_small"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:gravity="center_vertical" >
-
-                    <ImageView
-                        android:id="@+id/aboutImgOpenSource"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/activity_margin"
-                        android:layout_marginEnd="@dimen/activity_margin_large"
-                        android:src="@drawable/ic_copyright_gray" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/about_label_licenses"
-                        android:textStyle="bold"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
