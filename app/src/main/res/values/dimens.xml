@@ -12,6 +12,8 @@
     <dimen name="card_padding_without_corners">14dp</dimen>
     <dimen name="card_thumbnail_size">46dp</dimen>
 
+    <dimen name="author_image_size">64dp</dimen>
+
     <!-- The default letter tile text size -->
     <dimen name="tile_letter_font_size">33sp</dimen>
 

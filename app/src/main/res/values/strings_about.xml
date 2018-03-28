@@ -23,7 +23,8 @@
     <string name="about_label_original_app">Original App</string>
     <string name="about_label_website">Website</string>
     <string name="about_label_github" translatable="false">Github</string>
-    <string name="about_label_donate">Donate</string>
+    <string name="about_label_donate_paypal">Donate (PayPal)</string>
+    <string name="about_label_donate_bitcoin">Donate (Bitcoin)</string>
 
     <string name="about_name_author1" translatable="false">Jakob Nixdorf</string>
     <string name="about_name_author_original" translatable="false">Bruno Bierbaumer</string>

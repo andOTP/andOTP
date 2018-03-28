@@ -226,6 +226,7 @@
 
                 <!-- 1st author -->
                 <LinearLayout
+                    android:id="@+id/aboutLayoutAuthor1"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -237,11 +238,11 @@
 
                     <ImageView
                         android:id="@+id/aboutImgAuthor1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/author_image_size"
+                        android:layout_height="@dimen/author_image_size"
                         android:layout_marginStart="@dimen/activity_margin"
-                        android:layout_marginEnd="@dimen/activity_margin_large"
-                        android:src="@drawable/ic_account_circle_gray" />
+                        android:layout_marginEnd="@dimen/activity_margin"
+                        android:src="@mipmap/ic_author_flocke" />
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -262,34 +263,16 @@
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="@string/about_label_main_developer"/>
 
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/about_author1_extra"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/activity_margin"
-                            android:layout_gravity="center_vertical">
-
-                            <TextView
-                                android:id="@+id/about_author1_github"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="?android:attr/selectableItemBackground"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorGithub"
-                                android:text="@string/about_label_github" />
-
-                            <TextView
-                                android:id="@+id/about_author1_extra"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/activity_margin_large"
-                                android:background="?android:attr/selectableItemBackground"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorPaypal"
-                                android:text="@string/about_label_donate" />
-                        </LinearLayout>
+                            android:layout_marginTop="@dimen/activity_margin_small"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorPaypal"
+                            android:text="@string/about_label_donate_paypal" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -301,6 +284,7 @@
 
                 <!-- Original author -->
                 <LinearLayout
+                    android:id="@+id/aboutLayoutAuthor2"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -311,10 +295,11 @@
 
                     <ImageView
                         android:id="@+id/aboutImgAuthor2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/author_image_size"
+                        android:layout_height="@dimen/author_image_size"
                         android:layout_marginStart="@dimen/activity_margin"
-                        android:layout_marginEnd="@dimen/activity_margin_large"
+                        android:layout_marginEnd="@dimen/activity_margin"
+                        android:padding="@dimen/activity_margin_small"
                         android:src="@drawable/ic_account_circle_gray" />
 
                     <LinearLayout
@@ -336,34 +321,16 @@
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="@string/about_label_developer"/>
 
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/about_author2_extra"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/activity_margin"
-                            android:layout_gravity="center_vertical">
-
-                            <TextView
-                                android:id="@+id/about_author2_github"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="?android:attr/selectableItemBackground"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorGithub"
-                                android:text="@string/about_label_github" />
-
-                            <TextView
-                                android:id="@+id/about_author2_extra"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/activity_margin_large"
-                                android:background="?android:attr/selectableItemBackground"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorPaypal"
-                                android:text="@string/about_label_donate" />
-                        </LinearLayout>
+                            android:layout_marginTop="@dimen/activity_margin_small"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorPaypal"
+                            android:text="@string/about_label_donate_bitcoin" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -375,6 +342,7 @@
 
                 <!-- Original author -->
                 <LinearLayout
+                    android:id="@+id/aboutLayoutOriginalAuthor"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -385,10 +353,11 @@
 
                     <ImageView
                         android:id="@+id/aboutImgAuthorOriginal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/author_image_size"
+                        android:layout_height="@dimen/author_image_size"
                         android:layout_marginStart="@dimen/activity_margin"
-                        android:layout_marginEnd="@dimen/activity_margin_large"
+                        android:layout_marginEnd="@dimen/activity_margin"
+                        android:padding="@dimen/activity_margin_small"
                         android:src="@drawable/ic_account_circle_gray" />
 
                     <LinearLayout
@@ -410,34 +379,16 @@
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="@string/about_label_original_author"/>
 
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/about_author_original_extra"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/activity_margin"
-                            android:layout_gravity="center_vertical">
-
-                            <TextView
-                                android:id="@+id/about_author_original_github"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="?android:attr/selectableItemBackground"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorGithub"
-                                android:text="@string/about_label_github" />
-
-                            <TextView
-                                android:id="@+id/about_author_original_extra"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/activity_margin_large"
-                                android:background="?android:attr/selectableItemBackground"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorGithub"
-                                android:text="@string/about_label_original_app" />
-                        </LinearLayout>
+                            android:layout_marginTop="@dimen/activity_margin_small"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorGithub"
+                            android:text="@string/about_label_original_app" />
                     </LinearLayout>
                 </LinearLayout>
 

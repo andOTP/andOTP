@@ -49,7 +49,7 @@ public class AboutFragment extends Fragment {
 
     static final int[] imageResources = {
             R.id.aboutImgVersion, R.id.aboutImgLicense, R.id.aboutImgChangelog, R.id.aboutImgSource,
-            R.id.aboutImgAuthor1, R.id.aboutImgAuthorOriginal, R.id.aboutImgContributors,
+            R.id.aboutImgAuthor2, R.id.aboutImgAuthorOriginal, R.id.aboutImgContributors,
             R.id.aboutImgTranslators, R.id.aboutImgBugs, R.id.aboutImgTranslate
     };
 
@@ -137,15 +137,15 @@ public class AboutFragment extends Fragment {
             }
         });
 
-        TextView author1GitHub = v.findViewById(R.id.about_author1_github);
-        TextView author1Paypal = v.findViewById(R.id.about_author1_extra);
-        author1GitHub.setOnClickListener(new View.OnClickListener() {
+        LinearLayout author1Layout = v.findViewById(R.id.aboutLayoutAuthor1);
+        TextView author1Donate = v.findViewById(R.id.about_author1_extra);
+        author1Layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(AUTHOR1_GITHUB);
             }
         });
-        author1Paypal.setOnClickListener(new View.OnClickListener() {
+        author1Donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -157,15 +157,15 @@ public class AboutFragment extends Fragment {
         });
 
 
-        TextView author2GitHub = v.findViewById(R.id.about_author2_github);
-        TextView author2Paypal = v.findViewById(R.id.about_author2_extra);
-        author2GitHub.setOnClickListener(new View.OnClickListener() {
+        LinearLayout author2Layout = v.findViewById(R.id.aboutLayoutAuthor2);
+        TextView author2Donate = v.findViewById(R.id.about_author2_extra);
+        author2Layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(AUTHOR2_GITHUB);
             }
         });
-        author2Paypal.setOnClickListener(new View.OnClickListener() {
+        author2Donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -176,9 +176,9 @@ public class AboutFragment extends Fragment {
             }
         });
 
-        TextView authorOriginalGitHub = v.findViewById(R.id.about_author_original_github);
+        LinearLayout authorOrigialLayout = v.findViewById(R.id.aboutLayoutOriginalAuthor);
         TextView authorOriginalApp = v.findViewById(R.id.about_author_original_extra);
-        authorOriginalGitHub.setOnClickListener(new View.OnClickListener() {
+        authorOrigialLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(AUTHOR_ORIGINAL_GITHUB);
