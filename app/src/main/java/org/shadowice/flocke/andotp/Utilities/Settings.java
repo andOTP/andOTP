@@ -306,6 +306,10 @@ public class Settings {
         return settings.getStringSet(getResString(R.string.settings_key_panic), Collections.<String>emptySet());
     }
 
+    public boolean getRelockOnScreenOff() {
+        return getBoolean(R.string.settings_key_relock_screen_off, true);
+    }
+
     public void setLocale(String locale) {
         setString(R.string.settings_key_locale, locale);
     }

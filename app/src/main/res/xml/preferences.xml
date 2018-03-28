@@ -42,6 +42,12 @@
             android:entryValues="@array/settings_values_panic"
             android:defaultValue="@array/settings_empty_array" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_relock_screen_off"
+            android:title="@string/settings_title_relock_screen_off"
+            android:summary="@string/settings_desc_relock_screen_off"
+            android:defaultValue="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
