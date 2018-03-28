@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Temporarily add library definitions here until they get merged upstream or in AboutLibraries -->
+
+<resources>
+    <!-- Apache common codec -->
+    <string name="define_CommonsCodec"></string>
+    <string name="library_CommonsCodec_author">The Apache Software Foundation</string>
+    <string name="library_CommonsCodec_authorWebsite">http://apache.org</string>
+
+    <string name="library_CommonsCodec_libraryName">Apache Commons Codec</string>
+    <string name="library_CommonsCodec_libraryDescription">Commons Codec provides implementations of common encoders and decoders such as Base64, Hex, Phonetic and URLs.</string>
+    <string name="library_CommonsCodec_libraryWebsite">http://commons.apache.org/proper/commons-codec</string>
+    <string name="library_CommonsCodec_libraryVersion">1.11</string>
+
+    <string name="library_CommonsCodec_isOpenSource">true</string>
+    <string name="library_CommonsCodec_repositoryLink">https://github.com/apache/commons-codec</string>
+
+    <string name="library_CommonsCodec_classPath">org.apache.commons.codec</string>
+
+    <string name="library_CommonsCodec_licenseId">apache_2_0</string>
+
+    <!-- Expandable Layout -->
+    <string name="define_ExpandableLayout"></string>
+    <string name="library_ExpandableLayout_author">Akira Aratani</string>
+
+    <string name="library_ExpandableLayout_libraryName">Expandable Layout</string>
+    <string name="library_ExpandableLayout_libraryDescription">This library provides an expandable layout with various animations.</string>
+    <string name="library_ExpandableLayout_libraryWebsite">https://github.com/AAkira/ExpandableLayout</string>
+    <string name="library_ExpandableLayout_libraryVersion">1.6.0</string>
+
+    <string name="library_ExpandableLayout_isOpenSource">true</string>
+    <string name="library_ExpandableLayout_repositoryLink">https://github.com/AAkira/ExpandableLayout</string>
+
+    <string name="library_ExpandableLayout_classPath">com.github.aakira.expandablelayout.ExpandableLayout</string>
+
+    <string name="library_ExpandableLayout_licenseId">apache_2_0</string>
+
+    <!-- material-intro -->
+    <string name="define_materialintro"></string>
+    <string name="library_materialintro_author">Jan Heinrich Reimer</string>
+    <string name="library_materialintro_authorWebsite">https://heinrichreimer.com/</string>
+
+    <string name="library_materialintro_libraryName">material-intro</string>
+    <string name="library_materialintro_libraryDescription">A simple material design app intro with cool animations and a fluent API.</string>
+    <string name="library_materialintro_libraryWebsite">https://github.com/heinrichreimer/material-intro</string>
+    <string name="library_materialintro_libraryVersion">1.6.1</string>
+
+    <string name="library_materialintro_isOpenSource">true</string>
+    <string name="library_materialintro_repositoryLink">https://github.com/heinrichreimer/material-intro</string>
+
+    <string name="library_materialintro_classPath">com.heinrichreimersoftware.materialintro.IntroActivity</string>
+
+    <string name="library_materialintro_licenseId">mit</string>
+
+    <!-- OpenPGP API -->
+    <string name="define_OpenPGPAPI"></string>
+    <string name="library_OpenPGPAPI_author">Dominik Schürmann</string>
+    <string name="library_OpenPGPAPI_authorWebsite">https://www.schuermann.eu/</string>
+
+    <string name="library_OpenPGPAPI_libraryName">OpenPGP API library</string>
+    <string name="library_OpenPGPAPI_libraryDescription">Library to perform OpenPGP operations (sign, encrypt, decrypt, verify and more) by connecting your app to remote services (for example provided by OpenKeychain).</string>
+    <string name="library_OpenPGPAPI_libraryWebsite">https://github.com/open-keychain/openpgp-api</string>
+    <string name="library_OpenPGPAPI_libraryVersion">12</string>
+
+    <string name="library_OpenPGPAPI_isOpenSource">true</string>
+    <string name="library_OpenPGPAPI_repositoryLink">https://github.com/open-keychain/openpgp-api</string>
+
+    <string name="library_OpenPGPAPI_classPath">org.openintents.openpgp.util.OpenPgpApi</string>
+
+    <string name="library_OpenPGPAPI_licenseId">apache_2_0</string>
+
+    <!-- ZXing Android Embedded -->
+    <string name="define_ZXingAndroidEmbedded"></string>
+    <string name="library_ZXingAndroidEmbedded_author">Journey Mobile</string>
+    <string name="library_ZXingAndroidEmbedded_authorWebsite">https://journeyapps.com</string>
+
+    <string name="library_ZXingAndroidEmbedded_libraryName">ZXing Android Embedded</string>
+    <string name="library_ZXingAndroidEmbedded_libraryDescription">Barcode scanning library for Android, using ZXing for decoding.</string>
+    <string name="library_ZXingAndroidEmbedded_libraryWebsite">https://github.com/journeyapps/zxing-android-embedded</string>
+    <string name="library_ZXingAndroidEmbedded_libraryVersion">3.6.0</string>
+
+    <string name="library_ZXingAndroidEmbedded_isOpenSource">true</string>
+    <string name="library_ZXingAndroidEmbedded_repositoryLink">https://github.com/journeyapps/zxing-android-embedded</string>
+
+    <string name="library_ZXingAndroidEmbedded_classPath">com.journeyapps.barcodescanner.CaptureActivity</string>
+
+    <string name="library_ZXingAndroidEmbedded_licenseId">mit</string>
+</resources>
