@@ -5,6 +5,8 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/activity_margin_xsmall"
+    android:layout_marginBottom="@dimen/activity_margin_xsmall"
     app:contentPadding="0dp"
     style="?attr/cardStyle">
 

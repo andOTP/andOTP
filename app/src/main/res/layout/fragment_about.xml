@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:overScrollMode="never"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/activity_margin"
+        android:clipToPadding="false"
         android:orientation="vertical" >
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_margin"
+            android:layout_marginTop="@dimen/activity_margin_small"
+            android:layout_marginBottom="@dimen/activity_margin_small"
             style="?attr/cardStyle" >
 
             <LinearLayout
@@ -60,7 +62,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_margin"
+            android:layout_marginTop="@dimen/activity_margin_small"
+            android:layout_marginBottom="@dimen/activity_margin_small"
             style="?attr/cardStyle" >
 
             <LinearLayout
@@ -211,7 +214,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_margin"
+            android:layout_marginTop="@dimen/activity_margin_small"
+            android:layout_marginBottom="@dimen/activity_margin_small"
             style="?attr/cardStyle" >
 
             <LinearLayout
@@ -278,8 +282,8 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/divider"
+                    android:layout_height="1px"
+                    android:background="?attr/about_libraries_dividerLight_openSource"
                     android:layout_margin="@dimen/activity_margin" />
 
                 <!-- Original author -->
@@ -336,8 +340,8 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/divider"
+                    android:layout_height="1px"
+                    android:background="?attr/about_libraries_dividerLight_openSource"
                     android:layout_margin="@dimen/activity_margin" />
 
                 <!-- Original author -->
@@ -394,8 +398,8 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/divider"
+                    android:layout_height="1px"
+                    android:background="?attr/about_libraries_dividerLight_openSource"
                     android:layout_margin="@dimen/activity_margin" />
 
                 <!-- contributors -->
@@ -460,7 +464,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_margin"
+            android:layout_marginTop="@dimen/activity_margin_small"
+            android:layout_marginBottom="@dimen/activity_margin_small"
             style="?attr/cardStyle" >
 
             <LinearLayout
@@ -560,4 +565,4 @@
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</ScrollView>
