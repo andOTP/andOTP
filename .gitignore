@@ -5,6 +5,7 @@ crowdin.properties
 /.idea/workspace.xml
 /.idea/libraries
 /.idea/markdown-navigator*
+/.idea/caches
 .DS_Store
 /build
 /captures
