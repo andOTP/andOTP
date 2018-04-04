@@ -88,7 +88,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
                         android:layout_marginEnd="@dimen/activity_margin_large"
-                        android:src="@drawable/ic_info_outline_gray" />
+                        app:srcCompat="@drawable/ic_info_outline_gray" />
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
                         android:layout_marginEnd="@dimen/activity_margin_large"
-                        android:src="@drawable/ic_copyright_gray" />
+                        app:srcCompat="@drawable/ic_copyright_gray" />
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -170,7 +170,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
                         android:layout_marginEnd="@dimen/activity_margin_large"
-                        android:src="@drawable/ic_history_gray" />
+                        app:srcCompat="@drawable/ic_history_gray" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -198,7 +198,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
                         android:layout_marginEnd="@dimen/activity_margin_large"
-                        android:src="@drawable/ic_code_gray" />
+                        app:srcCompat="@drawable/ic_code_gray" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -304,7 +304,7 @@
                         android:layout_marginStart="@dimen/activity_margin"
                         android:layout_marginEnd="@dimen/activity_margin"
                         android:padding="@dimen/activity_margin_small"
-                        android:src="@drawable/ic_account_circle_gray" />
+                        app:srcCompat="@drawable/ic_account_circle_gray" />
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -362,7 +362,7 @@
                         android:layout_marginStart="@dimen/activity_margin"
                         android:layout_marginEnd="@dimen/activity_margin"
                         android:padding="@dimen/activity_margin_small"
-                        android:src="@drawable/ic_account_circle_gray" />
+                        app:srcCompat="@drawable/ic_account_circle_gray" />
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -419,7 +419,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
                         android:layout_marginEnd="@dimen/activity_margin_large"
-                        android:src="@drawable/ic_code_gray" />
+                        app:srcCompat="@drawable/ic_code_gray" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -447,7 +447,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
                         android:layout_marginEnd="@dimen/activity_margin_large"
-                        android:src="@drawable/ic_translate_gray" />
+                        app:srcCompat="@drawable/ic_translate_gray" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -496,7 +496,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
                         android:layout_marginEnd="@dimen/activity_margin_large"
-                        android:src="@drawable/ic_bug_report_gray" />
+                        app:srcCompat="@drawable/ic_bug_report_gray" />
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -537,7 +537,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
                         android:layout_marginEnd="@dimen/activity_margin_large"
-                        android:src="@drawable/ic_translate_gray" />
+                        app:srcCompat="@drawable/ic_translate_gray" />
 
                     <LinearLayout
                         android:orientation="vertical"
