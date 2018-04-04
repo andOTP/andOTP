@@ -286,7 +286,7 @@
                     android:background="?attr/about_libraries_dividerLight_openSource"
                     android:layout_margin="@dimen/activity_margin" />
 
-                <!-- Original author -->
+                <!-- 2nd author -->
                 <LinearLayout
                     android:id="@+id/aboutLayoutAuthor2"
                     android:orientation="horizontal"
@@ -333,7 +333,7 @@
                             android:background="?android:attr/selectableItemBackground"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textStyle="bold"
-                            android:textColor="?attr/colorPaypal"
+                            android:textColor="@color/bitcoin"
                             android:text="@string/about_label_donate_bitcoin" />
                     </LinearLayout>
                 </LinearLayout>
