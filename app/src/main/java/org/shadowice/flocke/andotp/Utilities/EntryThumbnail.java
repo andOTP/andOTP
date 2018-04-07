@@ -90,6 +90,7 @@ public class EntryThumbnail {
         Mailgun(R.drawable.thumb_mailgun),
         Mastodon(R.drawable.thumb_mastodon),
         Microsoft(R.drawable.thumb_microsoft),
+        Migadu(R.drawable.thumb_migadu),
         Mixer(R.drawable.thumb_mixer),
         NAS(R.drawable.thumb_nas),
         NextCloud(R.drawable.thumb_nextcloud),
