@@ -1,5 +1,20 @@
 # Changelog
 
+#### v0.6.0
+
+ * New feature: **HOTP support**
+ * New feature: Settings item to activate Broadcast backups
+ * New feature: Re-locking of the app on screen off is now optional (Issue #28)
+ * Bug fix: Avoid crash on empty PIN/Password an API 23 (Issue #159, PR #160 by magnus anderssen)
+ * Internal: Replace custon FAB menu with FABsMenu library (Issue #155)
+ * Style/UI: Use AboutLibraries instead of LicenseDialog and rework the About section (Issue #155)
+ * Update: ZXing Android Embedded (3.6.0), Constraint Layout (1.1.0) and all support libraries (27.1.1)
+ * Thumbnails: new thumbnails (see the wiki)
+
+#### v0.5.1 (Google Play only)
+
+ * Like v0.5.0 but with Password-based encryption offered by default during setup
+
 #### v0.5.0
 
  * New feature: **Intro screen when staring the app for the first time to setup encryption and authentication**
