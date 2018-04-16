@@ -67,14 +67,6 @@ public class Tools {
         return colorValue;
     }
 
-    public static String getCSSRGBAString(@ColorInt int color) {
-        int red = Color.red(color);
-        int green = Color.green(color);
-        int blue = Color.blue(color);
-        float alpha = ((float) Color.alpha(color) / 255);
-        return String.format(Locale.ENGLISH, CSS_RGBA_FORMAT, red, green, blue, alpha);
-    }
-
     /* Create a ColorFilter based on the current theme */
     public static ColorFilter getThemeColorFilter(Context context, int colorAttr) {
         return new PorterDuffColorFilter(getThemeColor(context, colorAttr), PorterDuff.Mode.SRC_IN);

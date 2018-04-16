@@ -5,6 +5,8 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/activity_margin_xsmall"
+    android:layout_marginBottom="@dimen/activity_margin_xsmall"
     app:contentPadding="0dp"
     style="?attr/cardStyle">
 
@@ -60,7 +62,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="@dimen/activity_margin_small"
-                            android:src="@drawable/ic_visibility_visible"/>
+                            app:srcCompat="@drawable/ic_visibility_visible"/>
 
                         <TextView
                             android:id="@+id/valueText"
@@ -83,7 +85,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginEnd="@dimen/activity_margin_small"
                             android:alpha="0.4"
-                            android:src="@drawable/ic_visibility_invisible"/>
+                            app:srcCompat="@drawable/ic_visibility_invisible"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -131,7 +133,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_alarm_gray" />
+                        app:srcCompat="@drawable/ic_alarm_gray" />
 
                     <TextView
                         android:id="@+id/customPeriod"
@@ -169,8 +171,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/activity_margin_small"
-                    android:src="@drawable/ic_content_copy_gray"
-                    android:background="?android:attr/selectableItemBackground"/>
+                    android:background="?android:attr/selectableItemBackground"
+                    app:srcCompat="@drawable/ic_content_copy_gray" />
 
                 <ImageButton
                     android:id="@+id/menuButton"
@@ -178,8 +180,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/activity_margin_small"
-                    android:src="@drawable/ic_more_vert_gray"
-                    android:background="?android:attr/selectableItemBackground"/>
+                    android:background="?android:attr/selectableItemBackground"
+                    app:srcCompat="@drawable/ic_more_vert_gray" />
             </LinearLayout>
 
         </LinearLayout>

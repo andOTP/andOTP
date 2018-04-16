@@ -4,10 +4,12 @@
 
     <string name="about_description">Open source two-factor authentication for Android</string>
 
+    <string name="about_tab_about">About</string>
+    <string name="about_tab_libraries">Libraries</string>
+
     <!-- Misc -->
     <string name="about_label_changelog">Changelog</string>
     <string name="about_label_license">License</string>
-    <string name="about_label_licenses">Open source licenses</string>
     <string name="about_label_MIT">MIT License</string>
     <string name="about_label_source">Source code</string>
     <string name="about_label_version">Version</string>
@@ -21,7 +23,8 @@
     <string name="about_label_original_app">Original App</string>
     <string name="about_label_website">Website</string>
     <string name="about_label_github" translatable="false">Github</string>
-    <string name="about_label_donate">Donate</string>
+    <string name="about_label_donate_paypal">Donate (PayPal)</string>
+    <string name="about_label_donate_bitcoin">Donate (Bitcoin)</string>
 
     <string name="about_name_author1" translatable="false">Jakob Nixdorf</string>
     <string name="about_name_author_original" translatable="false">Bruno Bierbaumer</string>

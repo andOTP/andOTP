@@ -231,7 +231,7 @@ public class MainActivity extends BaseActivity
         setBroadcastCallback(new BroadcastReceivedCallback() {
             @Override
             public void onReceivedScreenOff() {
-                if (settings.getAuthMethod() != AuthMethod.NONE)
+                if (settings.getRelockOnScreenOff() && settings.getAuthMethod() != AuthMethod.NONE)
                     requireAuthentication = true;
             }
         });
