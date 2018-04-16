@@ -184,8 +184,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             if(item_changed && entryViewDialog != null
                     && entries.get(i).getType() != Entry.OTPType.HOTP) {
                 if(getRealIndex(entryViewDialog.getAdapterPosition()) == i) {
-                    entryViewDialog.dismiss();
-                    entryViewDialog = null;
+                    dismissEntryViewDialog();
                 }
             }
         }
@@ -255,10 +254,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             @Override
             public void onTap(final int position) {
                 if(settings.getViewMode() == Constants.ViewMode.GRID) {
-                    if(entryViewDialog != null) {
-                        entryViewDialog.dismiss();
-                        entryViewDialog = null;
-                    }
+                    dismissEntryViewDialog();
                     entryViewDialog = new EntryViewDialog(context, viewGroup);
                     int realIndex = getRealIndex(position);
                     entryViewDialog.show(entries.get(realIndex), position, this);
@@ -298,10 +294,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 realEntry.updateOTP();
                 DatabaseHelper.saveDatabase(context, entries, encryptionKey);
 
-                if(entryViewDialog != null) {
-                    entryViewDialog.dismiss();
-                    entryViewDialog = null;
-                }
+                dismissEntryViewDialog();
                 if(settings.getViewMode() == Constants.ViewMode.GRID) {
                     entryViewDialog = new EntryViewDialog(context, viewGroup);
                     int realIndex = getRealIndex(position);
@@ -354,10 +347,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
         container.addView(input);
 
-        if(entryViewDialog != null) {
-            entryViewDialog.dismiss();
-            entryViewDialog = null;
-        }
+        dismissEntryViewDialog();
 
         builder.setTitle(R.string.dialog_title_counter)
                 .setView(container)
@@ -382,6 +372,15 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 })
                 .create()
                 .show();
+    }
+
+    private void dismissEntryViewDialog() {
+        if(entryViewDialog != null) {
+            entryViewDialog.dismiss();
+            int pos = entryViewDialog.getAdapterPosition();
+            updateLastUsed(pos, getRealIndex(pos));
+            entryViewDialog = null;
+        }
     }
 
     private boolean updateLastUsed(int position, int realIndex) {
@@ -630,10 +629,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             public boolean onMenuItemClick(MenuItem item) {
                 int id = item.getItemId();
 
-                if(entryViewDialog != null) {
-                    entryViewDialog.dismiss();
-                    entryViewDialog = null;
-                }
+                dismissEntryViewDialog();
 
                 if (id == R.id.menu_popup_editLabel) {
                     editEntryLabel(pos);
