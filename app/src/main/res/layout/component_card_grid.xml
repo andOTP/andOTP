@@ -3,9 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     style="?attr/cardStyle"
-    app:contentPadding="0dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/activity_margin_xsmall"
+    android:layout_marginEnd="@dimen/activity_margin_xxsmall"
+    android:layout_marginLeft="@dimen/activity_margin_xxsmall"
+    android:layout_marginRight="@dimen/activity_margin_xxsmall"
+    android:layout_marginStart="@dimen/activity_margin_xxsmall"
+    android:layout_marginTop="@dimen/activity_margin_xsmall"
+    app:contentPadding="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,9 +23,9 @@
             android:id="@+id/thumbnailFrame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?attr/thumbnailBackground"
             android:padding="@dimen/activity_margin"
-            android:paddingTop="@dimen/activity_margin_small"
-            android:background="?attr/thumbnailBackground">
+            android:paddingTop="@dimen/activity_margin_small">
 
             <ImageView
                 android:id="@+id/thumbnailImg"
@@ -36,10 +42,10 @@
             android:id="@+id/textViewLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/activity_margin_small"
-            android:ellipsize="end"
             android:layout_gravity="center_horizontal"
+            android:ellipsize="end"
             android:maxLines="1"
+            android:padding="@dimen/activity_margin_small"
             android:text="Test"
             android:textSize="18sp" />
 
