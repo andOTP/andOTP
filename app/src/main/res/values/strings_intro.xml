@@ -14,9 +14,9 @@
         device supports it). However, as the keys are not stored with the apps data, <b>this method
         prevents external backup solutions (like Titanium) from working</b>. If you choose this
         method you will have to rely on the internal backup functions provided by <b>andOTP</b>.
-        \n\n<b>Warning</b>: The KeyStore is known to cause problems on some custom ROMs (and a few
-        stock ones as well). If you don\'t mind entering a password / PIN every time you start
-        <b>andOTP</b> it is highly recommended to use the password-based encryption instead.</string>
+        \n\n<b>Warning</b>: The KeyStore is known to cause a lot of problems, please only use it if
+        you absolutely have to. If you don\'t mind entering a password / PIN every time you start
+        <b>andOTP</b> it is <b>highly recommended to use the password-based encryption instead</b>.</string>
     <string name="intro_slide2_desc_password">This method will encrypt your data with a key
         generated from a password or PIN. The main advantage here is that this will work with
         external backup solutions (like Titanium) and is much less failure-prone than the KeyStore.
