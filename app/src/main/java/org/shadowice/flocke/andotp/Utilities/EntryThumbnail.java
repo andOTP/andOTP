@@ -50,7 +50,7 @@ public class EntryThumbnail {
         Bitcoin(R.drawable.thumb_bitcoin),
         Bitstamp(R.mipmap.thumb_bitstamp, AssetType.Bitmap),
         Bittrex(R.drawable.thumb_bittrex),
-        Bitwarden(R.mipmap.thumb_bitwarden, AssetType.Bitmap),
+        Bitwarden(R.drawable.thumb_bitwarden),
         BlockchainInfo(R.drawable.thumb_blockchain_info),
         CloudDownload(R.drawable.thumb_cloud_download),
         Cloudflare(R.drawable.thumb_cloudflare),
