@@ -33,8 +33,8 @@
     <string name="settings_key_backup_password_enc" translatable="false">pref_backup_password_enc</string>
     <string name="settings_key_backup_broadcasts" translatable="false">pref_backup_broadcasts</string>
     <string name="settings_key_openpgp_provider" translatable="false">pref_openpgp_provider</string>
-    <string name="settings_key_openpgp_keyid" translatable="false">pref_openpgp_keyid</string>
-    <string name="settings_key_openpgp_sign" translatable="false">pref_openpgp_sign</string>
+    <string name="settings_key_openpgp_key_encrypt" translatable="false">pref_openpgp_key_encrypt</string>
+    <string name="settings_key_openpgp_key_sign" translatable="false">pref_openpgp_key_sign</string>
     <string name="settings_key_openpgp_verify" translatable="false">pref_openpgp_verify</string>
 
     <string name="settings_key_security_backup_warning" translatable="false">pref_security_backup_warning_shown</string>

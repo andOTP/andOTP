@@ -152,15 +152,15 @@
             android:key="@string/settings_key_openpgp_provider"
             android:title="@string/settings_title_openpgp_provider" />
 
-        <org.openintents.openpgp.util.OpenPgpKeyPreference
-            android:key="@string/settings_key_openpgp_keyid"
-            android:title="@string/settings_title_openpgp_keyid" />
+        <EditTextPreference
+            android:key="@string/settings_key_openpgp_key_encrypt"
+            android:title="@string/settings_title_openpgp_key_encrypt"
+            android:summary="@string/settings_desc_openpgp_key_encrypt"
+            android:enabled="false" />
 
-        <CheckBoxPreference
-            android:key="@string/settings_key_openpgp_sign"
-            android:title="@string/settings_title_openpgp_sign"
-            android:summary="@string/settings_desc_openpgp_sign"
-            android:defaultValue="false" />
+        <org.openintents.openpgp.util.OpenPgpKeyPreference
+            android:key="@string/settings_key_openpgp_key_sign"
+            android:title="@string/settings_title_openpgp_key_sign" />
 
         <CheckBoxPreference
             android:key="@string/settings_key_openpgp_verify"

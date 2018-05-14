@@ -29,6 +29,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
@@ -221,7 +222,7 @@ public class SettingsActivity extends BaseActivity
             } else {
                 Toast.makeText(this, R.string.settings_toast_encryption_auth_failed, Toast.LENGTH_LONG).show();
             }
-        } else if (fragment.pgpKey.handleOnActivityResult(requestCode, resultCode, data)) {
+        } else if (fragment.pgpSigningKey.handleOnActivityResult(requestCode, resultCode, data)) {
             // handled by OpenPgpKeyPreference
             return;
         }
@@ -235,7 +236,8 @@ public class SettingsActivity extends BaseActivity
         CheckBoxPreference useAndroidSync;
 
         OpenPgpAppPreference pgpProvider;
-        OpenPgpKeyPreference pgpKey;
+        EditTextPreference pgpEncryptionKey;
+        OpenPgpKeyPreference pgpSigningKey;
 
         public void encryptionChangeWithDialog(final EncryptionType encryptionType) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -313,17 +315,31 @@ public class SettingsActivity extends BaseActivity
 
             // OpenPGP
             pgpProvider = (OpenPgpAppPreference) findPreference(getString(R.string.settings_key_openpgp_provider));
-            pgpKey = (OpenPgpKeyPreference) findPreference(getString(R.string.settings_key_openpgp_keyid));
+            pgpEncryptionKey = (EditTextPreference) findPreference(getString(R.string.settings_key_openpgp_key_encrypt));
+            pgpSigningKey = (OpenPgpKeyPreference) findPreference(getString(R.string.settings_key_openpgp_key_sign));
 
-            pgpKey.setOpenPgpProvider(pgpProvider.getValue());
+            pgpSigningKey.setOpenPgpProvider(pgpProvider.getValue());
+
+            if (pgpProvider.getValue() != null && ! pgpProvider.getValue().isEmpty()) {
+                pgpEncryptionKey.setEnabled(true);
+            } else {
+                pgpEncryptionKey.setEnabled(false);
+            }
+
             pgpProvider.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    pgpKey.setOpenPgpProvider((String) newValue);
+                    if (newValue != null && ! ((String) newValue).isEmpty()) {
+                        pgpEncryptionKey.setEnabled(true);
+                    } else {
+                        pgpEncryptionKey.setEnabled(false);
+                    }
+
+                    pgpSigningKey.setOpenPgpProvider((String) newValue);
+
                     return true;
                 }
             });
-            pgpKey.setDefaultUserId("Alice <alice@example.com>");
 
             useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
             useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);

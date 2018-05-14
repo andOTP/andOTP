@@ -411,12 +411,12 @@ public class Settings {
         return getString(R.string.settings_key_openpgp_provider, "");
     }
 
-    public long getOpenPGPKey() {
-        return getLong(R.string.settings_key_openpgp_keyid, 0);
+    public String getOpenPGPEncryptionUserIDs() {
+        return getString(R.string.settings_key_openpgp_key_encrypt, "");
     }
 
-    public boolean getOpenPGPSign() {
-        return getBoolean(R.string.settings_key_openpgp_sign, false);
+    public long getOpenPGPSigningKey() {
+        return getLong(R.string.settings_key_openpgp_key_sign, 0);
     }
 
     public boolean getOpenPGPVerify() {

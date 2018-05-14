@@ -68,7 +68,7 @@ public class BackupActivity extends BaseActivity {
     private SecretKey encryptionKey = null;
 
     private OpenPgpServiceConnection pgpServiceConnection;
-    private long pgpKeyId;
+    private String pgpEncryptionUserIDs;
 
     private Uri encryptTargetFile;
     private Uri decryptSourceFile;
@@ -147,7 +147,7 @@ public class BackupActivity extends BaseActivity {
         // OpenPGP
 
         String PGPProvider = settings.getOpenPGPProvider();
-        pgpKeyId = settings.getOpenPGPKey();
+        pgpEncryptionUserIDs = settings.getOpenPGPEncryptionUserIDs();
 
         TextView setupPGP = v.findViewById(R.id.msg_openpgp_setup);
         LinearLayout backupPGP = v.findViewById(R.id.button_backup_openpgp);
@@ -157,7 +157,7 @@ public class BackupActivity extends BaseActivity {
             setupPGP.setVisibility(View.VISIBLE);
             backupPGP.setVisibility(View.GONE);
             restorePGP.setVisibility(View.GONE);
-        } else if (pgpKeyId == 0){
+        } else if (TextUtils.isEmpty(pgpEncryptionUserIDs)){
             setupPGP.setVisibility(View.VISIBLE);
             setupPGP.setText(R.string.backup_desc_openpgp_keyid);
             backupPGP.setVisibility(View.GONE);
@@ -524,14 +524,14 @@ public class BackupActivity extends BaseActivity {
         if (encryptIntent == null) {
             encryptIntent = new Intent();
 
-            if (settings.getOpenPGPSign()) {
+            if (settings.getOpenPGPSigningKey() != 0) {
                 encryptIntent.setAction(OpenPgpApi.ACTION_SIGN_AND_ENCRYPT);
-                encryptIntent.putExtra(OpenPgpApi.EXTRA_SIGN_KEY_ID, pgpKeyId);
+                encryptIntent.putExtra(OpenPgpApi.EXTRA_SIGN_KEY_ID, settings.getOpenPGPSigningKey());
             } else {
                 encryptIntent.setAction(OpenPgpApi.ACTION_ENCRYPT);
             }
 
-            encryptIntent.putExtra(OpenPgpApi.EXTRA_KEY_IDS, new long[]{pgpKeyId});
+            encryptIntent.putExtra(OpenPgpApi.EXTRA_USER_IDS, pgpEncryptionUserIDs.split(","));
             encryptIntent.putExtra(OpenPgpApi.EXTRA_REQUEST_ASCII_ARMOR, true);
         }
 

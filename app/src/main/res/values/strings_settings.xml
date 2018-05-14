@@ -30,9 +30,9 @@
     <string name="settings_title_backup_directory">Backup directory</string>
     <string name="settings_title_backup_password">Backup password</string>
     <string name="settings_title_backup_broadcasts">Backup Broadcasts</string>
-    <string name="settings_title_openpgp_provider">Select OpenPGP provider</string>
-    <string name="settings_title_openpgp_keyid">Select OpenPGP key</string>
-    <string name="settings_title_openpgp_sign">Sign encrypted backups</string>
+    <string name="settings_title_openpgp_provider">OpenPGP provider</string>
+    <string name="settings_title_openpgp_key_encrypt">OpenPGP encryption key</string>
+    <string name="settings_title_openpgp_key_sign">OpenPGP siging key (optional)</string>
     <string name="settings_title_openpgp_verify">Verify encrypted backups</string>
 
     <string name="settings_title_special_features">Enable special features</string>
@@ -64,8 +64,8 @@
     <string name="settings_desc_backup_broadcasts">Select which backup types can be triggered by
         3rd-party apps using Broadcasts</string>
 
-    <string name="settings_desc_openpgp_sign">Every encrypted backup is additionally signed with
-        your key (requires password)</string>
+    <string name="settings_desc_openpgp_key_encrypt">Mail address of the OpenPGP key used to encrypt
+        the backups</string>
     <string name="settings_desc_openpgp_verify">Encrypted backups are only imported if they are
         signed with a valid key</string>
 
