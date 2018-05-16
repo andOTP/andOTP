@@ -564,5 +564,63 @@
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
+        <!-- thumbnails -->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin_small"
+            android:layout_marginBottom="@dimen/activity_margin_small"
+            style="?attr/cardStyle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about_title_thumbnail_disclaimer"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/activity_margin_small"
+                    android:paddingTop="@dimen/activity_margin_small"
+                    android:paddingBottom="@dimen/activity_margin_small"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_margin_small"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/about_thumbnails_disclaimer_no1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_margin_small"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/about_thumbnails_disclaimer_no2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_margin_small"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/about_thumbnails_disclaimer_no3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/about_thumbnails_disclaimer_no4" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
     </LinearLayout>
 </ScrollView>

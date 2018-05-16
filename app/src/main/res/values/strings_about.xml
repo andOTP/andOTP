@@ -33,6 +33,18 @@
     <string name="about_label_contributors">Contributors</string>
     <string name="about_label_translators">Translators</string>
 
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">Thumbnail disclaimer</string>
+
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> All thumbnails are trademarks of their
+        respective owners.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> The use of these trademarks does not
+        indicate endorsement of the trademark holder by andOTP, nor vice versa.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Thumbnails should only be used to
+        represent the company or product to which they refer.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Please do not use thumbnails for any
+        purpose except to represent that particular brand or service.</b></string>
+
     <!-- Support -->
     <string name="about_title_support">Support development</string>
 
