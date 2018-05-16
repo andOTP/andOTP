@@ -233,7 +233,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             }
 
             @Override
-            public void onTap(final int position) {
+            public void onCardClicked(final int position) {
                 if (settings.getTapToReveal()) {
                     final Entry entry = displayedEntries.get(position);
                     final int realIndex = entries.indexOf(entry);
@@ -256,7 +256,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             }
 
             @Override
-            public void onCounterTapped(int position) {
+            public void onCounterClicked(int position) {
                 Entry entry = displayedEntries.get(position);
                 Entry realEntry = entries.get(getRealIndex(position));
 

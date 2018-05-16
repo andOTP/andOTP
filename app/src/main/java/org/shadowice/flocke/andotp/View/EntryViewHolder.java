@@ -68,7 +68,6 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         super(v);
 
         this.context = context;
-        this.tapToReveal = tapToReveal;
 
         card = v.findViewById(R.id.card_view);
         value = v.findViewById(R.id.valueText);
@@ -117,7 +116,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             @Override
             public void onClick(View view) {
                 if (callback != null)
-                    callback.onCounterTapped(getAdapterPosition());
+                    callback.onCounterClicked(getAdapterPosition());
             }
         });
 
@@ -146,28 +145,23 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         final String tokenFormatted = Tools.formatToken(entry.getCurrentOTP(), settings.getTokenSplitGroupSize());
 
-        this.label.setText(entry.getLabel());
+        label.setText(entry.getLabel());
         value.setText(tokenFormatted);
         // save the unformatted token to the tag of this TextView for copy/paste
         value.setTag(entry.getCurrentOTP());
 
-        List<String> tags = entry.getTags();
+        List<String> entryTags = entry.getTags();
 
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0; i < tags.size(); i++) {
-            stringBuilder.append(tags.get(i));
-            if(i < tags.size() - 1) {
+        for(int i = 0; i < entryTags.size(); i++) {
+            stringBuilder.append(entryTags.get(i));
+            if(i < entryTags.size() - 1) {
                 stringBuilder.append(", ");
             }
         }
-        this.tags.setText(stringBuilder.toString());
+        tags.setText(stringBuilder.toString());
 
-        if (! tags.isEmpty()) {
-            this.tags.setVisibility(View.VISIBLE);
-        } else {
-            this.tags.setVisibility(View.GONE);
-        }
-
+        tags.setVisibility(entryTags.isEmpty() ? View.GONE : View.VISIBLE);
         thumbnailFrame.setVisibility(settings.getThumbnailVisible() ? View.VISIBLE : View.GONE);
 
         int thumbnailSize = settings.getThumbnailSize();
@@ -221,6 +215,8 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     }
 
     private void setTapToReveal(boolean enabled) {
+        tapToReveal = enabled;
+
         if (enabled) {
             valueLayout.setVisibility(View.GONE);
             coverLayout.setVisibility(View.VISIBLE);
@@ -229,7 +225,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    callback.onTap(getAdapterPosition());
+                    callback.onCardClicked(getAdapterPosition());
                 }
             });
         } else {
@@ -263,8 +259,10 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         void onMenuButtonClicked(View parentView, int position);
         void onCopyButtonClicked(String text, int position);
-        void onTap(int position);
-        void onCounterTapped(int position);
+
+        void onCardClicked(int position);
+
+        void onCounterClicked(int position);
         void onCounterLongPressed(int position);
     }
 }
