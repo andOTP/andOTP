@@ -146,10 +146,10 @@ So make sure you have a **current backup** before switching!
 ## Acknowledgments:
 #### Open-source components used:
 
+ * [AboutLibraries](https://github.com/mikepenz/AboutLibraries)
  * [Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)
  * [Expandable Layout](https://github.com/AAkira/ExpandableLayout)
  * [FABsMenu](https://github.com/jahirfiquitiva/FABsMenu)
- * [LicensesDialog](https://github.com/PSDev/LicensesDialog)
  * [material-intro](https://github.com/heinrichreimer/material-intro)
  * [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
  * [OpenPGP API library](https://github.com/open-keychain/openpgp-api)
@@ -162,6 +162,10 @@ So make sure you have a **current backup** before switching!
  * [Code Parts from Google's Android Samples](https://android.googlesource.com/platform/development/+/master/samples/Vault/src/com/example/android/vault)
  * [LetterBitmap](http://stackoverflow.com/questions/23122088/colored-boxed-with-letters-a-la-gmail)
  * [DimensionConverter](https://stackoverflow.com/questions/8343971/how-to-parse-a-dimension-string-and-convert-it-to-a-dimension-value)
+
+#### Previously used open-source components:
+
+ * [LicensesDialog](https://github.com/PSDev/LicensesDialog)
 
 #### Previously used code examples:
 

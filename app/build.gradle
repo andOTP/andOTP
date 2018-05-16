@@ -8,8 +8,8 @@ android {
         applicationId "org.shadowice.flocke.andotp"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 16
-        versionName "0.5.0.1"
+        versionCode 18
+        versionName "0.6.0-beta1"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -31,23 +31,21 @@ android {
     }
 }
 
-ext {
-    supportLibVersion = "27.1.0"
-}
-
 dependencies {
+    ext.supportLibVersion = "27.1.1"
+
     implementation "commons-codec:commons-codec:1.11"
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
     implementation "com.android.support:cardview-v7:$supportLibVersion"
     implementation "com.android.support:design:$supportLibVersion"
     implementation "com.android.support:recyclerview-v7:$supportLibVersion"
-    implementation "com.android.support.constraint:constraint-layout:1.0.2"
+    implementation "com.android.support.constraint:constraint-layout:1.1.0"
     implementation "com.github.aakira:expandable-layout:1.6.0"
     implementation "com.heinrichreimersoftware:material-intro:1.6.2"
     implementation "com.journeyapps:zxing-android-embedded:3.6.0"
     implementation "com.vanniktech:vntnumberpickerpreference:1.0.0"
-    implementation "de.psdev.licensesdialog:licensesdialog:1.8.3"
     implementation "me.zhanghai.android.materialprogressbar:library:1.4.2"
     implementation "org.sufficientlysecure:openpgp-api:12.0"
     implementation "me.jahirfiquitiva:FABsMenu:1.1.2"
+    implementation "com.mikepenz:aboutlibraries:6.0.6"
 }

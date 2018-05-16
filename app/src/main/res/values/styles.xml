@@ -27,6 +27,12 @@
         <item name="thumbnailBackground">@android:color/transparent</item>
 
         <item name="cardStyle">@style/CardViewStyle</item>
+
+        <item name="about_libraries_card">@color/cardview_light_background</item>
+        <item name="about_libraries_title_openSource">@color/about_libraries_text_openSource</item>
+        <item name="about_libraries_text_openSource">@color/about_libraries_text_openSource</item>
+        <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource</item>
+        <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -35,8 +41,6 @@
     </style>
 
     <style name="CardViewStyle" parent="CardView">
-        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
-        <item name="cardUseCompatPadding">true</item>
         <item name="contentPadding">@dimen/activity_margin</item>
     </style>
 
@@ -53,6 +57,12 @@
         <item name="colorPaypal">@color/paypal_light</item>
 
         <item name="cardStyle">@style/CardViewStyle</item>
+
+        <item name="about_libraries_card">@color/cardview_dark_background</item>
+        <item name="about_libraries_title_openSource">@color/about_libraries_text_openSource_dark</item>
+        <item name="about_libraries_text_openSource">@color/about_libraries_text_openSource_dark</item>
+        <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource_dark</item>
+        <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource_dark</item>
     </style>
 
     <style name="AppTheme.Dark.NoActionBar">
@@ -73,6 +83,12 @@
         <item name="colorPaypal">@color/paypal_light</item>
 
         <item name="cardStyle">@style/CardViewStyle.Black</item>
+
+        <item name="about_libraries_card">@android:color/black</item>
+        <item name="about_libraries_title_openSource">@color/about_libraries_text_openSource_dark</item>
+        <item name="about_libraries_text_openSource">@color/about_libraries_text_openSource_dark</item>
+        <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource_dark</item>
+        <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource_dark</item>
     </style>
 
     <style name="CardViewStyle.Black">
