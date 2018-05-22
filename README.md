@@ -96,7 +96,7 @@ So make sure you have a **current backup** before switching!
 
 #### Developers:
 
- * [Jakob Nixdorf](https://github.com/flocke)
+ * [Jakob Nixdorf](https://github.com/flocke) (Telegram: [@flocke000](https://t.me/flocke000), Reddit: [/u/flocke000](https://www.reddit.com/user/flocke000))
  * [Richy HBM](https://github.com/RichyHBM)
 
 #### Contributors (in order of appearance):
