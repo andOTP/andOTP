@@ -248,6 +248,10 @@ public class Entry {
         return jsonObj;
     }
 
+    public boolean isTimeBased() {
+        return type == OTPType.TOTP || type == OTPType.STEAM;
+    }
+
     public OTPType getType() {
         return type;
     }

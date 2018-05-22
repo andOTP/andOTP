@@ -80,6 +80,7 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class MainActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
+    public static long animatorDuration = 1000;
 
     private EntriesCardAdapter adapter;
     private FABsMenu fabsMenu;
@@ -238,7 +239,7 @@ public class MainActivity extends BaseActivity
         if (durationScale == 0)
             durationScale = 1;
 
-        final long animatorDuration = (long) (1000 / durationScale);
+        animatorDuration = (long) (1000 / durationScale);
 
         adapter.setCallback(new EntriesCardAdapter.Callback() {
             @Override
@@ -265,7 +266,7 @@ public class MainActivity extends BaseActivity
                 animation.setInterpolator(new LinearInterpolator());
                 animation.start();
 
-                adapter.updateTokens();
+                adapter.updateTimeBasedTokens();
 
                 handler.postDelayed(this, 1000);
             }

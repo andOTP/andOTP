@@ -171,12 +171,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         notifyDataSetChanged();
     }
 
-    public void updateTokens() {
+    public void updateTimeBasedTokens() {
         boolean change = false;
 
-        for(int i =0;i < entries.size(); i++){
-            boolean item_changed = entries.get(i).updateOTP();
-            change = change || item_changed;
+        for (Entry e : entries) {
+            if (e.isTimeBased()) {
+                boolean item_changed = e.updateOTP();
+                change = change || item_changed || e.hasNonDefaultPeriod();
+            }
         }
 
         if (change)
@@ -187,20 +189,16 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void onBindViewHolder(@NonNull EntryViewHolder entryViewHolder, int i) {
         Entry entry = displayedEntries.get(i);
 
+        if (!entry.isTimeBased())
+            entry.updateOTP();
+
         entryViewHolder.updateValues(entry);
 
-        if (entry.getType() == Entry.OTPType.TOTP || entry.getType() == Entry.OTPType.STEAM) {
-            if (entry.hasNonDefaultPeriod())
-                entryViewHolder.showCustomPeriod(entry.getPeriod());
-            else
-                entryViewHolder.hideCustomPeriod();
-        }
-
         entryViewHolder.setLabelSize(settings.getLabelSize());
-        if(settings.getThumbnailVisible()) {
-            entryViewHolder.setThumbnailSize(settings.getThumbnailSize());
-        }
         entryViewHolder.setLabelScroll(settings.getScrollLabel());
+
+        if(settings.getThumbnailVisible())
+            entryViewHolder.setThumbnailSize(settings.getThumbnailSize());
     }
 
     @Override @NonNull

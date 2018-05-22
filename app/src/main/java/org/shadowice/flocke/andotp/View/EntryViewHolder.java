@@ -22,12 +22,14 @@
 
 package org.shadowice.flocke.andotp.View;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.ColorFilter;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -44,6 +46,10 @@ import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperViewHolde
 import java.util.List;
 import java.util.Locale;
 
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
+
+import static org.shadowice.flocke.andotp.Activities.MainActivity.animatorDuration;
+
 public class EntryViewHolder extends RecyclerView.ViewHolder
         implements ItemTouchHelperViewHolder {
     private Context context;
@@ -53,7 +59,6 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private CardView card;
     private LinearLayout valueLayout;
     private LinearLayout coverLayout;
-    private LinearLayout customPeriodLayout;
     private LinearLayout counterLayout;
     private FrameLayout thumbnailFrame;
     private ImageView visibleImg;
@@ -62,7 +67,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private TextView label;
     private TextView counter;
     private TextView tags;
-    private TextView customPeriod;
+    private MaterialProgressBar progressBar;
 
     public EntryViewHolder(Context context, final View v, boolean tapToReveal) {
         super(v);
@@ -78,10 +83,9 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         coverLayout = v.findViewById(R.id.coverLayout);
         label = v.findViewById(R.id.textViewLabel);
         tags = v.findViewById(R.id.textViewTags);
-        customPeriodLayout = v.findViewById(R.id.customPeriodLayout);
-        customPeriod = v.findViewById(R.id.customPeriod);
         counterLayout = v.findViewById(R.id.counterLayout);
         counter = v.findViewById(R.id.counter);
+        progressBar = v.findViewById(R.id.cardProgressBar);
 
         ImageButton menuButton = v.findViewById(R.id.menuButton);
         ImageButton copyButton = v.findViewById(R.id.copyButton);
@@ -169,6 +173,13 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, entry.getLabel(), thumbnailSize, entry.getThumbnail()));
         }
 
+        if (entry.isTimeBased() && entry.hasNonDefaultPeriod()) {
+            progressBar.setVisibility(View.VISIBLE);
+            updateProgress(entry);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
+
         if (this.tapToReveal) {
             if (entry.isVisible()) {
                 valueLayout.setVisibility(View.VISIBLE);
@@ -182,13 +193,16 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         }
     }
 
-    public void showCustomPeriod(int period) {
-        customPeriodLayout.setVisibility(View.VISIBLE);
-        customPeriod.setText(String.format(Locale.ENGLISH, context.getString(R.string.format_custom_period), period));
-    }
+    private void updateProgress(Entry entry) {
+        int progress =  (int) (entry.getPeriod() - (System.currentTimeMillis() / 1000) % entry.getPeriod()) ;
 
-    public void hideCustomPeriod() {
-        customPeriodLayout.setVisibility(View.GONE);
+        progressBar.setMax(entry.getPeriod() * 100);
+        progressBar.setProgress(progress*100);
+
+        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", (progress - 1) * 100);
+        animation.setDuration(animatorDuration);
+        animation.setInterpolator(new LinearInterpolator());
+        animation.start();
     }
 
     public void setLabelSize(int size) {
