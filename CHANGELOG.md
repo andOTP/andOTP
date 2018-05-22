@@ -5,11 +5,15 @@
  * New feature: **HOTP support**
  * New feature: Settings item to activate Broadcast backups
  * New feature: Re-locking of the app on screen off is now optional (Issue #28)
+ * New feature: Allow PGP backups with only a public key (Issue #31)
+ * New feature: Show individual timeout bars on the cards for non-default periods
  * Bug fix: Avoid crash on empty PIN/Password an API 23 (Issue #159, PR #160 by magnus anderssen)
  * Internal: Replace custon FAB menu with FABsMenu library (Issue #155)
  * Style/UI: Use AboutLibraries instead of LicenseDialog and rework the About section (Issue #155)
+ * Style/UI: Show a disclaimer about the included thumbnails in the About screen
  * Update: ZXing Android Embedded (3.6.0), Constraint Layout (1.1.0) and all support libraries (27.1.1)
- * Thumbnails: new thumbnails (see the wiki)
+ * F-Droid: Add the feature graphic and some screenshots (PR #117 by @jaller94)
+ * Thumbnails: lots of new thumbnails (see the wiki)
 
 #### v0.5.1 (Google Play only)
 
