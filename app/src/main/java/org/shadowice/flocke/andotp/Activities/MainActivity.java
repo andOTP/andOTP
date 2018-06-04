@@ -82,6 +82,9 @@ public class MainActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static long animatorDuration = 1000;
 
+    private static final String INTENT_SCAN_QR = "org.shadowice.flocke.andotp.intent.SCAN_QR";
+    private static final String INTENT_ENTER_DETAILS = "org.shadowice.flocke.andotp.intent.ENTER_DETAILS";
+
     private EntriesCardAdapter adapter;
     private FABsMenu fabsMenu;
     private MenuItem sortMenu;
@@ -273,6 +276,15 @@ public class MainActivity extends BaseActivity
         };
 
         setupDrawer();
+
+        Intent callingIntent = getIntent();
+        if (callingIntent != null && callingIntent.getAction() != null) {
+            if (callingIntent.getAction().equals(INTENT_SCAN_QR)) {
+                scanQRCode();
+            } else if (callingIntent.getAction().equals(INTENT_ENTER_DETAILS)) {
+                ManualEntryDialog.show(MainActivity.this, settings, adapter);
+            }
+        }
     }
 
     @Override
