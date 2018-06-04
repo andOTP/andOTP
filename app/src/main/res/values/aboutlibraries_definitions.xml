@@ -35,6 +35,22 @@
 
     <string name="library_ExpandableLayout_licenseId">apache_2_0</string>
 
+    <!-- Floating Action Button Speed Dial -->
+    <string name="define_FloatingActionButtonSpeedDial"></string>
+    <string name="library_FloatingActionButtonSpeedDial_author">Roberto Leinardi</string>
+
+    <string name="library_FloatingActionButtonSpeedDial_libraryName">Floating Action Button Speed Dial</string>
+    <string name="library_FloatingActionButtonSpeedDial_libraryDescription">Android library providing an implementation of the Material Design Floating Action Button Speed Dial.</string>
+    <string name="library_FloatingActionButtonSpeedDial_libraryWebsite">https://github.com/leinardi/FloatingActionButtonSpeedDial</string>
+    <string name="library_FloatingActionButtonSpeedDial_libraryVersion">1.0.0</string>
+
+    <string name="library_FloatingActionButtonSpeedDial_isOpenSource">true</string>
+    <string name="library_FloatingActionButtonSpeedDial_repositoryLink">https://github.com/leinardi/FloatingActionButtonSpeedDial</string>
+
+    <string name="library_FloatingActionButtonSpeedDial_classPath">com.leinardi.android.speeddial.SpeedDialView</string>
+
+    <string name="library_FloatingActionButtonSpeedDial_licenseId">apache_2_0</string>
+
     <!-- material-intro -->
     <string name="define_materialintro"></string>
     <string name="library_materialintro_author">Jan Heinrich Reimer</string>

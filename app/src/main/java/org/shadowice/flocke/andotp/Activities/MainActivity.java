@@ -53,6 +53,8 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.leinardi.android.speeddial.SpeedDialActionItem;
+import com.leinardi.android.speeddial.SpeedDialView;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
@@ -71,9 +73,6 @@ import java.util.HashMap;
 
 import javax.crypto.SecretKey;
 
-import jahirfiquitiva.libs.fabsmenu.FABsMenu;
-import jahirfiquitiva.libs.fabsmenu.TitleFAB;
-
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
@@ -86,7 +85,7 @@ public class MainActivity extends BaseActivity
     private static final String INTENT_ENTER_DETAILS = "org.shadowice.flocke.andotp.intent.ENTER_DETAILS";
 
     private EntriesCardAdapter adapter;
-    private FABsMenu fabsMenu;
+    private SpeedDialView speedDial;
     private MenuItem sortMenu;
     private SimpleItemTouchHelperCallback touchHelperCallback;
 
@@ -198,23 +197,22 @@ public class MainActivity extends BaseActivity
            showFirstTimeWarning();
         }
 
-        fabsMenu = findViewById(R.id.fabs_menu);
+        speedDial = findViewById(R.id.speedDial);
+        speedDial.inflate(R.menu.menu_fab);
 
-        TitleFAB qrFAB = findViewById(R.id.fab_qr_scan);
-        qrFAB.setOnClickListener(new View.OnClickListener() {
+        speedDial.setOnActionSelectedListener(new SpeedDialView.OnActionSelectedListener() {
             @Override
-            public void onClick(View view) {
-                fabsMenu.collapse();
-                scanQRCode();
-            }
-        });
-
-        TitleFAB manualFAB = findViewById(R.id.fab_manual_entry);
-        manualFAB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fabsMenu.collapse();
-                ManualEntryDialog.show(MainActivity.this, settings, adapter);
+            public boolean onActionSelected(SpeedDialActionItem speedDialActionItem) {
+                switch (speedDialActionItem.getId()) {
+                    case R.id.fabScanQR:
+                        scanQRCode();
+                        return false;
+                    case R.id.fabEnterDetails:
+                        ManualEntryDialog.show(MainActivity.this, settings, adapter);
+                        return false;
+                    default:
+                        return false;
+                }
             }
         });
 
@@ -467,7 +465,7 @@ public class MainActivity extends BaseActivity
         searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem menuItem) {
-                fabsMenu.setVisibility(View.GONE);
+                speedDial.setVisibility(View.GONE);
                 touchHelperCallback.setDragEnabled(false);
                 if (sortMenu != null)
                     sortMenu.setVisible(false);
@@ -476,7 +474,7 @@ public class MainActivity extends BaseActivity
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-                fabsMenu.setVisibility(View.VISIBLE);
+                speedDial.setVisibility(View.VISIBLE);
 
                 if (adapter == null || adapter.getSortMode() == SortMode.UNSORTED)
                     touchHelperCallback.setDragEnabled(true);
