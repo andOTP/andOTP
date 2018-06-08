@@ -23,6 +23,7 @@
 package org.shadowice.flocke.andotp.Activities;
 
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -67,9 +68,11 @@ public abstract class ThemedActivity extends AppCompatActivity {
         Locale locale = settings.getLocale();
         Locale.setDefault(locale);
 
-        Configuration config = new Configuration();
+        Resources resources = getBaseContext().getResources();
+        Configuration config = resources.getConfiguration();
         config.locale = locale;
 
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        // TODO: updateConfiguration is marked as deprecated. Replace with android.content.Context.createConfigurationContext
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 }
