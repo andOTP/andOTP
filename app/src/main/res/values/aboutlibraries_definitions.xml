@@ -15,8 +15,6 @@
     <string name="library_CommonsCodec_isOpenSource">true</string>
     <string name="library_CommonsCodec_repositoryLink">https://github.com/apache/commons-codec</string>
 
-    <string name="library_CommonsCodec_classPath">org.apache.commons.codec</string>
-
     <string name="library_CommonsCodec_licenseId">apache_2_0</string>
 
     <!-- Expandable Layout -->
@@ -31,8 +29,6 @@
     <string name="library_ExpandableLayout_isOpenSource">true</string>
     <string name="library_ExpandableLayout_repositoryLink">https://github.com/AAkira/ExpandableLayout</string>
 
-    <string name="library_ExpandableLayout_classPath">com.github.aakira.expandablelayout.ExpandableLayout</string>
-
     <string name="library_ExpandableLayout_licenseId">apache_2_0</string>
 
     <!-- Floating Action Button Speed Dial -->
@@ -42,12 +38,10 @@
     <string name="library_FloatingActionButtonSpeedDial_libraryName">Floating Action Button Speed Dial</string>
     <string name="library_FloatingActionButtonSpeedDial_libraryDescription">Android library providing an implementation of the Material Design Floating Action Button Speed Dial.</string>
     <string name="library_FloatingActionButtonSpeedDial_libraryWebsite">https://github.com/leinardi/FloatingActionButtonSpeedDial</string>
-    <string name="library_FloatingActionButtonSpeedDial_libraryVersion">1.0.0</string>
+    <string name="library_FloatingActionButtonSpeedDial_libraryVersion">1.0.1</string>
 
     <string name="library_FloatingActionButtonSpeedDial_isOpenSource">true</string>
     <string name="library_FloatingActionButtonSpeedDial_repositoryLink">https://github.com/leinardi/FloatingActionButtonSpeedDial</string>
-
-    <string name="library_FloatingActionButtonSpeedDial_classPath">com.leinardi.android.speeddial.SpeedDialView</string>
 
     <string name="library_FloatingActionButtonSpeedDial_licenseId">apache_2_0</string>
 
@@ -64,8 +58,6 @@
     <string name="library_materialintro_isOpenSource">true</string>
     <string name="library_materialintro_repositoryLink">https://github.com/heinrichreimer/material-intro</string>
 
-    <string name="library_materialintro_classPath">com.heinrichreimersoftware.materialintro.IntroActivity</string>
-
     <string name="library_materialintro_licenseId">mit</string>
 
     <!-- OpenPGP API -->
@@ -81,8 +73,6 @@
     <string name="library_OpenPGPAPI_isOpenSource">true</string>
     <string name="library_OpenPGPAPI_repositoryLink">https://github.com/open-keychain/openpgp-api</string>
 
-    <string name="library_OpenPGPAPI_classPath">org.openintents.openpgp.util.OpenPgpApi</string>
-
     <string name="library_OpenPGPAPI_licenseId">apache_2_0</string>
 
     <!-- ZXing Android Embedded -->
@@ -97,8 +87,6 @@
 
     <string name="library_ZXingAndroidEmbedded_isOpenSource">true</string>
     <string name="library_ZXingAndroidEmbedded_repositoryLink">https://github.com/journeyapps/zxing-android-embedded</string>
-
-    <string name="library_ZXingAndroidEmbedded_classPath">com.journeyapps.barcodescanner.CaptureActivity</string>
 
     <string name="library_ZXingAndroidEmbedded_licenseId">mit</string>
 </resources>
