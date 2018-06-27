@@ -110,6 +110,7 @@ public class EntryThumbnail {
         Reddit(R.drawable.thumb_reddit),
         Rockstar(R.drawable.thumb_rockstar),
         RSS(R.drawable.thumb_rss),
+        Sciebo(R.drawable.thumb_sciebo),
         Seafile(R.mipmap.thumb_seafile, AssetType.Bitmap),
         School(R.drawable.thumb_school),
         Skrill(R.drawable.thumb_skrill),
