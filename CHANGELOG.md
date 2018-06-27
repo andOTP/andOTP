@@ -7,11 +7,13 @@
  * New feature: Re-locking of the app on screen off is now optional (Issue #28)
  * New feature: Allow PGP backups with only a public key (Issue #31)
  * New feature: Show individual timeout bars on the cards for non-default periods
+ * New feature: App shortcuts to add new entries (Issue #185)
  * Bug fix: Avoid crash on empty PIN/Password an API 23 (Issue #159, PR #160 by magnus anderssen)
- * Internal: Replace custon FAB menu with FABsMenu library (Issue #155)
+ * Bug fix: Honor the system accessibility settings for the font size (Issue #71, PR #192 by @mbertram)
+ * Internal: Replace custon FAB menu with Floating Action Button Speed Dial library (Issue #155 and #186)
  * Style/UI: Use AboutLibraries instead of LicenseDialog and rework the About section (Issue #155)
  * Style/UI: Show a disclaimer about the included thumbnails in the About screen
- * Update: ZXing Android Embedded (3.6.0), Constraint Layout (1.1.0) and all support libraries (27.1.1)
+ * Update: ZXing Android Embedded (3.6.0), Constraint Layout (1.1.2) and all support libraries (27.1.1)
  * F-Droid: Add the feature graphic and some screenshots (PR #117 by @jaller94)
  * Thumbnails: lots of new thumbnails (see the wiki)
 
