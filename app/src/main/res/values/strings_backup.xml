@@ -22,8 +22,9 @@
     <string name="backup_desc_import_crypt">Restore accounts from a password-protected JSON file</string>
     <string name="backup_desc_import_openpgp">Restore accounts from an OpenPGP-encrypted JSON file</string>
 
-    <string name="backup_desc_crypt_setup">You need to set a <b>Backup password</b> in the
-        <b>Settings</b> to use encrypted backups.
+    <string name="backup_desc_crypt_setup">Failed to load the backup password from the <b>Settings</b>,
+        this either means no password was set or something went wrong. You will be asked to enter
+        the password manually when creating or importing a backup.
     </string>
 
     <string name="backup_desc_openpgp_provider">You need to install an OpenPGP provider and enable

@@ -25,14 +25,12 @@ package org.shadowice.flocke.andotp.Utilities;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.ColorInt;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -65,6 +63,16 @@ public class Tools {
         arr.recycle();
 
         return colorValue;
+    }
+
+    public static int getThemeResource(Context context, int styleAttr) {
+        Resources.Theme theme = context.getTheme();
+        TypedArray arr = theme.obtainStyledAttributes(new int[]{styleAttr});
+
+        int styleValue = arr.getResourceId(0, -1);
+        arr.recycle();
+
+        return styleValue;
     }
 
     /* Create a ColorFilter based on the current theme */

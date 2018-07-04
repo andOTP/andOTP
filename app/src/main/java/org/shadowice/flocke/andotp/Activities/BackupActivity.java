@@ -49,6 +49,7 @@ import org.openintents.openpgp.OpenPgpSignatureResult;
 import org.openintents.openpgp.util.OpenPgpApi;
 import org.openintents.openpgp.util.OpenPgpServiceConnection;
 import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.Dialogs.PasswordEntryDialog;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
@@ -122,12 +123,8 @@ public class BackupActivity extends BaseActivity {
 
         if (settings.getBackupPasswordEnc().isEmpty()) {
             cryptSetup.setVisibility(View.VISIBLE);
-            backupCrypt.setVisibility(View.GONE);
-            restoreCrypt.setVisibility(View.GONE);
         } else {
             cryptSetup.setVisibility(View.GONE);
-            backupCrypt.setVisibility(View.VISIBLE);
-            restoreCrypt.setVisibility(View.VISIBLE);
         }
 
         backupCrypt.setOnClickListener(new View.OnClickListener() {
@@ -418,69 +415,89 @@ public class BackupActivity extends BaseActivity {
 
     /* Encrypted backup functions */
 
-    private void doRestoreCrypt(Uri uri) {
+    private void doRestoreCrypt(final Uri uri) {
         String password = settings.getBackupPasswordEnc();
 
-        if (! password.isEmpty()) {
-            if (Tools.isExternalStorageReadable()) {
-                boolean success = true;
-                String decryptedString = "";
-
-                try {
-                    byte[] encrypted = FileHelper.readFileToBytes(this, uri);
-
-                    SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
-                    byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
-
-                    decryptedString = new String(decrypted, StandardCharsets.UTF_8);
-                } catch (Exception e) {
-                    success = false;
-                    e.printStackTrace();
+        if (password.isEmpty()) {
+            PasswordEntryDialog pwDialog = new PasswordEntryDialog(this, PasswordEntryDialog.Mode.ENTER, new PasswordEntryDialog.PasswordEnteredCallback() {
+                @Override
+                public void onPasswordEntered(String newPassword) {
+                    doRestoreCryptWithPassword(uri, newPassword);
                 }
-
-                if (success) {
-                    restoreEntries(decryptedString);
-                } else {
-                    Toast.makeText(this,R.string.backup_toast_import_decryption_failed, Toast.LENGTH_LONG).show();
-                }
-            } else {
-                Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
-            }
+            });
+            pwDialog.show();
         } else {
-            Toast.makeText(this, R.string.backup_toast_crypt_password_not_set, Toast.LENGTH_LONG).show();
+            doRestoreCryptWithPassword(uri, password);
         }
     }
 
-    private void doBackupCrypt(Uri uri) {
-        String password = settings.getBackupPasswordEnc();
+    private void doRestoreCryptWithPassword(Uri uri, String password) {
+        if (Tools.isExternalStorageReadable()) {
+            boolean success = true;
+            String decryptedString = "";
 
-        if (! password.isEmpty()) {
-            if (Tools.isExternalStorageWritable()) {
-                ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this, encryptionKey);
-                String plain = DatabaseHelper.entriesToString(entries);
+            try {
+                byte[] encrypted = FileHelper.readFileToBytes(this, uri);
 
-                boolean success = true;
+                SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
+                byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
 
-                try {
-                    SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
-                    byte[] encrypted = EncryptionHelper.encrypt(key, plain.getBytes(StandardCharsets.UTF_8));
+                decryptedString = new String(decrypted, StandardCharsets.UTF_8);
+            } catch (Exception e) {
+                success = false;
+                e.printStackTrace();
+            }
 
-                    FileHelper.writeBytesToFile(this, uri, encrypted);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    success = false;
-                }
-
-                if (success) {
-                    Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(this, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
-                }
+            if (success) {
+                restoreEntries(decryptedString);
             } else {
-                Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
+                Toast.makeText(this,R.string.backup_toast_import_decryption_failed, Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(this, R.string.backup_toast_crypt_password_not_set, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void doBackupCrypt(final Uri uri) {
+        String password = settings.getBackupPasswordEnc();
+
+        if (password.isEmpty()) {
+            PasswordEntryDialog pwDialog = new PasswordEntryDialog(this, PasswordEntryDialog.Mode.UPDATE, new PasswordEntryDialog.PasswordEnteredCallback() {
+                @Override
+                public void onPasswordEntered(String newPassword) {
+                    doBackupCryptWithPassword(uri, newPassword);
+                }
+            });
+            pwDialog.show();
+        } else {
+            doBackupCryptWithPassword(uri, password);
+        }
+    }
+
+    private void doBackupCryptWithPassword(Uri uri, String password) {
+        if (Tools.isExternalStorageWritable()) {
+            ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this, encryptionKey);
+            String plain = DatabaseHelper.entriesToString(entries);
+
+            boolean success = true;
+
+            try {
+                SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
+                byte[] encrypted = EncryptionHelper.encrypt(key, plain.getBytes(StandardCharsets.UTF_8));
+
+                FileHelper.writeBytesToFile(this, uri, encrypted);
+            } catch (Exception e) {
+                e.printStackTrace();
+                success = false;
+            }
+
+            if (success) {
+                Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
 
         finishWithResult();
