@@ -65,6 +65,7 @@ public class EntryThumbnail {
         Discord(R.drawable.thumb_discord),
         Dropbox(R.drawable.thumb_dropbox),
         Email(R.drawable.thumb_email),
+        ElectronicArts(R.drawable.thumb_electronic_arts),
         Evernote(R.drawable.thumb_evernote),
         Facebook(R.drawable.thumb_facebook),
         Fingerprint(R.drawable.thumb_fingerprint),
