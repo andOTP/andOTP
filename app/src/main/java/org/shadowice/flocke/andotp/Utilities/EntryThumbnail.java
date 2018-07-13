@@ -56,6 +56,7 @@ public class EntryThumbnail {
         Bitwarden(R.drawable.thumb_bitwarden),
         CEXio(R.drawable.thumb_cexio),
         BlockchainInfo(R.drawable.thumb_blockchain_info),
+        Codegiant(R.drawable.thumb_codegiant),
         CloudDownload(R.drawable.thumb_cloud_download),
         Cloudflare(R.drawable.thumb_cloudflare),
         Coinbase(R.drawable.thumb_coinbase),
