@@ -120,6 +120,7 @@ public class EntryThumbnail {
         Stripe(R.drawable.thumb_stripe),
         Sync(R.drawable.thumb_sync),
         Synology(R.drawable.thumb_synology),
+        TeaHub(R.drawable.thumb_teahub),
         TeamViewer(R.drawable.thumb_teamviewer),
         Terminal(R.drawable.thumb_terminal),
         Trello(R.drawable.thumb_trello),
