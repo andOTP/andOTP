@@ -35,7 +35,8 @@
                 android:id="@+id/passwordEdit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:importantForAccessibility="no" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -44,7 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/settings_hint_password_confirm"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:importantForAccessibility="no" />
 
         <TextView
             android:id="@+id/toShortWarning"
