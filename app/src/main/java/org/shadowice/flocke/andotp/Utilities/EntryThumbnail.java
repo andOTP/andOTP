@@ -105,6 +105,7 @@ public class EntryThumbnail {
         OVH(R.drawable.thumb_ovh),
         Patreon(R.drawable.thumb_patreon),
         PayPal(R.drawable.thumb_paypal),
+        Plurk(R.drawable.thumb_plurk),
         ProtonMail(R.drawable.thumb_protonmail),
         Rackspace(R.drawable.thumb_rackspace),
         Reddit(R.drawable.thumb_reddit),
