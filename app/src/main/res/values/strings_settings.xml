@@ -32,7 +32,7 @@
     <string name="settings_title_backup_broadcasts">Backup Broadcasts</string>
     <string name="settings_title_openpgp_provider">OpenPGP provider</string>
     <string name="settings_title_openpgp_key_encrypt">OpenPGP encryption key</string>
-    <string name="settings_title_openpgp_key_sign">OpenPGP siging key (optional)</string>
+    <string name="settings_title_openpgp_key_sign">OpenPGP signing key (optional)</string>
     <string name="settings_title_openpgp_verify">Verify encrypted backups</string>
 
     <string name="settings_title_special_features">Enable special features</string>
