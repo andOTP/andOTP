@@ -39,6 +39,7 @@ public class EntryThumbnail {
 
     public enum EntryThumbnails {
         Default(R.mipmap.ic_launcher_round),
+        Adobe(R.drawable.thumb_adobe),
         Amazon(R.drawable.thumb_amazon),
         AmazonWebServices(R.drawable.thumb_amazonwebservices),
         AngelList(R.drawable.thumb_angellist),
