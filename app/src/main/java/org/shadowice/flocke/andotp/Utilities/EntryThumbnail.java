@@ -132,6 +132,7 @@ public class EntryThumbnail {
         Twitter(R.drawable.thumb_twitter),
         Ubisoft(R.drawable.thumb_ubisoft),
         UbuntuOne(R.drawable.thumb_ubuntu_one),
+        VK(R.drawable.thumb_vk),
         Vultr(R.drawable.thumb_vultr),
         Wallabag(R.drawable.thumb_wallabag),
         Wallet(R.drawable.thumb_wallet),
