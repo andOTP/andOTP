@@ -114,7 +114,7 @@ class LetterBitmap {
         final Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         char firstChar = '?';
 
-        if (!displayName.isEmpty()) {
+        if (!displayName.isEmpty() && startsWithAlphabeticOrDigit(displayName)) {
             firstChar = displayName.charAt(0);
         }
 
@@ -122,9 +122,6 @@ class LetterBitmap {
         c.setBitmap(bitmap);
         c.drawColor(pickColor(key));
 
-        if (!isEnglishLetterOrDigit(firstChar)) {
-            firstChar = '?';
-        }
         mFirstChar[0] = Character.toUpperCase(firstChar);
         mPaint.setTextSize(mTileLetterFontSize);
         mPaint.getTextBounds(mFirstChar, 0, 1, mBounds);
@@ -134,12 +131,13 @@ class LetterBitmap {
     }
 
     /**
-     * @param c The char to check
-     * @return True if <code>c</code> is in the English alphabet or is a digit,
+     * @param string The string to check
+     * @return True if <code>string</code> starts with an alphabetic letter or a digit,
      * false otherwise
      */
-    private static boolean isEnglishLetterOrDigit(char c) {
-        return 'A' <= c && c <= 'Z' || 'a' <= c && c <= 'z' || '0' <= c && c <= '9';
+    private static boolean startsWithAlphabeticOrDigit(String string) {
+        return Character.isAlphabetic(string.codePointAt(0)) ||
+                Character.isDigit(string.charAt(0));
     }
 
     /**
