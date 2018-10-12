@@ -83,6 +83,7 @@ public class EntryThumbnail {
         Google(R.drawable.thumb_google),
         HackerOne(R.drawable.thumb_hackerone),
         Heroku(R.drawable.thumb_heroku),
+        Hetzner(R.drawable.thumb_hetzner),
         HMRC(R.drawable.thumb_hmrc),
         HumbleBundle(R.drawable.thumb_humblebundle),
         HurricaneElectric(R.drawable.thumb_hurricane_electric),
