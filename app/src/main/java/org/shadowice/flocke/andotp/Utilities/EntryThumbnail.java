@@ -97,6 +97,7 @@ public class EntryThumbnail {
         Linode(R.drawable.thumb_linode),
         Liqui(R.drawable.thumb_liqui),
         Mailgun(R.drawable.thumb_mailgun),
+        Mapbox(R.drawable.thumb_mapbox),
         Mastodon(R.drawable.thumb_mastodon),
         Microsoft(R.drawable.thumb_microsoft),
         Migadu(R.drawable.thumb_migadu),
