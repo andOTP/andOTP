@@ -194,6 +194,7 @@ public class ManualEntryDialog {
 
                             Entry e = new Entry(type, secret, period, digits, label, algorithm, tagsAdapter.getActiveTags());
                             e.updateOTP();
+                            e.setLastUsed(System.currentTimeMillis());
                             adapter.addEntry(e);
                             adapter.saveEntries();
 
@@ -203,6 +204,7 @@ public class ManualEntryDialog {
 
                             Entry e = new Entry(type, secret, counter, digits, label, algorithm, tagsAdapter.getActiveTags());
                             e.updateOTP();
+                            e.setLastUsed(System.currentTimeMillis());
                             adapter.addEntry(e);
                             adapter.saveEntries();
                         }

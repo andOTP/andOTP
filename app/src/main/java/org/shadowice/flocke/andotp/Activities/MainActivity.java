@@ -360,6 +360,7 @@ public class MainActivity extends BaseActivity
                 try {
                     Entry e = new Entry(result.getContents());
                     e.updateOTP();
+                    e.setLastUsed(System.currentTimeMillis());
                     adapter.addEntry(e);
                     adapter.saveEntries();
                     refreshTags();
