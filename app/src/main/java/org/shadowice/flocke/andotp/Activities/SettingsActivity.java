@@ -134,10 +134,13 @@ public class SettingsActivity extends BaseActivity
                 }
 
                 settings.setAndroidBackupServiceEnabled(false);
-                fragment.useAndroidSync.setEnabled(false);
-                fragment.useAndroidSync.setChecked(false);
+                if (fragment.useAndroidSync != null) {
+                    fragment.useAndroidSync.setEnabled(false);
+                    fragment.useAndroidSync.setChecked(false);
+                }
             } else {
-                fragment.useAndroidSync.setEnabled(true);
+                if (fragment.useAndroidSync != null)
+                    fragment.useAndroidSync.setEnabled(true);
             }
         }
     }
