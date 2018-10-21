@@ -46,6 +46,7 @@ public class EntryThumbnail {
         Apple(R.drawable.thumb_apple),
         ArenaNet(R.drawable.thumb_arenanet),
         Atlassian(R.drawable.thumb_atlassian),
+        Backblaze(R.drawable.thumb_backblaze),
         BattleNet(R.drawable.thumb_battlenet),
         Binance(R.drawable.thumb_binance),
         BitBucket(R.drawable.thumb_bitbucket),
