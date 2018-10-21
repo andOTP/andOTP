@@ -98,6 +98,7 @@ public class EntryThumbnail {
         Liqui(R.drawable.thumb_liqui),
         Mailgun(R.drawable.thumb_mailgun),
         Mastodon(R.drawable.thumb_mastodon),
+        Mediawiki(R.mipmap.thumb_mediawiki, AssetType.Bitmap),
         Microsoft(R.drawable.thumb_microsoft),
         Migadu(R.drawable.thumb_migadu),
         Miraheze(R.drawable.thumb_miraheze),
