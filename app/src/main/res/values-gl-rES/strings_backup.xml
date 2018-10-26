@@ -18,8 +18,9 @@
   <string name="backup_desc_import_plain">Restaurar contas desde un ficheiro JSON de texto plano</string>
   <string name="backup_desc_import_crypt">Restaurar contas desde un ficheiro JSON con contrasinal</string>
   <string name="backup_desc_import_openpgp">Restaurar contas desde un ficheiro JSON cifrado con OpenPGP</string>
-  <string name="backup_desc_crypt_setup">Debe establecer un <b>contrasinal de respaldo</b> nos
-        <b>Axustes</b> para utilizar respaldos cifrados.
+  <string name="backup_desc_crypt_setup">Houbo un erro ao cargar o contrasinal de respaldo desde os <b>Axustes</b>,
+    ou ben non se estableceu o contrasinal ou algo fallou. Pediráselle introducir
+    o contrasinal manualmente ao crear ou importar un respaldo.
     </string>
   <string name="backup_desc_openpgp_provider">Necesitas instalar un aplicarivo OpenPGP e activalo
         na <b>configuración</b> para usar esta opción.
@@ -36,12 +37,23 @@
     </string>
   <string name="backup_receiver_title_backup_failed">Erro na copia de seguranza</string>
   <string name="backup_receiver_title_backup_success">Respaldo realizado correctamente</string>
+  <string name="backup_receiver_plain_disabled">Actualmente non se permiten os respaldos en texto plano,
+        vaia aos Axustes para activalos</string>
+  <string name="backup_receiver_encrypted_disabled">Actualmente non se permiten os respaldos cifrados,
+        vaia aos Axustes para activalos</string>
   <string name="backup_receiver_read_permission_failed">Non se obtivo permiso de lectura, por favor 
         axuste esto antes de intentar o respaldo</string>
   <string name="backup_receiver_write_permission_failed">Non ten permiso de escritura, por favor
         arranxe esto ante de intentas o respaldo</string>
   <string name="backup_receiver_custom_encryption_failed">O cifrado con Contrasinal/PIN non
         está soportado con respaldo remoto</string>
+  <!-- Notification channels -->
+  <string name="notification_channel_name_backup_failed">Fallo no respaldo automático</string>
+  <string name="notification_channel_name_backup_success">Respaldo automático correcto</string>
+  <string name="notification_channel_desc_backup_failed">Estas notificacións móstranse cando un respaldo
+        automático fallou por algunha razón</string>
+  <string name="notification_channel_desc_backup_success">Estas notificacións mótranse cando
+        un respaldo automático se realizou correctamente</string>
   <!-- Toast messages -->
   <string name="backup_toast_mkdir_failed">Erro ao crear o directorio de copia de seguranza</string>
   <string name="backup_toast_export_success">Exportado correctamente ao almacenamento externo</string>

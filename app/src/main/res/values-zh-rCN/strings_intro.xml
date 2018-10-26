@@ -4,7 +4,7 @@
   <string name="intro_slide1_title">我们开始吧！</string>
   <string name="intro_slide1_desc">欢迎访问 <b>andOTP</b>，此向导将引导您完成初始设置。请仔细阅读，否则您有可能会丢失数据！\n\n 放心，之后您仍然可以在 <b>设置</b> 中更改任何选项。 </string>
   <string name="intro_slide2_desc">为确保帐户安全性，<b>andOTP</b> 只将它们存储在加密的数据文件中。在此，您可以选择使用哪种加密方法。</string>
-  <string name="intro_slide2_desc_keystore">密钥库是 Android 系统组件，用于安全地存储密钥。此方法的优点是将密钥存储在数据文件中，并且可以通过硬件加密 （如果硬件支持）备份。但是，由于密钥不和应用数据一起存储，<b>此方法会妨碍外部备份（如钛备份）工作</b>。如果选择此方法，您将必须依赖 <b>andOTP</b> 提供的内部备份功能。 \n\n<b>警告</b>：密钥库已知会导致某些自定义 ROM 出现问题。如果您不介意在每次启动 <b>andOTP</b> 时输入 密码/PIN，则强烈建议您改用基于密码的加密。</string>
+  <string name="intro_slide2_desc_keystore">密钥库是 Android 系统组件，用于安全地存储密钥。此方法的优点是将密钥存储在数据文件中，并且可以通过硬件加密 (如果硬件支持) 备份。但是，由于密钥不和应用数据一起存储，<b>此方法会妨碍外部备份 (如钛备份) 工作</b>。如果选择此方法，您将必须依赖 <b>andOTP</b> 提供的内部备份功能。 \n\n<b>警告</b>：众所周知，密钥库容易出问题。如果您不介意在每次启动 <b>andOTP</b> 时输入 密码/PIN，则 <b>强烈建议您改用基于密码的加密</b>。</string>
   <string name="intro_slide2_desc_password">此方法将用密码或 PIN 生成的密钥对数据加密。主要优点是，这支持外部备份方案（如钛备份），且比用密钥库成功率更高。但是，您必须在每次启动 <b>andOTP</b> 时输入密码。</string>
   <string name="intro_slide3_desc_keystore">在此，您可以设置一个身份验证以锁定 <b>andOTP</b>。既然您选择了 <b>Android 密钥库</b> 作为加密方式，这是可选的。</string>
   <string name="intro_slide3_desc_password">在此，您可以设置一个身份验证以锁定 <b>andOTP</b>。由于您选择了 <b>密码/PIN</b> 作为加密方式，因此需要设置密码或 PIN 才能继续。</string>

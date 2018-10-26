@@ -14,8 +14,8 @@
          o admite). Porén, as chaves non se gardan cos datos do aplicativo, <b>este método
         non deixa utilizar solucións de respaldo externo (como Titanium)</b>. Si escolle este método
         deberá confiar nas funcións internas de respaldo proporcionadas por <b>andOTP</b>.
-        \n\n<b>Aviso:</b>: A KeyStore sábese que da problemas con algunhas ROMs personalizadas (e tamén algunhas de stock).
-        Si non lle importa introducir un contrasinal/PIN cada vez que inicia <b>andOTP</b> é moito máis recomendable utilizar o cifrado basado en contrasinal.</string>
+        \n\n<b>Aviso:</b>: A KeyStore sábese que da problemas, utilícea só si non lle queda alternativa.
+        Si non lle importa introducir un contrasinal/PIN cada vez que inicia <b>andOTP</b> é moito <b>máis recomendable utilizar o cifrado baseado en contrasinal</b>.</string>
   <string name="intro_slide2_desc_password">Este método cifrará os seus datos con unha chave
         xerada por un contrasinal ou PIN. A principal vantaxe é que esto é compatible con
         solucións externas de respaldo (como Titanium) e é moito menos proclive ao fallo que a KeyStore.

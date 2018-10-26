@@ -14,6 +14,7 @@
   <string name="settings_title_auth_pin">PIN</string>
   <string name="settings_title_encryption">数据库加密</string>
   <string name="settings_title_panic">紧急触发</string>
+  <string name="settings_title_relock_screen_off">當屏幕关闭时重新锁上</string>
   <string name="settings_title_lang">语言</string>
   <string name="settings_title_theme">主题</string>
   <string name="settings_title_label_size">标签字体大小</string>
@@ -25,9 +26,10 @@
   <string name="settings_title_backup_ask">询问文件名</string>
   <string name="settings_title_backup_directory">备份目录</string>
   <string name="settings_title_backup_password">备份密码</string>
-  <string name="settings_title_openpgp_provider">选择 OpenPGP 提供者</string>
-  <string name="settings_title_openpgp_keyid">选择 OpenPGP 密匙</string>
-  <string name="settings_title_openpgp_sign">签名加密的备份</string>
+  <string name="settings_title_backup_broadcasts">备份广播</string>
+  <string name="settings_title_openpgp_provider">OpenPGP 提供者</string>
+  <string name="settings_title_openpgp_key_encrypt">OpenPGP 加密金钥</string>
+  <string name="settings_title_openpgp_key_sign">OpenPGP 签署密钥 (可选)</string>
   <string name="settings_title_openpgp_verify">验证加密的备份</string>
   <string name="settings_title_special_features">启用实验性功能</string>
   <string name="settings_title_enable_screenshot">启用截屏</string>
@@ -37,12 +39,14 @@
   <string name="settings_desc_tap_to_reveal">默认情况下隐藏 OTP 令牌，需要手动显示它们。</string>
   <string name="settings_desc_tap_to_reveal_timeout">选择再次隐藏显示条目的时间 (秒)</string>
   <string name="settings_desc_panic">确定明晰当紧急触发时会如何</string>
+  <string name="settings_desc_relock_screen_off">关闭萤幕后需进行身份认证</string>
   <string name="settings_desc_label_scroll">滚动显示太长的标签，而不是截断它们。</string>
   <string name="settings_desc_backup_append_date">追加当前日期和时间到建议备份文件名中</string>
   <string name="settings_desc_backup_ask">每次创建或还原备份时都要求文件名</string>
   <string name="settings_desc_backup_directory">备份目录 (文件名将取决于备份类型)</string>
   <string name="settings_desc_backup_password">设置用于加密备份的密码</string>
-  <string name="settings_desc_openpgp_sign">每个加密的备份都用您的密钥进行了签名 (需要密码)</string>
+  <string name="settings_desc_backup_broadcasts">选取第三方程式使用广播可触发哪种备份类型</string>
+  <string name="settings_desc_openpgp_key_encrypt">用于加密的OpenPGP 密钥电邮地址</string>
   <string name="settings_desc_openpgp_verify">只有在使用有效密钥签名时才会导入加密备份</string>
   <string name="settings_desc_special_features">取消选中再次禁用实验性功能</string>
   <string name="settings_desc_enable_screenshot">允许使用首屏截屏 (默认因安全原因禁用)</string>
@@ -106,6 +110,10 @@
     <item>显示与所选标记匹配（并集）的<b>所有</b>条目</item>
     <item>显示与所选标记匹配（交集）的<b>所有</b>条目</item>
     <item>在标记之间切换（一次只允许选择一个标记）</item>
+  </string-array>
+  <string-array name="settings_entries_backup_broadcasts">
+    <item>明碼備份</item>
+    <item>已加密的备份</item>
   </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">系统默认</string>

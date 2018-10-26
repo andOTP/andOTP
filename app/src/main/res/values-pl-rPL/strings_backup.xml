@@ -18,8 +18,9 @@
   <string name="backup_desc_import_plain">Przywróć konta z pliku JSON</string>
   <string name="backup_desc_import_crypt">Przywróć konta z pliku JSON zabezpieczonego hasłem</string>
   <string name="backup_desc_import_openpgp">Przywróć konta z szyfrowanego OpenPGP pliku JSON</string>
-  <string name="backup_desc_crypt_setup">Musisz ustawić <b>Hasło kopii</b> w
-        <b>Ustawienia</b> aby użyć zaszyfrowanych kopii.
+  <string name="backup_desc_crypt_setup">Failed to load the backup password from the <b>Settings</b>,
+        this either means no password was set or something went wrong. You will be asked to enter
+        the password manually when creating or importing a backup.
     </string>
   <string name="backup_desc_openpgp_provider">Musisz zainstalować dostawcę OpenPGP i włączyć
         go w <b>Ustawienia</b> aby użyć tej funkcji.
@@ -35,12 +36,19 @@
   <string name="backup_dialog_msg_export_warning">Czy na pewno chcesz zapisać kopie bazy w niezaszyfrowanym pliku JSON? Ten plik zawiera prywatne klucze, <b>zachowaj ostrożność</b>!</string>
   <string name="backup_receiver_title_backup_failed">Tworzenie kopii zapasowej nie powiodło się</string>
   <string name="backup_receiver_title_backup_success">Kopia zapasowa wykonana pomyślnie</string>
+  <string name="backup_receiver_plain_disabled">Tekstowe kopie zapasowe obecnie nie są dozwolone, proszę przejść do ustawień, aby włączyć je</string>
+  <string name="backup_receiver_encrypted_disabled">Zaszyfrowane kopie zapasowe obecnie nie są dozwolone, proszę przejść do ustawień, aby włączyć je</string>
   <string name="backup_receiver_read_permission_failed">Uprawnienia odczytu nie przyznane, proszę
         nadaj uprawnienia przed rozpoczęciem przywracania kopii</string>
   <string name="backup_receiver_write_permission_failed">Uprawnienia zapisu nie przyznane, proszę
         nadaj uprawnienia przed rozpoczęciem tworzenia kopii</string>
   <string name="backup_receiver_custom_encryption_failed">Password/PIN based encryption not
         supported with broadcast backup</string>
+  <!-- Notification channels -->
+  <string name="notification_channel_name_backup_failed">Automatyczne tworzenie kopii zapasowej nie powiodło się</string>
+  <string name="notification_channel_name_backup_success">Automatyczne tworzenie kopii zapasowej powiodło się</string>
+  <string name="notification_channel_desc_backup_failed">Te powiadomienia są wyświetlane, kiedy automatyczna kopia zapasowa nie powiedzie się z jakiegoś powodu</string>
+  <string name="notification_channel_desc_backup_success">Te powiadomienia są wyświetlane, kiedy automatyczna kopia zapasowa powiedzie się</string>
   <!-- Toast messages -->
   <string name="backup_toast_mkdir_failed">Próba utworzenia katalogu kopii bezpieczeństwa nie powiodła się</string>
   <string name="backup_toast_export_success">Poprawnie zapisano kopie w zewnętrznej pamięci</string>

@@ -3,10 +3,11 @@
 <resources>
   <string name="about_activity_title">O aplikaci</string>
   <string name="about_description">Open source dvoufaktorová autentifikace pro Android</string>
+  <string name="about_tab_about">O aplikaci</string>
+  <string name="about_tab_libraries">Knihovny</string>
   <!-- Misc -->
   <string name="about_label_changelog">Seznam změn</string>
   <string name="about_label_license">Licence</string>
-  <string name="about_label_licenses">Licence open source</string>
   <string name="about_label_MIT">MIT licence</string>
   <string name="about_label_source">Zdrojový kód</string>
   <string name="about_label_version">Verze</string>
@@ -17,9 +18,16 @@
   <string name="about_label_original_author">Autor původní aplikace</string>
   <string name="about_label_original_app">Původní aplikace</string>
   <string name="about_label_website">Webová stránka</string>
-  <string name="about_label_donate">Přispět</string>
+  <string name="about_label_donate_paypal">Podpořit přes PayPal</string>
+  <string name="about_label_donate_bitcoin">Podpořit Bitcoinem</string>
   <string name="about_label_contributors">K vývoji přispěli</string>
   <string name="about_label_translators">Překladatelé</string>
+  <!-- Thumbnail disclaimer -->
+  <string name="about_title_thumbnail_disclaimer">Miniatury - zřeknutí se odpovědnosti</string>
+  <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Všechny miniatury jsou ochrannými známkami jejich příslušných vlastníků.</string>
+  <string name="about_thumbnails_disclaimer_no2"><b>2.</b> použití těchto ochranných známek neznamená souhlas držitele ochranné známky andOTP, ani naopak.</string>
+  <string name="about_thumbnails_disclaimer_no3"><b>3.</b> miniatury lze používat pouze k reprezentaci firmy nebo výrobku, jehož se týkají.</string>
+  <string name="about_thumbnails_disclaimer_no4"><b>4. Nepoužívejte prosím miniatury pro jakékoli účely s výjimkou odkazu na konkrétní značku nebo službu.</b></string>
   <!-- Support -->
   <string name="about_title_support">Podpořte vývoj</string>
   <string name="about_label_report_bugs">Nahlásit chybu</string>

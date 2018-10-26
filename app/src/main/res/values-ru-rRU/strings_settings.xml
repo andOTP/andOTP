@@ -14,6 +14,7 @@
   <string name="settings_title_auth_pin">PIN-код</string>
   <string name="settings_title_encryption">Шифрование базы данных</string>
   <string name="settings_title_panic">Panic Trigger</string>
+  <string name="settings_title_relock_screen_off">Блокировка при отключении экрана</string>
   <string name="settings_title_lang">Язык</string>
   <string name="settings_title_theme">Тема оформления</string>
   <string name="settings_title_label_size">Размер шрифта для ярлыка</string>
@@ -25,9 +26,10 @@
   <string name="settings_title_backup_ask">Спрашивать об имени файла</string>
   <string name="settings_title_backup_directory">Каталог резервной копии</string>
   <string name="settings_title_backup_password">Пароль для резервной копии</string>
-  <string name="settings_title_openpgp_provider">Выберите поставщика OpenPGP</string>
-  <string name="settings_title_openpgp_keyid">Выберите ключ OpenPGP</string>
-  <string name="settings_title_openpgp_sign">Подписывать зашифрованные резервные копии</string>
+  <string name="settings_title_backup_broadcasts">Резервная копия с помощью стороннего приложения</string>
+  <string name="settings_title_openpgp_provider">Провайдер OpenPGP</string>
+  <string name="settings_title_openpgp_key_encrypt">Ключ шифрования OpenPGP</string>
+  <string name="settings_title_openpgp_key_sign">Ключ подписи OpenPGP (опционально)</string>
   <string name="settings_title_openpgp_verify">Проверять зашифрованные резервные копии</string>
   <string name="settings_title_special_features">Включить специальные возможности</string>
   <string name="settings_title_enable_screenshot">Разрешить скриншоты</string>
@@ -36,15 +38,20 @@
   <!-- Descriptions -->
   <string name="settings_desc_tap_to_reveal">Скрыть OTP-токены по-умолчанию, требуя их показ вручную</string>
   <string name="settings_desc_tap_to_reveal_timeout">Выберите время (в секундах) после которого автоматически скрывать показанные токены</string>
-  <string name="settings_desc_panic">Решите, что произойдет при получении Panic Trigger</string>
+  <string name="settings_desc_panic">Выберите действие при получении Panic Trigger</string>
+  <string name="settings_desc_relock_screen_off">Требовать аутентификацию после выключения 
+        экрана устройства</string>
   <string name="settings_desc_label_scroll">Прокрутка слишком длинных ярлыков вместо их усечения</string>
   <string name="settings_desc_backup_append_date">Добавить текущую дату и время к предлагаемому
         названию резервной копии</string>
   <string name="settings_desc_backup_ask">Спрашивать об имени файла при создании резервной копии или        восстановлении</string>
   <string name="settings_desc_backup_directory">Каталог для резервных копий (имена файлов будут зависеть        от типа резервного копирования)</string>
   <string name="settings_desc_backup_password">Установить пароль для шифрования резервных копий</string>
-  <string name="settings_desc_openpgp_sign">Все зашифрованные резервные копии дополнительно подписываются        Вашим ключом (требуется пароль)</string>
-  <string name="settings_desc_openpgp_verify">Зашифрованные резервные копии можно импортировать только если они подписаны действительным ключом</string>
+  <string name="settings_desc_backup_broadcasts">Выберите, какие типы резервных копий могут быть сохранены 
+        сторонними приложениями для создания резервных копий</string>
+  <string name="settings_desc_openpgp_key_encrypt">Почтовый адрес OpenPGP ключа, используемого 
+        для шифрования резервных копий</string>
+  <string name="settings_desc_openpgp_verify">Зашифрованные резервные копии можно импортировать, только если они подписаны действительным ключом</string>
   <string name="settings_desc_special_features">Снимите флажок для отключения специальных возможностей</string>
   <string name="settings_desc_enable_screenshot">Разрешить снятие скриншотов главного экрана (из соображений безопасности по умолчанию выключено)</string>
   <string name="settings_desc_enable_android_backup_service">Разрешите andOTP использовать встроенный в Android 
@@ -112,6 +119,10 @@
     <item>Показать все записи, соответствующие <b>любому</b> выбранному тегу (или)</item>
     <item>Показать только те записи, которые соответствуют <b>всем</b> выбранным тегам (и)</item>
     <item>Переключение между тегами (разрешено одномоментно выбирать только один тег)</item>
+  </string-array>
+  <string-array name="settings_entries_backup_broadcasts">
+    <item>Текстовые резервные копии</item>
+    <item>Зашифрованные резервные копии</item>
   </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Настройки по умолчанию</string>

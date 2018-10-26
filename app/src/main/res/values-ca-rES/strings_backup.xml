@@ -18,8 +18,9 @@
   <string name="backup_desc_import_plain">Restaura els comptes d\'un fitxer de text net JSON</string>
   <string name="backup_desc_import_crypt">Restaura els comptes d\'un fitxer JSON protegit amb contrasenya</string>
   <string name="backup_desc_import_openpgp">Restaura els comptes d\'un fitxer JSON xifrat amb OpenPGP</string>
-  <string name="backup_desc_crypt_setup">You need to set a <b>Backup password</b> in the
-        <b>Settings</b> to use encrypted backups.
+  <string name="backup_desc_crypt_setup">Failed to load the backup password from the <b>Settings</b>,
+        this either means no password was set or something went wrong. You will be asked to enter
+        the password manually when creating or importing a backup.
     </string>
   <string name="backup_desc_openpgp_provider">You need to install an OpenPGP provider and enable
         it in the <b>Settings</b> to use this feature.
@@ -37,12 +38,23 @@
     </string>
   <string name="backup_receiver_title_backup_failed">Backup failed</string>
   <string name="backup_receiver_title_backup_success">Backup successful</string>
+  <string name="backup_receiver_plain_disabled">Plain-text backups are currently not allowed,
+        please go to the Settings to enable them</string>
+  <string name="backup_receiver_encrypted_disabled">Encrypted backups are currently not allowed,
+        please go to the Settings to enable them</string>
   <string name="backup_receiver_read_permission_failed">Read permission not granted, please do
         this before attempting backup</string>
   <string name="backup_receiver_write_permission_failed">Write permission not granted, please do
         this before attempting backup</string>
   <string name="backup_receiver_custom_encryption_failed">Password/PIN based encryption not
         supported with broadcast backup</string>
+  <!-- Notification channels -->
+  <string name="notification_channel_name_backup_failed">Automatic backup failed</string>
+  <string name="notification_channel_name_backup_success">Automatic backup successful</string>
+  <string name="notification_channel_desc_backup_failed">These notifications are shown when an
+        automatic backup has failed for some reason</string>
+  <string name="notification_channel_desc_backup_success">These notifications are shown when an
+        automatic backup was successful</string>
   <!-- Toast messages -->
   <string name="backup_toast_mkdir_failed">No ha pogut crear el directori de còpia de seguretat</string>
   <string name="backup_toast_export_success">Exportació a l\'emmagatzematge extern correcta</string>

@@ -8,15 +8,7 @@
   <string name="intro_slide2_desc">Aby zapewnić bezpieczeństwo Twoim danym <b>andOTP</b> przechowuje
         je w zaszyfrowanych plikach. Tutaj możesz wybrać, która metoda szyfrowania będzie
         użyta.</string>
-  <string name="intro_slide2_desc_keystore">KeyStore jest systemowym komponentem Androida który
-        bezpiecznie przechowuje klucze kryptograficzne. Zaletą tej metody jest to że klucze są 
-        przechowywane oddzielnie od danych i mogą być zabezpieczone sprzętowo (jeśli
-        Twoje urządzenie jest kompatybilne). Klucze nie są przechowywane w danych aplikacji,
-         <b>metoda ta uniemożliwia tworzenia zewnętrznych kopii (np. Titanium)</b>. Jeśli wybierzesz
-        tą metodę będziesz musiał polegać na wewnętrznych funkcjach zapewnionych przez <b>andOTP</b>.
-        \n\n<b>Uwaga</b>: KeyStore może tworzyć problemy na zmodyfikowanych ROM\'ach (i kilku
-        fabrycznych również). Jeśli nie masz nic przeciwko wpisywaniu hasła / kodu PIN za każdym uruchomieniem
-        <b>andOTP</b> zaleca się użyć szyfrowania na podstawie hasła.</string>
+  <string name="intro_slide2_desc_keystore">KeyStore jest systemowym komponentem Androida który bezpiecznie przechowuje klucze kryptograficzne. Zaletą tej metody jest to że klucze są przechowywane oddzielnie od danych i mogą być zabezpieczone sprzętowo (jeśli Twoje urządzenie jest kompatybilne). Klucze nie są przechowywane w danych aplikacji, <b>metoda ta uniemożliwia tworzenia zewnętrznych kopii (np. Titanium)</b>. Jeśli wybierzesz tą metodę będziesz musiał polegać na wewnętrznych funkcjach zapewnionych przez <b>andOTP</b>.\n\n<b>Uwaga</b>: KeyStore może stworzyć wiele problemów, proszę użyj go tylko, jeśli koniecznie musisz. Jeśli nie masz nic przeciwko wpisywaniu hasła / kodu PIN za każdym uruchomieniem <b>andOTP</b> zaleca się <b>użyć szyfrowania na podstawie hasła</b>.</string>
   <string name="intro_slide2_desc_password">Ta metoda zaszyfruje Twoje dane za pomocą klucza
         wygenerowanego na podstawie hasła lub kodu PIN. Główną zaletą tego rozwiązania jest że możliwe
         będzie tworzenie zewnętrznych kopii (np. Titanium) i jest znacznie mniej podatne na usterki KeyStore.

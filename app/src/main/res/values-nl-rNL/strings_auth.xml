@@ -7,12 +7,12 @@
   <string name="auth_hint_pin">Pincode</string>
   <!-- Messages -->
   <string name="auth_msg_authenticate">Gelieve verifiëren om andOTP te starten!</string>
-  <string name="auth_msg_confirm_encryption">Bevestig je authenticatie voor het genereren van de nieuwe versleutelingssleutel!</string>
+  <string name="auth_msg_confirm_encryption">Bevestig je verificatie om een nieuwe sleutel aan te maken!</string>
   <!-- Buttons -->
   <string name="auth_button_unlock">Ontgrendelen</string>
   <!-- Toast messages -->
-  <string name="auth_toast_password_missing">Stel een wachtwoord in, bij de <b>Instellingen</b>!</string>
-  <string name="auth_toast_pin_missing">Stel een pincode in, bij de <b>Instellingen</b>!</string>
+  <string name="auth_toast_password_missing">Stel een wachtwoord in de <b>Instellingen</b> in!</string>
+  <string name="auth_toast_pin_missing">Stel een pincode in de <b>Instellingen</b> in!</string>
   <string name="auth_toast_password_again">Fout wachtwoord, probeer het opnieuw!</string>
   <string name="auth_toast_pin_again">Foute pincode, probeer het opnieuw!</string>
 </resources>
