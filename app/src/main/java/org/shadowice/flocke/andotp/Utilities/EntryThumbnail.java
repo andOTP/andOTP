@@ -125,6 +125,7 @@ public class EntryThumbnail {
         School(R.drawable.thumb_school),
         Skrill(R.drawable.thumb_skrill),
         Slack(R.drawable.thumb_slack),
+        Snapchat(R.drawable.thumb_snapchat),
         Steam(R.drawable.thumb_steam),
         Stripe(R.drawable.thumb_stripe),
         Sync(R.drawable.thumb_sync),
