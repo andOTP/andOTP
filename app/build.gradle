@@ -8,8 +8,8 @@ android {
         applicationId "org.shadowice.flocke.andotp"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 20
-        versionName "0.6.0-beta3"
+        versionCode 21
+        versionName "0.6.0"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {

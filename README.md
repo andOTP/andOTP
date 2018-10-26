@@ -1,7 +1,7 @@
 #  andOTP -  Android OTP Authenticator
 
 [![Build Status](https://travis-ci.org/andOTP/andOTP.svg?branch=master)](https://travis-ci.org/andOTP/andOTP)
-[![Current release](https://img.shields.io/github/release/andOTP/andOTP/all.svg)](https://github.com/andOTP/andOTP/releases/download/v0.6.0-beta3/andOTP_v0.6.0-beta3.apk)
+[![Current release](https://img.shields.io/github/release/andOTP/andOTP/all.svg)](https://github.com/andOTP/andOTP/releases/download/v0.6.0/andOTP_v0.6.0.apk)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/andotp/localized.svg)](https://crowdin.com/project/andotp)
 [![Chat - Telegram](https://img.shields.io/badge/chat-Telegram-blue.svg)](https://t.me/andOTP)
 [![Chat - Matrix](https://img.shields.io/badge/chat-Matrix-blue.svg)](https://matrix.to/#/#andOTP:matrix.shadowice.org)
@@ -98,31 +98,6 @@ So make sure you have a **current backup** before switching!
 
  * [Jakob Nixdorf](https://github.com/flocke) (Telegram: [@flocke000](https://t.me/flocke000), Reddit: [/u/flocke000](https://www.reddit.com/user/flocke000))
  * [Richy HBM](https://github.com/RichyHBM)
-
-#### Contributors (in order of appearance):
-
- * [Carlos Melero](https://github.com/carmebar) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=carmebar))
- * [SuperVirus](https://github.com/SuperVirus) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=SuperVirus))
- * [DanielWeigl](https://github.com/DanielWeigl) ([view contributions](https://github.com/andOTP/andOTP/commits/master?author=DanielWeigl))
- * [Matthias Bertram](https://github.com/mbertram) ([view contributions](https://github.com/andOTP/andOTP/commits?author=mbertram))
- * [Björn Richter](https://github.com/x3rAx) ([view contributions](https://github.com/andOTP/andOTP/commits?author=x3rAx))
- * [Emmanuel Nwokoma](https://github.com/enwokoma) ([view contributions](https://github.com/andOTP/andOTP/commits?author=enwokoma))
- * [magnus anderssen](https://github.com/callmemagnus) ([view contributions](https://github.com/andOTP/andOTP/commits?author=callmemagnus))
-
-#### Translators:
-
-&nbsp; | Language          | Translators
------- | ----------------- | -----------
-🇵🇱   | Polish (pl-rPL)   | [Daniel Pustuła](https://github.com/9Cube-dpustula), [bla_ke](https://crowdin.com/profile/bla_ke), [DamianR](https://crowdin.com/profile/DamianR)
-:es:   | Spanish (es-rES)  | [Carlos Melero](https://crowdin.com/profile/carmebar)
-:de:   | German (de-rDE)   | [SuperVirus](https://crowdin.com/profile/SuperVirus), [Jan](https://crowdin.com/profile/Dagefoerde), [TMHBOFH](https://crowdin.com/profile/TMHBOFH), [Grammost](https://crowdin.com/profile/Grammost), [Andreas Kleinert](https://crowdin.com/profile/AndyKl)
-:fr:   | French (fr-rFR)   | [Johan Fleury](https://github.com/johanfleury), [David Sferruzza](https://crowdin.com/profile/dsferruzza), [primokorn](https://crowdin.com/profile/primokorn), [Poussinou](https://crowdin.com/profile/Poussinou), [Patrick Decat](https://crowdin.com/profile/pdecat)
-🇳🇱   | Dutch (nl-rNL)    | Toon, [rain2reign](https://crowdin.com/profile/rain2reign), [thinkwell](https://crowdin.com/profile/thinkwell), [cpu20](https://crowdin.com/profile/cpu20)
-&nbsp; | Galician (gl-rES) | [Triskel](https://crowdin.com/profile/triskel), [Xosé M.](https://crowdin.com/profile/XoseM)
-:ru:   | Russian (ru-rRU)  | [Victor Nidens](https://crowdin.com/profile/vnidens), [Ilia Drogaitsev](https://crowdin.com/profile/waytoroot), [Dmitry](https://crowdin.com/profile/SaintDI), [Анастасия Дрогайцева](https://crowdin.com/profile/khaleesi16)
-🇨🇿   | Czech (cs-rCZ)    | [Picard0147](https://crowdin.com/profile/Picard0147)
-:cn: | Chinese Simplified (zh-rCN) | [Cp0204](https://crowdin.com/profile/Cp0204)
-&nbsp; | Catalan (ca-rES) | [isard](https://crowdin.com/profile/isard)
 
 ## Screenshots:
 #### Light theme:
