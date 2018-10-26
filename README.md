@@ -92,7 +92,6 @@ So make sure you have a **current backup** before switching!
  * **Discussion and support**: 
    - [XDA thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993) (please keep off-topic to a minimum)
    - Telegram group [@andOTP](https://t.me/andOTP) (if you just want important updates you can mute the group so you only get notified about pinned messages)
-   - Matrix room [#andOTP:matrix.shadowice.org](https://matrix.to/#/#andOTP:matrix.shadowice.org) (in case you prefere Matrix over Telegram)
 
 #### Developers:
 
