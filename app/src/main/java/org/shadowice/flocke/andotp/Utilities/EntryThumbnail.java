@@ -28,6 +28,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.AppCompatDelegate;
 
 import org.shadowice.flocke.andotp.R;
 
@@ -166,6 +167,8 @@ public class EntryThumbnail {
     }
 
     public static Bitmap getThumbnailGraphic(Context context, String label, int size, EntryThumbnails thumbnail) {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
         if (thumbnail == EntryThumbnails.Default && size > 0) {
             LetterBitmap letterBitmap = new LetterBitmap(context);
             return letterBitmap.getLetterTile(label, label, size, size);
