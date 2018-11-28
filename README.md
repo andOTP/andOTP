@@ -148,7 +148,7 @@ So make sure you have a **current backup** before switching!
 
 ## License:
 ```
-Copyright (C) 2017-2018 Jakob Nixdorf <flocke@shadowice.org>
+Copyright (C) 2017-2018 Jakob Nixdorf <andotp@shadowice.org>
 Copyright (C) 2015 Bruno Bierbaumer
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
