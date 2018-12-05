@@ -1,5 +1,12 @@
 # Changelog
 
+#### v0.6.1
+
+ * New feature: Enable Android Backup by default if available and using the password encryption (PR #252)
+ * Bug fix: Fix crash in the manual entry dialog on KitKat
+ * Bug fix: Fix thumbnail generation on KitKat
+ * Thumbnail: Add MediaWiki (PR #246 by @MeLlamoPablo)
+
 #### v0.6.0
 
  * New feature: **HOTP support**

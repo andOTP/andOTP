@@ -8,8 +8,8 @@ android {
         applicationId "org.shadowice.flocke.andotp"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 21
-        versionName "0.6.0"
+        versionCode 22
+        versionName "0.6.1"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -39,7 +39,7 @@ dependencies {
     implementation "com.android.support:cardview-v7:$supportLibVersion"
     implementation "com.android.support:design:$supportLibVersion"
     implementation "com.android.support:recyclerview-v7:$supportLibVersion"
-    implementation "com.android.support.constraint:constraint-layout:1.1.2"
+    implementation "com.android.support.constraint:constraint-layout:1.1.3"
     implementation "com.github.aakira:expandable-layout:1.6.0"
     implementation "com.heinrichreimersoftware:material-intro:1.6.2"
     implementation "com.journeyapps:zxing-android-embedded:3.6.0"
