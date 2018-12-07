@@ -103,6 +103,7 @@ public class EntryThumbnail {
         Mapbox(R.drawable.thumb_mapbox),
         Mastodon(R.drawable.thumb_mastodon),
         Mediawiki(R.mipmap.thumb_mediawiki, AssetType.Bitmap),
+        Mega(R.drawable.thumb_mega),
         Microsoft(R.drawable.thumb_microsoft),
         Migadu(R.drawable.thumb_migadu),
         Miraheze(R.drawable.thumb_miraheze),
