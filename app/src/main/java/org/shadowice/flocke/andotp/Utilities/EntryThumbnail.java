@@ -137,6 +137,7 @@ public class EntryThumbnail {
         Terminal(R.drawable.thumb_terminal),
         Trello(R.drawable.thumb_trello),
         Tumblr(R.drawable.thumb_tumblr),
+        Tutanota(R.drawable.thumb_tutanota),
         Twitch(R.drawable.thumb_twitch),
         Twitter(R.drawable.thumb_twitter),
         Ubisoft(R.drawable.thumb_ubisoft),
