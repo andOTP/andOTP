@@ -75,6 +75,7 @@ public class EntryThumbnail {
         Fingerprint(R.drawable.thumb_fingerprint),
         Firefox(R.drawable.thumb_firefox),
         Flight(R.drawable.thumb_flight_takeoff),
+        Floatplane(R.drawable.thumb_floatplane),
         Gamepad(R.drawable.thumb_gamepad),
         Gandi(R.drawable.thumb_gandi),
         Git(R.drawable.thumb_git),
