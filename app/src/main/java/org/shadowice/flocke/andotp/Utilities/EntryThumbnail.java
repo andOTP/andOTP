@@ -65,6 +65,7 @@ public class EntryThumbnail {
         Coinbase(R.drawable.thumb_coinbase),
         ComputerBase(R.drawable.thumb_computerbase),
         CozyCloud(R.drawable.thumb_cozycloud),
+        Debian(R.drawable.thumb_debian),
         Degiro(R.drawable.thumb_degiro),
         DigitalOcean(R.drawable.thumb_digital_ocean),
         Discord(R.drawable.thumb_discord),
