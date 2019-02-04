@@ -134,6 +134,7 @@ public class EntryThumbnail {
         Skrill(R.drawable.thumb_skrill),
         Slack(R.drawable.thumb_slack),
         Snapchat(R.drawable.thumb_snapchat),
+        SourceForge(R.drawable.thumb_sourceforge),
         Steam(R.drawable.thumb_steam),
         Stripe(R.drawable.thumb_stripe),
         Sync(R.drawable.thumb_sync),
