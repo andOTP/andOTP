@@ -147,6 +147,7 @@ public class EntryThumbnail {
         Twitch(R.drawable.thumb_twitch),
         Twitter(R.drawable.thumb_twitter),
         Ubisoft(R.drawable.thumb_ubisoft),
+        UbiquitiNetworks(R.drawable.thumb_ubnt),
         UbuntuOne(R.drawable.thumb_ubuntu_one),
         VK(R.drawable.thumb_vk),
         Vultr(R.drawable.thumb_vultr),
