@@ -93,6 +93,7 @@ public class EntryThumbnail {
         IFTTT(R.drawable.thumb_ifttt),
         Instagram(R.drawable.thumb_instagram),
         Itchio(R.drawable.thumb_itchio),
+        Jagex(R.drawable.thumb_jagex),
         Kickstarter(R.drawable.thumb_kickstarter),
         Kraken(R.drawable.thumb_kraken),
         Kucoin(R.drawable.thumb_kucoin),
