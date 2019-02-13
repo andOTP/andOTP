@@ -87,6 +87,7 @@ public class EntryThumbnail {
         Heroku(R.drawable.thumb_heroku),
         Hetzner(R.drawable.thumb_hetzner),
         HMRC(R.drawable.thumb_hmrc),
+        HomeAssistant(R.drawable.thumb_home_assistant),
         HumbleBundle(R.drawable.thumb_humblebundle),
         HurricaneElectric(R.drawable.thumb_hurricane_electric),
         Iconomi(R.drawable.thumb_iconomi),
