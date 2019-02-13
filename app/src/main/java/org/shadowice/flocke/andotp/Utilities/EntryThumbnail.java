@@ -72,6 +72,7 @@ public class EntryThumbnail {
         Disroot(R.drawable.thumb_disroot),
         Dropbox(R.drawable.thumb_dropbox),
         Email(R.drawable.thumb_email),
+        EpicGames(R.drawable.thumb_epic_games),
         Evernote(R.drawable.thumb_evernote),
         Facebook(R.drawable.thumb_facebook),
         Fingerprint(R.drawable.thumb_fingerprint),
