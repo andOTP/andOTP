@@ -91,6 +91,7 @@ public class EntryThumbnail {
         HurricaneElectric(R.drawable.thumb_hurricane_electric),
         Iconomi(R.drawable.thumb_iconomi),
         IFTTT(R.drawable.thumb_ifttt),
+        Instagram(R.drawable.thumb_instagram),
         Itchio(R.drawable.thumb_itchio),
         Kickstarter(R.drawable.thumb_kickstarter),
         Kraken(R.drawable.thumb_kraken),
