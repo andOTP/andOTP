@@ -21,6 +21,7 @@
   <string name="label_secret">Secret</string>
   <string name="label_period">Període</string>
   <string name="label_digits">Dígits</string>
+  <string name="label_counter">Counter</string>
   <string name="label_label">Etiqueta</string>
   <string name="label_algorithm">Algorisme</string>
   <string name="label_tags">Etiquetes</string>
@@ -53,8 +54,12 @@
   <string name="dialog_title_manual_entry">Introduïu-ne els detalls</string>
   <string name="dialog_title_remove">Suprimeix</string>
   <string name="dialog_title_rename">Canvia el nom</string>
+  <string name="dialog_title_counter">Counter</string>
   <string name="dialog_title_last_used">Últimes utilitzades</string>
   <string name="dialog_title_keystore_error">Error al magatzem de claus</string>
+  <string name="dialog_title_enter_password">Enter password</string>
+  <string name="dialog_label_enter_password">Enter password</string>
+  <string name="dialog_label_confirm_password">Confirm password</string>
   <string name="dialog_msg_auth">Per favor, introduïu les vostres credencials per a iniciar andOTP.</string>
   <string name="dialog_msg_confirm_delete">Segur que voleu suprimir el compte \"%1$s\"?</string>
   <string name="dialog_msg_last_used">Per tal que andOTP reconega quin testimoni va ser l\'últim
@@ -63,4 +68,7 @@
   <string name="dialog_msg_keystore_error">Failed to load the encryption key from the KeyStore.
         <b>Any entries that are added will get lost.</b>\n\nTo still be able to use andOTP you can go
         to the <b>Settings</b> and switch the <b>Database encryption</b> to <b>Password / PIN</b>.</string>
+  <!-- Shortcuts -->
+  <string name="shortcut_name_scan_qr">Scan QR-Code</string>
+  <string name="shortcut_name_enter_details">Enter details</string>
 </resources>

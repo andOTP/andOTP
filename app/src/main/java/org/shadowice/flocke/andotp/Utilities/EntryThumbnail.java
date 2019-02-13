@@ -28,6 +28,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.AppCompatDelegate;
 
 import org.shadowice.flocke.andotp.R;
 
@@ -46,6 +47,7 @@ public class EntryThumbnail {
         Apple(R.drawable.thumb_apple),
         ArenaNet(R.drawable.thumb_arenanet),
         Atlassian(R.drawable.thumb_atlassian),
+        AVM(R.drawable.thumb_avm),
         Backblaze(R.drawable.thumb_backblaze),
         BattleNet(R.drawable.thumb_battlenet),
         Binance(R.drawable.thumb_binance),
@@ -62,6 +64,7 @@ public class EntryThumbnail {
         CloudDownload(R.drawable.thumb_cloud_download),
         Cloudflare(R.drawable.thumb_cloudflare),
         Coinbase(R.drawable.thumb_coinbase),
+        ComputerBase(R.drawable.thumb_computerbase),
         CozyCloud(R.drawable.thumb_cozycloud),
         Degiro(R.drawable.thumb_degiro),
         DigitalOcean(R.drawable.thumb_digital_ocean),
@@ -86,19 +89,26 @@ public class EntryThumbnail {
         Heroku(R.drawable.thumb_heroku),
         Hetzner(R.drawable.thumb_hetzner),
         HMRC(R.drawable.thumb_hmrc),
+        HomeAssistant(R.drawable.thumb_home_assistant),
         HumbleBundle(R.drawable.thumb_humblebundle),
         HurricaneElectric(R.drawable.thumb_hurricane_electric),
         Iconomi(R.drawable.thumb_iconomi),
         IFTTT(R.drawable.thumb_ifttt),
+        Instagram(R.drawable.thumb_instagram),
         Itchio(R.drawable.thumb_itchio),
+        Jagex(R.drawable.thumb_jagex),
         Kickstarter(R.drawable.thumb_kickstarter),
         Kraken(R.drawable.thumb_kraken),
         Kucoin(R.drawable.thumb_kucoin),
         LastPass(R.drawable.thumb_lastpass),
         Linode(R.drawable.thumb_linode),
         Liqui(R.drawable.thumb_liqui),
+        LogMeIn(R.drawable.thumb_logmein),
         Mailgun(R.drawable.thumb_mailgun),
+        Mapbox(R.drawable.thumb_mapbox),
         Mastodon(R.drawable.thumb_mastodon),
+        Mediawiki(R.mipmap.thumb_mediawiki, AssetType.Bitmap),
+        Mega(R.drawable.thumb_mega),
         Microsoft(R.drawable.thumb_microsoft),
         Migadu(R.drawable.thumb_migadu),
         Miraheze(R.drawable.thumb_miraheze),
@@ -107,10 +117,12 @@ public class EntryThumbnail {
         NextCloud(R.drawable.thumb_nextcloud),
         Nintendo(R.drawable.thumb_nintendo),
         NPM(R.drawable.thumb_npm),
+        OpenVZ(R.drawable.thumb_openvz),
         Origin(R.drawable.thumb_origin),
         OVH(R.drawable.thumb_ovh),
         Patreon(R.drawable.thumb_patreon),
         PayPal(R.drawable.thumb_paypal),
+        phpMyAdmin(R.drawable.thumb_phpmyadmin),
         Plurk(R.drawable.thumb_plurk),
         ProtonMail(R.drawable.thumb_protonmail),
         Rackspace(R.drawable.thumb_rackspace),
@@ -124,6 +136,7 @@ public class EntryThumbnail {
         School(R.drawable.thumb_school),
         Skrill(R.drawable.thumb_skrill),
         Slack(R.drawable.thumb_slack),
+        Snapchat(R.drawable.thumb_snapchat),
         Steam(R.drawable.thumb_steam),
         Stripe(R.drawable.thumb_stripe),
         Sync(R.drawable.thumb_sync),
@@ -133,6 +146,7 @@ public class EntryThumbnail {
         Terminal(R.drawable.thumb_terminal),
         Trello(R.drawable.thumb_trello),
         Tumblr(R.drawable.thumb_tumblr),
+        Tutanota(R.drawable.thumb_tutanota),
         Twitch(R.drawable.thumb_twitch),
         Twitter(R.drawable.thumb_twitter),
         Ubisoft(R.drawable.thumb_ubisoft),
@@ -165,6 +179,8 @@ public class EntryThumbnail {
     }
 
     public static Bitmap getThumbnailGraphic(Context context, String label, int size, EntryThumbnails thumbnail) {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
         if (thumbnail == EntryThumbnails.Default && size > 0) {
             LetterBitmap letterBitmap = new LetterBitmap(context);
             return letterBitmap.getLetterTile(label, label, size, size);

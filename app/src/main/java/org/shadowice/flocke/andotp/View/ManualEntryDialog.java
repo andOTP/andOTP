@@ -24,6 +24,7 @@ package org.shadowice.flocke.andotp.View;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.support.v7.app.AppCompatDelegate;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -52,6 +53,8 @@ import java.util.concurrent.Callable;
 
 public class ManualEntryDialog {
     public static void show(final MainActivity callingActivity, Settings settings, final EntriesCardAdapter adapter) {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
         ViewGroup container = callingActivity.findViewById(R.id.main_content);
         View inputView = callingActivity.getLayoutInflater().inflate(R.layout.dialog_manual_entry, container, false);
 
@@ -153,6 +156,10 @@ public class ManualEntryDialog {
         });
 
         final Button expandButton = inputView.findViewById(R.id.dialog_expand_button);
+
+        // Dirty fix for the compound drawable to avoid crashes on KitKat
+        expandButton.setCompoundDrawablesWithIntrinsicBounds(null, null, callingActivity.getResources().getDrawable(R.drawable.ic_arrow_down_accent), null);
+
         final ExpandableLinearLayout expandLayout = inputView.findViewById(R.id.dialog_expand_layout);
 
         expandButton.setOnClickListener(new View.OnClickListener() {

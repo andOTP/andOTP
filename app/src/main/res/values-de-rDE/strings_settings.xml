@@ -14,6 +14,7 @@
   <string name="settings_title_auth_pin">PIN</string>
   <string name="settings_title_encryption">Datenbankverschlüsselung</string>
   <string name="settings_title_panic">Panik-Trigger</string>
+  <string name="settings_title_relock_screen_off">Sperren, wenn das Display ausgeschaltet ist</string>
   <string name="settings_title_lang">Sprache</string>
   <string name="settings_title_theme">Design</string>
   <string name="settings_title_label_size">Schriftgröße der Beschriftung</string>
@@ -25,9 +26,10 @@
   <string name="settings_title_backup_ask">Nach Dateinamen fragen</string>
   <string name="settings_title_backup_directory">Sicherungsverzeichnis</string>
   <string name="settings_title_backup_password">Datensicherungs-Passwort</string>
-  <string name="settings_title_openpgp_provider">OpenPGP-Anbieter auswählen</string>
-  <string name="settings_title_openpgp_keyid">OpenPGP-Schlüssel auswählen</string>
-  <string name="settings_title_openpgp_sign">Verschlüsselte Datensicherungen signieren</string>
+  <string name="settings_title_backup_broadcasts">Broadcasts-Sicherungen</string>
+  <string name="settings_title_openpgp_provider">OpenPGP Anbieter</string>
+  <string name="settings_title_openpgp_key_encrypt">OpenPGP Verschlüsselungs-Key</string>
+  <string name="settings_title_openpgp_key_sign">OpenPGP Signatur-Schlüssel (optional)</string>
   <string name="settings_title_openpgp_verify">Verschlüsselte Datensicherungen überprüfen</string>
   <string name="settings_title_special_features">Spezielle Funktionen aktivieren</string>
   <string name="settings_title_enable_screenshot">Bildschirmfoto aktivieren</string>
@@ -39,13 +41,14 @@
   <string name="settings_desc_tap_to_reveal_timeout">Wählen Sie die Zeit (in Sekunden) nach dem die
         eingeblendeten Einträge wieder versteckt werden</string>
   <string name="settings_desc_panic">Entscheiden was passiert, wenn ein Panikauslöser empfangen wird</string>
+  <string name="settings_desc_relock_screen_off">Authentifizierung nach dem Ausschalten des Gerätebildschirms erforderlich</string>
   <string name="settings_desc_label_scroll">Überlange Beschriftungen scrollen, statt diese abzuschneiden</string>
   <string name="settings_desc_backup_append_date">Aktuelles Datum und die aktuelle Uhrzeit an den vorgeschlagenen Sicherungsdateinamen anhängen</string>
   <string name="settings_desc_backup_ask">Jedes Mal nach dem Dateinamen fragen, wenn eine Sicherung erstellt oder wiederhergestellt wird</string>
   <string name="settings_desc_backup_directory">Verzeichnis der Sicherungen (Dateinamen hängen vom Sicherungstyp ab)</string>
   <string name="settings_desc_backup_password">Passwort festlegen, mit dem die Sicherungen verschlüsselt werden sollen</string>
-  <string name="settings_desc_openpgp_sign">Jedes verschlüsselte Sicherung wird zusätzlich mit
-        Ihrem Schlüssel signiert (Passwort erforderlich)</string>
+  <string name="settings_desc_backup_broadcasts">Über Broadcasts auswählen, welche Sicherungstypen von Drittanbieteranwendungen ausgelöst werden können.</string>
+  <string name="settings_desc_openpgp_key_encrypt">EMail-Adresse, mit welcher der OpenPGP-Schlüssel verschlüsselt wurde</string>
   <string name="settings_desc_openpgp_verify">Verschlüsselte Sicherungen werden nur importiert,
         wenn sie mit einem gültigen Schlüssel signiert sind</string>
   <string name="settings_desc_special_features">Haken entfernen, um die speziellen Funktionen wieder zu deaktivieren</string>
@@ -113,6 +116,10 @@
     <item>Alle Einträge anzeigen, die mit <b>irgendeinem</b> der ausgewählten Schlagwörter übereinstimmen (ODER)</item>
     <item>Nur Einträge anzeigen, die mit <b>allen</b> der ausgewählten Schlagwörter übereinstimmen (UND)</item>
     <item>Zwischen Schlagwörtern umschalten (es kann jeweils nur ein Schlagwort ausgewählt werden)</item>
+  </string-array>
+  <string-array name="settings_entries_backup_broadcasts">
+    <item>Reintext-Datensicherungen</item>
+    <item>Verschlüsselte Datensicherung</item>
   </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Systemstandard</string>

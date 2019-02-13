@@ -14,6 +14,7 @@
   <string name="settings_title_auth_pin">Kod PIN</string>
   <string name="settings_title_encryption">Szyfrowanie bazy danych</string>
   <string name="settings_title_panic">Panic Trigger</string>
+  <string name="settings_title_relock_screen_off">Re-lock on screen off</string>
   <string name="settings_title_lang">Język</string>
   <string name="settings_title_theme">Motyw</string>
   <string name="settings_title_label_size">Etykieta rozmiaru czcionki</string>
@@ -25,9 +26,10 @@
   <string name="settings_title_backup_ask">Pytaj o nazwę pliku</string>
   <string name="settings_title_backup_directory">Katalog kopii</string>
   <string name="settings_title_backup_password">Hasło do kopii</string>
-  <string name="settings_title_openpgp_provider">Wybierz dostawcę OpenPGP</string>
-  <string name="settings_title_openpgp_keyid">Wybierz klucz OpenPGP</string>
-  <string name="settings_title_openpgp_sign">Podpisz zaszyfrowane kopie</string>
+  <string name="settings_title_backup_broadcasts">Backup Broadcasts</string>
+  <string name="settings_title_openpgp_provider">Dostawca OpenPGP</string>
+  <string name="settings_title_openpgp_key_encrypt">Klucz szyfrowania OpenPGP</string>
+  <string name="settings_title_openpgp_key_sign">OpenPGP signing key (optional)</string>
   <string name="settings_title_openpgp_verify">Sprawdź poprawność zaszyfrowanych kopii</string>
   <string name="settings_title_special_features">Włącz funkcje specjalne</string>
   <string name="settings_title_enable_screenshot">Zezwól na zrzuty ekranu</string>
@@ -38,6 +40,8 @@
   <string name="settings_desc_tap_to_reveal_timeout">Wybierz czas (w sekundach) po których 
         ukryty zostanie token</string>
   <string name="settings_desc_panic">Zdecyduj, co ma się stać po otrzymaniu sygnału Panic Trigger</string>
+  <string name="settings_desc_relock_screen_off">Require authentication after the devices screen
+        has been turned off</string>
   <string name="settings_desc_label_scroll">Przewijaj etykiety zamiast ucinać je</string>
   <string name="settings_desc_backup_append_date">Dodaj bieżącą datę i czas do proponowanej 
         nazwy pliku kopii</string>
@@ -45,7 +49,10 @@
         tworzona lub przywracana</string>
   <string name="settings_desc_backup_directory">Katalog z kopiami (nazwy plików zależą od typu kopii)</string>
   <string name="settings_desc_backup_password">Ustaw hasło używane do szyfrowania kopii</string>
-  <string name="settings_desc_openpgp_sign">Każda szyfrowana kopia dodatkowo jest podpisywana Twoim kluczem (wymaga hasła)</string>
+  <string name="settings_desc_backup_broadcasts">Select which backup types can be triggered by
+        3rd-party apps using Broadcasts</string>
+  <string name="settings_desc_openpgp_key_encrypt">Mail address of the OpenPGP key used to encrypt
+        the backups</string>
   <string name="settings_desc_openpgp_verify">Szyfrowane kopie mogą zostać zaimportowane tylko wtedy, gdy zostały podpisane Twoim kluczem</string>
   <string name="settings_desc_special_features">Odhacz aby wyłączyć specjalne funkcje</string>
   <string name="settings_desc_enable_screenshot">Pozwól na wykonanie zrzutu ekranu głównego
@@ -132,6 +139,10 @@
     <item>Pokaż wszystkie konta pasujące <b>jakiekolwiek</b> z zaznaczonych etykiet (lub)</item>
     <item>Pokaż wszystkie konta pasujące <b>wszystkim</b> z zaznaczonych etykiet (i)</item>
     <item>Przełącz między etykietami (pozwól aby tylko jedna etykieta mogła być zaznaczona)</item>
+  </string-array>
+  <string-array name="settings_entries_backup_broadcasts">
+    <item>Kopia tekstowa</item>
+    <item>Szyfrowana kopia</item>
   </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Domyślny systemowy</string>

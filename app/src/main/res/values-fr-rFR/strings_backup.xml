@@ -18,7 +18,9 @@
   <string name="backup_desc_import_plain">Restaurer tous les comptes à partir d\'un fichier JSON en clair</string>
   <string name="backup_desc_import_crypt">Restaurer tous les comptes à partir d\'un fichier JSON protégé par un mot de passe</string>
   <string name="backup_desc_import_openpgp">Restaurer tous les comptes à partir d\'un fichier JSON chiffré avec OpenPGP</string>
-  <string name="backup_desc_crypt_setup">Vous devez définir un <b>mot de passe de sauvegarde</b> dans les <b>paramètres</b> pour utiliser des sauvegardes chiffrées.    </string>
+  <string name="backup_desc_crypt_setup">Le mot de passe de sauvegarde n\'a pas été chargé à partir des <b>Réglages</b>, 
+        cela signifie soit qu\'aucun mot de passe n\'a été défini, soit que quelque chose n\'a pas fonctionné. Il vous sera demandé d\'entrer 
+        le mot de passe manuellement lors de la création ou de l\'importation d\'une sauvegarde.    </string>
   <string name="backup_desc_openpgp_provider">Vous devez installer un fournisseur OpenPGP et l\'activer dans les <b>paramètres</b> pour utiliser cette fonctionnalité.</string>
   <string name="backup_desc_openpgp_keyid">Vous devez sélectionner un fournisseur OpenPGP dans les <b>paramètres</b> afin de pouvoir créer des sauvegardes chiffrées.</string>
   <string name="backup_desc_replace">Si activé, à l\'import d\'une sauvegarde toutes les entrées seront supprimées et remplacées par les entrées de la sauvegarde. Si désactivé, les entrées seront fusionnées avec celles de la sauvegarde.</string>
@@ -27,9 +29,16 @@
   <string name="backup_dialog_msg_export_warning">Êtes-vous sûr de vouloir exporter la base de données en clair dans un fichier JSON ? Ce fichier contiendra toutes vos clés privées, <b>veuillez le placer dans un endroit sûr</b> !    </string>
   <string name="backup_receiver_title_backup_failed">La sauvegarde a échoué</string>
   <string name="backup_receiver_title_backup_success">Sauvegarde réussie</string>
+  <string name="backup_receiver_plain_disabled">Les sauvegardes en clair ne sont actuellement pas autorisées, veuillez aller dans les Paramètres afin de les activer</string>
+  <string name="backup_receiver_encrypted_disabled">Les sauvegardes chiffrées ne sont actuellement pas autorisées, veuillez aller dans les Paramètres afin de les activer</string>
   <string name="backup_receiver_read_permission_failed">L\'autorisation de lecture n\'est pas accordée, veuillez le faire avant d’effectuer la sauvegarde</string>
   <string name="backup_receiver_write_permission_failed">L\'autorisation d\'écriture n\'est pas accordée, veuillez le faire avant d’effectuer la sauvegarde</string>
   <string name="backup_receiver_custom_encryption_failed">Le chiffrement à base de mot de passe ou code PIN n\'est pas supporté par la sauvegarde par diffusion</string>
+  <!-- Notification channels -->
+  <string name="notification_channel_name_backup_failed">Échec de la sauvegarde automatique</string>
+  <string name="notification_channel_name_backup_success">Succès de la sauvegarde automatique</string>
+  <string name="notification_channel_desc_backup_failed">Ces notifications sont affichées quand une sauvegarde automatique a échoué pour une raison quelconque</string>
+  <string name="notification_channel_desc_backup_success">Ces notifications sont affichées quand une sauvegarde automatique a réussi</string>
   <!-- Toast messages -->
   <string name="backup_toast_mkdir_failed">Échec de la création du répertoire de sauvegarde</string>
   <string name="backup_toast_export_success">Sauvegarde vers le stockage externe effectuée avec succès</string>

@@ -14,6 +14,7 @@
   <string name="settings_title_auth_pin">PIN</string>
   <string name="settings_title_encryption">Xifratge de la base de dades</string>
   <string name="settings_title_panic">Botó del pànic</string>
+  <string name="settings_title_relock_screen_off">Re-lock on screen off</string>
   <string name="settings_title_lang">Idioma</string>
   <string name="settings_title_theme">Tema</string>
   <string name="settings_title_label_size">Mida de la lletra de l\'etiqueta</string>
@@ -25,9 +26,10 @@
   <string name="settings_title_backup_ask">Demana el nom de fitxer</string>
   <string name="settings_title_backup_directory">Directori de còpia de seguretat</string>
   <string name="settings_title_backup_password">Contrasenya de la còpia de seguretat</string>
-  <string name="settings_title_openpgp_provider">Selecciona el programa OpenPGP</string>
-  <string name="settings_title_openpgp_keyid">Tria la clau OpenPGP</string>
-  <string name="settings_title_openpgp_sign">Signa les còpies de seguretat xifrades</string>
+  <string name="settings_title_backup_broadcasts">Backup Broadcasts</string>
+  <string name="settings_title_openpgp_provider">OpenPGP provider</string>
+  <string name="settings_title_openpgp_key_encrypt">OpenPGP encryption key</string>
+  <string name="settings_title_openpgp_key_sign">OpenPGP signing key (optional)</string>
   <string name="settings_title_openpgp_verify">Verifica les còpies de seguretat xifrades</string>
   <string name="settings_title_special_features">Habilita les característiques especials</string>
   <string name="settings_title_enable_screenshot">Permet screenshots</string>
@@ -39,6 +41,8 @@
   <string name="settings_desc_tap_to_reveal_timeout">Indiqueu durant quant de temps (en segons)
         es mostraran les entrades</string>
   <string name="settings_desc_panic">Decidiu què fer quan es prem el botó del pànic</string>
+  <string name="settings_desc_relock_screen_off">Require authentication after the devices screen
+        has been turned off</string>
   <string name="settings_desc_label_scroll">Les etiquetes llargues es desplacen en comptes de truncar-les</string>
   <string name="settings_desc_backup_append_date">Append the current date and time to the suggested
         backup filename</string>
@@ -47,8 +51,10 @@
         depén del tipus de còpia)</string>
   <string name="settings_desc_backup_password">Contrasenya que s\'usarà per a xifrar les
         còpies de seguretat</string>
-  <string name="settings_desc_openpgp_sign">Cada còpia xifrada se signa a més amb la vostra clau
-        (cal contrasenya)</string>
+  <string name="settings_desc_backup_broadcasts">Select which backup types can be triggered by
+        3rd-party apps using Broadcasts</string>
+  <string name="settings_desc_openpgp_key_encrypt">Mail address of the OpenPGP key used to encrypt
+        the backups</string>
   <string name="settings_desc_openpgp_verify">Només s\'importaran còipes xifrades si s\'han
         signat amb una clau vàlida</string>
   <string name="settings_desc_special_features">Desmarqueu per a deshabilitar les característiques especials</string>
@@ -135,6 +141,10 @@
     <item>Show all entries matching <b>any</b> of the selected tags (or)</item>
     <item>Only show entries matching <b>all</b> of the selected tags (and)</item>
     <item>Switch between tags (only allow one tag to be selected at a time)</item>
+  </string-array>
+  <string-array name="settings_entries_backup_broadcasts">
+    <item>Plain-text backups</item>
+    <item>Encrypted backups</item>
   </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Valor del sistema per defecte</string>

@@ -126,7 +126,6 @@
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_arrow_down_accent"
             android:textAlignment="viewStart"
             android:text="@string/label_advanced"/>
 

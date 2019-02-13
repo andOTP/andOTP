@@ -14,6 +14,7 @@
   <string name="settings_title_auth_pin">PIN</string>
   <string name="settings_title_encryption">Cifrado de Base de datos</string>
   <string name="settings_title_panic">Panic Trigger</string>
+  <string name="settings_title_relock_screen_off">Coa pantalla apagada voltar a asegurar</string>
   <string name="settings_title_lang">Idioma</string>
   <string name="settings_title_theme">Tema</string>
   <string name="settings_title_label_size">Tamaño da tipografía</string>
@@ -25,9 +26,10 @@
   <string name="settings_title_backup_ask">Preguntar polo nome do ficheiro</string>
   <string name="settings_title_backup_directory">Directorio de copias de seguranza</string>
   <string name="settings_title_backup_password">Contrasinal da copia de seguranza</string>
-  <string name="settings_title_openpgp_provider">Escoller fornecedor OpenPGP</string>
-  <string name="settings_title_openpgp_keyid">Escoller chave OpenPGP</string>
-  <string name="settings_title_openpgp_sign">Asinar copias de seguranza cifradas</string>
+  <string name="settings_title_backup_broadcasts">Respaldo Broadcasts</string>
+  <string name="settings_title_openpgp_provider">Provedor OpenPGP</string>
+  <string name="settings_title_openpgp_key_encrypt">Chave de cifrado OpenPGP</string>
+  <string name="settings_title_openpgp_key_sign">Chave de firma OpenPGP (optativa)</string>
   <string name="settings_title_openpgp_verify">Comprobar copias de seguranza cifradas</string>
   <string name="settings_title_special_features">Activar funcionalidades especiais</string>
   <string name="settings_title_enable_screenshot">Activar capturas de pantalla</string>
@@ -38,6 +40,8 @@
   <string name="settings_desc_tap_to_reveal_timeout">Selecciona o tempo (en segundos) tras o cal esconder
         as entradas reveladas</string>
   <string name="settings_desc_panic">Decide que facer cando se recibe un Panic Trigger</string>
+  <string name="settings_desc_relock_screen_off">Require autenticación depois de que a pantalla
+        se apague</string>
   <string name="settings_desc_label_scroll">Desprazar etiquetas largas no canto de truncalas</string>
   <string name="settings_desc_backup_append_date">Engadir a data actual e hora ao nome de
         ficheiro de respaldo suxerido</string>
@@ -47,8 +51,10 @@
         do tipo de copia)</string>
   <string name="settings_desc_backup_password">Establecer o contrasinal para cifrar as
         copias de seguranza</string>
-  <string name="settings_desc_openpgp_sign">Cada copia de seguranza cifrada é ademais asinada coa
-        túa chave (require contrasinal)</string>
+  <string name="settings_desc_backup_broadcasts">Escolla que tipos de respaldo se poden activar por
+         aplicativos de terceiros utilizando Broadcasts</string>
+  <string name="settings_desc_openpgp_key_encrypt">Enderezo de correo para a chave OpenPGP utilizada para cifrar
+         os respaldos</string>
   <string name="settings_desc_openpgp_verify">As copias de seguranza cifradas só se importan
         se están asinadas con unha chave válida</string>
   <string name="settings_desc_special_features">Desmarcar para desactivar as funcionalidades especiais</string>
@@ -135,6 +141,10 @@
     <item>Mostra todas as entradas coincidentes de <b>calquera</b> das etiquetas seleccionadas (ou)</item>
     <item>Só mostra entradas coincidentes de <b>todas</b> as etiquetas seleccionadas (e)</item>
     <item>Cambiar entre etiquetas (só permite unha etiqueta seleccionada cada vez)</item>
+  </string-array>
+  <string-array name="settings_entries_backup_broadcasts">
+    <item>Respaldos en texto-plano</item>
+    <item>Respaldos cifrados</item>
   </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Predefinido do sistema</string>

@@ -1,5 +1,12 @@
 # Changelog
 
+#### v0.6.1
+
+ * New feature: Enable Android Backup by default if available and using the password encryption (PR #252)
+ * Bug fix: Fix crash in the manual entry dialog on KitKat
+ * Bug fix: Fix thumbnail generation on KitKat
+ * Thumbnail: Add MediaWiki (PR #246 by @MeLlamoPablo)
+
 #### v0.6.0
 
  * New feature: **HOTP support**
@@ -8,8 +15,15 @@
  * New feature: Allow PGP backups with only a public key (Issue #31)
  * New feature: Show individual timeout bars on the cards for non-default periods
  * New feature: App shortcuts to add new entries (Issue #185)
+ * New feature: Ask for the backup password if it's not available (Issue #182)
+ * New feature: Allow installation on external storage (PR #206 by @leggewie)
  * Bug fix: Avoid crash on empty PIN/Password an API 23 (Issue #159, PR #160 by magnus anderssen)
  * Bug fix: Honor the system accessibility settings for the font size (Issue #71, PR #192 by @mbertram)
+ * Bug fix: Make the new entry dialog scrollable (Issue #196)
+ * Bug fix: Fix autofill of the password fields (Issue #215, PR #218 by @z3ntu)
+ * Bug fix: Extend thumbnail generation to non-latin letters and digits (PR #234 by @jeandeaual)
+ * Bug fix: Show new entries at the top of the list when using last used sorting (Issue #211)
+ * Bug fix: Fix a crash on the settings page (Issue #197)
  * Internal: Replace custon FAB menu with Floating Action Button Speed Dial library (Issue #155 and #186)
  * Style/UI: Use AboutLibraries instead of LicenseDialog and rework the About section (Issue #155)
  * Style/UI: Show a disclaimer about the included thumbnails in the About screen

@@ -14,6 +14,7 @@
   <string name="settings_title_auth_pin">Code PIN</string>
   <string name="settings_title_encryption">Chiffrement de la base de données</string>
   <string name="settings_title_panic">Bouton d\'urgence</string>
+  <string name="settings_title_relock_screen_off">Re-verouiller à l\'extinction de l\'écran</string>
   <string name="settings_title_lang">Langage</string>
   <string name="settings_title_theme">Thème</string>
   <string name="settings_title_label_size">Taille de la police des titres</string>
@@ -25,9 +26,10 @@
   <string name="settings_title_backup_ask">Demander le nom du fichier</string>
   <string name="settings_title_backup_directory">Répertoire de sauvegarde</string>
   <string name="settings_title_backup_password">Mot de passe de sauvegarde</string>
-  <string name="settings_title_openpgp_provider">Sélectionnez le fournisseur OpenPGP</string>
-  <string name="settings_title_openpgp_keyid">Sélectionnez la clé OpenPGP</string>
-  <string name="settings_title_openpgp_sign">Signer les sauvegardes chiffrées</string>
+  <string name="settings_title_backup_broadcasts">Sauvegardes par diffusion</string>
+  <string name="settings_title_openpgp_provider">Fournisseur OpenPGP</string>
+  <string name="settings_title_openpgp_key_encrypt">Clé de chiffrage OpenPGP</string>
+  <string name="settings_title_openpgp_key_sign">Clé de signature OpenPGP (optionnel)</string>
   <string name="settings_title_openpgp_verify">Vérifier les sauvegardes chiffrées</string>
   <string name="settings_title_special_features">Activer les fonctionnalités spéciales</string>
   <string name="settings_title_enable_screenshot">Permettre les copies d\'écran</string>
@@ -37,12 +39,15 @@
   <string name="settings_desc_tap_to_reveal">Cacher les jetons OTP par défaut et les afficher manuellement</string>
   <string name="settings_desc_tap_to_reveal_timeout">Sélectionnez la durée (en secondes) après laquelle cacher à nouveau les entrées révélées</string>
   <string name="settings_desc_panic">Choisir quoi faire lorsque que le bouton d\'urgence est déclenché</string>
+  <string name="settings_desc_relock_screen_off">Exiger une authentification après l\'extinction de l\'écran</string>
   <string name="settings_desc_label_scroll">Faire défiler les libellés trop longs plutôt que de les tronquer</string>
   <string name="settings_desc_backup_append_date">Ajouter la date et l\'heure au nom de fichier de sauvegarde proposé</string>
   <string name="settings_desc_backup_ask">Demander le nom du fichier à chaque fois qu\'une sauvegarde est créée ou restaurée</string>
   <string name="settings_desc_backup_directory">Répertoire de sauvegarde (les noms de fichier dépendront du type de sauvegarde)</string>
   <string name="settings_desc_backup_password">Configurer le mot de passe utilisé pour chiffrer les sauvegardes</string>
-  <string name="settings_desc_openpgp_sign">Toutes les sauvegardes chiffrées seront également signées avec votre clé (nécessite un mot de passe)</string>
+  <string name="settings_desc_backup_broadcasts">Sélectionner quelles types de sauvegardes peuvent être appelés pas les applications tiers en utilisant la diffusion</string>
+  <string name="settings_desc_openpgp_key_encrypt">Adresse mail de la clé OpenPGP utilisée pour chiffrer
+        les sauvegardes</string>
   <string name="settings_desc_openpgp_verify">Les sauvegardes chiffrées ne sont restaurées que lorsqu\'elles sont signées avec une clé valide</string>
   <string name="settings_desc_special_features">Décochez pour désactiver les fonctionnalités spéciales</string>
   <string name="settings_desc_enable_screenshot">Permettre de prendre des copies d\'écran de la vue principale (désactivé par défaut pour des raisons de sécurité)</string>
@@ -118,6 +123,10 @@
     <item>Afficher les entrées correspondant à <b>au moins une</b> des balises sélectionnées (ou)</item>
     <item>Afficher les entrées correspondant à <b>toutes</b> les balises sélectionnées (et)</item>
     <item>Basculer entre les tags (seul un tag ne peut être sélectionné à la fois)</item>
+  </string-array>
+  <string-array name="settings_entries_backup_broadcasts">
+    <item>Sauvegardes en clair</item>
+    <item>Sauvegardes chiffrées</item>
   </string-array>
   <!-- Special -->
   <string name="settings_lang_sys_default">Par défaut du système</string>

@@ -9,14 +9,13 @@
         stocke uniquement dans des fichiers de données chiffrés. Ici, vous pouvez choisir quelle méthode de chiffrement sera
         utilisée.</string>
   <string name="intro_slide2_desc_keystore">Le KeyStore est un composant système d\'Android pour
-        stocker de façon sécurisée les clés cryptographiques. L\'avantage de cette méthode est que les clés sont
+        stocker de façon sécurisée les clés de chiffrage. L\'avantage de cette méthode est que les clés sont
         stockées séparément des fichiers de données et peuvent être sauvegardées par un matériel cryptographique (si votre
         appareil le supporte). Cependant, comme les clés ne sont pas stockée avec les données des applis, <b>cette méthode
         empêche le fonctionnement de solutions de sauvegarde externes (comme Titanium)</b>. Si vous choisissez cette
         méthode, vous devrez vous reposer sur les fonctionnalités de sauvegarde internes fournies par <b>andOTP</b>.
-        \n\n<b>Avertissement</b> : le KeyStore est connu pour être problématique sur certaines ROMs custom (et certaines
-        stock également). Si saisir un mot de passe / code PIN à chaque démarrage de <b>andOTP</b> ne vous dérange pas,
-        il est fortement recommandé d\'utiliser un chiffrement basé sur un mot de passe.</string>
+        \n\n<b>Avertissement</b> : le KeyStore est connu pour être problématique, ne l\'utilisez que si vous êtes obligé. Si saisir un mot de passe / code PIN à chaque démarrage de <b>andOTP</b> ne vous dérange pas,
+        il est <b>fortement recommandé d\'utiliser un chiffrement basé sur un mot de passe </b>.</string>
   <string name="intro_slide2_desc_password">Cette méthode va chiffrer vos données avec une clé
         générée à partir d\'un mot de passe ou code PIN. Le principal avantage ici est que cela fonctionnera avec
         des solutions de sauvegarde externes (comme Titanium) et est bien moins propice aux erreurs que le KeyStore.

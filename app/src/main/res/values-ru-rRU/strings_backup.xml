@@ -18,10 +18,11 @@
   <string name="backup_desc_import_plain">Восстановление учетных записей из текстового файла JSON</string>
   <string name="backup_desc_import_crypt">Восстановление учетных записей из защищённого паролем файла JSON</string>
   <string name="backup_desc_import_openpgp">Восстановление учетных записей из зашифрованного OpenPGP файла JSON</string>
-  <string name="backup_desc_crypt_setup">Вам нужно установить <b>пароль для резервной копии</b> в
-        <b>Настройках</b> для использования зашифрованных резервных копий.
+  <string name="backup_desc_crypt_setup">Не удалось загрузить пароль для резервной копии из <b>Настроек</b>, 
+        это означает, что пароль не был установлен или что-то пошло не так. При создании или импорте 
+        резервной копии, Вам будет предложено ввести пароль вручную.
     </string>
-  <string name="backup_desc_openpgp_provider">Вам нужно установить поставщика OpenPGP и включить 
+  <string name="backup_desc_openpgp_provider">Вам нужно установить провайдера OpenPGP и включить 
         его в <b>Настройках</b> для использования этой функции.
     
     </string>
@@ -34,11 +35,23 @@
   <string name="backup_dialog_msg_export_warning">Вы действительно хотите экспортировать базу данных как        текстовый JSON файл? Этот файл содержит все Ваши секретные ключи, пожалуйста, <b>надежно сохраните его</b>!    </string>
   <string name="backup_receiver_title_backup_failed">Не удалось выполнить резервное копирование</string>
   <string name="backup_receiver_title_backup_success">Резервная копия создана</string>
+  <string name="backup_receiver_plain_disabled">Текстовые резервные копии не разрешены,
+        пожалуйста, включите возможность их создания в Настройках</string>
+  <string name="backup_receiver_encrypted_disabled">Зашифрованные резервные копии не разрешены,
+        пожалуйста, включите возможность их создания в Настройках</string>
   <string name="backup_receiver_read_permission_failed">Нет разрешения на чтение, пожалуйста, 
         сделайте это перед началом резервного копирования</string>
   <string name="backup_receiver_write_permission_failed">Нет разрешения на запись, пожалуйста, 
         сделайте это перед началом резервного копирования</string>
-  <string name="backup_receiver_custom_encryption_failed">Пароль/PIN-код на основе шифрования не поддерживается с широковещательной резервной копией</string>
+  <string name="backup_receiver_custom_encryption_failed">Пароль/PIN-код на основе шифрования не 
+        поддерживается со сторонними приложениями для создания резервных копий</string>
+  <!-- Notification channels -->
+  <string name="notification_channel_name_backup_failed">Автоматическое резервное копирование не удалось</string>
+  <string name="notification_channel_name_backup_success">Автоматическое резервное копирование успешно завершено</string>
+  <string name="notification_channel_desc_backup_failed">Эти уведомления отображаются, когда 
+        по какой-либо причине автоматическое резервное копирование не удалось</string>
+  <string name="notification_channel_desc_backup_success">Эти уведомления отображаются 
+        при успешном автоматическом резервном копировании</string>
   <!-- Toast messages -->
   <string name="backup_toast_mkdir_failed">Не удалось создать каталог для резервной копии</string>
   <string name="backup_toast_export_success">Экспорт на внешний носитель выполнен успешно</string>

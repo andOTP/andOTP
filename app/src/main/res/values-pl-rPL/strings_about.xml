@@ -3,10 +3,11 @@
 <resources>
   <string name="about_activity_title">O mnie</string>
   <string name="about_description">Otwórz kod źródłowy dwu-składnikowgo uwierzytelniania dla Androida</string>
+  <string name="about_tab_about">O programie</string>
+  <string name="about_tab_libraries">Biblioteki</string>
   <!-- Misc -->
   <string name="about_label_changelog">Dziennik zmian</string>
   <string name="about_label_license">Licencja</string>
-  <string name="about_label_licenses">Otwartoźródłowa licencja</string>
   <string name="about_label_MIT">Licencja MIT</string>
   <string name="about_label_source">Kod źródłowy</string>
   <string name="about_label_version">Wersja</string>
@@ -17,9 +18,19 @@
   <string name="about_label_original_author">Autor oryginalnej aplikacji</string>
   <string name="about_label_original_app">Oryginalna aplikacja</string>
   <string name="about_label_website">Strona WWW</string>
-  <string name="about_label_donate">Wspomoż</string>
+  <string name="about_label_donate_paypal">Donate (PayPal)</string>
+  <string name="about_label_donate_bitcoin">Donate (Bitcoin)</string>
   <string name="about_label_contributors">Współpracownicy</string>
   <string name="about_label_translators">Tłumacze</string>
+  <!-- Thumbnail disclaimer -->
+  <string name="about_title_thumbnail_disclaimer">Thumbnail disclaimer</string>
+  <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Wszystkie miniaturki są znakami towarowymi ich odpowiednich właścicieli.</string>
+  <string name="about_thumbnails_disclaimer_no2"><b>2.</b> The use of these trademarks does not
+        indicate endorsement of the trademark holder by andOTP, nor vice versa.</string>
+  <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Thumbnails should only be used to
+        represent the company or product to which they refer.</string>
+  <string name="about_thumbnails_disclaimer_no4"><b>4. Please do not use thumbnails for any
+        purpose except to represent that particular brand or service.</b></string>
   <!-- Support -->
   <string name="about_title_support">Wesprzyj rozwój</string>
   <string name="about_label_report_bugs">Zgłoś błąd</string>
