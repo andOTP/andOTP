@@ -164,6 +164,7 @@ public class EntryThumbnail {
         Wallet(R.drawable.thumb_wallet),
         Wargaming(R.drawable.thumb_wargaming),
         Wordpress(R.drawable.thumb_wordpress);
+        Zoho(R.drawable.thumb_zoho);
 
         private int resource;
         private AssetType assetType;
