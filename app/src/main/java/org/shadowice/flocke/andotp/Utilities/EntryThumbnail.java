@@ -71,6 +71,7 @@ public class EntryThumbnail {
         Degiro(R.drawable.thumb_degiro),
         DigitalOcean(R.drawable.thumb_digital_ocean),
         Discord(R.drawable.thumb_discord),
+        Discourse(R.drawable.thumb_discourse),
         Disroot(R.drawable.thumb_disroot),
         Dropbox(R.drawable.thumb_dropbox),
         Email(R.drawable.thumb_email),
