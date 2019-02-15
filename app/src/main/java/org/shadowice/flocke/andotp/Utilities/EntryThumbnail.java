@@ -40,6 +40,7 @@ public class EntryThumbnail {
 
     public enum EntryThumbnails {
         Default(R.mipmap.ic_launcher_round),
+        OnePassword(R.drawable.thumb_1password),
         Adobe(R.drawable.thumb_adobe),
         Amazon(R.drawable.thumb_amazon),
         AmazonWebServices(R.drawable.thumb_amazonwebservices),
