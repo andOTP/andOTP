@@ -64,6 +64,7 @@ public class EntryThumbnail {
         BlockchainInfo(R.drawable.thumb_blockchain_info),
         CloudDownload(R.drawable.thumb_cloud_download),
         Cloudflare(R.drawable.thumb_cloudflare),
+        Codegiant(R.drawable.thumb_codegiant),
         Coinbase(R.drawable.thumb_coinbase),
         ComputerBase(R.drawable.thumb_computerbase),
         CozyCloud(R.drawable.thumb_cozycloud),
