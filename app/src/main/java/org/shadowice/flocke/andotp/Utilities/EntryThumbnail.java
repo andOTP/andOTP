@@ -101,6 +101,7 @@ public class EntryThumbnail {
         Iconomi(R.drawable.thumb_iconomi),
         IFTTT(R.drawable.thumb_ifttt),
         Instagram(R.drawable.thumb_instagram),
+        INWX(R.drawable.thumb_inwx),
         Itchio(R.drawable.thumb_itchio),
         Jagex(R.drawable.thumb_jagex),
         Kickstarter(R.drawable.thumb_kickstarter),
