@@ -42,6 +42,7 @@ public class EntryThumbnail {
         Default(R.mipmap.ic_launcher_round),
         OnePassword(R.drawable.thumb_1password),
         Adobe(R.drawable.thumb_adobe),
+        Airbrake(R.drawable.thumb_airbrake),
         Amazon(R.drawable.thumb_amazon),
         AmazonWebServices(R.drawable.thumb_amazonwebservices),
         AngelList(R.drawable.thumb_angellist),
