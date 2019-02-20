@@ -124,6 +124,7 @@ public class EntryThumbnail {
         NextCloud(R.drawable.thumb_nextcloud),
         Nintendo(R.drawable.thumb_nintendo),
         NPM(R.drawable.thumb_npm),
+        Okta(R.drawable.thumb_okta),
         OpenVZ(R.drawable.thumb_openvz),
         Origin(R.drawable.thumb_origin),
         OVH(R.drawable.thumb_ovh),
