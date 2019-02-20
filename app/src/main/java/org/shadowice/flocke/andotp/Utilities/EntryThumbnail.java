@@ -113,6 +113,7 @@ public class EntryThumbnail {
         Mailgun(R.drawable.thumb_mailgun),
         Mapbox(R.drawable.thumb_mapbox),
         Mastodon(R.drawable.thumb_mastodon),
+        Matomo(R.drawable.thumb_matomo),
         Mediawiki(R.mipmap.thumb_mediawiki, AssetType.Bitmap),
         Mega(R.drawable.thumb_mega),
         Microsoft(R.drawable.thumb_microsoft),
