@@ -129,6 +129,7 @@ public class EntryThumbnail {
         Packet(R.drawable.thumb_packet),
         Patreon(R.drawable.thumb_patreon),
         PayPal(R.drawable.thumb_paypal),
+        Phabricator(R.drawable.thumb_phabricator),
         phpMyAdmin(R.drawable.thumb_phpmyadmin),
         Plurk(R.drawable.thumb_plurk),
         ProtonMail(R.drawable.thumb_protonmail),
