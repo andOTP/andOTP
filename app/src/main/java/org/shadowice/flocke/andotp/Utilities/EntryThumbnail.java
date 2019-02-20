@@ -127,6 +127,7 @@ public class EntryThumbnail {
         Nintendo(R.drawable.thumb_nintendo),
         NPM(R.drawable.thumb_npm),
         Okta(R.drawable.thumb_okta),
+        OnlineNet(R.drawable.thumb_online),
         OpenVZ(R.drawable.thumb_openvz),
         Origin(R.drawable.thumb_origin),
         OVH(R.drawable.thumb_ovh),
