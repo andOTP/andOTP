@@ -46,6 +46,7 @@ public class EntryThumbnail {
         Amazon(R.drawable.thumb_amazon),
         AmazonWebServices(R.drawable.thumb_amazonwebservices),
         AngelList(R.drawable.thumb_angellist),
+        AnimeBytes(R.drawable.thumb_animebytes),
         Apple(R.drawable.thumb_apple),
         ArenaNet(R.drawable.thumb_arenanet),
         Atlassian(R.drawable.thumb_atlassian),
