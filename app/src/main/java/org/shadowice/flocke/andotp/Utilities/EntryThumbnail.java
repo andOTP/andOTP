@@ -91,6 +91,7 @@ public class EntryThumbnail {
         Github(R.drawable.thumb_github),
         Gitlab(R.drawable.thumb_gitlab),
         GoDaddy(R.drawable.thumb_godaddy),
+        Gogs(R.drawable.thumb_gogs),
         Google(R.drawable.thumb_google),
         HackerOne(R.drawable.thumb_hackerone),
         Heroku(R.drawable.thumb_heroku),
