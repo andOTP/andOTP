@@ -126,6 +126,7 @@ public class EntryThumbnail {
         OpenVZ(R.drawable.thumb_openvz),
         Origin(R.drawable.thumb_origin),
         OVH(R.drawable.thumb_ovh),
+        Packet(R.drawable.thumb_packet),
         Patreon(R.drawable.thumb_patreon),
         PayPal(R.drawable.thumb_paypal),
         phpMyAdmin(R.drawable.thumb_phpmyadmin),
