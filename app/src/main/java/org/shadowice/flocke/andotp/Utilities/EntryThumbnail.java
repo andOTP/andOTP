@@ -114,6 +114,7 @@ public class EntryThumbnail {
         LastPass(R.drawable.thumb_lastpass),
         Linode(R.drawable.thumb_linode),
         Liqui(R.drawable.thumb_liqui),
+        LocalBitcoins(R.drawable.thumb_localbitcoins),
         LogMeIn(R.drawable.thumb_logmein),
         Mailgun(R.drawable.thumb_mailgun),
         Mapbox(R.drawable.thumb_mapbox),
