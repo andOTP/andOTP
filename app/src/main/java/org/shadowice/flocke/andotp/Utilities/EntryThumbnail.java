@@ -115,6 +115,7 @@ public class EntryThumbnail {
         Linode(R.drawable.thumb_linode),
         Liqui(R.drawable.thumb_liqui),
         LocalBitcoins(R.drawable.thumb_localbitcoins),
+        LocalMonero(R.drawable.thumb_localmonero),
         LogMeIn(R.drawable.thumb_logmein),
         Mailgun(R.drawable.thumb_mailgun),
         Mapbox(R.drawable.thumb_mapbox),
