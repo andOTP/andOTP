@@ -158,6 +158,7 @@ public class EntryThumbnail {
         Snapchat(R.drawable.thumb_snapchat),
         SourceForge(R.drawable.thumb_sourceforge),
         Squarespace(R.drawable.thumb_squarespace),
+        StandardNotes(R.drawable.thumb_standardnotes),
         Steam(R.drawable.thumb_steam),
         Stripe(R.drawable.thumb_stripe),
         Sync(R.drawable.thumb_sync),
