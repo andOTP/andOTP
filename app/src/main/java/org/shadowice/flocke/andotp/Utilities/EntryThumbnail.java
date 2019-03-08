@@ -184,6 +184,7 @@ public class EntryThumbnail {
         Wallabag(R.drawable.thumb_wallabag),
         Wallet(R.drawable.thumb_wallet),
         Wargaming(R.drawable.thumb_wargaming),
+        Wikimedia(R.drawable.thumb_wikimedia),
         Wordpress(R.drawable.thumb_wordpress),
         Zoho(R.drawable.thumb_zoho);
 
