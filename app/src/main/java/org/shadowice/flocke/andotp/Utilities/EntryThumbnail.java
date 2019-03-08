@@ -78,6 +78,7 @@ public class EntryThumbnail {
         Discourse(R.drawable.thumb_discourse),
         Disroot(R.drawable.thumb_disroot),
         Dropbox(R.drawable.thumb_dropbox),
+        ElectronicArts(R.drawable.thumb_electronic_arts),
         Email(R.drawable.thumb_email),
         EpicGames(R.drawable.thumb_epic_games),
         Evernote(R.drawable.thumb_evernote),
