@@ -99,6 +99,7 @@ public class EntryThumbnail {
         HackerOne(R.drawable.thumb_hackerone),
         Heroku(R.drawable.thumb_heroku),
         Hetzner(R.drawable.thumb_hetzner),
+        HitBTC(R.drawable.thumb_hitbtc),
         HMRC(R.drawable.thumb_hmrc),
         HomeAssistant(R.drawable.thumb_home_assistant),
         HumbleBundle(R.drawable.thumb_humblebundle),
