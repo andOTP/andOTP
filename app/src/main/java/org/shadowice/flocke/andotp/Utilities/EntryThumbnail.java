@@ -70,6 +70,7 @@ public class EntryThumbnail {
         Codegiant(R.drawable.thumb_codegiant),
         Coinbase(R.drawable.thumb_coinbase),
         ComputerBase(R.drawable.thumb_computerbase),
+        ConnectWiseManage(R.drawable.thumb_connectwise_manage),
         CozyCloud(R.drawable.thumb_cozycloud),
         Debian(R.drawable.thumb_debian),
         Degiro(R.drawable.thumb_degiro),
