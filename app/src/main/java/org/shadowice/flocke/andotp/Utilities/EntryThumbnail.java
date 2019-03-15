@@ -126,6 +126,7 @@ public class EntryThumbnail {
         Mediawiki(R.mipmap.thumb_mediawiki, AssetType.Bitmap),
         Mega(R.drawable.thumb_mega),
         Microsoft(R.drawable.thumb_microsoft),
+        MicrosoftTeams(R.drawable.thumb_microsoft_teams),
         Migadu(R.drawable.thumb_migadu),
         Miraheze(R.drawable.thumb_miraheze),
         Mixer(R.drawable.thumb_mixer),
