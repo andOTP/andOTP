@@ -103,6 +103,7 @@
         <item>uk_UA</item>
         <item>ar_SA</item>
         <item>zh_CN</item>
+        <item>zh_TW</item>
     </string-array>
 
     <string-array name="settings_values_theme" translatable="false">
@@ -154,7 +155,8 @@
         <item>Русский</item>
         <item>Українська</item>
         <item>العربية</item>
-        <item>简体中文</item>
+        <item>簡體中文</item>
+        <item>繁體中文</item>
     </string-array>
 
     <!-- Misc -->
