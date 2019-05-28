@@ -84,6 +84,7 @@ public class EntryThumbnail {
         EpicGames(R.drawable.thumb_epic_games),
         Evernote(R.drawable.thumb_evernote),
         Facebook(R.drawable.thumb_facebook),
+        FACEIT(R.drawable.thumb_faceit),
         Fingerprint(R.drawable.thumb_fingerprint),
         Firefox(R.drawable.thumb_firefox),
         Flight(R.drawable.thumb_flight_takeoff),
