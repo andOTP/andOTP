@@ -134,6 +134,7 @@ public class EntryThumbnail {
         Miraheze(R.drawable.thumb_miraheze),
         Mixer(R.drawable.thumb_mixer),
         NAS(R.drawable.thumb_nas),
+        netcup(R.drawable.thumb_netcup),
         NextCloud(R.drawable.thumb_nextcloud),
         Nintendo(R.drawable.thumb_nintendo),
         NPM(R.drawable.thumb_npm),
