@@ -104,11 +104,11 @@
     <PreferenceCategory
         android:title="@string/settings_category_title_backup">
 
-		<CheckBoxPreference
+	<CheckBoxPreference
             android:key="@string/settings_key_enable_android_backup_service"
             android:title="@string/settings_title_enable_android_backup_service"
             android:summary="@string/settings_desc_enable_android_backup_service"
-            android:defaultValue="false" />
+            android:defaultValue="true" />
 
         <CheckBoxPreference
             android:key="@string/settings_key_backup_append_date_time"
