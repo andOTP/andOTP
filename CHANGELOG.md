@@ -1,5 +1,11 @@
 # Changelog
 
+#### v0.6.2
+ * Bug fix: Proper handling of RTL layouts by forcing LTR for the tokens (PR #280 by @ahangarha)
+ * Internal: Image compression (thanks to @Peppernrino)
+ * Thumbnail: Add a LOT of new thumbnails (thanks to everybody that contributed)
+ * Translation: New Arabic, Traditional Chinese, Japanese, Persian and Swedish translations (thanks to all contributors on Crowdin)
+
 #### v0.6.1
 
  * New feature: Enable Android Backup by default if available and using the password encryption (PR #252)
