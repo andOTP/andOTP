@@ -126,21 +126,7 @@ public class SettingsActivity extends BaseActivity
             recreate();
         } else if(key.equals(getString(R.string.settings_key_encryption))) {
             if (settings.getEncryption() != EncryptionType.PASSWORD) {
-                if (settings.getAndroidBackupServiceEnabled()) {
-                    UIHelper.showGenericDialog(this,
-                        R.string.settings_dialog_title_android_sync,
-                        R.string.settings_dialog_msg_android_sync_disabled_encryption
-                    );
-                }
-
-                settings.setAndroidBackupServiceEnabled(false);
-                if (fragment.useAndroidSync != null) {
-                    fragment.useAndroidSync.setEnabled(false);
-                    fragment.useAndroidSync.setChecked(false);
-                }
-            } else {
-                if (fragment.useAndroidSync != null)
-                    fragment.useAndroidSync.setEnabled(true);
+                UIHelper.showGenericDialog(this, R.string.settings_dialog_title_android_sync, R.string.settings_dialog_msg_android_sync_disabled_encryption);
             }
         }
     }
@@ -236,7 +222,6 @@ public class SettingsActivity extends BaseActivity
 
         Settings settings;
         ListPreference encryption;
-        CheckBoxPreference useAndroidSync;
 
         OpenPgpAppPreference pgpProvider;
         EditTextPreference pgpEncryptionKey;
@@ -343,11 +328,6 @@ public class SettingsActivity extends BaseActivity
                     return true;
                 }
             });
-
-            useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
-            useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);
-            if(!useAndroidSync.isEnabled())
-                useAndroidSync.setChecked(false);
 
             if (sharedPref.contains(getString(R.string.settings_key_special_features)) &&
                     sharedPref.getBoolean(getString(R.string.settings_key_special_features), false)) {

@@ -12,8 +12,8 @@
         securely storing cryptographic keys. The advantage of this method is that the keys are
         stored separated from the data files and can be backed by hardware cryptography (if your
         device supports it). However, as the keys are not stored with the apps data, <b>this method
-        prevents external backup solutions (like Titanium) from working</b>. If you choose this
-        method you will have to rely on the internal backup functions provided by <b>andOTP</b>.
+        prevents external backup solutions (like Titanium or Android/Google Backup) from working</b>.
+        If you choose this method you will have to rely on the internal backup functions provided by <b>andOTP</b>.
         \n\n<b>Warning</b>: The KeyStore is known to cause a lot of problems, please only use it if
         you absolutely have to. If you don\'t mind entering a password / PIN every time you start
         <b>andOTP</b> it is <b>highly recommended to use the password-based encryption instead</b>.</string>
