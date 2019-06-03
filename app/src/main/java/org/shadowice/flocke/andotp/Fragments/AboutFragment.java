@@ -34,7 +34,7 @@ public class AboutFragment extends Fragment {
     private static final String AUTHOR1_EXTRA = "https://paypal.me/flocke000";
 
     private static final String AUTHOR2_GITHUB = "https://github.com/richyhbm";
-    private static final String AUTHOR2_EXTRA = "bitcoin:1KyLwnxXR577gYUtwRMSMhkpsJVoK2bTLN";
+    private static final String AUTHOR2_EXTRA = "https://richyhbm.co.uk/donate";
 
     private static final String AUTHOR_ORIGINAL_GITHUB = "https://github.com/0xbb";
     private static final String AUTHOR_ORIGINAL_EXTRA = AUTHOR_ORIGINAL_GITHUB + "/otp-authenticator";
