@@ -83,4 +83,7 @@
     <string name="backup_toast_openpgp_error">OpenPGP Error: %s</string>
     <string name="backup_toast_openpgp_not_verified">No verified signature detected</string>
     <string name="backup_toast_crypt_password_not_set">Password not set, check the <b>Settings</b></string>
+
+    <!-- If Android vendor doesn't implement standard document opening Intent -->
+    <string name="backup_toast_cannot_handle_opening_intent" translatable="false">"Can't open file selector…"</string>
 </resources>

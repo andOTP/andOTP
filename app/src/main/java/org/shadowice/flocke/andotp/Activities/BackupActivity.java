@@ -25,6 +25,7 @@ package org.shadowice.flocke.andotp.Activities;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -212,7 +213,7 @@ public class BackupActivity extends BaseActivity {
 
     // Get the result from permission requests
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == Constants.PERMISSIONS_BACKUP_READ_IMPORT_PLAIN) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 showOpenFileSelector(Constants.INTENT_BACKUP_OPEN_DOCUMENT_PLAIN);
@@ -294,8 +295,8 @@ public class BackupActivity extends BaseActivity {
         if (settings.getBackupAsk() || settings.getIsAppendingDateTimeToBackups()) {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
-            intent.setType("*/*");
-            startActivityForResult(intent, intentId);
+            intent.setType("text/*");
+            handleFileSelectorOperation(intent, intentId);
         } else {
             if (intentId == Constants.INTENT_BACKUP_OPEN_DOCUMENT_PLAIN)
                 doRestorePlain(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PLAIN));
@@ -312,7 +313,7 @@ public class BackupActivity extends BaseActivity {
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType(mimeType);
             intent.putExtra(Intent.EXTRA_TITLE, FileHelper.backupFilename(this, backupType));
-            startActivityForResult(intent, intentId);
+            handleFileSelectorOperation(intent, intentId);
         } else {
             if (Tools.mkdir(settings.getBackupDir())) {
                 if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN)
@@ -324,6 +325,20 @@ public class BackupActivity extends BaseActivity {
             } else {
                 Toast.makeText(this, R.string.backup_toast_mkdir_failed, Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    private void handleFileSelectorOperation(Intent intent,
+                                             int intentId) {
+        try {
+            startActivityForResult(intent, intentId);
+        } catch (ActivityNotFoundException e) {
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+        }
+        try {
+            startActivityForResult(intent, intentId);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, R.string.backup_toast_cannot_handle_opening_intent, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -346,7 +361,7 @@ public class BackupActivity extends BaseActivity {
     private void restoreEntries(String text) {
         ArrayList<Entry> entries = DatabaseHelper.stringToEntries(text);
 
-        if (entries.size() > 0) {
+        if (!entries.isEmpty()) {
             if (! replace.isChecked()) {
                 ArrayList<Entry> currentEntries = DatabaseHelper.loadDatabase(this, encryptionKey);
 
@@ -401,12 +416,17 @@ public class BackupActivity extends BaseActivity {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        saveFileWithPermissions(Constants.BACKUP_MIMETYPE_PLAIN, Constants.BackupType.PLAIN_TEXT, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN, Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_PLAIN);
+                        saveFileWithPermissions(Constants.BACKUP_MIMETYPE_PLAIN,
+                                Constants.BackupType.PLAIN_TEXT,
+                                Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN,
+                                Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_PLAIN);
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .create()
@@ -568,19 +588,17 @@ public class BackupActivity extends BaseActivity {
             if (requestCode == Constants.INTENT_BACKUP_ENCRYPT_PGP) {
                 if (os != null)
                     doBackupEncrypted(file, outputStreamToString(os));
-            } else if (requestCode == Constants.INTENT_BACKUP_DECRYPT_PGP) {
-                if (os != null) {
-                    if (settings.getOpenPGPVerify()) {
-                        OpenPgpSignatureResult sigResult = result.getParcelableExtra(OpenPgpApi.RESULT_SIGNATURE);
+            } else if (requestCode == Constants.INTENT_BACKUP_DECRYPT_PGP && os != null) {
+                if (settings.getOpenPGPVerify()) {
+                    OpenPgpSignatureResult sigResult = result.getParcelableExtra(OpenPgpApi.RESULT_SIGNATURE);
 
-                        if (sigResult.getResult() == OpenPgpSignatureResult.RESULT_VALID_KEY_CONFIRMED) {
-                            restoreEntries(outputStreamToString(os));
-                        } else {
-                            Toast.makeText(this, R.string.backup_toast_openpgp_not_verified, Toast.LENGTH_LONG).show();
-                        }
-                    } else {
+                    if (sigResult.getResult() == OpenPgpSignatureResult.RESULT_VALID_KEY_CONFIRMED) {
                         restoreEntries(outputStreamToString(os));
+                    } else {
+                        Toast.makeText(this, R.string.backup_toast_openpgp_not_verified, Toast.LENGTH_LONG).show();
                     }
+                } else {
+                    restoreEntries(outputStreamToString(os));
                 }
             }
         } else if (result.getIntExtra(OpenPgpApi.RESULT_CODE, OpenPgpApi.RESULT_CODE_ERROR) == OpenPgpApi.RESULT_CODE_USER_INTERACTION_REQUIRED) {

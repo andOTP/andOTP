@@ -52,4 +52,7 @@
   <string name="backup_toast_openpgp_error">Erreur OpenPGP : %s</string>
   <string name="backup_toast_openpgp_not_verified">Aucune signature vérifiée n\'a été trouvée</string>
   <string name="backup_toast_crypt_password_not_set">Aucun mot de passe défini, vérifiez les <b>paramètres</b></string>
+
+  <!-- If Android vendor doesn't implement standard document opening Intent -->
+  <string name="backup_toast_cannot_handle_opening_intent">"Impossible d'ouvrir le gestionnaire de fichier…"</string>
 </resources>
