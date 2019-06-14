@@ -74,6 +74,7 @@ public class EntryThumbnail {
         CozyCloud(R.drawable.thumb_cozycloud),
         Debian(R.drawable.thumb_debian),
         Degiro(R.drawable.thumb_degiro),
+	Diaspora(R.drawable.thumb_diaspora),
         DigitalOcean(R.drawable.thumb_digital_ocean),
         Discord(R.drawable.thumb_discord),
         Discourse(R.drawable.thumb_discourse),
