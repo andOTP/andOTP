@@ -72,6 +72,7 @@ public class EntryThumbnail {
         ComputerBase(R.drawable.thumb_computerbase),
         ConnectWiseManage(R.drawable.thumb_connectwise_manage),
         CozyCloud(R.drawable.thumb_cozycloud),
+        Dashlane(R.drawable.thumb_dashlane),
         Debian(R.drawable.thumb_debian),
         Degiro(R.drawable.thumb_degiro),
         DigitalOcean(R.drawable.thumb_digital_ocean),
