@@ -252,6 +252,8 @@ public class Entry {
         return type == OTPType.TOTP || type == OTPType.STEAM;
     }
 
+    public boolean isCounterBased() { return type == OTPType.HOTP; }
+
     public OTPType getType() {
         return type;
     }
