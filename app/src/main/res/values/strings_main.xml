@@ -4,7 +4,7 @@
     <!-- Buttons -->
     <string name="button_cancel">Cancel</string>
     <string name="button_enter_details">Enter details</string>
-    <string name="button_scan_qr">Scan QR-Code</string>
+    <string name="button_scan_qr">Scan QR code</string>
     <string name="button_save">Save</string>
     <string name="button_new_tag">New tag</string>
     <string name="button_settings">Settings</string>
@@ -86,6 +86,6 @@
         to the <b>Settings</b> and switch the <b>Database encryption</b> to <b>Password / PIN</b>.</string>
 
     <!-- Shortcuts -->
-    <string name="shortcut_name_scan_qr">Scan QR-Code</string>
+    <string name="shortcut_name_scan_qr">Scan QR code</string>
     <string name="shortcut_name_enter_details">Enter details</string>
 </resources>

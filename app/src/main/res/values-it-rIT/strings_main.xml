@@ -69,6 +69,6 @@
         <b>Qualsiasi voce aggiunta verrà persa</b>\n\nPer continuare ad utilizzare andOTP, vai nelle
         <b>Impostazioni</b> e imposta la <b>Crittografia del database</b> su <b>Password / PIN</b>.</string>
     <!-- Shortcuts -->
-    <string name="shortcut_name_scan_qr">Scansione QR-Code</string>
+    <string name="shortcut_name_scan_qr">Scansione QR code</string>
     <string name="shortcut_name_enter_details">Inserisci dettagli</string>
 </resources>

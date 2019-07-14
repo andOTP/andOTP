@@ -4,7 +4,7 @@
     <!-- Buttons -->
     <string name="button_cancel">Abbrechen</string>
     <string name="button_enter_details">Details eingeben</string>
-    <string name="button_scan_qr">QR-Code scannen</string>
+    <string name="button_scan_qr">QR code scannen</string>
     <string name="button_save">Speichern</string>
     <string name="button_new_tag">Neuer Marker</string>
     <string name="button_settings">Einstellungen</string>
@@ -47,7 +47,7 @@
     <string name="toast_auth_failed_fatal">Authentifizierung fehlgeschlagen, andOTP wird geschlossen!</string>
     <string name="toast_copied_to_clipboard">In Zwischenablage kopiert</string>
     <string name="toast_entry_exists">Dieser Eintrag ist bereits vorhanden</string>
-    <string name="toast_invalid_qr_code">Ungültiger QR-Code</string>
+    <string name="toast_invalid_qr_code">Ungültiger QR code</string>
     <string name="toast_encryption_key_empty">Verschlüsselungsschlüssel nicht geladen</string>
     <!-- Dialogs -->
     <string name="dialog_title_auth">Authentifizieren</string>
@@ -67,6 +67,6 @@ oder der Kopieren-Button benutzt werden.\n\n
 Diese Nachricht wird nicht erneut angezeigt.</string>
     <string name="dialog_msg_keystore_error">Fehler beim Laden des Verschlüsselungsschlüssels aus dem KeyStore. <b>Alle Einträge, die hinzugefügt werden, gehen verloren.</b>\n\nUm andOTP dennoch verwenden zu können, rufe die <b>Einstellungen</b> auf und setze die <b>Datenbank-Verschlüsselung</b> auf <b>Passwort / PIN</b>.</string>
     <!-- Shortcuts -->
-    <string name="shortcut_name_scan_qr">QR-Code scannen</string>
+    <string name="shortcut_name_scan_qr">QR code scannen</string>
     <string name="shortcut_name_enter_details">Details eingeben</string>
 </resources>
