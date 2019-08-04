@@ -64,6 +64,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private ImageView visibleImg;
     private ImageView thumbnailImg;
     private TextView value;
+    private TextView issuer;
     private TextView label;
     private TextView counter;
     private TextView tags;
@@ -81,6 +82,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         thumbnailFrame = v.findViewById(R.id.thumbnailFrame);
         thumbnailImg = v.findViewById(R.id.thumbnailImg);
         coverLayout = v.findViewById(R.id.coverLayout);
+        issuer = v.findViewById(R.id.textViewIssuer);
         label = v.findViewById(R.id.textViewLabel);
         tags = v.findViewById(R.id.textViewTags);
         counterLayout = v.findViewById(R.id.counterLayout);
@@ -148,6 +150,14 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         }
 
         final String tokenFormatted = Tools.formatToken(entry.getCurrentOTP(), settings.getTokenSplitGroupSize());
+
+        String issuerText = entry.getIssuer();
+        if (!TextUtils.isEmpty(issuerText)) {
+            issuer.setText(entry.getIssuer());
+            issuer.setVisibility(View.VISIBLE);
+        } else {
+            issuer.setVisibility(View.GONE);
+        }
 
         label.setText(entry.getLabel());
         value.setText(tokenFormatted);

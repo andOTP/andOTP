@@ -26,6 +26,7 @@
     <string name="label_period">Period</string>
     <string name="label_digits">Digits</string>
     <string name="label_counter">Counter</string>
+    <string name="label_issuer">Issuer</string>
     <string name="label_label">Label</string>
     <string name="label_algorithm">Algorithm</string>
     <string name="label_tags">Tags</string>
@@ -47,6 +48,7 @@
     <string name="menu_sort_label">Label</string>
     <string name="menu_sort_last_used">Last used</string>
 
+    <string name="menu_popup_edit_issuer">Edit issuer</string>
     <string name="menu_popup_edit_label">Edit label</string>
     <string name="menu_popup_change_image">Change image</string>
     <string name="menu_popup_edit_tags">Edit tags</string>

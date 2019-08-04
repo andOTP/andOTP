@@ -2,6 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/menu_popup_editIssuer"
+        android:title="@string/menu_popup_edit_issuer" />
+    <item
         android:id="@+id/menu_popup_editLabel"
         android:title="@string/menu_popup_edit_label" />
 

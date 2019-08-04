@@ -50,6 +50,7 @@ public class Entry {
     private static final int DEFAULT_PERIOD = 30;
 
     private static final String JSON_SECRET = "secret";
+    private static final String JSON_ISSUER = "issuer";
     private static final String JSON_LABEL = "label";
     private static final String JSON_PERIOD = "period";
     private static final String JSON_COUNTER = "counter";
@@ -66,6 +67,7 @@ public class Entry {
     private TokenCalculator.HashAlgorithm algorithm = TokenCalculator.DEFAULT_ALGORITHM;
     private byte[] secret;
     private long counter;
+    private String issuer;
     private String label;
     private String currentOTP;
     private boolean visible = false;
@@ -77,21 +79,23 @@ public class Entry {
 
     public Entry(){}
 
-    public Entry(OTPType type, String secret, int period, int digits, String label, TokenCalculator.HashAlgorithm algorithm, List<String> tags) {
+    public Entry(OTPType type, String secret, int period, int digits, String issuer, String label, TokenCalculator.HashAlgorithm algorithm, List<String> tags) {
         this.type = type;
         this.secret = new Base32().decode(secret.toUpperCase());
         this.period = period;
         this.digits = digits;
+        this.issuer = issuer;
         this.label = label;
         this.algorithm = algorithm;
         this.tags = tags;
     }
 
-    public Entry(OTPType type, String secret, long counter, int digits, String label, TokenCalculator.HashAlgorithm algorithm, List<String> tags) {
+    public Entry(OTPType type, String secret, long counter, int digits, String issuer, String label, TokenCalculator.HashAlgorithm algorithm, List<String> tags) {
         this.type = type;
         this.secret = new Base32().decode(secret.toUpperCase());
         this.counter = counter;
         this.digits = digits;
+        this.issuer = issuer;
         this.label = label;
         this.algorithm = algorithm;
         this.tags = tags;
@@ -124,10 +128,6 @@ public class Entry {
         String algorithm = uri.getQueryParameter("algorithm");
         List<String> tags = uri.getQueryParameters("tags");
 
-        if (issuer != null){
-            label = issuer +" - "+label;
-        }
-
         if (type == OTPType.HOTP) {
             if (counter != null) {
                 this.counter = Long.parseLong(counter);
@@ -142,6 +142,7 @@ public class Entry {
             }
         }
 
+        this.issuer = issuer;
         this.label = label;
         this.secret = new Base32().decode(secret.toUpperCase());
 
@@ -168,6 +169,13 @@ public class Entry {
             throws Exception {
         this.secret = new Base32().decode(jsonObj.getString(JSON_SECRET).toUpperCase());
         this.label = jsonObj.getString(JSON_LABEL);
+
+        try {
+            this.issuer = jsonObj.getString(JSON_ISSUER);
+        } catch (JSONException e) {
+            // Older backup version did not save issuer and label separately
+            this.issuer = "";
+        }
 
         try {
             this.type = OTPType.valueOf(jsonObj.getString(JSON_TYPE));
@@ -227,6 +235,7 @@ public class Entry {
     public JSONObject toJSON() throws JSONException {
         JSONObject jsonObj = new JSONObject();
         jsonObj.put(JSON_SECRET, new String(new Base32().encode(getSecret())));
+        jsonObj.put(JSON_ISSUER, getIssuer());
         jsonObj.put(JSON_LABEL, getLabel());
         jsonObj.put(JSON_DIGITS, getDigits());
         jsonObj.put(JSON_TYPE, getType().toString());
@@ -266,6 +275,14 @@ public class Entry {
 
     public void setSecret(byte[] secret) {
         this.secret = secret;
+    }
+
+    public String getIssuer() {
+        return issuer;
+    }
+
+    public void setIssuer(String issuer) {
+        this.issuer = issuer;
     }
 
     public String getLabel() {

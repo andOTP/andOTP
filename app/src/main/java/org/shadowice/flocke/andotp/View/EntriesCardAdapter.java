@@ -371,6 +371,51 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         return true;
     }
 
+    public void editEntryIssuer(final int pos) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
+        int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
+
+        final EditText input = new EditText(context);
+        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        input.setText(displayedEntries.get(pos).getIssuer());
+        input.setSingleLine();
+
+        FrameLayout container = new FrameLayout(context);
+        container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
+        container.addView(input);
+
+        builder.setTitle(R.string.dialog_title_rename)
+                .setView(container)
+                .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int realIndex = getRealIndex(pos);
+                        String newIssuer = input.getEditableText().toString();
+
+                        displayedEntries.get(pos).setIssuer(newIssuer);
+                        if (sortMode == SortMode.LABEL) {
+                            displayedEntries = sortEntries(displayedEntries);
+                            notifyDataSetChanged();
+                        } else {
+                            notifyItemChanged(pos);
+                        }
+
+                        Entry e = entries.get(realIndex);
+                        e.setIssuer(newIssuer);
+
+                        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .create()
+                .show();
+    }
+
     public void editEntryLabel(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -585,7 +630,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             public boolean onMenuItemClick(MenuItem item) {
                 int id = item.getItemId();
 
-                if (id == R.id.menu_popup_editLabel) {
+                if (id == R.id.menu_popup_editIssuer) {
+                    editEntryIssuer(pos);
+                    return true;
+                } else if (id == R.id.menu_popup_editLabel) {
                     editEntryLabel(pos);
                     return true;
                 } else if(id == R.id.menu_popup_changeImage) {

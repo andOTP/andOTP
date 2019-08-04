@@ -59,6 +59,7 @@ public class ManualEntryDialog {
         View inputView = callingActivity.getLayoutInflater().inflate(R.layout.dialog_manual_entry, container, false);
 
         final Spinner typeInput = inputView.findViewById(R.id.manual_type);
+        final EditText issuerInput = inputView.findViewById(R.id.manual_issuer);
         final EditText labelInput = inputView.findViewById(R.id.manual_label);
         final EditText secretInput = inputView.findViewById(R.id.manual_secret);
         final EditText counterInput = inputView.findViewById(R.id.manual_counter);
@@ -192,6 +193,7 @@ public class ManualEntryDialog {
                         Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
                         TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
 
+                        String issuer = issuerInput.getText().toString();
                         String label = labelInput.getText().toString();
                         String secret = secretInput.getText().toString();
                         int digits = Integer.parseInt(digitsInput.getText().toString());
@@ -199,7 +201,7 @@ public class ManualEntryDialog {
                         if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
                             int period = Integer.parseInt(periodInput.getText().toString());
 
-                            Entry e = new Entry(type, secret, period, digits, label, algorithm, tagsAdapter.getActiveTags());
+                            Entry e = new Entry(type, secret, period, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
                             e.updateOTP();
                             e.setLastUsed(System.currentTimeMillis());
                             adapter.addEntry(e);
@@ -209,7 +211,7 @@ public class ManualEntryDialog {
                         } else if (type == Entry.OTPType.HOTP) {
                             long counter = Long.parseLong(counterInput.getText().toString());
 
-                            Entry e = new Entry(type, secret, counter, digits, label, algorithm, tagsAdapter.getActiveTags());
+                            Entry e = new Entry(type, secret, counter, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
                             e.updateOTP();
                             e.setLastUsed(System.currentTimeMillis());
                             adapter.addEntry(e);
