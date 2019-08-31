@@ -4,7 +4,7 @@
     <!-- Buttons -->
     <string name="button_cancel">Annulla</string>
     <string name="button_enter_details">Aggiungi dettagli</string>
-    <string name="button_scan_qr">Scansiona il QR Code</string>
+    <string name="button_scan_qr">Scansiona il codice QR</string>
     <string name="button_save">Salva</string>
     <string name="button_new_tag">Nuovo tag</string>
     <string name="button_settings">Impostazioni</string>
@@ -47,7 +47,7 @@
     <string name="toast_auth_failed_fatal">Autenticazione non riuscita, andOTP verrà chiuso!</string>
     <string name="toast_copied_to_clipboard">Copiato negli appunti</string>
     <string name="toast_entry_exists">Questa voce esiste già</string>
-    <string name="toast_invalid_qr_code">QR code non valido</string>
+    <string name="toast_invalid_qr_code">Codice QR non valido</string>
     <string name="toast_encryption_key_empty">Chiave di crittografia non caricata</string>
     <!-- Dialogs -->
     <string name="dialog_title_auth">Autenticazione</string>
@@ -69,6 +69,6 @@
         <b>Qualsiasi voce aggiunta verrà persa</b>\n\nPer continuare ad utilizzare andOTP, vai nelle
         <b>Impostazioni</b> e imposta la <b>Crittografia del database</b> su <b>Password / PIN</b>.</string>
     <!-- Shortcuts -->
-    <string name="shortcut_name_scan_qr">Scansione QR code</string>
+    <string name="shortcut_name_scan_qr">Scansione codice QR</string>
     <string name="shortcut_name_enter_details">Inserisci dettagli</string>
 </resources>

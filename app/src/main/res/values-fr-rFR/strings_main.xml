@@ -4,7 +4,7 @@
   <!-- Buttons -->
   <string name="button_cancel">Annuler</string>
   <string name="button_enter_details">Ajouter les détails</string>
-  <string name="button_scan_qr">Scanner un QR code</string>
+  <string name="button_scan_qr">Scanner un code QR</string>
   <string name="button_save">Enregistrer</string>
   <string name="button_new_tag">Nouveau tag</string>
   <string name="button_settings">Paramètres</string>
@@ -47,7 +47,7 @@
   <string name="toast_auth_failed_fatal">Échec d\'authentification, fermeture d\'andOTP !</string>
   <string name="toast_copied_to_clipboard">Copié dans le presse-papier</string>
   <string name="toast_entry_exists">Cette entrée existe déjà</string>
-  <string name="toast_invalid_qr_code">QR code invalide</string>
+  <string name="toast_invalid_qr_code">Code QR invalide</string>
   <string name="toast_encryption_key_empty">Clé de chiffrement non chargée</string>
   <!-- Dialogs -->
   <string name="dialog_title_auth">Identifiez-vous</string>
@@ -66,6 +66,6 @@
   <string name="dialog_msg_keystore_error">Échec du chargement de la clé de chiffrement à partir de l\'armoire à clés.
 <b>Toute entrée ajoutée sera perdue.</b>\n\nPour continuer à utiliser andOTP, vous pouvez aller dans les <b>paramètres</b> pour passer de <b>Chiffrement de la base de données</b> à <b>Mot de passe / Code PIN</b>.</string>
   <!-- Shortcuts -->
-  <string name="shortcut_name_scan_qr">Scanner le QR-code</string>
+  <string name="shortcut_name_scan_qr">Scanner le code QR</string>
   <string name="shortcut_name_enter_details">Ajouter les détails</string>
 </resources>
