@@ -170,4 +170,14 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+            android:title="@string/about_title_special_features" >
+
+        <CheckBoxPreference
+                android:key="@string/settings_key_special_features"
+                android:title="@string/settings_title_special_features"
+                android:summary="@string/settings_desc_special_features"
+                android:defaultValue="false" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

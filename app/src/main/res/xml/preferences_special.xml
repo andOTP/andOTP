@@ -2,15 +2,6 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory
-        android:title="@string/about_title_special_features" >
-
-        <CheckBoxPreference
-            android:key="@string/settings_key_special_features"
-            android:title="@string/settings_title_special_features"
-            android:summary="@string/settings_desc_special_features"
-            android:defaultValue="false" />
-
         <CheckBoxPreference
             android:key="@string/settings_key_enable_screenshot"
             android:title="@string/settings_title_enable_screenshot"
@@ -22,6 +13,5 @@
             android:title="@string/settings_title_clear_keystore"
             android:summary="@string/settings_desc_clear_keystore" />
 
-    </PreferenceCategory>
 
 </PreferenceScreen>
