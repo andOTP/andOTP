@@ -591,10 +591,13 @@ public class MainActivity extends BaseActivity
                 settings.setAllTagsToggle(checkedTextView.isChecked());
 
                 for(int i = 0; i < tagsDrawerListView.getChildCount(); i++) {
-                    CheckedTextView childCheckBox = (CheckedTextView)tagsDrawerListView.getChildAt(i);
+                    CheckedTextView childCheckBox = (CheckedTextView) tagsDrawerListView.getChildAt(i);
                     childCheckBox.setChecked(checkedTextView.isChecked());
-                    tagsDrawerAdapter.setTagState(childCheckBox.getText().toString(), childCheckBox.isChecked());
-                    settings.setTagToggle(childCheckBox.getText().toString(), childCheckBox.isChecked());
+                }
+
+                for (String tag: tagsDrawerAdapter.getTags()) {
+                    tagsDrawerAdapter.setTagState(tag, checkedTextView.isChecked());
+                    settings.setTagToggle(tag, checkedTextView.isChecked());
                 }
 
                 if(checkedTextView.isChecked()) {
