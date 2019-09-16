@@ -21,7 +21,8 @@
     <string name="backup_desc_export_openpgp">Backup all accounts in an OpenPGP-encrypted JSON file</string>
     <string name="backup_desc_import_plain">Restore accounts from a plain-text JSON file</string>
     <string name="backup_desc_import_crypt">Restore accounts from a password-protected JSON file</string>
-    <string name="backup_desc_import_crypt_old">Restore accounts from a password-protected JSON file using the old, insecure encryption</string>
+    <string name="backup_desc_import_crypt_old">Restore accounts from a password-protected JSON file
+        created with an <b>andOTP version lower than 0.6.3</b></string>
     <string name="backup_desc_import_openpgp">Restore accounts from an OpenPGP-encrypted JSON file</string>
 
     <string name="backup_desc_crypt_setup">Failed to load the backup password from the <b>Settings</b>,
@@ -62,6 +63,12 @@
         this before attempting backup</string>
     <string name="backup_receiver_custom_encryption_failed">Password/PIN based encryption not
         supported with broadcast backup</string>
+
+    <string name="backup_new_format_dialog_title">New encryption method</string>
+    <string name="backup_new_format_dialog_msg">Since version 0.6.3 of andOTP, a <b>new and improved
+        encryption method</b> is used for password-protected backups. The old backups can still be
+        imported, but it is <b>highly recommended to create new backups with the improved
+        encryption</b>.\n\nThis message will not be shown again.</string>
 
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Automatic backup failed</string>
