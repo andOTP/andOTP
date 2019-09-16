@@ -31,7 +31,7 @@
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:autofillHints="password" />
-
+    <requestFocus/>
     </android.support.design.widget.TextInputLayout>
 
     <Button
