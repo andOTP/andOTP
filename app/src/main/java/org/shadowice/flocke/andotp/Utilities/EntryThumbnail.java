@@ -126,6 +126,7 @@ public class EntryThumbnail {
         Kraken(R.drawable.thumb_kraken),
         Kucoin(R.drawable.thumb_kucoin),
         LastPass(R.drawable.thumb_lastpass),
+        LinkedIn(R.drawable.thumb_linkedin),
         Linode(R.drawable.thumb_linode),
         Liqui(R.drawable.thumb_liqui),
         LocalBitcoins(R.drawable.thumb_localbitcoins),
