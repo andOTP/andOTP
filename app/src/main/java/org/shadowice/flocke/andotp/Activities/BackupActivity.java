@@ -36,7 +36,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.LinearLayout;
@@ -60,8 +59,10 @@ import org.shadowice.flocke.andotp.Utilities.Tools;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.crypto.SecretKey;
 
@@ -120,6 +121,7 @@ public class BackupActivity extends BaseActivity {
         TextView cryptSetup = v.findViewById(R.id.msg_crypt_setup);
         LinearLayout backupCrypt = v.findViewById(R.id.button_backup_crypt);
         LinearLayout restoreCrypt = v.findViewById(R.id.button_restore_crypt);
+        LinearLayout restoreCryptOld = v.findViewById(R.id.button_restore_crypt_old);
 
         if (settings.getBackupPasswordEnc().isEmpty()) {
             cryptSetup.setVisibility(View.VISIBLE);
@@ -138,6 +140,13 @@ public class BackupActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 openFileWithPermissions(Constants.INTENT_BACKUP_OPEN_DOCUMENT_CRYPT, Constants.PERMISSIONS_BACKUP_READ_IMPORT_CRYPT);
+            }
+        });
+
+        restoreCryptOld.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFileWithPermissions(Constants.INTENT_BACKUP_OPEN_DOCUMENT_CRYPT_OLD, Constants.PERMISSIONS_BACKUP_READ_IMPORT_CRYPT_OLD);
             }
         });
 
@@ -231,6 +240,12 @@ public class BackupActivity extends BaseActivity {
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
+        } else if (requestCode == Constants.PERMISSIONS_BACKUP_READ_IMPORT_CRYPT_OLD) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                showOpenFileSelector(Constants.INTENT_BACKUP_OPEN_DOCUMENT_CRYPT_OLD);
+            } else {
+                Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
+            }
         } else if (requestCode == Constants.PERMISSIONS_BACKUP_WRITE_EXPORT_CRYPT) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 showSaveFileSelector(Constants.BACKUP_MIMETYPE_CRYPT, Constants.BackupType.ENCRYPTED, Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT);
@@ -269,7 +284,11 @@ public class BackupActivity extends BaseActivity {
             }
         } else if (requestCode == Constants.INTENT_BACKUP_OPEN_DOCUMENT_CRYPT && resultCode == RESULT_OK) {
             if (intent != null) {
-                doRestoreCrypt(intent.getData());
+                doRestoreCrypt(intent.getData(), false);
+            }
+        } else if (requestCode == Constants.INTENT_BACKUP_OPEN_DOCUMENT_CRYPT_OLD && resultCode == RESULT_OK) {
+            if (intent != null) {
+                doRestoreCrypt(intent.getData(), true);
             }
         } else if (requestCode == Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT && resultCode == RESULT_OK) {
             if (intent != null) {
@@ -300,7 +319,9 @@ public class BackupActivity extends BaseActivity {
             if (intentId == Constants.INTENT_BACKUP_OPEN_DOCUMENT_PLAIN)
                 doRestorePlain(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PLAIN));
             else if (intentId == Constants.INTENT_BACKUP_OPEN_DOCUMENT_CRYPT)
-                doRestoreCrypt(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_CRYPT));
+                doRestoreCrypt(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_CRYPT), false);
+            else if (intentId == Constants.INTENT_BACKUP_OPEN_DOCUMENT_CRYPT_OLD)
+                doRestoreCrypt(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_CRYPT), true);
             else if (intentId == Constants.INTENT_BACKUP_OPEN_DOCUMENT_PGP)
                 restoreEncryptedWithPGP(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PGP), null);
         }
@@ -415,34 +436,47 @@ public class BackupActivity extends BaseActivity {
 
     /* Encrypted backup functions */
 
-    private void doRestoreCrypt(final Uri uri) {
+    private void doRestoreCrypt(final Uri uri, final boolean old_format) {
         String password = settings.getBackupPasswordEnc();
 
         if (password.isEmpty()) {
             PasswordEntryDialog pwDialog = new PasswordEntryDialog(this, PasswordEntryDialog.Mode.ENTER, new PasswordEntryDialog.PasswordEnteredCallback() {
                 @Override
                 public void onPasswordEntered(String newPassword) {
-                    doRestoreCryptWithPassword(uri, newPassword);
+                    doRestoreCryptWithPassword(uri, newPassword, old_format);
                 }
             });
             pwDialog.show();
         } else {
-            doRestoreCryptWithPassword(uri, password);
+            doRestoreCryptWithPassword(uri, password, old_format);
         }
     }
 
-    private void doRestoreCryptWithPassword(Uri uri, String password) {
+    private void doRestoreCryptWithPassword(Uri uri, String password, boolean old_format) {
         if (Tools.isExternalStorageReadable()) {
             boolean success = true;
             String decryptedString = "";
 
             try {
-                byte[] encrypted = FileHelper.readFileToBytes(this, uri);
+                byte[] data = FileHelper.readFileToBytes(this, uri);
 
-                SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
-                byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
+                if (old_format) {
+                    SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
+                    byte[] decrypted = EncryptionHelper.decrypt(key, data);
 
-                decryptedString = new String(decrypted, StandardCharsets.UTF_8);
+                    decryptedString = new String(decrypted, StandardCharsets.UTF_8);
+                } else {
+                    byte[] iterBytes = Arrays.copyOfRange(data, 0, Constants.INT_LENGTH);
+                    byte[] salt = Arrays.copyOfRange(data, Constants.INT_LENGTH, Constants.INT_LENGTH + Constants.ENCRYPTION_IV_LENGTH);
+                    byte[] encrypted = Arrays.copyOfRange(data, Constants.INT_LENGTH + Constants.ENCRYPTION_IV_LENGTH, data.length);
+
+                    int iter = ByteBuffer.wrap(iterBytes).getInt();
+
+                    SecretKey key = EncryptionHelper.generateSymmetricKeyPBKDF2(password, iter, salt);
+
+                    byte[] decrypted = EncryptionHelper.decrypt(key, encrypted);
+                    decryptedString = new String(decrypted, StandardCharsets.UTF_8);
+                }
             } catch (Exception e) {
                 success = false;
                 e.printStackTrace();
@@ -482,10 +516,20 @@ public class BackupActivity extends BaseActivity {
             boolean success = true;
 
             try {
-                SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
+                int iter = EncryptionHelper.generateRandomIterations();
+                byte[] salt = EncryptionHelper.generateRandom(Constants.ENCRYPTION_IV_LENGTH);
+
+                SecretKey key = EncryptionHelper.generateSymmetricKeyPBKDF2(password, iter, salt);
                 byte[] encrypted = EncryptionHelper.encrypt(key, plain.getBytes(StandardCharsets.UTF_8));
 
-                FileHelper.writeBytesToFile(this, uri, encrypted);
+                byte[] iterBytes = ByteBuffer.allocate(Constants.INT_LENGTH).putInt(iter).array();
+                byte[] data = new byte[Constants.INT_LENGTH + Constants.ENCRYPTION_IV_LENGTH + encrypted.length];
+
+                System.arraycopy(iterBytes, 0, data, 0, Constants.INT_LENGTH);
+                System.arraycopy(salt, 0, data, Constants.INT_LENGTH, Constants.ENCRYPTION_IV_LENGTH);
+                System.arraycopy(encrypted, 0, data, Constants.INT_LENGTH + Constants.ENCRYPTION_IV_LENGTH, encrypted.length);
+
+                FileHelper.writeBytesToFile(this, uri, data);
             } catch (Exception e) {
                 e.printStackTrace();
                 success = false;
@@ -510,7 +554,6 @@ public class BackupActivity extends BaseActivity {
             decryptIntent = new Intent(OpenPgpApi.ACTION_DECRYPT_VERIFY);
 
         String input = FileHelper.readFileToString(this, uri);
-        Log.d("OpenPGP", input);
 
         InputStream is = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
         ByteArrayOutputStream os = new ByteArrayOutputStream();
