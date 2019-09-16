@@ -79,6 +79,7 @@ public class EntryThumbnail {
         Dashlane(R.drawable.thumb_dashlane),
         Debian(R.drawable.thumb_debian),
         Degiro(R.drawable.thumb_degiro),
+	      Diaspora(R.drawable.thumb_diaspora),
         Digidentity(R.drawable.thumb_digidentity),
         DigitalOcean(R.drawable.thumb_digital_ocean),
         Discord(R.drawable.thumb_discord),
