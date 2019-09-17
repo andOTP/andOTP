@@ -1,17 +1,17 @@
 <resources>
     <!-- Light application theme -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <item name="android:navigationBarColor">@android:color/white</item>
+        <item name="android:navigationBarColor">?android:attr/colorBackground</item>
         <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="AppTheme.Dark" parent="AppBaseTheme.Dark">
-        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="android:navigationBarColor">?android:attr/colorBackground</item>
         <item name="android:windowLightNavigationBar">false</item>
     </style>
 
     <style name="AppTheme.Black" parent="AppBaseTheme.Black">
-        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="android:navigationBarColor">?android:attr/colorBackground</item>
         <item name="android:windowLightNavigationBar">false</item>
     </style>
 </resources>
