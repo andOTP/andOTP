@@ -16,7 +16,7 @@
     </style>
 
     <!-- Light application theme -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -37,6 +37,8 @@
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource</item>
     </style>
 
+    <style name="AppTheme" parent="AppBaseTheme"/>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -51,7 +53,7 @@
     </style>
 
     <!-- Dark application theme. -->
-    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+    <style name="AppBaseTheme.Dark" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -72,6 +74,8 @@
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource_dark</item>
     </style>
 
+    <style name="AppTheme.Dark" parent = "AppBaseTheme.Dark"/>
+
     <style name="AppTheme.Dark.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -82,7 +86,7 @@
     </style>
 
     <!-- Black application theme. -->
-    <style name="AppTheme.Black" parent="Theme.AppCompat">
+    <style name="AppBaseTheme.Black" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -102,6 +106,8 @@
         <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource_dark</item>
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource_dark</item>
     </style>
+
+    <style name="AppTheme.Black" parent="AppBaseTheme.Black"/>
 
     <style name="CardViewStyle.Black">
         <item name="cardBackgroundColor">@android:color/black</item>
