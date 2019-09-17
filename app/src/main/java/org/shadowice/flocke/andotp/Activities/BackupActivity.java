@@ -50,10 +50,11 @@ import org.openintents.openpgp.util.OpenPgpServiceConnection;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Dialogs.PasswordEntryDialog;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
-import org.shadowice.flocke.andotp.Utilities.FileHelper;
+import org.shadowice.flocke.andotp.Utilities.StorageAccessHelper;
 import org.shadowice.flocke.andotp.Utilities.Tools;
 
 import java.io.ByteArrayInputStream;
@@ -238,7 +239,7 @@ public class BackupActivity extends BaseActivity {
 
     // Get the result from permission requests
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == Constants.PERMISSIONS_BACKUP_READ_IMPORT_PLAIN) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 showOpenFileSelector(Constants.INTENT_BACKUP_OPEN_DOCUMENT_PLAIN);
@@ -349,16 +350,16 @@ public class BackupActivity extends BaseActivity {
             Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType(mimeType);
-            intent.putExtra(Intent.EXTRA_TITLE, FileHelper.backupFilename(this, backupType));
+            intent.putExtra(Intent.EXTRA_TITLE, BackupHelper.backupFilename(this, backupType));
             startActivityForResult(intent, intentId);
         } else {
             if (Tools.mkdir(settings.getBackupDir())) {
                 if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN)
-                    doBackupPlain(Tools.buildUri(settings.getBackupDir(), FileHelper.backupFilename(this, Constants.BackupType.PLAIN_TEXT)));
+                    doBackupPlain(Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(this, Constants.BackupType.PLAIN_TEXT)));
                 else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT)
-                    doBackupCrypt(Tools.buildUri(settings.getBackupDir(), FileHelper.backupFilename(this, Constants.BackupType.ENCRYPTED)));
+                    doBackupCrypt(Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(this, Constants.BackupType.ENCRYPTED)));
                 else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP)
-                    backupEncryptedWithPGP(Tools.buildUri(settings.getBackupDir(), FileHelper.backupFilename(this, Constants.BackupType.OPEN_PGP)), null);
+                    backupEncryptedWithPGP(Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(this, Constants.BackupType.OPEN_PGP)), null);
             } else {
                 Toast.makeText(this, R.string.backup_toast_mkdir_failed, Toast.LENGTH_LONG).show();
             }
@@ -408,7 +409,7 @@ public class BackupActivity extends BaseActivity {
 
     private void doRestorePlain(Uri uri) {
         if (Tools.isExternalStorageReadable()) {
-            String content = FileHelper.readFileToString(this, uri);
+            String content = StorageAccessHelper.loadFileString(this, uri);
 
             restoreEntries(content);
         } else {
@@ -420,7 +421,7 @@ public class BackupActivity extends BaseActivity {
         if (Tools.isExternalStorageWritable()) {
             ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this, encryptionKey);
 
-            if (FileHelper.writeStringToFile(this, uri, DatabaseHelper.entriesToString(entries)))
+            if (StorageAccessHelper.saveFile(this, uri, DatabaseHelper.entriesToString(entries)))
                 Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(this, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
@@ -475,7 +476,7 @@ public class BackupActivity extends BaseActivity {
             String decryptedString = "";
 
             try {
-                byte[] data = FileHelper.readFileToBytes(this, uri);
+                byte[] data = StorageAccessHelper.loadFile(this, uri);
 
                 if (old_format) {
                     SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
@@ -546,7 +547,7 @@ public class BackupActivity extends BaseActivity {
                 System.arraycopy(salt, 0, data, Constants.INT_LENGTH, Constants.ENCRYPTION_IV_LENGTH);
                 System.arraycopy(encrypted, 0, data, Constants.INT_LENGTH + Constants.ENCRYPTION_IV_LENGTH, encrypted.length);
 
-                FileHelper.writeBytesToFile(this, uri, data);
+                StorageAccessHelper.saveFile(this, uri, data);
             } catch (Exception e) {
                 e.printStackTrace();
                 success = false;
@@ -570,7 +571,7 @@ public class BackupActivity extends BaseActivity {
         if (decryptIntent == null)
             decryptIntent = new Intent(OpenPgpApi.ACTION_DECRYPT_VERIFY);
 
-        String input = FileHelper.readFileToString(this, uri);
+        String input = StorageAccessHelper.loadFileString(this, uri);
 
         InputStream is = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
         ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -581,7 +582,7 @@ public class BackupActivity extends BaseActivity {
 
     private void doBackupEncrypted(Uri uri, String data) {
         if (Tools.isExternalStorageWritable()) {
-            boolean success = FileHelper.writeStringToFile(this, uri, data);
+            boolean success = StorageAccessHelper.saveFile(this, uri, data);
 
             if (success)
                 Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
