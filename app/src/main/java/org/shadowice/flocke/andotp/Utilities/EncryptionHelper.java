@@ -89,6 +89,14 @@ public class EncryptionHelper {
         return new SecretKeySpec(data, 0, data.length, "AES");
     }
 
+    public static SecretKey generateSymmetricKeyPBKDF2(String password, int iter, byte[] salt)
+        throws NoSuchAlgorithmException, InvalidKeySpecException {
+        SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+        KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, iter, Constants.PBKDF2_LENGTH);
+
+        return secretKeyFactory.generateSecret(keySpec);
+    }
+
     public static SecretKey generateSymmetricKeyFromPassword(String password)
             throws NoSuchAlgorithmException {
         MessageDigest sha = MessageDigest.getInstance("SHA-256");

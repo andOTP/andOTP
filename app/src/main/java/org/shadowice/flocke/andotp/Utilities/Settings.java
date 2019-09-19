@@ -493,6 +493,14 @@ public class Settings {
         setBoolean(R.string.settings_key_last_used_dialog_shown, value);
     }
 
+    public boolean getNewBackupFormatDialogShown() {
+        return getBoolean(R.string.settings_key_new_backup_format_dialog_shown, false);
+    }
+
+    public void setNewBackupFormatDialogShown(boolean value) {
+        setBoolean(R.string.settings_key_new_backup_format_dialog_shown, value);
+    }
+
     public boolean getAndroidBackupServiceEnabled() {
         return getBoolean(R.string.settings_key_enable_android_backup_service, true);
     }

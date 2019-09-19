@@ -58,24 +58,26 @@ public class Constants {
     public final static int INTENT_MAIN_BACKUP                  = 102;
     public final static int INTENT_MAIN_INTRO                   = 103;
 
-    public final static int INTENT_BACKUP_OPEN_DOCUMENT_PLAIN   = 200;
-    public final static int INTENT_BACKUP_SAVE_DOCUMENT_PLAIN   = 201;
-    public final static int INTENT_BACKUP_OPEN_DOCUMENT_CRYPT   = 202;
-    public final static int INTENT_BACKUP_SAVE_DOCUMENT_CRYPT   = 203;
-    public final static int INTENT_BACKUP_OPEN_DOCUMENT_PGP     = 204;
-    public final static int INTENT_BACKUP_SAVE_DOCUMENT_PGP     = 205;
-    public final static int INTENT_BACKUP_ENCRYPT_PGP           = 206;
-    public final static int INTENT_BACKUP_DECRYPT_PGP           = 207;
+    public final static int INTENT_BACKUP_OPEN_DOCUMENT_PLAIN       = 200;
+    public final static int INTENT_BACKUP_SAVE_DOCUMENT_PLAIN       = 201;
+    public final static int INTENT_BACKUP_OPEN_DOCUMENT_CRYPT       = 202;
+    public final static int INTENT_BACKUP_SAVE_DOCUMENT_CRYPT       = 203;
+    public final static int INTENT_BACKUP_OPEN_DOCUMENT_PGP         = 204;
+    public final static int INTENT_BACKUP_SAVE_DOCUMENT_PGP         = 205;
+    public final static int INTENT_BACKUP_ENCRYPT_PGP               = 206;
+    public final static int INTENT_BACKUP_DECRYPT_PGP               = 207;
+    public final static int INTENT_BACKUP_OPEN_DOCUMENT_CRYPT_OLD   = 208;
 
     public static final int INTENT_SETTINGS_AUTHENTICATE        = 300;
 
     // Permission requests (Format: A1x with A = parent Activity, x = number of the request)
-    public final static int PERMISSIONS_BACKUP_READ_IMPORT_PLAIN    = 210;
-    public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_PLAIN   = 211;
-    public final static int PERMISSIONS_BACKUP_READ_IMPORT_CRYPT    = 212;
-    public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_CRYPT   = 213;
-    public final static int PERMISSIONS_BACKUP_READ_IMPORT_PGP      = 214;
-    public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_PGP     = 215;
+    public final static int PERMISSIONS_BACKUP_READ_IMPORT_PLAIN        = 210;
+    public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_PLAIN       = 211;
+    public final static int PERMISSIONS_BACKUP_READ_IMPORT_CRYPT        = 212;
+    public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_CRYPT       = 213;
+    public final static int PERMISSIONS_BACKUP_READ_IMPORT_PGP          = 214;
+    public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_PGP         = 215;
+    public final static int PERMISSIONS_BACKUP_READ_IMPORT_CRYPT_OLD    = 216;
 
     // Intent extras
     public final static String EXTRA_AUTH_PASSWORD_KEY              = "password_key";
@@ -92,7 +94,9 @@ public class Constants {
     final static String ALGORITHM_ASYMMETRIC    = "RSA/ECB/PKCS1Padding";
 
     final static int ENCRYPTION_KEY_LENGTH  = 16;           // 128-bit encryption key (KeyStore-mode)
-    final static int ENCRYPTION_IV_LENGTH   = 12;
+    public final static int ENCRYPTION_IV_LENGTH   = 12;
+
+    public final static int INT_LENGTH = 4;
 
     final static int PBKDF2_MIN_ITERATIONS      = 1000;
     final static int PBKDF2_MAX_ITERATIONS      = 5000;

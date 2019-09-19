@@ -4,7 +4,7 @@
     <!-- Buttons -->
     <string name="button_cancel">取消</string>
     <string name="button_enter_details">鍵入詳細資訊</string>
-    <string name="button_scan_qr">掃描 QR-Code</string>
+    <string name="button_scan_qr">掃描 QR code</string>
     <string name="button_save">儲存</string>
     <string name="button_new_tag">新標籤</string>
     <string name="button_settings">設定</string>

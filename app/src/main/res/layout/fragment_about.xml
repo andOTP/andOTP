@@ -275,8 +275,7 @@
                             android:background="?android:attr/selectableItemBackground"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textStyle="bold"
-                            android:textColor="?attr/colorPaypal"
-                            android:text="@string/about_label_donate_paypal" />
+                            android:text="@string/about_label_donate" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -333,8 +332,7 @@
                             android:background="?android:attr/selectableItemBackground"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textStyle="bold"
-                            android:textColor="@color/bitcoin"
-                            android:text="@string/about_label_donate_bitcoin" />
+                            android:text="@string/about_label_donate" />
                     </LinearLayout>
                 </LinearLayout>
 

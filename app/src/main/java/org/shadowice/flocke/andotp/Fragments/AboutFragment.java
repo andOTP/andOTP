@@ -31,7 +31,7 @@ public class AboutFragment extends Fragment {
     private static final String MIT_URI = GITHUB_URI + "/blob/master/LICENSE.txt";
 
     private static final String AUTHOR1_GITHUB = "https://github.com/flocke";
-    private static final String AUTHOR1_EXTRA = "https://paypal.me/flocke000";
+    private static final String AUTHOR1_EXTRA = "https://flocke.shadowice.org/donate.html";
 
     private static final String AUTHOR2_GITHUB = "https://github.com/richyhbm";
     private static final String AUTHOR2_EXTRA = "https://richyhbm.co.uk/donate";

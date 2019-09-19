@@ -98,6 +98,7 @@ public class MainActivity extends BaseActivity
     private ListView tagsDrawerListView;
     private TagsAdapter tagsDrawerAdapter;
     private ActionBarDrawerToggle tagsToggle;
+    private String filterString;
 
     // QR code scanning
     private void scanQRCode(){
@@ -284,6 +285,10 @@ public class MainActivity extends BaseActivity
                 ManualEntryDialog.show(MainActivity.this, settings, adapter);
             }
         }
+
+        if (savedInstanceState != null){
+            setFilterString(savedInstanceState.getString("filterString", ""));
+        }
     }
 
     @Override
@@ -320,6 +325,11 @@ public class MainActivity extends BaseActivity
             }
         }
 
+        if (filterString != null) {
+            // ensure the current filter string is applied after a resume
+            setFilterString(this.filterString);
+        }
+
         startUpdater();
     }
 
@@ -327,6 +337,12 @@ public class MainActivity extends BaseActivity
     public void onPause() {
         super.onPause();
         stopUpdater();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("filterString", filterString);
     }
 
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
@@ -455,11 +471,7 @@ public class MainActivity extends BaseActivity
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (newText.isEmpty())
-                    adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
-                else
-                    adapter.getFilter().filter(newText);
-
+                setFilterString(newText);
                 return false;
             }
         });
@@ -489,6 +501,15 @@ public class MainActivity extends BaseActivity
         });
 
         return true;
+    }
+
+    private void setFilterString(String newText) {
+        if (newText.isEmpty())
+            adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+        else
+            adapter.getFilter().filter(newText);
+
+        this.filterString = newText;
     }
 
     @Override
@@ -592,10 +613,13 @@ public class MainActivity extends BaseActivity
                 settings.setAllTagsToggle(checkedTextView.isChecked());
 
                 for(int i = 0; i < tagsDrawerListView.getChildCount(); i++) {
-                    CheckedTextView childCheckBox = (CheckedTextView)tagsDrawerListView.getChildAt(i);
+                    CheckedTextView childCheckBox = (CheckedTextView) tagsDrawerListView.getChildAt(i);
                     childCheckBox.setChecked(checkedTextView.isChecked());
-                    tagsDrawerAdapter.setTagState(childCheckBox.getText().toString(), childCheckBox.isChecked());
-                    settings.setTagToggle(childCheckBox.getText().toString(), childCheckBox.isChecked());
+                }
+
+                for (String tag: tagsDrawerAdapter.getTags()) {
+                    tagsDrawerAdapter.setTagState(tag, checkedTextView.isChecked());
+                    settings.setTagToggle(tag, checkedTextView.isChecked());
                 }
 
                 if(checkedTextView.isChecked()) {
