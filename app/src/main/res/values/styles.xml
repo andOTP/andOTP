@@ -5,7 +5,6 @@
     <attr name="dialogTheme" format="reference" />
 
     <attr name="colorGithub" format="reference" />
-    <attr name="colorPaypal" format="reference" />
     <attr name="thumbnailBackground" format="reference" />
 
     <!-- General styles -->
@@ -24,7 +23,6 @@
         <item name="windowBackground">?android:attr/colorBackground</item>
 
         <item name="colorGithub">@color/github_dark</item>
-        <item name="colorPaypal">@color/paypal_dark</item>
         <item name="thumbnailBackground">@android:color/transparent</item>
 
         <item name="cardStyle">@style/CardViewStyle</item>
@@ -62,7 +60,6 @@
         <item name="thumbnailBackground">@color/dark_thumbnail_background</item>
 
         <item name="colorGithub">@color/github_light</item>
-        <item name="colorPaypal">@color/paypal_light</item>
 
         <item name="cardStyle">@style/CardViewStyle</item>
         <item name="dialogTheme">@style/DialogTheme.Dark</item>
@@ -95,7 +92,6 @@
         <item name="thumbnailBackground">@color/dark_thumbnail_background</item>
 
         <item name="colorGithub">@color/github_light</item>
-        <item name="colorPaypal">@color/paypal_light</item>
 
         <item name="cardStyle">@style/CardViewStyle.Black</item>
         <item name="dialogTheme">@style/DialogTheme.Dark</item>
