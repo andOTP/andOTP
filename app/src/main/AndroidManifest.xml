@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="GoogleAppIndexingWarning"
     android:installLocation="auto"
     package="org.shadowice.flocke.andotp">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -52,11 +56,6 @@
             android:name=".Activities.SettingsActivity"
             android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.journeyapps.barcodescanner.CaptureActivity"
-            android:hardwareAccelerated="true"
-            android:screenOrientation="fullSensor"
-	    tools:replace="screenOrientation" />
         <activity android:name=".Activities.SecureCaptureActivity" />
         <activity
             android:name=".Activities.PanicResponderActivity"
