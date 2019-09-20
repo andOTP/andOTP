@@ -330,8 +330,20 @@ public class Settings {
         }
     }
 
-    public String getTheme() {
-        return getString(R.string.settings_key_theme, R.string.settings_default_theme);
+    public int getTheme() {
+        String themeName = getString(R.string.settings_key_theme, R.string.settings_default_theme);
+
+        int theme = R.style.AppTheme_NoActionBar;
+
+        if (themeName.equals("light")) {
+            theme = R.style.AppTheme_NoActionBar;
+        } else if (themeName.equals("dark")) {
+            theme = R.style.AppTheme_Dark_NoActionBar;
+        } else if (themeName.equals("black")) {
+            theme = R.style.AppTheme_Black_NoActionBar;
+        }
+
+        return theme;
     }
 
     public int getLabelSize() {
