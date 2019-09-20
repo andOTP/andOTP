@@ -105,6 +105,7 @@ public class MainActivity extends BaseActivity
         new IntentIntegrator(MainActivity.this)
                 .setOrientationLocked(false)
                 .setBeepEnabled(false)
+                .setCaptureActivity(SecureCaptureActivity.class)
                 .initiateScan();
     }
 

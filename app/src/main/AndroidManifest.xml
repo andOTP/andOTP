@@ -56,7 +56,8 @@
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:hardwareAccelerated="true"
             android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation"/>
+	    tools:replace="screenOrientation" />
+        <activity android:name=".Activities.SecureCaptureActivity" />
         <activity
             android:name=".Activities.PanicResponderActivity"
             android:launchMode="singleInstance"
