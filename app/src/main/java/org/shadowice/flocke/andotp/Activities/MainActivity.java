@@ -31,6 +31,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
@@ -99,6 +100,8 @@ public class MainActivity extends BaseActivity
     private TagsAdapter tagsDrawerAdapter;
     private ActionBarDrawerToggle tagsToggle;
     private String filterString;
+
+    private CountDownTimer countDownTimer;
 
     // QR code scanning
     private void scanQRCode(){
@@ -323,6 +326,8 @@ public class MainActivity extends BaseActivity
                     populateAdapter();
                 }
             }
+
+            if(setCountDownTimerNow()) countDownTimer.start();
         }
 
         if (filterString != null) {
@@ -337,6 +342,7 @@ public class MainActivity extends BaseActivity
     public void onPause() {
         super.onPause();
         stopUpdater();
+        countDownTimer.cancel();
     }
 
     @Override
@@ -709,5 +715,31 @@ public class MainActivity extends BaseActivity
         }
         tagsDrawerAdapter.setTags(tagsHashMap);
         adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+    }
+
+    @Override
+    public void onUserInteraction(){
+        super.onUserInteraction();
+
+        // Refresh Blackout Timer
+        if(countDownTimer != null) countDownTimer.cancel();
+        if(setCountDownTimerNow()) countDownTimer.start();
+    }
+
+    private boolean setCountDownTimerNow() {
+        int secondsToBlackout = 1000 * settings.getAuthInactivityDelay();
+        if(settings.getAuthMethod() == AuthMethod.NONE || !settings.getAuthInactivity() || secondsToBlackout == 0 ) return false;
+        countDownTimer = new CountDownTimer(secondsToBlackout, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+            }
+
+            @Override
+            public void onFinish() {
+                authenticate(R.string.auth_msg_authenticate);
+                this.cancel();
+            }
+        };
+        return true;
     }
 }

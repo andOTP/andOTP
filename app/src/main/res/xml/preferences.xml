@@ -48,6 +48,21 @@
             android:summary="@string/settings_desc_relock_screen_off"
             android:defaultValue="true" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_auth_inactivity"
+            android:title="@string/settings_title_auth_inactivity"
+            android:summary="@string/settings_desc_auth_inactivity"
+            android:defaultValue="false" />
+
+        <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
+        android:key="@string/settings_key_auth_inactivity_delay"
+        android:title="@string/settings_title_auth_inactivity_delay"
+        android:dialogMessage="@string/settings_desc_auth_inactivity_delay"
+        android:defaultValue="@integer/settings_default_auth_inactivity_delay"
+        android:dependency="@string/settings_key_auth_inactivity"
+        app:vnt_minValue="@integer/settings_auth_min_inactivity_delay"
+        app:vnt_maxValue="@integer/settings_auth_max_inactivity_delay" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
