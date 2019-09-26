@@ -34,6 +34,7 @@ import android.os.Environment;
 
 import java.io.File;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -95,6 +96,14 @@ public class Tools {
         } else {
             return Resources.getSystem().getConfiguration().locale;
         }
+    }
+
+    public static String formatTokenString(int token, int digits) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.ENGLISH);
+        numberFormat.setMinimumIntegerDigits(digits);
+        numberFormat.setGroupingUsed(false);
+
+        return numberFormat.format(token);
     }
 
     public static String formatToken(String s, int chunkSize) {

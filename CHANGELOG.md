@@ -1,6 +1,21 @@
 # Changelog
 
+#### v0.6.3
+
+ * Security: Improved password derivation for the password protected backups
+ * New feature: Prevent screencapture in the Authentication and QR scanner screen (Issue #378, PR #386 by @schwedenmut)
+ * New feature: Color navbar according to the theme (Issue #284, PR #371 by @HarryJohnso)
+ * Bug fix: Fix "all tags" only selecting visible tags (Issue #333, PR #350 by @RichyHBM)
+ * Bug fix: Focus the password/PIN input field on start (Issue #356, PR #357 by @schwedenmut)
+ * Bug fix: Fix spelling of "QR code" (PR #368 by @yegortimoshenko)
+ * Bug fix: Always use arabic numerals for the tokens (Issue #359)
+ * Bug fix: Refactor storage access code to allow importing and exporting from cloud storage directly
+ * Bug fix: Hardcode the black background color to avoid strange behaviour on some custom ROMs
+ * Misc: Update donation links (PR #351)
+ * Thumbnails: Lots of new thumbnails
+
 #### v0.6.2
+
  * Bug fix: Proper handling of RTL layouts by forcing LTR for the tokens (PR #280 by @ahangarha)
  * Internal: Image compression (thanks to @Peppernrino)
  * Thumbnail: Add a LOT of new thumbnails (thanks to everybody that contributed)

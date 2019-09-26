@@ -67,6 +67,10 @@ public class AuthenticateActivity extends ThemedActivity
         super.onCreate(savedInstanceState);
 
         setTitle(R.string.auth_activity_title);
+
+        if (! settings.getScreenshotsEnabled())
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+
         setContentView(R.layout.activity_container);
 
         Toolbar toolbar = findViewById(R.id.container_toolbar);

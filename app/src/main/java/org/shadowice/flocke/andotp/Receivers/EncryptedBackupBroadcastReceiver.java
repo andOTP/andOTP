@@ -29,15 +29,17 @@ import android.net.Uri;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
-import org.shadowice.flocke.andotp.Utilities.FileHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.NotificationHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
+import org.shadowice.flocke.andotp.Utilities.StorageAccessHelper;
 import org.shadowice.flocke.andotp.Utilities.Tools;
 
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
@@ -54,7 +56,7 @@ public class EncryptedBackupBroadcastReceiver extends BackupBroadcastReceiver {
             if (!canSaveBackup(context))
                 return;
 
-            Uri savePath = Tools.buildUri(settings.getBackupDir(), FileHelper.backupFilename(context, Constants.BackupType.ENCRYPTED));
+            Uri savePath = Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(context, Constants.BackupType.ENCRYPTED));
 
             String password = settings.getBackupPasswordEnc();
 
@@ -77,9 +79,21 @@ public class EncryptedBackupBroadcastReceiver extends BackupBroadcastReceiver {
                 String plain = DatabaseHelper.entriesToString(entries);
 
                 try {
-                    SecretKey key = EncryptionHelper.generateSymmetricKeyFromPassword(password);
+                    int iter = EncryptionHelper.generateRandomIterations();
+                    byte[] salt = EncryptionHelper.generateRandom(Constants.ENCRYPTION_IV_LENGTH);
+
+                    SecretKey key = EncryptionHelper.generateSymmetricKeyPBKDF2(password, iter, salt);
                     byte[] encrypted = EncryptionHelper.encrypt(key, plain.getBytes(StandardCharsets.UTF_8));
-                    FileHelper.writeBytesToFile(context, savePath, encrypted);
+
+                    byte[] iterBytes = ByteBuffer.allocate(Constants.INT_LENGTH).putInt(iter).array();
+                    byte[] data = new byte[Constants.INT_LENGTH + Constants.ENCRYPTION_IV_LENGTH + encrypted.length];
+
+                    System.arraycopy(iterBytes, 0, data, 0, Constants.INT_LENGTH);
+                    System.arraycopy(salt, 0, data, Constants.INT_LENGTH, Constants.ENCRYPTION_IV_LENGTH);
+                    System.arraycopy(encrypted, 0, data, Constants.INT_LENGTH + Constants.ENCRYPTION_IV_LENGTH, encrypted.length);
+
+                    StorageAccessHelper.saveFile(context, savePath, data);
+
                     NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_SUCCESS, R.string.backup_receiver_title_backup_success, savePath.getPath());
                 } catch (Exception e) {
                     e.printStackTrace();
