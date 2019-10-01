@@ -88,6 +88,7 @@ public class Entry {
         this.label = label;
         this.algorithm = algorithm;
         this.tags = tags;
+        setThumbnailFromIssuer(issuer);
     }
 
     public Entry(OTPType type, String secret, long counter, int digits, String issuer, String label, TokenCalculator.HashAlgorithm algorithm, List<String> tags) {
@@ -99,6 +100,7 @@ public class Entry {
         this.label = label;
         this.algorithm = algorithm;
         this.tags = tags;
+        setThumbnailFromIssuer(issuer);
     }
 
     public Entry(String contents) throws Exception {
@@ -158,10 +160,14 @@ public class Entry {
             this.algorithm = TokenCalculator.DEFAULT_ALGORITHM;
         }
 
-        if(tags != null) {
+        if (tags != null) {
             this.tags = tags;
         } else {
             this.tags = new ArrayList<>();
+        }
+
+        if (issuer != null) {
+            setThumbnailFromIssuer(issuer);
         }
     }
 
@@ -387,6 +393,14 @@ public class Entry {
             return true;
         } else {
             return false;
+        }
+    }
+
+    private void setThumbnailFromIssuer(String issuer) {
+        try {
+            this.thumbnail = EntryThumbnail.EntryThumbnails.valueOfIgnoreCase(issuer);
+        } catch(Exception e) {
+            this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
         }
     }
 
