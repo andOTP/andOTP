@@ -329,12 +329,20 @@ public class MainActivity extends BaseActivity
             // ensure the current filter string is applied after a resume
             setFilterString(this.filterString);
         }
-
+        if(settings.getAuthMethod() == AuthMethod.DEVICE)
+            findViewById(R.id.cardList).setVisibility(View.VISIBLE);
         startUpdater();
     }
 
     @Override
     public void onPause() {
+        if(settings.getAuthMethod() == AuthMethod.DEVICE)
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    findViewById(R.id.cardList).setVisibility(View.INVISIBLE);
+                }
+            });
         super.onPause();
         stopUpdater();
     }
