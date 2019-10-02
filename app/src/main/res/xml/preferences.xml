@@ -105,6 +105,12 @@
             android:entryValues="@array/settings_values_tag_functionality"
             android:defaultValue="@string/settings_default_tag_functionality" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_minimize_on_copy"
+            android:title="@string/settings_title_minimize_on_copy"
+            android:summary="@string/settings_desc_minimize_on_copy"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

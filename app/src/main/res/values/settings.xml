@@ -22,9 +22,11 @@
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size_sp</string>
     <string name="settings_key_label_scroll" translatable="false">pref_label_scroll</string>
+    <string name="settings_key_minimize_on_copy" translatable="false">pref_minimize_on_copy</string>
     <string name="settings_key_thumbnail_size" translatable="false">pref_thumbnail_size</string>
     <string name="settings_key_split_group_size" translatable="false">pref_split_group_size</string>
     <string name="settings_key_tag_functionality" translatable="false">pref_tag_functionality</string>
+
 
     <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
