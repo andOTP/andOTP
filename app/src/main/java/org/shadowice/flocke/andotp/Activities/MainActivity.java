@@ -277,17 +277,32 @@ public class MainActivity extends BaseActivity
 
         setupDrawer();
 
+        checkIntent();
+
+        if (savedInstanceState != null){
+            setFilterString(savedInstanceState.getString("filterString", ""));
+        }
+    }
+
+    private void checkIntent() {
         Intent callingIntent = getIntent();
         if (callingIntent != null && callingIntent.getAction() != null) {
             if (callingIntent.getAction().equals(INTENT_SCAN_QR)) {
                 scanQRCode();
             } else if (callingIntent.getAction().equals(INTENT_ENTER_DETAILS)) {
                 ManualEntryDialog.show(MainActivity.this, settings, adapter);
+            } else if (callingIntent.getAction().equals(Intent.ACTION_VIEW) && !requireAuthentication) {
+                try {
+                    Entry entry = new Entry(getIntent().getDataString());
+                    entry.updateOTP();
+                    entry.setLastUsed(System.currentTimeMillis());
+                    adapter.addEntry(entry);
+                    adapter.saveEntries();
+                    Toast.makeText(this, R.string.toast_intent_creation_succeeded, Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(this, R.string.toast_intent_creation_failed, Toast.LENGTH_LONG).show();
+                }
             }
-        }
-
-        if (savedInstanceState != null){
-            setFilterString(savedInstanceState.getString("filterString", ""));
         }
     }
 
@@ -321,6 +336,7 @@ public class MainActivity extends BaseActivity
                     updateEncryption(null);
                 } else {
                     populateAdapter();
+                    checkIntent();
                 }
             }
         }
