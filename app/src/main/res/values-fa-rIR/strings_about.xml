@@ -18,8 +18,7 @@
     <string name="about_label_original_author">سازنده برنامه اصلی</string>
     <string name="about_label_original_app">برنامه اصلی</string>
     <string name="about_label_website">وب‌سایت</string>
-    <string name="about_label_donate_paypal">حمایت مالی (PayPal)</string>
-    <string name="about_label_donate_bitcoin">حمایت مالی (Bitcoin)</string>
+    <string name="about_label_donate">حمایت مالی</string>
     <string name="about_label_contributors">مشارکت‌کنندگان</string>
     <string name="about_label_translators">مترجمان</string>
     <!-- Thumbnail disclaimer -->

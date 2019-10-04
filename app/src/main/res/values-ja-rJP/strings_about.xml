@@ -18,8 +18,7 @@
     <string name="about_label_original_author">元のアプリの作者</string>
     <string name="about_label_original_app">元のアプリ</string>
     <string name="about_label_website">ウェブサイト</string>
-    <string name="about_label_donate_paypal">寄付 (PayPal)</string>
-    <string name="about_label_donate_bitcoin">寄付 (Bitcoin)</string>
+    <string name="about_label_donate">寄付</string>
     <string name="about_label_contributors">貢献者</string>
     <string name="about_label_translators">翻訳者</string>
     <!-- Thumbnail disclaimer -->

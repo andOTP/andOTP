@@ -10,6 +10,7 @@
     <string name="backup_title_export_openpgp">Резервная копия (OpenPGP)</string>
     <string name="backup_title_import_plain">Восстановление (из текстового файла)</string>
     <string name="backup_title_import_crypt">Восстановление (зашифрованной копии)</string>
+    <string name="backup_title_import_crypt_old">Восстановление (зашифрованное, старое шифрование)</string>
     <string name="backup_title_import_openpgp">Восстановление (OpenPGP)</string>
     <string name="backup_title_replace">Заменить существующие записи</string>
     <string name="backup_desc_export_plain">Резервное копирование всех учетных записей в текстовый файл JSON</string>
@@ -17,6 +18,8 @@
     <string name="backup_desc_export_openpgp">Резервное копирование всех учетных записей в зашифрованный OpenPGP файл JSON</string>
     <string name="backup_desc_import_plain">Восстановление учетных записей из текстового файла JSON</string>
     <string name="backup_desc_import_crypt">Восстановление учетных записей из защищённого паролем файла JSON</string>
+    <string name="backup_desc_import_crypt_old">Восстановление учетных записей из защищенного паролем JSON-файла,
+        созданного в версии <b>andOTP ниже 0.6.3</b></string>
     <string name="backup_desc_import_openpgp">Восстановление учетных записей из зашифрованного OpenPGP файла JSON</string>
     <string name="backup_desc_crypt_setup">Не удалось загрузить пароль для резервной копии из <b>Настроек</b>, 
         это означает, что пароль не был установлен или что-то пошло не так. При создании или импорте 
@@ -45,6 +48,11 @@
         сделайте это перед началом резервного копирования</string>
     <string name="backup_receiver_custom_encryption_failed">Пароль/PIN-код на основе шифрования не 
         поддерживается со сторонними приложениями для создания резервных копий</string>
+    <string name="backup_new_format_dialog_title">Новый метод шифрования</string>
+    <string name="backup_new_format_dialog_msg">Начиная с версии andOTP 0.6.3  &lt;b&gt;используется новый
+        и улучшенный метод&lt;/b&gt; шифрования для защищенных паролем резервных копий. Старые резервные копии могут быть
+        импортированы, однако настоятельно рекомендуется создать новые резервные копии с улучшенным 
+        шифрованием&lt;/b&gt;.\n\nЭто сообщение не будет показано снова.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Автоматическое резервное копирование не удалось</string>
     <string name="notification_channel_name_backup_success">Автоматическое резервное копирование успешно завершено</string>
