@@ -11,8 +11,10 @@
  * Bug fix: Always use arabic numerals for the tokens (Issue #359)
  * Bug fix: Refactor storage access code to allow importing and exporting from cloud storage directly
  * Bug fix: Hardcode the black background color to avoid strange behaviour on some custom ROMs
+ * Bug fix: Force English locales for saving AuthMethod
  * Misc: Update donation links (PR #351)
  * Thumbnails: Lots of new thumbnails
+ * Translations: Hungarian
 
 #### v0.6.2
 
