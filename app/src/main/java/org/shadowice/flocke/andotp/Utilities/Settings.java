@@ -216,12 +216,12 @@ public class Settings {
     }
 
     public AuthMethod getAuthMethod() {
-        String authString = getString(R.string.settings_key_auth, CredentialsPreference.DEFAULT_VALUE.name().toLowerCase());
-        return AuthMethod.valueOf(authString.toUpperCase());
+        String authString = getString(R.string.settings_key_auth, CredentialsPreference.DEFAULT_VALUE.name().toLowerCase(Locale.ENGLISH));
+        return AuthMethod.valueOf(authString.toUpperCase(Locale.ENGLISH));
     }
 
     public void setAuthMethod(AuthMethod authMethod) {
-        setString(R.string.settings_key_auth, authMethod.name().toLowerCase());
+        setString(R.string.settings_key_auth, authMethod.name().toLowerCase(Locale.ENGLISH));
     }
 
     public void removeAuthPasswordHash() {
