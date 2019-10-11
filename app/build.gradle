@@ -29,6 +29,15 @@ android {
     dataBinding {
         enabled = true
     }
+    flavorDimensions 'market'
+    productFlavors {
+        fdroid {
+            dimension = 'market'
+        }
+        play {
+            dimension = 'market'
+        }
+    }
 }
 
 dependencies {

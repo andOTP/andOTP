@@ -249,6 +249,7 @@
                         android:src="@mipmap/ic_author_flocke" />
 
                     <LinearLayout
+                        android:id="@+id/aboutLayoutAuthor1Content"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -266,16 +267,6 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="@string/about_label_main_developer"/>
-
-                        <TextView
-                            android:id="@+id/about_author1_extra"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/activity_margin_small"
-                            android:background="?android:attr/selectableItemBackground"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textStyle="bold"
-                            android:text="@string/about_label_donate" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -306,6 +297,7 @@
                         app:srcCompat="@drawable/ic_account_circle_gray" />
 
                     <LinearLayout
+                        android:id="@+id/aboutLayoutAuthor2Content"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -323,16 +315,6 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="@string/about_label_developer"/>
-
-                        <TextView
-                            android:id="@+id/about_author2_extra"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/activity_margin_small"
-                            android:background="?android:attr/selectableItemBackground"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textStyle="bold"
-                            android:text="@string/about_label_donate" />
                     </LinearLayout>
                 </LinearLayout>
 
