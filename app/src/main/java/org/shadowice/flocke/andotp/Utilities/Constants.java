@@ -41,7 +41,7 @@ public class Constants {
     }
 
     public enum BackupType {
-        PLAIN_TEXT, ENCRYPTED, OPEN_PGP
+        PLAIN_TEXT, ENCRYPTED, OPEN_PGP, UNAVAILABLE
     }
 
     public enum TagFunctionality {

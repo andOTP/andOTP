@@ -27,6 +27,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.PopupMenu;
@@ -50,8 +51,10 @@ import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
@@ -133,6 +136,21 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
     public void saveEntries() {
         DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+
+        Constants.BackupType backupType = BackupHelper.autoBackupType(context);
+        if(backupType == Constants.BackupType.ENCRYPTED){
+            Uri backupFilename = Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(context, Constants.BackupType.ENCRYPTED));
+
+            byte[] keyMaterial = encryptionKey.getEncoded();
+            SecretKey encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
+
+            boolean success = BackupHelper.backupToFile(context, backupFilename, settings.getBackupPasswordEnc(), encryptionKey);
+            if (success) {
+                Toast.makeText(context, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(context, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     public void loadEntries() {
