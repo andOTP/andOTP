@@ -38,6 +38,11 @@ android {
             dimension = 'market'
         }
     }
+    sourceSets {
+        main {
+            res.srcDirs += 'src/main/res_supertinyicons'
+        }
+    }
 }
 
 dependencies {
@@ -60,3 +65,24 @@ dependencies {
     implementation "com.leinardi.android:speed-dial:2.0.1"
     implementation "com.mikepenz:aboutlibraries:6.1.1"
 }
+
+task updateIcons {
+    description = "Updates the built in icons from SuperTinyIcons repo"
+    doLast {
+        def resourcesFolder = rootProject.projectDir.toString() + "/app/src/main/res_supertinyicons/drawable"
+
+        delete resourcesFolder
+        copy {
+            from rootProject.projectDir.toString() + "/SuperTinyIcons/images/android-vector-drawable"
+            into resourcesFolder
+            include "*.xml"
+            exclude "bitbucket.xml", "threema.xml" //These files currently have invalid attributes
+            rename { it.replace("-", "_") }
+        }
+
+        def files = fileTree(resourcesFolder).filter { it.isFile() }.files.name.collect { it.replace(".xml", "") }
+        println files
+    }
+}
+
+preBuild.dependsOn updateIcons

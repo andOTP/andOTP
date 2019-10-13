@@ -9,3 +9,4 @@ crowdin.properties
 .DS_Store
 /build
 /captures
+app/src/main/res_supertinyicons/
