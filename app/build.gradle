@@ -76,7 +76,9 @@ task updateIcons {
             from rootProject.projectDir.toString() + "/SuperTinyIcons/images/android-vector-drawable"
             into resourcesFolder
             include "*.xml"
-            exclude "bitbucket.xml", "Rehdat.xml", "threema.xml" //These files currently have invalid attributes
+            exclude "sentry.xml", "gojek.xml", "vivino.xml", "elementaryos.xml", "rust.xml",
+                    "lastpass.xml", "calendar.xml", "sentry.xml", "redhat.xml", "open_benches.xml",
+                    "opencores.xml" //These files are currently broken (need upstream fix)
             rename { it.replace("-", "_") }
         }
 
