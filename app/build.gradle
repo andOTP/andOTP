@@ -81,7 +81,20 @@ task updateIcons {
         }
 
         def files = fileTree(resourcesFolder).filter { it.isFile() }.files.name.collect { it.replace(".xml", "") }
-        println files
+        def enumValues = files.collect { "${it.capitalize()}(R.drawable.${it})" }
+        def enumValuesString = ""
+        enumValues.each {
+            enumValuesString += System.lineSeparator + "\t\t${it},"
+        }
+
+        copy {
+            from rootProject.projectDir.toString() + "/app/src/main/java/org/shadowice/flocke/andotp/Utilities/EntryThumbnail.tmpl"
+            into rootProject.projectDir.toString() + "/app/src/main/java/org/shadowice/flocke/andotp/Utilities"
+            rename { it.replace(".tmpl", ".java") }
+            filter { line -> line.replaceAll('_TEMPLATE_ENTRY_THUMBNAILS_', enumValuesString) }
+        }
+
+
     }
 }
 

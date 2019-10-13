@@ -10,3 +10,4 @@ crowdin.properties
 /build
 /captures
 app/src/main/res_supertinyicons/
+app/src/main/java/org/shadowice/flocke/andotp/Utilities/EntryThumbnail.java
