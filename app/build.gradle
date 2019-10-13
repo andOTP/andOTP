@@ -76,7 +76,7 @@ task updateIcons {
             from rootProject.projectDir.toString() + "/SuperTinyIcons/images/android-vector-drawable"
             into resourcesFolder
             include "*.xml"
-            exclude "bitbucket.xml", "threema.xml" //These files currently have invalid attributes
+            exclude "bitbucket.xml", "Rehdat.xml", "threema.xml" //These files currently have invalid attributes
             rename { it.replace("-", "_") }
         }
 
