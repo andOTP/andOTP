@@ -76,16 +76,14 @@ task updateIcons {
             from rootProject.projectDir.toString() + "/SuperTinyIcons/images/android-vector-drawable"
             into resourcesFolder
             include "*.xml"
-            exclude "sentry.xml", "gojek.xml", "vivino.xml", "elementaryos.xml", "rust.xml",
-                    "lastpass.xml", "calendar.xml", "sentry.xml", "redhat.xml", "open_benches.xml",
-                    "opencores.xml" //These files are currently broken (need upstream fix)
+            exclude "" //These files are currently broken (need upstream fix)
             rename { it.replace("-", "_") }
         }
 
         def files = fileTree(resourcesFolder).filter { it.isFile() }.files.name.collect { it.replace(".xml", "") }
         def enumValues = files.collect { "${it.capitalize()}(R.drawable.${it})" }
         def enumValuesString = ""
-        enumValues.each {
+        enumValues.sort().each {
             enumValuesString += System.lineSeparator + "\t\t${it},"
         }
 
