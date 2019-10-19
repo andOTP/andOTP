@@ -75,6 +75,20 @@
 
     <string name="library_OpenPGPAPI_licenseId">apache_2_0</string>
 
+    <!-- Super Tiny Icons -->
+    <string name="define_SuperTinyIcons"></string>
+    <string name="library_SuperTinyIcons_author">Terence Eden</string>
+    <string name="library_SuperTinyIcons_authorWebsite">https://edent.tel/</string>
+
+    <string name="library_SuperTinyIcons_libraryName">SuperTinyIcons</string>
+    <string name="library_SuperTinyIcons_libraryDescription">Under 1KB each! Super Tiny Web Icons are minuscule SVG versions of your favourite logos. The average size is under 465 bytes!</string>
+    <string name="library_SuperTinyIcons_libraryWebsite">https://github.com/edent/SuperTinyIcons</string>
+
+    <string name="library_SuperTinyIcons_isOpenSource">true</string>
+    <string name="library_SuperTinyIcons_repositoryLink">https://github.com/edent/SuperTinyIcons</string>
+
+    <string name="library_SuperTinyIcons_licenseId">mit</string>
+
     <!-- ZXing Android Embedded -->
     <string name="define_ZXingAndroidEmbedded"></string>
     <string name="library_ZXingAndroidEmbedded_author">Journey Mobile</string>

@@ -1,0 +1,3 @@
+[submodule "SuperTinyIcons"]
+	path = SuperTinyIcons
+	url = https://github.com/edent/SuperTinyIcons.git

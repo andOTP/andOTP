@@ -39,6 +39,11 @@ android {
             versionNameSuffix = "-play"
         }
     }
+    sourceSets {
+        main {
+            res.srcDirs += 'src/main/res_supertinyicons'
+        }
+    }
 }
 
 dependencies {
@@ -61,3 +66,37 @@ dependencies {
     implementation "com.leinardi.android:speed-dial:2.0.1"
     implementation "com.mikepenz:aboutlibraries:6.1.1"
 }
+
+task updateIcons {
+    description = "Updates the built in icons from SuperTinyIcons repo"
+    doLast {
+        def resourcesFolder = rootProject.projectDir.toString() + "/app/src/main/res_supertinyicons/drawable"
+
+        delete resourcesFolder
+        copy {
+            from rootProject.projectDir.toString() + "/SuperTinyIcons/images/android-vector-drawable"
+            into resourcesFolder
+            include "*.xml"
+            exclude "bitbucket.xml", "Rehdat.xml", "threema.xml" //These files currently have invalid attributes
+            rename { it.replace("-", "_") }
+        }
+
+        def files = fileTree(resourcesFolder).filter { it.isFile() }.files.name.collect { it.replace(".xml", "") }
+        def enumValues = files.collect { "${it.capitalize()}(R.drawable.${it})" }
+        def enumValuesString = ""
+        enumValues.each {
+            enumValuesString += System.lineSeparator + "\t\t${it},"
+        }
+
+        copy {
+            from rootProject.projectDir.toString() + "/app/src/main/java/org/shadowice/flocke/andotp/Utilities/EntryThumbnail.tmpl"
+            into rootProject.projectDir.toString() + "/app/src/main/java/org/shadowice/flocke/andotp/Utilities"
+            rename { it.replace(".tmpl", ".java") }
+            filter { line -> line.replaceAll('_TEMPLATE_ENTRY_THUMBNAILS_', enumValuesString) }
+        }
+
+
+    }
+}
+
+preBuild.dependsOn updateIcons
