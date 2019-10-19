@@ -1,5 +1,11 @@
 # Changelog
 
+#### v0.6.3.1
+
+ * Introduce build flavors:
+   - fdroid: Shows donation links in the About section
+   - play: Doesn't show donation links in the About section
+
 #### v0.6.3
 
  * Security: Improved password derivation for the password protected backups
