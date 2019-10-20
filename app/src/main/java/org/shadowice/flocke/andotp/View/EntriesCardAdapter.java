@@ -65,6 +65,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.concurrent.Callable;
 
 import javax.crypto.SecretKey;
@@ -697,6 +698,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         return filter;
     }
 
+    public void clearFilter() {
+        if (filter != null)
+            filter = null;
+    }
+
     public List<String> getTags() {
         HashSet<String> tags = new HashSet<String>();
 
@@ -708,15 +714,28 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public class EntryFilter extends Filter {
+        private Set<String> filterValues = settings.getSearchValues();
+
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
+
             final FilterResults filterResults = new FilterResults();
 
             ArrayList<Entry> filtered = new ArrayList<>();
             if (constraint != null && constraint.length() != 0){
                 for (int i = 0; i < entries.size(); i++) {
-                    if (entries.get(i).getLabel().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                    if (filterValues.contains("label") && entries.get(i).getLabel().toLowerCase().contains(constraint.toString().toLowerCase())) {
                         filtered.add(entries.get(i));
+                    } else if (filterValues.contains("issuer") && entries.get(i).getIssuer().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        filtered.add(entries.get(i));
+                    } else if (filterValues.contains("tags")) {
+                        List<String> tags = entries.get(i).getTags();
+                        for (int j = 0; j < tags.size(); j++) {
+                            if (tags.get(j).toLowerCase().contains(constraint.toString().toLowerCase())) {
+                                filtered.add(entries.get(i));
+                                break;
+                            }
+                        }
                     }
                 }
             } else {

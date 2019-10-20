@@ -105,6 +105,14 @@
             android:entryValues="@array/settings_values_tag_functionality"
             android:defaultValue="@string/settings_default_tag_functionality" />
 
+        <MultiSelectListPreference
+            android:key="@string/settings_key_search_values"
+            android:title="@string/settings_title_search_values"
+            android:summary="@string/settings_desc_search_values"
+            android:entries="@array/settings_entries_search"
+            android:entryValues="@array/settings_values_search"
+            android:defaultValue="@array/settings_defaults_search" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

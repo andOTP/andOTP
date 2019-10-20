@@ -24,6 +24,7 @@
     <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
     <string name="settings_title_split_group_size">Split Token with space</string>
     <string name="settings_title_tag_functionality">Tag selection behavior</string>
+    <string name="settings_title_search_values">Search values</string>
 
     <string name="settings_title_backup_append_date">Append date to filename</string>
     <string name="settings_title_backup_ask">Ask for filename</string>
@@ -50,7 +51,7 @@
         has been turned off</string>
 
     <string name="settings_desc_label_scroll">Scroll overlong labels instead of truncating them</string>
-
+    <string name="settings_desc_search_values">Define which values should be included in the search</string>
 
     <string name="settings_desc_backup_append_date">Append the current date and time to the suggested
         backup filename</string>
@@ -145,6 +146,12 @@
     <string-array name="settings_entries_panic">
         <item>Wipe all accounts</item>
         <item>Reset app settings</item>
+    </string-array>
+
+    <string-array name="settings_entries_search">
+        <item>Label</item>
+        <item>Issuer</item>
+        <item>Tags</item>
     </string-array>
 
     <string-array name="settings_entries_theme">

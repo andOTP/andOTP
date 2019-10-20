@@ -25,6 +25,7 @@
     <string name="settings_key_thumbnail_size" translatable="false">pref_thumbnail_size</string>
     <string name="settings_key_split_group_size" translatable="false">pref_split_group_size</string>
     <string name="settings_key_tag_functionality" translatable="false">pref_tag_functionality</string>
+    <string name="settings_key_search_values" translatable="false">pref_search_includes</string>
 
     <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
@@ -61,6 +62,10 @@
     <string name="settings_default_split_group_size" translatable="false">3</string>
     <string name="settings_default_tag_functionality" translatable="false">or</string>
 
+    <string-array name="settings_defaults_search">
+        <item>labels</item>
+        <item>issuer</item>
+    </string-array>
 
     <!-- All of the possible tile background colors -->
     <array name="letter_tile_colors">
@@ -83,6 +88,12 @@
     <string-array name="settings_values_panic" translatable="false">
         <item>accounts</item>
         <item>settings</item>
+    </string-array>
+
+    <string-array name="settings_values_search" translatable="false">
+        <item>label</item>
+        <item>issuer</item>
+        <item>tags</item>
     </string-array>
 
     <string-array name="settings_values_locale" translatable="false">

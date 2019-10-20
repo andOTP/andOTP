@@ -379,6 +379,10 @@ public class Settings {
         setString(R.string.settings_key_sort_mode, value.toString());
     }
 
+    public Set<String> getSearchValues() {
+        return settings.getStringSet(getResString(R.string.settings_key_search_values), new HashSet<>(Arrays.asList(context.getResources().getStringArray(R.array.settings_defaults_search))));
+    }
+
     public boolean getBackupAsk() {
         return getBoolean(R.string.settings_key_backup_ask, true);
     }
