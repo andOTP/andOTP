@@ -10,7 +10,7 @@
 
  * Security: Improved password derivation for the password protected backups
  * New feature: Prevent screencapture in the Authentication and QR scanner screen (Issue #378, PR #386 by @schwedenmut)
- * New feature: Color navbar according to the theme (Issue #284, PR #371 by @HarryJohnso)
+ * New feature: Color navbar according to the theme (Issue #284, PR #371 by @HarryJohnson)
  * Bug fix: Fix "all tags" only selecting visible tags (Issue #333, PR #350 by @RichyHBM)
  * Bug fix: Focus the password/PIN input field on start (Issue #356, PR #357 by @schwedenmut)
  * Bug fix: Fix spelling of "QR code" (PR #368 by @yegortimoshenko)
