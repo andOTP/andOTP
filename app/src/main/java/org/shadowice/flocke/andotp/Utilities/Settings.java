@@ -34,6 +34,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -379,8 +380,16 @@ public class Settings {
         setString(R.string.settings_key_sort_mode, value.toString());
     }
 
-    public Set<String> getSearchValues() {
-        return settings.getStringSet(getResString(R.string.settings_key_search_includes), new HashSet<>(Arrays.asList(context.getResources().getStringArray(R.array.settings_defaults_search_includes))));
+    public List<Constants.SearchIncludes> getSearchValues() {
+        Set<String> stringValues = settings.getStringSet(getResString(R.string.settings_key_search_includes), new HashSet<>(Arrays.asList(context.getResources().getStringArray(R.array.settings_defaults_search_includes))));
+
+        List<Constants.SearchIncludes> values = new ArrayList<>();
+
+        for (String value : stringValues) {
+            values.add(Constants.SearchIncludes.valueOf(value.toUpperCase(Locale.ENGLISH)));
+        }
+
+        return values;
     }
 
     public boolean getBackupAsk() {

@@ -714,7 +714,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public class EntryFilter extends Filter {
-        private Set<String> filterValues = settings.getSearchValues();
+        private List<Constants.SearchIncludes> filterValues = settings.getSearchValues();
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -724,11 +724,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             ArrayList<Entry> filtered = new ArrayList<>();
             if (constraint != null && constraint.length() != 0){
                 for (int i = 0; i < entries.size(); i++) {
-                    if (filterValues.contains("label") && entries.get(i).getLabel().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                    if (filterValues.contains(Constants.SearchIncludes.LABEL) && entries.get(i).getLabel().toLowerCase().contains(constraint.toString().toLowerCase())) {
                         filtered.add(entries.get(i));
-                    } else if (filterValues.contains("issuer") && entries.get(i).getIssuer().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                    } else if (filterValues.contains(Constants.SearchIncludes.ISSUER) && entries.get(i).getIssuer().toLowerCase().contains(constraint.toString().toLowerCase())) {
                         filtered.add(entries.get(i));
-                    } else if (filterValues.contains("tags")) {
+                    } else if (filterValues.contains(Constants.SearchIncludes.TAGS)) {
                         List<String> tags = entries.get(i).getTags();
                         for (int j = 0; j < tags.size(); j++) {
                             if (tags.get(j).toLowerCase().contains(constraint.toString().toLowerCase())) {
