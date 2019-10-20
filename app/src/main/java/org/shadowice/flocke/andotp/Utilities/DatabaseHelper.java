@@ -25,6 +25,7 @@ package org.shadowice.flocke.andotp.Utilities;
 
 import android.app.backup.BackupManager;
 import android.content.Context;
+import android.net.Uri;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -109,6 +110,21 @@ public class DatabaseHelper {
                 byte[] data = EncryptionHelper.encrypt(encryptionKey, jsonString.getBytes());
 
                 FileHelper.writeBytesToFile(new File(context.getFilesDir() + "/" + Constants.FILENAME_DATABASE), data);
+
+                Settings settings = new Settings(context);
+                if(settings.getAutoBackupEncryptedPasswordsEnabled()) {
+                    Constants.BackupType backupType = BackupHelper.autoBackupType(context);
+                    if (backupType == Constants.BackupType.ENCRYPTED) {
+                        Uri backupFilename = Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(context, Constants.BackupType.ENCRYPTED));
+
+                        boolean success = BackupHelper.backupToFile(context, backupFilename, settings.getBackupPasswordEnc(), encryptionKey);
+                        if (success) {
+                            Toast.makeText(context, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(context, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
             }
         } catch (Exception error) {
             error.printStackTrace();
