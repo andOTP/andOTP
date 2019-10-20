@@ -380,7 +380,7 @@ public class Settings {
     }
 
     public Set<String> getSearchValues() {
-        return settings.getStringSet(getResString(R.string.settings_key_search_values), new HashSet<>(Arrays.asList(context.getResources().getStringArray(R.array.settings_defaults_search))));
+        return settings.getStringSet(getResString(R.string.settings_key_search_includes), new HashSet<>(Arrays.asList(context.getResources().getStringArray(R.array.settings_defaults_search_includes))));
     }
 
     public boolean getBackupAsk() {

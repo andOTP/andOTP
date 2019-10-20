@@ -351,7 +351,7 @@ public class MainActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_split_group_size)) ||
                 key.equals(getString(R.string.settings_key_thumbnail_size))) {
             adapter.notifyDataSetChanged();
-        } else if (key.equals(getString(R.string.settings_key_search_values))) {
+        } else if (key.equals(getString(R.string.settings_key_search_includes))) {
             adapter.clearFilter();
         } else if (key.equals(getString(R.string.settings_key_tap_to_reveal)) ||
                 key.equals(getString(R.string.settings_key_theme)) ||
