@@ -247,6 +247,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         });
                         taskHandler.postDelayed(entries.get(realIndex).getHideTask(), settings.getTapToRevealTimeout() * 1000);
 
+                        if (entry.isCounterBased()) {
+                            updateEntry(entry, entries.get(realIndex), position);
+                        }
                         entry.setVisible(true);
                         notifyItemChanged(position);
                     }
@@ -255,18 +258,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
             @Override
             public void onCounterClicked(int position) {
-                Entry entry = displayedEntries.get(position);
-                Entry realEntry = entries.get(getRealIndex(position));
-
-                long counter = entry.getCounter() + 1;
-
-                entry.setCounter(counter);
-                entry.updateOTP();
-                notifyItemChanged(position);
-
-                realEntry.setCounter(counter);
-                realEntry.updateOTP();
-                DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+                updateEntry(displayedEntries.get(position), entries.get(getRealIndex(position)), position);
             }
 
             @Override
@@ -276,6 +268,18 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         });
 
         return viewHolder;
+    }
+
+    private void updateEntry(Entry entry, Entry realEntry, final int position) {
+        long counter = entry.getCounter() + 1;
+
+        entry.setCounter(counter);
+        entry.updateOTP();
+        notifyItemChanged(position);
+
+        realEntry.setCounter(counter);
+        realEntry.updateOTP();
+        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
     }
 
     private void hideEntry(Entry entry) {
