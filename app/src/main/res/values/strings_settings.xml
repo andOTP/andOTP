@@ -29,6 +29,8 @@
     <string name="settings_title_backup_ask">Ask for filename</string>
     <string name="settings_title_backup_directory">Backup directory</string>
     <string name="settings_title_backup_password">Backup password</string>
+    <string name="settings_title_auto_backup_password_enc">Automatically backup on new entries</string>
+
     <string name="settings_title_backup_broadcasts">Backup Broadcasts</string>
     <string name="settings_title_openpgp_provider">OpenPGP provider</string>
     <string name="settings_title_openpgp_key_encrypt">OpenPGP encryption key</string>
@@ -60,6 +62,9 @@
         on the backup type)</string>
     <string name="settings_desc_backup_password">Set the password that is used to encrypt the
         backups</string>
+
+    <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
+        entries are added if settings conditions are met</string>
 
     <string name="settings_desc_backup_broadcasts">Select which backup types can be triggered by
         3rd-party apps using Broadcasts</string>

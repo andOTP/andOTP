@@ -137,18 +137,20 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void saveEntries() {
         DatabaseHelper.saveDatabase(context, entries, encryptionKey);
 
-        Constants.BackupType backupType = BackupHelper.autoBackupType(context);
-        if(backupType == Constants.BackupType.ENCRYPTED){
-            Uri backupFilename = Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(context, Constants.BackupType.ENCRYPTED));
+        if(settings.getAutoBackupEncryptedPasswordsEnabled()) {
+            Constants.BackupType backupType = BackupHelper.autoBackupType(context);
+            if (backupType == Constants.BackupType.ENCRYPTED) {
+                Uri backupFilename = Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(context, Constants.BackupType.ENCRYPTED));
 
-            byte[] keyMaterial = encryptionKey.getEncoded();
-            SecretKey encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
+                byte[] keyMaterial = encryptionKey.getEncoded();
+                SecretKey encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
 
-            boolean success = BackupHelper.backupToFile(context, backupFilename, settings.getBackupPasswordEnc(), encryptionKey);
-            if (success) {
-                Toast.makeText(context, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(context, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+                boolean success = BackupHelper.backupToFile(context, backupFilename, settings.getBackupPasswordEnc(), encryptionKey);
+                if (success) {
+                    Toast.makeText(context, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(context, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
