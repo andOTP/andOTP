@@ -159,7 +159,14 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             issuer.setVisibility(View.GONE);
         }
 
-        label.setText(entry.getLabel());
+        String labelText = entry.getLabel();
+        if (!TextUtils.isEmpty(labelText)) {
+            label.setText(entry.getLabel());
+            label.setVisibility(View.VISIBLE);
+        } else {
+            label.setVisibility(View.GONE);
+        }
+
         value.setText(tokenFormatted);
         // save the unformatted token to the tag of this TextView for copy/paste
         value.setTag(entry.getCurrentOTP());
