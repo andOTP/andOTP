@@ -239,6 +239,12 @@ public class EntryThumbnail {
         public AssetType getAssetType() {
             return assetType;
         }
+
+        public static EntryThumbnails valueOfIgnoreCase(String thumbnail) {
+            for (EntryThumbnails entryThumbnails : values())
+                if (entryThumbnails.name().equalsIgnoreCase(thumbnail)) return entryThumbnails;
+                throw new IllegalArgumentException();
+        }
     }
 
     public static Bitmap getThumbnailGraphic(Context context, String label, int size, EntryThumbnails thumbnail) {
