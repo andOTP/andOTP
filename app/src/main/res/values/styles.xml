@@ -7,6 +7,8 @@
     <attr name="colorGithub" format="reference" />
     <attr name="thumbnailBackground" format="reference" />
 
+    <attr name="colorExpiring" format="reference"/>
+
     <!-- General styles -->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
@@ -33,6 +35,8 @@
         <item name="about_libraries_text_openSource">@color/about_libraries_text_openSource</item>
         <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource</item>
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource</item>
+
+        <item name="colorExpiring">@color/expiring_red_dark</item>
     </style>
 
     <style name="AppTheme" parent="AppBaseTheme"/>
@@ -69,6 +73,8 @@
         <item name="about_libraries_text_openSource">@color/about_libraries_text_openSource_dark</item>
         <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource_dark</item>
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource_dark</item>
+
+        <item name="colorExpiring">@color/expiring_red_light</item>
     </style>
 
     <style name="AppTheme.Dark" parent = "AppBaseTheme.Dark"/>
@@ -101,6 +107,8 @@
         <item name="about_libraries_text_openSource">@color/about_libraries_text_openSource_dark</item>
         <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource_dark</item>
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource_dark</item>
+
+        <item name="colorExpiring">@color/expiring_red_light</item>
     </style>
 
     <style name="AppTheme.Black" parent="AppBaseTheme.Black"/>
