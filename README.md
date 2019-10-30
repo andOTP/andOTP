@@ -89,16 +89,18 @@ So make sure you have a **current backup** before switching!
 
  * **Translation**: If you want to help translate andOTP into your language head over to the [Crowdin project](https://crowdin.com/project/andotp).
  * **Bug reports and feature requests**: You can report bugs and request features in the [Issue tracker](https://github.com/andOTP/andOTP/issues) on GitHub.
- * **Requesting thumbnails**: If you are missing a thumbnail you can request it by editing the [wiki](https://github.com/andOTP/andOTP/wiki/Thumbnails#thumbnail-requests)
+ * **Requesting thumbnails**: If you are missing a thumbnail you can request it by [opening an issue](https://github.com/andOTP/andOTP/issues/new).
  * **Discussion and support**: 
    - [XDA thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993) (please keep off-topic to a minimum)
    - Telegram group [@andOTP](https://t.me/andOTP) (if you just want important updates you can mute the group so you only get notified about pinned messages)
    - Matrix channel [#andOTP:privacytools.io](https://matrix.to/#/#andOTP:privacytools.io)
 
-#### Developers:
+#### Donations:
 
- * [Jakob Nixdorf](https://github.com/flocke) (Telegram: [@flocke000](https://t.me/flocke000), Reddit: [/u/flocke000](https://www.reddit.com/user/flocke000))
- * [Richy HBM](https://github.com/RichyHBM)
+If you want to show your appreciation for our work with a small donation you can do so using the following links:
+
+ * [Donate to Jakob Nixdorf](https://flocke.shadowice.org/donate.html) (Main developer, maintainer)
+ * [Donate to Richy HBM](https://richyhbm.co.uk/donate) (Developer)
 
 ## Screenshots:
 #### Light theme:
