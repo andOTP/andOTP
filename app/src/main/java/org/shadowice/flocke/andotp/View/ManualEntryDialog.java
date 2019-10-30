@@ -203,7 +203,6 @@ public class ManualEntryDialog {
                             e.updateOTP();
                             e.setLastUsed(System.currentTimeMillis());
                             adapter.addEntry(e);
-                            adapter.saveEntries();
 
                             callingActivity.refreshTags();
                         } else if (type == Entry.OTPType.HOTP) {
@@ -213,7 +212,6 @@ public class ManualEntryDialog {
                             e.updateOTP();
                             e.setLastUsed(System.currentTimeMillis());
                             adapter.addEntry(e);
-                            adapter.saveEntries();
                         }
                     }
                 })
