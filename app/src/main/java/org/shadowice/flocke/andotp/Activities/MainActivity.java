@@ -277,8 +277,6 @@ public class MainActivity extends BaseActivity
 
         setupDrawer();
 
-        checkIntent();
-
         if (savedInstanceState != null){
             setFilterString(savedInstanceState.getString("filterString", ""));
         }
@@ -287,13 +285,17 @@ public class MainActivity extends BaseActivity
     private void checkIntent() {
         Intent callingIntent = getIntent();
         if (callingIntent != null && callingIntent.getAction() != null) {
-            if (callingIntent.getAction().equals(INTENT_SCAN_QR)) {
+            // Cache and reset the action to prevent the same intent from being evaluated multiple times
+            String intentAction = callingIntent.getAction();
+            callingIntent.setAction(null);
+
+            if (intentAction.equals(INTENT_SCAN_QR)) {
                 scanQRCode();
-            } else if (callingIntent.getAction().equals(INTENT_ENTER_DETAILS)) {
+            } else if (intentAction.equals(INTENT_ENTER_DETAILS)) {
                 ManualEntryDialog.show(MainActivity.this, settings, adapter);
-            } else if (callingIntent.getAction().equals(Intent.ACTION_VIEW) && !requireAuthentication) {
+            } else if (intentAction.equals(Intent.ACTION_VIEW)) {
                 try {
-                    Entry entry = new Entry(getIntent().getDataString());
+                    Entry entry = new Entry(callingIntent.getDataString());
                     entry.updateOTP();
                     entry.setLastUsed(System.currentTimeMillis());
                     adapter.addEntry(entry);
@@ -336,8 +338,8 @@ public class MainActivity extends BaseActivity
                     updateEncryption(null);
                 } else {
                     populateAdapter();
-                    checkIntent();
                 }
+                checkIntent();
             }
         }
 
