@@ -56,6 +56,10 @@ public class Constants {
         LABEL, ISSUER, TAGS
     }
 
+    public enum CardLayouts {
+        DEFAULT, FULL
+    }
+
     // Intents (Format: A0x with A = parent Activity, x = number of the intent)
     public final static int INTENT_MAIN_AUTHENTICATE            = 100;
     public final static int INTENT_MAIN_SETTINGS                = 101;

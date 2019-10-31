@@ -234,7 +234,17 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
     @Override @NonNull
     public EntryViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.component_card, viewGroup, false);
+        int cardLayout = R.layout.component_card_default;
+
+        Constants.CardLayouts layout = settings.getCardLayout();
+
+        if (layout == Constants.CardLayouts.DEFAULT) {
+            cardLayout = R.layout.component_card_default;
+        } else if (layout == Constants.CardLayouts.FULL) {
+            cardLayout = R.layout.component_card_full;
+        }
+
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(cardLayout, viewGroup, false);
 
         EntryViewHolder viewHolder = new EntryViewHolder(context, itemView, settings.getTapToReveal());
         viewHolder.setCallback(new EntryViewHolder.Callback() {

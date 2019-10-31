@@ -69,6 +69,14 @@
             android:entryValues="@array/settings_values_theme"
             android:defaultValue="@string/settings_default_theme" />
 
+        <ListPreference
+            android:key="@string/settings_key_card_layout"
+            android:title="@string/settings_title_card_layout"
+            android:summary="%s"
+            android:entries="@array/settings_entries_card_layout"
+            android:entryValues="@array/settings_values_card_layout"
+            android:defaultValue="@string/settings_default_card_layout" />
+
         <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
             android:key="@string/settings_key_label_size"
             android:title="@string/settings_title_label_size"

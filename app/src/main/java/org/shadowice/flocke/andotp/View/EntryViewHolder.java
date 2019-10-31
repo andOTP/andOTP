@@ -66,6 +66,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private TextView value;
     private TextView issuer;
     private TextView label;
+    private TextView separator;
     private TextView counter;
     private TextView tags;
     private MaterialProgressBar progressBar;
@@ -84,6 +85,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         coverLayout = v.findViewById(R.id.coverLayout);
         issuer = v.findViewById(R.id.textViewIssuer);
         label = v.findViewById(R.id.textViewLabel);
+        separator = v.findViewById(R.id.textViewSeparator);
         tags = v.findViewById(R.id.textViewTags);
         counterLayout = v.findViewById(R.id.counterLayout);
         counter = v.findViewById(R.id.counter);
@@ -165,6 +167,12 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             label.setVisibility(View.VISIBLE);
         } else {
             label.setVisibility(View.GONE);
+        }
+
+        if (! issuerText.isEmpty() && ! labelText.isEmpty()) {
+            separator.setVisibility(View.VISIBLE);
+        } else {
+            separator.setVisibility(View.GONE);
         }
 
         value.setText(tokenFormatted);

@@ -392,6 +392,11 @@ public class Settings {
         return values;
     }
 
+    public Constants.CardLayouts getCardLayout() {
+        String stringValue = getString(R.string.settings_key_card_layout, R.string.settings_default_card_layout);
+        return Constants.CardLayouts.valueOf(stringValue.toUpperCase(Locale.ENGLISH));
+    }
+
     public boolean getBackupAsk() {
         return getBoolean(R.string.settings_key_backup_ask, true);
     }

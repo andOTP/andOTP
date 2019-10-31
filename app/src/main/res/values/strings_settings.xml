@@ -19,6 +19,7 @@
 
     <string name="settings_title_lang">Language</string>
     <string name="settings_title_theme">Theme</string>
+    <string name="settings_title_card_layout">Card layout</string>
     <string name="settings_title_label_size">Label font size</string>
     <string name="settings_title_label_scroll">Scroll label</string>
     <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
@@ -153,6 +154,11 @@
     <string-array name="settings_entries_panic">
         <item>Wipe all accounts</item>
         <item>Reset app settings</item>
+    </string-array>
+
+    <string-array name="settings_entries_card_layout">
+        <item>Default</item>
+        <item>Full</item>
     </string-array>
 
     <string-array name="settings_entries_search_includes">
