@@ -299,7 +299,6 @@ public class MainActivity extends BaseActivity
                     entry.updateOTP();
                     entry.setLastUsed(System.currentTimeMillis());
                     adapter.addEntry(entry);
-                    adapter.saveEntries();
                     Toast.makeText(this, R.string.toast_intent_creation_succeeded, Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
                     Toast.makeText(this, R.string.toast_intent_creation_failed, Toast.LENGTH_LONG).show();
