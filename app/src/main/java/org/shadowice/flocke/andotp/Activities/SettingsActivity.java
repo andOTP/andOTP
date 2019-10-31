@@ -122,7 +122,8 @@ public class SettingsActivity extends BaseActivity
 
         if (key.equals(getString(R.string.settings_key_theme)) ||
                 key.equals(getString(R.string.settings_key_locale)) ||
-                key.equals(getString(R.string.settings_key_special_features))) {
+                key.equals(getString(R.string.settings_key_special_features)) ||
+                key.equals(getString(R.string.settings_key_label_highlight_token))) {
             recreate();
         } else if(key.equals(getString(R.string.settings_key_encryption))) {
             if (settings.getEncryption() != EncryptionType.PASSWORD) {

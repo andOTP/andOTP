@@ -65,7 +65,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 import java.util.concurrent.Callable;
 
 import javax.crypto.SecretKey;
@@ -178,7 +177,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         for (Entry e : entries) {
             if (e.isTimeBased()) {
                 boolean item_changed = e.updateOTP();
-                change = change || item_changed || e.hasNonDefaultPeriod();
+                boolean color_changed = false;
+
+                //Check color change only if highlighting token feature is enabled
+                if(settings.isHighlightTokenOptionEnabled()) {
+                    color_changed = e.hasColorChanged();
+                }
+
+                change = change || item_changed || e.hasNonDefaultPeriod() || color_changed;
             }
         }
 
@@ -192,6 +198,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         if (!entry.isTimeBased())
             entry.updateOTP();
+
+        if(settings.isHighlightTokenOptionEnabled())
+            entryViewHolder.updateColor(entry.getColor());
 
         entryViewHolder.updateValues(entry);
 

@@ -296,4 +296,19 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         void onCounterClicked(int position);
         void onCounterLongPressed(int position);
     }
+    /**
+     * Updates the color of OTP to red (if expiring) or default color (if new OTP)
+     *
+     * @param color will define if the color needs to be changed to red or default
+     * */
+    public void updateColor(int color) {
+        int textColor;
+        if(color == Entry.COLOR_RED) {
+            textColor = Tools.getThemeColor(context, R.attr.colorExpiring);
+        } else {
+            textColor = Tools.getThemeColor(context, android.R.attr.textColorSecondary);
+        }
+
+        value.setTextColor(textColor);
+    }
 }

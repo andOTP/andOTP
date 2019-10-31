@@ -113,6 +113,13 @@
             android:entryValues="@array/settings_values_search_includes"
             android:defaultValue="@array/settings_defaults_search_includes" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_label_highlight_token"
+            android:title="@string/settings_title_label_highlight_token"
+            android:summary="@string/settings_desc_label_highlight_token"
+            android:defaultValue="true" />
+
+
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -76,6 +76,10 @@ public class Entry {
     private long last_used = 0;
     public List<String> tags = new ArrayList<>();
     private EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
+    private static final int COLOR_DEFAULT = 0;
+    public static final int COLOR_RED = 1;
+    private static final int EXPIRY_TIME = 8;
+    private int color = COLOR_DEFAULT;
 
     public Entry(){}
 
@@ -385,7 +389,8 @@ public class Entry {
                     currentOTP = TokenCalculator.TOTP_Steam(secret, period, digits, algorithm);
 
                 last_update = counter;
-
+                //New OTP. Change color to default color
+                setColor(COLOR_DEFAULT);
                 return true;
             } else {
                 return false;
@@ -396,6 +401,25 @@ public class Entry {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Checks if the OTP is expiring. The color for the entry will be changed to red if the expiry time is less than or equal to 8 seconds
+     * COLOR_DEFAULT indicates that the OTP has not expired. In this case check if the OTP is about to expire. Update color to COLOR_RED if it's about to expire
+     * COLOR_RED indicates that the OTP is already about to expire. Don't check again.
+     * The color will be reset to COLOR_DEFAULT in {@link #updateOTP()} method
+     *
+     * @return Return true only if the color has changed to red to save from unnecessary notifying dataset
+     * */
+    public boolean hasColorChanged() {
+        if(color == COLOR_DEFAULT){
+            long time = System.currentTimeMillis() / 1000;
+            if ((time % getPeriod()) > (getPeriod() - EXPIRY_TIME)) {
+                setColor(COLOR_RED);
+                return true;
+            }
+        }
+        return false;
     }
 
     private void setThumbnailFromIssuer(String issuer) {
@@ -423,5 +447,13 @@ public class Entry {
     @Override
     public int hashCode() {
         return Objects.hash(type, period, counter, digits, algorithm, secret, label);
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public int getColor() {
+        return color;
     }
 }

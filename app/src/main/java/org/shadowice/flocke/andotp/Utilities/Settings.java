@@ -537,4 +537,8 @@ public class Settings {
     public boolean getIsAppendingDateTimeToBackups() {
         return getBoolean(R.string.settings_key_backup_append_date_time, false);
     }
+
+    public boolean isHighlightTokenOptionEnabled() {
+        return getBoolean(R.string.settings_key_label_highlight_token,true);
+    }
 }
