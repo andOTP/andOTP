@@ -145,9 +145,11 @@ public class SettingsActivity extends BaseActivity
             }
         }
 
-        fragment.useAutoBackup.setEnabled(BackupHelper.autoBackupType(this) == Constants.BackupType.ENCRYPTED);
-        if(!fragment.useAutoBackup.isEnabled())
-            fragment.useAutoBackup.setChecked(false);
+        if (fragment.useAutoBackup != null) {
+            fragment.useAutoBackup.setEnabled(BackupHelper.autoBackupType(this) == Constants.BackupType.ENCRYPTED);
+            if (!fragment.useAutoBackup.isEnabled())
+                fragment.useAutoBackup.setChecked(false);
+        }
     }
 
     private void generateNewEncryptionKey() {
