@@ -330,11 +330,22 @@ public class MainActivity extends BaseActivity
             setFilterString(this.filterString);
         }
 
+        View cardList = findViewById(R.id.cardList);
+        if(cardList.getVisibility() == View.INVISIBLE)
+            cardList.setVisibility(View.VISIBLE);
+
         startUpdater();
     }
 
     @Override
     public void onPause() {
+        if(settings.getAuthMethod() == AuthMethod.DEVICE)
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    findViewById(R.id.cardList).setVisibility(View.INVISIBLE);
+                }
+            });
         super.onPause();
         stopUpdater();
     }

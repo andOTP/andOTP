@@ -36,18 +36,16 @@ public class BaseAboutFragment extends Fragment {
     private static final String AUTHOR_ORIGINAL_GITHUB = "https://github.com/0xbb";
     private static final String AUTHOR_ORIGINAL_EXTRA = AUTHOR_ORIGINAL_GITHUB + "/otp-authenticator";
 
-    private static final String CONTRIBUTORS_URI = GITHUB_URI + "/blob/master/README.md#contributors";
-    private static final String TRANSLATORS_URI = GITHUB_URI + "/blob/master/README.md#translators";
+    private static final String CONTRIBUTORS_URI = GITHUB_URI + "/graphs/contributors";
 
-    private static final String BUGREPORT_URI = GITHUB_URI + "/issues";
-    private static final String TRANSLATE_URI = "https://crowdin.com/project/andotp";
+    private static final String SUPPORT_URI = GITHUB_URI + "/blob/master/README.md#contribute";
 
     private Settings settings;
 
     static final int[] imageResources = {
             R.id.aboutImgVersion, R.id.aboutImgLicense, R.id.aboutImgChangelog, R.id.aboutImgSource,
             R.id.aboutImgAuthor2, R.id.aboutImgAuthorOriginal, R.id.aboutImgContributors,
-            R.id.aboutImgTranslators, R.id.aboutImgBugs, R.id.aboutImgTranslate
+            R.id.aboutImgSupport
     };
 
     static long lastTap = 0;
@@ -170,32 +168,18 @@ public class BaseAboutFragment extends Fragment {
         });
 
         LinearLayout contributors = v.findViewById(R.id.about_layout_contributors);
-        LinearLayout translators = v.findViewById(R.id.about_layout_translators);
         contributors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(CONTRIBUTORS_URI);
             }
         });
-        translators.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(TRANSLATORS_URI);
-            }
-        });
 
-        LinearLayout bugReport = v.findViewById(R.id.about_layout_bugs);
-        LinearLayout translate = v.findViewById(R.id.about_layout_translate);
-        bugReport.setOnClickListener(new View.OnClickListener() {
+        LinearLayout supportLayout = v.findViewById(R.id.about_layout_support);
+        supportLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openURI(BUGREPORT_URI);
-            }
-        });
-        translate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(TRANSLATE_URI);
+                openURI(SUPPORT_URI);
             }
         });
 

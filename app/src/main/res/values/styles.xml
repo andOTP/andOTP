@@ -6,6 +6,8 @@
 
     <attr name="colorGithub" format="reference" />
     <attr name="thumbnailBackground" format="reference" />
+    
+    <attr name="navigationBarColor" format="reference" />
 
     <attr name="colorExpiring" format="reference"/>
 
@@ -23,6 +25,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="windowBackground">?android:attr/colorBackground</item>
+        <item name="navigationBarColor">?android:attr/colorBackground</item>
 
         <item name="colorGithub">@color/github_dark</item>
         <item name="thumbnailBackground">@android:color/transparent</item>
@@ -61,6 +64,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="windowBackground">?android:attr/colorBackground</item>
+        <item name="navigationBarColor">?android:attr/colorBackground</item>
         <item name="thumbnailBackground">@color/dark_thumbnail_background</item>
 
         <item name="colorGithub">@color/github_light</item>
@@ -95,6 +99,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="windowBackground">@color/black</item>
+        <item name="navigationBarColor">@color/black</item>
         <item name="thumbnailBackground">@color/dark_thumbnail_background</item>
 
         <item name="colorGithub">@color/github_light</item>
