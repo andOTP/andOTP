@@ -34,6 +34,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -216,12 +217,12 @@ public class Settings {
     }
 
     public AuthMethod getAuthMethod() {
-        String authString = getString(R.string.settings_key_auth, CredentialsPreference.DEFAULT_VALUE.name().toLowerCase());
-        return AuthMethod.valueOf(authString.toUpperCase());
+        String authString = getString(R.string.settings_key_auth, CredentialsPreference.DEFAULT_VALUE.name().toLowerCase(Locale.ENGLISH));
+        return AuthMethod.valueOf(authString.toUpperCase(Locale.ENGLISH));
     }
 
     public void setAuthMethod(AuthMethod authMethod) {
-        setString(R.string.settings_key_auth, authMethod.name().toLowerCase());
+        setString(R.string.settings_key_auth, authMethod.name().toLowerCase(Locale.ENGLISH));
     }
 
     public void removeAuthPasswordHash() {
@@ -379,6 +380,18 @@ public class Settings {
         setString(R.string.settings_key_sort_mode, value.toString());
     }
 
+    public List<Constants.SearchIncludes> getSearchValues() {
+        Set<String> stringValues = settings.getStringSet(getResString(R.string.settings_key_search_includes), new HashSet<>(Arrays.asList(context.getResources().getStringArray(R.array.settings_defaults_search_includes))));
+
+        List<Constants.SearchIncludes> values = new ArrayList<>();
+
+        for (String value : stringValues) {
+            values.add(Constants.SearchIncludes.valueOf(value.toUpperCase(Locale.ENGLISH)));
+        }
+
+        return values;
+    }
+
     public boolean getBackupAsk() {
         return getBoolean(R.string.settings_key_backup_ask, true);
     }
@@ -527,5 +540,9 @@ public class Settings {
 
     public boolean getAutoBackupEncryptedPasswordsEnabled() {
         return getBoolean(R.string.settings_key_auto_backup_password_enc, false);
+    }
+
+    public boolean isHighlightTokenOptionEnabled() {
+        return getBoolean(R.string.settings_key_label_highlight_token,true);
     }
 }

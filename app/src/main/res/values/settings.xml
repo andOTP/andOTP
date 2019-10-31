@@ -25,6 +25,8 @@
     <string name="settings_key_thumbnail_size" translatable="false">pref_thumbnail_size</string>
     <string name="settings_key_split_group_size" translatable="false">pref_split_group_size</string>
     <string name="settings_key_tag_functionality" translatable="false">pref_tag_functionality</string>
+    <string name="settings_key_search_includes" translatable="false">pref_search_includes</string>
+    <string name="settings_key_label_highlight_token" translatable="false">pref_label_highlight_token</string>
 
     <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
@@ -62,6 +64,10 @@
     <string name="settings_default_split_group_size" translatable="false">3</string>
     <string name="settings_default_tag_functionality" translatable="false">or</string>
 
+    <string-array name="settings_defaults_search_includes">
+        <item>label</item>
+        <item>issuer</item>
+    </string-array>
 
     <!-- All of the possible tile background colors -->
     <array name="letter_tile_colors">
@@ -86,6 +92,12 @@
         <item>settings</item>
     </string-array>
 
+    <string-array name="settings_values_search_includes" translatable="false">
+        <item>label</item>
+        <item>issuer</item>
+        <item>tags</item>
+    </string-array>
+
     <string-array name="settings_values_locale" translatable="false">
         <item>system</item>
         <item>ca_ES</item>
@@ -94,6 +106,7 @@
         <item>es_ES</item>
         <item>fr_FR</item>
         <item>gl_ES</item>
+        <item>hu_HU</item>
         <item>it_IT</item>
         <item>nl_NL</item>
         <item>pl_PL</item>
@@ -150,6 +163,7 @@
         <item>Español</item>
         <item>Français</item>
         <item>Galego</item>
+        <item>Magyar</item>
         <item>Italiano</item>
         <item>Nederlands</item>
         <item>Polski</item>

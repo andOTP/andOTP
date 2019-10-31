@@ -42,6 +42,27 @@
                 android:layout_weight="3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text="@string/label_issuer"/>
+
+            <EditText
+                android:id="@+id/manual_issuer"
+                android:layout_weight="7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_issuer"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:text="@string/label_label"/>
 
             <EditText

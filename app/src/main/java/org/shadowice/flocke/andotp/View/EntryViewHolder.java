@@ -64,6 +64,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private ImageView visibleImg;
     private ImageView thumbnailImg;
     private TextView value;
+    private TextView issuer;
     private TextView label;
     private TextView counter;
     private TextView tags;
@@ -81,6 +82,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         thumbnailFrame = v.findViewById(R.id.thumbnailFrame);
         thumbnailImg = v.findViewById(R.id.thumbnailImg);
         coverLayout = v.findViewById(R.id.coverLayout);
+        issuer = v.findViewById(R.id.textViewIssuer);
         label = v.findViewById(R.id.textViewLabel);
         tags = v.findViewById(R.id.textViewTags);
         counterLayout = v.findViewById(R.id.counterLayout);
@@ -149,7 +151,22 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         final String tokenFormatted = Tools.formatToken(entry.getCurrentOTP(), settings.getTokenSplitGroupSize());
 
-        label.setText(entry.getLabel());
+        String issuerText = entry.getIssuer();
+        if (!TextUtils.isEmpty(issuerText)) {
+            issuer.setText(entry.getIssuer());
+            issuer.setVisibility(View.VISIBLE);
+        } else {
+            issuer.setVisibility(View.GONE);
+        }
+
+        String labelText = entry.getLabel();
+        if (!TextUtils.isEmpty(labelText)) {
+            label.setText(entry.getLabel());
+            label.setVisibility(View.VISIBLE);
+        } else {
+            label.setVisibility(View.GONE);
+        }
+
         value.setText(tokenFormatted);
         // save the unformatted token to the tag of this TextView for copy/paste
         value.setTag(entry.getCurrentOTP());
@@ -278,5 +295,20 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         void onCounterClicked(int position);
         void onCounterLongPressed(int position);
+    }
+    /**
+     * Updates the color of OTP to red (if expiring) or default color (if new OTP)
+     *
+     * @param color will define if the color needs to be changed to red or default
+     * */
+    public void updateColor(int color) {
+        int textColor;
+        if(color == Entry.COLOR_RED) {
+            textColor = Tools.getThemeColor(context, R.attr.colorExpiring);
+        } else {
+            textColor = Tools.getThemeColor(context, android.R.attr.textColorSecondary);
+        }
+
+        value.setTextColor(textColor);
     }
 }

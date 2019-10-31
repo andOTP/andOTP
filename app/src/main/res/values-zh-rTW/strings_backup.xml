@@ -10,6 +10,7 @@
     <string name="backup_title_export_openpgp">備份（OpenPGP）</string>
     <string name="backup_title_import_plain">還原（明碼）</string>
     <string name="backup_title_import_crypt">還原（加密）</string>
+    <string name="backup_title_import_crypt_old">還原 (已加密，舊的加密方式)</string>
     <string name="backup_title_import_openpgp">還原（OpenPGP）</string>
     <string name="backup_title_replace">取代現有的條目</string>
     <string name="backup_desc_export_plain">備份所有帳戶為明碼 JSON 檔</string>
@@ -17,6 +18,7 @@
     <string name="backup_desc_export_openpgp">備份所有帳戶為 OpenPGP 加密的 JSON 檔</string>
     <string name="backup_desc_import_plain">從明碼 JSON 檔中還原帳戶</string>
     <string name="backup_desc_import_crypt">從密碼 JSON 檔中還原帳戶</string>
+    <string name="backup_desc_import_crypt_old">從以<b>版本低於0.6.3的andOTP</b>所創建之密碼保護的JSON檔案中還原帳戶</string>
     <string name="backup_desc_import_openpgp">從 OpenPGP 加密的 JSON 檔中還原帳戶</string>
     <string name="backup_desc_crypt_setup">使用 <b>設定</b> 中的密碼載入備份時失敗，
         這可能是因為沒有設定密碼或者是密碼錯誤造成的。 當您在建立或匯入備份時
@@ -36,6 +38,10 @@
     <string name="backup_receiver_read_permission_failed">讀取被拒絕，請在備份前允許此權限</string>
     <string name="backup_receiver_write_permission_failed">寫入被拒絕，請在備份前允許此權限</string>
     <string name="backup_receiver_custom_encryption_failed">透過外部程式執行自動備份時，不支援基於 密碼 / PIN 的加密方式</string>
+    <string name="backup_new_format_dialog_title">新加密方法</string>
+    <string name="backup_new_format_dialog_msg">andOTP自0.6.3版開始，<b>全新和改進了的加密方式是用於密碼保護的備份。</b>
+        舊備份的仍然可以導入，但是我們<b>強烈建議你使用改進了的加密方式來創建新的備份。</b>
+        \n\n此消息將不再顯示。</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">自動備份失敗</string>
     <string name="notification_channel_name_backup_success">自動備份成功</string>

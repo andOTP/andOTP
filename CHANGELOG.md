@@ -1,5 +1,11 @@
 # Changelog
 
+#### v0.6.3.1
+
+ * Introduce build flavors:
+   - fdroid: Shows donation links in the About section
+   - play: Doesn't show donation links in the About section
+
 #### v0.6.3
 
  * Security: Improved password derivation for the password protected backups
@@ -11,8 +17,10 @@
  * Bug fix: Always use arabic numerals for the tokens (Issue #359)
  * Bug fix: Refactor storage access code to allow importing and exporting from cloud storage directly
  * Bug fix: Hardcode the black background color to avoid strange behaviour on some custom ROMs
+ * Bug fix: Force English locales for saving AuthMethod
  * Misc: Update donation links (PR #351)
  * Thumbnails: Lots of new thumbnails
+ * Translations: Hungarian
 
 #### v0.6.2
 

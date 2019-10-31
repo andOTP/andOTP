@@ -105,6 +105,21 @@
             android:entryValues="@array/settings_values_tag_functionality"
             android:defaultValue="@string/settings_default_tag_functionality" />
 
+        <MultiSelectListPreference
+            android:key="@string/settings_key_search_includes"
+            android:title="@string/settings_title_search_includes"
+            android:summary="@string/settings_desc_search_includes"
+            android:entries="@array/settings_entries_search_includes"
+            android:entryValues="@array/settings_values_search_includes"
+            android:defaultValue="@array/settings_defaults_search_includes" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_label_highlight_token"
+            android:title="@string/settings_title_label_highlight_token"
+            android:summary="@string/settings_desc_label_highlight_token"
+            android:defaultValue="true" />
+
+
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -277,17 +277,34 @@ public class MainActivity extends BaseActivity
 
         setupDrawer();
 
-        Intent callingIntent = getIntent();
-        if (callingIntent != null && callingIntent.getAction() != null) {
-            if (callingIntent.getAction().equals(INTENT_SCAN_QR)) {
-                scanQRCode();
-            } else if (callingIntent.getAction().equals(INTENT_ENTER_DETAILS)) {
-                ManualEntryDialog.show(MainActivity.this, settings, adapter);
-            }
-        }
-
         if (savedInstanceState != null){
             setFilterString(savedInstanceState.getString("filterString", ""));
+        }
+    }
+
+    private void checkIntent() {
+        Intent callingIntent = getIntent();
+        if (callingIntent != null && callingIntent.getAction() != null) {
+            // Cache and reset the action to prevent the same intent from being evaluated multiple times
+            String intentAction = callingIntent.getAction();
+            callingIntent.setAction(null);
+
+            if (intentAction.equals(INTENT_SCAN_QR)) {
+                scanQRCode();
+            } else if (intentAction.equals(INTENT_ENTER_DETAILS)) {
+                ManualEntryDialog.show(MainActivity.this, settings, adapter);
+            } else if (intentAction.equals(Intent.ACTION_VIEW)) {
+                try {
+                    Entry entry = new Entry(callingIntent.getDataString());
+                    entry.updateOTP();
+                    entry.setLastUsed(System.currentTimeMillis());
+                    adapter.addEntry(entry);
+                    adapter.saveEntries();
+                    Toast.makeText(this, R.string.toast_intent_creation_succeeded, Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(this, R.string.toast_intent_creation_failed, Toast.LENGTH_LONG).show();
+                }
+            }
         }
     }
 
@@ -322,6 +339,7 @@ public class MainActivity extends BaseActivity
                 } else {
                     populateAdapter();
                 }
+                checkIntent();
             }
         }
 
@@ -330,11 +348,22 @@ public class MainActivity extends BaseActivity
             setFilterString(this.filterString);
         }
 
+        View cardList = findViewById(R.id.cardList);
+        if(cardList.getVisibility() == View.INVISIBLE)
+            cardList.setVisibility(View.VISIBLE);
+
         startUpdater();
     }
 
     @Override
     public void onPause() {
+        if(settings.getAuthMethod() == AuthMethod.DEVICE)
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    findViewById(R.id.cardList).setVisibility(View.INVISIBLE);
+                }
+            });
         super.onPause();
         stopUpdater();
     }
@@ -351,11 +380,14 @@ public class MainActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_split_group_size)) ||
                 key.equals(getString(R.string.settings_key_thumbnail_size))) {
             adapter.notifyDataSetChanged();
+        } else if (key.equals(getString(R.string.settings_key_search_includes))) {
+            adapter.clearFilter();
         } else if (key.equals(getString(R.string.settings_key_tap_to_reveal)) ||
                 key.equals(getString(R.string.settings_key_theme)) ||
                 key.equals(getString(R.string.settings_key_locale)) ||
                 key.equals(getString(R.string.settings_key_enable_screenshot)) ||
-                key.equals(getString(R.string.settings_key_tag_functionality)) ) {
+                key.equals(getString(R.string.settings_key_tag_functionality)) ||
+                key.equals(getString(R.string.settings_key_label_highlight_token))) {
             recreate();
         }
     }

@@ -18,8 +18,7 @@
     <string name="about_label_original_author">Autor der ursprünglichen App</string>
     <string name="about_label_original_app">Ursprüngliche App</string>
     <string name="about_label_website">Webseite</string>
-    <string name="about_label_donate_paypal">Spenden (PayPal)</string>
-    <string name="about_label_donate_bitcoin">Spenden (Bitcoin)</string>
+    <string name="about_label_donate">Spenden</string>
     <string name="about_label_contributors">Mitwirkende</string>
     <string name="about_label_translators">Übersetzer</string>
     <!-- Thumbnail disclaimer -->

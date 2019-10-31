@@ -198,7 +198,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         for (Entry e : entries) {
             if (e.isTimeBased()) {
                 boolean item_changed = e.updateOTP();
-                change = change || item_changed || e.hasNonDefaultPeriod();
+                boolean color_changed = false;
+
+                //Check color change only if highlighting token feature is enabled
+                if(settings.isHighlightTokenOptionEnabled()) {
+                    color_changed = e.hasColorChanged();
+                }
+
+                change = change || item_changed || e.hasNonDefaultPeriod() || color_changed;
             }
         }
 
@@ -212,6 +219,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         if (!entry.isTimeBased())
             entry.updateOTP();
+
+        if(settings.isHighlightTokenOptionEnabled())
+            entryViewHolder.updateColor(entry.getColor());
 
         entryViewHolder.updateValues(entry);
 
@@ -268,6 +278,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         });
                         taskHandler.postDelayed(entries.get(realIndex).getHideTask(), settings.getTapToRevealTimeout() * 1000);
 
+                        if (entry.isCounterBased()) {
+                            updateEntry(entry, entries.get(realIndex), position);
+                        }
                         entry.setVisible(true);
                         notifyItemChanged(position);
                     }
@@ -276,18 +289,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
             @Override
             public void onCounterClicked(int position) {
-                Entry entry = displayedEntries.get(position);
-                Entry realEntry = entries.get(getRealIndex(position));
-
-                long counter = entry.getCounter() + 1;
-
-                entry.setCounter(counter);
-                entry.updateOTP();
-                notifyItemChanged(position);
-
-                realEntry.setCounter(counter);
-                realEntry.updateOTP();
-                saveEntries(false);
+                updateEntry(displayedEntries.get(position), entries.get(getRealIndex(position)), position);
             }
 
             @Override
@@ -297,6 +299,19 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         });
 
         return viewHolder;
+    }
+
+    private void updateEntry(Entry entry, Entry realEntry, final int position) {
+        long counter = entry.getCounter() + 1;
+
+        entry.setCounter(counter);
+        entry.updateOTP();
+        notifyItemChanged(position);
+
+        realEntry.setCounter(counter);
+        realEntry.updateOTP();
+        
+        saveEntries(false);
     }
 
     private void hideEntry(Entry entry) {
@@ -390,6 +405,51 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         }
 
         return true;
+    }
+
+    public void editEntryIssuer(final int pos) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
+        int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
+
+        final EditText input = new EditText(context);
+        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        input.setText(displayedEntries.get(pos).getIssuer());
+        input.setSingleLine();
+
+        FrameLayout container = new FrameLayout(context);
+        container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
+        container.addView(input);
+
+        builder.setTitle(R.string.dialog_title_rename)
+                .setView(container)
+                .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int realIndex = getRealIndex(pos);
+                        String newIssuer = input.getEditableText().toString();
+
+                        displayedEntries.get(pos).setIssuer(newIssuer);
+                        if (sortMode == SortMode.LABEL) {
+                            displayedEntries = sortEntries(displayedEntries);
+                            notifyDataSetChanged();
+                        } else {
+                            notifyItemChanged(pos);
+                        }
+
+                        Entry e = entries.get(realIndex);
+                        e.setIssuer(newIssuer);
+
+                        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .create()
+                .show();
     }
 
     public void editEntryLabel(final int pos) {
@@ -606,7 +666,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             public boolean onMenuItemClick(MenuItem item) {
                 int id = item.getItemId();
 
-                if (id == R.id.menu_popup_editLabel) {
+                if (id == R.id.menu_popup_editIssuer) {
+                    editEntryIssuer(pos);
+                    return true;
+                } else if (id == R.id.menu_popup_editLabel) {
                     editEntryLabel(pos);
                     return true;
                 } else if(id == R.id.menu_popup_changeImage) {
@@ -666,6 +729,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         return filter;
     }
 
+    public void clearFilter() {
+        if (filter != null)
+            filter = null;
+    }
+
     public List<String> getTags() {
         HashSet<String> tags = new HashSet<String>();
 
@@ -677,15 +745,28 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public class EntryFilter extends Filter {
+        private List<Constants.SearchIncludes> filterValues = settings.getSearchValues();
+
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
+
             final FilterResults filterResults = new FilterResults();
 
             ArrayList<Entry> filtered = new ArrayList<>();
             if (constraint != null && constraint.length() != 0){
                 for (int i = 0; i < entries.size(); i++) {
-                    if (entries.get(i).getLabel().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                    if (filterValues.contains(Constants.SearchIncludes.LABEL) && entries.get(i).getLabel().toLowerCase().contains(constraint.toString().toLowerCase())) {
                         filtered.add(entries.get(i));
+                    } else if (filterValues.contains(Constants.SearchIncludes.ISSUER) && entries.get(i).getIssuer().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        filtered.add(entries.get(i));
+                    } else if (filterValues.contains(Constants.SearchIncludes.TAGS)) {
+                        List<String> tags = entries.get(i).getTags();
+                        for (int j = 0; j < tags.size(); j++) {
+                            if (tags.get(j).toLowerCase().contains(constraint.toString().toLowerCase())) {
+                                filtered.add(entries.get(i));
+                                break;
+                            }
+                        }
                     }
                 }
             } else {
