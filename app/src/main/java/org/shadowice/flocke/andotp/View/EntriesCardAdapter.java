@@ -514,7 +514,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
 
         int realIndex = getRealIndex(pos);
-        final ThumbnailSelectionAdapter thumbnailAdapter = new ThumbnailSelectionAdapter(context, entries.get(realIndex).getLabel());
+        final ThumbnailSelectionAdapter thumbnailAdapter = new ThumbnailSelectionAdapter(context, entries.get(realIndex).getIssuer(), entries.get(realIndex).getLabel());
 
         final EditText input = new EditText(context);
         input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));

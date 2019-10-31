@@ -250,12 +250,13 @@ public class EntryThumbnail {
         }
     }
 
-    public static Bitmap getThumbnailGraphic(Context context, String label, int size, EntryThumbnails thumbnail) {
+    public static Bitmap getThumbnailGraphic(Context context, String issuer, String label, int size, EntryThumbnails thumbnail) {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         if (thumbnail == EntryThumbnails.Default && size > 0) {
             LetterBitmap letterBitmap = new LetterBitmap(context);
-            return letterBitmap.getLetterTile(label, label, size, size);
+            String letterSrc = issuer.isEmpty() ? label : issuer;
+            return letterBitmap.getLetterTile(letterSrc, letterSrc, size, size);
         } else if (thumbnail != EntryThumbnails.Default) {
 
             try {

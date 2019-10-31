@@ -195,7 +195,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         int thumbnailSize = settings.getThumbnailSize();
         if(settings.getThumbnailVisible()) {
-            thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, entry.getLabel(), thumbnailSize, entry.getThumbnail()));
+            thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, entry.getIssuer(), entry.getLabel(), thumbnailSize, entry.getThumbnail()));
         }
 
         if (entry.isTimeBased() && entry.hasNonDefaultPeriod()) {
