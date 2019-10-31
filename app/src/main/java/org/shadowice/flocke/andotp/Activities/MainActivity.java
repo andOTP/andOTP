@@ -411,7 +411,6 @@ public class MainActivity extends BaseActivity
                     e.updateOTP();
                     e.setLastUsed(System.currentTimeMillis());
                     adapter.addEntry(e);
-                    adapter.saveEntries();
                     refreshTags();
                 } catch (Exception e) {
                     Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();

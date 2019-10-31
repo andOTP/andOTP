@@ -44,6 +44,7 @@ import org.openintents.openpgp.util.OpenPgpKeyPreference;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Preferences.CredentialsPreference;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
@@ -143,6 +144,10 @@ public class SettingsActivity extends BaseActivity
                     fragment.useAndroidSync.setEnabled(true);
             }
         }
+
+        fragment.useAutoBackup.setEnabled(BackupHelper.autoBackupType(this) == Constants.BackupType.ENCRYPTED);
+        if(!fragment.useAutoBackup.isEnabled())
+            fragment.useAutoBackup.setChecked(false);
     }
 
     private void generateNewEncryptionKey() {
@@ -236,6 +241,7 @@ public class SettingsActivity extends BaseActivity
 
         Settings settings;
         ListPreference encryption;
+        CheckBoxPreference useAutoBackup;
         CheckBoxPreference useAndroidSync;
 
         OpenPgpAppPreference pgpProvider;
@@ -343,6 +349,11 @@ public class SettingsActivity extends BaseActivity
                     return true;
                 }
             });
+
+            useAutoBackup = (CheckBoxPreference) findPreference(getString(R.string.settings_key_auto_backup_password_enc));
+            useAutoBackup.setEnabled(BackupHelper.autoBackupType(getActivity()) == Constants.BackupType.ENCRYPTED);
+            if(!useAutoBackup.isEnabled())
+                useAutoBackup.setChecked(false);
 
             useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
             useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);

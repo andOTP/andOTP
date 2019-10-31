@@ -538,6 +538,10 @@ public class Settings {
         return getBoolean(R.string.settings_key_backup_append_date_time, false);
     }
 
+    public boolean getAutoBackupEncryptedPasswordsEnabled() {
+        return getBoolean(R.string.settings_key_auto_backup_password_enc, false);
+    }
+
     public boolean isHighlightTokenOptionEnabled() {
         return getBoolean(R.string.settings_key_label_highlight_token,true);
     }
