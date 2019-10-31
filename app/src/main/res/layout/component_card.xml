@@ -94,7 +94,6 @@
                                 app:srcCompat="@drawable/ic_visibility_invisible"/>
 
                             <TextView
-                                android:id="@+id/hiddenText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:alpha="0.4"

@@ -62,9 +62,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private LinearLayout counterLayout;
     private FrameLayout thumbnailFrame;
     private ImageView visibleImg;
-    private ImageView invisibleImg;
     private ImageView thumbnailImg;
-    private TextView hidden;
     private TextView value;
     private TextView issuer;
     private TextView label;
@@ -80,7 +78,6 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         card = v.findViewById(R.id.card_view);
         value = v.findViewById(R.id.valueText);
         valueLayout = v.findViewById(R.id.valueLayout);
-        hidden = v.findViewById(R.id.hiddenText);
         visibleImg = v.findViewById(R.id.valueImg);
         thumbnailFrame = v.findViewById(R.id.thumbnailFrame);
         thumbnailImg = v.findViewById(R.id.thumbnailImg);
@@ -91,10 +88,10 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         counterLayout = v.findViewById(R.id.counterLayout);
         counter = v.findViewById(R.id.counter);
         progressBar = v.findViewById(R.id.cardProgressBar);
-        invisibleImg = v.findViewById(R.id.coverImg);
 
         ImageButton menuButton = v.findViewById(R.id.menuButton);
         ImageButton copyButton = v.findViewById(R.id.copyButton);
+        ImageView invisibleImg = v.findViewById(R.id.coverImg);
 
         // Style the buttons in the current theme colors
         ColorFilter colorFilter = Tools.getThemeColorFilter(context, android.R.attr.textColorSecondary);
@@ -300,29 +297,18 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         void onCounterLongPressed(int position);
     }
     /**
-     * Updates the color of the following items to red (if expiring) or default color (if new OTP)
-     * TextViews: OTP, "Hidden" text, issuer, label, tags
-     * ImageViews: Visible, Invisible
+     * Updates the color of OTP to red (if expiring) or default color (if new OTP)
      *
      * @param color will define if the color needs to be changed to red or default
      * */
     public void updateColor(int color) {
         int textColor;
-        ColorFilter colorFilter;
         if(color == Entry.COLOR_RED) {
             textColor = Tools.getThemeColor(context, R.attr.colorExpiring);
-            colorFilter = Tools.getThemeColorFilter(context, R.attr.colorExpiring);
         } else {
             textColor = Tools.getThemeColor(context, android.R.attr.textColorSecondary);
-            colorFilter = Tools.getThemeColorFilter(context, android.R.attr.textColorSecondary);
         }
 
         value.setTextColor(textColor);
-        hidden.setTextColor(textColor);
-        issuer.setTextColor(textColor);
-        label.setTextColor(textColor);
-        tags.setTextColor(textColor);
-        visibleImg.setColorFilter(colorFilter);
-        invisibleImg.setColorFilter(colorFilter);
     }
 }

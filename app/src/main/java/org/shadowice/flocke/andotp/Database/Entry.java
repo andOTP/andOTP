@@ -23,7 +23,6 @@
 
 package org.shadowice.flocke.andotp.Database;
 
-import android.graphics.ColorFilter;
 import android.net.Uri;
 
 import org.apache.commons.codec.binary.Base32;
