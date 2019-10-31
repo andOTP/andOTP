@@ -357,7 +357,8 @@ public class MainActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_theme)) ||
                 key.equals(getString(R.string.settings_key_locale)) ||
                 key.equals(getString(R.string.settings_key_enable_screenshot)) ||
-                key.equals(getString(R.string.settings_key_tag_functionality)) ) {
+                key.equals(getString(R.string.settings_key_tag_functionality)) ||
+                key.equals(getString(R.string.settings_key_label_highlight_token))) {
             recreate();
         }
     }
