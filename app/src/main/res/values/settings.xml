@@ -17,8 +17,10 @@
     <string name="settings_key_panic" translatable="false">pref_panic</string>
     <string name="settings_key_relock_screen_off" translatable="false">pref_relock_screen_off</string>
 
+    <string name="settings_key_cat_ui" translatable="false">perf_cat_ui</string>
     <string name="settings_key_lang" translatable="false">pref_lang</string>                                <!-- Deprecated -->
     <string name="settings_key_locale" translatable="false">pref_locale</string>
+    <string name="settings_key_theme_mode" translatable="false">perf_theme_mode</string>
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size_sp</string>
     <string name="settings_key_card_layout" translatable="false">pref_card_layout</string>
@@ -59,6 +61,7 @@
     <integer name="settings_default_tap_to_reveal_timeout">30</integer>
     <string name="settings_default_encryption" translatable="false">keystore</string>
     <string name="settings_default_locale" translatable="false">system</string>
+    <string name="settings_default_theme_mode" translatable="false">auto</string>
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">18</integer>
     <string name="settings_default_card_layout" translatable="false">default</string>
@@ -129,6 +132,11 @@
         <item>ja_JP</item>
         <item>zh_CN</item>
         <item>zh_TW</item>
+    </string-array>
+
+    <string-array name="settings_values_theme_mode" translatable="false">
+        <item>auto</item>
+        <item>manual</item>
     </string-array>
 
     <string-array name="settings_values_theme" translatable="false">

@@ -51,7 +51,8 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/settings_category_title_ui">
+        android:title="@string/settings_category_title_ui"
+        android:key="@string/settings_key_cat_ui">
 
         <ListPreference
             android:key="@string/settings_key_locale"
@@ -60,6 +61,14 @@
             android:entries="@array/settings_entries_lang"
             android:entryValues="@array/settings_values_locale"
             android:defaultValue="@string/settings_default_locale" />
+
+        <ListPreference
+            android:key="@string/settings_key_theme_mode"
+            android:title="@string/settings_title_theme_mode"
+            android:summary="%s"
+            android:entries="@array/settings_entries_theme_mode"
+            android:entryValues="@array/settings_values_theme_mode"
+            android:defaultValue="@string/settings_default_theme_mode" />
 
         <ListPreference
             android:key="@string/settings_key_theme"

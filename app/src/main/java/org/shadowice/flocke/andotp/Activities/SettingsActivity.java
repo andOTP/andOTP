@@ -27,6 +27,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -123,7 +124,8 @@ public class SettingsActivity extends BaseActivity
 
         if (key.equals(getString(R.string.settings_key_theme)) ||
                 key.equals(getString(R.string.settings_key_locale)) ||
-                key.equals(getString(R.string.settings_key_special_features))) {
+                key.equals(getString(R.string.settings_key_special_features)) ||
+                key.equals(getString(R.string.settings_key_theme_mode))) {
             recreate();
         } else if(key.equals(getString(R.string.settings_key_encryption))) {
             if (settings.getEncryption() != EncryptionType.PASSWORD) {
@@ -240,6 +242,7 @@ public class SettingsActivity extends BaseActivity
 
     public static class SettingsFragment extends PreferenceFragment {
         PreferenceCategory catSecurity;
+        PreferenceCategory catUI;
 
         Settings settings;
         ListPreference encryption;
@@ -249,6 +252,8 @@ public class SettingsActivity extends BaseActivity
         OpenPgpAppPreference pgpProvider;
         EditTextPreference pgpEncryptionKey;
         OpenPgpKeyPreference pgpSigningKey;
+        ListPreference themeMode;
+        ListPreference theme;
 
         public void encryptionChangeWithDialog(final EncryptionType encryptionType) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -292,7 +297,10 @@ public class SettingsActivity extends BaseActivity
 
             // Authentication
             catSecurity = (PreferenceCategory) findPreference(getString(R.string.settings_key_cat_security));
+            catUI = (PreferenceCategory) findPreference(getString(R.string.settings_key_cat_ui));
             encryption = (ListPreference) findPreference(getString(R.string.settings_key_encryption));
+            themeMode = (ListPreference) findPreference(getString(R.string.settings_key_theme_mode));
+            theme = (ListPreference) findPreference(getString(R.string.settings_key_theme));
 
             encryption.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
@@ -395,10 +403,20 @@ public class SettingsActivity extends BaseActivity
                         });
 
                         builder.create().show();
-
                         return false;
                     }
                 });
+            }
+            //Remove Theme Mode selection option for devices below Android 10. Disable theme selection if Theme Mode is set auto
+            //TODO: 29 needs to be replaced with VERSION_CODE.Q when compileSdk and targetSdk is updated to 29
+            if(Build.VERSION.SDK_INT < 29) {
+                catUI.removePreference(themeMode);
+            } else {
+                if(sharedPref.getString(getString(R.string.settings_key_theme_mode),getString(R.string.settings_default_theme_mode)).equals("auto")) {
+                    theme.setEnabled(false);
+                } else {
+                    theme.setEnabled(true);
+                }
             }
         }
     }
