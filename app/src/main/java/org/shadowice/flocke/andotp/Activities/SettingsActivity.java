@@ -148,7 +148,7 @@ public class SettingsActivity extends BaseActivity
         if (fragment.useAutoBackup != null) {
             fragment.useAutoBackup.setEnabled(BackupHelper.autoBackupType(this) == Constants.BackupType.ENCRYPTED);
             if (!fragment.useAutoBackup.isEnabled())
-                fragment.useAutoBackup.setChecked(false);
+                fragment.useAutoBackup.setValue(Constants.AutoBackup.OFF.toString());
         }
     }
 
@@ -243,7 +243,7 @@ public class SettingsActivity extends BaseActivity
 
         Settings settings;
         ListPreference encryption;
-        CheckBoxPreference useAutoBackup;
+        ListPreference useAutoBackup;
         CheckBoxPreference useAndroidSync;
 
         OpenPgpAppPreference pgpProvider;
@@ -352,10 +352,10 @@ public class SettingsActivity extends BaseActivity
                 }
             });
 
-            useAutoBackup = (CheckBoxPreference) findPreference(getString(R.string.settings_key_auto_backup_password_enc));
+            useAutoBackup = (ListPreference)findPreference(getString(R.string.settings_key_auto_backup_password_enc));
             useAutoBackup.setEnabled(BackupHelper.autoBackupType(getActivity()) == Constants.BackupType.ENCRYPTED);
             if(!useAutoBackup.isEnabled())
-                useAutoBackup.setChecked(false);
+                useAutoBackup.setValue(Constants.AutoBackup.OFF.toString());
 
             useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
             useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);

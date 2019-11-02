@@ -119,7 +119,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         if (! entries.contains(e)) {
             entries.add(e);
             entriesChanged();
-            saveEntries(true);
+            saveEntries(settings.getAutoBackupEncryptedPasswordsEnabled() || settings.getAutoBackupEncryptedFullEnabled());
         } else {
             Toast.makeText(context, R.string.toast_entry_exists, Toast.LENGTH_LONG).show();
         }
@@ -138,7 +138,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void saveEntries(boolean auto_backup) {
         DatabaseHelper.saveDatabase(context, entries, encryptionKey);
 
-        if(auto_backup && settings.getAutoBackupEncryptedPasswordsEnabled()) {
+        if(auto_backup) {
             Constants.BackupType backupType = BackupHelper.autoBackupType(context);
             if (backupType == Constants.BackupType.ENCRYPTED) {
                 Uri backupFilename = Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(context, Constants.BackupType.ENCRYPTED));
@@ -321,7 +321,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         realEntry.setCounter(counter);
         realEntry.updateOTP();
         
-        saveEntries(false);
+        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
     }
 
     private void hideEntry(Entry entry) {
@@ -374,7 +374,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         Entry e = entries.get(realIndex);
                         e.setCounter(newCounter);
 
-                        saveEntries(false);
+                        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -392,7 +392,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             displayedEntries.get(position).setLastUsed(timeStamp);
 
         entries.get(realIndex).setLastUsed(timeStamp);
-        saveEntries(false);
+        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
 
         if (sortMode == SortMode.LAST_USED) {
             displayedEntries = sortEntries(displayedEntries);
@@ -411,7 +411,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             displayedEntries = new ArrayList<>(entries);
             notifyItemMoved(fromPosition, toPosition);
 
-            saveEntries(false);
+            saveEntries(settings.getAutoBackupEncryptedFullEnabled());
         }
 
         return true;
@@ -496,7 +496,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         Entry e = entries.get(realIndex);
                         e.setLabel(newLabel);
 
-                        saveEntries(false);
+                        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -582,7 +582,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 Entry e = entries.get(realIndex);
                 e.setThumbnail(thumbnail);
 
-                saveEntries(false);
+                saveEntries(settings.getAutoBackupEncryptedFullEnabled());
                 notifyItemChanged(pos);
                 alert.cancel();
             }
@@ -610,7 +610,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             @Override
             public Object call() throws Exception {
                 entries.get(realPos).setTags(tagsAdapter.getActiveTags());
-                saveEntries(false);
+                saveEntries(settings.getAutoBackupEncryptedFullEnabled());
 
                 List<String> inUseTags = getTags();
 
@@ -655,7 +655,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         notifyItemRemoved(pos);
 
                         entries.remove(realIndex);
-                        saveEntries(false);
+                        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
