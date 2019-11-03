@@ -23,16 +23,21 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,6 +45,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -75,6 +81,7 @@ import javax.crypto.SecretKey;
 
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
+import static org.shadowice.flocke.andotp.Utilities.Constants.INTENT_QR_OPEN_IMAGE;
 import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class MainActivity extends BaseActivity
@@ -211,6 +218,9 @@ public class MainActivity extends BaseActivity
                         return false;
                     case R.id.fabEnterDetails:
                         ManualEntryDialog.show(MainActivity.this, settings, adapter);
+                        return false;
+                    case R.id.fabScanQRFromImage:
+                        openFileWithPermissions(INTENT_QR_OPEN_IMAGE);
                         return false;
                     default:
                         return false;
@@ -406,15 +416,7 @@ public class MainActivity extends BaseActivity
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if(result != null) {
             if(result.getContents() != null) {
-                try {
-                    Entry e = new Entry(result.getContents());
-                    e.updateOTP();
-                    e.setLastUsed(System.currentTimeMillis());
-                    adapter.addEntry(e);
-                    refreshTags();
-                } catch (Exception e) {
-                    Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();
-                }
+                addQRCode(result.getContents());
             }
         } else if (requestCode == Constants.INTENT_MAIN_BACKUP && resultCode == RESULT_OK) {
             if (intent.getBooleanExtra("reload", false)) {
@@ -445,6 +447,10 @@ public class MainActivity extends BaseActivity
                     authKey = intent.getByteArrayExtra(Constants.EXTRA_AUTH_PASSWORD_KEY);
 
                 updateEncryption(authKey);
+            }
+        } else if (requestCode == INTENT_QR_OPEN_IMAGE && resultCode == RESULT_OK) {
+            if (intent != null) {
+                addQRCode(ScanQRCodeFromFile.scanQRImage(this, intent.getData()));
             }
         }
     }
@@ -740,5 +746,46 @@ public class MainActivity extends BaseActivity
         }
         tagsDrawerAdapter.setTags(tagsHashMap);
         adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+    }
+
+    private void openFileWithPermissions(int intentId){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            showOpenFileSelector(intentId);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constants.PERMISSIONS_QR_READ_IMAGE);
+        }
+    }
+
+    private void showOpenFileSelector(int intentId){
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        startActivityForResult(intent, intentId);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == Constants.PERMISSIONS_QR_READ_IMAGE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                showOpenFileSelector(INTENT_QR_OPEN_IMAGE);
+            } else {
+                Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+    private void addQRCode(String result){
+        if(!TextUtils.isEmpty(result)) {
+            try {
+                Entry e = new Entry(result);
+                e.updateOTP();
+                e.setLastUsed(System.currentTimeMillis());
+                adapter.addEntry(e);
+                refreshTags();
+            } catch (Exception e) {
+                Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

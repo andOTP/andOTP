@@ -139,4 +139,7 @@ public class Constants {
     public final static String BACKUP_MIMETYPE_PLAIN    = "application/json";
     public final static String BACKUP_MIMETYPE_CRYPT    = "binary/aes";
     public final static String BACKUP_MIMETYPE_PGP      = "application/pgp-encrypted";
+
+    public final static int INTENT_QR_OPEN_IMAGE = 400;
+    public final static int PERMISSIONS_QR_READ_IMAGE = 401;
 }
