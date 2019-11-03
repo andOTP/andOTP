@@ -1,4 +1,4 @@
-package org.shadowice.flocke.andotp.Activities;
+package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
 import android.graphics.Bitmap;

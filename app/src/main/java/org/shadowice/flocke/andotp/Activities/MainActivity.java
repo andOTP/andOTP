@@ -68,6 +68,7 @@ import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.NotificationHelper;
+import org.shadowice.flocke.andotp.Utilities.ScanQRCodeFromFile;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCallback;
