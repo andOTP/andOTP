@@ -6,10 +6,10 @@
     <string name="settings_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>
     <string name="settings_key_tap_to_reveal_timeout" translatable="false">pref_tap_to_reveal_timeout</string>
     <string name="settings_key_auth" translatable="false">pref_auth</string>
-    <string name="settings_key_auth_password" translatable="false">pref_auth_password</string>              <!-- Deprecated -->
+    <string name="settings_key_auth_password" translatable="false">pref_auth_password</string>    <!-- Deprecated -->
     <string name="settings_key_auth_password_hash" translatable="false">pref_auth_password_hash</string>    <!-- Deprecated -->
-    <string name="settings_key_auth_pin" translatable="false">pref_auth_pin</string>                        <!-- Deprecated -->
-    <string name="settings_key_auth_pin_hash" translatable="false">pref_auth_pin_hash</string>              <!-- Deprecated -->
+    <string name="settings_key_auth_pin" translatable="false">pref_auth_pin</string>    <!-- Deprecated -->
+    <string name="settings_key_auth_pin_hash" translatable="false">pref_auth_pin_hash</string>    <!-- Deprecated -->
     <string name="settings_key_auth_credentials" translatable="false">pref_auth_credentials</string>
     <string name="settings_key_auth_iterations" translatable="false">pref_auth_iterations</string>
     <string name="settings_key_auth_salt" translatable="false">pref_auth_salt</string>
@@ -17,7 +17,7 @@
     <string name="settings_key_panic" translatable="false">pref_panic</string>
     <string name="settings_key_relock_screen_off" translatable="false">pref_relock_screen_off</string>
 
-    <string name="settings_key_lang" translatable="false">pref_lang</string>                                <!-- Deprecated -->
+    <string name="settings_key_lang" translatable="false">pref_lang</string>    <!-- Deprecated -->
     <string name="settings_key_locale" translatable="false">pref_locale</string>
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size_sp</string>
@@ -32,7 +32,7 @@
     <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
     <string name="settings_key_backup_directory" translatable="false">pref_backup_directory</string>
-    <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>          <!-- Deprecated -->
+    <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>    <!-- Deprecated -->
     <string name="settings_key_backup_password_enc" translatable="false">pref_backup_password_enc</string>
     <string name="settings_key_auto_backup_password_enc" translatable="false">pref_backup_auto_password_enc</string>
     <string name="settings_key_backup_broadcasts" translatable="false">pref_backup_broadcasts</string>
@@ -184,7 +184,7 @@
         <item>العربية</item>
         <item>فارسی</item>
         <item>日本語</item>
-        <item>簡體中文</item>
+        <item>简体中文</item>
         <item>繁體中文</item>
     </string-array>
 
