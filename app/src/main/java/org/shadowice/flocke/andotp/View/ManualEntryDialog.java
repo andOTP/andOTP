@@ -195,7 +195,8 @@ public class ManualEntryDialog {
 
                         String issuer = issuerInput.getText().toString();
                         String label = labelInput.getText().toString();
-                        String secret = secretInput.getText().toString();
+                        //Replace spaces with empty characters
+                        String secret = secretInput.getText().toString().replaceAll("\\s+","");
                         int digits = Integer.parseInt(digitsInput.getText().toString());
 
                         if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
