@@ -92,6 +92,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:lines="3"
+                android:inputType="textVisiblePassword"
                 android:hint="@string/hint_secret" />
 
         </LinearLayout>
