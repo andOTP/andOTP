@@ -1,8 +1,8 @@
 package org.shadowice.flocke.andotp.Dialogs;
 
 import android.content.Context;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatDialog;
+import com.google.android.material.textfield.TextInputEditText;
+import androidx.appcompat.app.AppCompatDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
