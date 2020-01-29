@@ -139,6 +139,7 @@
 
     <string-array name="settings_values_thumbnail_size" translatable="false">
         <item>0dp</item>
+        <item>24dp</item>
         <item>32dp</item>
         <item>46dp</item>
         <item>64dp</item>
