@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package org.shadowice.flocke.andotp.View;
+package org.shadowice.flocke.andotp.Dialogs;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -45,6 +45,8 @@ import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
+import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
+import org.shadowice.flocke.andotp.View.TagsAdapter;
 
 import java.util.HashMap;
 import java.util.List;

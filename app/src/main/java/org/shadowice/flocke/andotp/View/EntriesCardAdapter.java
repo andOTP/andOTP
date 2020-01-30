@@ -50,6 +50,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.Dialogs.TagsDialog;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
