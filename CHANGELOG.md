@@ -1,5 +1,23 @@
 # Changelog
 
+#### v0.6.4 (WIP)
+
+ * New feature: Generate a new HOTP token when revealing (Issue #334, PR #366 by @moritzgloeckl)
+ * New feature: Split issuer and label (Issue #258, PR #372 by @lucavallerini)
+ * New feature: Automatic thumbnail selection based on the issuer (Issue #388, PR #389 by @schwedenmut)
+ * New feature: Allow searching the tags and issuers in addition to the label (Issue #327)
+ * New feature: Turn tokens red if they are about to expire (Issue #311, PR #410 by @Ullas-Aithal)
+ * New feature: Handle otpauth:// intents from other apps (Issue #324, PR #393 by @schwedenmut)
+ * New feature: Create an encrypted backup every time the entries are changed (PR #397 by @RichyHBM)
+ * New feature: Different layouts for the entry cards
+ * New feature: New thumbnail size "Tiny"
+ * Improvement: Hide the token list on screen off (Issue #264, PR #391 by @LizardWithHat)
+ * Improvement: Scale the font of the default thumbnail with its size
+ * Bug fix: Fix black navigation bar on OxygenOS devices (PR #417 by @Ullas-Aithal)
+ * Internal: Migrate to AndroidX
+ * Internal: Update Gradle and a lot of dependencies
+ * Thumbnails: Lots of new ones (thanks to all contributors)
+
 #### v0.6.3.1
 
  * Introduce build flavors:

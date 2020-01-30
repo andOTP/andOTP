@@ -181,6 +181,7 @@
 
     <string-array name="settings_entries_thumbnail_size">
         <item>Hidden</item>
+        <item>Tiny</item>
         <item>Small</item>
         <item>Default</item>
         <item>Medium</item>

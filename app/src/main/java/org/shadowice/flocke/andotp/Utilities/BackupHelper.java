@@ -4,12 +4,9 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
-import android.widget.Toast;
+import androidx.core.content.ContextCompat;
 
 import org.shadowice.flocke.andotp.Database.Entry;
-import org.shadowice.flocke.andotp.R;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
