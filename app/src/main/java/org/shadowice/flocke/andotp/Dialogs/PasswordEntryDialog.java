@@ -2,6 +2,8 @@ package org.shadowice.flocke.andotp.Dialogs;
 
 import android.content.Context;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
 import androidx.appcompat.app.AppCompatDialog;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -29,14 +31,20 @@ public class PasswordEntryDialog extends AppCompatDialog
     private EditText passwordConfirm;
     private Button okButton;
 
-    public PasswordEntryDialog(Context context, Mode newMode, PasswordEnteredCallback newCallback) {
+    public PasswordEntryDialog(Context context, Mode newMode, boolean blockAccessibility, PasswordEnteredCallback newCallback) {
         super(context, Tools.getThemeResource(context, R.attr.dialogTheme));
 
         setTitle(R.string.dialog_title_enter_password);
         setContentView(R.layout.dialog_password_entry);
 
+        TextInputLayout passwordLayout = findViewById(R.id.passwordInputLayout);
         passwordInput = findViewById(R.id.passwordInput);
         passwordConfirm = findViewById(R.id.passwordConfirm);
+
+        if (blockAccessibility) {
+            passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
+            passwordConfirm.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        }
 
         okButton = findViewById(R.id.buttonOk);
         Button cancelButton = findViewById(R.id.buttonCancel);

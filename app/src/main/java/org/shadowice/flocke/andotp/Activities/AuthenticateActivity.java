@@ -89,6 +89,9 @@ public class AuthenticateActivity extends ThemedActivity
         TextInputLayout passwordLayout = v.findViewById(R.id.passwordLayout);
         passwordInput = v.findViewById(R.id.passwordEdit);
 
+        if (settings.getBlockAccessibility())
+            passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
+
         passwordLabel.setText(labelMsg);
 
         authMethod = settings.getAuthMethod();

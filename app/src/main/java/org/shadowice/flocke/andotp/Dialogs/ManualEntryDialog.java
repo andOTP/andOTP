@@ -60,6 +60,9 @@ public class ManualEntryDialog {
         ViewGroup container = callingActivity.findViewById(R.id.main_content);
         View inputView = callingActivity.getLayoutInflater().inflate(R.layout.dialog_manual_entry, container, false);
 
+        if (settings.getBlockAccessibility())
+            inputView.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
+
         final Spinner typeInput = inputView.findViewById(R.id.manual_type);
         final EditText issuerInput = inputView.findViewById(R.id.manual_issuer);
         final EditText labelInput = inputView.findViewById(R.id.manual_label);

@@ -127,6 +127,11 @@ public class CredentialsPreference extends DialogPreference
         passwordInput = view.findViewById(R.id.passwordEdit);
         passwordConfirm = view.findViewById(R.id.passwordConfirm);
 
+        if (settings.getBlockAccessibility()) {
+            passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
+            passwordConfirm.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        }
+
         toShortWarning = view.findViewById(R.id.toShortWarning);
 
         passwordInput.addTextChangedListener(this);

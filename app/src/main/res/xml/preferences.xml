@@ -48,6 +48,12 @@
             android:summary="@string/settings_desc_relock_screen_off"
             android:defaultValue="true" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_block_accessibility"
+            android:title="@string/settings_title_block_accessibility"
+            android:summary="@string/settings_desc_block_accessibility"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

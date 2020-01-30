@@ -42,6 +42,7 @@ import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
+import org.shadowice.flocke.andotp.Utilities.Settings;
 
 import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
@@ -92,9 +93,16 @@ public class PasswordEncryptedPreference extends DialogPreference
 
     @Override
     protected void onBindDialogView(View view) {
+        Settings settings = new Settings(getContext());
+
         TextInputLayout passwordLayout = view.findViewById(R.id.passwordLayout);
         passwordInput = view.findViewById(R.id.passwordEdit);
         passwordConfirm = view.findViewById(R.id.passwordConfirm);
+
+        if (settings.getBlockAccessibility()) {
+            passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
+            passwordConfirm.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        }
 
         Button btnCancel = view.findViewById(R.id.btnCancel);
         btnSave = view.findViewById(R.id.btnSave);
