@@ -107,9 +107,9 @@
     </string-array>
 
     <string-array name="settings_values_auto_backup_password_enc" translatable="false">
-        <item>OFF</item>
-        <item>NEW_ENTRIES</item>
-        <item>ALL_EDITS</item>
+        <item>off</item>
+        <item>new_entries</item>
+        <item>all_edits</item>
     </string-array>
 
 

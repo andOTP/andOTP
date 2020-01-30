@@ -120,7 +120,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         if (! entries.contains(e)) {
             entries.add(e);
             entriesChanged();
-            saveEntries(settings.getAutoBackupEncryptedPasswordsEnabled() || settings.getAutoBackupEncryptedFullEnabled());
+            saveEntries(settings.getAutoBackupEncryptedPasswordsEnabled());
         } else {
             Toast.makeText(context, R.string.toast_entry_exists, Toast.LENGTH_LONG).show();
         }

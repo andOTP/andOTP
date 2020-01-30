@@ -53,6 +53,7 @@ import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.crypto.SecretKey;
 
@@ -148,7 +149,7 @@ public class SettingsActivity extends BaseActivity
         if (fragment.useAutoBackup != null) {
             fragment.useAutoBackup.setEnabled(BackupHelper.autoBackupType(this) == Constants.BackupType.ENCRYPTED);
             if (!fragment.useAutoBackup.isEnabled())
-                fragment.useAutoBackup.setValue(Constants.AutoBackup.OFF.toString());
+                fragment.useAutoBackup.setValue(Constants.AutoBackup.OFF.toString().toLowerCase(Locale.ENGLISH));
         }
     }
 
@@ -355,7 +356,7 @@ public class SettingsActivity extends BaseActivity
             useAutoBackup = (ListPreference)findPreference(getString(R.string.settings_key_auto_backup_password_enc));
             useAutoBackup.setEnabled(BackupHelper.autoBackupType(getActivity()) == Constants.BackupType.ENCRYPTED);
             if(!useAutoBackup.isEnabled())
-                useAutoBackup.setValue(Constants.AutoBackup.OFF.toString());
+                useAutoBackup.setValue(Constants.AutoBackup.OFF.toString().toLowerCase(Locale.ENGLISH));
 
             useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
             useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);
