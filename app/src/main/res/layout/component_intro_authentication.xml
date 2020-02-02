@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_margin"
-            android:text="@string/intro_slide3_desc_keystore"/>
+            android:text="@string/intro_slide3_desc_password"/>
 
         <Spinner
             android:id="@+id/introAuthSelection"
