@@ -169,11 +169,13 @@
             android:title="@string/settings_title_backup_password"
             android:summary="@string/settings_desc_backup_password" />
 
-        <CheckBoxPreference
+        <ListPreference
             android:key="@string/settings_key_auto_backup_password_enc"
             android:title="@string/settings_title_auto_backup_password_enc"
             android:summary="@string/settings_desc_auto_backup_password_enc"
-            android:defaultValue="false" />
+            android:entries="@array/settings_entries_auto_backup_password_enc"
+            android:entryValues="@array/settings_values_auto_backup_password_enc"
+            android:defaultValue="@string/settings_default_auto_backup_password_enc" />
 
         <MultiSelectListPreference
             android:key="@string/settings_key_backup_broadcasts"

@@ -47,7 +47,7 @@ public class BackupHelper {
             return Constants.BackupType.UNAVAILABLE;
         }
 
-        if(!settings.getIsAppendingDateTimeToBackups() || settings.getBackupAsk()) {
+        if(settings.getBackupAsk()) {
             return Constants.BackupType.UNAVAILABLE;
         }
 

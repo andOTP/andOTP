@@ -71,7 +71,7 @@
         backups</string>
 
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
-        entries are added if settings conditions are met</string>
+        entries are added, or edited, if settings conditions are met</string>
 
     <string name="settings_desc_backup_broadcasts">Select which backup types can be triggered by
         3rd-party apps using Broadcasts</string>
@@ -168,6 +168,12 @@
         <item>Label</item>
         <item>Issuer</item>
         <item>Tags</item>
+    </string-array>
+
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Off</item>
+        <item>New Entries</item>
+        <item>Any Edits</item>
     </string-array>
 
     <string-array name="settings_entries_theme">
