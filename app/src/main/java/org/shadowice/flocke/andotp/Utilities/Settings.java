@@ -311,6 +311,10 @@ public class Settings {
         return getBoolean(R.string.settings_key_relock_screen_off, true);
     }
 
+    public boolean getBlockAccessibility() {
+        return getBoolean(R.string.settings_key_block_accessibility, false);
+    }
+
     public void setLocale(String locale) {
         setString(R.string.settings_key_locale, locale);
     }
@@ -543,8 +547,17 @@ public class Settings {
         return getBoolean(R.string.settings_key_backup_append_date_time, false);
     }
 
+    private Constants.AutoBackup getAutoBackupEncryptedSetting() {
+        String stringValue = getString(R.string.settings_key_auto_backup_password_enc, R.string.settings_default_auto_backup_password_enc);
+        return Constants.AutoBackup.valueOf(stringValue.toUpperCase(Locale.ENGLISH));
+    }
+
     public boolean getAutoBackupEncryptedPasswordsEnabled() {
-        return getBoolean(R.string.settings_key_auto_backup_password_enc, false);
+        return getAutoBackupEncryptedSetting() != Constants.AutoBackup.OFF;
+    }
+
+    public boolean getAutoBackupEncryptedFullEnabled() {
+        return getAutoBackupEncryptedSetting() == Constants.AutoBackup.ALL_EDITS;
     }
 
     public boolean isHighlightTokenOptionEnabled() {

@@ -59,21 +59,21 @@
             android:paddingStart="@dimen/activity_margin"
             android:paddingEnd="@dimen/activity_margin">
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/introPasswordLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/settings_hint_password"
                 app:passwordToggleEnabled="true" >
 
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/introPasswordEdit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
                     android:autofillHints="password" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <EditText
                 android:id="@+id/introPasswordConfirm"

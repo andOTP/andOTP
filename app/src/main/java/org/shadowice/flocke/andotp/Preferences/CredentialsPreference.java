@@ -26,8 +26,8 @@ import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.preference.DialogPreference;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -126,6 +126,11 @@ public class CredentialsPreference extends DialogPreference
         passwordLayout = view.findViewById(R.id.passwordLayout);
         passwordInput = view.findViewById(R.id.passwordEdit);
         passwordConfirm = view.findViewById(R.id.passwordConfirm);
+
+        if (settings.getBlockAccessibility()) {
+            passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
+            passwordConfirm.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        }
 
         toShortWarning = view.findViewById(R.id.toShortWarning);
 

@@ -20,11 +20,11 @@
  * SOFTWARE.
  */
 
-package org.shadowice.flocke.andotp.View;
+package org.shadowice.flocke.andotp.Dialogs;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.support.v7.app.AppCompatDelegate;
+import androidx.appcompat.app.AppCompatDelegate;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -45,6 +45,8 @@ import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
+import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
+import org.shadowice.flocke.andotp.View.TagsAdapter;
 
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +59,9 @@ public class ManualEntryDialog {
 
         ViewGroup container = callingActivity.findViewById(R.id.main_content);
         View inputView = callingActivity.getLayoutInflater().inflate(R.layout.dialog_manual_entry, container, false);
+
+        if (settings.getBlockAccessibility())
+            inputView.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
 
         final Spinner typeInput = inputView.findViewById(R.id.manual_type);
         final EditText issuerInput = inputView.findViewById(R.id.manual_issuer);
