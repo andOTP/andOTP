@@ -18,8 +18,6 @@ import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Utilities.StorageAccessHelper;
-import org.shadowice.flocke.andotp.Utilities.Tools;
 import java.io.IOException;
 
 public class ScanQRCodeFromFile {

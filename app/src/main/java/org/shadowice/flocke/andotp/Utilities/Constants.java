@@ -69,6 +69,7 @@ public class Constants {
     public final static int INTENT_MAIN_SETTINGS                = 101;
     public final static int INTENT_MAIN_BACKUP                  = 102;
     public final static int INTENT_MAIN_INTRO                   = 103;
+    public final static int INTENT_MAIN_QR_OPEN_IMAGE           = 104;
 
     public final static int INTENT_BACKUP_OPEN_DOCUMENT_PLAIN       = 200;
     public final static int INTENT_BACKUP_SAVE_DOCUMENT_PLAIN       = 201;
@@ -83,6 +84,7 @@ public class Constants {
     public static final int INTENT_SETTINGS_AUTHENTICATE        = 300;
 
     // Permission requests (Format: A1x with A = parent Activity, x = number of the request)
+    public final static int PERMISSIONS_MAIN_QR_READ_IMAGE              = 111;
     public final static int PERMISSIONS_BACKUP_READ_IMPORT_PLAIN        = 210;
     public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_PLAIN       = 211;
     public final static int PERMISSIONS_BACKUP_READ_IMPORT_CRYPT        = 212;
@@ -143,7 +145,4 @@ public class Constants {
     public final static String BACKUP_MIMETYPE_PLAIN    = "application/json";
     public final static String BACKUP_MIMETYPE_CRYPT    = "binary/aes";
     public final static String BACKUP_MIMETYPE_PGP      = "application/pgp-encrypted";
-
-    public final static int INTENT_QR_OPEN_IMAGE = 400;
-    public final static int PERMISSIONS_QR_READ_IMAGE = 401;
 }

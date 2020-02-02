@@ -82,7 +82,6 @@ import javax.crypto.SecretKey;
 
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
-import static org.shadowice.flocke.andotp.Utilities.Constants.INTENT_QR_OPEN_IMAGE;
 import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class MainActivity extends BaseActivity
@@ -221,7 +220,7 @@ public class MainActivity extends BaseActivity
                         ManualEntryDialog.show(MainActivity.this, settings, adapter);
                         return false;
                     case R.id.fabScanQRFromImage:
-                        openFileWithPermissions(INTENT_QR_OPEN_IMAGE);
+                        openFileWithPermissions(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
                         return false;
                     default:
                         return false;
@@ -449,7 +448,7 @@ public class MainActivity extends BaseActivity
 
                 updateEncryption(authKey);
             }
-        } else if (requestCode == INTENT_QR_OPEN_IMAGE && resultCode == RESULT_OK) {
+        } else if (requestCode == Constants.INTENT_MAIN_QR_OPEN_IMAGE && resultCode == RESULT_OK) {
             if (intent != null) {
                 addQRCode(ScanQRCodeFromFile.scanQRImage(this, intent.getData()));
             }
@@ -753,7 +752,7 @@ public class MainActivity extends BaseActivity
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             showOpenFileSelector(intentId);
         } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constants.PERMISSIONS_QR_READ_IMAGE);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constants.PERMISSIONS_MAIN_QR_READ_IMAGE);
         }
     }
 
@@ -766,9 +765,9 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == Constants.PERMISSIONS_QR_READ_IMAGE) {
+        if (requestCode == Constants.PERMISSIONS_MAIN_QR_READ_IMAGE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showOpenFileSelector(INTENT_QR_OPEN_IMAGE);
+                showOpenFileSelector(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
             } else {
                 Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
             }
