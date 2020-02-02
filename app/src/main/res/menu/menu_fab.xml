@@ -4,7 +4,10 @@
         android:id="@+id/fabEnterDetails"
         android:title="@string/button_enter_details"
         android:icon="@drawable/ic_edit_white" />
-
+    <item
+        android:id="@+id/fabScanQRFromImage"
+        android:title="@string/button_qr_from_image"
+        android:icon="@drawable/ic_image_white" />
     <item
         android:id="@+id/fabScanQR"
         android:title="@string/button_scan_qr"
