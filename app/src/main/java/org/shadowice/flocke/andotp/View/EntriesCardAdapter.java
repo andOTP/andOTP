@@ -27,10 +27,11 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.PopupMenu;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -49,9 +50,12 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.Dialogs.TagsDialog;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
+import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
@@ -116,6 +120,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         if (! entries.contains(e)) {
             entries.add(e);
             entriesChanged();
+            saveEntries(settings.getAutoBackupEncryptedPasswordsEnabled());
         } else {
             Toast.makeText(context, R.string.toast_entry_exists, Toast.LENGTH_LONG).show();
         }
@@ -131,8 +136,25 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         notifyDataSetChanged();
     }
 
-    public void saveEntries() {
+    public void saveEntries(boolean auto_backup) {
         DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+
+        if(auto_backup) {
+            Constants.BackupType backupType = BackupHelper.autoBackupType(context);
+            if (backupType == Constants.BackupType.ENCRYPTED) {
+                Uri backupFilename = Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(context, Constants.BackupType.ENCRYPTED));
+
+                byte[] keyMaterial = encryptionKey.getEncoded();
+                SecretKey encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
+
+                boolean success = BackupHelper.backupToFile(context, backupFilename, settings.getBackupPasswordEnc(), encryptionKey);
+                if (success) {
+                    Toast.makeText(context, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(context, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+                }
+            }
+        }
     }
 
     public void loadEntries() {
@@ -177,7 +199,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         for (Entry e : entries) {
             if (e.isTimeBased()) {
                 boolean item_changed = e.updateOTP();
-                change = change || item_changed || e.hasNonDefaultPeriod();
+                boolean color_changed = false;
+
+                //Check color change only if highlighting token feature is enabled
+                if(settings.isHighlightTokenOptionEnabled()) {
+                    color_changed = e.hasColorChanged();
+                }
+
+                change = change || item_changed || e.hasNonDefaultPeriod() || color_changed;
             }
         }
 
@@ -192,6 +221,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         if (!entry.isTimeBased())
             entry.updateOTP();
 
+        if(settings.isHighlightTokenOptionEnabled())
+            entryViewHolder.updateColor(entry.getColor());
+
         entryViewHolder.updateValues(entry);
 
         entryViewHolder.setLabelSize(settings.getLabelSize());
@@ -203,7 +235,17 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
     @Override @NonNull
     public EntryViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.component_card, viewGroup, false);
+        int cardLayout = R.layout.component_card_default;
+
+        Constants.CardLayouts layout = settings.getCardLayout();
+
+        if (layout == Constants.CardLayouts.DEFAULT) {
+            cardLayout = R.layout.component_card_default;
+        } else if (layout == Constants.CardLayouts.FULL) {
+            cardLayout = R.layout.component_card_full;
+        }
+
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(cardLayout, viewGroup, false);
 
         EntryViewHolder viewHolder = new EntryViewHolder(context, itemView, settings.getTapToReveal());
         viewHolder.setCallback(new EntryViewHolder.Callback() {
@@ -247,6 +289,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         });
                         taskHandler.postDelayed(entries.get(realIndex).getHideTask(), settings.getTapToRevealTimeout() * 1000);
 
+                        if (entry.isCounterBased()) {
+                            updateEntry(entry, entries.get(realIndex), position);
+                        }
                         entry.setVisible(true);
                         notifyItemChanged(position);
                     }
@@ -255,18 +300,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
             @Override
             public void onCounterClicked(int position) {
-                Entry entry = displayedEntries.get(position);
-                Entry realEntry = entries.get(getRealIndex(position));
-
-                long counter = entry.getCounter() + 1;
-
-                entry.setCounter(counter);
-                entry.updateOTP();
-                notifyItemChanged(position);
-
-                realEntry.setCounter(counter);
-                realEntry.updateOTP();
-                DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+                updateEntry(displayedEntries.get(position), entries.get(getRealIndex(position)), position);
             }
 
             @Override
@@ -276,6 +310,19 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         });
 
         return viewHolder;
+    }
+
+    private void updateEntry(Entry entry, Entry realEntry, final int position) {
+        long counter = entry.getCounter() + 1;
+
+        entry.setCounter(counter);
+        entry.updateOTP();
+        notifyItemChanged(position);
+
+        realEntry.setCounter(counter);
+        realEntry.updateOTP();
+        
+        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
     }
 
     private void hideEntry(Entry entry) {
@@ -328,7 +375,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         Entry e = entries.get(realIndex);
                         e.setCounter(newCounter);
 
-                        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+                        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -346,7 +393,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             displayedEntries.get(position).setLastUsed(timeStamp);
 
         entries.get(realIndex).setLastUsed(timeStamp);
-        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
 
         if (sortMode == SortMode.LAST_USED) {
             displayedEntries = sortEntries(displayedEntries);
@@ -365,10 +412,55 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             displayedEntries = new ArrayList<>(entries);
             notifyItemMoved(fromPosition, toPosition);
 
-            DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+            saveEntries(settings.getAutoBackupEncryptedFullEnabled());
         }
 
         return true;
+    }
+
+    public void editEntryIssuer(final int pos) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
+        int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
+
+        final EditText input = new EditText(context);
+        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        input.setText(displayedEntries.get(pos).getIssuer());
+        input.setSingleLine();
+
+        FrameLayout container = new FrameLayout(context);
+        container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
+        container.addView(input);
+
+        builder.setTitle(R.string.dialog_title_rename)
+                .setView(container)
+                .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int realIndex = getRealIndex(pos);
+                        String newIssuer = input.getEditableText().toString();
+
+                        displayedEntries.get(pos).setIssuer(newIssuer);
+                        if (sortMode == SortMode.LABEL) {
+                            displayedEntries = sortEntries(displayedEntries);
+                            notifyDataSetChanged();
+                        } else {
+                            notifyItemChanged(pos);
+                        }
+
+                        Entry e = entries.get(realIndex);
+                        e.setIssuer(newIssuer);
+
+                        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .create()
+                .show();
     }
 
     public void editEntryLabel(final int pos) {
@@ -405,7 +497,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         Entry e = entries.get(realIndex);
                         e.setLabel(newLabel);
 
-                        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+                        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -423,7 +515,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
 
         int realIndex = getRealIndex(pos);
-        final ThumbnailSelectionAdapter thumbnailAdapter = new ThumbnailSelectionAdapter(context, entries.get(realIndex).getLabel());
+        final ThumbnailSelectionAdapter thumbnailAdapter = new ThumbnailSelectionAdapter(context, entries.get(realIndex).getIssuer(), entries.get(realIndex).getLabel());
 
         final EditText input = new EditText(context);
         input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -491,7 +583,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 Entry e = entries.get(realIndex);
                 e.setThumbnail(thumbnail);
 
-                DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+                saveEntries(settings.getAutoBackupEncryptedFullEnabled());
                 notifyItemChanged(pos);
                 alert.cancel();
             }
@@ -519,7 +611,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             @Override
             public Object call() throws Exception {
                 entries.get(realPos).setTags(tagsAdapter.getActiveTags());
-                DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+                saveEntries(settings.getAutoBackupEncryptedFullEnabled());
 
                 List<String> inUseTags = getTags();
 
@@ -564,7 +656,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         notifyItemRemoved(pos);
 
                         entries.remove(realIndex);
-                        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
+                        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -585,7 +677,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             public boolean onMenuItemClick(MenuItem item) {
                 int id = item.getItemId();
 
-                if (id == R.id.menu_popup_editLabel) {
+                if (id == R.id.menu_popup_editIssuer) {
+                    editEntryIssuer(pos);
+                    return true;
+                } else if (id == R.id.menu_popup_editLabel) {
                     editEntryLabel(pos);
                     return true;
                 } else if(id == R.id.menu_popup_changeImage) {
@@ -645,6 +740,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         return filter;
     }
 
+    public void clearFilter() {
+        if (filter != null)
+            filter = null;
+    }
+
     public List<String> getTags() {
         HashSet<String> tags = new HashSet<String>();
 
@@ -656,15 +756,28 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public class EntryFilter extends Filter {
+        private List<Constants.SearchIncludes> filterValues = settings.getSearchValues();
+
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
+
             final FilterResults filterResults = new FilterResults();
 
             ArrayList<Entry> filtered = new ArrayList<>();
             if (constraint != null && constraint.length() != 0){
                 for (int i = 0; i < entries.size(); i++) {
-                    if (entries.get(i).getLabel().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                    if (filterValues.contains(Constants.SearchIncludes.LABEL) && entries.get(i).getLabel().toLowerCase().contains(constraint.toString().toLowerCase())) {
                         filtered.add(entries.get(i));
+                    } else if (filterValues.contains(Constants.SearchIncludes.ISSUER) && entries.get(i).getIssuer().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        filtered.add(entries.get(i));
+                    } else if (filterValues.contains(Constants.SearchIncludes.TAGS)) {
+                        List<String> tags = entries.get(i).getTags();
+                        for (int j = 0; j < tags.size(); j++) {
+                            if (tags.get(j).toLowerCase().contains(constraint.toString().toLowerCase())) {
+                                filtered.add(entries.get(i));
+                                break;
+                            }
+                        }
                     }
                 }
             } else {

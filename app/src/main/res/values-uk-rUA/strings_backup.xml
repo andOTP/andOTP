@@ -10,6 +10,7 @@
     <string name="backup_title_export_openpgp">Резервне копіювання (OpenPGP)</string>
     <string name="backup_title_import_plain">Відновлення (текстові дані)</string>
     <string name="backup_title_import_crypt">Відновлення (зашифровані дані)</string>
+    <string name="backup_title_import_crypt_old">Restore (encrypted, old encryption)</string>
     <string name="backup_title_import_openpgp">Відновлення (OpenPGP)</string>
     <string name="backup_title_replace">Замінити існуючі дані</string>
     <string name="backup_desc_export_plain">Створити резервну копію усіх облікових записів у текстовому JSON файлі</string>
@@ -17,6 +18,8 @@
     <string name="backup_desc_export_openpgp">Створити резервну копію усіх облікових записів у зашифрованому OpenPGP JSON файлі</string>
     <string name="backup_desc_import_plain">Відновити облікові записи з текстового JSON файлу</string>
     <string name="backup_desc_import_crypt">Відновити облікові записи з захищеного паролем JSON файлу</string>
+    <string name="backup_desc_import_crypt_old">Restore accounts from a password-protected JSON file
+        created with an <b>andOTP version lower than 0.6.3</b></string>
     <string name="backup_desc_import_openpgp">Відновити облікові записи з зашифрованого за допомогою OpenPGP JSON файлу</string>
     <string name="backup_desc_crypt_setup">Завантаження паролю резервної копії з <b>Налаштувань</b> завершилося невдало,
         це означає, що або пароль не було встановлено, або щось пішло не так. Вам буде запропоновано ввести
@@ -39,6 +42,11 @@
     <string name="backup_receiver_read_permission_failed">Дозволу на читання не надано, будь ласка,        надайте доступ на читання перед тим, як почнете створення резервної копії</string>
     <string name="backup_receiver_write_permission_failed">Дозволу на запис не надано, будь ласка,        надайте доступ на запис перед тим, як почнете створення резервної копії</string>
     <string name="backup_receiver_custom_encryption_failed">Створення резервних копії на основі шифрування за допомогою паролю/PIN-коду        не підтримується сторонніми додатками</string>
+    <string name="backup_new_format_dialog_title">New encryption method</string>
+    <string name="backup_new_format_dialog_msg">Since version 0.6.3 of andOTP, a <b>new and improved
+        encryption method</b> is used for password-protected backups. The old backups can still be
+        imported, but it is <b>highly recommended to create new backups with the improved
+        encryption</b>.\n\nThis message will not be shown again.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Автоматичне резервне копіювання завершилося невдало</string>
     <string name="notification_channel_name_backup_success">Автоматичне резервне копіювання завершилося успішно</string>

@@ -24,10 +24,13 @@ package org.shadowice.flocke.andotp.Activities;
 
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
+import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Settings;
+import org.shadowice.flocke.andotp.Utilities.Tools;
 
 import java.util.Locale;
 
@@ -40,6 +43,11 @@ public abstract class ThemedActivity extends AppCompatActivity {
 
         setTheme(settings.getTheme());
         setLocale();
+
+        //Set navigation bar color
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(Tools.getThemeColor(this,R.attr.navigationBarColor));
+        }
 
         super.onCreate(savedInstanceState);
     }

@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
+    buildToolsVersion '29.0.2'
 
     defaultConfig {
         applicationId "org.shadowice.flocke.andotp"
         minSdkVersion 19
-        targetSdkVersion 28
-        versionCode 24
-        versionName "0.6.3-beta1"
+        targetSdkVersion 29
+        versionCode 26
+        versionName "0.6.3.1"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -29,25 +29,38 @@ android {
     dataBinding {
         enabled = true
     }
+    flavorDimensions 'market'
+    productFlavors {
+        fdroid {
+            dimension = 'market'
+        }
+        play {
+            dimension = 'market'
+            versionNameSuffix = "-play"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    ext.supportLibVersion = "28.0.0"
+    implementation 'androidx.media:media:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.0.0'
 
-    implementation "commons-codec:commons-codec:1.12"
-    implementation "com.android.support:support-media-compat:$supportLibVersion"
-    implementation "com.android.support:support-v4:$supportLibVersion"
-    implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    implementation "com.android.support:cardview-v7:$supportLibVersion"
-    implementation "com.android.support:design:$supportLibVersion"
-    implementation "com.android.support:recyclerview-v7:$supportLibVersion"
-    implementation "com.android.support.constraint:constraint-layout:1.1.3"
+    implementation "commons-codec:commons-codec:1.14"
     implementation "com.github.aakira:expandable-layout:1.6.0"
-    implementation "com.heinrichreimersoftware:material-intro:1.6.2"
+    implementation "com.heinrichreimersoftware:material-intro:2.0.0"
     implementation "com.journeyapps:zxing-android-embedded:3.6.0"
     implementation "com.vanniktech:vntnumberpickerpreference:1.0.0"
-    implementation "me.zhanghai.android.materialprogressbar:library:1.4.2"
+    implementation "me.zhanghai.android.materialprogressbar:library:1.6.1"
     implementation "org.sufficientlysecure:openpgp-api:12.0"
-    implementation "com.leinardi.android:speed-dial:2.0.1"
-    implementation "com.mikepenz:aboutlibraries:6.1.1"
+    implementation "com.leinardi.android:speed-dial:3.1.1"
+    implementation "com.mikepenz:aboutlibraries:6.2.3"
 }

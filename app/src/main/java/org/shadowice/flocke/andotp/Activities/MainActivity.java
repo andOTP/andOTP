@@ -23,23 +23,29 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -62,10 +68,11 @@ import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.NotificationHelper;
+import org.shadowice.flocke.andotp.Utilities.ScanQRCodeFromFile;
 import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCallback;
-import org.shadowice.flocke.andotp.View.ManualEntryDialog;
+import org.shadowice.flocke.andotp.Dialogs.ManualEntryDialog;
 import org.shadowice.flocke.andotp.View.TagsAdapter;
 
 import java.util.ArrayList;
@@ -82,6 +89,7 @@ public class MainActivity extends BaseActivity
     public static long animatorDuration = 1000;
 
     private static final String INTENT_SCAN_QR = "org.shadowice.flocke.andotp.intent.SCAN_QR";
+    private static final String INTENT_IMPORT_QR = "org.shadowice.flocke.andotp.intent.IMPORT_QR";
     private static final String INTENT_ENTER_DETAILS = "org.shadowice.flocke.andotp.intent.ENTER_DETAILS";
 
     private EntriesCardAdapter adapter;
@@ -212,6 +220,9 @@ public class MainActivity extends BaseActivity
                     case R.id.fabEnterDetails:
                         ManualEntryDialog.show(MainActivity.this, settings, adapter);
                         return false;
+                    case R.id.fabScanQRFromImage:
+                        openFileWithPermissions(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
+                        return false;
                     default:
                         return false;
                 }
@@ -277,17 +288,35 @@ public class MainActivity extends BaseActivity
 
         setupDrawer();
 
-        Intent callingIntent = getIntent();
-        if (callingIntent != null && callingIntent.getAction() != null) {
-            if (callingIntent.getAction().equals(INTENT_SCAN_QR)) {
-                scanQRCode();
-            } else if (callingIntent.getAction().equals(INTENT_ENTER_DETAILS)) {
-                ManualEntryDialog.show(MainActivity.this, settings, adapter);
-            }
-        }
-
         if (savedInstanceState != null){
             setFilterString(savedInstanceState.getString("filterString", ""));
+        }
+    }
+
+    private void checkIntent() {
+        Intent callingIntent = getIntent();
+        if (callingIntent != null && callingIntent.getAction() != null) {
+            // Cache and reset the action to prevent the same intent from being evaluated multiple times
+            String intentAction = callingIntent.getAction();
+            callingIntent.setAction(null);
+
+            if (intentAction.equals(INTENT_SCAN_QR)) {
+                scanQRCode();
+            } else if (intentAction.equals(INTENT_IMPORT_QR)) {
+                openFileWithPermissions(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
+            } else if (intentAction.equals(INTENT_ENTER_DETAILS)) {
+                ManualEntryDialog.show(MainActivity.this, settings, adapter);
+            } else if (intentAction.equals(Intent.ACTION_VIEW)) {
+                try {
+                    Entry entry = new Entry(callingIntent.getDataString());
+                    entry.updateOTP();
+                    entry.setLastUsed(System.currentTimeMillis());
+                    adapter.addEntry(entry);
+                    Toast.makeText(this, R.string.toast_intent_creation_succeeded, Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(this, R.string.toast_intent_creation_failed, Toast.LENGTH_LONG).show();
+                }
+            }
         }
     }
 
@@ -322,6 +351,7 @@ public class MainActivity extends BaseActivity
                 } else {
                     populateAdapter();
                 }
+                checkIntent();
             }
         }
 
@@ -330,11 +360,22 @@ public class MainActivity extends BaseActivity
             setFilterString(this.filterString);
         }
 
+        View cardList = findViewById(R.id.cardList);
+        if(cardList.getVisibility() == View.INVISIBLE)
+            cardList.setVisibility(View.VISIBLE);
+
         startUpdater();
     }
 
     @Override
     public void onPause() {
+        if(settings.getAuthMethod() == AuthMethod.DEVICE)
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    findViewById(R.id.cardList).setVisibility(View.INVISIBLE);
+                }
+            });
         super.onPause();
         stopUpdater();
     }
@@ -351,11 +392,15 @@ public class MainActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_split_group_size)) ||
                 key.equals(getString(R.string.settings_key_thumbnail_size))) {
             adapter.notifyDataSetChanged();
+        } else if (key.equals(getString(R.string.settings_key_search_includes))) {
+            adapter.clearFilter();
         } else if (key.equals(getString(R.string.settings_key_tap_to_reveal)) ||
                 key.equals(getString(R.string.settings_key_theme)) ||
                 key.equals(getString(R.string.settings_key_locale)) ||
                 key.equals(getString(R.string.settings_key_enable_screenshot)) ||
-                key.equals(getString(R.string.settings_key_tag_functionality)) ) {
+                key.equals(getString(R.string.settings_key_tag_functionality)) ||
+                key.equals(getString(R.string.settings_key_label_highlight_token)) ||
+                key.equals(getString(R.string.settings_key_card_layout))) {
             recreate();
         }
     }
@@ -374,16 +419,7 @@ public class MainActivity extends BaseActivity
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if(result != null) {
             if(result.getContents() != null) {
-                try {
-                    Entry e = new Entry(result.getContents());
-                    e.updateOTP();
-                    e.setLastUsed(System.currentTimeMillis());
-                    adapter.addEntry(e);
-                    adapter.saveEntries();
-                    refreshTags();
-                } catch (Exception e) {
-                    Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();
-                }
+                addQRCode(result.getContents());
             }
         } else if (requestCode == Constants.INTENT_MAIN_BACKUP && resultCode == RESULT_OK) {
             if (intent.getBooleanExtra("reload", false)) {
@@ -414,6 +450,10 @@ public class MainActivity extends BaseActivity
                     authKey = intent.getByteArrayExtra(Constants.EXTRA_AUTH_PASSWORD_KEY);
 
                 updateEncryption(authKey);
+            }
+        } else if (requestCode == Constants.INTENT_MAIN_QR_OPEN_IMAGE && resultCode == RESULT_OK) {
+            if (intent != null) {
+                addQRCode(ScanQRCodeFromFile.scanQRImage(this, intent.getData()));
             }
         }
     }
@@ -709,5 +749,46 @@ public class MainActivity extends BaseActivity
         }
         tagsDrawerAdapter.setTags(tagsHashMap);
         adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+    }
+
+    private void openFileWithPermissions(int intentId){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            showOpenFileSelector(intentId);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constants.PERMISSIONS_MAIN_QR_READ_IMAGE);
+        }
+    }
+
+    private void showOpenFileSelector(int intentId){
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        startActivityForResult(intent, intentId);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == Constants.PERMISSIONS_MAIN_QR_READ_IMAGE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                showOpenFileSelector(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
+            } else {
+                Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+    private void addQRCode(String result){
+        if(!TextUtils.isEmpty(result)) {
+            try {
+                Entry e = new Entry(result);
+                e.updateOTP();
+                e.setLastUsed(System.currentTimeMillis());
+                adapter.addEntry(e);
+                refreshTags();
+            } catch (Exception e) {
+                Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

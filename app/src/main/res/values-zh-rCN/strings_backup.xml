@@ -10,6 +10,7 @@
     <string name="backup_title_export_openpgp">备份 (OpenPGP)</string>
     <string name="backup_title_import_plain">还原 (纯文本)</string>
     <string name="backup_title_import_crypt">还原 (已加密)</string>
+    <string name="backup_title_import_crypt_old">恢复 (加密的，旧加密)</string>
     <string name="backup_title_import_openpgp">还原 (OpenPGP)</string>
     <string name="backup_title_replace">替换现有条目</string>
     <string name="backup_desc_export_plain">备份所有帐户到一个纯文本 JSON 文件。</string>
@@ -17,6 +18,8 @@
     <string name="backup_desc_export_openpgp">备份所有帐户到一个 OpenPGP 加密的 JSON 文件。</string>
     <string name="backup_desc_import_plain">从纯文本 JSON 文件还原帐户</string>
     <string name="backup_desc_import_crypt">从受密码保护的 JSON 文件还原帐户</string>
+    <string name="backup_desc_import_crypt_old">从密码保护的 JSON 文件恢复账户
+        （适用于早于 <b>andOTP 0.6.3 版本</b> 所创建的备份）</string>
     <string name="backup_desc_import_openpgp">从 OpenPGP 加密的 JSON 文件还原帐户</string>
     <string name="backup_desc_crypt_setup">未能从 <b>设置</b> 中加载备份密码，这可能是您没有设置密码，或者某处发生错误。在创建或导入备份时，系统将要求您手动输入密码。</string>
     <string name="backup_desc_openpgp_provider">您需要安装 OpenPGP 提供程序，并在 <b>设置</b> 中启用，才能使用此功能。</string>
@@ -32,6 +35,8 @@
     <string name="backup_receiver_read_permission_failed">没有读取权限，请在执行备份前授予。</string>
     <string name="backup_receiver_write_permission_failed">没有写入权限，请在执行备份前授予。</string>
     <string name="backup_receiver_custom_encryption_failed">广播备份不支持基于 密码/PIN 的加密</string>
+    <string name="backup_new_format_dialog_title">新加密方法</string>
+    <string name="backup_new_format_dialog_msg">自 andOTP 0.6.3 版本开始，我们对密码保护的备份<b>采用新的改进型加密方法</b>。旧的备份仍可导入，但我们<b>强烈推荐使用改进后的加密方法创建新的备份</b>。\n\n此消息只显示一次。</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">自动备份失败</string>
     <string name="notification_channel_name_backup_success">自动备份成功</string>

@@ -34,6 +34,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -216,12 +217,12 @@ public class Settings {
     }
 
     public AuthMethod getAuthMethod() {
-        String authString = getString(R.string.settings_key_auth, CredentialsPreference.DEFAULT_VALUE.name().toLowerCase());
-        return AuthMethod.valueOf(authString.toUpperCase());
+        String authString = getString(R.string.settings_key_auth, CredentialsPreference.DEFAULT_VALUE.name().toLowerCase(Locale.ENGLISH));
+        return AuthMethod.valueOf(authString.toUpperCase(Locale.ENGLISH));
     }
 
     public void setAuthMethod(AuthMethod authMethod) {
-        setString(R.string.settings_key_auth, authMethod.name().toLowerCase());
+        setString(R.string.settings_key_auth, authMethod.name().toLowerCase(Locale.ENGLISH));
     }
 
     public void removeAuthPasswordHash() {
@@ -310,6 +311,10 @@ public class Settings {
         return getBoolean(R.string.settings_key_relock_screen_off, true);
     }
 
+    public boolean getBlockAccessibility() {
+        return getBoolean(R.string.settings_key_block_accessibility, false);
+    }
+
     public void setLocale(String locale) {
         setString(R.string.settings_key_locale, locale);
     }
@@ -377,6 +382,23 @@ public class Settings {
 
     public void setSortMode(SortMode value) {
         setString(R.string.settings_key_sort_mode, value.toString());
+    }
+
+    public List<Constants.SearchIncludes> getSearchValues() {
+        Set<String> stringValues = settings.getStringSet(getResString(R.string.settings_key_search_includes), new HashSet<>(Arrays.asList(context.getResources().getStringArray(R.array.settings_defaults_search_includes))));
+
+        List<Constants.SearchIncludes> values = new ArrayList<>();
+
+        for (String value : stringValues) {
+            values.add(Constants.SearchIncludes.valueOf(value.toUpperCase(Locale.ENGLISH)));
+        }
+
+        return values;
+    }
+
+    public Constants.CardLayouts getCardLayout() {
+        String stringValue = getString(R.string.settings_key_card_layout, R.string.settings_default_card_layout);
+        return Constants.CardLayouts.valueOf(stringValue.toUpperCase(Locale.ENGLISH));
     }
 
     public boolean getBackupAsk() {
@@ -515,5 +537,22 @@ public class Settings {
 
     public boolean getIsAppendingDateTimeToBackups() {
         return getBoolean(R.string.settings_key_backup_append_date_time, false);
+    }
+
+    private Constants.AutoBackup getAutoBackupEncryptedSetting() {
+        String stringValue = getString(R.string.settings_key_auto_backup_password_enc, R.string.settings_default_auto_backup_password_enc);
+        return Constants.AutoBackup.valueOf(stringValue.toUpperCase(Locale.ENGLISH));
+    }
+
+    public boolean getAutoBackupEncryptedPasswordsEnabled() {
+        return getAutoBackupEncryptedSetting() != Constants.AutoBackup.OFF;
+    }
+
+    public boolean getAutoBackupEncryptedFullEnabled() {
+        return getAutoBackupEncryptedSetting() == Constants.AutoBackup.ALL_EDITS;
+    }
+
+    public boolean isHighlightTokenOptionEnabled() {
+        return getBoolean(R.string.settings_key_label_highlight_token,true);
     }
 }
