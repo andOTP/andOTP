@@ -97,5 +97,6 @@
 
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Scan QR code</string>
+    <string name="shortcut_name_import_qr">Import QR code</string>
     <string name="shortcut_name_enter_details">Enter details</string>
 </resources>

@@ -89,6 +89,7 @@ public class MainActivity extends BaseActivity
     public static long animatorDuration = 1000;
 
     private static final String INTENT_SCAN_QR = "org.shadowice.flocke.andotp.intent.SCAN_QR";
+    private static final String INTENT_IMPORT_QR = "org.shadowice.flocke.andotp.intent.IMPORT_QR";
     private static final String INTENT_ENTER_DETAILS = "org.shadowice.flocke.andotp.intent.ENTER_DETAILS";
 
     private EntriesCardAdapter adapter;
@@ -301,6 +302,8 @@ public class MainActivity extends BaseActivity
 
             if (intentAction.equals(INTENT_SCAN_QR)) {
                 scanQRCode();
+            } else if (intentAction.equals(INTENT_IMPORT_QR)) {
+                openFileWithPermissions(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
             } else if (intentAction.equals(INTENT_ENTER_DETAILS)) {
                 ManualEntryDialog.show(MainActivity.this, settings, adapter);
             } else if (intentAction.equals(Intent.ACTION_VIEW)) {
