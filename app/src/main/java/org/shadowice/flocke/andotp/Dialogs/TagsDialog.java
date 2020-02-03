@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-package org.shadowice.flocke.andotp.View;
+package org.shadowice.flocke.andotp.Dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -35,6 +35,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.View.TagsAdapter;
 
 import java.util.HashMap;
 import java.util.concurrent.Callable;

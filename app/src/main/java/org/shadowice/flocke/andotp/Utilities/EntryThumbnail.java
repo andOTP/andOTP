@@ -28,7 +28,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatDelegate;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import org.shadowice.flocke.andotp.R;
 
@@ -40,6 +40,7 @@ public class EntryThumbnail {
 
     public enum EntryThumbnails {
         Default(R.mipmap.ic_launcher_round),
+        OneAndOne(R.drawable.thumb_1and1),
         OnePassword(R.drawable.thumb_1password),
         Adobe(R.drawable.thumb_adobe),
         AdGuard(R.drawable.thumb_adguard),
@@ -61,6 +62,7 @@ public class EntryThumbnail {
         BitBucket(R.drawable.thumb_bitbucket),
         Bitcoin(R.drawable.thumb_bitcoin),
         Bitfinex(R.drawable.thumb_bitfinex),
+        Bitmex(R.drawable.thumb_bitmex),
         Bitstamp(R.mipmap.thumb_bitstamp, AssetType.Bitmap),
         Bitpanda(R.drawable.thumb_bitpanda),
         Bittrex(R.drawable.thumb_bittrex),
@@ -86,6 +88,7 @@ public class EntryThumbnail {
         Discord(R.drawable.thumb_discord),
         Discourse(R.drawable.thumb_discourse),
         Disroot(R.drawable.thumb_disroot),
+        Docker(R.drawable.thumb_docker),
         DocuSign(R.drawable.thumb_docusign),
         Dropbox(R.drawable.thumb_dropbox),
         ElectronicArts(R.drawable.thumb_electronic_arts),
@@ -95,6 +98,7 @@ public class EntryThumbnail {
         Facebook(R.drawable.thumb_facebook),
         FACEIT(R.drawable.thumb_faceit),
         Fingerprint(R.drawable.thumb_fingerprint),
+        Finnair(R.drawable.thumb_finnair),
         Firefox(R.drawable.thumb_firefox),
         Flight(R.drawable.thumb_flight_takeoff),
         Floatplane(R.drawable.thumb_floatplane),
@@ -116,6 +120,7 @@ public class EntryThumbnail {
         HomeAssistant(R.drawable.thumb_home_assistant),
         HumbleBundle(R.drawable.thumb_humblebundle),
         HurricaneElectric(R.drawable.thumb_hurricane_electric),
+        IBM(R.drawable.thumb_ibm),
         Iconomi(R.drawable.thumb_iconomi),
         IFTTT(R.drawable.thumb_ifttt),
         Instagram(R.drawable.thumb_instagram),
@@ -127,6 +132,7 @@ public class EntryThumbnail {
         Kraken(R.drawable.thumb_kraken),
         Kucoin(R.drawable.thumb_kucoin),
         LastPass(R.drawable.thumb_lastpass),
+        LibreNMS(R.drawable.thumb_librenms),
         Lichess(R.drawable.thumb_lichess),
         LinkedIn(R.drawable.thumb_linkedin),
         Linode(R.drawable.thumb_linode),
@@ -158,6 +164,7 @@ public class EntryThumbnail {
         Okta(R.drawable.thumb_okta),
         OnlineNet(R.drawable.thumb_online),
         OpenVZ(R.drawable.thumb_openvz),
+        OPNsense(R.drawable.thumb_opnsense),
         Origin(R.drawable.thumb_origin),
         OVH(R.drawable.thumb_ovh),
         Packet(R.drawable.thumb_packet),
@@ -170,6 +177,7 @@ public class EntryThumbnail {
         phpMyAdmin(R.drawable.thumb_phpmyadmin),
         Plurk(R.drawable.thumb_plurk),
         Posteo(R.drawable.thumb_posteo),
+        PrivateInternetAccess(R.drawable.thumb_private_internet_access),
         ProtonMail(R.drawable.thumb_protonmail),
         Proxmox(R.drawable.thumb_proxmox),
         PyPI(R.drawable.thumb_pypi),
@@ -239,14 +247,21 @@ public class EntryThumbnail {
         public AssetType getAssetType() {
             return assetType;
         }
+
+        public static EntryThumbnails valueOfIgnoreCase(String thumbnail) {
+            for (EntryThumbnails entryThumbnails : values())
+                if (entryThumbnails.name().equalsIgnoreCase(thumbnail)) return entryThumbnails;
+                throw new IllegalArgumentException();
+        }
     }
 
-    public static Bitmap getThumbnailGraphic(Context context, String label, int size, EntryThumbnails thumbnail) {
+    public static Bitmap getThumbnailGraphic(Context context, String issuer, String label, int size, EntryThumbnails thumbnail) {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         if (thumbnail == EntryThumbnails.Default && size > 0) {
             LetterBitmap letterBitmap = new LetterBitmap(context);
-            return letterBitmap.getLetterTile(label, label, size, size);
+            String letterSrc = issuer.isEmpty() ? label : issuer;
+            return letterBitmap.getLetterTile(letterSrc, letterSrc, size, size);
         } else if (thumbnail != EntryThumbnails.Default) {
 
             try {

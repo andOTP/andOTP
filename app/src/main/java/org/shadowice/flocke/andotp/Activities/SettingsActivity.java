@@ -35,7 +35,7 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.view.ViewStub;
 import android.widget.Toast;
 
@@ -44,6 +44,7 @@ import org.openintents.openpgp.util.OpenPgpKeyPreference;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Preferences.CredentialsPreference;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
@@ -52,6 +53,7 @@ import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.crypto.SecretKey;
 
@@ -142,6 +144,12 @@ public class SettingsActivity extends BaseActivity
                 if (fragment.useAndroidSync != null)
                     fragment.useAndroidSync.setEnabled(true);
             }
+        }
+
+        if (fragment.useAutoBackup != null) {
+            fragment.useAutoBackup.setEnabled(BackupHelper.autoBackupType(this) == Constants.BackupType.ENCRYPTED);
+            if (!fragment.useAutoBackup.isEnabled())
+                fragment.useAutoBackup.setValue(Constants.AutoBackup.OFF.toString().toLowerCase(Locale.ENGLISH));
         }
     }
 
@@ -236,6 +244,7 @@ public class SettingsActivity extends BaseActivity
 
         Settings settings;
         ListPreference encryption;
+        ListPreference useAutoBackup;
         CheckBoxPreference useAndroidSync;
 
         OpenPgpAppPreference pgpProvider;
@@ -343,6 +352,11 @@ public class SettingsActivity extends BaseActivity
                     return true;
                 }
             });
+
+            useAutoBackup = (ListPreference)findPreference(getString(R.string.settings_key_auto_backup_password_enc));
+            useAutoBackup.setEnabled(BackupHelper.autoBackupType(getActivity()) == Constants.BackupType.ENCRYPTED);
+            if(!useAutoBackup.isEnabled())
+                useAutoBackup.setValue(Constants.AutoBackup.OFF.toString().toLowerCase(Locale.ENGLISH));
 
             useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
             useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);

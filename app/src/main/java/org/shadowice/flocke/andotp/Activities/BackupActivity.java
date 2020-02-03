@@ -31,10 +31,10 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewStub;
@@ -458,7 +458,7 @@ public class BackupActivity extends BaseActivity {
         String password = settings.getBackupPasswordEnc();
 
         if (password.isEmpty()) {
-            PasswordEntryDialog pwDialog = new PasswordEntryDialog(this, PasswordEntryDialog.Mode.ENTER, new PasswordEntryDialog.PasswordEnteredCallback() {
+            PasswordEntryDialog pwDialog = new PasswordEntryDialog(this, PasswordEntryDialog.Mode.ENTER, settings.getBlockAccessibility(), new PasswordEntryDialog.PasswordEnteredCallback() {
                 @Override
                 public void onPasswordEntered(String newPassword) {
                     doRestoreCryptWithPassword(uri, newPassword, old_format);
@@ -514,7 +514,7 @@ public class BackupActivity extends BaseActivity {
         String password = settings.getBackupPasswordEnc();
 
         if (password.isEmpty()) {
-            PasswordEntryDialog pwDialog = new PasswordEntryDialog(this, PasswordEntryDialog.Mode.UPDATE, new PasswordEntryDialog.PasswordEnteredCallback() {
+            PasswordEntryDialog pwDialog = new PasswordEntryDialog(this, PasswordEntryDialog.Mode.UPDATE, settings.getBlockAccessibility(), new PasswordEntryDialog.PasswordEnteredCallback() {
                 @Override
                 public void onPasswordEntered(String newPassword) {
                     doBackupCryptWithPassword(uri, newPassword);
@@ -528,30 +528,8 @@ public class BackupActivity extends BaseActivity {
 
     private void doBackupCryptWithPassword(Uri uri, String password) {
         if (Tools.isExternalStorageWritable()) {
-            ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this, encryptionKey);
-            String plain = DatabaseHelper.entriesToString(entries);
 
-            boolean success = true;
-
-            try {
-                int iter = EncryptionHelper.generateRandomIterations();
-                byte[] salt = EncryptionHelper.generateRandom(Constants.ENCRYPTION_IV_LENGTH);
-
-                SecretKey key = EncryptionHelper.generateSymmetricKeyPBKDF2(password, iter, salt);
-                byte[] encrypted = EncryptionHelper.encrypt(key, plain.getBytes(StandardCharsets.UTF_8));
-
-                byte[] iterBytes = ByteBuffer.allocate(Constants.INT_LENGTH).putInt(iter).array();
-                byte[] data = new byte[Constants.INT_LENGTH + Constants.ENCRYPTION_IV_LENGTH + encrypted.length];
-
-                System.arraycopy(iterBytes, 0, data, 0, Constants.INT_LENGTH);
-                System.arraycopy(salt, 0, data, Constants.INT_LENGTH, Constants.ENCRYPTION_IV_LENGTH);
-                System.arraycopy(encrypted, 0, data, Constants.INT_LENGTH + Constants.ENCRYPTION_IV_LENGTH, encrypted.length);
-
-                StorageAccessHelper.saveFile(this, uri, data);
-            } catch (Exception e) {
-                e.printStackTrace();
-                success = false;
-            }
+            boolean success = BackupHelper.backupToFile(this, uri, password, encryptionKey);
 
             if (success) {
                 Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();

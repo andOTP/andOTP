@@ -28,7 +28,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="otpauth" android:host="totp" />
+                <data android:scheme="otpauth" android:host="hotp" />
+            </intent-filter>
+            <intent-filter>
                 <action android:name="org.shadowice.flocke.andotp.intent.SCAN_QR" />
+                <action android:name="org.shadowice.flocke.andotp.intent.IMPORT_QR" />
                 <action android:name="org.shadowice.flocke.andotp.intent.ENTER_DETAILS" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

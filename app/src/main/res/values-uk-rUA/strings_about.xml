@@ -18,8 +18,7 @@
     <string name="about_label_original_author">Автор оригінального додатку</string>
     <string name="about_label_original_app">Оригінальний додаток</string>
     <string name="about_label_website">Сайт</string>
-    <string name="about_label_donate_paypal">Фінансово посприяти розробці (PayPal)</string>
-    <string name="about_label_donate_bitcoin">Фінансово сприяти розробці (Bitcoin)</string>
+    <string name="about_label_donate">Фінансово посприяти розробці</string>
     <string name="about_label_contributors">Автори</string>
     <string name="about_label_translators">Перекладачі</string>
     <!-- Thumbnail disclaimer -->

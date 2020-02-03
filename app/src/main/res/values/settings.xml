@@ -6,10 +6,10 @@
     <string name="settings_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>
     <string name="settings_key_tap_to_reveal_timeout" translatable="false">pref_tap_to_reveal_timeout</string>
     <string name="settings_key_auth" translatable="false">pref_auth</string>
-    <string name="settings_key_auth_password" translatable="false">pref_auth_password</string>              <!-- Deprecated -->
+    <string name="settings_key_auth_password" translatable="false">pref_auth_password</string>    <!-- Deprecated -->
     <string name="settings_key_auth_password_hash" translatable="false">pref_auth_password_hash</string>    <!-- Deprecated -->
-    <string name="settings_key_auth_pin" translatable="false">pref_auth_pin</string>                        <!-- Deprecated -->
-    <string name="settings_key_auth_pin_hash" translatable="false">pref_auth_pin_hash</string>              <!-- Deprecated -->
+    <string name="settings_key_auth_pin" translatable="false">pref_auth_pin</string>    <!-- Deprecated -->
+    <string name="settings_key_auth_pin_hash" translatable="false">pref_auth_pin_hash</string>    <!-- Deprecated -->
     <string name="settings_key_auth_credentials" translatable="false">pref_auth_credentials</string>
     <string name="settings_key_auth_iterations" translatable="false">pref_auth_iterations</string>
     <string name="settings_key_auth_salt" translatable="false">pref_auth_salt</string>
@@ -18,21 +18,28 @@
     <string name="settings_key_relock_screen_off" translatable="false">pref_relock_screen_off</string>
     <string name="settings_key_auth_inactivity" translatable="false">pref_auth_inactivity</string>
     <string name="settings_key_auth_inactivity_delay" translatable="false">pref_auth_inactivity_timeout</string>
+    <string name="settings_key_block_accessibility" translatable="false">pref_block_accessibility</string>
 
-    <string name="settings_key_lang" translatable="false">pref_lang</string>                                <!-- Deprecated -->
+    <string name="settings_key_lang" translatable="false">pref_lang</string>    <!-- Deprecated -->
     <string name="settings_key_locale" translatable="false">pref_locale</string>
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size_sp</string>
+    <string name="settings_key_card_layout" translatable="false">pref_card_layout</string>
     <string name="settings_key_label_scroll" translatable="false">pref_label_scroll</string>
+    <string name="settings_key_minimize_on_copy" translatable="false">pref_minimize_on_copy</string>
     <string name="settings_key_thumbnail_size" translatable="false">pref_thumbnail_size</string>
     <string name="settings_key_split_group_size" translatable="false">pref_split_group_size</string>
     <string name="settings_key_tag_functionality" translatable="false">pref_tag_functionality</string>
+    <string name="settings_key_search_includes" translatable="false">pref_search_includes</string>
+    <string name="settings_key_label_highlight_token" translatable="false">pref_label_highlight_token</string>
+
 
     <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
     <string name="settings_key_backup_directory" translatable="false">pref_backup_directory</string>
-    <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>          <!-- Deprecated -->
+    <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>    <!-- Deprecated -->
     <string name="settings_key_backup_password_enc" translatable="false">pref_backup_password_enc</string>
+    <string name="settings_key_auto_backup_password_enc" translatable="false">pref_backup_auto_password_enc</string>
     <string name="settings_key_backup_broadcasts" translatable="false">pref_backup_broadcasts</string>
     <string name="settings_key_openpgp_provider" translatable="false">pref_openpgp_provider</string>
     <string name="settings_key_openpgp_key_encrypt" translatable="false">pref_openpgp_key_encrypt</string>
@@ -60,10 +67,16 @@
     <string name="settings_default_locale" translatable="false">system</string>
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">18</integer>
+    <string name="settings_default_card_layout" translatable="false">default</string>
     <string name="settings_default_thumbnail_size" translatable="false">46dp</string>
     <string name="settings_default_split_group_size" translatable="false">3</string>
     <string name="settings_default_tag_functionality" translatable="false">or</string>
+    <string name="settings_default_auto_backup_password_enc" translatable="false">off</string>
 
+    <string-array name="settings_defaults_search_includes">
+        <item>label</item>
+        <item>issuer</item>
+    </string-array>
 
     <!-- All of the possible tile background colors -->
     <array name="letter_tile_colors">
@@ -88,6 +101,25 @@
         <item>settings</item>
     </string-array>
 
+    <string-array name="settings_values_card_layout" translatable="false">
+        <item>default</item>
+        <item>full</item>
+    </string-array>
+
+    <string-array name="settings_values_search_includes" translatable="false">
+        <item>label</item>
+        <item>issuer</item>
+        <item>tags</item>
+    </string-array>
+
+    <string-array name="settings_values_auto_backup_password_enc" translatable="false">
+        <item>off</item>
+        <item>new_entries</item>
+        <item>all_edits</item>
+    </string-array>
+
+
+
     <string-array name="settings_values_locale" translatable="false">
         <item>system</item>
         <item>ca_ES</item>
@@ -96,6 +128,7 @@
         <item>es_ES</item>
         <item>fr_FR</item>
         <item>gl_ES</item>
+        <item>hu_HU</item>
         <item>it_IT</item>
         <item>nl_NL</item>
         <item>pl_PL</item>
@@ -121,6 +154,7 @@
 
     <string-array name="settings_values_thumbnail_size" translatable="false">
         <item>0dp</item>
+        <item>24dp</item>
         <item>32dp</item>
         <item>46dp</item>
         <item>64dp</item>
@@ -152,6 +186,7 @@
         <item>Español</item>
         <item>Français</item>
         <item>Galego</item>
+        <item>Magyar</item>
         <item>Italiano</item>
         <item>Nederlands</item>
         <item>Polski</item>
@@ -165,7 +200,7 @@
         <item>العربية</item>
         <item>فارسی</item>
         <item>日本語</item>
-        <item>簡體中文</item>
+        <item>简体中文</item>
         <item>繁體中文</item>
     </string-array>
 

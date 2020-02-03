@@ -24,9 +24,9 @@ package org.shadowice.flocke.andotp.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.widget.Toolbar;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
@@ -88,6 +88,9 @@ public class AuthenticateActivity extends ThemedActivity
         TextView passwordLabel = v.findViewById(R.id.passwordLabel);
         TextInputLayout passwordLayout = v.findViewById(R.id.passwordLayout);
         passwordInput = v.findViewById(R.id.passwordEdit);
+
+        if (settings.getBlockAccessibility())
+            passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
 
         passwordLabel.setText(labelMsg);
 

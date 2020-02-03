@@ -46,7 +46,7 @@
     <string name="settings_desc_backup_directory">دليل النسخ الإحتياطي (أسماء الملف يعتمدون على نوع النسخ الإحتياطي)</string>
     <string name="settings_desc_backup_password">إختر كلمة المرور التي سوف تستخدم لتشفير النسخ الإحتياطية</string>
     <string name="settings_desc_backup_broadcasts">حدد أنواع النسخ الإحتياطي التي يمكن تشغيلها بواسطة تطبيقات البث</string>
-    <string name="settings_desc_openpgp_key_encrypt">البريد الإلكتلتروني التابع الى مفتاح  المستخدم لتشفير النسخ</string>
+    <string name="settings_desc_openpgp_key_encrypt">عنوان البريد الإلكتروني للمفتاح  المستخدَم لتشفير النسخ الإحتياطية</string>
     <string name="settings_desc_openpgp_verify">النسخ المشفرة تسترد فقط إذا وقعوا بمفتاح صالح</string>
     <string name="settings_desc_special_features">قم بإلغاء الخيار لتعطيل الميزات الخاصة مجددا</string>
     <string name="settings_desc_enable_screenshot">السماح بالتقاط لقطات للشاشة الرئيسية

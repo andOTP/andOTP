@@ -18,8 +18,7 @@
     <string name="about_label_original_author">Autor původní aplikace</string>
     <string name="about_label_original_app">Původní aplikace</string>
     <string name="about_label_website">Webová stránka</string>
-    <string name="about_label_donate_paypal">Podpořit přes PayPal</string>
-    <string name="about_label_donate_bitcoin">Podpořit Bitcoinem</string>
+    <string name="about_label_donate">Podpořit</string>
     <string name="about_label_contributors">K vývoji přispěli</string>
     <string name="about_label_translators">Překladatelé</string>
     <!-- Thumbnail disclaimer -->

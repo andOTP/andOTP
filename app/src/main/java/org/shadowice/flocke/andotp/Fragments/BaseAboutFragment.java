@@ -11,8 +11,8 @@ import android.content.pm.PackageManager;
 import android.graphics.ColorFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,32 +25,27 @@ import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
 
-public class AboutFragment extends Fragment {
+public class BaseAboutFragment extends Fragment {
     private static final String GITHUB_URI = "https://github.com/andOTP/andOTP";
     private static final String CHANGELOG_URI = GITHUB_URI + "/blob/master/CHANGELOG.md";
     private static final String MIT_URI = GITHUB_URI + "/blob/master/LICENSE.txt";
 
     private static final String AUTHOR1_GITHUB = "https://github.com/flocke";
-    private static final String AUTHOR1_EXTRA = "https://flocke.shadowice.org/donate.html";
-
     private static final String AUTHOR2_GITHUB = "https://github.com/richyhbm";
-    private static final String AUTHOR2_EXTRA = "https://richyhbm.co.uk/donate";
 
     private static final String AUTHOR_ORIGINAL_GITHUB = "https://github.com/0xbb";
     private static final String AUTHOR_ORIGINAL_EXTRA = AUTHOR_ORIGINAL_GITHUB + "/otp-authenticator";
 
-    private static final String CONTRIBUTORS_URI = GITHUB_URI + "/blob/master/README.md#contributors";
-    private static final String TRANSLATORS_URI = GITHUB_URI + "/blob/master/README.md#translators";
+    private static final String CONTRIBUTORS_URI = GITHUB_URI + "/graphs/contributors";
 
-    private static final String BUGREPORT_URI = GITHUB_URI + "/issues";
-    private static final String TRANSLATE_URI = "https://crowdin.com/project/andotp";
+    private static final String SUPPORT_URI = GITHUB_URI + "/blob/master/README.md#contribute";
 
     private Settings settings;
 
     static final int[] imageResources = {
             R.id.aboutImgVersion, R.id.aboutImgLicense, R.id.aboutImgChangelog, R.id.aboutImgSource,
             R.id.aboutImgAuthor2, R.id.aboutImgAuthorOriginal, R.id.aboutImgContributors,
-            R.id.aboutImgTranslators, R.id.aboutImgBugs, R.id.aboutImgTranslate
+            R.id.aboutImgSupport
     };
 
     static long lastTap = 0;
@@ -138,41 +133,18 @@ public class AboutFragment extends Fragment {
         });
 
         LinearLayout author1Layout = v.findViewById(R.id.aboutLayoutAuthor1);
-        TextView author1Donate = v.findViewById(R.id.about_author1_extra);
         author1Layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(AUTHOR1_GITHUB);
             }
         });
-        author1Donate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    openURI(AUTHOR1_EXTRA);
-                } catch(Exception ignored) {
-                    copyToClipboard(AUTHOR1_EXTRA);
-                }
-            }
-        });
-
 
         LinearLayout author2Layout = v.findViewById(R.id.aboutLayoutAuthor2);
-        TextView author2Donate = v.findViewById(R.id.about_author2_extra);
         author2Layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(AUTHOR2_GITHUB);
-            }
-        });
-        author2Donate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    openURI(AUTHOR2_EXTRA);
-                } catch(Exception ignored) {
-                    copyToClipboard(AUTHOR2_EXTRA);
-                }
             }
         });
 
@@ -196,32 +168,18 @@ public class AboutFragment extends Fragment {
         });
 
         LinearLayout contributors = v.findViewById(R.id.about_layout_contributors);
-        LinearLayout translators = v.findViewById(R.id.about_layout_translators);
         contributors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(CONTRIBUTORS_URI);
             }
         });
-        translators.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(TRANSLATORS_URI);
-            }
-        });
 
-        LinearLayout bugReport = v.findViewById(R.id.about_layout_bugs);
-        LinearLayout translate = v.findViewById(R.id.about_layout_translate);
-        bugReport.setOnClickListener(new View.OnClickListener() {
+        LinearLayout supportLayout = v.findViewById(R.id.about_layout_support);
+        supportLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openURI(BUGREPORT_URI);
-            }
-        });
-        translate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(TRANSLATE_URI);
+                openURI(SUPPORT_URI);
             }
         });
 
@@ -259,5 +217,4 @@ public class AboutFragment extends Fragment {
         clipboard.setPrimaryClip(clip);
         Toast.makeText(getActivity(), getString(R.string.about_toast_copied_to_clipboard), Toast.LENGTH_SHORT).show();
     }
-
 }

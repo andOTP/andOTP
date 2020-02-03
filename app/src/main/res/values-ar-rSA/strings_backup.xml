@@ -10,6 +10,7 @@
     <string name="backup_title_export_openpgp">النسخ الاحتياطي (أوبن بي جي بي)</string>
     <string name="backup_title_import_plain">إسترجاع (نص مجرّد)</string>
     <string name="backup_title_import_crypt">إسترجاع (مشفّر)</string>
+    <string name="backup_title_import_crypt_old">Restore (encrypted, old encryption)</string>
     <string name="backup_title_import_openpgp">إسترجاع (أوبن بي جي بي)</string>
     <string name="backup_title_replace">إستبدال البيانات الموجودة</string>
     <string name="backup_desc_export_plain">أنسخ إحتياطيا لكافة الحسابات في ملف JSON نص مُجرَّد </string>
@@ -17,6 +18,8 @@
     <string name="backup_desc_export_openpgp">أنسخ إحتياطيا لكافة الحسابات في ملف JSON مشفّر بواسطة أوبن بي جي بي</string>
     <string name="backup_desc_import_plain">استعادة حسابات من ملف JSON نص مجرّد</string>
     <string name="backup_desc_import_crypt">استعادة حسابات من ملف JSON محمي بكلمة مرور</string>
+    <string name="backup_desc_import_crypt_old">Restore accounts from a password-protected JSON file
+        created with an <b>andOTP version lower than 0.6.3</b></string>
     <string name="backup_desc_import_openpgp">استعادة حسابات من ملف JSON (مشفر بتقنية اوبن بي جي بي)</string>
     <string name="backup_desc_crypt_setup">فشل في تحميل كلمة مرور النسخ الاحتياطي من الإعدادات، هذا أما يعني إنه لم يتم تعيين أية كلمة مرور أو حدث خطأ ما. سيطلب منك إدخال كلمة المرور يدوياً عند إنشاء أو استيراد نسخة احتياطية.
     </string>
@@ -34,6 +37,11 @@
     <string name="backup_receiver_read_permission_failed">الإذن للقراءة لم يمنح. الرجاء تمكينها قبل محاولة النسخ</string>
     <string name="backup_receiver_write_permission_failed">الإذن للكتابة لم يمنح. الرجاء تمكينها قبل محاولة النسخ</string>
     <string name="backup_receiver_custom_encryption_failed">التشفير عبر كلمة المرور / PIN  غير مدعومة مع البث الإحتياطي</string>
+    <string name="backup_new_format_dialog_title">New encryption method</string>
+    <string name="backup_new_format_dialog_msg">Since version 0.6.3 of andOTP, a <b>new and improved
+        encryption method</b> is used for password-protected backups. The old backups can still be
+        imported, but it is <b>highly recommended to create new backups with the improved
+        encryption</b>.\n\nThis message will not be shown again.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">فشل النسخ التلقائي</string>
     <string name="notification_channel_name_backup_success">نجح النسخ التلقائي</string>
