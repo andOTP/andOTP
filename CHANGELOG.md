@@ -15,6 +15,7 @@
  * New feature: Import QR codes from image files (Issue #377, PR #425 by @Ullas-Aithal)
  * New feature: Move the app to the background after copying a token (Issue #373, PR #392 by @Ullas-Aithal)
  * New feature: Re-lock the app after a certain time of inactivity (Issue #28, PR #390 by @LizardWithHat)
+ * New feature: Re-lock when being send to the background (Issue #216)
  * Improvement: Hide the token list on screen off (Issue #264, PR #390 by @LizardWithHat)
  * Improvement: Scale the font of the default thumbnail with its size
  * Improvement: Do not use auto-completion for the account secret (PR #430 by @duchampdev)

@@ -41,6 +41,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
@@ -205,6 +208,8 @@ public class MainActivity extends BaseActivity
                     requireAuthentication = true;
             }
         });
+
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(new ProcessLifecycleObserver());
 
         if (! settings.getFirstTimeWarningShown()) {
            showFirstTimeWarning();
@@ -832,6 +837,14 @@ public class MainActivity extends BaseActivity
             } catch (Exception e) {
                 Toast.makeText(this, R.string.toast_invalid_qr_code, Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    private class ProcessLifecycleObserver implements DefaultLifecycleObserver {
+        @Override
+        public void onStop(LifecycleOwner owner) {
+            if (MainActivity.this.settings.getRelockOnBackground())
+                MainActivity.this.requireAuthentication = true;
         }
     }
 }

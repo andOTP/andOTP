@@ -311,6 +311,10 @@ public class Settings {
         return getBoolean(R.string.settings_key_relock_screen_off, true);
     }
 
+    public boolean getRelockOnBackground() {
+        return getBoolean(R.string.settings_key_relock_background, false);
+    }
+
     public boolean getBlockAccessibility() {
         return getBoolean(R.string.settings_key_block_accessibility, false);
     }
