@@ -390,8 +390,7 @@ public class MainActivity extends BaseActivity
         if (key.equals(getString(R.string.settings_key_label_size)) ||
                 key.equals(getString(R.string.settings_key_label_scroll)) ||
                 key.equals(getString(R.string.settings_key_split_group_size)) ||
-                key.equals(getString(R.string.settings_key_thumbnail_size)) ||
-                key.equals(getString(R.string.settings_key_minimize_on_copy))) {
+                key.equals(getString(R.string.settings_key_thumbnail_size))) {
             adapter.notifyDataSetChanged();
         } else if (key.equals(getString(R.string.settings_key_search_includes))) {
             adapter.clearFilter();
