@@ -357,7 +357,8 @@ public class MainActivity extends BaseActivity
                 checkIntent();
             }
 
-            if(setCountDownTimerNow()) countDownTimer.start();
+            if (setCountDownTimerNow())
+                countDownTimer.start();
         }
 
         if (filterString != null) {
@@ -383,7 +384,9 @@ public class MainActivity extends BaseActivity
             });
         super.onPause();
         stopUpdater();
-        countDownTimer.cancel();
+
+        if (countDownTimer != null)
+            countDownTimer.cancel();
     }
 
     @Override
@@ -762,13 +765,19 @@ public class MainActivity extends BaseActivity
         super.onUserInteraction();
 
         // Refresh Blackout Timer
-        if(countDownTimer != null) countDownTimer.cancel();
-        if(setCountDownTimerNow()) countDownTimer.start();
+        if (countDownTimer != null)
+            countDownTimer.cancel();
+
+        if (setCountDownTimerNow())
+            countDownTimer.start();
     }
 
     private boolean setCountDownTimerNow() {
         int secondsToBlackout = 1000 * settings.getAuthInactivityDelay();
-        if(settings.getAuthMethod() == AuthMethod.NONE || !settings.getAuthInactivity() || secondsToBlackout == 0 ) return false;
+
+        if (settings.getAuthMethod() == AuthMethod.NONE || !settings.getAuthInactivity() || secondsToBlackout == 0)
+            return false;
+
         countDownTimer = new CountDownTimer(secondsToBlackout, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -780,6 +789,7 @@ public class MainActivity extends BaseActivity
                 this.cancel();
             }
         };
+
         return true;
     }
 
