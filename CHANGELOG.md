@@ -1,6 +1,6 @@
 # Changelog
 
-#### v0.6.4 (WIP)
+#### v0.7.0 (WIP)
 
  * New feature: Generate a new HOTP token when revealing (Issue #334, PR #366 by @moritzgloeckl)
  * New feature: Split issuer and label (Issue #258, PR #372 by @lucavallerini)
@@ -8,11 +8,18 @@
  * New feature: Allow searching the tags and issuers in addition to the label (Issue #327)
  * New feature: Turn tokens red if they are about to expire (Issue #311, PR #410 by @Ullas-Aithal)
  * New feature: Handle otpauth:// intents from other apps (Issue #324, PR #393 by @schwedenmut)
- * New feature: Create an encrypted backup every time the entries are changed (PR #397 by @RichyHBM)
+ * New feature: Create an encrypted backup every time the entries are changed (PR #397 and PR #421 by @RichyHBM)
  * New feature: Different layouts for the entry cards
  * New feature: New thumbnail size "Tiny"
- * Improvement: Hide the token list on screen off (Issue #264, PR #391 by @LizardWithHat)
+ * New feature: Block accessibility services from seeing sensitive input fields via a new settings item
+ * New feature: Import QR codes from image files (Issue #377, PR #425 by @Ullas-Aithal)
+ * New feature: Move the app to the background after copying a token (Issue #373, PR #392 by @Ullas-Aithal)
+ * New feature: Re-lock the app after a certain time of inactivity (Issue #28, PR #390 by @LizardWithHat)
+ * Improvement: Hide the token list on screen off (Issue #264, PR #390 by @LizardWithHat)
  * Improvement: Scale the font of the default thumbnail with its size
+ * Improvement: Do not use auto-completion for the account secret (PR #430 by @duchampdev)
+ * Improvement: Enable Android backup by default (Issue #341, PR #342 by @RichyHBM)
+ * Improvement: Remove whitespaces from manually entered secrets (Issue #253, PR #426 by @Ullas-Aithal)
  * Bug fix: Fix black navigation bar on OxygenOS devices (PR #417 by @Ullas-Aithal)
  * Internal: Migrate to AndroidX
  * Internal: Update Gradle and a lot of dependencies
