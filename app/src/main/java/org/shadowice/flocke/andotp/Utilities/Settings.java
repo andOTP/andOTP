@@ -546,7 +546,11 @@ public class Settings {
     public boolean getIsAppendingDateTimeToBackups() {
         return getBoolean(R.string.settings_key_backup_append_date_time, false);
     }
-
+  
+    public boolean isMinimizeAppOnCopyEnabled() {
+        return  getBoolean(R.string.settings_key_minimize_on_copy, false);
+    }
+  
     private Constants.AutoBackup getAutoBackupEncryptedSetting() {
         String stringValue = getString(R.string.settings_key_auto_backup_password_enc, R.string.settings_default_auto_backup_password_enc);
         return Constants.AutoBackup.valueOf(stringValue.toUpperCase(Locale.ENGLISH));

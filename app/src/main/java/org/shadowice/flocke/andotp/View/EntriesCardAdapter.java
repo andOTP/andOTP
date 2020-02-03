@@ -49,6 +49,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import org.shadowice.flocke.andotp.Activities.MainActivity;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Dialogs.TagsDialog;
 import org.shadowice.flocke.andotp.R;
@@ -270,6 +271,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             public void onCopyButtonClicked(String text, int position) {
                 copyToClipboard(text);
                 updateLastUsed(position, getRealIndex(position));
+                if(context != null && settings.isMinimizeAppOnCopyEnabled()) {
+                    ((MainActivity)context).moveTaskToBack(true);
+                }
             }
 
             @Override
