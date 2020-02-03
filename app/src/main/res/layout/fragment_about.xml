@@ -14,7 +14,7 @@
         android:clipToPadding="false"
         android:orientation="vertical" >
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_margin_small"
@@ -57,9 +57,9 @@
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_margin_small"
@@ -209,9 +209,9 @@
 
                 </LinearLayout>
             </LinearLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_margin_small"
@@ -249,6 +249,7 @@
                         android:src="@mipmap/ic_author_flocke" />
 
                     <LinearLayout
+                        android:id="@+id/aboutLayoutAuthor1Content"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -266,16 +267,6 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="@string/about_label_main_developer"/>
-
-                        <TextView
-                            android:id="@+id/about_author1_extra"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/activity_margin_small"
-                            android:background="?android:attr/selectableItemBackground"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textStyle="bold"
-                            android:text="@string/about_label_donate" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -306,6 +297,7 @@
                         app:srcCompat="@drawable/ic_account_circle_gray" />
 
                     <LinearLayout
+                        android:id="@+id/aboutLayoutAuthor2Content"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -323,16 +315,6 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="@string/about_label_developer"/>
-
-                        <TextView
-                            android:id="@+id/about_author2_extra"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/activity_margin_small"
-                            android:background="?android:attr/selectableItemBackground"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textStyle="bold"
-                            android:text="@string/about_label_donate" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -428,73 +410,33 @@
 
                 </LinearLayout>
 
-                <!-- translators -->
-                <LinearLayout
-                    android:id="@+id/about_layout_translators"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="?android:attr/listPreferredItemHeight"
-                    android:paddingTop="@dimen/activity_margin_small"
-                    android:paddingBottom="@dimen/activity_margin_small"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:gravity="center_vertical" >
-
-                    <ImageView
-                        android:id="@+id/aboutImgTranslators"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/activity_margin"
-                        android:layout_marginEnd="@dimen/activity_margin_large"
-                        app:srcCompat="@drawable/ic_translate_gray" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/about_label_translators"
-                        android:textStyle="bold"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                </LinearLayout>
-
             </LinearLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_margin_small"
             android:layout_marginBottom="@dimen/activity_margin_small"
             style="?attr/cardStyle" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/about_title_support"/>
-
-                <!-- bug reports -->
                 <LinearLayout
-                    android:id="@+id/about_layout_bugs"
+                    android:id="@+id/about_layout_support"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_margin"
                     android:paddingTop="@dimen/activity_margin_small"
                     android:paddingBottom="@dimen/activity_margin_small"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical" >
 
                     <ImageView
-                        android:id="@+id/aboutImgBugs"
+                        android:id="@+id/aboutImgSupport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_margin"
                         android:layout_marginEnd="@dimen/activity_margin_large"
-                        app:srcCompat="@drawable/ic_bug_report_gray" />
+                        app:srcCompat="@drawable/ic_heart_gray" />
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -505,7 +447,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/about_label_report_bugs"
+                            android:text="@string/about_title_support"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textStyle="bold" />
 
@@ -513,57 +455,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="@string/about_desc_report_bugs"/>
+                            android:text="@string/about_desc_support"/>
 
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- translate -->
-                <LinearLayout
-                    android:id="@+id/about_layout_translate"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/activity_margin_small"
-                    android:paddingBottom="@dimen/activity_margin_small"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:gravity="center_vertical" >
-
-                    <ImageView
-                        android:id="@+id/aboutImgTranslate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/activity_margin"
-                        android:layout_marginEnd="@dimen/activity_margin_large"
-                        app:srcCompat="@drawable/ic_translate_gray" />
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical" >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/about_label_translate"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="@string/about_desc_translate"/>
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
         <!-- thumbnails -->
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_margin_small"
@@ -618,7 +518,7 @@
                         android:text="@string/about_thumbnails_disclaimer_no4" />
                 </LinearLayout>
             </LinearLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 </ScrollView>

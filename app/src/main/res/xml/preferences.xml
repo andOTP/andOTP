@@ -48,6 +48,12 @@
             android:summary="@string/settings_desc_relock_screen_off"
             android:defaultValue="true" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_block_accessibility"
+            android:title="@string/settings_title_block_accessibility"
+            android:summary="@string/settings_desc_block_accessibility"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -68,6 +74,14 @@
             android:entries="@array/settings_entries_theme"
             android:entryValues="@array/settings_values_theme"
             android:defaultValue="@string/settings_default_theme" />
+
+        <ListPreference
+            android:key="@string/settings_key_card_layout"
+            android:title="@string/settings_title_card_layout"
+            android:summary="%s"
+            android:entries="@array/settings_entries_card_layout"
+            android:entryValues="@array/settings_values_card_layout"
+            android:defaultValue="@string/settings_default_card_layout" />
 
         <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
             android:key="@string/settings_key_label_size"
@@ -111,16 +125,30 @@
             android:summary="@string/settings_desc_minimize_on_copy"
             android:defaultValue="false" />
 
+        <MultiSelectListPreference
+            android:key="@string/settings_key_search_includes"
+            android:title="@string/settings_title_search_includes"
+            android:summary="@string/settings_desc_search_includes"
+            android:entries="@array/settings_entries_search_includes"
+            android:entryValues="@array/settings_values_search_includes"
+            android:defaultValue="@array/settings_defaults_search_includes" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_label_highlight_token"
+            android:title="@string/settings_title_label_highlight_token"
+            android:summary="@string/settings_desc_label_highlight_token"
+            android:defaultValue="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/settings_category_title_backup">
 
-		<CheckBoxPreference
+	<CheckBoxPreference
             android:key="@string/settings_key_enable_android_backup_service"
             android:title="@string/settings_title_enable_android_backup_service"
             android:summary="@string/settings_desc_enable_android_backup_service"
-            android:defaultValue="false" />
+            android:defaultValue="true" />
 
         <CheckBoxPreference
             android:key="@string/settings_key_backup_append_date_time"
@@ -145,6 +173,14 @@
             android:key="@string/settings_key_backup_password_enc"
             android:title="@string/settings_title_backup_password"
             android:summary="@string/settings_desc_backup_password" />
+
+        <ListPreference
+            android:key="@string/settings_key_auto_backup_password_enc"
+            android:title="@string/settings_title_auto_backup_password_enc"
+            android:summary="@string/settings_desc_auto_backup_password_enc"
+            android:entries="@array/settings_entries_auto_backup_password_enc"
+            android:entryValues="@array/settings_values_auto_backup_password_enc"
+            android:defaultValue="@string/settings_default_auto_backup_password_enc" />
 
         <MultiSelectListPreference
             android:key="@string/settings_key_backup_broadcasts"

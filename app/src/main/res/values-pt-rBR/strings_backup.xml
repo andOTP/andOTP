@@ -10,6 +10,7 @@
     <string name="backup_title_export_openpgp">Fazer backup (OpenPGP)</string>
     <string name="backup_title_import_plain">Restaurar backup (texto puro)</string>
     <string name="backup_title_import_crypt">Restaurar backup (criptografado)</string>
+    <string name="backup_title_import_crypt_old">Restaurar (criptografado, criptografia antiga)</string>
     <string name="backup_title_import_openpgp">Restaurar backup (OpenPGP)</string>
     <string name="backup_title_replace">Substituir as contas existentes</string>
     <string name="backup_desc_export_plain">Fazer o backup de todas as contas em um arquivo JSON desprotegido</string>
@@ -17,6 +18,8 @@
     <string name="backup_desc_export_openpgp">Fazer o backup de todas as contas em um arquivo JSON criptografado com OpenPGP</string>
     <string name="backup_desc_import_plain">Restaurar contas de um arquivo JSON desprotegido</string>
     <string name="backup_desc_import_crypt">Restaurar contas de um arquivo JSON protegido por senha</string>
+    <string name="backup_desc_import_crypt_old">Recupere contas de um arquivo JSON protegido por senha
+        criado com uma <b>versão do andOTP menor que a 0.6.3</b></string>
     <string name="backup_desc_import_openpgp">Restaurar contas de um arquivo JSON criptografado com OpenPGP</string>
     <string name="backup_desc_crypt_setup">Falha ao carregar a senha de backup de <b>Configurações</b>,
         isso pode significar que nenhuma senha foi definida ou que algo deu errado. Será pedido que
@@ -36,6 +39,11 @@ insira
     <string name="backup_receiver_read_permission_failed">A permissão de leitura não foi concedida. Por favor, conceda-a        antes de iniciar um backup</string>
     <string name="backup_receiver_write_permission_failed">A permissão de escrita não foi concedida. Por favor, conceda-a        antes de iniciar um backup</string>
     <string name="backup_receiver_custom_encryption_failed">A criptografia de senha ou PIN não         pode ser usada com o backup de ativação remota</string>
+    <string name="backup_new_format_dialog_title">Novo método de criptografia</string>
+    <string name="backup_new_format_dialog_msg">Desde a versão 0.6.3 do andOTP, um <b>método novo e aprimorado
+        de criptografia</b> é usado para backups protegidos por senha. Os backups antigos ainda podem ser
+        importados, mas é <b>altamente recomendado criar novos backups com o método aprimorado de
+        criptografia</b>.\n\nEsta mensagem não será exibida novamente.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Falha ao realizar o backup automático</string>
     <string name="notification_channel_name_backup_success">Backup automático concluído</string>

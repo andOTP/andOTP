@@ -24,7 +24,7 @@
 package org.shadowice.flocke.andotp.View;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -41,12 +41,14 @@ import java.util.List;
 public class ThumbnailSelectionAdapter extends BaseAdapter {
     private Context context;
     private List items;
+    private String issuer = "Example";
     private String label = "Example";
     private Settings settings;
 
-    ThumbnailSelectionAdapter(Context context, String label) {
+    ThumbnailSelectionAdapter(Context context, String issuer, String label) {
         items = new ArrayList(EntryThumbnail.EntryThumbnails.values().length);
         Collections.addAll(items, EntryThumbnail.EntryThumbnails.values());
+        this.issuer = issuer;
         this.label = label;
         this.context = context;
         settings = new Settings(context);
@@ -98,7 +100,7 @@ public class ThumbnailSelectionAdapter extends BaseAdapter {
 
         EntryThumbnail.EntryThumbnails thumb = (EntryThumbnail.EntryThumbnails)getItem(i);
 
-        imageView.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, label, thumbnailSize, thumb));
+        imageView.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, issuer, label, thumbnailSize, thumb));
         return imageView;
     }
 }

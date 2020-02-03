@@ -41,7 +41,7 @@ public class Constants {
     }
 
     public enum BackupType {
-        PLAIN_TEXT, ENCRYPTED, OPEN_PGP
+        PLAIN_TEXT, ENCRYPTED, OPEN_PGP, UNAVAILABLE
     }
 
     public enum TagFunctionality {
@@ -52,11 +52,24 @@ public class Constants {
         BACKUP_FAILED, BACKUP_SUCCESS
     }
 
+    public enum SearchIncludes {
+        LABEL, ISSUER, TAGS
+    }
+
+    public enum CardLayouts {
+        DEFAULT, FULL
+    }
+
+    public enum AutoBackup {
+        OFF, NEW_ENTRIES, ALL_EDITS
+    }
+
     // Intents (Format: A0x with A = parent Activity, x = number of the intent)
     public final static int INTENT_MAIN_AUTHENTICATE            = 100;
     public final static int INTENT_MAIN_SETTINGS                = 101;
     public final static int INTENT_MAIN_BACKUP                  = 102;
     public final static int INTENT_MAIN_INTRO                   = 103;
+    public final static int INTENT_MAIN_QR_OPEN_IMAGE           = 104;
 
     public final static int INTENT_BACKUP_OPEN_DOCUMENT_PLAIN       = 200;
     public final static int INTENT_BACKUP_SAVE_DOCUMENT_PLAIN       = 201;
@@ -71,6 +84,7 @@ public class Constants {
     public static final int INTENT_SETTINGS_AUTHENTICATE        = 300;
 
     // Permission requests (Format: A1x with A = parent Activity, x = number of the request)
+    public final static int PERMISSIONS_MAIN_QR_READ_IMAGE              = 111;
     public final static int PERMISSIONS_BACKUP_READ_IMPORT_PLAIN        = 210;
     public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_PLAIN       = 211;
     public final static int PERMISSIONS_BACKUP_READ_IMPORT_CRYPT        = 212;
