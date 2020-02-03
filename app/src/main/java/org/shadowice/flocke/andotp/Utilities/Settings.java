@@ -546,6 +546,14 @@ public class Settings {
     public boolean getIsAppendingDateTimeToBackups() {
         return getBoolean(R.string.settings_key_backup_append_date_time, false);
     }
+
+    public int getAuthInactivityDelay() {
+        return getIntValue(R.string.settings_key_auth_inactivity_delay, 0);
+    }
+
+    public boolean getAuthInactivity() {
+        return getBoolean(R.string.settings_key_auth_inactivity, false);
+    }
   
     public boolean isMinimizeAppOnCopyEnabled() {
         return  getBoolean(R.string.settings_key_minimize_on_copy, false);

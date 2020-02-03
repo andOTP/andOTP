@@ -16,6 +16,8 @@
     <string name="settings_key_encryption" translatable="false">pref_encryption</string>
     <string name="settings_key_panic" translatable="false">pref_panic</string>
     <string name="settings_key_relock_screen_off" translatable="false">pref_relock_screen_off</string>
+    <string name="settings_key_auth_inactivity" translatable="false">pref_auth_inactivity</string>
+    <string name="settings_key_auth_inactivity_delay" translatable="false">pref_auth_inactivity_timeout</string>
     <string name="settings_key_block_accessibility" translatable="false">pref_block_accessibility</string>
 
     <string name="settings_key_lang" translatable="false">pref_lang</string>    <!-- Deprecated -->
@@ -60,6 +62,7 @@
 
     <!-- Default values -->
     <integer name="settings_default_tap_to_reveal_timeout">30</integer>
+    <integer name="settings_default_auth_inactivity_delay">30</integer>
     <string name="settings_default_encryption" translatable="false">keystore</string>
     <string name="settings_default_locale" translatable="false">system</string>
     <string name="settings_default_theme" translatable="false">light</string>
@@ -210,4 +213,6 @@
     <integer name="settings_max_tap_to_reveal_timeout">60</integer>
     <integer name="settings_min_label_size">12</integer>
     <integer name="settings_max_label_size">24</integer>
+    <integer name="settings_auth_min_inactivity_delay">10</integer>
+    <integer name="settings_auth_max_inactivity_delay">360</integer>
 </resources>

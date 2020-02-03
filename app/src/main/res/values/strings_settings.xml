@@ -16,6 +16,8 @@
     <string name="settings_title_encryption">Database encryption</string>
     <string name="settings_title_panic">Panic Trigger</string>
     <string name="settings_title_relock_screen_off">Re-lock on screen off</string>
+    <string name="settings_title_auth_inactivity">Re-lock on inactivity</string>
+    <string name="settings_title_auth_inactivity_delay">Delay for inactivity re-lock</string>
     <string name="settings_title_block_accessibility">Block accessibility services</string>
 
     <string name="settings_title_lang">Language</string>
@@ -55,6 +57,10 @@
     <string name="settings_desc_panic">Decide what happens when a Panic Trigger is received</string>
     <string name="settings_desc_relock_screen_off">Require authentication after the devices screen
         has been turned off</string>
+    <string name="settings_desc_auth_inactivity">Require authenticication after the device has been
+        inactive</string>
+    <string name="settings_desc_auth_inactivity_delay">Select the time (in sec) after which to
+        require reauthentication</string>
     <string name="settings_desc_block_accessibility">Hide sensitive fields from the accessibility
         services. <b>DO NOT enable this if you rely on the accessibility services!</b></string>
 

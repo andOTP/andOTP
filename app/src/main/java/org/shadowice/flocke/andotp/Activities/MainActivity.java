@@ -33,6 +33,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import androidx.annotation.NonNull;
@@ -107,6 +108,8 @@ public class MainActivity extends BaseActivity
     private TagsAdapter tagsDrawerAdapter;
     private ActionBarDrawerToggle tagsToggle;
     private String filterString;
+
+    private CountDownTimer countDownTimer;
 
     // QR code scanning
     private void scanQRCode(){
@@ -353,6 +356,8 @@ public class MainActivity extends BaseActivity
                 }
                 checkIntent();
             }
+
+            if(setCountDownTimerNow()) countDownTimer.start();
         }
 
         if (filterString != null) {
@@ -378,6 +383,7 @@ public class MainActivity extends BaseActivity
             });
         super.onPause();
         stopUpdater();
+        countDownTimer.cancel();
     }
 
     @Override
@@ -751,6 +757,32 @@ public class MainActivity extends BaseActivity
         adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
     }
 
+    @Override
+    public void onUserInteraction(){
+        super.onUserInteraction();
+
+        // Refresh Blackout Timer
+        if(countDownTimer != null) countDownTimer.cancel();
+        if(setCountDownTimerNow()) countDownTimer.start();
+    }
+
+    private boolean setCountDownTimerNow() {
+        int secondsToBlackout = 1000 * settings.getAuthInactivityDelay();
+        if(settings.getAuthMethod() == AuthMethod.NONE || !settings.getAuthInactivity() || secondsToBlackout == 0 ) return false;
+        countDownTimer = new CountDownTimer(secondsToBlackout, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+            }
+
+            @Override
+            public void onFinish() {
+                authenticate(R.string.auth_msg_authenticate);
+                this.cancel();
+            }
+        };
+        return true;
+    }
+
     private void openFileWithPermissions(int intentId){
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             showOpenFileSelector(intentId);
@@ -778,6 +810,7 @@ public class MainActivity extends BaseActivity
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+    
     private void addQRCode(String result){
         if(!TextUtils.isEmpty(result)) {
             try {
