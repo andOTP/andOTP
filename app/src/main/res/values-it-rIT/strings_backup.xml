@@ -10,6 +10,7 @@
     <string name="backup_title_export_openpgp">Backup (OpenPGP)</string>
     <string name="backup_title_import_plain">Ripristina (non crittografato)</string>
     <string name="backup_title_import_crypt">Ripristina (crittografato)</string>
+    <string name="backup_title_import_crypt_old">Ripristina (cifrato, vecchia cifratura)</string>
     <string name="backup_title_import_openpgp">Ripristina (OpenPGP)</string>
     <string name="backup_title_replace">Sostituire le voci esistenti</string>
     <string name="backup_desc_export_plain">Salva tutti gli account in un file JSON non crittografato</string>
@@ -17,6 +18,7 @@
     <string name="backup_desc_export_openpgp">Salva tutti gli account in un file JSON crittografato on OpenPGP</string>
     <string name="backup_desc_import_plain">Ripristina tutti gli account da file JSON non crittografato</string>
     <string name="backup_desc_import_crypt">Ripristina tutti gli account da file JSON protetto da password</string>
+    <string name="backup_desc_import_crypt_old">Ripristina account da un file JSON protetto con password. Creato con una versione di anOTP inferiore alla 0.6.3</string>
     <string name="backup_desc_import_openpgp">Ripristina tutti gli account da file JSON crittografato con OpenPGP</string>
     <string name="backup_desc_crypt_setup">Impossibile caricare la password di backup dalle <b>Impostazioni</b>,
         questo significa che nessuna password è stata impostata o qualcosa è andato storto. Ti verrà chiesto di
@@ -48,6 +50,8 @@
         di autorizzarli prima di tentare il backup</string>
     <string name="backup_receiver_custom_encryption_failed">Crittografia basata su password / PIN
         non supportata con backup broadcast</string>
+    <string name="backup_new_format_dialog_title">Nuovo metodo di cifratura</string>
+    <string name="backup_new_format_dialog_msg">Dalla versione 0.6.3 di andOTP è stato aggiunto un nuovo e migliore metodo di cifratura, usato per i backup protetti da password. I vecchi backup possono ancora essere importati, ma è altamente consigliata la creazione di nuovi backup con le funzionalità migliorate di cifratura. Questo messaggio non sarà visualizzato nuovamente.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Backup automatico fallito</string>
     <string name="notification_channel_name_backup_success">Backup automatico eseguito con successo</string>

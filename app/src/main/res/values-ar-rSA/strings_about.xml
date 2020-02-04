@@ -18,8 +18,7 @@
     <string name="about_label_original_author">مؤلف التطبيق الأصلي</string>
     <string name="about_label_original_app">التطبيق الأصلي</string>
     <string name="about_label_website">الموقع الإلكتروني</string>
-    <string name="about_label_donate_paypal">التبرع (Paypal)</string>
-    <string name="about_label_donate_bitcoin">التبرع (Bitcoin)</string>
+    <string name="about_label_donate">التبرع</string>
     <string name="about_label_contributors">المساهمون</string>
     <string name="about_label_translators">المترجمون</string>
     <!-- Thumbnail disclaimer -->

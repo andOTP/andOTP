@@ -18,8 +18,7 @@
     <string name="about_label_original_author">原应用作者</string>
     <string name="about_label_original_app">原应用</string>
     <string name="about_label_website">网站</string>
-    <string name="about_label_donate_paypal">捐款 (PayPal)</string>
-    <string name="about_label_donate_bitcoin">捐款 (Bitcoin)</string>
+    <string name="about_label_donate">捐赠</string>
     <string name="about_label_contributors">贡献者</string>
     <string name="about_label_translators">译者</string>
     <!-- Thumbnail disclaimer -->

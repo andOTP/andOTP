@@ -1,6 +1,56 @@
 # Changelog
 
+#### v0.7.0 (WIP)
+
+ * New feature: Generate a new HOTP token when revealing (Issue #334, PR #366 by @moritzgloeckl)
+ * New feature: Split issuer and label (Issue #258, PR #372 by @lucavallerini)
+ * New feature: Automatic thumbnail selection based on the issuer (Issue #388, PR #389 by @schwedenmut)
+ * New feature: Allow searching the tags and issuers in addition to the label (Issue #327)
+ * New feature: Turn tokens red if they are about to expire (Issue #311, PR #410 by @Ullas-Aithal)
+ * New feature: Handle otpauth:// intents from other apps (Issue #324, PR #393 by @schwedenmut)
+ * New feature: Create an encrypted backup every time the entries are changed (PR #397 and PR #421 by @RichyHBM)
+ * New feature: Different layouts for the entry cards (compact, default and full)
+ * New feature: New thumbnail size "Tiny"
+ * New feature: Block accessibility services from seeing sensitive input fields via a new settings item
+ * New feature: Import QR codes from image files (Issue #377, PR #425 by @Ullas-Aithal)
+ * New feature: Move the app to the background after copying a token (Issue #373, PR #392 by @Ullas-Aithal)
+ * New feature: Re-lock the app after a certain time of inactivity (Issue #28, PR #390 by @LizardWithHat)
+ * New feature: Re-lock when being send to the background (Issue #216)
+ * New feature: Sort tokens by "most used" (Issue #443, PR #467 by @Ullas-Aithal)
+ * Improvement: Hide the token list on screen off (Issue #264, PR #390 by @LizardWithHat)
+ * Improvement: Scale the font of the default thumbnail with its size
+ * Improvement: Do not use auto-completion for the account secret (PR #430 by @duchampdev)
+ * Improvement: Enable Android backup by default (Issue #341, PR #342 by @RichyHBM)
+ * Improvement: Remove whitespaces from manually entered secrets (Issue #253, PR #426 by @Ullas-Aithal)
+ * Bug fix: Fix black navigation bar on OxygenOS devices (PR #417 by @Ullas-Aithal)
+ * Internal: Migrate to AndroidX
+ * Internal: Update Gradle and a lot of dependencies
+ * Thumbnails: Lots of new ones (thanks to all contributors)
+
+#### v0.6.3.1
+
+ * Introduce build flavors:
+   - fdroid: Shows donation links in the About section
+   - play: Doesn't show donation links in the About section
+
+#### v0.6.3
+
+ * Security: Improved password derivation for the password protected backups
+ * New feature: Prevent screencapture in the Authentication and QR scanner screen (Issue #378, PR #386 by @schwedenmut)
+ * New feature: Color navbar according to the theme (Issue #284, PR #371 by @HarryJohnso)
+ * Bug fix: Fix "all tags" only selecting visible tags (Issue #333, PR #350 by @RichyHBM)
+ * Bug fix: Focus the password/PIN input field on start (Issue #356, PR #357 by @schwedenmut)
+ * Bug fix: Fix spelling of "QR code" (PR #368 by @yegortimoshenko)
+ * Bug fix: Always use arabic numerals for the tokens (Issue #359)
+ * Bug fix: Refactor storage access code to allow importing and exporting from cloud storage directly
+ * Bug fix: Hardcode the black background color to avoid strange behaviour on some custom ROMs
+ * Bug fix: Force English locales for saving AuthMethod
+ * Misc: Update donation links (PR #351)
+ * Thumbnails: Lots of new thumbnails
+ * Translations: Hungarian
+
 #### v0.6.2
+
  * Bug fix: Proper handling of RTL layouts by forcing LTR for the tokens (PR #280 by @ahangarha)
  * Internal: Image compression (thanks to @Peppernrino)
  * Thumbnail: Add a LOT of new thumbnails (thanks to everybody that contributed)

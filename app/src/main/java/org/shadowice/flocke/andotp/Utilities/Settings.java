@@ -34,6 +34,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -216,12 +217,12 @@ public class Settings {
     }
 
     public AuthMethod getAuthMethod() {
-        String authString = getString(R.string.settings_key_auth, CredentialsPreference.DEFAULT_VALUE.name().toLowerCase());
-        return AuthMethod.valueOf(authString.toUpperCase());
+        String authString = getString(R.string.settings_key_auth, CredentialsPreference.DEFAULT_VALUE.name().toLowerCase(Locale.ENGLISH));
+        return AuthMethod.valueOf(authString.toUpperCase(Locale.ENGLISH));
     }
 
     public void setAuthMethod(AuthMethod authMethod) {
-        setString(R.string.settings_key_auth, authMethod.name().toLowerCase());
+        setString(R.string.settings_key_auth, authMethod.name().toLowerCase(Locale.ENGLISH));
     }
 
     public void removeAuthPasswordHash() {
@@ -310,6 +311,14 @@ public class Settings {
         return getBoolean(R.string.settings_key_relock_screen_off, true);
     }
 
+    public boolean getRelockOnBackground() {
+        return getBoolean(R.string.settings_key_relock_background, false);
+    }
+
+    public boolean getBlockAccessibility() {
+        return getBoolean(R.string.settings_key_block_accessibility, false);
+    }
+
     public void setLocale(String locale) {
         setString(R.string.settings_key_locale, locale);
     }
@@ -330,8 +339,20 @@ public class Settings {
         }
     }
 
-    public String getTheme() {
-        return getString(R.string.settings_key_theme, R.string.settings_default_theme);
+    public int getTheme() {
+        String themeName = getString(R.string.settings_key_theme, R.string.settings_default_theme);
+
+        int theme = R.style.AppTheme_NoActionBar;
+
+        if (themeName.equals("light")) {
+            theme = R.style.AppTheme_NoActionBar;
+        } else if (themeName.equals("dark")) {
+            theme = R.style.AppTheme_Dark_NoActionBar;
+        } else if (themeName.equals("black")) {
+            theme = R.style.AppTheme_Black_NoActionBar;
+        }
+
+        return theme;
     }
 
     public int getLabelSize() {
@@ -365,6 +386,23 @@ public class Settings {
 
     public void setSortMode(SortMode value) {
         setString(R.string.settings_key_sort_mode, value.toString());
+    }
+
+    public List<Constants.SearchIncludes> getSearchValues() {
+        Set<String> stringValues = settings.getStringSet(getResString(R.string.settings_key_search_includes), new HashSet<>(Arrays.asList(context.getResources().getStringArray(R.array.settings_defaults_search_includes))));
+
+        List<Constants.SearchIncludes> values = new ArrayList<>();
+
+        for (String value : stringValues) {
+            values.add(Constants.SearchIncludes.valueOf(value.toUpperCase(Locale.ENGLISH)));
+        }
+
+        return values;
+    }
+
+    public Constants.CardLayouts getCardLayout() {
+        String stringValue = getString(R.string.settings_key_card_layout, R.string.settings_default_card_layout);
+        return Constants.CardLayouts.valueOf(stringValue.toUpperCase(Locale.ENGLISH));
     }
 
     public boolean getBackupAsk() {
@@ -485,12 +523,20 @@ public class Settings {
         return getBoolean(R.string.settings_key_enable_screenshot, false);
     }
 
-    public boolean getLastUsedDialogShown() {
+    public boolean getUsedTokensDialogShown() {
         return getBoolean(R.string.settings_key_last_used_dialog_shown, false);
     }
 
-    public void setLastUsedDialogShown(boolean value) {
+    public void setUsedTokensDialogShown(boolean value) {
         setBoolean(R.string.settings_key_last_used_dialog_shown, value);
+    }
+
+    public boolean getNewBackupFormatDialogShown() {
+        return getBoolean(R.string.settings_key_new_backup_format_dialog_shown, false);
+    }
+
+    public void setNewBackupFormatDialogShown(boolean value) {
+        setBoolean(R.string.settings_key_new_backup_format_dialog_shown, value);
     }
 
     public boolean getAndroidBackupServiceEnabled() {
@@ -503,5 +549,34 @@ public class Settings {
 
     public boolean getIsAppendingDateTimeToBackups() {
         return getBoolean(R.string.settings_key_backup_append_date_time, false);
+    }
+
+    public int getAuthInactivityDelay() {
+        return getIntValue(R.string.settings_key_auth_inactivity_delay, 0);
+    }
+
+    public boolean getAuthInactivity() {
+        return getBoolean(R.string.settings_key_auth_inactivity, false);
+    }
+  
+    public boolean isMinimizeAppOnCopyEnabled() {
+        return  getBoolean(R.string.settings_key_minimize_on_copy, false);
+    }
+  
+    private Constants.AutoBackup getAutoBackupEncryptedSetting() {
+        String stringValue = getString(R.string.settings_key_auto_backup_password_enc, R.string.settings_default_auto_backup_password_enc);
+        return Constants.AutoBackup.valueOf(stringValue.toUpperCase(Locale.ENGLISH));
+    }
+
+    public boolean getAutoBackupEncryptedPasswordsEnabled() {
+        return getAutoBackupEncryptedSetting() != Constants.AutoBackup.OFF;
+    }
+
+    public boolean getAutoBackupEncryptedFullEnabled() {
+        return getAutoBackupEncryptedSetting() == Constants.AutoBackup.ALL_EDITS;
+    }
+
+    public boolean isHighlightTokenOptionEnabled() {
+        return getBoolean(R.string.settings_key_label_highlight_token,true);
     }
 }

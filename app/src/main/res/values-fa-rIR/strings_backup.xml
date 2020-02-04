@@ -10,6 +10,7 @@
     <string name="backup_title_export_openpgp">پشتیبان‌گیری (OpenPGP)</string>
     <string name="backup_title_import_plain">بازنشانی (متن ساده)</string>
     <string name="backup_title_import_crypt">بازنشانی (رمزگذاری شده)</string>
+    <string name="backup_title_import_crypt_old">بازگردانی (رمزگذاری شده، رمزگذاری قدیمی)</string>
     <string name="backup_title_import_openpgp">بازنشانی (OpenPGP)</string>
     <string name="backup_title_replace">موارد موجود را جایگزین کن</string>
     <string name="backup_desc_export_plain">پشتیبان‌گیری از همه حساب‌ها در پرونده JSON متن ساده</string>
@@ -17,6 +18,7 @@
     <string name="backup_desc_export_openpgp">پشتیبان‌گیری از همه حساب‌ها در پرونده JSON رمزگذاری شده با OpenPGP</string>
     <string name="backup_desc_import_plain">بازنشانی از پرونده JSON متن ساده</string>
     <string name="backup_desc_import_crypt">بازنشانی از پرونده JSON رمز دار</string>
+    <string name="backup_desc_import_crypt_old">بازگردانی حساب‌خا از پرونده JSON محافظت‌شده با رمز ساخته شده با یک <b>andOTP با نسخه پایین‌تر از ۰.۶.۳</b></string>
     <string name="backup_desc_import_openpgp">بازنشانی از پرونده JSON رمزگذاری شده با OpenPGP</string>
     <string name="backup_desc_crypt_setup">شکست در بارگیری رمز عبور پشتیبان از <b>تنظیمات</b>، این به معنای عدم وجود رمز عبور است یا اشکالی پیش آمده. زمانی که شما یک پشتیبان می‌سازید یا یک پشتیبان وارد می‌کنید، از شما خواسته خواهد شد تا رمز عبور را به صورت دستی وارد کنید.    </string>
     <string name="backup_desc_openpgp_provider">شما نیاز دارید که یک مهیاکننده OpenPGP نصب کنید و آن را در <b>تنظیمات</b> فعال کنید تا از این قابلیت استفاده کنید.    </string>
@@ -32,6 +34,8 @@
     <string name="backup_receiver_read_permission_failed">اجازه خواندن داده نشده، لطفا قبل از تلاش برای پشتیبان‌گیری این اجازه را بدهید</string>
     <string name="backup_receiver_write_permission_failed">اجازه نوشتن داده نشده، لطفا قبل از تلاش برای پشتیبان‌گیری این اجازه را بدهید</string>
     <string name="backup_receiver_custom_encryption_failed">رمز عبور / پین بر اساس رمزگذاری، توسط Broadcast Backup پشتیبانی نمی‌شود</string>
+    <string name="backup_new_format_dialog_title">روش رمزگذاری جدید</string>
+    <string name="backup_new_format_dialog_msg">از نسخه‌ی ۰.۶.۳ ی andOTP، <b>یک روش بهبودیافته و جدید رمزگذاری</b> برای پشتیبان‌های محافظت‌شده با رمز استفاده شده است. پشتیبان‌های قدیمی هنوز می‌توانند وارد شوند، اما <b>بسیار پیشنهاد می‌شود که از روش بهبودیافته‌ی رمزگذاری</b> استفاده کنید.\n\nاین پیام دوباره نشان داده نخواهد شد.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">شکست در پشتیبان‌گیری خودکار</string>
     <string name="notification_channel_name_backup_success">پشتیبان‌گیری خودکار با موفقیت انجام شد</string>

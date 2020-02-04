@@ -26,8 +26,8 @@ import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.preference.DialogPreference;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -50,6 +50,7 @@ import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static android.content.Context.KEYGUARD_SERVICE;
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
@@ -126,6 +127,11 @@ public class CredentialsPreference extends DialogPreference
         passwordInput = view.findViewById(R.id.passwordEdit);
         passwordConfirm = view.findViewById(R.id.passwordConfirm);
 
+        if (settings.getBlockAccessibility()) {
+            passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
+            passwordConfirm.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        }
+
         toShortWarning = view.findViewById(R.id.toShortWarning);
 
         passwordInput.addTextChangedListener(this);
@@ -145,11 +151,11 @@ public class CredentialsPreference extends DialogPreference
     @Override
     protected void onSetInitialValue(boolean restorePersistedValue, Object defaultValue) {
         if (restorePersistedValue) {
-            String stringValue = getPersistedString(DEFAULT_VALUE.name().toLowerCase());
-            value = AuthMethod.valueOf(stringValue.toUpperCase());
+            String stringValue = getPersistedString(DEFAULT_VALUE.name().toLowerCase(Locale.ENGLISH));
+            value = AuthMethod.valueOf(stringValue.toUpperCase(Locale.ENGLISH));
         } else {
             value = DEFAULT_VALUE;
-            persistString(value.name().toLowerCase());
+            persistString(value.name().toLowerCase(Locale.ENGLISH));
         }
 
         setSummary(entries.get(entryValues.indexOf(value)));

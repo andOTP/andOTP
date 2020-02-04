@@ -66,9 +66,7 @@ public class TokenCalculator {
     }
 
     public static String TOTP_RFC6238(byte[] secret, int period, int digits, HashAlgorithm algorithm) {
-        int token = TOTP_RFC6238(secret, period, System.currentTimeMillis() / 1000, digits, algorithm);
-
-        return String.format("%0" + digits + "d", token);
+        return Tools.formatTokenString(TOTP_RFC6238(secret, period, System.currentTimeMillis() / 1000, digits, algorithm), digits);
     }
 
     public static String TOTP_Steam(byte[] secret, int period, int digits, HashAlgorithm algorithm) {
@@ -88,7 +86,7 @@ public class TokenCalculator {
         int fullToken = HOTP(secret, counter, algorithm);
         int div = (int) Math.pow(10, digits);
 
-        return String.format("%0" + digits + "d", fullToken % div);
+        return Tools.formatTokenString(fullToken % div, digits);
     }
 
     private static int TOTP(byte[] key, int period, long time, HashAlgorithm algorithm) {

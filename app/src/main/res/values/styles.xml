@@ -5,8 +5,11 @@
     <attr name="dialogTheme" format="reference" />
 
     <attr name="colorGithub" format="reference" />
-    <attr name="colorPaypal" format="reference" />
     <attr name="thumbnailBackground" format="reference" />
+    
+    <attr name="navigationBarColor" format="reference" />
+
+    <attr name="colorExpiring" format="reference"/>
 
     <!-- General styles -->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -16,15 +19,15 @@
     </style>
 
     <!-- Light application theme -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="windowBackground">?android:attr/colorBackground</item>
+        <item name="navigationBarColor">?android:attr/colorBackground</item>
 
         <item name="colorGithub">@color/github_dark</item>
-        <item name="colorPaypal">@color/paypal_dark</item>
         <item name="thumbnailBackground">@android:color/transparent</item>
 
         <item name="cardStyle">@style/CardViewStyle</item>
@@ -35,7 +38,11 @@
         <item name="about_libraries_text_openSource">@color/about_libraries_text_openSource</item>
         <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource</item>
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource</item>
+
+        <item name="colorExpiring">@color/expiring_red_dark</item>
     </style>
+
+    <style name="AppTheme" parent="AppBaseTheme"/>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -51,16 +58,16 @@
     </style>
 
     <!-- Dark application theme. -->
-    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+    <style name="AppBaseTheme.Dark" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="windowBackground">?android:attr/colorBackground</item>
+        <item name="navigationBarColor">?android:attr/colorBackground</item>
         <item name="thumbnailBackground">@color/dark_thumbnail_background</item>
 
         <item name="colorGithub">@color/github_light</item>
-        <item name="colorPaypal">@color/paypal_light</item>
 
         <item name="cardStyle">@style/CardViewStyle</item>
         <item name="dialogTheme">@style/DialogTheme.Dark</item>
@@ -70,7 +77,11 @@
         <item name="about_libraries_text_openSource">@color/about_libraries_text_openSource_dark</item>
         <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource_dark</item>
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource_dark</item>
+
+        <item name="colorExpiring">@color/expiring_red_light</item>
     </style>
+
+    <style name="AppTheme.Dark" parent = "AppBaseTheme.Dark"/>
 
     <style name="AppTheme.Dark.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -82,29 +93,33 @@
     </style>
 
     <!-- Black application theme. -->
-    <style name="AppTheme.Black" parent="Theme.AppCompat">
+    <style name="AppBaseTheme.Black" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="windowBackground">@android:color/black</item>
+        <item name="windowBackground">@color/black</item>
+        <item name="navigationBarColor">@color/black</item>
         <item name="thumbnailBackground">@color/dark_thumbnail_background</item>
 
         <item name="colorGithub">@color/github_light</item>
-        <item name="colorPaypal">@color/paypal_light</item>
 
         <item name="cardStyle">@style/CardViewStyle.Black</item>
         <item name="dialogTheme">@style/DialogTheme.Dark</item>
 
-        <item name="about_libraries_card">@android:color/black</item>
+        <item name="about_libraries_card">@color/black</item>
         <item name="about_libraries_title_openSource">@color/about_libraries_text_openSource_dark</item>
         <item name="about_libraries_text_openSource">@color/about_libraries_text_openSource_dark</item>
         <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource_dark</item>
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource_dark</item>
+
+        <item name="colorExpiring">@color/expiring_red_light</item>
     </style>
 
+    <style name="AppTheme.Black" parent="AppBaseTheme.Black"/>
+
     <style name="CardViewStyle.Black">
-        <item name="cardBackgroundColor">@android:color/black</item>
+        <item name="cardBackgroundColor">@color/black</item>
     </style>
 
     <style name="AppTheme.Black.NoActionBar">

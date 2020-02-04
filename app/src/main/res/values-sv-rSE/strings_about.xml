@@ -18,8 +18,7 @@
     <string name="about_label_original_author">Upphovsman till den ursprungliga appen</string>
     <string name="about_label_original_app">Ursprunglig App</string>
     <string name="about_label_website">Webbplats</string>
-    <string name="about_label_donate_paypal">Donera (PayPal)</string>
-    <string name="about_label_donate_bitcoin">Donera (Bitcoin)</string>
+    <string name="about_label_donate">Donera</string>
     <string name="about_label_contributors">Bidragsgivare</string>
     <string name="about_label_translators">Översättare</string>
     <!-- Thumbnail disclaimer -->

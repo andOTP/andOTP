@@ -50,6 +50,7 @@ public class Entry {
     private static final int DEFAULT_PERIOD = 30;
 
     private static final String JSON_SECRET = "secret";
+    private static final String JSON_ISSUER = "issuer";
     private static final String JSON_LABEL = "label";
     private static final String JSON_PERIOD = "period";
     private static final String JSON_COUNTER = "counter";
@@ -59,6 +60,7 @@ public class Entry {
     private static final String JSON_TAGS = "tags";
     private static final String JSON_THUMBNAIL = "thumbnail";
     private static final String JSON_LAST_USED = "last_used";
+    private static final String JSON_USED_FREQUENCY = "used_frequency";
 
     private OTPType type = OTPType.TOTP;
     private int period = TokenCalculator.TOTP_DEFAULT_PERIOD;
@@ -66,35 +68,45 @@ public class Entry {
     private TokenCalculator.HashAlgorithm algorithm = TokenCalculator.DEFAULT_ALGORITHM;
     private byte[] secret;
     private long counter;
+    private String issuer;
     private String label;
     private String currentOTP;
     private boolean visible = false;
     private Runnable hideTask = null;
     private long last_update = 0;
     private long last_used = 0;
+    private long used_frequency = 0;
     public List<String> tags = new ArrayList<>();
     private EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
+    private static final int COLOR_DEFAULT = 0;
+    public static final int COLOR_RED = 1;
+    private static final int EXPIRY_TIME = 8;
+    private int color = COLOR_DEFAULT;
 
     public Entry(){}
 
-    public Entry(OTPType type, String secret, int period, int digits, String label, TokenCalculator.HashAlgorithm algorithm, List<String> tags) {
+    public Entry(OTPType type, String secret, int period, int digits, String issuer, String label, TokenCalculator.HashAlgorithm algorithm, List<String> tags) {
         this.type = type;
         this.secret = new Base32().decode(secret.toUpperCase());
         this.period = period;
         this.digits = digits;
+        this.issuer = issuer;
         this.label = label;
         this.algorithm = algorithm;
         this.tags = tags;
+        setThumbnailFromIssuer(issuer);
     }
 
-    public Entry(OTPType type, String secret, long counter, int digits, String label, TokenCalculator.HashAlgorithm algorithm, List<String> tags) {
+    public Entry(OTPType type, String secret, long counter, int digits, String issuer, String label, TokenCalculator.HashAlgorithm algorithm, List<String> tags) {
         this.type = type;
         this.secret = new Base32().decode(secret.toUpperCase());
         this.counter = counter;
         this.digits = digits;
+        this.issuer = issuer;
         this.label = label;
         this.algorithm = algorithm;
         this.tags = tags;
+        setThumbnailFromIssuer(issuer);
     }
 
     public Entry(String contents) throws Exception {
@@ -124,10 +136,6 @@ public class Entry {
         String algorithm = uri.getQueryParameter("algorithm");
         List<String> tags = uri.getQueryParameters("tags");
 
-        if (issuer != null){
-            label = issuer +" - "+label;
-        }
-
         if (type == OTPType.HOTP) {
             if (counter != null) {
                 this.counter = Long.parseLong(counter);
@@ -142,6 +150,7 @@ public class Entry {
             }
         }
 
+        this.issuer = issuer;
         this.label = label;
         this.secret = new Base32().decode(secret.toUpperCase());
 
@@ -157,10 +166,14 @@ public class Entry {
             this.algorithm = TokenCalculator.DEFAULT_ALGORITHM;
         }
 
-        if(tags != null) {
+        if (tags != null) {
             this.tags = tags;
         } else {
             this.tags = new ArrayList<>();
+        }
+
+        if (issuer != null) {
+            setThumbnailFromIssuer(issuer);
         }
     }
 
@@ -168,6 +181,13 @@ public class Entry {
             throws Exception {
         this.secret = new Base32().decode(jsonObj.getString(JSON_SECRET).toUpperCase());
         this.label = jsonObj.getString(JSON_LABEL);
+
+        try {
+            this.issuer = jsonObj.getString(JSON_ISSUER);
+        } catch (JSONException e) {
+            // Older backup version did not save issuer and label separately
+            this.issuer = "";
+        }
 
         try {
             this.type = OTPType.valueOf(jsonObj.getString(JSON_TYPE));
@@ -222,17 +242,25 @@ public class Entry {
         } catch (Exception e) {
             this.last_used = 0;
         }
+
+        try {
+            this.used_frequency = jsonObj.getLong(JSON_USED_FREQUENCY);
+        } catch (Exception e) {
+            this.used_frequency = 0;
+        }
     }
 
     public JSONObject toJSON() throws JSONException {
         JSONObject jsonObj = new JSONObject();
         jsonObj.put(JSON_SECRET, new String(new Base32().encode(getSecret())));
+        jsonObj.put(JSON_ISSUER, getIssuer());
         jsonObj.put(JSON_LABEL, getLabel());
         jsonObj.put(JSON_DIGITS, getDigits());
         jsonObj.put(JSON_TYPE, getType().toString());
         jsonObj.put(JSON_ALGORITHM, algorithm.toString());
         jsonObj.put(JSON_THUMBNAIL, getThumbnail().name());
         jsonObj.put(JSON_LAST_USED, getLastUsed());
+        jsonObj.put(JSON_USED_FREQUENCY, getUsedFrequency() );
 
         if (type == OTPType.TOTP)
             jsonObj.put(JSON_PERIOD, getPeriod());
@@ -252,6 +280,8 @@ public class Entry {
         return type == OTPType.TOTP || type == OTPType.STEAM;
     }
 
+    public boolean isCounterBased() { return type == OTPType.HOTP; }
+
     public OTPType getType() {
         return type;
     }
@@ -266,6 +296,14 @@ public class Entry {
 
     public void setSecret(byte[] secret) {
         this.secret = secret;
+    }
+
+    public String getIssuer() {
+        return issuer;
+    }
+
+    public void setIssuer(String issuer) {
+        this.issuer = issuer;
     }
 
     public String getLabel() {
@@ -344,6 +382,14 @@ public class Entry {
         this.last_used = value;
     }
 
+    public long getUsedFrequency() {
+        return used_frequency;
+    }
+
+    public void setUsedFrequency(long value) {
+        this.used_frequency = value;
+    }
+
     public String getCurrentOTP() {
         return currentOTP;
     }
@@ -360,7 +406,8 @@ public class Entry {
                     currentOTP = TokenCalculator.TOTP_Steam(secret, period, digits, algorithm);
 
                 last_update = counter;
-
+                //New OTP. Change color to default color
+                setColor(COLOR_DEFAULT);
                 return true;
             } else {
                 return false;
@@ -370,6 +417,33 @@ public class Entry {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * Checks if the OTP is expiring. The color for the entry will be changed to red if the expiry time is less than or equal to 8 seconds
+     * COLOR_DEFAULT indicates that the OTP has not expired. In this case check if the OTP is about to expire. Update color to COLOR_RED if it's about to expire
+     * COLOR_RED indicates that the OTP is already about to expire. Don't check again.
+     * The color will be reset to COLOR_DEFAULT in {@link #updateOTP()} method
+     *
+     * @return Return true only if the color has changed to red to save from unnecessary notifying dataset
+     * */
+    public boolean hasColorChanged() {
+        if(color == COLOR_DEFAULT){
+            long time = System.currentTimeMillis() / 1000;
+            if ((time % getPeriod()) > (getPeriod() - EXPIRY_TIME)) {
+                setColor(COLOR_RED);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void setThumbnailFromIssuer(String issuer) {
+        try {
+            this.thumbnail = EntryThumbnail.EntryThumbnails.valueOfIgnoreCase(issuer);
+        } catch(Exception e) {
+            this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
         }
     }
 
@@ -390,5 +464,13 @@ public class Entry {
     @Override
     public int hashCode() {
         return Objects.hash(type, period, counter, digits, algorithm, secret, label);
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public int getColor() {
+        return color;
     }
 }

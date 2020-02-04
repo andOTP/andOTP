@@ -29,12 +29,13 @@ import android.net.Uri;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
-import org.shadowice.flocke.andotp.Utilities.FileHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.NotificationHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
+import org.shadowice.flocke.andotp.Utilities.StorageAccessHelper;
 import org.shadowice.flocke.andotp.Utilities.Tools;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class PlainTextBackupBroadcastReceiver extends BackupBroadcastReceiver {
             if (!canSaveBackup(context))
                 return;
 
-            Uri savePath = Tools.buildUri(settings.getBackupDir(), FileHelper.backupFilename(context, Constants.BackupType.PLAIN_TEXT));
+            Uri savePath = Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(context, Constants.BackupType.PLAIN_TEXT));
 
             SecretKey encryptionKey = null;
 
@@ -66,7 +67,7 @@ public class PlainTextBackupBroadcastReceiver extends BackupBroadcastReceiver {
             if (Tools.isExternalStorageWritable()) {
                 ArrayList<Entry> entries = DatabaseHelper.loadDatabase(context, encryptionKey);
 
-                if (FileHelper.writeStringToFile(context, savePath, DatabaseHelper.entriesToString(entries))) {
+                if (StorageAccessHelper.saveFile(context, savePath, DatabaseHelper.entriesToString(entries))) {
                     NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_SUCCESS, R.string.backup_receiver_title_backup_success, savePath.getPath());
                 } else {
                     NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_FAILED, R.string.backup_receiver_title_backup_failed, R.string.backup_toast_export_failed);

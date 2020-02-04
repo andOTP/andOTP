@@ -16,19 +16,29 @@
     <string name="settings_title_encryption">Database encryption</string>
     <string name="settings_title_panic">Panic Trigger</string>
     <string name="settings_title_relock_screen_off">Re-lock on screen off</string>
+    <string name="settings_title_relock_background">Re-lock when going into the background</string>
+    <string name="settings_title_auth_inactivity">Re-lock on inactivity</string>
+    <string name="settings_title_auth_inactivity_delay">Delay for inactivity re-lock</string>
+    <string name="settings_title_block_accessibility">Block accessibility services</string>
 
     <string name="settings_title_lang">Language</string>
     <string name="settings_title_theme">Theme</string>
+    <string name="settings_title_card_layout">Card layout</string>
     <string name="settings_title_label_size">Label font size</string>
     <string name="settings_title_label_scroll">Scroll label</string>
     <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
     <string name="settings_title_split_group_size">Split Token with space</string>
     <string name="settings_title_tag_functionality">Tag selection behavior</string>
+    <string name="settings_title_minimize_on_copy">Minimize app after copying OTP</string>
+    <string name="settings_title_search_includes">Search behavior</string>
+    <string name="settings_title_label_highlight_token">Highlight expiring tokens</string>
 
     <string name="settings_title_backup_append_date">Append date to filename</string>
     <string name="settings_title_backup_ask">Ask for filename</string>
     <string name="settings_title_backup_directory">Backup directory</string>
     <string name="settings_title_backup_password">Backup password</string>
+    <string name="settings_title_auto_backup_password_enc">Automatically backup on new entries</string>
+
     <string name="settings_title_backup_broadcasts">Backup Broadcasts</string>
     <string name="settings_title_openpgp_provider">OpenPGP provider</string>
     <string name="settings_title_openpgp_key_encrypt">OpenPGP encryption key</string>
@@ -48,9 +58,19 @@
     <string name="settings_desc_panic">Decide what happens when a Panic Trigger is received</string>
     <string name="settings_desc_relock_screen_off">Require authentication after the devices screen
         has been turned off</string>
+    <string name="settings_desc_relock_background">Require authentication after the app was send to
+        the background (e.g. by pressing the home button)</string>
+    <string name="settings_desc_auth_inactivity">Require authenticication after the device has been
+        inactive</string>
+    <string name="settings_desc_auth_inactivity_delay">Select the time (in sec) after which to
+        require reauthentication</string>
+    <string name="settings_desc_block_accessibility">Hide sensitive fields from the accessibility
+        services. <b>DO NOT enable this if you rely on the accessibility services!</b></string>
 
     <string name="settings_desc_label_scroll">Scroll overlong labels instead of truncating them</string>
-
+    <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
+    <string name="settings_desc_search_includes">Specify which values should be included when searching</string>
+    <string name="settings_desc_label_highlight_token">Highlights token in red if it\'s expiring in 8 seconds</string>
 
     <string name="settings_desc_backup_append_date">Append the current date and time to the suggested
         backup filename</string>
@@ -60,6 +80,9 @@
         on the backup type)</string>
     <string name="settings_desc_backup_password">Set the password that is used to encrypt the
         backups</string>
+
+    <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
+        entries are added, or edited, if settings conditions are met</string>
 
     <string name="settings_desc_backup_broadcasts">Select which backup types can be triggered by
         3rd-party apps using Broadcasts</string>
@@ -147,6 +170,24 @@
         <item>Reset app settings</item>
     </string-array>
 
+    <string-array name="settings_entries_card_layout">
+        <item>Compact</item>
+        <item>Default</item>
+        <item>Full</item>
+    </string-array>
+
+    <string-array name="settings_entries_search_includes">
+        <item>Label</item>
+        <item>Issuer</item>
+        <item>Tags</item>
+    </string-array>
+
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Off</item>
+        <item>New Entries</item>
+        <item>Any Edits</item>
+    </string-array>
+
     <string-array name="settings_entries_theme">
         <item>Light theme</item>
         <item>Dark theme</item>
@@ -155,6 +196,7 @@
 
     <string-array name="settings_entries_thumbnail_size">
         <item>Hidden</item>
+        <item>Tiny</item>
         <item>Small</item>
         <item>Default</item>
         <item>Medium</item>

@@ -25,8 +25,8 @@ package org.shadowice.flocke.andotp.View;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.ColorFilter;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -64,7 +64,9 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private ImageView visibleImg;
     private ImageView thumbnailImg;
     private TextView value;
+    private TextView issuer;
     private TextView label;
+    private TextView separator;
     private TextView counter;
     private TextView tags;
     private MaterialProgressBar progressBar;
@@ -81,7 +83,9 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         thumbnailFrame = v.findViewById(R.id.thumbnailFrame);
         thumbnailImg = v.findViewById(R.id.thumbnailImg);
         coverLayout = v.findViewById(R.id.coverLayout);
+        issuer = v.findViewById(R.id.textViewIssuer);
         label = v.findViewById(R.id.textViewLabel);
+        separator = v.findViewById(R.id.textViewSeparator);
         tags = v.findViewById(R.id.textViewTags);
         counterLayout = v.findViewById(R.id.counterLayout);
         counter = v.findViewById(R.id.counter);
@@ -149,7 +153,28 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         final String tokenFormatted = Tools.formatToken(entry.getCurrentOTP(), settings.getTokenSplitGroupSize());
 
-        label.setText(entry.getLabel());
+        String issuerText = entry.getIssuer();
+        if (!TextUtils.isEmpty(issuerText)) {
+            issuer.setText(entry.getIssuer());
+            issuer.setVisibility(View.VISIBLE);
+        } else {
+            issuer.setVisibility(View.GONE);
+        }
+
+        String labelText = entry.getLabel();
+        if (!TextUtils.isEmpty(labelText)) {
+            label.setText(entry.getLabel());
+            label.setVisibility(View.VISIBLE);
+        } else {
+            label.setVisibility(View.GONE);
+        }
+
+        if (! issuerText.isEmpty() && ! labelText.isEmpty()) {
+            separator.setVisibility(View.VISIBLE);
+        } else {
+            separator.setVisibility(View.GONE);
+        }
+
         value.setText(tokenFormatted);
         // save the unformatted token to the tag of this TextView for copy/paste
         value.setTag(entry.getCurrentOTP());
@@ -170,7 +195,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         int thumbnailSize = settings.getThumbnailSize();
         if(settings.getThumbnailVisible()) {
-            thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, entry.getLabel(), thumbnailSize, entry.getThumbnail()));
+            thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, entry.getIssuer(), entry.getLabel(), thumbnailSize, entry.getThumbnail()));
         }
 
         if (entry.isTimeBased() && entry.hasNonDefaultPeriod()) {
@@ -278,5 +303,20 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         void onCounterClicked(int position);
         void onCounterLongPressed(int position);
+    }
+    /**
+     * Updates the color of OTP to red (if expiring) or default color (if new OTP)
+     *
+     * @param color will define if the color needs to be changed to red or default
+     * */
+    public void updateColor(int color) {
+        int textColor;
+        if(color == Entry.COLOR_RED) {
+            textColor = Tools.getThemeColor(context, R.attr.colorExpiring);
+        } else {
+            textColor = Tools.getThemeColor(context, android.R.attr.textColorSecondary);
+        }
+
+        value.setTextColor(textColor);
     }
 }

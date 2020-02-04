@@ -13,6 +13,8 @@
     <string name="about_label_MIT">MIT License</string>
     <string name="about_label_source">Source code</string>
     <string name="about_label_version">Version</string>
+    <string name="about_label_faq">FAQ</string>
+    <string name="about_label_faq_long">Frequently asked questions</string>
 
     <!-- Authors -->
     <string name="about_title_authors">Authors</string>
@@ -23,9 +25,7 @@
     <string name="about_label_original_app">Original App</string>
     <string name="about_label_website">Website</string>
     <string name="about_label_github" translatable="false">Github</string>
-    <string name="about_label_donate_paypal">Donate (PayPal)</string>
-    <string name="about_label_donate_bitcoin">Donate (Bitcoin)</string>
-
+    <string name="about_label_donate">Donate</string>
     <string name="about_name_author1" translatable="false">Jakob Nixdorf</string>
     <string name="about_name_author_original" translatable="false">Bruno Bierbaumer</string>
     <string name="about_name_author2" translatable="false">Richy HBM</string>
@@ -47,12 +47,7 @@
 
     <!-- Support -->
     <string name="about_title_support">Support development</string>
-
-    <string name="about_label_report_bugs">Report Bugs</string>
-    <string name="about_label_translate">Translate</string>
-
-    <string name="about_desc_report_bugs">Report bugs or request new features</string>
-    <string name="about_desc_translate">Help to translate andOTP to your language</string>
+    <string name="about_desc_support">Find out how you can support the development of andOTP</string>
 
     <string name="about_title_special_features">Special features</string>
     <string name="about_dialog_special_features">Are you sure you want to enable the special
