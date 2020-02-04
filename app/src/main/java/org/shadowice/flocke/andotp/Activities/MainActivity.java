@@ -610,8 +610,8 @@ public class MainActivity extends BaseActivity
                 adapter.setSortMode(SortMode.LAST_USED);
                 touchHelperCallback.setDragEnabled(false);
             }
-            if (! settings.getLastUsedDialogShown())
-                showLastUsedDialog();
+            if (! settings.getUsedTokensDialogShown())
+                showUsedTokensDialog();
         } else if (id == R.id.menu_sort_most_used) {
             item.setChecked(true);
             sortMenu.setIcon(R.drawable.ic_sort_inverted_time_white);
@@ -620,8 +620,8 @@ public class MainActivity extends BaseActivity
                 adapter.setSortMode(SortMode.MOST_USED);
                 touchHelperCallback.setDragEnabled(false);
             }
-            if (! settings.getMostUsedDialogShown())
-                showMostUsedDialog();
+            if (! settings.getUsedTokensDialogShown())
+                showUsedTokensDialog();
         } else if (tagsToggle.onOptionsItemSelected(item)) {
             return true;
         }
@@ -629,31 +629,11 @@ public class MainActivity extends BaseActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void showLastUsedDialog() {
+    private void showUsedTokensDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.dialog_title_manual_entry)
-                .setTitle(R.string.dialog_title_last_used)
-                .setMessage(R.string.dialog_msg_last_used)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        settings.setLastUsedDialogShown(true);
-                    }
-                })
-                .create()
-                .show();
-    }
-    private void showMostUsedDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.dialog_title_manual_entry)
-                .setTitle(R.string.dialog_title_most_used)
-                .setMessage(R.string.dialog_msg_most_used)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        settings.setMostUsedDialogShown(true);
-                    }
-                })
+        builder.setTitle(R.string.dialog_title_used_tokens)
+                .setMessage(R.string.dialog_msg_used_tokens)
+                .setPositiveButton(android.R.string.ok, (DialogInterface dialogInterface, int i) -> settings.setUsedTokensDialogShown(true))
                 .create()
                 .show();
     }

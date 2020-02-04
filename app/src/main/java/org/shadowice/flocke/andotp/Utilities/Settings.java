@@ -523,19 +523,12 @@ public class Settings {
         return getBoolean(R.string.settings_key_enable_screenshot, false);
     }
 
-    public boolean getLastUsedDialogShown() {
+    public boolean getUsedTokensDialogShown() {
         return getBoolean(R.string.settings_key_last_used_dialog_shown, false);
     }
 
-    public void setLastUsedDialogShown(boolean value) {
+    public void setUsedTokensDialogShown(boolean value) {
         setBoolean(R.string.settings_key_last_used_dialog_shown, value);
-    }
-    public boolean getMostUsedDialogShown() {
-        return getBoolean(R.string.settings_key_most_used_dialog_shown, false);
-    }
-
-    public void setMostUsedDialogShown(boolean value) {
-        setBoolean(R.string.settings_key_most_used_dialog_shown, value);
     }
 
     public boolean getNewBackupFormatDialogShown() {
