@@ -29,6 +29,7 @@ public class BaseAboutFragment extends Fragment {
     private static final String GITHUB_URI = "https://github.com/andOTP/andOTP";
     private static final String CHANGELOG_URI = GITHUB_URI + "/blob/master/CHANGELOG.md";
     private static final String MIT_URI = GITHUB_URI + "/blob/master/LICENSE.txt";
+    private static final String FAQ_URI = GITHUB_URI + "/wiki/Frequently-Asked-Questions";
 
     private static final String AUTHOR1_GITHUB = "https://github.com/flocke";
     private static final String AUTHOR2_GITHUB = "https://github.com/richyhbm";
@@ -44,8 +45,8 @@ public class BaseAboutFragment extends Fragment {
 
     static final int[] imageResources = {
             R.id.aboutImgVersion, R.id.aboutImgLicense, R.id.aboutImgChangelog, R.id.aboutImgSource,
-            R.id.aboutImgAuthor2, R.id.aboutImgAuthorOriginal, R.id.aboutImgContributors,
-            R.id.aboutImgSupport
+            R.id.aboutImgFaq, R.id.aboutImgAuthor2, R.id.aboutImgAuthorOriginal,
+            R.id.aboutImgContributors, R.id.aboutImgSupport
     };
 
     static long lastTap = 0;
@@ -112,6 +113,7 @@ public class BaseAboutFragment extends Fragment {
         LinearLayout license = v.findViewById(R.id.about_layout_license);
         LinearLayout changelog = v.findViewById(R.id.about_layout_changelog);
         LinearLayout source = v.findViewById(R.id.about_layout_source);
+        LinearLayout faq = v.findViewById(R.id.about_layout_faq);
 
         license.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +133,7 @@ public class BaseAboutFragment extends Fragment {
                 openURI(GITHUB_URI);
             }
         });
+        faq.setOnClickListener((View view) -> openURI(FAQ_URI));
 
         LinearLayout author1Layout = v.findViewById(R.id.aboutLayoutAuthor1);
         author1Layout.setOnClickListener(new View.OnClickListener() {
