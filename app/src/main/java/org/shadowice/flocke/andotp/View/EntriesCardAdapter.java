@@ -455,7 +455,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         String newIssuer = input.getEditableText().toString();
 
                         displayedEntries.get(pos).setIssuer(newIssuer);
-                        if (sortMode == SortMode.LABEL) {
+                        if (sortMode == SortMode.ISSUER) {
                             displayedEntries = sortEntries(displayedEntries);
                             notifyDataSetChanged();
                         } else {
@@ -733,7 +733,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     private ArrayList<Entry> sortEntries(List<Entry> unsorted) {
         ArrayList<Entry> sorted = new ArrayList<>(unsorted);
 
-        if (sortMode == SortMode.LABEL) {
+        if (sortMode == SortMode.ISSUER) {
+            Collections.sort(sorted, new IssuerComparator());
+        } else if (sortMode == SortMode.LABEL) {
             Collections.sort(sorted, new LabelComparator());
         } else if (sortMode == SortMode.LAST_USED) {
             Collections.sort(sorted, new LastUsedComparator());
@@ -809,6 +811,20 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         protected void publishResults(CharSequence constraint, FilterResults results) {
             displayedEntries = sortEntries((ArrayList<Entry>) results.values);
             notifyDataSetChanged();
+        }
+    }
+
+    public class IssuerComparator implements Comparator<Entry> {
+        Collator collator;
+
+        IssuerComparator(){
+            collator = Collator.getInstance();
+            collator.setStrength(Collator.PRIMARY);
+        }
+
+        @Override
+        public int compare(Entry o1, Entry o2) {
+            return collator.compare(o1.getIssuer(), o2.getIssuer());
         }
     }
 

@@ -47,6 +47,7 @@
     <string name="menu_main_sort">Sort</string>
 
     <string name="menu_sort_none">Unsorted</string>
+    <string name="menu_sort_issuer">Issuer</string>
     <string name="menu_sort_label">Label</string>
     <string name="menu_sort_last_used">Last used</string>
     <string name="menu_sort_most_used">Most used</string>

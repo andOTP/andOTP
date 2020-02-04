@@ -506,6 +506,9 @@ public class MainActivity extends BaseActivity
             if (mode == SortMode.UNSORTED) {
                 sortMenu.setIcon(R.drawable.ic_sort_inverted_white);
                 menu.findItem(R.id.menu_sort_none).setChecked(true);
+            } else if (mode == SortMode.ISSUER) {
+                sortMenu.setIcon(R.drawable.ic_sort_inverted_label_white);
+                menu.findItem(R.id.menu_sort_issuer).setChecked(true);
             } else if (mode == SortMode.LABEL) {
                 sortMenu.setIcon(R.drawable.ic_sort_inverted_label_white);
                 menu.findItem(R.id.menu_sort_label).setChecked(true);
@@ -593,6 +596,14 @@ public class MainActivity extends BaseActivity
             if (adapter != null) {
                 adapter.setSortMode(SortMode.UNSORTED);
                 touchHelperCallback.setDragEnabled(true);
+            }
+        } else if (id == R.id.menu_sort_issuer) {
+            item.setChecked(true);
+            sortMenu.setIcon(R.drawable.ic_sort_inverted_label_white);
+            saveSortMode(SortMode.ISSUER);
+            if(adapter != null) {
+                adapter.setSortMode(SortMode.ISSUER);
+                touchHelperCallback.setDragEnabled(false);
             }
         } else if (id == R.id.menu_sort_label) {
             item.setChecked(true);

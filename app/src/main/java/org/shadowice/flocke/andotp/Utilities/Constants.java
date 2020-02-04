@@ -37,7 +37,7 @@ public class Constants {
     }
 
     public enum SortMode {
-        UNSORTED, LABEL, LAST_USED, MOST_USED
+        UNSORTED, ISSUER, LABEL, LAST_USED, MOST_USED
     }
 
     public enum BackupType {
