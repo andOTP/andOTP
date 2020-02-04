@@ -60,6 +60,7 @@ public class Entry {
     private static final String JSON_TAGS = "tags";
     private static final String JSON_THUMBNAIL = "thumbnail";
     private static final String JSON_LAST_USED = "last_used";
+    private static final String JSON_USED_FREQUENCY = "used_frequency";
 
     private OTPType type = OTPType.TOTP;
     private int period = TokenCalculator.TOTP_DEFAULT_PERIOD;
@@ -74,6 +75,7 @@ public class Entry {
     private Runnable hideTask = null;
     private long last_update = 0;
     private long last_used = 0;
+    private long used_frequency = 0;
     public List<String> tags = new ArrayList<>();
     private EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
     private static final int COLOR_DEFAULT = 0;
@@ -240,6 +242,12 @@ public class Entry {
         } catch (Exception e) {
             this.last_used = 0;
         }
+
+        try {
+            this.used_frequency = jsonObj.getLong(JSON_USED_FREQUENCY);
+        } catch (Exception e) {
+            this.used_frequency = 0;
+        }
     }
 
     public JSONObject toJSON() throws JSONException {
@@ -252,6 +260,7 @@ public class Entry {
         jsonObj.put(JSON_ALGORITHM, algorithm.toString());
         jsonObj.put(JSON_THUMBNAIL, getThumbnail().name());
         jsonObj.put(JSON_LAST_USED, getLastUsed());
+        jsonObj.put(JSON_USED_FREQUENCY, getUsedFrequency() );
 
         if (type == OTPType.TOTP)
             jsonObj.put(JSON_PERIOD, getPeriod());
@@ -371,6 +380,14 @@ public class Entry {
 
     public void setLastUsed(long value) {
         this.last_used = value;
+    }
+
+    public long getUsedFrequency() {
+        return used_frequency;
+    }
+
+    public void setUsedFrequency(long value) {
+        this.used_frequency = value;
     }
 
     public String getCurrentOTP() {

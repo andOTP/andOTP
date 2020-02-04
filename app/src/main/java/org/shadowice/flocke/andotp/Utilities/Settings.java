@@ -530,6 +530,13 @@ public class Settings {
     public void setLastUsedDialogShown(boolean value) {
         setBoolean(R.string.settings_key_last_used_dialog_shown, value);
     }
+    public boolean getMostUsedDialogShown() {
+        return getBoolean(R.string.settings_key_most_used_dialog_shown, false);
+    }
+
+    public void setMostUsedDialogShown(boolean value) {
+        setBoolean(R.string.settings_key_most_used_dialog_shown, value);
+    }
 
     public boolean getNewBackupFormatDialogShown() {
         return getBoolean(R.string.settings_key_new_backup_format_dialog_shown, false);
