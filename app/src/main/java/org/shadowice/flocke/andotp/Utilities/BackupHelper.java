@@ -47,10 +47,6 @@ public class BackupHelper {
             return Constants.BackupType.UNAVAILABLE;
         }
 
-        if(settings.getBackupAsk()) {
-            return Constants.BackupType.UNAVAILABLE;
-        }
-
         if(!Tools.mkdir(settings.getBackupDir())) {
             return Constants.BackupType.UNAVAILABLE;
         }
