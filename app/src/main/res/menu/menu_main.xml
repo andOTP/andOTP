@@ -21,6 +21,9 @@
                 <item
                     android:id="@+id/menu_sort_last_used"
                     android:title="@string/menu_sort_last_used" />
+                <item
+                    android:id="@+id/menu_sort_most_used"
+                    android:title="@string/menu_sort_most_used" />
             </group>
         </menu>
 

@@ -512,6 +512,9 @@ public class MainActivity extends BaseActivity
             } else if (mode == SortMode.LAST_USED) {
                 sortMenu.setIcon(R.drawable.ic_sort_inverted_time_white);
                 menu.findItem(R.id.menu_sort_last_used).setChecked(true);
+            } else if (mode == SortMode.MOST_USED) {
+                sortMenu.setIcon(R.drawable.ic_sort_inverted_time_white);
+                menu.findItem(R.id.menu_sort_most_used).setChecked(true);
             }
         }
 
@@ -609,6 +612,16 @@ public class MainActivity extends BaseActivity
             }
             if (! settings.getLastUsedDialogShown())
                 showLastUsedDialog();
+        } else if (id == R.id.menu_sort_most_used) {
+            item.setChecked(true);
+            sortMenu.setIcon(R.drawable.ic_sort_inverted_time_white);
+            saveSortMode(SortMode.MOST_USED);
+            if (adapter != null) {
+                adapter.setSortMode(SortMode.MOST_USED);
+                touchHelperCallback.setDragEnabled(false);
+            }
+            if (! settings.getMostUsedDialogShown())
+                showMostUsedDialog();
         } else if (tagsToggle.onOptionsItemSelected(item)) {
             return true;
         }
@@ -625,6 +638,20 @@ public class MainActivity extends BaseActivity
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         settings.setLastUsedDialogShown(true);
+                    }
+                })
+                .create()
+                .show();
+    }
+    private void showMostUsedDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.dialog_title_manual_entry)
+                .setTitle(R.string.dialog_title_most_used)
+                .setMessage(R.string.dialog_msg_most_used)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        settings.setMostUsedDialogShown(true);
                     }
                 })
                 .create()

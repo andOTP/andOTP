@@ -60,6 +60,7 @@
     <string name="settings_key_clear_keystore" translatable="false">pref_clear_keystore</string>
 
     <string name="settings_key_last_used_dialog_shown" translatable="false">pref_last_used_dialog_shown</string>
+    <string name="settings_key_most_used_dialog_shown" translatable="false">pref_most_used_dialog_shown</string>
 
     <!-- Default values -->
     <integer name="settings_default_tap_to_reveal_timeout">30</integer>

@@ -270,7 +270,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             @Override
             public void onCopyButtonClicked(String text, int position) {
                 copyToClipboard(text);
-                updateLastUsed(position, getRealIndex(position));
+                updateLastUsedAndFrequency(position, getRealIndex(position));
                 if(context != null && settings.isMinimizeAppOnCopyEnabled()) {
                     ((MainActivity)context).moveTaskToBack(true);
                 }
@@ -339,7 +339,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             entries.get(realIndex).setHideTask(null);
         }
 
-        boolean updateNeeded = updateLastUsed(pos, realIndex);
+        boolean updateNeeded = updateLastUsedAndFrequency(pos, realIndex);
 
         if (pos >= 0) {
             displayedEntries.get(pos).setVisible(false);
@@ -390,16 +390,25 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 .show();
     }
 
-    private boolean updateLastUsed(int position, int realIndex) {
+    private boolean updateLastUsedAndFrequency(int position, int realIndex) {
         long timeStamp = System.currentTimeMillis();
+        long entryUsedFrequency = entries.get(realIndex).getUsedFrequency();
 
-        if (position >= 0)
+        if (position >= 0) {
+            long displayEntryUsedFrequency = displayedEntries.get(position).getUsedFrequency();
             displayedEntries.get(position).setLastUsed(timeStamp);
+            displayedEntries.get(position).setUsedFrequency(displayEntryUsedFrequency + 1);
+        }
 
         entries.get(realIndex).setLastUsed(timeStamp);
+        entries.get(realIndex).setUsedFrequency(entryUsedFrequency + 1);
         saveEntries(settings.getAutoBackupEncryptedFullEnabled());
 
         if (sortMode == SortMode.LAST_USED) {
+            displayedEntries = sortEntries(displayedEntries);
+            notifyDataSetChanged();
+            return false;
+        } else if (sortMode == SortMode.MOST_USED) {
             displayedEntries = sortEntries(displayedEntries);
             notifyDataSetChanged();
             return false;
@@ -728,6 +737,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             Collections.sort(sorted, new LabelComparator());
         } else if (sortMode == SortMode.LAST_USED) {
             Collections.sort(sorted, new LastUsedComparator());
+        } else if (sortMode == SortMode.MOST_USED) {
+            Collections.sort(sorted, new MostUsedComparator());
         }
 
         return sorted;
@@ -819,6 +830,13 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         @Override
         public int compare(Entry o1, Entry o2) {
             return Long.compare(o2.getLastUsed(), o1.getLastUsed());
+        }
+    }
+
+    public class MostUsedComparator implements Comparator<Entry> {
+        @Override
+        public int compare(Entry o1, Entry o2) {
+            return Long.compare(o2.getUsedFrequency(), o1.getUsedFrequency());
         }
     }
 
