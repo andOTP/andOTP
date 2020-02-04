@@ -22,6 +22,8 @@
  * Improvement: Do not use auto-completion for the account secret (PR #430 by @duchampdev)
  * Improvement: Enable Android backup by default (Issue #341, PR #342 by @RichyHBM)
  * Improvement: Remove whitespaces from manually entered secrets (Issue #253, PR #426 by @Ullas-Aithal)
+ * Improvement: Fallback method for opening backup files (based on PR #358 by @theobch)
+ * Improvement: Allow the backup directory to be set independent of the "ask for filename" setting
  * Bug fix: Fix black navigation bar on OxygenOS devices (PR #417 by @Ullas-Aithal)
  * Internal: Migrate to AndroidX
  * Internal: Update Gradle and a lot of dependencies

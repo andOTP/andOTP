@@ -76,8 +76,8 @@
         backup filename</string>
     <string name="settings_desc_backup_ask">Ask for the filename every time a backup is created or
         restored</string>
-    <string name="settings_desc_backup_directory">Directory for the backups (filenames will depend
-        on the backup type)</string>
+    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
+        (filenames will depend on the backup type)</string>
     <string name="settings_desc_backup_password">Set the password that is used to encrypt the
         backups</string>
 
