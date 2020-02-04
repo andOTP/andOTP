@@ -82,7 +82,7 @@
     <!-- Toast messages -->
     <string name="backup_toast_mkdir_failed">Failed to create backup directory</string>
     <string name="backup_toast_export_success">Export to external storage successful</string>
-    <string name="backup_toast_export_failed">Export to external storage failed</string>
+    <string name="backup_toast_export_failed">Export to external storage failed</string>%
     <string name="backup_toast_import_success">Import from external storage successful</string>
     <string name="backup_toast_import_save_failed">Failed to save restored entries</string>
     <string name="backup_toast_import_decryption_failed">Decryption of the backup failed</string>
@@ -92,4 +92,5 @@
     <string name="backup_toast_openpgp_error">OpenPGP Error: %s</string>
     <string name="backup_toast_openpgp_not_verified">No verified signature detected</string>
     <string name="backup_toast_crypt_password_not_set">Password not set, check the <b>Settings</b></string>
+    <string name="backup_toast_file_selection_failed">Can\'t open file selection dialog!</string>
 </resources>

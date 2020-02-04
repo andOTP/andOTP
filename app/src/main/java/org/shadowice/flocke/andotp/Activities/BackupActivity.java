@@ -25,6 +25,7 @@ package org.shadowice.flocke.andotp.Activities;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -36,6 +37,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.LinearLayout;
@@ -68,6 +70,8 @@ import java.util.Arrays;
 import javax.crypto.SecretKey;
 
 public class BackupActivity extends BaseActivity {
+    private final static String TAG = BackupActivity.class.getSimpleName();
+
     private SecretKey encryptionKey = null;
 
     private OpenPgpServiceConnection pgpServiceConnection;
@@ -332,7 +336,22 @@ public class BackupActivity extends BaseActivity {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("*/*");
-            startActivityForResult(intent, intentId);
+
+            try {
+                startActivityForResult(intent, intentId);
+                return;
+            } catch (ActivityNotFoundException e) {
+                Log.d(TAG, "Failed to use ACTION_OPEN_DOCUMENT, no matching activity found!");
+            }
+
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+
+            try {
+                startActivityForResult(intent, intentId);
+            } catch (ActivityNotFoundException e) {
+                Log.d(TAG, "Failed to use ACTION_GET_CONTENT, no matching activity found!");
+                Toast.makeText(this, R.string.backup_toast_file_selection_failed, Toast.LENGTH_LONG).show();
+            }
         } else {
             if (intentId == Constants.INTENT_BACKUP_OPEN_DOCUMENT_PLAIN)
                 doRestorePlain(Tools.buildUri(settings.getBackupDir(), Constants.BACKUP_FILENAME_PLAIN));
