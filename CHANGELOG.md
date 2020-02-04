@@ -9,7 +9,7 @@
  * New feature: Turn tokens red if they are about to expire (Issue #311, PR #410 by @Ullas-Aithal)
  * New feature: Handle otpauth:// intents from other apps (Issue #324, PR #393 by @schwedenmut)
  * New feature: Create an encrypted backup every time the entries are changed (PR #397 and PR #421 by @RichyHBM)
- * New feature: Different layouts for the entry cards
+ * New feature: Different layouts for the entry cards (compact, default and full)
  * New feature: New thumbnail size "Tiny"
  * New feature: Block accessibility services from seeing sensitive input fields via a new settings item
  * New feature: Import QR codes from image files (Issue #377, PR #425 by @Ullas-Aithal)

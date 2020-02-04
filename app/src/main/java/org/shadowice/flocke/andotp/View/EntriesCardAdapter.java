@@ -242,6 +242,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         if (layout == Constants.CardLayouts.DEFAULT) {
             cardLayout = R.layout.component_card_default;
+        } else if (layout == Constants.CardLayouts.COMPACT) {
+            cardLayout = R.layout.component_card_compact;
         } else if (layout == Constants.CardLayouts.FULL) {
             cardLayout = R.layout.component_card_full;
         }

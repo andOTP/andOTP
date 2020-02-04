@@ -171,6 +171,7 @@
     </string-array>
 
     <string-array name="settings_entries_card_layout">
+        <item>Compact</item>
         <item>Default</item>
         <item>Full</item>
     </string-array>

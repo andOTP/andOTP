@@ -57,7 +57,7 @@ public class Constants {
     }
 
     public enum CardLayouts {
-        DEFAULT, FULL
+        COMPACT, DEFAULT, FULL
     }
 
     public enum AutoBackup {

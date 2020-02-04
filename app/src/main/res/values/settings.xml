@@ -103,6 +103,7 @@
     </string-array>
 
     <string-array name="settings_values_card_layout" translatable="false">
+        <item>compact</item>
         <item>default</item>
         <item>full</item>
     </string-array>
