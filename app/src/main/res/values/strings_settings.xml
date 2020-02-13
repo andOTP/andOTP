@@ -58,7 +58,7 @@
     <string name="settings_desc_panic">Decide what happens when a Panic Trigger is received</string>
     <string name="settings_desc_relock_screen_off">Require authentication after the devices screen
         has been turned off</string>
-    <string name="settings_desc_relock_background">Require authentication after the app was send to
+    <string name="settings_desc_relock_background">Require authentication after the app was sent to
         the background (e.g. by pressing the home button)</string>
     <string name="settings_desc_auth_inactivity">Require authenticication after the device has been
         inactive</string>
