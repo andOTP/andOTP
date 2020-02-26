@@ -60,7 +60,7 @@
         has been turned off</string>
     <string name="settings_desc_relock_background">Require authentication after the app was sent to
         the background (e.g. by pressing the home button)</string>
-    <string name="settings_desc_auth_inactivity">Require authenticication after the device has been
+    <string name="settings_desc_auth_inactivity">Require authentication after the device has been
         inactive</string>
     <string name="settings_desc_auth_inactivity_delay">Select the time (in sec) after which to
         require reauthentication</string>
