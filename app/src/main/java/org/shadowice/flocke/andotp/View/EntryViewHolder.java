@@ -280,12 +280,14 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     public void onItemSelected() {
         if (callback != null)
             callback.onMoveEventStart();
+        card.setAlpha(0.5f);
     }
 
     @Override
     public void onItemClear() {
         if (callback != null)
             callback.onMoveEventStop();
+        card.setAlpha(1f);
     }
 
     public void setCallback(Callback cb) {
