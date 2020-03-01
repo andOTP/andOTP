@@ -11,6 +11,8 @@
     <string name="about_label_MIT">مجوز MIT</string>
     <string name="about_label_source">کد منبع</string>
     <string name="about_label_version">نسخه</string>
+    <string name="about_label_faq">FAQ</string>
+    <string name="about_label_faq_long">Frequently asked questions</string>
     <!-- Authors -->
     <string name="about_title_authors">سازندگان</string>
     <string name="about_label_main_developer">توسعه‌دهنده اصلی</string>
@@ -29,10 +31,7 @@
     <string name="about_thumbnails_disclaimer_no4"><b>۴. لطفا از تصاویر بندانگشتی برای هیچ هدفی به جز نشان دادن یک برند یا سرویس خاص استفاده نکنید</b></string>
     <!-- Support -->
     <string name="about_title_support">حمایت از توسعه</string>
-    <string name="about_label_report_bugs">گزارش مشکلات</string>
-    <string name="about_label_translate">ترجمه</string>
-    <string name="about_desc_report_bugs">گزارش مشکلات یا درخواست قابلیت جدید</string>
-    <string name="about_desc_translate">کمک به ترجمه andOTP به زبان شما</string>
+    <string name="about_desc_support">Find out how you can support the development of andOTP</string>
     <string name="about_title_special_features">قابلیت‌های ویژه</string>
     <string name="about_dialog_special_features">آیا مطمئن هستید که می‌خواهید قابلیت‌های ویژه را فعال کنید؟ بیشتر آن‌ها الگوریتم‌های OTP غیراستاندارد هستند که توسط یک درخواست ویژه پیاده‌سازی شده‌اند. آن‌ها <b>به صورت رسمی پشتیبانی نمی‌شوند</b> و می‌توانند همراه با <b>محدودیت‌های خاصی</b> باشند، لطفا برای آموختن بیشتر قبل از استفاده از آن‌ها صفحه «قابلیت‌های ویژه» در دانشنامه Github را بخوانید (و خوب متوجه شوید).</string>
     <string name="about_toast_special_features">قابلیت‌های ویژه فعال شدند</string>

@@ -54,4 +54,5 @@
     <string name="backup_toast_openpgp_error">خطای OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">هیچ امضای تایید شده‌ای شناسایی نشد</string>
     <string name="backup_toast_crypt_password_not_set">رمز عبور تنظیم نشده، <b>تنظیمات</b> را بررسی کنید</string>
+    <string name="backup_toast_file_selection_failed">Can\'t open file selection dialog!</string>
 </resources>

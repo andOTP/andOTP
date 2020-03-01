@@ -76,4 +76,5 @@
     <string name="backup_toast_openpgp_error">Error OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">No s\'ha detectat cap signatura verificada</string>
     <string name="backup_toast_crypt_password_not_set">Password not set, check the <b>Settings</b></string>
+    <string name="backup_toast_file_selection_failed">Can\'t open file selection dialog!</string>
 </resources>

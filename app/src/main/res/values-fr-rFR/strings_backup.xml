@@ -39,8 +39,8 @@
     <string name="backup_receiver_custom_encryption_failed">Le chiffrement à base de mot de passe ou code PIN n\'est pas supporté par la sauvegarde par diffusion</string>
     <string name="backup_new_format_dialog_title">Nouvelle méthode de chiffrement</string>
     <string name="backup_new_format_dialog_msg">Depuis la version 0.6.3 de andOTP, une <b>nouvelle méthode
-        de chiffrement améliorée</b> est utilisée pour les sauvegardres protégées par mot de passe
-        . Les anciennes sauvegardes peuvent jours être importées mais il est <b>hautement
+        de chiffrement améliorée</b> est utilisée pour les sauvegardres protégées par mot de passe.
+        Les anciennes sauvegardes peuvent toujours être importées mais il est <b>hautement
         recommandé de créer de nouvelles sauvegardes avec le chiffrement amélioré</b>.\n\nCe 
         message ne sera pas affiché une seconde fois.</string>
     <!-- Notification channels -->
@@ -61,4 +61,5 @@
     <string name="backup_toast_openpgp_error">Erreur OpenPGP : %s</string>
     <string name="backup_toast_openpgp_not_verified">Aucune signature vérifiée n\'a été trouvée</string>
     <string name="backup_toast_crypt_password_not_set">Aucun mot de passe défini, vérifiez les <b>paramètres</b></string>
+    <string name="backup_toast_file_selection_failed">Impossible d\'ouvrir la sélection de fichier !</string>
 </resources>

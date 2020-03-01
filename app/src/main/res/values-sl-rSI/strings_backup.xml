@@ -75,4 +75,5 @@
     <string name="backup_toast_openpgp_error">OpenPGP napaka: %s</string>
     <string name="backup_toast_openpgp_not_verified">Overjenih podpisov ni bilo mogoče najti</string>
     <string name="backup_toast_crypt_password_not_set">Geslo ni bilo nastavljeno, preverite <b>Nastavitve</b></string>
+    <string name="backup_toast_file_selection_failed">Can\'t open file selection dialog!</string>
 </resources>

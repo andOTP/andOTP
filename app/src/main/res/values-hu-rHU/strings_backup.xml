@@ -61,4 +61,5 @@ ez azt is jelentheti hogy nem volt jelszó beállítva, vagy valami rosszul sike
     <string name="backup_toast_openpgp_error">OpenPGP hiba: %s</string>
     <string name="backup_toast_openpgp_not_verified">Nem hitelesített aláírás észlelve</string>
     <string name="backup_toast_crypt_password_not_set">A jelszó nincs beállítva, ellenőrizze a <b>Beállítások</b> alatt</string>
+    <string name="backup_toast_file_selection_failed">Can\'t open file selection dialog!</string>
 </resources>

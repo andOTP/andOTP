@@ -11,6 +11,8 @@
     <string name="about_label_MIT">Llicència MIT</string>
     <string name="about_label_source">Codi font</string>
     <string name="about_label_version">Versió</string>
+    <string name="about_label_faq">FAQ</string>
+    <string name="about_label_faq_long">Frequently asked questions</string>
     <!-- Authors -->
     <string name="about_title_authors">Autors</string>
     <string name="about_label_main_developer">Programador principal</string>
@@ -33,10 +35,7 @@
         excepte per representar aquella marca determinada o servei.</b></string>
     <!-- Support -->
     <string name="about_title_support">Doneu suport al desenvolupament</string>
-    <string name="about_label_report_bugs">Informe d\'errors</string>
-    <string name="about_label_translate">Tradueix</string>
-    <string name="about_desc_report_bugs">Aviseu d\'un error o demaneu funcions noves</string>
-    <string name="about_desc_translate">Com podeu ajudar a traduir andOTP a la vostra llengua</string>
+    <string name="about_desc_support">Find out how you can support the development of andOTP</string>
     <string name="about_title_special_features">Característiques especials</string>
     <string name="about_dialog_special_features">Esteu segur que voleu habilitar les característiques
         especials? La major part són algorismes OTP no estàndard que es van implementar

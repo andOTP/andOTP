@@ -62,4 +62,5 @@ insira
     <string name="backup_toast_openpgp_error">Erro do OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">Nenhuma assinatura verificada foi detectada</string>
     <string name="backup_toast_crypt_password_not_set">A senha não foi definida. Verifique as <b>Configurações</b></string>
+    <string name="backup_toast_file_selection_failed">Can\'t open file selection dialog!</string>
 </resources>

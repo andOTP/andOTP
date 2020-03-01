@@ -11,6 +11,8 @@
     <string name="about_label_MIT">MIT Licensz</string>
     <string name="about_label_source">Forráskód</string>
     <string name="about_label_version">Verzió</string>
+    <string name="about_label_faq">FAQ</string>
+    <string name="about_label_faq_long">Frequently asked questions</string>
     <!-- Authors -->
     <string name="about_title_authors">Készítő</string>
     <string name="about_label_main_developer">Fő fejlesztők</string>
@@ -32,10 +34,7 @@
          más célra, kivéve az adott márkát vagy szolgáltatást.</b></string>
     <!-- Support -->
     <string name="about_title_support">Támogassa a fejlesztést</string>
-    <string name="about_label_report_bugs">Hibajelentés</string>
-    <string name="about_label_translate">Fordítás</string>
-    <string name="about_desc_report_bugs">Hibák bejelentése vagy új funkciók igénylése</string>
-    <string name="about_desc_translate">Segítsen lefordítani az andOTP-t az Ön nyelvére</string>
+    <string name="about_desc_support">Find out how you can support the development of andOTP</string>
     <string name="about_title_special_features">Speciális tulajdonságok</string>
     <string name="about_dialog_special_features">Biztos benne hogy szeretné engedélyezni a speciális tulajdonságokat?  A javuk nem szokványos OTP algoritmus melyek bekerültek különleges kérésre. Ezek <b> nem hivatalosan támogatottak </b> és <b> különböző korlátozásokkal jöhetnek </b> kérem olvassa (és értse meg) az oldalt \"Speciális tulajdonságok\" a Github 
 wiki-n hogy többet tudhasson meg a használatukról.</string>

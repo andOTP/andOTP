@@ -11,6 +11,8 @@
     <string name="about_label_MIT">MIT licenca</string>
     <string name="about_label_source">Izvorna koda</string>
     <string name="about_label_version">Različica</string>
+    <string name="about_label_faq">FAQ</string>
+    <string name="about_label_faq_long">Frequently asked questions</string>
     <!-- Authors -->
     <string name="about_title_authors">Avtorji</string>
     <string name="about_label_main_developer">Glavni razvijalec</string>
@@ -32,10 +34,7 @@
         predstavljanje določene blagovne znamke ali storitve.</b></string>
     <!-- Support -->
     <string name="about_title_support">Podprite razvoj</string>
-    <string name="about_label_report_bugs">Prijavi napake</string>
-    <string name="about_label_translate">Prevedi</string>
-    <string name="about_desc_report_bugs">Prijavi napako ali zahtevaj nove funkcije</string>
-    <string name="about_desc_translate">Pomagaj prevesti andOTP v domači jezik</string>
+    <string name="about_desc_support">Find out how you can support the development of andOTP</string>
     <string name="about_title_special_features">Posebne funkcije</string>
     <string name="about_dialog_special_features">Ali ste prepričani, da želite omogočiti posebne funkcije?
         Večina so nestandardni OTP algoritmi, ki so bili narejeni na posebno zahtevo.
