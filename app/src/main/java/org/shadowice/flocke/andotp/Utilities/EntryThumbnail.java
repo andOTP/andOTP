@@ -135,6 +135,7 @@ public class EntryThumbnail {
         INWX(R.drawable.thumb_inwx),
         Itchio(R.drawable.thumb_itchio),
         Jagex(R.drawable.thumb_jagex),
+        JetBrains(R.drawable.thumb_jetbrains),
         Joomla(R.drawable.thumb_joomla),
         Kickstarter(R.drawable.thumb_kickstarter),
         Kraken(R.drawable.thumb_kraken),
