@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">विवरण</string>
+    <string name="about_description">Android के लिए मुक्त स्रोत द्वि-चरणीय प्रमाणीकरण</string>
+    <string name="about_tab_about">विवरण</string>
+    <string name="about_tab_libraries">फाइल संग्रह</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">परिवर्तन लॉग</string>
+    <string name="about_label_license">लाइसेन्स</string>
+    <string name="about_label_MIT">एमआईटी लाइसेंस</string>
+    <string name="about_label_source">स्रोत कोड</string>
+    <string name="about_label_version">संस्करण</string>
+    <string name="about_label_faq">सामान्य प्रश्न</string>
+    <string name="about_label_faq_long">अक्सर पूछे जाने वाले प्रश्न</string>
+    <!-- Authors -->
+    <string name="about_title_authors">लेखक</string>
+    <string name="about_label_main_developer">मुख्य डेवलपर</string>
+    <string name="about_label_developer">डेवलपर</string>
+    <string name="about_label_original_author">मूल अनुप्रयोग के लेखक</string>
+    <string name="about_label_original_app">मूल एप्लिकेशन</string>
+    <string name="about_label_website">वेबसाइट</string>
+    <string name="about_label_donate">दान करें</string>
+    <string name="about_label_contributors">योगदान कर्ता</string>
+    <string name="about_label_translators">अनुवादक</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">थंबनेल अस्वीकरण</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> सभी थंबनेल उनके संबंधित स्वामियों के ट्रेडमार्क हैं|</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> इन ट्रेडमार्क का उपयोग, andOTP द्वारा ट्रेडमार्क धारक के समर्थन का संकेत नहीं देता है, न ही इसके विपरीत।</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> थंबनेल का उपयोग केवल उस कंपनी या उत्पाद का प्रतिनिधित्व करने के लिए किया जाना चाहिए जिसका वह उल्लेख करते हैं।</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. कृपया उस विशेष ब्रांड या सेवा का प्रतिनिधित्व करने के अलावा किसी भी उद्देश्य के लिए थंबनेल का उपयोग न करें। </b></string>
+    <!-- Support -->
+    <string name="about_title_support">विकास का समर्थन करें</string>
+    <string name="about_desc_support">यह जानें कि आप andOTP के विकास का समर्थन कैसे कर सकते हैं</string>
+    <string name="about_title_special_features">विशेष खूबियां</string>
+    <string name="about_dialog_special_features">क्या आप वाकई विशेष सुविधाओं को सक्षम करना चाहते हैं? उनमें से अधिकांश गैर-मानक ओटीपी एल्गोरिदम हैं जो विशेष अनुरोध पर लागू किए गए थे। वे <b>आधिकारिक रूप से समर्थित नहीं हैं</b> और <b>कुछ सीमाओं</b> के साथ आ सकते हैं, कृपया उन्हें उपयोग करने से पहले अधिक जानने के लिए गिटहब विकि में पृष्ठ \"विशेष सुविधाओं\" को पढ़ें (और समझें)।</string>
+    <string name="about_toast_special_features">विशेष सुविधाएँ सक्षम</string>
+    <string name="about_toast_special_features_enabled">विशेष सुविधाएं पहले से ही सक्षम</string>
+    <string name="about_toast_copied_to_clipboard">सहयोगी लिंक क्लिपबोर्ड पर कॉपी हो गया है</string>
+</resources>
