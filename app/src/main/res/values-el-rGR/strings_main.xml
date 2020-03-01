@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Buttons -->
+    <string name="button_cancel">Ακύρωση</string>
+    <string name="button_enter_details">Εισάγετε λεπτομέρειες</string>
+    <string name="button_scan_qr">Σάρωση QR κωδικού</string>
+    <string name="button_save">Αποθήκευση</string>
+    <string name="button_new_tag">Νέα ετικέτα</string>
+    <string name="button_settings">Ρυθμίσεις</string>
+    <string name="button_all_tags">Όλες οι ετικέτες</string>
+    <string name="button_no_tags">Χωρίς ετικέτες</string>
+    <string name="button_qr_from_image">Κώδικας QR από εικόνα</string>
+    <!-- Custom formatting -->
+    <string name="format_custom_period">%d\"</string>
+    <!-- Hints -->
+    <string name="hint_label">Ετικέτα</string>
+    <string name="hint_secret">Μυστικό</string>
+    <!-- Labels -->
+    <string name="label_hidden">Κρυφό</string>
+    <string name="label_type">Τύπος</string>
+    <string name="label_secret">Μυστικό</string>
+    <string name="label_period">Περίοδος</string>
+    <string name="label_digits">Ψηφία</string>
+    <string name="label_counter">Μετρητής</string>
+    <string name="label_issuer">Εκδότης</string>
+    <string name="label_label">Ετικέτα</string>
+    <string name="label_algorithm">Αλγόριθμος</string>
+    <string name="label_tags">Ετικέτες</string>
+    <string name="label_advanced">Προηγμένες επιλογές</string>
+    <!-- Drawer -->
+    <string name="drawer_open">Εμφάνιση ετικετών</string>
+    <string name="drawer_close">Απόκρυψη ετικετών</string>
+    <!-- Menu -->
+    <string name="menu_main_about">Σχετικά με</string>
+    <string name="menu_main_backup">Αντίγραφο ασφαλείας</string>
+    <string name="menu_main_search">Αναζήτηση</string>
+    <string name="menu_main_settings">Ρυθμίσεις</string>
+    <string name="menu_main_sort">Ταξινόμηση</string>
+    <string name="menu_sort_none">Αταξινόμητο</string>
+    <string name="menu_sort_issuer">Εκδότης</string>
+    <string name="menu_sort_label">Ετικέτα</string>
+    <string name="menu_sort_last_used">Τελευταία χρήση</string>
+    <string name="menu_sort_most_used">Τελευταία χρήση</string>
+    <string name="menu_popup_edit_issuer">Επεξεργασία εκδότη</string>
+    <string name="menu_popup_edit_label">Επεξεργασία ετικέτας</string>
+    <string name="menu_popup_change_image">Αλλαγή εικόνας</string>
+    <string name="menu_popup_edit_tags">Επεξεργασία ετικετών</string>
+    <string name="menu_popup_remove">Διαγραφή</string>
+    <!-- Toast messages -->
+    <string name="toast_auth_failed">Η ταυτοποίηση απέτυχε. Παρακαλώ προσπάθησε ξανά!</string>
+    <string name="toast_auth_failed_fatal">Απέτυχε ο έλεγχος ταυτότητας, κλείνει το andOTP!</string>
+    <string name="toast_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
+    <string name="toast_entry_exists">Αυτό το στοιχείο υπάρχει ήδη</string>
+    <string name="toast_invalid_qr_code">Μη έγκυρος κώδικας QR</string>
+    <string name="toast_encryption_key_empty">Το κλειδί κρυπτογράφησης δεν φορτώθηκε</string>
+    <string name="toast_intent_creation_failed">Μη έγκυρος κώδικας πρόθεσης</string>
+    <string name="toast_intent_creation_succeeded">Ο κώδικας πρόθεσης προστέθηκε</string>
+    <string name="toast_file_load_error">Αδυναμία ανοίγματος αρχείου</string>
+    <string name="toast_qr_error">Δεν ήταν δυνατή η εύρεση/επιβεβαίωση του κώδικα QR</string>
+    <string name="toast_qr_checksum_exception">Αποτυχία επαλήθευσης κατά την αποκωδικοποίηση του QR κώδικα</string>
+    <string name="toast_qr_format_error">Σφάλμα μορφοποίησης κώδικα QR</string>
+    <!-- Dialogs -->
+    <string name="dialog_title_auth">Ταυτοποίηση</string>
+    <string name="dialog_title_manual_entry">Εισάγετε λεπτομέρειες</string>
+    <string name="dialog_title_remove">Διαγραφή</string>
+    <string name="dialog_title_rename">Μετονομασία</string>
+    <string name="dialog_title_counter">Μετρητής</string>
+    <string name="dialog_title_used_tokens">Τεκμήρια σε χρήση</string>
+    <string name="dialog_title_keystore_error">Σφάλμα KeyStore</string>
+    <string name="dialog_title_enter_password">Εισάγετε κωδικό</string>
+    <string name="dialog_label_enter_password">Εισάγετε κωδικό</string>
+    <string name="dialog_label_confirm_password">Επιβεβαίωση κωδικού</string>
+    <string name="dialog_msg_auth">Παρακαλούμε εισαγάγετε τα διαπιστευτήριά σας για να ανοίξετε το andOTP.</string>
+    <string name="dialog_msg_confirm_delete">Σίγουρα θέλετε να αφαιρέσετε το λογαριασμό \"%1$s\";</string>
+    <string name="dialog_msg_used_tokens">Προκειμένου το andOTP να αναγνωρίσει ποια τεκμήρια χρησιμοποιούνται
+        πρέπει να έχουν ενεργοποιηθεί ή χρήση ενέργειας αντιγραφής. Αυτό ισχύει για την
+        ταξινόμηση των τεκμηρίων \"Συχνής χρήσης\" καθώς και \"Τελευταίας χρήσης\".\n\nΑυτό το μήνυμα
+        δεν θα εμφανιστεί ξανά.</string>
+    <string name="dialog_msg_keystore_error">Αποτυχία φόρτωσης του κλειδιού κρυπτογράφησης από το KeyStore. <b>Τυχόν εγγραφές που προστέθηκαν θα χαθούν.</b>\n\nΓια να είναι εφικτή η χρήση του andOTP μπορείτε να μεταβείτε στις <b>Ρυθμίσεις</b> και να αλλάξετε από <b>Κρυπτογράφηση Βάσης Δεδομένων</b> σε <b>Κωδικός πρόσβασης / PIN</b>.</string>
+    <!-- Shortcuts -->
+    <string name="shortcut_name_scan_qr">Σάρωση κωδικού QR</string>
+    <string name="shortcut_name_import_qr">Εισαγωγή κώδικα QR</string>
+    <string name="shortcut_name_enter_details">Εισάγετε λεπτομέρειες</string>
+</resources>

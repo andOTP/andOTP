@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_activity_title">Ρυθμίσεις</string>
+    <!-- Categories -->
+    <string name="settings_category_title_security">Ασφάλεια</string>
+    <string name="settings_category_title_ui">Διεπαφή χρήστη</string>
+    <string name="settings_category_title_backup">Αντίγραφο ασφαλείας</string>
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">Αγγίξτε για εμφάνιση</string>
+    <string name="settings_title_tap_to_reveal_timeout">Χρονικό όριο του αγγίγματος για εμφάνιση</string>
+    <string name="settings_title_auth">Ταυτοποίηση</string>
+    <string name="settings_title_auth_password">Κωδικός</string>
+    <string name="settings_title_auth_pin">PIN</string>
+    <string name="settings_title_encryption">Κρυπτογράφηση βάσης δεδομένων</string>
+    <string name="settings_title_panic">Κουμπί Πανικού</string>
+    <string name="settings_title_relock_screen_off">Ενεργοποίηση κλειδώματος με το σβήσιμο της οθόνης</string>
+    <string name="settings_title_relock_background">Κλείδωμα ξανά σε κατάσταση παρασκηνίου</string>
+    <string name="settings_title_auth_inactivity">Κλείδωμα ξανά σε κατάσταση αδράνειας</string>
+    <string name="settings_title_auth_inactivity_delay">Καθυστέρηση κλειδώματος σε κατάσταση αδράνειας</string>
+    <string name="settings_title_block_accessibility">Αποκλεισμός υπηρεσιών προσβασιμότητας</string>
+    <string name="settings_title_lang">Γλώσσα</string>
+    <string name="settings_title_theme">Θέμα</string>
+    <string name="settings_title_card_layout">Διάταξη κάρτας</string>
+    <string name="settings_title_label_size">Μέγεθος γραμματοσειράς ετικέτας</string>
+    <string name="settings_title_label_scroll">Ετικέτα κύλισης</string>
+    <string name="settings_title_thumbnail_size_ask">Μέγεθος μικρογραφίας</string>
+    <string name="settings_title_split_group_size">Διαχωρισμός τεκμηρίων με διάστημα</string>
+    <string name="settings_title_tag_functionality">Επιλογή συμπεριφοράς ετικετών</string>
+    <string name="settings_title_minimize_on_copy">Ελαχιστοποίηση εφαρμογής μετά την αντιγραφή του OTP</string>
+    <string name="settings_title_search_includes">Συμπεριφορά αναζήτησης</string>
+    <string name="settings_title_label_highlight_token">Επισήμανση τεκμηρίων που λήγουν</string>
+    <string name="settings_title_backup_append_date">Προσθήκη ημερομηνίας στο όνομα αρχείου</string>
+    <string name="settings_title_backup_ask">Ερώτηση για όνομα αρχείου</string>
+    <string name="settings_title_backup_directory">Κατάλογος αντιγράφων</string>
+    <string name="settings_title_backup_password">Κωδικός αντιγράφων</string>
+    <string name="settings_title_auto_backup_password_enc">Αυτόματη δημιουργία αντιγράφων νέων καταχωρήσεων</string>
+    <string name="settings_title_backup_broadcasts">Αντίγραφο ασφαλείας Broadcasts</string>
+    <string name="settings_title_openpgp_provider">Πάροχος OpenPGP</string>
+    <string name="settings_title_openpgp_key_encrypt">Κλειδί κρυπτογράφησης OpenPGP</string>
+    <string name="settings_title_openpgp_key_sign">Κλειδί υπογραφής OpenPGP (προαιρετικό)</string>
+    <string name="settings_title_openpgp_verify">Επαλήθευση κρυπτογραφημένων αντιγράφων</string>
+    <string name="settings_title_special_features">Ενεργοποίηση ειδικών χαρακτηριστικών</string>
+    <string name="settings_title_enable_screenshot">Ενεργοποίηση στιγμιοτύπων οθόνης</string>
+    <string name="settings_title_enable_android_backup_service">Ενεργοποίηση συγχρονισμού Android</string>
+    <string name="settings_title_clear_keystore">Εκκαθάριση KeyStore</string>
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">Απόκρυψη τεκμηρίων OTP από προεπιλογή, απαιτώντας να είναι
+        ορατά χειροκίνητα</string>
+    <string name="settings_desc_tap_to_reveal_timeout">Επιλέξτε την ώρα (σε δευτερόλεπτα) για απόκρυψη
+        εμφάνιση ξανά των καταχωρήσεων</string>
+    <string name="settings_desc_panic">Αποφασίστε τι θα συμβαίνει όταν λαμβάνεται το Panic Trigger</string>
+    <string name="settings_desc_relock_screen_off">Απαιτείται έλεγχος ταυτότητας όταν η οθόνη της συσκευής
+        απενεργοποιηθεί</string>
+    <string name="settings_desc_relock_background">Απαιτείται έλεγχος ταυτότητας όταν η εφαρμογή τεθεί σε κατάσταση
+        παρασκηνίου (π.χ. πατώντας το πλήκτρο αρχική)</string>
+    <string name="settings_desc_auth_inactivity">Απαιτείται έλεγχος ταυτότητας όταν η συσκευή
+        είναι σε αδράνεια</string>
+    <string name="settings_desc_auth_inactivity_delay">Επιλέξτε την ώρα (σε δευτερόλεπτα) μετά την οποία
+       θα απαιτείται επανάληψη του ελέγχου ταυτότητας</string>
+    <string name="settings_desc_block_accessibility">Απόκρυψη ευαίσθητων πεδίων από τις υπηρεσίες
+        προσβασιμότητας. <b>ΜΗΝ το ενεργοποιήσετε αν βασίζεστε στις υπηρεσίες προσβασιμότητας!</b></string>
+    <string name="settings_desc_label_scroll">Κύλιση σε υπερβολικά μεγάλες ετικέτες αντί για περικοπή τους</string>
+    <string name="settings_desc_minimize_on_copy">Η εφαρμογή θα ελαχιστοποιείται όταν αντιγράφετε το OTP στο πρόχειρο</string>
+    <string name="settings_desc_search_includes">Καθορίστε ποιες τιμές θα πρέπει να συμπεριληφθούν κατά την αναζήτηση</string>
+    <string name="settings_desc_label_highlight_token">Επισήμανση τεκμηρίου με κόκκινο χρώμα αν λήγει σε 8 δευτερόλεπτα</string>
+    <string name="settings_desc_backup_append_date">Προσθέστε την τρέχουσα ημερομηνία και ώρα στο προτεινόμενο
+        όνομα αρχείου αντιγράφου ασφαλείας</string>
+    <string name="settings_desc_backup_ask">Ερώτηση για το όνομα του αρχείου κάθε φορά που δημιουργείται ένα αντίγραφο ασφαλείας ή
+        επαναφορά αυτού</string>
+    <string name="settings_desc_backup_directory">Κατάλογος αυτόματων αντιγράφων και αντίγραφα broadcast
+        (τα ονόματα αρχείων θα εξαρτώνται από τον τύπο αντιγράφων ασφαλείας)</string>
+    <string name="settings_desc_backup_password">Ορισμός κωδικού που χρησιμοποιείται για την κρυπτογράφηση
+        αντιγράφων ασφαλείας</string>
+    <string name="settings_desc_auto_backup_password_enc">Δημιουργία ενός νέου κρυπτογραφημένου αντιγράφου ασφαλείας όταν νέες
+        εγγραφές προστίθενται ή επεξεργάζονται, εφόσον πληρούνται οι προϋποθέσεις</string>
+    <string name="settings_desc_backup_broadcasts">Επιλέξτε ποιοι τύποι αντιγράφων μπορούν να ενεργοποιηθούν από
+        εφαρμογές τρίτων που χρησιμοποιούν Broadcasts</string>
+    <string name="settings_desc_openpgp_key_encrypt">Διεύθυνση  email του κλειδιού OpenPGP που χρησιμοποιείται για την κρυπτογράφηση
+        αντιγράφων ασφαλείας</string>
+    <string name="settings_desc_openpgp_verify">Τα κρυπτογραφημένα αντίγραφα ασφαλείας εισάγονται μόνο αν είναι
+        υπογεγραμμένα με έγκυρο κλειδί</string>
+    <string name="settings_desc_special_features">Καταργήστε την επιλογή για να απενεργοποιήσετε ξανά τις ειδικές λειτουργίες</string>
+    <string name="settings_desc_enable_screenshot">Επιτρέψτε τη λήψη στιγμιοτύπων στην αρχική οθόνη της συσκευή σας
+        (απενεργοποιημένη από προεπιλογή για λόγους ασφαλείας)</string>
+    <string name="settings_desc_enable_android_backup_service">Ενεργοποίηση του andOTP για Android για χρήση
+        ενσωματωμένης υπηρεσίας δημιουργίας αντιγράφων κλειδιών και προτιμήσεων</string>
+    <string name="settings_desc_clear_keystore">Διαγραφή κλειδιού κρυπτογράφησης από το KeyStore</string>
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_pre_lollipop">Αυτή η λειτουργία απαιτεί τουλάχιστον Android 5.0
+        (Lollipop) για να δουλέψει</string>
+    <string name="settings_toast_auth_device_not_secure">Αυτή η λειτουργία απαιτεί μια ασφαλή οθόνη κλειδώματος
+        και μπορεί να ρυθμιστεί στις (Ρυθμίσεις -&gt; Ασφάλεια -&gt; Κλείδωμα οθόνης)</string>
+    <string name="settings_toast_password_empty">Δεν επιτρέπεται ένας κενός κωδικός πρόσβασης, ορίστε την
+        επαλήθευση ταυτότητας στο \"Χωρίς\" για απενεργοποίηση!</string>
+    <string name="settings_toast_encryption_changing">Προσπάθεια αλλαγής κρυπτογράφησης βάσης δεδομένων,
+        παρακαλώ περιμένετε!</string>
+    <string name="settings_toast_encryption_change_success">Επιτυχής αλλαγή κρυπτογράφησης
+        βάσης δεδομένων!</string>
+    <string name="settings_toast_encryption_change_failed">Αποτυχία αλλαγής κρυπτογράφησης βάσης δεδομένων,
+        επιστροφή στην αρχική κατάσταση!</string>
+    <string name="settings_toast_encryption_backup_failed">Αποτυχία δημιουργίας εσωτερικού
+        αντιγράφου ασφαλείας, ματαίωση!</string>
+    <string name="settings_toast_encryption_no_key">Αποτυχία λήψης κλειδιού κρυπτογράφησης, ματαίωση!</string>
+    <string name="settings_toast_encryption_auth_failed">Η ταυτοποίηση απέτυχε!</string>
+    <string name="settings_toast_auth_upgrade_failed">Η ενημέρωση του κωδικού πρόσβασης ή PIN απέτυχε
+        κατά την νέα κρυπτογράφηση, επαναφορά με μη αυτόματο τρόπο στις Ρυθμίσεις!</string>
+    <string name="settings_dialog_title_warning">Προειδοποίηση</string>
+    <string name="settings_dialog_title_error">Σφάλμα</string>
+    <string name="settings_dialog_title_clear_keystore">Εκκαθάριση KeyStore;</string>
+    <string name="settings_dialog_title_android_sync">Συγχρονισμός Android</string>
+    <string name="settings_dialog_msg_encryption_change">το andOTP θα προσπαθήσει τώρα να αλλάξει τη βάση δεδομένων
+        κρυπτογράφησης. Σε περίπτωση αποτυχίας, θα γίνει επαναφορά από ένα εσωτερικό αντίγραφο ασφαλείας και η κρυπτογράφηση
+        παραμένει αναλλοίωτη.\n\n<b>Ωστόσο, είναι πάντα καλή ιδέα να έχετε ένα αντίγραφο ασφαλείας σε περίπτωση που
+        κάτι αναπάντεχο συμβεί!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">Μπορείτε να χρησιμοποιήσετε μόνο τον κωδικό ή PIN
+        εφ \'όσον η κρυπτογράφηση δεδομένων έχει οριστεί με \"Κωδικό ή PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">Πρώτα πρέπει να ρυθμίσετε το
+        ελέγχου ταυτότητας με \"Κωδικό\" ή \"PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">Πρέπει πρώτα να ορίσετε έναν
+        κωδικό ή PIN πριν αλλάξετε την κρυπτογράφηση!</string>
+    <string name="settings_dialog_msg_clear_keystore_password">Σε ορισμένες περιπτώσεις εκκαθάριση του KeyStore
+        μπορεί να βοηθήσει στην επίλυση προβλημάτων. Θα πρέπει να προχωρήσετε μόνο αν ξέρετε τι κάνετε!\n\nΕάν
+       η <b>Κρυπτογράφηση βάσης δεδομένων</b> έχει οριστεί με <b>Κωδικό ή PIN</b>δεν θα πρέπει να χάσετε οποιαδήποτε δεδομένα
+        κάνοντας αυτό (αλλά ποτέ δεν είναι περιττό να υπάρχει ένα αντίγραφο ασφαλείας ούτως ή άλλως).\n\n<b>Είστε πραγματικά σίγουροι ότι θέλετε
+        για γίνει εκκαθάριση του KeyStore;</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">Σε ορισμένες περιπτώσεις εκκαθάριση του KeyStore
+        μπορεί να βοηθήσει στην επίλυση προβλημάτων. Θα πρέπει να προχωρήσετε μόνο αν ξέρετε τι κάνετε!\n\n<b>Προειδοποίηση</b>:¨
+        Εφόσον η <b>Κρυπτογράφηση βάσης δεδομένων</b> έχει οριστεί σε <b>Android KeyStore</b>, θα χάσετε όλους
+         τους λογαριασμούς σας. Βεβαιωθείτε ότι έχετε δημιουργήσει αντίγραφο ασφαλείας!\n\n<b>Είστε πραγματικά βέβαιοι ότι θέλετε να να γίνει εκκαθάριση του
+        KeyStore;</b></string>
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">Ο συγχρονισμός Android δεν μπορεί να χρησιμοποιηθεί με keystore
+        κρυπτογράφηση, <b>θα πρέπει κάνετε χειροκίνητα αντίγραφα ασφαλείας!</b></string>
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>Χωρίς</item>
+        <item>Κωδικός πρόσβασης</item>
+        <item>PIN</item>
+        <item>Πιστοποιητικά συσκευής</item>
+    </string-array>
+    <string-array name="settings_entries_encryption">
+        <item>Android KeyStore</item>
+        <item>Κωδικός πρόσβασης / PIN</item>
+    </string-array>
+    <string-array name="settings_entries_panic">
+        <item>Κατάργηση όλων των λογαριασμών</item>
+        <item>Επαναφορά ρυθμίσεων εφαρμογής</item>
+    </string-array>
+    <string-array name="settings_entries_card_layout">
+        <item>Συμπαγής</item>
+        <item>Προεπιλογή</item>
+        <item>Πλήρης</item>
+    </string-array>
+    <string-array name="settings_entries_search_includes">
+        <item>Ετικέτα</item>
+        <item>Εκδότης</item>
+        <item>Ετικέτες</item>
+    </string-array>
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Ανενεργό</item>
+        <item>Νέες εγγραφές</item>
+        <item>Οποιεσδήποτε τροποποιήσεις</item>
+    </string-array>
+    <string-array name="settings_entries_theme">
+        <item>Φωτεινό θέμα</item>
+        <item>Σκοτεινό θέμα</item>
+        <item>Μαύρο θέμα</item>
+    </string-array>
+    <string-array name="settings_entries_thumbnail_size">
+        <item>Κρυφό</item>
+        <item>Πολύ μικρό</item>
+        <item>Μικρό</item>
+        <item>Προεπιλογή</item>
+        <item>Μεσαίο</item>
+        <item>Μεγάλο</item>
+    </string-array>
+    <string-array name="settings_entries_split_group_size">
+        <item>Χωρίς διαχωρισμό</item>
+        <item>Μετά από δύο χαρακτήρες</item>
+        <item>Μετά από τρεις χαρακτήρες</item>
+    </string-array>
+    <string-array name="settings_entries_tag_functionality">
+        <item>Προβολή όλων των καταχωρήσεων που αντιστοιχούν με <b>Οποιεσδήποτε</b> των επιλεγμένων ετικετών (ή)</item>
+        <item>Προβολή μόνο καταχωρήσεων που αντιστοιχούν με <b>Όλες</b> των επιλεγμένων ετικετών (και)</item>
+        <item>Εναλλαγή μεταξύ ετικετών (επιτρέπεται μόνο μια ετικέτα να επιλέγεται ταυτόχρονα)</item>
+    </string-array>
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Αντίγραφα απλού κειμένου</item>
+        <item>Κρυπτογραφημένα αντίγραφα</item>
+    </string-array>
+    <!-- Special -->
+    <string name="settings_lang_sys_default">Προεπιλογή συστήματος</string>
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">Εισάγετε νέο κωδικό</string>
+    <string name="settings_hint_pin">Εισάγετε νέο PIN</string>
+    <string name="settings_hint_password_confirm">Επιβεβαίωση κωδικού</string>
+    <string name="settings_hint_pin_confirm">Επιβεβαίωση PIN</string>
+    <string name="settings_label_short_password">Ο κωδικός πρέπει να έχει μήκος τουλάχιστον %1$d χαρακτήρες!</string>
+    <string name="settings_label_short_pin">Το PIN πρέπει να έχει μήκος τουλάχιστον %1$d ψηφία!</string>
+</resources>

@@ -130,8 +130,8 @@
         <item>es_ES</item>
         <item>fr_FR</item>
         <item>gl_ES</item>
-        <item>hu_HU</item>
         <item>it_IT</item>
+        <item>hu_HU</item>
         <item>nl_NL</item>
         <item>pl_PL</item>
         <item>pt_BR</item>
@@ -139,6 +139,7 @@
         <item>sv_SE</item>
         <item>tr_TR</item>
         <item>cs_CZ</item>
+        <item>el_GR</item>
         <item>ru_RU</item>
         <item>uk_UA</item>
         <item>ar_SA</item>
@@ -188,8 +189,8 @@
         <item>Español</item>
         <item>Français</item>
         <item>Galego</item>
-        <item>Magyar</item>
         <item>Italiano</item>
+        <item>Magyar</item>
         <item>Nederlands</item>
         <item>Polski</item>
         <item>Português (Brasil)</item>
@@ -197,6 +198,7 @@
         <item>Svenska</item>
         <item>Türkçe</item>
         <item>Čeština</item>
+        <item>Ελληνικά</item>
         <item>Русский</item>
         <item>Українська</item>
         <item>العربية</item>
