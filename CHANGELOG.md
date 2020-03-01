@@ -1,6 +1,6 @@
 # Changelog
 
-#### v0.7.0 (WIP)
+#### v0.7.0
 
  * New feature: Generate a new HOTP token when revealing (Issue #334, PR #366 by @moritzgloeckl)
  * New feature: Split issuer and label (Issue #258, PR #372 by @lucavallerini)
@@ -28,6 +28,7 @@
  * Internal: Migrate to AndroidX
  * Internal: Update Gradle and a lot of dependencies
  * Thumbnails: Lots of new ones (thanks to all contributors)
+ * Translations: Greek, Hindi (thanks to all the contributors on Crowdin)
 
 #### v0.6.3.1
 
