@@ -238,6 +238,7 @@ public class EntryThumbnail {
         Wasabi(R.drawable.thumb_wasabi),
         Wikimedia(R.drawable.thumb_wikimedia),
         Wordpress(R.drawable.thumb_wordpress),
+        YandexMoney(R.drawable.thumb_yandex_money),
         Zoho(R.drawable.thumb_zoho);
 
         private int resource;
