@@ -247,6 +247,7 @@ public class EntryThumbnail {
         Xerox(R.drawable.thumb_xerox),
         Xing(R.drawable.thumb_xing),
         YandexMoney(R.drawable.thumb_yandex_money),
+        Zendesk(R.drawable.thumb_zendesk),
         Zoho(R.drawable.thumb_zoho);
 
         private int resource;
