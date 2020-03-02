@@ -230,6 +230,7 @@ public class EntryThumbnail {
         Trello(R.drawable.thumb_trello),
         Tumblr(R.drawable.thumb_tumblr),
         Tutanota(R.drawable.thumb_tutanota),
+        TUWien(R.drawable.thumb_tuwien_ac_at),
         Twitch(R.drawable.thumb_twitch),
         Twitter(R.drawable.thumb_twitter),
         Uber(R.drawable.thumb_uber),
