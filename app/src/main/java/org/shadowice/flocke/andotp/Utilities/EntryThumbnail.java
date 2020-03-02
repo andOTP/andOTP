@@ -56,6 +56,7 @@ public class EntryThumbnail {
         Apple(R.drawable.thumb_apple),
         Appveyor(R.drawable.thumb_appveyor),
         ArenaNet(R.drawable.thumb_arenanet),
+        AtlanticNet(R.drawable.thumb_atlantic_net),
         Atlassian(R.drawable.thumb_atlassian),
         AVM(R.drawable.thumb_avm),
         Backblaze(R.drawable.thumb_backblaze),
