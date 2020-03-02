@@ -178,6 +178,7 @@ public class EntryThumbnail {
         OnlineNet(R.drawable.thumb_online),
         OpenVZ(R.drawable.thumb_openvz),
         OPNsense(R.drawable.thumb_opnsense),
+        ORCiD(R.drawable.thumb_orcid),
         Origin(R.drawable.thumb_origin),
         OVH(R.drawable.thumb_ovh),
         Packet(R.drawable.thumb_packet),
