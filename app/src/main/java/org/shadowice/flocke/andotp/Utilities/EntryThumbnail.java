@@ -139,6 +139,7 @@ public class EntryThumbnail {
         Jagex(R.drawable.thumb_jagex),
         JetBrains(R.drawable.thumb_jetbrains),
         Joomla(R.drawable.thumb_joomla),
+        Keeper(R.drawable.thumb_keeper),
         Kickstarter(R.drawable.thumb_kickstarter),
         Kraken(R.drawable.thumb_kraken),
         Kucoin(R.drawable.thumb_kucoin),
