@@ -194,6 +194,7 @@ public class EntryThumbnail {
         ProtonMail(R.drawable.thumb_protonmail),
         Proxmox(R.drawable.thumb_proxmox),
         PyPI(R.drawable.thumb_pypi),
+        PythonAnywhere(R.drawable.thumb_python_anywhere),
         Rackspace(R.drawable.thumb_rackspace),
         Reddit(R.drawable.thumb_reddit),
         RipeNNC(R.drawable.thumb_ripe_ncc),
