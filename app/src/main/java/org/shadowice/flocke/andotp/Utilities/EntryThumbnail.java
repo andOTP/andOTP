@@ -244,6 +244,7 @@ public class EntryThumbnail {
         Wikimedia(R.drawable.thumb_wikimedia),
         Wordpress(R.drawable.thumb_wordpress),
         Xero(R.drawable.thumb_xero),
+        Xerox(R.drawable.thumb_xerox),
         Xing(R.drawable.thumb_xing),
         YandexMoney(R.drawable.thumb_yandex_money),
         Zoho(R.drawable.thumb_zoho);
