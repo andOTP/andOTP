@@ -75,6 +75,7 @@ public class EntryThumbnail {
         BlockchainInfo(R.drawable.thumb_blockchain_info),
         Bugcrowd(R.drawable.thumb_bugcrowd),
         CEXio(R.drawable.thumb_cexio),
+        Cisco(R.drawable.thumb_cisco),
         CloudDownload(R.drawable.thumb_cloud_download),
         Cloudflare(R.drawable.thumb_cloudflare),
         Cobranded(R.drawable.thumb_cobranded),
