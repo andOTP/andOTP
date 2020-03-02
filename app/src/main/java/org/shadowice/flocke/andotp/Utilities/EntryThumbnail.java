@@ -103,6 +103,7 @@ public class EntryThumbnail {
         Evernote(R.drawable.thumb_evernote),
         Facebook(R.drawable.thumb_facebook),
         FACEIT(R.drawable.thumb_faceit),
+        Fastmail(R.drawable.thumb_fastmail),
         Fingerprint(R.drawable.thumb_fingerprint),
         Finnair(R.drawable.thumb_finnair),
         Firefox(R.drawable.thumb_firefox),
