@@ -213,6 +213,7 @@ public class EntryThumbnail {
         Sciebo(R.drawable.thumb_sciebo),
         Seafile(R.mipmap.thumb_seafile, AssetType.Bitmap),
         Sentry(R.drawable.thumb_sentry),
+        Sevdesk(R.drawable.thumb_sevdesk),
         Skrill(R.drawable.thumb_skrill),
         Slack(R.drawable.thumb_slack),
         Snapchat(R.drawable.thumb_snapchat),
