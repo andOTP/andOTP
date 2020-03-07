@@ -27,6 +27,8 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Handler;
 import androidx.annotation.NonNull;
@@ -46,8 +48,12 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.FrameLayout;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.google.zxing.BarcodeFormat;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import org.shadowice.flocke.andotp.Activities.MainActivity;
 import org.shadowice.flocke.andotp.Database.Entry;
@@ -681,6 +687,35 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 .show();
     }
 
+    private void showQRCode(final int pos) {
+        Uri uri = displayedEntries.get(pos).toUri();
+        if (uri != null) {
+            Bitmap bitmap;
+            try {
+                bitmap = new BarcodeEncoder().encodeBitmap(uri.toString(), BarcodeFormat.QR_CODE, 0, 0);
+            } catch(Exception ignored) {
+                Toast.makeText(context, R.string.toast_qr_failed_to_generate, Toast.LENGTH_LONG).show();
+                return;
+            }
+            BitmapDrawable drawable = new BitmapDrawable(context.getResources(), bitmap);
+            drawable.setFilterBitmap(false);
+
+            ImageView image = new ImageView(context);
+            image.setAdjustViewBounds(true);
+            image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            image.setImageDrawable(drawable);
+
+            new AlertDialog.Builder(context)
+                    .setTitle(R.string.dialog_title_qr_code)
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> {})
+                    .setView(image)
+                    .create()
+                    .show();
+        } else {
+            Toast.makeText(context, R.string.toast_qr_unsuported, Toast.LENGTH_LONG).show();
+        }
+    }
+
     private void showPopupMenu(View view, final int pos) {
         View menuItemView = view.findViewById(R.id.menuButton);
         PopupMenu popup = new PopupMenu(view.getContext(), menuItemView);
@@ -706,6 +741,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                     return true;
                 } else if (id == R.id.menu_popup_remove) {
                     removeItem(pos);
+                    return true;
+                } else if (id == R.id.menu_popup_show_qr_code) {
+                    showQRCode(pos);
                     return true;
                 } else {
                     return false;

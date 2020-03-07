@@ -20,4 +20,8 @@
         android:id="@+id/menu_popup_remove"
         android:title="@string/menu_popup_remove" />
 
+    <item
+        android:id="@+id/menu_popup_show_qr_code"
+        android:title="@string/menu_popup_show_qr_code" />
+
 </menu>

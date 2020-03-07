@@ -276,6 +276,46 @@ public class Entry {
         return jsonObj;
     }
 
+    public Uri toUri() {
+        String type;
+        switch (this.type) {
+            case TOTP:
+                type = "totp";
+                break;
+            case HOTP:
+                type = "hotp";
+                break;
+            default:
+                return null;
+        }
+        Uri.Builder builder = new Uri.Builder()
+                .scheme("otpauth")
+                .authority(type)
+                .appendPath(this.label)
+                .appendQueryParameter("secret", new Base32().encodeAsString(this.secret));
+        if (this.issuer != null) {
+            builder.appendQueryParameter("issuer", this.issuer);
+        }
+        switch (this.type) {
+            case HOTP:
+                builder.appendQueryParameter("counter", Long.toString(this.counter));
+            case TOTP:
+                if (this.period != TokenCalculator.TOTP_DEFAULT_PERIOD)
+                    builder.appendQueryParameter("period", Integer.toString(this.period));
+                break;
+        }
+        if (this.digits != TokenCalculator.TOTP_DEFAULT_DIGITS) {
+            builder.appendQueryParameter("digits", Integer.toString(this.digits));
+        }
+        if (this.algorithm != TokenCalculator.DEFAULT_ALGORITHM) {
+            builder.appendQueryParameter("algorithm", this.algorithm.name());
+        }
+        for (String tag : this.tags) {
+            builder.appendQueryParameter("tags", tag);
+        }
+        return builder.build();
+    }
+
     public boolean isTimeBased() {
         return type == OTPType.TOTP || type == OTPType.STEAM;
     }
