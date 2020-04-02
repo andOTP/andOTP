@@ -61,6 +61,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.biometric.BiometricPrompt;
+
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.leinardi.android.speeddial.SpeedDialActionItem;
@@ -81,6 +83,7 @@ import org.shadowice.flocke.andotp.View.TagsAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.Executor;
 
 import javax.crypto.SecretKey;
 
@@ -134,8 +137,26 @@ public class MainActivity extends BaseActivity
         if (authMethod == AuthMethod.DEVICE) {
             KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && km.isKeyguardSecure()) {
-                Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
-                startActivityForResult(authIntent, Constants.INTENT_MAIN_AUTHENTICATE);
+                Executor executor = ContextCompat.getMainExecutor(this);
+                BiometricPrompt biometricPrompt = new BiometricPrompt(MainActivity.this,
+                        executor, new BiometricPrompt.AuthenticationCallback() {
+                    @Override
+                    public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                        MainActivity.this.onAuthenticationError();
+                    }
+
+                    @Override
+                    public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                        MainActivity.this.onAuthenticationSucceeded(null);
+                    }
+                });
+                BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                        .setTitle(getString(R.string.dialog_title_auth))
+                        .setSubtitle(getString(R.string.dialog_msg_auth))
+                        .setDeviceCredentialAllowed(true)
+                        .setConfirmationRequired(false)
+                        .build();
+                biometricPrompt.authenticate(promptInfo);
             }
         } else if (authMethod == AuthMethod.PASSWORD || authMethod == AuthMethod.PIN) {
             Intent authIntent = new Intent(this, AuthenticateActivity.class);
@@ -448,28 +469,36 @@ public class MainActivity extends BaseActivity
                 updateEncryption(newKey);
         } else if (requestCode == Constants.INTENT_MAIN_AUTHENTICATE) {
             if (resultCode != RESULT_OK) {
-                Toast.makeText(getBaseContext(), R.string.toast_auth_failed_fatal, Toast.LENGTH_LONG).show();
-
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    finishAndRemoveTask();
-                } else {
-                    finish();
-                }
+                onAuthenticationError();
             } else {
-                requireAuthentication = false;
-
-                byte[] authKey = null;
-
-                if (intent != null)
-                    authKey = intent.getByteArrayExtra(Constants.EXTRA_AUTH_PASSWORD_KEY);
-
-                updateEncryption(authKey);
+                onAuthenticationSucceeded(intent);
             }
         } else if (requestCode == Constants.INTENT_MAIN_QR_OPEN_IMAGE && resultCode == RESULT_OK) {
             if (intent != null) {
                 addQRCode(ScanQRCodeFromFile.scanQRImage(this, intent.getData()));
             }
         }
+    }
+
+
+    private void onAuthenticationError() {
+        Toast.makeText(getBaseContext(), R.string.toast_auth_failed_fatal, Toast.LENGTH_LONG).show();
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            finishAndRemoveTask();
+        } else {
+            finish();
+        }
+    }
+    private void onAuthenticationSucceeded(Intent intent) {
+        requireAuthentication = false;
+
+        byte[] authKey = null;
+
+        if (intent != null)
+            authKey = intent.getByteArrayExtra(Constants.EXTRA_AUTH_PASSWORD_KEY);
+
+        updateEncryption(authKey);
     }
 
     private void updateEncryption(byte[] newKey) {
