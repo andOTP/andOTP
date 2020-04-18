@@ -115,14 +115,18 @@ public class Entry {
             throw new Exception("Invalid Protocol");
         }
 
-        if(url.getHost().equals("totp")){
-            type = OTPType.TOTP;
-        } else if (url.getHost().equals("hotp")) {
-            type = OTPType.HOTP;
-        } else if (url.getHost().equals("steam")) {
-            type = OTPType.STEAM;
-        } else {
-            throw new Exception("unknown otp type");
+        switch (url.getHost()) {
+            case "totp":
+                type = OTPType.TOTP;
+                break;
+            case "hotp":
+                type = OTPType.HOTP;
+                break;
+            case "steam":
+                type = OTPType.STEAM;
+                break;
+            default:
+                throw new Exception("unknown otp type");
         }
 
         String secret = uri.getQueryParameter("secret");
@@ -283,6 +287,9 @@ public class Entry {
                 break;
             case HOTP:
                 type = "hotp";
+                break;
+            case STEAM:
+                type = "steam";
                 break;
             default:
                 return null;
