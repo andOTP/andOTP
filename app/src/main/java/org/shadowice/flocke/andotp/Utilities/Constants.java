@@ -112,9 +112,9 @@ public class Constants {
 
     public final static int INT_LENGTH = 4;
 
-    final static int PBKDF2_MIN_ITERATIONS      = 1000;
-    final static int PBKDF2_MAX_ITERATIONS      = 5000;
-    final static int PBKDF2_DEFAULT_ITERATIONS  = 1000;
+    final static int PBKDF2_MIN_ITERATIONS      = 140000;
+    final static int PBKDF2_MAX_ITERATIONS      = 160000;
+    final static int PBKDF2_DEFAULT_ITERATIONS  = 150000;
     final static int PBKDF2_LENGTH              = 256;      // 128-bit encryption key (Password-mode)
     final static int PBKDF2_SALT_LENGTH         = 16;
 
