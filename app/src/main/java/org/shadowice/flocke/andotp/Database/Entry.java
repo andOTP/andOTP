@@ -122,6 +122,8 @@ public class Entry {
             type = OTPType.TOTP;
         } else if (url.getHost().equals("hotp")) {
             type = OTPType.HOTP;
+        } else if (url.getHost().equals("steam")) {
+            type = OTPType.STEAM;
         } else {
             throw new Exception("unknown otp type");
         }
@@ -142,7 +144,7 @@ public class Entry {
             } else {
                 throw new Exception("missing counter for HOTP");
             }
-        } else if (type == OTPType.TOTP) {
+        } else if (type == OTPType.TOTP || type == OTPType.STEAM) {
             if (period != null) {
                 this.period = Integer.parseInt(period);
             } else {
@@ -157,7 +159,7 @@ public class Entry {
         if (digits != null) {
             this.digits = Integer.parseInt(digits);
         } else {
-            this.digits = TokenCalculator.TOTP_DEFAULT_DIGITS;
+            this.digits = this.type == OTPType.STEAM ? TokenCalculator.STEAM_DEFAULT_DIGITS : TokenCalculator.TOTP_DEFAULT_DIGITS;
         }
 
         if (algorithm != null) {
