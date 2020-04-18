@@ -35,16 +35,13 @@ import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class Entry {
     public enum OTPType {
         TOTP, HOTP, STEAM
     }
-    public static Set<OTPType> PublicTypes = EnumSet.of(OTPType.TOTP, OTPType.HOTP);
 
     private static final OTPType DEFAULT_TYPE = OTPType.TOTP;
     private static final int DEFAULT_PERIOD = 30;

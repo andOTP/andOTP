@@ -76,14 +76,9 @@ public class ManualEntryDialog {
         final Button tagsInput = inputView.findViewById(R.id.manual_tags);
 
         final ArrayAdapter<TokenCalculator.HashAlgorithm> algorithmAdapter = new ArrayAdapter<>(callingActivity, android.R.layout.simple_expandable_list_item_1, TokenCalculator.HashAlgorithm.values());
-        final ArrayAdapter<Entry.OTPType> typeAdapter = new ArrayAdapter<>(callingActivity, android.R.layout.simple_expandable_list_item_1, Entry.PublicTypes.toArray(new Entry.OTPType[Entry.PublicTypes.size()]));
-        final ArrayAdapter<Entry.OTPType> fullTypeAdapter = new ArrayAdapter<>(callingActivity, android.R.layout.simple_expandable_list_item_1, Entry.OTPType.values());
+        final ArrayAdapter<Entry.OTPType> typeAdapter = new ArrayAdapter<>(callingActivity, android.R.layout.simple_expandable_list_item_1, Entry.OTPType.values());
 
-        if (settings.getSpecialFeatures())
-            typeInput.setAdapter(fullTypeAdapter);
-        else
-            typeInput.setAdapter(typeAdapter);
-
+        typeInput.setAdapter(typeAdapter);
         algorithmInput.setAdapter(algorithmAdapter);
 
         periodInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_PERIOD));
