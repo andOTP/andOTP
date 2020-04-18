@@ -161,20 +161,9 @@ public class MainActivity extends BaseActivity
             settings.setSortMode(mode);
     }
 
-    private HashMap<String, Boolean> createTagsMap(ArrayList<Entry> entries) {
-        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
-
-        for(Entry entry : entries) {
-            for(String tag : entry.getTags())
-                tagsHashMap.put(tag, settings.getTagToggle(tag));
-        }
-
-        return tagsHashMap;
-    }
-
     private void populateAdapter() {
         adapter.loadEntries();
-        tagsDrawerAdapter.setTags(createTagsMap(adapter.getEntries()));
+        tagsDrawerAdapter.setTags(TagsAdapter.createTagsMap(adapter.getEntries(), settings));
         adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
     }
 

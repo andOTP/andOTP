@@ -57,7 +57,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import org.shadowice.flocke.andotp.Activities.MainActivity;
 import org.shadowice.flocke.andotp.Database.Entry;
-import org.shadowice.flocke.andotp.Dialogs.TagsDialog;
+import org.shadowice.flocke.andotp.Dialogs.ManualEntryDialog;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
@@ -76,7 +76,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.Callable;
 
 import javax.crypto.SecretKey;
 
@@ -123,11 +122,16 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         return entries;
     }
 
+    public void saveAndRefresh(boolean auto_backup) {
+        updateTagsFilter();
+        entriesChanged();
+        saveEntries(auto_backup);
+    }
+
     public void addEntry(Entry e) {
         if (! entries.contains(e)) {
             entries.add(e);
-            entriesChanged();
-            saveEntries(settings.getAutoBackupEncryptedPasswordsEnabled());
+            saveAndRefresh(settings.getAutoBackupEncryptedPasswordsEnabled());
         } else {
             Toast.makeText(context, R.string.toast_entry_exists, Toast.LENGTH_LONG).show();
         }
@@ -141,6 +145,28 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         displayedEntries = sortEntries(entries);
         filterByTags(tagsFilter);
         notifyDataSetChanged();
+    }
+
+    public void updateTagsFilter() {
+        List<String> inUseTags = getTags();
+
+        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+        for(String tag: tagsFilterAdapter.getTags()) {
+            if(inUseTags.contains(tag))
+                tagsHashMap.put(tag, false);
+        }
+        for(String tag: tagsFilterAdapter.getActiveTags()) {
+            if(inUseTags.contains(tag))
+                tagsHashMap.put(tag, true);
+        }
+        for(String tag: getTags()) {
+            if(inUseTags.contains(tag))
+                if(!tagsHashMap.containsKey(tag))
+                    tagsHashMap.put(tag, true);
+        }
+
+        tagsFilterAdapter.setTags(tagsHashMap);
+        tagsFilter = tagsFilterAdapter.getActiveTags();
     }
 
     public void saveEntries(boolean auto_backup) {
@@ -439,96 +465,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         return true;
     }
 
-    public void editEntryIssuer(final int pos) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-        int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
-        int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
-
-        final EditText input = new EditText(context);
-        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        input.setText(displayedEntries.get(pos).getIssuer());
-        input.setSingleLine();
-
-        FrameLayout container = new FrameLayout(context);
-        container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
-        container.addView(input);
-
-        builder.setTitle(R.string.dialog_title_rename)
-                .setView(container)
-                .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        int realIndex = getRealIndex(pos);
-                        String newIssuer = input.getEditableText().toString();
-
-                        displayedEntries.get(pos).setIssuer(newIssuer);
-                        if (sortMode == SortMode.ISSUER) {
-                            displayedEntries = sortEntries(displayedEntries);
-                            notifyDataSetChanged();
-                        } else {
-                            notifyItemChanged(pos);
-                        }
-
-                        Entry e = entries.get(realIndex);
-                        e.setIssuer(newIssuer);
-
-                        DatabaseHelper.saveDatabase(context, entries, encryptionKey);
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                })
-                .create()
-                .show();
-    }
-
-    public void editEntryLabel(final int pos) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-        int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
-        int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
-
-        final EditText input = new EditText(context);
-        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        input.setText(displayedEntries.get(pos).getLabel());
-        input.setSingleLine();
-
-        FrameLayout container = new FrameLayout(context);
-        container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
-        container.addView(input);
-
-        builder.setTitle(R.string.dialog_title_rename)
-                .setView(container)
-                .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        int realIndex = getRealIndex(pos);
-                        String newLabel = input.getEditableText().toString();
-
-                        displayedEntries.get(pos).setLabel(newLabel);
-                        if (sortMode == SortMode.LABEL) {
-                            displayedEntries = sortEntries(displayedEntries);
-                            notifyDataSetChanged();
-                        } else {
-                            notifyItemChanged(pos);
-                        }
-
-                        Entry e = entries.get(realIndex);
-                        e.setLabel(newLabel);
-
-                        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                })
-                .create()
-                .show();
-    }
-
     public void changeThumbnail(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -613,53 +549,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         alert.show();
     }
 
-
-    public void editEntryTags(final int pos) {
-        final int realPos = getRealIndex(pos);
-        final Entry entry = entries.get(realPos);
-
-        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
-        for(String tag: entry.getTags()) {
-            tagsHashMap.put(tag, true);
-        }
-        for(String tag: getTags()) {
-            if(!tagsHashMap.containsKey(tag))
-                tagsHashMap.put(tag, false);
-        }
-        final TagsAdapter tagsAdapter = new TagsAdapter(context, tagsHashMap);
-
-        final Callable tagsCallable = new Callable() {
-            @Override
-            public Object call() throws Exception {
-                entries.get(realPos).setTags(tagsAdapter.getActiveTags());
-                saveEntries(settings.getAutoBackupEncryptedFullEnabled());
-
-                List<String> inUseTags = getTags();
-
-                HashMap<String, Boolean> tagsHashMap = new HashMap<>();
-                for(String tag: tagsFilterAdapter.getTags()) {
-                    if(inUseTags.contains(tag))
-                        tagsHashMap.put(tag, false);
-                }
-                for(String tag: tagsFilterAdapter.getActiveTags()) {
-                    if(inUseTags.contains(tag))
-                        tagsHashMap.put(tag, true);
-                }
-                for(String tag: getTags()) {
-                    if(inUseTags.contains(tag))
-                        if(!tagsHashMap.containsKey(tag))
-                            tagsHashMap.put(tag, true);
-                }
-
-                tagsFilterAdapter.setTags(tagsHashMap);
-                filterByTags(tagsFilterAdapter.getActiveTags());
-                return null;
-            }
-        };
-
-        TagsDialog.show(context, tagsAdapter, tagsCallable, tagsCallable);
-    }
-
     public void removeItem(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -727,17 +616,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             public boolean onMenuItemClick(MenuItem item) {
                 int id = item.getItemId();
 
-                if (id == R.id.menu_popup_editIssuer) {
-                    editEntryIssuer(pos);
-                    return true;
-                } else if (id == R.id.menu_popup_editLabel) {
-                    editEntryLabel(pos);
+                if (id == R.id.menu_popup_edit) {
+                    ManualEntryDialog.show((MainActivity) context, settings, EntriesCardAdapter.this, entries.get(getRealIndex(pos)));
                     return true;
                 } else if(id == R.id.menu_popup_changeImage) {
                     changeThumbnail(pos);
-                    return true;
-                } else if (id == R.id.menu_popup_editTags) {
-                    editEntryTags(pos);
                     return true;
                 } else if (id == R.id.menu_popup_remove) {
                     removeItem(pos);

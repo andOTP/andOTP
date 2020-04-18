@@ -2,26 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_popup_editIssuer"
-        android:title="@string/menu_popup_edit_issuer" />
-    <item
-        android:id="@+id/menu_popup_editLabel"
-        android:title="@string/menu_popup_edit_label" />
+        android:id="@+id/menu_popup_edit"
+        android:title="@string/menu_popup_edit" />
 
     <item
         android:id="@+id/menu_popup_changeImage"
         android:title="@string/menu_popup_change_image" />
 
     <item
-        android:id="@+id/menu_popup_editTags"
-        android:title="@string/menu_popup_edit_tags" />
+        android:id="@+id/menu_popup_show_qr_code"
+        android:title="@string/menu_popup_show_qr_code" />
 
     <item
         android:id="@+id/menu_popup_remove"
         android:title="@string/menu_popup_remove" />
-
-    <item
-        android:id="@+id/menu_popup_show_qr_code"
-        android:title="@string/menu_popup_show_qr_code" />
 
 </menu>

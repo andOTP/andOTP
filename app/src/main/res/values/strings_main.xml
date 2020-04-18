@@ -52,10 +52,8 @@
     <string name="menu_sort_last_used">Last used</string>
     <string name="menu_sort_most_used">Most used</string>
 
-    <string name="menu_popup_edit_issuer">Edit issuer</string>
-    <string name="menu_popup_edit_label">Edit label</string>
+    <string name="menu_popup_edit">Edit</string>
     <string name="menu_popup_change_image">Change image</string>
-    <string name="menu_popup_edit_tags">Edit tags</string>
     <string name="menu_popup_remove">Remove</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
 

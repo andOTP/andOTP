@@ -31,6 +31,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 
+import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.Utilities.Settings;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -113,5 +116,16 @@ public class TagsAdapter extends ArrayAdapter<String> {
         this.clear();
         this.addAll(getTags());
         notifyDataSetChanged();
+    }
+
+    public static HashMap<String, Boolean> createTagsMap(ArrayList<Entry> entries, Settings settings) {
+        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+
+        for(Entry entry : entries) {
+            for(String tag : entry.getTags())
+                tagsHashMap.put(tag, settings.getTagToggle(tag));
+        }
+
+        return tagsHashMap;
     }
 }

@@ -55,7 +55,12 @@ import java.util.concurrent.Callable;
 
 public class ManualEntryDialog {
     public static void show(final MainActivity callingActivity, Settings settings, final EntriesCardAdapter adapter) {
+        show(callingActivity, settings, adapter, null);
+    }
+
+    public static void show(final MainActivity callingActivity, Settings settings, final EntriesCardAdapter adapter, Entry oldEntry) {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        boolean isNewEntry = oldEntry == null;
 
         ViewGroup container = callingActivity.findViewById(R.id.main_content);
         View inputView = callingActivity.getLayoutInflater().inflate(R.layout.dialog_manual_entry, container, false);
@@ -106,17 +111,17 @@ public class ManualEntryDialog {
                     periodLayout.setVisibility(View.VISIBLE);
 
                     digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
-                    digitsInput.setEnabled(true);
-                    periodInput.setEnabled(true);
-                    algorithmInput.setEnabled(true);
+                    digitsInput.setEnabled(isNewEntry);
+                    periodInput.setEnabled(isNewEntry);
+                    algorithmInput.setEnabled(isNewEntry);
                 } else if (type == Entry.OTPType.HOTP) {
                     counterLayout.setVisibility(View.VISIBLE);
                     periodLayout.setVisibility(View.GONE);
 
                     digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
-                    digitsInput.setEnabled(true);
-                    periodInput.setEnabled(true);
-                    algorithmInput.setEnabled(true);
+                    digitsInput.setEnabled(isNewEntry);
+                    periodInput.setEnabled(isNewEntry);
+                    algorithmInput.setEnabled(isNewEntry);
                 }
             }
 
@@ -202,19 +207,37 @@ public class ManualEntryDialog {
                         if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
                             int period = Integer.parseInt(periodInput.getText().toString());
 
-                            Entry e = new Entry(type, secret, period, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
-                            e.updateOTP();
-                            e.setLastUsed(System.currentTimeMillis());
-                            adapter.addEntry(e);
+                            if (oldEntry == null) {
+                                Entry e = new Entry(type, secret, period, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
+                                e.updateOTP();
+                                e.setLastUsed(System.currentTimeMillis());
+
+                                adapter.addEntry(e);
+                            } else {
+                                oldEntry.setIssuer(issuer);
+                                oldEntry.setLabel(label);
+                                oldEntry.setTags(tagsAdapter.getActiveTags());
+
+                                adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
+                            }
 
                             callingActivity.refreshTags();
                         } else if (type == Entry.OTPType.HOTP) {
                             long counter = Long.parseLong(counterInput.getText().toString());
 
-                            Entry e = new Entry(type, secret, counter, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
-                            e.updateOTP();
-                            e.setLastUsed(System.currentTimeMillis());
-                            adapter.addEntry(e);
+                            if (oldEntry == null) {
+                                Entry e = new Entry(type, secret, counter, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
+                                e.updateOTP();
+                                e.setLastUsed(System.currentTimeMillis());
+
+                                adapter.addEntry(e);
+                            } else {
+                                oldEntry.setIssuer(issuer);
+                                oldEntry.setLabel(label);
+                                oldEntry.setTags(tagsAdapter.getActiveTags());
+
+                                adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
+                            }
                         }
                     }
                 })
@@ -269,5 +292,38 @@ public class ManualEntryDialog {
         periodInput.addTextChangedListener(watcher);
         digitsInput.addTextChangedListener(watcher);
         counterInput.addTextChangedListener(watcher);
+
+        if (!isNewEntry) {
+            Entry.OTPType oldType = oldEntry.getType();
+
+            typeInput.setSelection(typeAdapter.getPosition(oldType));
+            issuerInput.setText(oldEntry.getIssuer());
+            labelInput.setText(oldEntry.getLabel());
+            secretInput.setText(oldEntry.getSecretEncoded());
+            digitsInput.setText(Integer.toString(oldEntry.getDigits()));
+            algorithmInput.setSelection(algorithmAdapter.getPosition(oldEntry.getAlgorithm()));
+
+            if (oldType == Entry.OTPType.TOTP || oldType == Entry.OTPType.STEAM) {
+                periodInput.setText(Integer.toString(oldEntry.getPeriod()));
+            } else if (oldType == Entry.OTPType.HOTP) {
+                counterInput.setText(Long.toString(oldEntry.getCounter()));
+            }
+
+            for(String tag: oldEntry.getTags()) {
+                tagsAdapter.setTagState(tag, true);
+            }
+            try {
+                tagsCallable.call();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            typeInput.setEnabled(false);
+            secretInput.setEnabled(false);
+            digitsInput.setEnabled(false);
+            algorithmInput.setEnabled(false);
+            periodInput.setEnabled(false);
+            counterInput.setEnabled(false);
+        }
     }
 }

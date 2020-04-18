@@ -340,6 +340,10 @@ public class Entry {
         return secret;
     }
 
+    public String getSecretEncoded() {
+        return new String(new Base32().encode(secret));
+    }
+
     public void setSecret(byte[] secret) {
         this.secret = secret;
     }
