@@ -22,6 +22,8 @@
 
 package org.shadowice.flocke.andotp.Utilities;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -31,6 +33,9 @@ import android.graphics.PorterDuffColorFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.widget.Toast;
+
+import org.shadowice.flocke.andotp.R;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -124,5 +129,13 @@ public class Tools {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.ENGLISH);
         Date now = Calendar.getInstance().getTime();
         return df.format(now);
+    }
+
+    public static void copyToClipboard(Context context, String text) {
+        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText(context.getString(R.string.label_clipboard_content), text);
+        clipboard.setPrimaryClip(clip);
+
+        Toast.makeText(context, R.string.toast_copied_to_clipboard, Toast.LENGTH_LONG).show();
     }
 }

@@ -303,7 +303,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
             @Override
             public void onCopyButtonClicked(String text, int position) {
-                copyToClipboard(text);
+                Tools.copyToClipboard(context, text);
                 updateLastUsedAndFrequency(position, getRealIndex(position));
                 if(context != null && settings.isMinimizeAppOnCopyEnabled()) {
                     ((MainActivity)context).moveTaskToBack(true);
@@ -634,14 +634,6 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             }
         });
         popup.show();
-    }
-
-    private void copyToClipboard(String text) {
-        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText(context.getString(R.string.label_clipboard_content), text);
-        clipboard.setPrimaryClip(clip);
-
-        Toast.makeText(context, R.string.toast_copied_to_clipboard, Toast.LENGTH_LONG).show();
     }
 
     public void setSortMode(SortMode mode) {
