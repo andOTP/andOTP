@@ -36,6 +36,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
@@ -72,6 +73,7 @@ public class ManualEntryDialog {
         final EditText issuerInput = inputView.findViewById(R.id.manual_issuer);
         final EditText labelInput = inputView.findViewById(R.id.manual_label);
         final EditText secretInput = inputView.findViewById(R.id.manual_secret);
+        final TextView secretView = inputView.findViewById(R.id.manual_secret_view);
         final EditText counterInput = inputView.findViewById(R.id.manual_counter);
         final EditText periodInput = inputView.findViewById(R.id.manual_period);
         final EditText digitsInput = inputView.findViewById(R.id.manual_digits);
@@ -299,7 +301,7 @@ public class ManualEntryDialog {
             typeInput.setSelection(typeAdapter.getPosition(oldType));
             issuerInput.setText(oldEntry.getIssuer());
             labelInput.setText(oldEntry.getLabel());
-            secretInput.setText(oldEntry.getSecretEncoded());
+            secretView.setText(oldEntry.getSecretEncoded());
             digitsInput.setText(Integer.toString(oldEntry.getDigits()));
             algorithmInput.setSelection(algorithmAdapter.getPosition(oldEntry.getAlgorithm()));
 
@@ -318,8 +320,15 @@ public class ManualEntryDialog {
                 e.printStackTrace();
             }
 
-            typeInput.setEnabled(false);
+            secretInput.setVisibility(View.GONE);
+            secretView.setVisibility(View.VISIBLE);
+
+            // Little hack: match the color and background of the TextView to that of a disabled EditText
             secretInput.setEnabled(false);
+            secretView.setBackground(secretInput.getBackground());
+            secretView.setTextColor(secretInput.getTextColors().getColorForState(secretInput.getDrawableState(), R.color.colorPrimary));
+
+            typeInput.setEnabled(false);
             digitsInput.setEnabled(false);
             algorithmInput.setEnabled(false);
             periodInput.setEnabled(false);
