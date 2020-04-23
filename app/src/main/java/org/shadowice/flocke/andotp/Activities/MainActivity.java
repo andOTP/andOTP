@@ -227,6 +227,7 @@ public class MainActivity extends BaseActivity
         });
 
         final ProgressBar progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(settings.isHideGlobalTimeoutEnabled() ? View.GONE : View.VISIBLE);
 
         RecyclerView recList = findViewById(R.id.cardList);
         recList.setHasFixedSize(true);
@@ -269,13 +270,15 @@ public class MainActivity extends BaseActivity
         {
             @Override
             public void run() {
-                int progress =  (int) (TokenCalculator.TOTP_DEFAULT_PERIOD - (System.currentTimeMillis() / 1000) % TokenCalculator.TOTP_DEFAULT_PERIOD) ;
-                progressBar.setProgress(progress*100);
+                if (!settings.isHideGlobalTimeoutEnabled()) {
+                    int progress = (int) (TokenCalculator.TOTP_DEFAULT_PERIOD - (System.currentTimeMillis() / 1000) % TokenCalculator.TOTP_DEFAULT_PERIOD);
+                    progressBar.setProgress(progress * 100);
 
-                ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", (progress-1)*100);
-                animation.setDuration(animatorDuration);
-                animation.setInterpolator(new LinearInterpolator());
-                animation.start();
+                    ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", (progress - 1) * 100);
+                    animation.setDuration(animatorDuration);
+                    animation.setInterpolator(new LinearInterpolator());
+                    animation.start();
+                }
 
                 adapter.updateTimeBasedTokens();
 
@@ -285,7 +288,7 @@ public class MainActivity extends BaseActivity
 
         setupDrawer();
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             setFilterString(savedInstanceState.getString("filterString", ""));
         }
     }
@@ -403,7 +406,8 @@ public class MainActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_enable_screenshot)) ||
                 key.equals(getString(R.string.settings_key_tag_functionality)) ||
                 key.equals(getString(R.string.settings_key_label_highlight_token)) ||
-                key.equals(getString(R.string.settings_key_card_layout))) {
+                key.equals(getString(R.string.settings_key_card_layout)) ||
+                key.equals(getString(R.string.settings_key_hide_global_timeout))) {
             recreate();
         }
     }

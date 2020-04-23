@@ -161,6 +161,12 @@
             android:summary="@string/settings_desc_label_highlight_token"
             android:defaultValue="true" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_hide_global_timeout"
+            android:title="@string/settings_title_hide_global_timeout"
+            android:summary="@string/settings_desc_hide_global_timeout"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

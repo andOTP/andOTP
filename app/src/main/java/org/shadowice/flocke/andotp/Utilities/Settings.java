@@ -579,4 +579,8 @@ public class Settings {
     public boolean isHighlightTokenOptionEnabled() {
         return getBoolean(R.string.settings_key_label_highlight_token,true);
     }
+
+    public boolean isHideGlobalTimeoutEnabled() {
+        return getBoolean(R.string.settings_key_hide_global_timeout, false);
+    }
 }
