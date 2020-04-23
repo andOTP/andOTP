@@ -583,4 +583,8 @@ public class Settings {
     public boolean isHideGlobalTimeoutEnabled() {
         return getBoolean(R.string.settings_key_hide_global_timeout, false);
     }
+
+    public boolean isShowIndividualTimeoutsEnabled() {
+        return getBoolean(R.string.settings_key_show_individual_timeouts, false);
+    }
 }

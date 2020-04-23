@@ -198,9 +198,13 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, entry.getIssuer(), entry.getLabel(), thumbnailSize, entry.getThumbnail()));
         }
 
-        if (entry.isTimeBased() && entry.hasNonDefaultPeriod()) {
-            progressBar.setVisibility(View.VISIBLE);
-            updateProgress(entry);
+        if (entry.isTimeBased() && (entry.hasNonDefaultPeriod() || settings.isShowIndividualTimeoutsEnabled())) {
+            if (!this.tapToReveal || entry.isVisible()) {
+                progressBar.setVisibility(View.VISIBLE);
+                updateProgress(entry);
+            } else {
+                progressBar.setVisibility(View.INVISIBLE);
+            }
         } else {
             progressBar.setVisibility(View.GONE);
         }

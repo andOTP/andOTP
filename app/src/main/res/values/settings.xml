@@ -34,6 +34,7 @@
     <string name="settings_key_search_includes" translatable="false">pref_search_includes</string>
     <string name="settings_key_label_highlight_token" translatable="false">pref_label_highlight_token</string>
     <string name="settings_key_hide_global_timeout" translatable="false">pref_hide_global_timeout</string>
+    <string name="settings_key_show_individual_timeouts" translatable="false">pref_show_individual_timeouts</string>
 
     <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
