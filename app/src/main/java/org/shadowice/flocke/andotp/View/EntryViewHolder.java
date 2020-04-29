@@ -35,6 +35,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
@@ -135,6 +136,20 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
                     callback.onCounterLongPressed(getAdapterPosition());
 
                 return false;
+            }
+        });
+
+        card.setOnClickListener(new SimpleDoubleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                if (callback != null)
+                    callback.onCardSingleClicked(getAdapterPosition(), value.getTag().toString());
+            }
+
+            @Override
+            public void onDoubleClick(View v) {
+                if (callback != null)
+                    callback.onCardDoubleClicked(getAdapterPosition(), value.getTag().toString());
             }
         });
 
@@ -264,19 +279,10 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             valueLayout.setVisibility(View.GONE);
             coverLayout.setVisibility(View.VISIBLE);
             visibleImg.setVisibility(View.VISIBLE);
-
-            card.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    callback.onCardClicked(getAdapterPosition());
-                }
-            });
         } else {
             valueLayout.setVisibility(View.VISIBLE);
             coverLayout.setVisibility(View.GONE);
             visibleImg.setVisibility(View.GONE);
-
-            card.setOnClickListener(null);
         }
     }
 
@@ -305,7 +311,8 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         void onMenuButtonClicked(View parentView, int position);
         void onCopyButtonClicked(String text, int position);
 
-        void onCardClicked(int position);
+        void onCardSingleClicked(int position, String text);
+        void onCardDoubleClicked(int position, String text);
 
         void onCounterClicked(int position);
         void onCounterLongPressed(int position);

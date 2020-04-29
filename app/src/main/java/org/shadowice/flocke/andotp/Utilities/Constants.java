@@ -64,6 +64,10 @@ public class Constants {
         OFF, NEW_ENTRIES, ALL_EDITS
     }
 
+    public enum TapMode {
+        NOTHING, REVEAL, COPY, COPY_BACKGROUND
+    }
+
     // Intents (Format: A0x with A = parent Activity, x = number of the intent)
     public final static int INTENT_MAIN_AUTHENTICATE            = 100;
     public final static int INTENT_MAIN_SETTINGS                = 101;

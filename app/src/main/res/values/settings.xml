@@ -3,7 +3,7 @@
     <!-- Keys -->
     <string name="settings_key_cat_security" translatable="false">pref_cat_security</string>
 
-    <string name="settings_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>
+    <string name="settings_key_tap_to_reveal" translatable="false">pref_tap_to_reveal</string>  <!-- Deprecated -->
     <string name="settings_key_tap_to_reveal_timeout" translatable="false">pref_tap_to_reveal_timeout</string>
     <string name="settings_key_auth" translatable="false">pref_auth</string>
     <string name="settings_key_auth_password" translatable="false">pref_auth_password</string>    <!-- Deprecated -->
@@ -27,6 +27,8 @@
     <string name="settings_key_label_size" translatable="false">pref_label_size_sp</string>
     <string name="settings_key_card_layout" translatable="false">pref_card_layout</string>
     <string name="settings_key_label_scroll" translatable="false">pref_label_scroll</string>
+    <string name="settings_key_tap_single" translatable="false">pref_tap_single</string>
+    <string name="settings_key_tap_double" translatable="false">pref_tap_double</string>
     <string name="settings_key_minimize_on_copy" translatable="false">pref_minimize_on_copy</string>
     <string name="settings_key_thumbnail_size" translatable="false">pref_thumbnail_size</string>
     <string name="settings_key_split_group_size" translatable="false">pref_split_group_size</string>
@@ -70,6 +72,8 @@
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">18</integer>
     <string name="settings_default_card_layout" translatable="false">default</string>
+    <string name="settings_default_tap_single" translatable="false">nothing</string>
+    <string name="settings_default_tap_double" translatable="false">nothing</string>
     <string name="settings_default_thumbnail_size" translatable="false">46dp</string>
     <string name="settings_default_split_group_size" translatable="false">3</string>
     <string name="settings_default_tag_functionality" translatable="false">or</string>
@@ -107,6 +111,13 @@
         <item>compact</item>
         <item>default</item>
         <item>full</item>
+    </string-array>
+
+    <string-array name="settings_values_tap" translatable="false">
+        <item>nothing</item>
+        <item>reveal</item>
+        <item>copy</item>
+        <item>copy_background</item>
     </string-array>
 
     <string-array name="settings_values_search_includes" translatable="false">

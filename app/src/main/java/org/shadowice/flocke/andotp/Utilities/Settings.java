@@ -88,6 +88,11 @@ public class Settings {
             remove(R.string.settings_key_lang);
         }
 
+        if (settings.contains(getResString(R.string.settings_key_tap_to_reveal))) {
+            setString(R.string.settings_key_tap_single, Constants.TapMode.REVEAL.toString().toLowerCase(Locale.ENGLISH));
+            remove(R.string.settings_key_tap_to_reveal);
+        }
+
         if (settings.contains(getResString(R.string.settings_key_backup_password))) {
             String plainPassword = getBackupPassword();
 
@@ -209,7 +214,7 @@ public class Settings {
 
 
     public boolean getTapToReveal() {
-        return getBoolean(R.string.settings_key_tap_to_reveal, false);
+        return getTapSingle() == Constants.TapMode.REVEAL || getTapDouble() == Constants.TapMode.REVEAL;
     }
 
     public int getTapToRevealTimeout() {
@@ -586,5 +591,15 @@ public class Settings {
 
     public boolean isShowIndividualTimeoutsEnabled() {
         return getBoolean(R.string.settings_key_show_individual_timeouts, false);
+    }
+
+    public Constants.TapMode getTapSingle() {
+        String singleTap = getString(R.string.settings_key_tap_single, R.string.settings_default_tap_single);
+        return Constants.TapMode.valueOf(singleTap.toUpperCase(Locale.ENGLISH));
+    }
+
+    public Constants.TapMode getTapDouble() {
+        String doubleTap = getString(R.string.settings_key_tap_double, R.string.settings_default_tap_double);
+        return Constants.TapMode.valueOf(doubleTap.toUpperCase(Locale.ENGLISH));
     }
 }

@@ -400,7 +400,8 @@ public class MainActivity extends BaseActivity
             adapter.notifyDataSetChanged();
         } else if (key.equals(getString(R.string.settings_key_search_includes))) {
             adapter.clearFilter();
-        } else if (key.equals(getString(R.string.settings_key_tap_to_reveal)) ||
+        } else if (key.equals(getString(R.string.settings_key_tap_single)) ||
+                key.equals(getString(R.string.settings_key_tap_double)) ||
                 key.equals(getString(R.string.settings_key_theme)) ||
                 key.equals(getString(R.string.settings_key_locale)) ||
                 key.equals(getString(R.string.settings_key_enable_screenshot)) ||

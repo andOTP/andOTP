@@ -26,6 +26,8 @@
     <string name="settings_title_card_layout">Card layout</string>
     <string name="settings_title_label_size">Label font size</string>
     <string name="settings_title_label_scroll">Scroll label</string>
+    <string name="settings_title_tap_single">Single-tap</string>
+    <string name="settings_title_tap_double">Double-tap</string>
     <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
     <string name="settings_title_split_group_size">Split Token with space</string>
     <string name="settings_title_tag_functionality">Tag selection behavior</string>
@@ -179,6 +181,13 @@
         <item>Compact</item>
         <item>Default</item>
         <item>Full</item>
+    </string-array>
+
+    <string-array name="settings_entries_tap">
+        <item>Nothing</item>
+        <item>Reveal/Hide</item>
+        <item>Copy</item>
+        <item>Copy and go to background</item>
     </string-array>
 
     <string-array name="settings_entries_search_includes">
