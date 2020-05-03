@@ -23,6 +23,7 @@
 
 package org.shadowice.flocke.andotp.Utilities;
 
+import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -114,5 +115,9 @@ public class TokenCalculator {
         }
 
         return r;
+    }
+
+    public static String Pin(byte[] secret) throws UnsupportedEncodingException {
+        return new String(secret, "UTF-8");
     }
 }

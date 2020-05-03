@@ -40,7 +40,7 @@ import java.util.Objects;
 
 public class Entry {
     public enum OTPType {
-        TOTP, HOTP, STEAM
+        TOTP, HOTP, STEAM, PIN
     }
 
     private static final OTPType DEFAULT_TYPE = OTPType.TOTP;
@@ -124,6 +124,9 @@ public class Entry {
                 break;
             case "steam":
                 type = OTPType.STEAM;
+                break;
+            case "pin":
+                type = OTPType.PIN;
                 break;
             default:
                 throw new Exception("unknown otp type");
@@ -291,6 +294,9 @@ public class Entry {
             case STEAM:
                 type = "steam";
                 break;
+            case PIN:
+                // qr code not supported
+                return null;
             default:
                 return null;
         }
@@ -464,6 +470,13 @@ public class Entry {
             }
         } else if (type == OTPType.HOTP) {
             currentOTP = TokenCalculator.HOTP(secret, counter, digits, algorithm);
+            return true;
+        } else if (type == OTPType.PIN) {
+            try {
+                currentOTP = TokenCalculator.Pin(secret);
+            } catch (java.io.UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             return true;
         } else {
             return false;

@@ -41,6 +41,8 @@ import android.widget.TextView;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 
+import org.apache.commons.codec.binary.Base32;
+
 import org.shadowice.flocke.andotp.Activities.MainActivity;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
@@ -49,6 +51,7 @@ import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 import org.shadowice.flocke.andotp.View.EntriesCardAdapter;
 import org.shadowice.flocke.andotp.View.TagsAdapter;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -102,6 +105,17 @@ public class ManualEntryDialog {
                     periodLayout.setVisibility(View.VISIBLE);
 
                     digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.STEAM_DEFAULT_DIGITS));
+                    periodInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_PERIOD));
+                    algorithmInput.setSelection(algorithmAdapter.getPosition(TokenCalculator.HashAlgorithm.SHA1));
+
+                    digitsInput.setEnabled(false);
+                    periodInput.setEnabled(false);
+                    algorithmInput.setEnabled(false);
+                } else if (type == Entry.OTPType.PIN) {
+                    counterLayout.setVisibility(View.GONE);
+                    periodLayout.setVisibility(View.VISIBLE);
+
+                    digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
                     periodInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_PERIOD));
                     algorithmInput.setSelection(algorithmAdapter.getPosition(TokenCalculator.HashAlgorithm.SHA1));
 
@@ -240,6 +254,27 @@ public class ManualEntryDialog {
 
                                 adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
                             }
+                        } else if (type == Entry.OTPType.PIN) {
+                            if (oldEntry == null) {
+                                try {
+                                    secret = (String) new Base32().encodeAsString(secret.getBytes("UTF-8"));
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
+                                Entry e = new Entry(type, secret, 0, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
+                                e.updateOTP();
+                                e.setLastUsed(System.currentTimeMillis());
+
+                                adapter.addEntry(e);
+                            } else {
+                                oldEntry.setIssuer(issuer);
+                                oldEntry.setLabel(label);
+                                oldEntry.setTags(tagsAdapter.getActiveTags());
+
+                                adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
+                            }
+
+                            callingActivity.refreshTags();
                         }
                     }
                 })
