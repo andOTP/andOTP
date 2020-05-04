@@ -261,6 +261,8 @@ public class IntroScreenActivity extends IntroActivity {
             if (desc != null) {
                 if (encryptionType == Constants.EncryptionType.KEYSTORE) {
                     desc.setText(R.string.intro_slide3_desc_keystore);
+
+                    selection.setSelection(selectionMapping.indexOfValue(Constants.AuthMethod.NONE));
                 } else if (encryptionType == Constants.EncryptionType.PASSWORD) {
                     desc.setText(R.string.intro_slide3_desc_password);
 
@@ -279,21 +281,24 @@ public class IntroScreenActivity extends IntroActivity {
                 selectionMapping.put(i, authValues[i]);
         }
 
-        private void displayWarning(int resId) {
-            displayWarning(getString(resId));
+        private void updateWarning(int resId) {
+            updateWarning(getString(resId));
         }
 
-        private void displayWarning(String warning) {
-            authWarnings.setVisibility(View.VISIBLE);
+        private void updateWarning(String warning) {
             authWarnings.setText(warning);
         }
 
         private void hideWarning() {
             authWarnings.setVisibility(View.GONE);
+            authWarnings.setText(null);
         }
 
         public void flashWarning() {
-            if (authWarnings.getVisibility() == View.VISIBLE) {
+            if (authWarnings.getText().toString().isEmpty()) {
+                authWarnings.setVisibility(View.GONE);
+            } else {
+                authWarnings.setVisibility(View.VISIBLE);
                 ObjectAnimator animator = ObjectAnimator.ofInt(authWarnings, "backgroundColor",
                         Color.TRANSPARENT, getResources().getColor(R.color.colorAccent), Color.TRANSPARENT);
                 animator.setDuration(500);
@@ -405,6 +410,11 @@ public class IntroScreenActivity extends IntroActivity {
                         UIHelper.hideKeyboard(getIntroActivity(), root);
                     }
 
+                    passwordInput.setText(null);
+                    passwordConfirm.setText(null);
+
+                    authWarnings.setVisibility(View.GONE);
+
                     updateNavigation();
                 }
 
@@ -446,38 +456,36 @@ public class IntroScreenActivity extends IntroActivity {
 
                 if (! password.isEmpty()) {
                     if (password.length() < minLength) {
-                        displayWarning(lengthWarning);
+                        updateWarning(lengthWarning);
                         return false;
                     } else {
                         if (! confirm.isEmpty() && confirm.equals(password)) {
                             hideWarning();
                             return true;
                         } else {
-                            displayWarning(confirmPasswordWarning);
+                            updateWarning(confirmPasswordWarning);
                             return false;
                         }
                     }
                 } else {
-                    displayWarning(noPasswordWarning);
+                    updateWarning(noPasswordWarning);
                     return false;
                 }
             } else if (authMethod == Constants.AuthMethod.DEVICE) {
                 KeyguardManager km = (KeyguardManager) getContext().getSystemService(KEYGUARD_SERVICE);
 
                 if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    displayWarning(R.string.settings_toast_auth_device_pre_lollipop);
+                    updateWarning(R.string.settings_toast_auth_device_pre_lollipop);
                     return false;
                 } else if (! km.isKeyguardSecure()) {
-                    displayWarning(R.string.settings_toast_auth_device_not_secure);
+                    updateWarning(R.string.settings_toast_auth_device_not_secure);
                     return false;
                 }
 
                 hideWarning();
-
                 return true;
             } else {
                 hideWarning();
-
                 return true;
             }
         }
