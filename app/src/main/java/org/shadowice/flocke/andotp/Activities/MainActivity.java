@@ -39,6 +39,7 @@ import android.preference.PreferenceManager;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.lifecycle.DefaultLifecycleObserver;
@@ -50,6 +51,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -107,6 +109,7 @@ public class MainActivity extends BaseActivity
     private Handler handler;
     private Runnable handlerTask;
 
+    private DrawerLayout tagsDrawerLayout;
     private ListView tagsDrawerListView;
     private TagsAdapter tagsDrawerAdapter;
     private ActionBarDrawerToggle tagsToggle;
@@ -645,8 +648,7 @@ public class MainActivity extends BaseActivity
 
     private void setupDrawer() {
         tagsDrawerListView = findViewById(R.id.tags_list_in_drawer);
-
-        final DrawerLayout tagsDrawerLayout = findViewById(R.id.drawer_layout);
+        tagsDrawerLayout = findViewById(R.id.drawer_layout);
 
         tagsToggle = new ActionBarDrawerToggle(this, tagsDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
             @Override
@@ -858,5 +860,24 @@ public class MainActivity extends BaseActivity
             if (MainActivity.this.settings.getRelockOnBackground())
                 MainActivity.this.requireAuthentication = true;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (speedDial.isOpen()) {
+                speedDial.close();
+                return true;
+            }
+
+            if (tagsDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                tagsDrawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+
+            return super.onKeyDown(keyCode, event);
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 }
