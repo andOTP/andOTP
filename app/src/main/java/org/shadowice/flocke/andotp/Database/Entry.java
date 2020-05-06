@@ -523,4 +523,14 @@ public class Entry {
     public int getColor() {
         return color;
     }
+
+    public static boolean validateSecret(String secret) {
+        try {
+            new Base32().decode(secret.toUpperCase());
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
 }

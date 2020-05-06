@@ -73,6 +73,9 @@
     <string name="toast_qr_unsuported">QR Code not supported</string>
     <string name="toast_qr_failed_to_generate">Failed to generate QR Code</string>
 
+    <!-- Errors -->
+    <string name="error_invalid_secret">Invalid secret</string>
+
     <!-- Dialogs -->
     <string name="dialog_title_auth">Authenticate</string>
     <string name="dialog_title_manual_entry">Enter details</string>
