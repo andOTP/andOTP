@@ -85,6 +85,7 @@
     <string name="dialog_title_used_tokens">Tokens usage</string>
     <string name="dialog_title_keystore_error">KeyStore error</string>
     <string name="dialog_title_qr_code">QR Code</string>
+    <string name="dialog_title_android21_depreaction">Deprecation notice</string>
 
     <string name="dialog_title_enter_password">Enter password</string>
 
@@ -101,6 +102,12 @@
     <string name="dialog_msg_keystore_error">Failed to load the encryption key from the KeyStore.
         <b>Any entries that are added will get lost.</b>\n\nTo still be able to use andOTP you can go
         to the <b>Settings</b> and switch the <b>Database encryption</b> to <b>Password / PIN</b>.</string>
+
+    <string name="dialog_msg_android21_deprecation">This will be the last version of andOTP to
+        support Android versions below 5.1 (Lollipop). The increased effort required to maintain a
+        separate storage implementation just for those older versions as well as their low market
+        shares make a continued support infeasible for our small team.\n\nThis message will not be
+        shown again.</string>
 
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Scan QR code</string>
