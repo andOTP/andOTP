@@ -255,7 +255,8 @@ public class EntryThumbnail {
         YandexMoney(R.drawable.thumb_yandex_money),
         Zapier(R.drawable.thumb_zapier),
         Zendesk(R.drawable.thumb_zendesk),
-        Zoho(R.drawable.thumb_zoho);
+        Zoho(R.drawable.thumb_zoho),
+        Zoom(R.drawable.thumb_zoom);
 
         private int resource;
         private AssetType assetType;
