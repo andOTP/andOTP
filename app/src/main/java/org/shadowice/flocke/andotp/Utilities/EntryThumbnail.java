@@ -99,6 +99,7 @@ public class EntryThumbnail {
         Disroot(R.drawable.thumb_disroot),
         Docker(R.drawable.thumb_docker),
         DocuSign(R.drawable.thumb_docusign),
+        DreamHost(R.drawable.thumb_dreamhost),
         Dropbox(R.drawable.thumb_dropbox),
         Drupal(R.drawable.thumb_drupal),
         ElectronicArts(R.drawable.thumb_electronic_arts),
