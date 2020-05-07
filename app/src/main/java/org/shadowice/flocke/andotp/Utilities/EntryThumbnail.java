@@ -252,6 +252,7 @@ public class EntryThumbnail {
         Wasabi(R.drawable.thumb_wasabi),
         Wikimedia(R.drawable.thumb_wikimedia),
         Wordpress(R.drawable.thumb_wordpress),
+        Workplace(R.drawable.thumb_workplace),
         Xero(R.drawable.thumb_xero),
         Xerox(R.drawable.thumb_xerox),
         Xing(R.drawable.thumb_xing),
