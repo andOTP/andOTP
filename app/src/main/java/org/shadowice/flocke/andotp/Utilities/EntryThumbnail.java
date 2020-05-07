@@ -240,6 +240,7 @@ public class EntryThumbnail {
         UbiquitiNetworks(R.drawable.thumb_ubnt),
         Ubisoft(R.drawable.thumb_ubisoft),
         UbuntuOne(R.drawable.thumb_ubuntu_one),
+        Uphold(R.drawable.thumb_uphold),
         VagrantCloud(R.drawable.thumb_vagrant_cloud),
         VK(R.drawable.thumb_vk),
         Vultr(R.drawable.thumb_vultr),
