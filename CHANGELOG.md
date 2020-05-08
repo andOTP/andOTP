@@ -1,5 +1,10 @@
 # Changelog
 
+#### v0.8.0
+
+ * Internal: Update Gradle
+ * Internal: Min API Level set to 22 (Lollipop	5.1)
+
 #### v0.7.1.1
 
  * Bug fix: Fix migration of old tap-to-reveal setting
