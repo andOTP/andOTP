@@ -185,6 +185,7 @@ public class EntryThumbnail {
         NextCloud(R.drawable.thumb_nextcloud),
         Nintendo(R.drawable.thumb_nintendo),
         NPM(R.drawable.thumb_npm),
+        Oculus(R.drawable.thumb_oculus),
         Office(R.drawable.thumb_office),
         Okta(R.drawable.thumb_okta),
         OnlineNet(R.drawable.thumb_online),
