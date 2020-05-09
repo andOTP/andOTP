@@ -161,6 +161,7 @@ public class EntryThumbnail {
         LinkedIn(R.drawable.thumb_linkedin),
         Linode(R.drawable.thumb_linode),
         Liqui(R.drawable.thumb_liqui),
+        LivelyMe(R.drawable.thumb_livelyme),
         LocalBitcoins(R.drawable.thumb_localbitcoins),
         LocalMonero(R.drawable.thumb_localmonero),
         LogMeIn(R.drawable.thumb_logmein),
