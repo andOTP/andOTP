@@ -108,6 +108,7 @@ public class EntryThumbnail {
         Email(R.drawable.thumb_email),
         EpicGames(R.drawable.thumb_epic_games),
         Etsy(R.drawable.thumb_etsy),
+        Eveonline(R.drawable.thumb_eveonline),
         Evernote(R.drawable.thumb_evernote),
         Facebook(R.drawable.thumb_facebook),
         FACEIT(R.drawable.thumb_faceit),
