@@ -135,6 +135,7 @@ public class EntryThumbnail {
         Gogs(R.drawable.thumb_gogs),
         Google(R.drawable.thumb_google),
         GovUK(R.drawable.thumb_govuk),
+        Greenhost(R.drawable.thumb_greenhost),
         HackerOne(R.drawable.thumb_hackerone),
         Heroku(R.drawable.thumb_heroku),
         Hetzner(R.drawable.thumb_hetzner),
