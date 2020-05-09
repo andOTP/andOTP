@@ -233,6 +233,7 @@ public class EntryThumbnail {
         SourceForge(R.drawable.thumb_sourceforge),
         Squarespace(R.drawable.thumb_squarespace),
         StandardNotes(R.drawable.thumb_standardnotes),
+        StarCitizen(R.drawable.thumb_starcitizen),
         Steam(R.drawable.thumb_steam),
         Stripe(R.drawable.thumb_stripe),
         Sync(R.drawable.thumb_sync),
