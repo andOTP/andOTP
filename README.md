@@ -152,7 +152,7 @@ If you want to show your appreciation for our work with a small donation you can
 
 ## License:
 ```
-Copyright (C) 2017-2018 Jakob Nixdorf <andotp@shadowice.org>
+Copyright (C) 2017-2020 Jakob Nixdorf <andotp@shadowice.org>
 Copyright (C) 2015 Bruno Bierbaumer
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
