@@ -8,7 +8,7 @@
 
 ![andOTP](./assets/logo.png)
 
-andOTP is a two-factor authentication App for Android 4.4+.
+andOTP is a two-factor authentication App for Android 5.1+.
 
 It implements Time-based One-time Passwords (TOTP) and HMAC-Based One-Time Passwords (HOTP).
 Simply scan the QR code and login with the generated 6-digit code.
