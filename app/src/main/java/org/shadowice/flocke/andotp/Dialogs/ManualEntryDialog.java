@@ -277,7 +277,7 @@ public class ManualEntryDialog {
             @Override
             public void afterTextChanged(Editable editable) {
                 if ((TextUtils.isEmpty(labelInput.getText()) && TextUtils.isEmpty(issuerInput.getText())) ||
-                        TextUtils.isEmpty(secretInput.getText()) ||
+                        (TextUtils.isEmpty(secretInput.getText()) && isNewEntry) ||
                         TextUtils.isEmpty(digitsInput.getText()) ||
                         Integer.parseInt(digitsInput.getText().toString()) == 0) {
                     positiveButton.setEnabled(false);
