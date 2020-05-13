@@ -192,6 +192,7 @@ public class EntryThumbnail {
         netcup(R.drawable.thumb_netcup),
         NextCloud(R.drawable.thumb_nextcloud),
         Nintendo(R.drawable.thumb_nintendo),
+        NoStarchPress(R.drawable.thumb_no_starch_press),
         NPM(R.drawable.thumb_npm),
         Oculus(R.drawable.thumb_oculus),
         Office(R.drawable.thumb_office),
