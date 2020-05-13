@@ -15,6 +15,7 @@
  * Improvement: Rewording of the last used dialog (Issue #485)
  * Improvement: Handle the back key to close open drawers or the FAB overlay (Issue #499)
  * Improvement: Validate secrets during manual entry (Issue #500)
+ * Thumbnails: Lots of new ones (thanks to all contributors)
  * Bug fix: Fix some remaining issues with the intro dialog (Issue #486)
 
 #### v0.7.0
