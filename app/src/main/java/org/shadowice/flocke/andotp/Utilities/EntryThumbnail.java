@@ -184,6 +184,7 @@ public class EntryThumbnail {
         Migadu(R.drawable.thumb_migadu),
         Miraheze(R.drawable.thumb_miraheze),
         Mixer(R.drawable.thumb_mixer),
+        MongoDB(R.drawable.thumb_mongodb),
         NameCheap(R.drawable.thumb_namecheap),
         NameCom(R.drawable.thumb_namecom),
         NAS(R.drawable.thumb_nas),
