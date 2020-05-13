@@ -202,6 +202,7 @@ public class EntryThumbnail {
         Origin(R.drawable.thumb_origin),
         OVH(R.drawable.thumb_ovh),
         Packet(R.drawable.thumb_packet),
+        Parsecgaming(R.drawable.thumb_parsecgaming),
         Patreon(R.drawable.thumb_patreon),
         PayPal(R.drawable.thumb_paypal),
         PaySafe(R.drawable.thumb_paysafecard),
