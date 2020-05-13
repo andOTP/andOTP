@@ -29,6 +29,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import org.shadowice.flocke.andotp.R;
 
@@ -305,7 +306,7 @@ public class EntryThumbnail {
 
             try {
                 if (thumbnail.getAssetType() == AssetType.Vector) {
-                    Drawable drawable = context.getResources().getDrawable(thumbnail.getResource());
+                    Drawable drawable = AppCompatResources.getDrawable(context, thumbnail.getResource());
                     Bitmap bitmap = Bitmap.createBitmap(drawable.getMinimumWidth(), drawable.getMinimumHeight(), Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(bitmap);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
