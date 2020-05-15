@@ -17,6 +17,7 @@
  * Improvement: Validate secrets during manual entry (Issue #500)
  * Thumbnails: Lots of new ones (thanks to all contributors)
  * Bug fix: Fix some remaining issues with the intro dialog (Issue #486)
+ * Bug fix: Fix images containing gradients on API versions below 24 (Issue #539)
 
 #### v0.7.0
 
