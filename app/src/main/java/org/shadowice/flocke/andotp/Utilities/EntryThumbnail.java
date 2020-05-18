@@ -183,6 +183,7 @@ public class EntryThumbnail {
         Microsoft(R.drawable.thumb_microsoft),
         MicrosoftTeams(R.drawable.thumb_microsoft_teams),
         Migadu(R.drawable.thumb_migadu),
+        Mint(R.drawable.thumb_mint),
         Miraheze(R.drawable.thumb_miraheze),
         Mixer(R.drawable.thumb_mixer),
         MongoDB(R.drawable.thumb_mongodb),
