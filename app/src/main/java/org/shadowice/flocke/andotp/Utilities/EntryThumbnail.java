@@ -217,6 +217,7 @@ public class EntryThumbnail {
         Plurk(R.drawable.thumb_plurk),
         Posteo(R.drawable.thumb_posteo),
         Pretix(R.drawable.thumb_pretix),
+        Prey(R.drawable.thumb_prey),
         PrivateInternetAccess(R.drawable.thumb_private_internet_access),
         ProtonMail(R.drawable.thumb_protonmail),
         Proxmox(R.drawable.thumb_proxmox),
