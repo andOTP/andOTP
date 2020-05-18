@@ -168,6 +168,7 @@ public class EntryThumbnail {
         Lobsters(R.drawable.thumb_lobsters),
         LocalBitcoins(R.drawable.thumb_localbitcoins),
         LocalMonero(R.drawable.thumb_localmonero),
+        LoginGov(R.drawable.thumb_login_gov),
         LogMeIn(R.drawable.thumb_logmein),
         Mailbox(R.drawable.thumb_mailbox),
         Mailchimp(R.drawable.thumb_mailchimp),
