@@ -265,6 +265,7 @@ public class EntryThumbnail {
         Ubisoft(R.drawable.thumb_ubisoft),
         UbuntuOne(R.drawable.thumb_ubuntu_one),
         Uphold(R.drawable.thumb_uphold),
+        USAA(R.drawable.thumb_usaa),
         VagrantCloud(R.drawable.thumb_vagrant_cloud),
         VEXXHOST(R.drawable.thumb_vexxhost),
         VK(R.drawable.thumb_vk),
