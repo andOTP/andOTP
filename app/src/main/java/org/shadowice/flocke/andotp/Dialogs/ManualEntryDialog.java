@@ -208,53 +208,70 @@ public class ManualEntryDialog {
         AlertDialog.Builder builder = new AlertDialog.Builder(callingActivity);
         builder.setTitle(R.string.dialog_title_manual_entry)
                 .setView(inputView)
-                .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.button_save, null)
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
-                        TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                });
 
-                        String issuer = issuerInput.getText().toString();
-                        String label = labelInput.getText().toString();
-                        //Replace spaces with empty characters
-                        String secret = secretInput.getText().toString().replaceAll("\\s+","");
-                        int digits = Integer.parseInt(digitsInput.getText().toString());
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
-                        if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
-                            int period = Integer.parseInt(periodInput.getText().toString());
+        final Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
 
-                            if (oldEntry == null) {
-                                Entry e = new Entry(type, secret, period, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
-                                e.updateOTP();
-                                e.setLastUsed(System.currentTimeMillis());
+        positiveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Replace spaces with empty characters
+                String secret = secretInput.getText().toString().replaceAll("\\s+","");
 
-                                adapter.addEntry(e);
-                            } else {
-                                oldEntry.setIssuer(issuer);
-                                oldEntry.setLabel(label);
-                                oldEntry.setTags(tagsAdapter.getActiveTags());
+                if (!Entry.validateSecret(secret)) {
+                    secretInput.setError(callingActivity.getString(R.string.error_invalid_secret));
+                    return;
+                }
 
-                                adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
-                            }
+                Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
+                TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
+                int digits = Integer.parseInt(digitsInput.getText().toString());
 
-                            callingActivity.refreshTags();
-                        } else if (type == Entry.OTPType.HOTP) {
-                            long counter = Long.parseLong(counterInput.getText().toString());
+                String issuer = issuerInput.getText().toString();
+                String label = labelInput.getText().toString();
 
-                            if (oldEntry == null) {
-                                Entry e = new Entry(type, secret, counter, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
-                                e.updateOTP();
-                                e.setLastUsed(System.currentTimeMillis());
+                if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
+                    int period = Integer.parseInt(periodInput.getText().toString());
 
-                                adapter.addEntry(e);
-                            } else {
-                                oldEntry.setIssuer(issuer);
-                                oldEntry.setLabel(label);
-                                oldEntry.setTags(tagsAdapter.getActiveTags());
+                    if (oldEntry == null) {
+                        Entry e = new Entry(type, secret, period, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
+                        e.updateOTP();
+                        e.setLastUsed(System.currentTimeMillis());
 
-                                adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
-                            }
-                        } else if (type == Entry.OTPType.PIN) {
+                        adapter.addEntry(e);
+                    } else {
+                        oldEntry.setIssuer(issuer);
+                        oldEntry.setLabel(label);
+                        oldEntry.setTags(tagsAdapter.getActiveTags());
+
+                        adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
+                    }
+
+                    callingActivity.refreshTags();
+                } else if (type == Entry.OTPType.HOTP) {
+                    long counter = Long.parseLong(counterInput.getText().toString());
+
+                    if (oldEntry == null) {
+                        Entry e = new Entry(type, secret, counter, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
+                        e.updateOTP();
+                        e.setLastUsed(System.currentTimeMillis());
+
+                        adapter.addEntry(e);
+                    } else {
+                        oldEntry.setIssuer(issuer);
+                        oldEntry.setLabel(label);
+                        oldEntry.setTags(tagsAdapter.getActiveTags());
+
+                        adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
+                    }
+                } else if (type == Entry.OTPType.PIN) {
                             if (oldEntry == null) {
                                 try {
                                     secret = (String) new Base32().encodeAsString(secret.getBytes("UTF-8"));
@@ -276,17 +293,11 @@ public class ManualEntryDialog {
 
                             callingActivity.refreshTags();
                         }
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                });
 
-        AlertDialog dialog = builder.create();
-        dialog.show();
+                dialog.dismiss();
+            }
+        });
 
-        final Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
         positiveButton.setEnabled(false);
 
         TextWatcher watcher = new TextWatcher() {
@@ -300,8 +311,10 @@ public class ManualEntryDialog {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (TextUtils.isEmpty(labelInput.getText()) || TextUtils.isEmpty(secretInput.getText())
-                        || TextUtils.isEmpty(digitsInput.getText()) || Integer.parseInt(digitsInput.getText().toString()) == 0) {
+                if ((TextUtils.isEmpty(labelInput.getText()) && TextUtils.isEmpty(issuerInput.getText())) ||
+                        (TextUtils.isEmpty(secretInput.getText()) && isNewEntry) ||
+                        TextUtils.isEmpty(digitsInput.getText()) ||
+                        Integer.parseInt(digitsInput.getText().toString()) == 0) {
                     positiveButton.setEnabled(false);
                 } else {
                     Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
@@ -325,6 +338,7 @@ public class ManualEntryDialog {
         };
 
         labelInput.addTextChangedListener(watcher);
+        issuerInput.addTextChangedListener(watcher);
         secretInput.addTextChangedListener(watcher);
         periodInput.addTextChangedListener(watcher);
         digitsInput.addTextChangedListener(watcher);

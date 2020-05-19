@@ -131,6 +131,21 @@ public class MainActivity extends BaseActivity
         startActivityForResult(introIntent, Constants.INTENT_MAIN_INTRO);
     }
 
+    private void showAndroid21DeprecationNotice() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.dialog_title_android21_depreaction)
+                .setMessage(R.string.dialog_msg_android21_deprecation)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        settings.setAndroid21DeprecationNoticeShown(true);
+                    }
+                })
+                .setCancelable(false)
+                .create()
+                .show();
+    }
+
     public void authenticate(int messageId) {
         AuthMethod authMethod = settings.getAuthMethod();
 
@@ -205,6 +220,10 @@ public class MainActivity extends BaseActivity
 
         if (! settings.getFirstTimeWarningShown()) {
            showFirstTimeWarning();
+        }
+
+        if (!settings.getAndroid21DeprecationNoticeShown()) {
+            showAndroid21DeprecationNotice();
         }
 
         speedDial = findViewById(R.id.speedDial);

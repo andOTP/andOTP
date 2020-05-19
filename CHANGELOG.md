@@ -1,5 +1,24 @@
 # Changelog
 
+#### v0.7.1
+
+ * Deprecation notice: This will be the last version to support Android versions below 5.1
+ * New feature: Show QR codes of stored accounts (PR #501 by @tilosp)
+ * New feature: Support Steam URIs (Issue #510)
+ * New feature: Move Steam out of the Special features
+ * New feature: Unify the edit dialog for entries (Issue #241)
+ * New feature: Add an option to hide the global timeout bar (Issue #166)
+ * New feature: Add an option to show individual timeout bars for all cards (Issue #166)
+ * New feature: Add options to configure single and double taps on entries (Issue #489)
+ * Improvement: Increase the iterations for the password generation to 150000
+ * Improvement: Show cards as transparent while dragging (Issue #487, PR #488 by @Ullas-Aithal)
+ * Improvement: Rewording of the last used dialog (Issue #485)
+ * Improvement: Handle the back key to close open drawers or the FAB overlay (Issue #499)
+ * Improvement: Validate secrets during manual entry (Issue #500)
+ * Thumbnails: Lots of new ones (thanks to all contributors)
+ * Bug fix: Fix some remaining issues with the intro dialog (Issue #486)
+ * Bug fix: Fix images containing gradients on API versions below 24 (Issue #539)
+
 #### v0.7.0
 
  * New feature: Generate a new HOTP token when revealing (Issue #334, PR #366 by @moritzgloeckl)
