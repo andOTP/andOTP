@@ -537,11 +537,19 @@ public class Entry {
         return color;
     }
 
-    public static boolean validateSecret(String secret) {
-        try {
-            new Base32().decode(secret.toUpperCase());
-        } catch (Exception e) {
-            return false;
+    public static boolean validateSecret(String secret, OTPType type) {
+        switch (type) {
+            case TOTP:
+            case STEAM:
+            case HOTP:
+                try {
+                    new Base32().decode(secret.toUpperCase());
+                } catch (Exception e) {
+                    return false;
+                }
+                break;
+            case PIN:
+                return true;
         }
 
         return true;

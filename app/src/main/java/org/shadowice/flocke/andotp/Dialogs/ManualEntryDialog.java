@@ -225,17 +225,17 @@ public class ManualEntryDialog {
                 //Replace spaces with empty characters
                 String secret = secretInput.getText().toString().replaceAll("\\s+","");
 
-                if (!Entry.validateSecret(secret)) {
-                    secretInput.setError(callingActivity.getString(R.string.error_invalid_secret));
-                    return;
-                }
-
                 Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
                 TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
                 int digits = Integer.parseInt(digitsInput.getText().toString());
 
                 String issuer = issuerInput.getText().toString();
                 String label = labelInput.getText().toString();
+
+                if (!Entry.validateSecret(secret, type)) {
+                    secretInput.setError(callingActivity.getString(R.string.error_invalid_secret));
+                    return;
+                }
 
                 if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
                     int period = Integer.parseInt(periodInput.getText().toString());
