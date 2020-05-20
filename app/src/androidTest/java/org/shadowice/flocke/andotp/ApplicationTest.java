@@ -23,14 +23,16 @@
 
 package org.shadowice.flocke.andotp;
 
-import android.app.Application;
 import android.content.Context;
-import android.test.ApplicationTestCase;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
 import org.json.JSONObject;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
@@ -58,12 +60,13 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class ApplicationTest extends ApplicationTestCase<Application> {
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
-    public ApplicationTest() {
-        super(Application.class);
-    }
+@RunWith(AndroidJUnit4.class)
+public class ApplicationTest {
 
+    @Test
     public void testTOTPCalculation(){
         // Test Vectors from https://tools.ietf.org/html/rfc6238
         byte[] keySHA1 =  "12345678901234567890".getBytes(StandardCharsets.US_ASCII);
@@ -95,6 +98,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         assertEquals(47863826, TokenCalculator.TOTP_RFC6238(keySHA512, TokenCalculator.TOTP_DEFAULT_PERIOD, 20000000000L, 8, TokenCalculator.HashAlgorithm.SHA512));
     }
 
+    @Test
     public void testHOTPCalculation() {
         // Test cases from https://tools.ietf.org/html/rfc4226
         byte[] keySHA1 = "12345678901234567890".getBytes(StandardCharsets.US_ASCII);
@@ -111,19 +115,21 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         assertEquals("520489", TokenCalculator.HOTP(keySHA1, 9, 6, TokenCalculator.HashAlgorithm.SHA1));
     }
 
-
+    @Test
     public void testEntry() throws Exception {
         byte secret[] = "Das System ist sicher".getBytes();
         String label = "5 von 5 Sterne";
         int period = 30;
 
         String s = "{\"secret\":\"" + new String(new Base32().encode(secret)) + "\"," +
+                    "\"issuer\":\"\"," +
                     "\"label\":\"" + label + "\"," +
                     "\"digits\":6," +
                     "\"type\":\"TOTP\"," +
                     "\"algorithm\":\"SHA1\"," +
                     "\"thumbnail\":\"Default\"," +
                     "\"last_used\":0," +
+                    "\"used_frequency\":0," +
                     "\"period\":" + Integer.toString(period) + "," +
                     "\"tags\":[\"test1\",\"test2\"]}";
 
@@ -139,7 +145,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
     }
 
 
-
+    @Test
     public void testEntryURL() throws Exception {
         try {
             new Entry("DON'T CARE");
@@ -168,13 +174,13 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         }
 
         Entry entry = new Entry("otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&ALGORITHM=SHA1&digits=6&period=30");
-        assertEquals("ACME Co - ACME Co:john.doe@email.com", entry.getLabel());
+        assertEquals("john.doe@email.com", entry.getLabel());
 
         assertEquals("HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ", new String(new Base32().encode(entry.getSecret())));
 
 
         entry = new Entry("otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&ALGORITHM=SHA1&digits=6&period=30&tags=test1&tags=test2");
-        assertEquals("ACME Co - ACME Co:john.doe@email.com", entry.getLabel());
+        assertEquals("john.doe@email.com", entry.getLabel());
 
         assertEquals("HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ", new String(new Base32().encode(entry.getSecret())));
         String[] tags = new String[]{"test1", "test2"};
@@ -182,8 +188,9 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         assertTrue(Arrays.equals(tags, entry.getTags().toArray(new String[entry.getTags().size()])));
     }
 
+    @Test
     public void testSettingsHelper() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
-        Context context = getContext();
+        Context context = InstrumentationRegistry.getTargetContext();
 
         final KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
         keyStore.load(null);
@@ -216,6 +223,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         new File(context.getFilesDir() + "/" + Constants.FILENAME_ENCRYPTED_KEY).delete();
     }
 
+    @Test
     public void testEncryptionHelper() throws NoSuchPaddingException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, InvalidAlgorithmParameterException, DecoderException {
 
 

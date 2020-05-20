@@ -131,6 +131,9 @@ public class Entry {
 
         String secret = uri.getQueryParameter("secret");
         String label = uri.getPath().substring(1);
+        if(label.contains(":")) {
+            label = label.split(":")[1];
+        }
 
         String counter = uri.getQueryParameter("counter");
         String issuer = uri.getQueryParameter("issuer");

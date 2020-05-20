@@ -11,6 +11,7 @@ android {
         versionCode 30
         versionName "0.7.1-beta2"
         vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -67,4 +68,8 @@ dependencies {
     implementation "org.sufficientlysecure:openpgp-api:12.0"
     implementation "com.leinardi.android:speed-dial:3.1.1"
     implementation "com.mikepenz:aboutlibraries:6.2.3"
+
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 }
