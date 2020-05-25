@@ -85,6 +85,15 @@ public class SettingsActivity extends BaseActivity
         if (keyMaterial != null && keyMaterial.length > 0)
             encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
 
+        if (savedInstanceState != null) {
+            encryptionChanged = savedInstanceState.getBoolean(Constants.EXTRA_SETTINGS_ENCRYPTION_CHANGED, false);
+
+            byte[] encKey = savedInstanceState.getByteArray(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY);
+            if (encKey != null) {
+                encryptionKey = EncryptionHelper.generateSymmetricKey(encKey);
+            }
+        }
+
         fragment = new SettingsFragment();
 
         getFragmentManager().beginTransaction()
@@ -93,6 +102,14 @@ public class SettingsActivity extends BaseActivity
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPref.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBoolean(Constants.EXTRA_SETTINGS_ENCRYPTION_CHANGED, encryptionChanged);
+        outState.putByteArray(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY, encryptionKey.getEncoded());
     }
 
     public void finishWithResult() {
