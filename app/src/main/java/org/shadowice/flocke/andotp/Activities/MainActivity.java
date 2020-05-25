@@ -106,6 +106,9 @@ public class MainActivity extends BaseActivity
     private EncryptionType encryptionType = EncryptionType.KEYSTORE;
     private boolean requireAuthentication = false;
 
+    private boolean recreateActivity = false;
+    private boolean cacheEncKey = false;
+
     private Handler handler;
     private Runnable handlerTask;
 
@@ -260,6 +263,14 @@ public class MainActivity extends BaseActivity
         tagsDrawerAdapter = new TagsAdapter(this, new HashMap<String, Boolean>());
         adapter = new EntriesCardAdapter(this, tagsDrawerAdapter);
 
+        if (savedInstanceState != null) {
+            byte[] encKey = savedInstanceState.getByteArray("encKey");
+            if (encKey != null) {
+                adapter.setEncryptionKey(EncryptionHelper.generateSymmetricKey(encKey));
+                requireAuthentication = false;
+            }
+        }
+
         recList.setAdapter(adapter);
 
         touchHelperCallback = new SimpleItemTouchHelperCallback(adapter);
@@ -412,6 +423,9 @@ public class MainActivity extends BaseActivity
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("filterString", filterString);
+
+        if (cacheEncKey)
+            outState.putByteArray("encKey", adapter.getEncryptionKey().getEncoded());
     }
 
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
@@ -431,7 +445,7 @@ public class MainActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_label_highlight_token)) ||
                 key.equals(getString(R.string.settings_key_card_layout)) ||
                 key.equals(getString(R.string.settings_key_hide_global_timeout))) {
-            recreate();
+            recreateActivity = true;
         }
     }
 
@@ -462,6 +476,11 @@ public class MainActivity extends BaseActivity
 
             if (encryptionChanged)
                 updateEncryption(newKey);
+
+            if (recreateActivity) {
+                cacheEncKey = true;
+                recreate();
+            }
         } else if (requestCode == Constants.INTENT_MAIN_AUTHENTICATE) {
             if (resultCode != RESULT_OK) {
                 Toast.makeText(getBaseContext(), R.string.toast_auth_failed_fatal, Toast.LENGTH_LONG).show();
