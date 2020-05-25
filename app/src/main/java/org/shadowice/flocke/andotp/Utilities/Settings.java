@@ -89,7 +89,9 @@ public class Settings {
         }
 
         if (settings.contains(getResString(R.string.settings_key_tap_to_reveal))) {
-            setString(R.string.settings_key_tap_single, Constants.TapMode.REVEAL.toString().toLowerCase(Locale.ENGLISH));
+            if (getBoolean(R.string.settings_key_tap_to_reveal, false)) {
+                setString(R.string.settings_key_tap_single, Constants.TapMode.REVEAL.toString().toLowerCase(Locale.ENGLISH));
+            }
             remove(R.string.settings_key_tap_to_reveal);
         }
 
