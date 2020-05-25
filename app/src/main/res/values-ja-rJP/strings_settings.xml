@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">カードレイアウト</string>
     <string name="settings_title_label_size">ラベルのフォントサイズ</string>
     <string name="settings_title_label_scroll">ラベルをスクロール</string>
+    <string name="settings_title_tap_single">シングルタップ</string>
+    <string name="settings_title_tap_double">ダブルタップ</string>
     <string name="settings_title_thumbnail_size_ask">サムネイルのサイズ</string>
     <string name="settings_title_split_group_size">トークンの分割表示</string>
     <string name="settings_title_tag_functionality">タグ選択の動作</string>
     <string name="settings_title_minimize_on_copy">OTP コピー後にアプリを最小化</string>
     <string name="settings_title_search_includes">検索の動作</string>
     <string name="settings_title_label_highlight_token">有効期限切れ直前のトークンを強調表示</string>
+    <string name="settings_title_hide_global_timeout">全体の有効期限表示を行わない</string>
+    <string name="settings_title_show_individual_timeouts">個別の有効期限表示を行う</string>
     <string name="settings_title_backup_append_date">日付をファイル名に追加</string>
     <string name="settings_title_backup_ask">ファイルを確認</string>
     <string name="settings_title_backup_directory">バックアップディレクトリ</string>
@@ -56,6 +60,8 @@
     <string name="settings_desc_minimize_on_copy">OTP をクリップボードにコピーしたら、アプリを最小化する</string>
     <string name="settings_desc_search_includes">検索の対象に含める値を指定します</string>
     <string name="settings_desc_label_highlight_token">8秒以内に有効期限切れになるトークンを強調表示する</string>
+    <string name="settings_desc_hide_global_timeout">画面上部に表示される「全体の有効期限表示」を無効化します</string>
+    <string name="settings_desc_show_individual_timeouts">すべてのエントリで「個別の有効期限表示」を有効化します。この設定によりアプリの動作が遅くなる可能性があるため、本当に必要な場合のみ有効化してください。</string>
     <string name="settings_desc_backup_append_date">提案されたバックアップファイル名に現在の日付と時刻を追加する</string>
     <string name="settings_desc_backup_ask">バックアップが作成または復元されるたびにファイル名を確認する</string>
     <string name="settings_desc_backup_directory">自動バックアップおよびブロードキャストバックアップ用のディレクトリ (ファイル名はバックアップの種類によって異なります)</string>
@@ -109,6 +115,12 @@
         <item>コンパクト</item>
         <item>デフォルト</item>
         <item>フル</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>なし</item>
+        <item>表示/非表示</item>
+        <item>コピー</item>
+        <item>コピーしてバックグラウンドへ移動</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>ラベル</item>

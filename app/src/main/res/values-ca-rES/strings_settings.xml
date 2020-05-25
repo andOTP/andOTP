@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">Card layout</string>
     <string name="settings_title_label_size">Mida de la lletra de l\'etiqueta</string>
     <string name="settings_title_label_scroll">Permet el desplaçament a les etiquetes</string>
+    <string name="settings_title_tap_single">Single-tap</string>
+    <string name="settings_title_tap_double">Double-tap</string>
     <string name="settings_title_thumbnail_size_ask">Mida de la miniatura</string>
     <string name="settings_title_split_group_size">Separa el testimoni amb espais</string>
     <string name="settings_title_tag_functionality">Tag selection behavior</string>
     <string name="settings_title_minimize_on_copy">Minimize app after copying OTP</string>
     <string name="settings_title_search_includes">Search behavior</string>
     <string name="settings_title_label_highlight_token">Highlight expiring tokens</string>
+    <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
+    <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
     <string name="settings_title_backup_append_date">Append date to filename</string>
     <string name="settings_title_backup_ask">Demana el nom de fitxer</string>
     <string name="settings_title_backup_directory">Directori de còpia de seguretat</string>
@@ -63,6 +67,9 @@
     <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
     <string name="settings_desc_search_includes">Specify which values should be included when searching</string>
     <string name="settings_desc_label_highlight_token">Highlights token in red if it\'s expiring in 8 seconds</string>
+    <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
+    <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
+        This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">Append the current date and time to the suggested
         backup filename</string>
     <string name="settings_desc_backup_ask">Demana el nom del fitxer cada vegada que es crea o restaura una còpia de seguretat</string>
@@ -145,6 +152,12 @@
         <item>Compact</item>
         <item>Default</item>
         <item>Full</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Nothing</item>
+        <item>Reveal/Hide</item>
+        <item>Copy</item>
+        <item>Copy and go to background</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Label</item>

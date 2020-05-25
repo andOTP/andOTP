@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">Карточки</string>
     <string name="settings_title_label_size">Размер шрифта для ярлыка</string>
     <string name="settings_title_label_scroll">Прокрутка ярлыка</string>
+    <string name="settings_title_tap_single">Одиночное нажатие</string>
+    <string name="settings_title_tap_double">Двойное нажатие</string>
     <string name="settings_title_thumbnail_size_ask">Размер изображения</string>
     <string name="settings_title_split_group_size">Добавлять пробел в токен</string>
     <string name="settings_title_tag_functionality">Поведение выделенного тега</string>
     <string name="settings_title_minimize_on_copy">Свернуть после копирования токена</string>
     <string name="settings_title_search_includes">Поведение поиска</string>
     <string name="settings_title_label_highlight_token">Подсвечивать истёкшие токены</string>
+    <string name="settings_title_hide_global_timeout">Скрыть глобальную панель таймаута</string>
+    <string name="settings_title_show_individual_timeouts">Показать индивидуальные таймауты</string>
     <string name="settings_title_backup_append_date">Добавить дату к имени файла</string>
     <string name="settings_title_backup_ask">Спрашивать об имени файла</string>
     <string name="settings_title_backup_directory">Каталог резервной копии</string>
@@ -57,6 +61,9 @@
     <string name="settings_desc_minimize_on_copy">Приложение будет свёрнуто после копирования токена</string>
     <string name="settings_desc_search_includes">Укажите, какие значения должны использоваться при поиске</string>
     <string name="settings_desc_label_highlight_token">Пометить токен красным, если срок действия истекает через 8 секунд</string>
+    <string name="settings_desc_hide_global_timeout">Скрыть панель глобального тайм-аута, отображаемую в верхней части экрана</string>
+    <string name="settings_desc_show_individual_timeouts">Показывать панель индивидуального тайм-аута для каждой записи.
+        Это может замедлить приложение. Включайте, только если это действительно необходимо.</string>
     <string name="settings_desc_backup_append_date">Добавить текущую дату и время к предлагаемому
         названию резервной копии</string>
     <string name="settings_desc_backup_ask">Спрашивать об имени файла при создании резервной копии или        восстановлении</string>
@@ -118,6 +125,12 @@
         <item>Компактный</item>
         <item>По умолчанию</item>
         <item>Полный</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Ничего</item>
+        <item>Показать / Скрыть</item>
+        <item>Скопировать</item>
+        <item>Скопировать и перейти в фон</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Ярлык</item>

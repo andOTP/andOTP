@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">卡片佈局</string>
     <string name="settings_title_label_size">標籤字型大小</string>
     <string name="settings_title_label_scroll">捲動標籤</string>
+    <string name="settings_title_tap_single">輕點一下</string>
+    <string name="settings_title_tap_double">輕點兩下</string>
     <string name="settings_title_thumbnail_size_ask">縮圖大小</string>
     <string name="settings_title_split_group_size">用空格分隔權杖</string>
     <string name="settings_title_tag_functionality">標籤選取行為</string>
     <string name="settings_title_minimize_on_copy">在複製 OTP 後最小化應用程式</string>
     <string name="settings_title_search_includes">搜尋行為</string>
     <string name="settings_title_label_highlight_token">突出顯示即將過期的權杖</string>
+    <string name="settings_title_hide_global_timeout">隱藏全域逾時欄</string>
+    <string name="settings_title_show_individual_timeouts">顯示獨立逾時</string>
     <string name="settings_title_backup_append_date">為檔案名追加日期</string>
     <string name="settings_title_backup_ask">詢問檔案名</string>
     <string name="settings_title_backup_directory">備份資料夾</string>
@@ -58,6 +62,9 @@
     <string name="settings_desc_minimize_on_copy">應用程式將會在您把 OTP 複製到剪貼簿時最小化</string>
     <string name="settings_desc_search_includes">指定搜尋時應該包含哪些值</string>
     <string name="settings_desc_label_highlight_token">如果權杖將於8秒內過期，以紅色突顯它</string>
+    <string name="settings_desc_hide_global_timeout">隱藏畫面頂部顯示的全域超時欄</string>
+    <string name="settings_desc_show_individual_timeouts">為每個項目顯示單獨的逾時欄。
+        這可能會拖慢應用程式，請只在需要時啟用。</string>
     <string name="settings_desc_backup_append_date">將當前日期和時間追加到預設的備份檔案名中</string>
     <string name="settings_desc_backup_ask">每次新增或重新儲存備份時都要求鍵入檔案名</string>
     <string name="settings_desc_backup_directory">自動與廣播備份的目錄
@@ -113,6 +120,12 @@
         <item>精簡</item>
         <item>預設</item>
         <item>完整</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>無</item>
+        <item>揭露／隱藏</item>
+        <item>複製</item>
+        <item>複製並跳到背景</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>標籤</item>

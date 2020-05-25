@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">Kartenlayout</string>
     <string name="settings_title_label_size">Schriftgröße der Beschriftung</string>
     <string name="settings_title_label_scroll">Beschriftung scrollen</string>
+    <string name="settings_title_tap_single">Einfaches Tippen</string>
+    <string name="settings_title_tap_double">Doppeltes Tippen</string>
     <string name="settings_title_thumbnail_size_ask">Größe der Miniaturansichten</string>
     <string name="settings_title_split_group_size">Token mit Leerzeichen unterteilen</string>
     <string name="settings_title_tag_functionality">Schlagwort Auswahlverhalten</string>
     <string name="settings_title_minimize_on_copy">App nach dem Kopieren von OTP minimieren</string>
     <string name="settings_title_search_includes">Suchverhalten</string>
     <string name="settings_title_label_highlight_token">Ablaufende Tokens hervorheben</string>
+    <string name="settings_title_hide_global_timeout">Globale Timeout-Leiste ausblenden</string>
+    <string name="settings_title_show_individual_timeouts">Individuelle Timeouts anzeigen</string>
     <string name="settings_title_backup_append_date">Datum an den Dateinamen anhängen</string>
     <string name="settings_title_backup_ask">Nach Dateinamen fragen</string>
     <string name="settings_title_backup_directory">Sicherungsverzeichnis</string>
@@ -61,6 +65,9 @@
     <string name="settings_desc_minimize_on_copy">App wird minimiert wenn der OTP Code kopiert wurde</string>
     <string name="settings_desc_search_includes">Welche Werte sollen in der Suche enthalten sein?</string>
     <string name="settings_desc_label_highlight_token">Token wird rot markiert, wenn es in weniger als 8 Sekunden ausläuft</string>
+    <string name="settings_desc_hide_global_timeout">Globale Timeout-Leiste am oberen Bildschirmrand ausblenden</string>
+    <string name="settings_desc_show_individual_timeouts">Zeige eine individuelle Timeout-Leiste für jeden Eintrag.
+        Dies kann die App verlangsamen, nur aktivieren, wenn wirklich notwendig.</string>
     <string name="settings_desc_backup_append_date">Aktuelles Datum und die aktuelle Uhrzeit an den vorgeschlagenen Sicherungsdateinamen anhängen</string>
     <string name="settings_desc_backup_ask">Jedes Mal nach dem Dateinamen fragen, wenn eine Sicherung erstellt oder wiederhergestellt wird</string>
     <string name="settings_desc_backup_directory">Verzeichnis für automatische und Broadcast-Backups
@@ -120,6 +127,12 @@
         <item>Kompakt</item>
         <item>Standard</item>
         <item>Voll</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Nichts</item>
+        <item>Anzeigen/Verstecken</item>
+        <item>Kopieren</item>
+        <item>Kopieren und in den Hintergrund wechseln</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Beschriftung</item>

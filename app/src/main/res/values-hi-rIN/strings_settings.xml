@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">कार्ड ख़ाका</string>
     <string name="settings_title_label_size">लेबल फ़ॉन्ट आकार</string>
     <string name="settings_title_label_scroll">लेबल स्क्रॉल करें</string>
+    <string name="settings_title_tap_single">Single-tap</string>
+    <string name="settings_title_tap_double">Double-tap</string>
     <string name="settings_title_thumbnail_size_ask">थंबनेल का आकार</string>
     <string name="settings_title_split_group_size">स्पेस के साथ टोकन विभाजन</string>
     <string name="settings_title_tag_functionality">टैग चयन व्यवहार</string>
     <string name="settings_title_minimize_on_copy">ओटीपी कॉपी करने के बाद ऐप को छोटा करें</string>
     <string name="settings_title_search_includes">व्यवहार खोज</string>
     <string name="settings_title_label_highlight_token">समाप्त होने वाले टोकन पर प्रकाश डालें</string>
+    <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
+    <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
     <string name="settings_title_backup_append_date">फ़ाइल नाम में तारीख जोड़ें</string>
     <string name="settings_title_backup_ask">फ़ाइल नाम के लिए पूछें</string>
     <string name="settings_title_backup_directory">बैकअप निर्देशिका</string>
@@ -56,6 +60,9 @@
     <string name="settings_desc_minimize_on_copy">जब आप ओटीपी को क्लिपबोर्ड पर कॉपी करेंगे तो ऐप को छोटा कर दिया जाएगा</string>
     <string name="settings_desc_search_includes">निर्दिष्ट करें कि खोज करते समय किन मूल्यों को शामिल किया जाना चाहिए</string>
     <string name="settings_desc_label_highlight_token">यदि यह 8 सेकंड में समाप्त हो रहा है तो लाल रंग में टोकन प्रकाशित करें</string>
+    <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
+    <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
+        This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">बैकअप फ़ाइल नाम में सुझाए गए वर्तमान दिनांक और समय को लागू करें</string>
     <string name="settings_desc_backup_ask">हर बार एक बैकअप बनाने या पुनर्स्थापित करने के लिए फ़ाइल नाम के लिए पूछें</string>
     <string name="settings_desc_backup_directory">स्वचालित और प्रसारण बैकअप के लिए निर्देशिका (फ़ाइल नाम बैकअप प्रकार पर निर्भर करेगा)</string>
@@ -109,6 +116,12 @@
         <item>सघन</item>
         <item>निर्धारित</item>
         <item>पूर्ण</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Nothing</item>
+        <item>Reveal/Hide</item>
+        <item>Copy</item>
+        <item>Copy and go to background</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>लेबल</item>

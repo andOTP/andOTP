@@ -4,42 +4,46 @@
     <!-- Categories -->
     <string name="settings_category_title_security">امنیت</string>
     <string name="settings_category_title_ui">رابط کاربری</string>
-    <string name="settings_category_title_backup">پشتیبان</string>
+    <string name="settings_category_title_backup">پشتیبان گیری</string>
     <!-- Titles -->
     <string name="settings_title_tap_to_reveal">ضربه برای آشکار کردن</string>
     <string name="settings_title_tap_to_reveal_timeout">وقفه برای ضربه برای آشکار کردن</string>
     <string name="settings_title_auth">احراز هویت</string>
-    <string name="settings_title_auth_password">رمز عبور</string>
+    <string name="settings_title_auth_password">گذرواژه</string>
     <string name="settings_title_auth_pin">پین</string>
-    <string name="settings_title_encryption">رمزگذاری پایگاه داده</string>
+    <string name="settings_title_encryption">رمزنگاری پایگاه داده</string>
     <string name="settings_title_panic">ماشه هراس</string>
     <string name="settings_title_relock_screen_off">در زمان خاموش شدن صفحه، قفل شو</string>
-    <string name="settings_title_relock_background">Re-lock when going into the background</string>
-    <string name="settings_title_auth_inactivity">Re-lock on inactivity</string>
-    <string name="settings_title_auth_inactivity_delay">Delay for inactivity re-lock</string>
-    <string name="settings_title_block_accessibility">Block accessibility services</string>
+    <string name="settings_title_relock_background">هنگام رفتن به پس زمینه قفل شو</string>
+    <string name="settings_title_auth_inactivity">هنگام عدم فعالیت قفل شو</string>
+    <string name="settings_title_auth_inactivity_delay">تاخیر برای قفل شدن هنگام عدم فعالیت</string>
+    <string name="settings_title_block_accessibility">مسدود کردن خدمات دسترسی</string>
     <string name="settings_title_lang">زبان</string>
     <string name="settings_title_theme">پوسته</string>
-    <string name="settings_title_card_layout">Card layout</string>
-    <string name="settings_title_label_size">اندازه خط برچسب</string>
-    <string name="settings_title_label_scroll">اسکرول برچسب</string>
+    <string name="settings_title_card_layout">چیدمان کارت‌ها</string>
+    <string name="settings_title_label_size">اندازه قلم برچسب</string>
+    <string name="settings_title_label_scroll">برچسب فهرست</string>
+    <string name="settings_title_tap_single">تک-ضربه</string>
+    <string name="settings_title_tap_double">ضربه-دوتایی</string>
     <string name="settings_title_thumbnail_size_ask">اندازه تصاویر بند انگشتی</string>
     <string name="settings_title_split_group_size">توکن را با فاصله جدا کن</string>
     <string name="settings_title_tag_functionality">رفتار انتخاب تگ</string>
-    <string name="settings_title_minimize_on_copy">Minimize app after copying OTP</string>
-    <string name="settings_title_search_includes">Search behavior</string>
-    <string name="settings_title_label_highlight_token">Highlight expiring tokens</string>
+    <string name="settings_title_minimize_on_copy">کوچک کردن برنامه بعد از روگرفت از رمز یک‌بارمصرف</string>
+    <string name="settings_title_search_includes">رفتار جستجو</string>
+    <string name="settings_title_label_highlight_token">برجسته سازی توکن های منقضی شده</string>
+    <string name="settings_title_hide_global_timeout">پنهان کردن نوار سراسری زمان بندی</string>
+    <string name="settings_title_show_individual_timeouts">نمایش زمان بندی های منحصر بفرد</string>
     <string name="settings_title_backup_append_date">اضافه کردن تاریخ به نام پرونده</string>
     <string name="settings_title_backup_ask">پرسیدن نام پرونده</string>
-    <string name="settings_title_backup_directory">پرونده پشتیبان</string>
-    <string name="settings_title_backup_password">رمز عبور پشتیبان</string>
-    <string name="settings_title_auto_backup_password_enc">Automatically backup on new entries</string>
-    <string name="settings_title_backup_broadcasts">Backup Broadcasts</string>
+    <string name="settings_title_backup_directory">محل پرونده پشتیبان</string>
+    <string name="settings_title_backup_password">گذرواژه پرونده پشتیبان</string>
+    <string name="settings_title_auto_backup_password_enc">پشتیبان گیری خودکار در موارد تازه</string>
+    <string name="settings_title_backup_broadcasts">پشتیبان گیری از Broadcasts</string>
     <string name="settings_title_openpgp_provider">ارائه دهنده OpenPGP</string>
-    <string name="settings_title_openpgp_key_encrypt">کلید رمزگذاری OpenPGP</string>
+    <string name="settings_title_openpgp_key_encrypt">کلید رمزنگاری OpenPGP</string>
     <string name="settings_title_openpgp_key_sign">کلید امضای OpenPGP (اختیاری)</string>
-    <string name="settings_title_openpgp_verify">تایید پشتیبان‌های رمزگذاری شده</string>
-    <string name="settings_title_special_features">فعال‌کردن ویژگی‌های ویژه</string>
+    <string name="settings_title_openpgp_verify">تایید پشتیبان‌های رمزنگاری شده</string>
+    <string name="settings_title_special_features">فعال‌کردن قابلیت های ویژه</string>
     <string name="settings_title_enable_screenshot">فعال کردن عکس‌برداری از صفحه نمایش</string>
     <string name="settings_title_enable_android_backup_service">فعال کردن همسان‌سازی اندروید</string>
     <string name="settings_title_clear_keystore">تمیز کردن KeyStore</string>
@@ -48,83 +52,92 @@
     <string name="settings_desc_tap_to_reveal_timeout">زمانی را انتخاب کنید که بعد از آن موارد آشکار شده دوباره پنهان شوند (به ثانیه)</string>
     <string name="settings_desc_panic">تصمیم بگیرید که چه اتفاقی بیوفتد، زمانی که ماشه هراس دریافت می‌شود</string>
     <string name="settings_desc_relock_screen_off">وقتی که صفحه نمایش خاموش شد، نیاز به احراز هویت داشته باش</string>
-    <string name="settings_desc_relock_background">Require authentication after the app was sent to
-        the background (e.g. by pressing the home button)</string>
-    <string name="settings_desc_auth_inactivity">Require authentication after the device has been
-        inactive</string>
-    <string name="settings_desc_auth_inactivity_delay">Select the time (in sec) after which to
-        require reauthentication</string>
-    <string name="settings_desc_block_accessibility">Hide sensitive fields from the accessibility
-        services. <b>DO NOT enable this if you rely on the accessibility services!</b></string>
+    <string name="settings_desc_relock_background">نیاز به احراز هویت بعد از اینکه برنامه به پس زمینه 
+        فرستاده شد.(برای مثال با فشردن دکمه خانه)</string>
+    <string name="settings_desc_auth_inactivity">نیاز به احراز هویت بعد از اینکه دستگاه 
+        بدون فعالیت بوده</string>
+    <string name="settings_desc_auth_inactivity_delay">میزان زمانی (به ثانیه) که بعد از آن
+        احراز هویت دوباره نیاز است را انتخاب کنید</string>
+    <string name="settings_desc_block_accessibility">پنهان کردن فیلد های حساس از خدمات
+        دسترسی.<b>این گزینه را اگر به خدمات دسترسی تکیه دارید فعال نکنید! </b></string>
     <string name="settings_desc_label_scroll">برچسب‌های بلند را اسکرول کن، به جای اینکه ادامه آن‌ها را ببُری</string>
-    <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
-    <string name="settings_desc_search_includes">Specify which values should be included when searching</string>
-    <string name="settings_desc_label_highlight_token">Highlights token in red if it\'s expiring in 8 seconds</string>
+    <string name="settings_desc_minimize_on_copy">برنامه زمانی که شما رمز یکبار مصرف را به کلیپ بورد کپی کنید کوچک خواهد شد</string>
+    <string name="settings_desc_search_includes">مشخص کنید کدام مقادیر باید هنگام جستجو شامل شوند</string>
+    <string name="settings_desc_label_highlight_token">توکن را هنگامی که طی ۸ ثانیه منقضی میشود را به رنگ قرمز برجسته میکند</string>
+    <string name="settings_desc_hide_global_timeout">نوار زمان بندی سراسری نشان داده شده در بالای صفحه را پنهان کن</string>
+    <string name="settings_desc_show_individual_timeouts">برای هر مورد نوار زمان بندی منحصر بفرد نمایش داده شود.
+        اگر واقعا مورد نیاز است فعال شود ، زیرا میتواند موجب کند شدن  برنامه شود.</string>
     <string name="settings_desc_backup_append_date">تاریخ و زمان فعلی را به نام پرونده پشتیبان پیشنهادی اضافه کن</string>
     <string name="settings_desc_backup_ask">هر بار پشتیبان ساخته می‌شود یا بازنشانی می‌شود، یک نام پرونده بپرس</string>
-    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
-        (filenames will depend on the backup type)</string>
-    <string name="settings_desc_backup_password">رمز عبوری که برای رمزگذاری پشتیبان‌ها استفاده می‌شود را تنظیم کنید</string>
-    <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
-        entries are added, or edited, if settings conditions are met</string>
+    <string name="settings_desc_backup_directory">دایرکتوری برای نسخه های پشتیبان خودکار و brodcast
+        (نام پرونده ها به نوع نسخه پشتیبان وابسته خواهد بود)</string>
+    <string name="settings_desc_backup_password">گذرواژه ای که برای رمزنگاری پشتیبان‌ها استفاده می‌شود را تنظیم کنید</string>
+    <string name="settings_desc_auto_backup_password_enc">زمانی که موارد جدید افزوده، یا ویرایش شده
+        اگر شرایط تنظیمات برآورده شود، یک نسخه پشتیبان رمزنگاری شده تازه ایجاد میکند</string>
     <string name="settings_desc_backup_broadcasts">انتخاب کنید کدام نوع پشتیبان‌گیری بتواند توسط Broadcast های برنامه‌های سوم شخص اعمال شود</string>
-    <string name="settings_desc_openpgp_key_encrypt">آدرس پست الکترونیکی کلید OpenPGP  استفاده شود برای رمزگذاری پشتیبان‌ها</string>
-    <string name="settings_desc_openpgp_verify">پشتیبان‌های رمزگذاری شده، فقط اگر با یک کلید معتبر امضا شده اند، بازنشانی شوند</string>
+    <string name="settings_desc_openpgp_key_encrypt">آدرس پست الکترونیکی کلید OpenPGP  استفاده شود برای رمزنگاری پشتیبان‌ها</string>
+    <string name="settings_desc_openpgp_verify">پشتیبان‌های رمزنگاری شده، فقط اگر با یک کلید معتبر امضا شده اند، بازنشانی شوند</string>
     <string name="settings_desc_special_features">تیک را بردارید تا قابلیت‌های ویژه دوباره غیرفعال شوند</string>
     <string name="settings_desc_enable_screenshot">اجازه بده تا از صفحه اصلی برنامه تصویر برداری شود (به صورت پیشفرض به دلایل امنیتی غیرفعال است)</string>
     <string name="settings_desc_enable_android_backup_service">AndOTP را قادر می‌کند تا از سرویس پشتیبان‌گیری داخلی اندروید استفاده کند تا از کلید‌ها و تنظیمات پشتیبان‌گیری کند</string>
-    <string name="settings_desc_clear_keystore">کلید رمزگذاری را از KeyStore حذف کن</string>
+    <string name="settings_desc_clear_keystore">کلید رمزنگاری را از KeyStore حذف کن</string>
     <!-- Toasts -->
     <string name="settings_toast_auth_device_pre_lollipop">این قابلیت حداقل به اندروید ۵. ۰ (Lollipop) نیاز دارد تا کار کند</string>
     <string name="settings_toast_auth_device_not_secure">این قابلیت به یک قفل صفحه امن نیاز دارد تا تنظیم شود (تنظیمات-&lt; امنیت-&lt; قفل صفحه)</string>
-    <string name="settings_toast_password_empty">یک رمز عبور خالی مجاز نیست، احراز هویت را روی «هیچکدام» تنظیم کنید تا غیرفعال شود!</string>
-    <string name="settings_toast_encryption_changing">تلاش برای تغییر رمزگذاری پایگاه داده، لطفا صبر کنید!</string>
-    <string name="settings_toast_encryption_change_success">رمزگذاری پایگاه داده با موفقیت تغییر کرد!</string>
-    <string name="settings_toast_encryption_change_failed">شکست در تغییر رمزگذاری پایگاه داده، در حال برگشت به حالت اصلی!</string>
+    <string name="settings_toast_password_empty">یک گذرواژه خالی مجاز نیست، احراز هویت را روی «هیچکدام» تنظیم کنید تا غیرفعال شود!</string>
+    <string name="settings_toast_encryption_changing">تلاش برای تغییر رمزنگاری پایگاه داده، لطفا صبر کنید!</string>
+    <string name="settings_toast_encryption_change_success">رمزنگاری پایگاه داده با موفقیت تغییر کرد!</string>
+    <string name="settings_toast_encryption_change_failed">شکست در تغییر رمزنگاری پایگاه داده، در حال برگشت به حالت اصلی!</string>
     <string name="settings_toast_encryption_backup_failed">شکست در ساخت یک پشتیبان داخلی، در حال بازگشت به حالت قبل!</string>
-    <string name="settings_toast_encryption_no_key">شکست در گرفتن کلید رمزگذاری، در حال بازگشت به حالت قبل!</string>
+    <string name="settings_toast_encryption_no_key">شکست در گرفتن کلید رمزنگاری، در حال بازگشت به حالت قبل!</string>
     <string name="settings_toast_encryption_auth_failed">شکست در احراز هویت!</string>
-    <string name="settings_toast_auth_upgrade_failed">شکست در بهبود رمز عبور / پین به صورت نامحسوس به رمزگذاری جدید، لطفا به صورت دستی آن را در تنظیمات باز تنظیم کنید!</string>
+    <string name="settings_toast_auth_upgrade_failed">شکست در بهبود رمز عبور / پین به صورت نامحسوس به رمزنگاری جدید، لطفا به صورت دستی آن را در تنظیمات باز تنظیم کنید!</string>
     <string name="settings_dialog_title_warning">هشدار</string>
     <string name="settings_dialog_title_error">خطا</string>
-    <string name="settings_dialog_title_clear_keystore">تمیز کردن KeyStore؟</string>
+    <string name="settings_dialog_title_clear_keystore">پاکسازی KeyStore؟</string>
     <string name="settings_dialog_title_android_sync">همسان‌سازی اندروید</string>
-    <string name="settings_dialog_msg_encryption_change">andOTP حالا سعی خواهد کرد تا رمزگذاری پایگاه داده را تغییر دهد. در صورت شکست، یک پشتیبان داخلی بازنشانی می‌شود و رمزگذاری بدون تغییر باقی می‌ماند.\n\n<b>با این حال، این همیشه ایده خوبیست که یک پشتیبان داشته باشید، برای مواردی که چیز پیش‌بینی نشده‌ای اتفاق بیوفتد!</b></string>
-    <string name="settings_dialog_msg_auth_invalid_with_encryption">شما می‌توانید همیشه از رمز عبور یا پین استفاده کنید، تا وقتی که رمزگذاری پایگاه داده روی «رمز عبور / پین» تنظیم شده باشد!</string>
-    <string name="settings_dialog_msg_encryption_invalid_with_auth">شما ابتدا باید احراز هویت را روی «رمز عبور» یا «پین» تنظیم کنید!</string>
-    <string name="settings_dialog_msg_encryption_invalid_without_credentials">شما باید ابتدا یک رمز عبور یا پین تنظیم کنید، پیش از آنکه رمزگذاری را تغییر دهید!</string>
-    <string name="settings_dialog_msg_clear_keystore_password">در برخی موارد، تمیز کردن KeyStore می‌تواند کمک کند به حل مشکلات. شما باید فقط زمانی آن را انجام دهید که می‌دانید در حال انجام چه کاری هستید!\n\n از آنجایی که <b>رمزگذاری پایگاه داده</b> روی <b>رمز عبور / پین</b> تنظیم شده است، شما نباید با انجام آن هیچ داده‌ای را از دست بدهید (اما به هر حال پشتیبان‌گیری هرگز ضرر ندارد).\n\n<b>آیا شما واقعا می‌خواهید که KeyStore را پاک‌سازی کنید؟</b></string>
-    <string name="settings_dialog_msg_clear_keystore_keystore">در برخی موارد، تمیز کردن KeyStore می‌تواند کمک کند به حل مشکلات. شما باید فقط زمانی آن را انجام دهید که می‌دانید در حال انجام چه کاری هستید!\n\n<b>هشدار</b>: از آنجایی که <b>رمزگذاری پایگاه داده</b> روی <b>KeyStore اندروید</b> تنظیم شده است، شما همه حساب‌های خود را از دست می‌دهید. مطمئن شوید که پشتیبان دارید!\n\n<b>آیا شما واقعا می‌خواهید که KeyStore را پاک‌سازی کنید؟</b></string>
-    <string name="settings_dialog_msg_android_sync_disabled_encryption">همسان‌سازی اندروید نمی‌تواند با رمزگذاری KeyStore استفاده شود، <b>شما باید پشتیبان‌گیری به صورت دستی انجام دهید!</b></string>
+    <string name="settings_dialog_msg_encryption_change">andOTP حالا سعی خواهد کرد تا رمزنگاری پایگاه داده را تغییر دهد. در صورت شکست، یک پشتیبان داخلی بازنشانی می‌شود و رمزنگاری بدون تغییر باقی می‌ماند.\n\n<b>با این حال، این همیشه ایده خوبیست که یک پشتیبان داشته باشید، برای مواردی که چیز پیش‌بینی نشده‌ای اتفاق بیوفتد!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">شما می‌توانید همیشه از گذرواژه یا پین استفاده کنید، تا وقتی که رمزنگاری پایگاه داده روی «گذرواژه / پین» تنظیم شده باشد!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">شما ابتدا باید احراز هویت را روی «گذرواژه» یا «پین» تنظیم کنید!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">شما باید ابتدا یک گذرواژه یا پین تنظیم کنید، پیش از آنکه رمزنگاری را تغییر دهید!</string>
+    <string name="settings_dialog_msg_clear_keystore_password">در برخی موارد، تمیز کردن KeyStore می‌تواند کمک کند به حل مشکلات. شما باید فقط زمانی آن را انجام دهید که می‌دانید در حال انجام چه کاری هستید!\n\n از آنجایی که <b>رمزنگاری پایگاه داده</b> روی <b>گذرواژه / پین</b> تنظیم شده است، شما نباید با انجام آن هیچ داده‌ای را از دست بدهید (اما به هر حال پشتیبان‌گیری هرگز ضرر ندارد).\n\n<b>آیا شما واقعا می‌خواهید که KeyStore را پاک‌سازی کنید؟</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">در برخی موارد، تمیز کردن KeyStore می‌تواند کمک کند به حل مشکلات. شما باید فقط زمانی آن را انجام دهید که می‌دانید در حال انجام چه کاری هستید!\n\n<b>هشدار</b>: از آنجایی که <b>رمزنگاری پایگاه داده</b> روی <b>KeyStore اندروید</b> تنظیم شده است، شما همه حساب‌های خود را از دست می‌دهید. مطمئن شوید که پشتیبان دارید!\n\n<b>آیا شما واقعا می‌خواهید که KeyStore را پاک‌سازی کنید؟</b></string>
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">همسان‌سازی اندروید نمی‌تواند با رمزنگاری KeyStore استفاده شود، <b>شما باید پشتیبان‌گیری به صورت دستی انجام دهید!</b></string>
     <!-- List entries -->
     <string-array name="settings_entries_auth">
-        <item>هیچکدام</item>
-        <item>رمز عبور</item>
+        <item>هیچ کدام</item>
+        <item>گذرواژه</item>
         <item>پین</item>
         <item>اعتبارنامه دستگاه</item>
     </string-array>
     <string-array name="settings_entries_encryption">
         <item>KeyStore اندروید</item>
-        <item>رمز عبور / پین</item>
+        <item>گذرواژه / پین</item>
     </string-array>
     <string-array name="settings_entries_panic">
         <item>پاکسازی همه حساب‌ها</item>
         <item>بازنشانی تنظیمات برنامه</item>
     </string-array>
     <string-array name="settings_entries_card_layout">
-        <item>Compact</item>
-        <item>Default</item>
-        <item>Full</item>
+        <item>فشرده</item>
+        <item>پیش‌فرض</item>
+        <item>کامل</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>هیچ چیز</item>
+        <item>نمایش/پهنان کردن</item>
+        <item>رونوشت</item>
+        <item>کپی کردن و رفتن به پس زمینه</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
-        <item>Label</item>
-        <item>Issuer</item>
-        <item>Tags</item>
+        <item>برچسب</item>
+        <item>صادر کننده</item>
+        <item>برچسب‌ها</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
-        <item>Off</item>
-        <item>New Entries</item>
-        <item>Any Edits</item>
+        <item>خاموش</item>
+        <item>مدخل جدید</item>
+        <item>هر ویرایشی</item>
     </string-array>
     <string-array name="settings_entries_theme">
         <item>پوسته روشن</item>
@@ -133,11 +146,11 @@
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>پنهان</item>
-        <item>Tiny</item>
-        <item>Small</item>
-        <item>Default</item>
-        <item>Medium</item>
-        <item>Large</item>
+        <item>ریز</item>
+        <item>کوچک</item>
+        <item>پیش‌فرض</item>
+        <item>متوسط</item>
+        <item>بزرگ</item>
     </string-array>
     <string-array name="settings_entries_split_group_size">
         <item>جدا نکن</item>
@@ -150,16 +163,16 @@
         <item>تغییر بین تگ‌ها (فقط یک تگ می‌تواند در هر بار انتخاب شود)</item>
     </string-array>
     <string-array name="settings_entries_backup_broadcasts">
-        <item>پشتیبان‌های متن ساده</item>
-        <item>پشتیبان‌های رمزگذاری شده</item>
+        <item>پشتیبان‌های متن آشکار</item>
+        <item>پشتیبان‌های رمزنگاری شده</item>
     </string-array>
     <!-- Special -->
     <string name="settings_lang_sys_default">پیش‌فرض سیستم</string>
     <!-- PasswordPreference -->
-    <string name="settings_hint_password">رمز عبور جدید را وارد کنید</string>
+    <string name="settings_hint_password">گذرواژه جدید را وارد کنید</string>
     <string name="settings_hint_pin">پین جدید را وارد کنید</string>
-    <string name="settings_hint_password_confirm">تایید رمز عبور</string>
+    <string name="settings_hint_password_confirm">تایید گذرواژه</string>
     <string name="settings_hint_pin_confirm">تایید پین</string>
-    <string name="settings_label_short_password">طول رمز عبور باید حداقل %1$d حرف باشد!</string>
+    <string name="settings_label_short_password">طول گذرواژه باید حداقل %1$d حرف باشد!</string>
     <string name="settings_label_short_pin">طول پین باید حداقل %1$d عدد باشد!</string>
 </resources>

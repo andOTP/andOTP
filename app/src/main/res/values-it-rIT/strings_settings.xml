@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">Layout scheda</string>
     <string name="settings_title_label_size">Dimensione carattere dell\'etichetta</string>
     <string name="settings_title_label_scroll">Etichette che scorrono</string>
+    <string name="settings_title_tap_single">Tocco singolo</string>
+    <string name="settings_title_tap_double">Doppio tocco</string>
     <string name="settings_title_thumbnail_size_ask">Dimensioni dell\'anteprima</string>
     <string name="settings_title_split_group_size">Dividi i Token con uno spazio</string>
     <string name="settings_title_tag_functionality">Comportamento selezione tag</string>
     <string name="settings_title_minimize_on_copy">Minimizza l\'app dopo aver copiato un codice OTP</string>
     <string name="settings_title_search_includes">Comportamento della ricerca</string>
     <string name="settings_title_label_highlight_token">Evidenzia token in scadenza</string>
+    <string name="settings_title_hide_global_timeout">Nascondi la barra di timeout globale</string>
+    <string name="settings_title_show_individual_timeouts">Mostra i singoli timeout</string>
     <string name="settings_title_backup_append_date">Aggiungi la data al nome del file</string>
     <string name="settings_title_backup_ask">Chiedi un nome di file</string>
     <string name="settings_title_backup_directory">Cartella backup</string>
@@ -63,6 +67,9 @@ sarà richiesta nuovamente l\'autenticazione</string>
     <string name="settings_desc_minimize_on_copy">L\'app verrà minimizzata quando si copia un codice OTP negli appunti</string>
     <string name="settings_desc_search_includes">Specifica quali valori devono essere inclusi durante la ricerca</string>
     <string name="settings_desc_label_highlight_token">Evidenzia in rosso i token se scadono in 8 secondi</string>
+    <string name="settings_desc_hide_global_timeout">Nascondi la barra del conto alla rovescia globale mostrata nella parte superiore dello schermo</string>
+    <string name="settings_desc_show_individual_timeouts">Mostra una barra di conto alla rovescia individuale per ogni voce.
+        Ciò può rallentare l\'app, attivarlo solo se davvero necessario.</string>
     <string name="settings_desc_backup_append_date">Aggiungi la data e l\'ora correnti al nome del
         file di backup suggerito</string>
     <string name="settings_desc_backup_ask">Chiedere il nome del file ogni volta che un backup
@@ -149,6 +156,12 @@ voci o editate, se le condizioni delle impostazioni sono configurate</string>
         <item>Compatto</item>
         <item>Predefinito</item>
         <item>Pieno</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Niente</item>
+        <item>Mostra/Nascondi</item>
+        <item>Copia</item>
+        <item>Copia e vai in secondo piano</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Etichetta</item>

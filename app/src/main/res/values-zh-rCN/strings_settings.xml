@@ -12,7 +12,7 @@
     <string name="settings_title_auth_password">密码</string>
     <string name="settings_title_auth_pin">PIN</string>
     <string name="settings_title_encryption">数据库加密</string>
-    <string name="settings_title_panic">紧急操作</string>
+    <string name="settings_title_panic">应急触发器</string>
     <string name="settings_title_relock_screen_off">屏幕关闭时重新锁定</string>
     <string name="settings_title_relock_background">进入后台时重新锁定</string>
     <string name="settings_title_auth_inactivity">不活动时重新锁定</string>
@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">卡片布局</string>
     <string name="settings_title_label_size">名称字号</string>
     <string name="settings_title_label_scroll">名称滚动</string>
+    <string name="settings_title_tap_single">单击</string>
+    <string name="settings_title_tap_double">双击</string>
     <string name="settings_title_thumbnail_size_ask">缩略图大小</string>
     <string name="settings_title_split_group_size">令牌显示区块</string>
     <string name="settings_title_tag_functionality">标签选择行为</string>
     <string name="settings_title_minimize_on_copy">复制 OTP 后最小化应用</string>
     <string name="settings_title_search_includes">搜索行为</string>
     <string name="settings_title_label_highlight_token">高亮过期令牌</string>
+    <string name="settings_title_hide_global_timeout">隐藏全局超时栏</string>
+    <string name="settings_title_show_individual_timeouts">显示个别超时</string>
     <string name="settings_title_backup_append_date">追加日期到文件名</string>
     <string name="settings_title_backup_ask">询问文件名</string>
     <string name="settings_title_backup_directory">备份目录</string>
@@ -46,7 +50,7 @@
     <!-- Descriptions -->
     <string name="settings_desc_tap_to_reveal">默认隐藏 OTP 令牌，手动点按以显示它们。</string>
     <string name="settings_desc_tap_to_reveal_timeout">选择重新隐藏已显示条目的时间（秒）</string>
-    <string name="settings_desc_panic">决定“紧急操作”被触发时如何反应</string>
+    <string name="settings_desc_panic">决定触发「应急触发器」时如何处置</string>
     <string name="settings_desc_relock_screen_off">在设备屏幕关闭后，重新使用需验证身份</string>
     <string name="settings_desc_relock_background">应用置于后台后需要身份验证（如按HOME键后）</string>
     <string name="settings_desc_auth_inactivity">设备待机后需要验证</string>
@@ -55,7 +59,9 @@
     <string name="settings_desc_label_scroll">过长的名称滚动显示，而非截断显示。</string>
     <string name="settings_desc_minimize_on_copy">当您复制 OTP 到剪贴板时应用将被最小化</string>
     <string name="settings_desc_search_includes">指定搜索时应包含的值</string>
-    <string name="settings_desc_label_highlight_token">红色高亮标记将在 8 秒后过期的令牌</string>
+    <string name="settings_desc_label_highlight_token">用红色高亮标记将在 8 秒后过期的令牌</string>
+    <string name="settings_desc_hide_global_timeout">隐藏屏幕顶部显示的全局超时栏</string>
+    <string name="settings_desc_show_individual_timeouts">为每个条目显示一个单独的超时栏。这可能会减慢应用速度，只有在真正需要时才启用。</string>
     <string name="settings_desc_backup_append_date">追加当前日期和时间到建议的备份文件名</string>
     <string name="settings_desc_backup_ask">每次创建或还原备份时都询问文件名</string>
     <string name="settings_desc_backup_directory">自动备份并广播目录（文件名将取决于备份类型）</string>
@@ -110,8 +116,14 @@
         <item>默认​​​​​</item>
         <item>完整</item>
     </string-array>
+    <string-array name="settings_entries_tap">
+        <item>无</item>
+        <item>显示/隐藏</item>
+        <item>复制</item>
+        <item>复制并转到后台</item>
+    </string-array>
     <string-array name="settings_entries_search_includes">
-        <item>标记</item>
+        <item>名称</item>
         <item>签发方</item>
         <item>标签</item>
     </string-array>

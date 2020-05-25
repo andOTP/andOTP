@@ -41,11 +41,10 @@
     <string name="menu_sort_label">Etikett</string>
     <string name="menu_sort_last_used">Senast använda</string>
     <string name="menu_sort_most_used">Mest använda</string>
-    <string name="menu_popup_edit_issuer">Ändra utfärdare</string>
-    <string name="menu_popup_edit_label">Redigera etikett</string>
+    <string name="menu_popup_edit">Redigera</string>
     <string name="menu_popup_change_image">Ändra bild</string>
-    <string name="menu_popup_edit_tags">Redigera taggar</string>
     <string name="menu_popup_remove">Ta bort</string>
+    <string name="menu_popup_show_qr_code">Visa QR-kod</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">Autentisering misslyckades, vänligen försök igen!</string>
     <string name="toast_auth_failed_fatal">Autentisering misslyckades, stänger andOTP!</string>
@@ -59,26 +58,36 @@
     <string name="toast_qr_error">Kunde inte hitta/bekräfta QR-kod</string>
     <string name="toast_qr_checksum_exception">Verifiering av kontrollsumma misslyckades vid avkodning av QR-kod</string>
     <string name="toast_qr_format_error">Format fel i QR-kod</string>
+    <string name="toast_qr_unsuported">QR-kod stöds inte</string>
+    <string name="toast_qr_failed_to_generate">Misslyckades med att generera QR-kod</string>
+    <!-- Errors -->
+    <string name="error_invalid_secret">Ogiltig hemlighet</string>
     <!-- Dialogs -->
     <string name="dialog_title_auth">Autentisera</string>
     <string name="dialog_title_manual_entry">Ange detaljer</string>
     <string name="dialog_title_remove">Ta bort</string>
     <string name="dialog_title_rename">Byt namn</string>
     <string name="dialog_title_counter">Räknare</string>
-    <string name="dialog_title_used_tokens">Använda tokens</string>
+    <string name="dialog_title_used_tokens">Tokens användning</string>
     <string name="dialog_title_keystore_error">KeyStore-fel</string>
+    <string name="dialog_title_qr_code">QR-kod</string>
+    <string name="dialog_title_android21_depreaction">Avskrivningsnotis</string>
     <string name="dialog_title_enter_password">Ange lösenord</string>
     <string name="dialog_label_enter_password">Ange lösenord</string>
     <string name="dialog_label_confirm_password">Bekräfta lösenord</string>
     <string name="dialog_msg_auth">Ange dina enhetsuppgifter för att starta andOTP.</string>
     <string name="dialog_msg_confirm_delete">Är du säker på att du vill ta bort kontot \"%1$s\"?</string>
-    <string name="dialog_msg_used_tokens">För att andOTP ska känna igen vilka symbole som används måste du
-        antingen ha ”Klicka för att avslöja” aktiverat eller använda kopieringsknappen. Detta gäller
-        både för sortering av symbolerna enligt ”mest använda” och och enligt ”senast använda”.
-        \n\nDetta meddelande kommer inte att visas igen.</string>
+    <string name="dialog_msg_used_tokens">andOTP kommer att spåra när du använder dina tokens (med hjälp av funktionen \"Tryck på
+        för att avslöja\" eller kopiera till urklipp) för att kunna sortera dem med \"Mest använda\" eller
+        \"Senast använda\".\n\nDetta meddelande kommer inte att visas igen.</string>
     <string name="dialog_msg_keystore_error">Det gick inte att läsa in krypteringsnyckeln från KeyStore.
         <b>Alla poster som läggs till kommer att gå förlorade.</b>\n\nFör att fortfarande kunna använda andOTP kan du gå
         till <b>Inställningar</b> och byta <b>Databas-kryptering</b> till <b>Lösenord / PIN-kod</b>.</string>
+    <string name="dialog_msg_android21_deprecation">Detta är den senaste versionen av andOTP som
+        stöder Android versionen under 5.1 (Lollipop). Den ökande insatsen som krävs för att underhålla
+        separata lagringsimplementationer för äldre versioner samt deras låga marknadsandelar
+        gör fortsatt support infeasible för vår lilla team.\n\nDetta meddelande kommer inte 
+        visas igen.</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Skanna QR-kod</string>
     <string name="shortcut_name_import_qr">Importera QR kod</string>

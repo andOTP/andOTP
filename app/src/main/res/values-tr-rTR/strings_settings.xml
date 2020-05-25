@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">Kart düzeni</string>
     <string name="settings_title_label_size">Etiket yazı tipi boyutu</string>
     <string name="settings_title_label_scroll">Kaydırma etiketi</string>
+    <string name="settings_title_tap_single">Tek dokunma</string>
+    <string name="settings_title_tap_double">Çift dokunma</string>
     <string name="settings_title_thumbnail_size_ask">Küçük resim boyutu</string>
     <string name="settings_title_split_group_size">Token\'ı boşluk karakteri ile böl</string>
     <string name="settings_title_tag_functionality">Etiket seçimi davranışı</string>
     <string name="settings_title_minimize_on_copy">OTP\'yi kopyaladıktan sonra uygulamayı minimize et</string>
     <string name="settings_title_search_includes">Arama davranışı</string>
     <string name="settings_title_label_highlight_token">Süresi dolan tokenleri vurgula</string>
+    <string name="settings_title_hide_global_timeout">Kalan süre barını gizle</string>
+    <string name="settings_title_show_individual_timeouts">Her bir kod için kalan süre barı göster</string>
     <string name="settings_title_backup_append_date">Dosya adına tarihi ekleme</string>
     <string name="settings_title_backup_ask">Dosya adı için sor</string>
     <string name="settings_title_backup_directory">Yedekleme dizini</string>
@@ -61,6 +65,9 @@
     <string name="settings_desc_minimize_on_copy">OTP\'yi panoya kopyaladığınızda uygulama minimize edilecek</string>
     <string name="settings_desc_search_includes">Arama yaparken hangi değerlerin dahil edilmesi gerektiğini belirtin</string>
     <string name="settings_desc_label_highlight_token">8 saniye içerisinde süresi doluyorsa tokeni kırmızı renkte vurgular</string>
+    <string name="settings_desc_hide_global_timeout">Ekranın tepesindeki kalan süre barını gizle</string>
+    <string name="settings_desc_show_individual_timeouts">Her bir kod için ayrı ayrı kalan süre barı görüntüler.
+        Bu uygulamayı yavaşlatabilir, sadece gerçekten gerekliyse aktifleştirin.</string>
     <string name="settings_desc_backup_append_date">Önerilen yedek adına mevcut tarih ve saati ekleme</string>
     <string name="settings_desc_backup_ask">Yedek yaratıldığında ya da 
         kurtarıldığında her zaman dosya adı sor</string>
@@ -143,6 +150,12 @@ beklenmedik durumlar karşısında her zaman bir yedek barındırmak iyi bir al�
         <item>Kompakt</item>
         <item>Varsayılan</item>
         <item>Tam</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Hiçbir şey</item>
+        <item>Göster/Gizle</item>
+        <item>Kopyala</item>
+        <item>Kopyala ve arkaplana at</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Etiket</item>

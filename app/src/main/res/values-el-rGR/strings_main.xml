@@ -41,11 +41,10 @@
     <string name="menu_sort_label">Ετικέτα</string>
     <string name="menu_sort_last_used">Τελευταία χρήση</string>
     <string name="menu_sort_most_used">Τελευταία χρήση</string>
-    <string name="menu_popup_edit_issuer">Επεξεργασία εκδότη</string>
-    <string name="menu_popup_edit_label">Επεξεργασία ετικέτας</string>
+    <string name="menu_popup_edit">Edit</string>
     <string name="menu_popup_change_image">Αλλαγή εικόνας</string>
-    <string name="menu_popup_edit_tags">Επεξεργασία ετικετών</string>
     <string name="menu_popup_remove">Διαγραφή</string>
+    <string name="menu_popup_show_qr_code">Show QR Code</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">Η ταυτοποίηση απέτυχε. Παρακαλώ προσπάθησε ξανά!</string>
     <string name="toast_auth_failed_fatal">Απέτυχε ο έλεγχος ταυτότητας, κλείνει το andOTP!</string>
@@ -59,24 +58,34 @@
     <string name="toast_qr_error">Δεν ήταν δυνατή η εύρεση/επιβεβαίωση του κώδικα QR</string>
     <string name="toast_qr_checksum_exception">Αποτυχία επαλήθευσης κατά την αποκωδικοποίηση του QR κώδικα</string>
     <string name="toast_qr_format_error">Σφάλμα μορφοποίησης κώδικα QR</string>
+    <string name="toast_qr_unsuported">QR Code not supported</string>
+    <string name="toast_qr_failed_to_generate">Failed to generate QR Code</string>
+    <!-- Errors -->
+    <string name="error_invalid_secret">Invalid secret</string>
     <!-- Dialogs -->
     <string name="dialog_title_auth">Ταυτοποίηση</string>
     <string name="dialog_title_manual_entry">Εισάγετε λεπτομέρειες</string>
     <string name="dialog_title_remove">Διαγραφή</string>
     <string name="dialog_title_rename">Μετονομασία</string>
     <string name="dialog_title_counter">Μετρητής</string>
-    <string name="dialog_title_used_tokens">Τεκμήρια σε χρήση</string>
+    <string name="dialog_title_used_tokens">Tokens usage</string>
     <string name="dialog_title_keystore_error">Σφάλμα KeyStore</string>
+    <string name="dialog_title_qr_code">QR Code</string>
+    <string name="dialog_title_android21_depreaction">Deprecation notice</string>
     <string name="dialog_title_enter_password">Εισάγετε κωδικό</string>
     <string name="dialog_label_enter_password">Εισάγετε κωδικό</string>
     <string name="dialog_label_confirm_password">Επιβεβαίωση κωδικού</string>
     <string name="dialog_msg_auth">Παρακαλούμε εισαγάγετε τα διαπιστευτήριά σας για να ανοίξετε το andOTP.</string>
     <string name="dialog_msg_confirm_delete">Σίγουρα θέλετε να αφαιρέσετε το λογαριασμό \"%1$s\";</string>
-    <string name="dialog_msg_used_tokens">Προκειμένου το andOTP να αναγνωρίσει ποια τεκμήρια χρησιμοποιούνται
-        πρέπει να έχουν ενεργοποιηθεί ή χρήση ενέργειας αντιγραφής. Αυτό ισχύει για την
-        ταξινόμηση των τεκμηρίων \"Συχνής χρήσης\" καθώς και \"Τελευταίας χρήσης\".\n\nΑυτό το μήνυμα
-        δεν θα εμφανιστεί ξανά.</string>
+    <string name="dialog_msg_used_tokens">andOTP will track when you use your tokens (using the \"Tap
+        to reveal\" feature or copying to clipboard) to be able to sort them by \"Most used\" or
+        \"Last used\".\n\nThis message will not be shown again.</string>
     <string name="dialog_msg_keystore_error">Αποτυχία φόρτωσης του κλειδιού κρυπτογράφησης από το KeyStore. <b>Τυχόν εγγραφές που προστέθηκαν θα χαθούν.</b>\n\nΓια να είναι εφικτή η χρήση του andOTP μπορείτε να μεταβείτε στις <b>Ρυθμίσεις</b> και να αλλάξετε από <b>Κρυπτογράφηση Βάσης Δεδομένων</b> σε <b>Κωδικός πρόσβασης / PIN</b>.</string>
+    <string name="dialog_msg_android21_deprecation">This will be the last version of andOTP to
+        support Android versions below 5.1 (Lollipop). The increased effort required to maintain a
+        separate storage implementation just for those older versions as well as their low market
+        shares make a continued support infeasible for our small team.\n\nThis message will not be
+        shown again.</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Σάρωση κωδικού QR</string>
     <string name="shortcut_name_import_qr">Εισαγωγή κώδικα QR</string>

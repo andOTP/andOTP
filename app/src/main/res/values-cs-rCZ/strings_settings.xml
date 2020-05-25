@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">Rozložení karet</string>
     <string name="settings_title_label_size">Velikost písma popisku</string>
     <string name="settings_title_label_scroll">Pohybující se popisky</string>
+    <string name="settings_title_tap_single">Single-tap</string>
+    <string name="settings_title_tap_double">Double-tap</string>
     <string name="settings_title_thumbnail_size_ask">Velikost náhledu</string>
     <string name="settings_title_split_group_size">Rozdělit token mezerami</string>
     <string name="settings_title_tag_functionality">Chování výběru štítků</string>
     <string name="settings_title_minimize_on_copy">Minimalizovat aplikaci po zkopírování OTP</string>
     <string name="settings_title_search_includes">Způsob vyhledávání</string>
     <string name="settings_title_label_highlight_token">Zvýraznit tokeny s končící platností</string>
+    <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
+    <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
     <string name="settings_title_backup_append_date">Přidání data k názvu souboru</string>
     <string name="settings_title_backup_ask">Zadejte název souboru</string>
     <string name="settings_title_backup_directory">Adresář záloh</string>
@@ -56,6 +60,9 @@
     <string name="settings_desc_minimize_on_copy">Aplikace bude minimalizována, když zkopírujete OTP do schránky</string>
     <string name="settings_desc_search_includes">Určete, které hodnoty by měly být zahrnuty při hledání</string>
     <string name="settings_desc_label_highlight_token">Zvýraznit token červeně, pokud vyprší do 8 sekund</string>
+    <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
+    <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
+        This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">Přidá aktuální datum a čas k navrhovanému názvu záložního souboru</string>
     <string name="settings_desc_backup_ask">Dotazovat se na název souboru vždy při vytváření či obnovování zálohy</string>
     <string name="settings_desc_backup_directory">Adresář pro automatické a příkazem spuštěné zálohování
@@ -111,6 +118,12 @@ V případě chyby bude obnovena interní záloha a šifrování zůstane nezmě
         <item>Kompaktní</item>
         <item>Výchozí</item>
         <item>Plná</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Nothing</item>
+        <item>Reveal/Hide</item>
+        <item>Copy</item>
+        <item>Copy and go to background</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Popisek</item>
