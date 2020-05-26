@@ -424,8 +424,10 @@ public class MainActivity extends BaseActivity
         super.onSaveInstanceState(outState);
         outState.putString("filterString", filterString);
 
-        if (cacheEncKey)
+        if (cacheEncKey) {
             outState.putByteArray("encKey", adapter.getEncryptionKey().getEncoded());
+            cacheEncKey = false;
+        }
     }
 
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
