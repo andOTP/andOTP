@@ -1,5 +1,10 @@
 # Changelog
 
+#### v0.7.1.1
+
+ * Bug fix: Fix migration of old tap-to-reveal setting
+ * Bug fix: Cache encryption key when recreating main activity
+
 #### v0.7.1
 
  * Deprecation notice: This will be the last version to support Android versions below 5.1
