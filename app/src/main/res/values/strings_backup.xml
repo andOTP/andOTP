@@ -80,6 +80,10 @@
         automatic backup was successful</string>
 
     <!-- Toast messages -->
+    <string name="backup_toast_no_location">Please set a default backup location in the settings!</string>
+    <string name="backup_toast_location_access_failed">Failed to access backup location!</string>
+    <string name="backup_toast_file_creation_failed">Failed to create backup file!</string>
+
     <string name="backup_toast_mkdir_failed">Failed to create backup directory</string>
     <string name="backup_toast_export_success">Export to external storage successful</string>
     <string name="backup_toast_export_failed">Export to external storage failed</string>%
