@@ -235,7 +235,7 @@ public class Entry {
         }
 
         try {
-            this.thumbnail = EntryThumbnail.EntryThumbnails.valueOf(jsonObj.getString(JSON_THUMBNAIL));
+            this.thumbnail = EntryThumbnail.EntryThumbnails.valueOfIgnoreCase(jsonObj.getString(JSON_THUMBNAIL));
         } catch(Exception e) {
             this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
         }
