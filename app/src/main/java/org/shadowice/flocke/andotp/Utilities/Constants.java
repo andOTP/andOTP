@@ -87,9 +87,6 @@ public class Constants {
 
     public static final int INTENT_SETTINGS_AUTHENTICATE        = 300;
 
-    // Permission requests (Format: A1x with A = parent Activity, x = number of the request)
-    public final static int PERMISSIONS_MAIN_QR_READ_IMAGE              = 111;
-
     // Intent extras
     public final static String EXTRA_AUTH_PASSWORD_KEY              = "password_key";
     public final static String EXTRA_AUTH_NEW_ENCRYPTION            = "new_encryption";
