@@ -86,6 +86,7 @@ public class Constants {
     public final static int INTENT_BACKUP_OPEN_DOCUMENT_CRYPT_OLD   = 208;
 
     public static final int INTENT_SETTINGS_AUTHENTICATE        = 300;
+    public static final int INTENT_SETTINGS_BACKUP_LOCATION     = 301;
 
     // Intent extras
     public final static String EXTRA_AUTH_PASSWORD_KEY              = "password_key";

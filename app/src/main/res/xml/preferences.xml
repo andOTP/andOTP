@@ -206,10 +206,10 @@
             android:disableDependentsState="true"
             android:defaultValue="true" />
 
-        <EditTextPreference
-            android:key="@string/settings_key_backup_directory"
-            android:title="@string/settings_title_backup_directory"
-            android:summary="@string/settings_desc_backup_directory" />
+        <Preference
+            android:key="@string/settings_key_backup_location"
+            android:title="@string/settings_title_backup_location"
+            android:summary="@string/settings_desc_backup_location" />
 
         <org.shadowice.flocke.andotp.Preferences.PasswordEncryptedPreference
             android:key="@string/settings_key_backup_password_enc"
