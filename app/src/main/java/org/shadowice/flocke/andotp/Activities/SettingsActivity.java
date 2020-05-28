@@ -28,6 +28,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -37,6 +38,8 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import androidx.appcompat.widget.Toolbar;
+
+import android.provider.DocumentsContract;
 import android.view.ViewStub;
 import android.widget.Toast;
 
@@ -240,6 +243,10 @@ public class SettingsActivity extends BaseActivity
                 | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
                 | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
                 | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && settings.isBackupLocationSet())
+            intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, settings.getBackupLocation());
+
         startActivityForResult(intent, Constants.INTENT_SETTINGS_BACKUP_LOCATION);
     }
 
