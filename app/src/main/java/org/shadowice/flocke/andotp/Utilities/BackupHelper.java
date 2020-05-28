@@ -2,7 +2,6 @@ package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
 import android.net.Uri;
-import android.widget.Toast;
 
 import androidx.documentfile.provider.DocumentFile;
 
@@ -16,6 +15,11 @@ import java.util.ArrayList;
 import javax.crypto.SecretKey;
 
 public class BackupHelper {
+    public static class BackupFile {
+        public DocumentFile file = null;
+        public int errorMessage;
+    }
+
     private static String backupMimeType(Constants.BackupType type) {
         String mimeType = Constants.BACKUP_MIMETYPE_PLAIN;
 
@@ -34,24 +38,24 @@ public class BackupHelper {
         return mimeType;
     }
 
-    public static DocumentFile backupFile(Context context, Uri backupLocationUri, Constants.BackupType type) {
-        DocumentFile backupFile = null;
+    public static BackupFile backupFile(Context context, Uri backupLocationUri, Constants.BackupType type) {
+        BackupFile backupFile = new BackupFile();
         DocumentFile backupLocation = DocumentFile.fromTreeUri(context, backupLocationUri);
 
         if (backupLocation != null) {
             // Try to find an existing file to overwrite
-            backupFile = backupLocation.findFile(BackupHelper.backupFilename(context, type));
+            backupFile.file = backupLocation.findFile(BackupHelper.backupFilename(context, type));
 
             // Try to create a new file
-            if (backupFile == null) {
-                backupFile = backupLocation.createFile(backupMimeType(type), BackupHelper.backupFilename(context, type));
+            if (backupFile.file == null) {
+                backupFile.file = backupLocation.createFile(backupMimeType(type), BackupHelper.backupFilename(context, type));
             }
 
             // Both failed
-            if (backupFile == null)
-                Toast.makeText(context, R.string.backup_toast_file_creation_failed, Toast.LENGTH_LONG).show();
+            if (backupFile.file == null)
+                backupFile.errorMessage = R.string.backup_toast_file_creation_failed;
         } else {
-            Toast.makeText(context, R.string.backup_toast_location_access_failed, Toast.LENGTH_LONG).show();
+            backupFile.errorMessage = R.string.backup_toast_location_access_failed;
         }
 
         return backupFile;

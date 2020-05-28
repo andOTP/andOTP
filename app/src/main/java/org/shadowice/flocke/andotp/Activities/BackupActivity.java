@@ -31,7 +31,6 @@ import android.content.IntentSender;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
-import androidx.documentfile.provider.DocumentFile;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -310,20 +309,26 @@ public class BackupActivity extends BaseActivity {
         } else {
             if (settings.isBackupLocationSet()) {
                 if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN) {
-                    DocumentFile plainBackupFile = BackupHelper.backupFile(this, settings.getBackupLocation(), Constants.BackupType.PLAIN_TEXT);
+                    BackupHelper.BackupFile plainBackupFile = BackupHelper.backupFile(this, settings.getBackupLocation(), Constants.BackupType.PLAIN_TEXT);
 
-                    if (plainBackupFile != null)
-                        doBackupPlain(plainBackupFile.getUri());
+                    if (plainBackupFile.file != null)
+                        doBackupPlain(plainBackupFile.file.getUri());
+                    else
+                        Toast.makeText(this, plainBackupFile.errorMessage, Toast.LENGTH_LONG).show();
                 } else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT) {
-                    DocumentFile cryptBackupFile = BackupHelper.backupFile(this, settings.getBackupLocation(), Constants.BackupType.ENCRYPTED);
+                    BackupHelper.BackupFile cryptBackupFile = BackupHelper.backupFile(this, settings.getBackupLocation(), Constants.BackupType.ENCRYPTED);
 
-                    if (cryptBackupFile != null)
-                        doBackupCrypt(cryptBackupFile.getUri());
+                    if (cryptBackupFile.file != null)
+                        doBackupCrypt(cryptBackupFile.file.getUri());
+                    else
+                        Toast.makeText(this, cryptBackupFile.errorMessage, Toast.LENGTH_LONG).show();
                 } else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP) {
-                    DocumentFile pgpBackupFile = BackupHelper.backupFile(this, settings.getBackupLocation(), Constants.BackupType.OPEN_PGP);
+                    BackupHelper.BackupFile pgpBackupFile = BackupHelper.backupFile(this, settings.getBackupLocation(), Constants.BackupType.OPEN_PGP);
 
-                    if (pgpBackupFile != null)
-                        backupEncryptedWithPGP(pgpBackupFile.getUri(), null);
+                    if (pgpBackupFile.file != null)
+                        backupEncryptedWithPGP(pgpBackupFile.file.getUri(), null);
+                    else
+                        Toast.makeText(this, pgpBackupFile.errorMessage, Toast.LENGTH_LONG).show();
                 }
             } else {
                 Toast.makeText(this, R.string.backup_toast_no_location, Toast.LENGTH_LONG).show();

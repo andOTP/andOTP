@@ -58,15 +58,7 @@ public class Settings {
         this.context = context;
         this.settings = PreferenceManager.getDefaultSharedPreferences(context);
 
-        setupDeviceDependedDefaults();
         migrateDeprecatedSettings();
-    }
-
-    private void setupDeviceDependedDefaults() {
-        if (! settings.contains(getResString(R.string.settings_key_backup_directory))
-                || settings.getString(getResString(R.string.settings_key_backup_directory), "").isEmpty()) {
-            setString(R.string.settings_key_backup_directory, Constants.BACKUP_FOLDER);
-        }
     }
 
     private void migrateDeprecatedSettings() {
