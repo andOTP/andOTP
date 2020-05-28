@@ -309,36 +309,21 @@ public class BackupActivity extends BaseActivity {
             startActivityForResult(intent, intentId);
         } else {
             if (settings.isBackupLocationSet()) {
-                DocumentFile backupLocation = DocumentFile.fromTreeUri(this, settings.getBackupLocation());
+                if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN) {
+                    DocumentFile plainBackupFile = BackupHelper.backupFile(this, settings.getBackupLocation(), Constants.BackupType.PLAIN_TEXT);
 
-                if (backupLocation != null) {
-                    if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN) {
-                        DocumentFile plainBackupFile = backupLocation.createFile(Constants.BACKUP_MIMETYPE_PLAIN, BackupHelper.backupFilename(this, Constants.BackupType.PLAIN_TEXT));
+                    if (plainBackupFile != null)
+                        doBackupPlain(plainBackupFile.getUri());
+                } else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT) {
+                    DocumentFile cryptBackupFile = BackupHelper.backupFile(this, settings.getBackupLocation(), Constants.BackupType.ENCRYPTED);
 
-                        if (plainBackupFile != null) {
-                            doBackupPlain(plainBackupFile.getUri());
-                        } else {
-                            Toast.makeText(this, R.string.backup_toast_file_creation_failed, Toast.LENGTH_LONG).show();
-                        }
-                    } else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_CRYPT) {
-                        DocumentFile cryptBackupFile = backupLocation.createFile(Constants.BACKUP_MIMETYPE_CRYPT, BackupHelper.backupFilename(this, Constants.BackupType.ENCRYPTED));
+                    if (cryptBackupFile != null)
+                        doBackupCrypt(cryptBackupFile.getUri());
+                } else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP) {
+                    DocumentFile pgpBackupFile = BackupHelper.backupFile(this, settings.getBackupLocation(), Constants.BackupType.OPEN_PGP);
 
-                        if (cryptBackupFile != null) {
-                            doBackupCrypt(cryptBackupFile.getUri());
-                        } else {
-                            Toast.makeText(this, R.string.backup_toast_file_creation_failed, Toast.LENGTH_LONG).show();
-                        }
-                    } else if (intentId == Constants.INTENT_BACKUP_SAVE_DOCUMENT_PGP) {
-                        DocumentFile pgpBackupFile = backupLocation.createFile(Constants.BACKUP_MIMETYPE_PGP, BackupHelper.backupFilename(this, Constants.BackupType.OPEN_PGP));
-
-                        if (pgpBackupFile != null) {
-                            backupEncryptedWithPGP(pgpBackupFile.getUri(), null);
-                        } else {
-                            Toast.makeText(this, R.string.backup_toast_file_creation_failed, Toast.LENGTH_LONG).show();
-                        }
-                    }
-                } else {
-                    Toast.makeText(this, R.string.backup_toast_location_access_failed, Toast.LENGTH_LONG).show();
+                    if (pgpBackupFile != null)
+                        backupEncryptedWithPGP(pgpBackupFile.getUri(), null);
                 }
             } else {
                 Toast.makeText(this, R.string.backup_toast_no_location, Toast.LENGTH_LONG).show();
