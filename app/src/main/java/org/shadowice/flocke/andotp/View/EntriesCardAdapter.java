@@ -31,6 +31,7 @@ import android.net.Uri;
 import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.documentfile.provider.DocumentFile;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputType;
@@ -173,16 +174,30 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         if(auto_backup) {
             Constants.BackupType backupType = BackupHelper.autoBackupType(context);
             if (backupType == Constants.BackupType.ENCRYPTED) {
-                Uri backupFilename = Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(context, Constants.BackupType.ENCRYPTED));
+                DocumentFile backupLocation = DocumentFile.fromTreeUri(context, settings.getBackupLocation());
 
-                byte[] keyMaterial = encryptionKey.getEncoded();
-                SecretKey encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
+                if (backupLocation != null) {
+                    // Try to find an existing file to overwrite
+                    DocumentFile cryptBackupFile = backupLocation.findFile(BackupHelper.backupFilename(context, Constants.BackupType.ENCRYPTED));
 
-                boolean success = BackupHelper.backupToFile(context, backupFilename, settings.getBackupPasswordEnc(), encryptionKey);
-                if (success) {
-                    Toast.makeText(context, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
+                    if (cryptBackupFile == null)
+                        cryptBackupFile = backupLocation.createFile(Constants.BACKUP_MIMETYPE_CRYPT, BackupHelper.backupFilename(context, Constants.BackupType.ENCRYPTED));
+
+                    if (cryptBackupFile != null) {
+                        byte[] keyMaterial = encryptionKey.getEncoded();
+                        SecretKey encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
+
+                        boolean success = BackupHelper.backupToFile(context, cryptBackupFile.getUri(), settings.getBackupPasswordEnc(), encryptionKey);
+                        if (success) {
+                            Toast.makeText(context, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(context, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(context, R.string.backup_toast_file_creation_failed, Toast.LENGTH_LONG).show();
+                    }
                 } else {
-                    Toast.makeText(context, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.backup_toast_location_access_failed, Toast.LENGTH_LONG).show();
                 }
             }
         }

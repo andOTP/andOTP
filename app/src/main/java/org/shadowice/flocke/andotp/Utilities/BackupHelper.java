@@ -1,10 +1,7 @@
 package org.shadowice.flocke.andotp.Utilities;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import androidx.core.content.ContextCompat;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 
@@ -43,11 +40,8 @@ public class BackupHelper {
 
     public static Constants.BackupType autoBackupType(Context context) {
         Settings settings = new Settings(context);
-        if(ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            return Constants.BackupType.UNAVAILABLE;
-        }
 
-        if(!Tools.mkdir(settings.getBackupDir())) {
+        if(!settings.isBackupLocationSet()) {
             return Constants.BackupType.UNAVAILABLE;
         }
 
