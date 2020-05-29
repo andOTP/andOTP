@@ -34,6 +34,7 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -41,6 +42,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -434,7 +436,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
         container.addView(input);
 
-        builder.setTitle(R.string.dialog_title_counter)
+        AlertDialog dialog = builder.setTitle(R.string.dialog_title_counter)
                 .setView(container)
                 .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
                     @Override
@@ -455,8 +457,38 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {}
                 })
-                .create()
-                .show();
+                .create();
+        addCounterValidationWatcher(input, dialog);
+        dialog.show();
+    }
+
+    private void addCounterValidationWatcher(EditText input, AlertDialog dialog) {
+        TextWatcher counterWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable input) {
+                Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                if (positive != null) {
+                    positive.setEnabled(isZeroOrPositiveLongInput(input));
+                }
+            }
+
+            private boolean isZeroOrPositiveLongInput(Editable input) {
+                try {
+                    return !TextUtils.isEmpty(input) && (Long.parseLong(input.toString()) >= 0);
+                } catch (NumberFormatException e) {
+                    return false;
+                }
+            }
+        };
+        input.addTextChangedListener(counterWatcher);
     }
 
     private boolean updateLastUsedAndFrequency(int position, int realIndex) {
