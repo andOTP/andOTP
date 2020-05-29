@@ -204,6 +204,7 @@ public class EntryThumbnail {
         Office(R.drawable.thumb_office),
         Okta(R.drawable.thumb_okta),
         OnlineNet(R.drawable.thumb_online),
+        OpenVPN(R.drawable.thumb_openvpn),
         OpenVZ(R.drawable.thumb_openvz),
         OPNsense(R.drawable.thumb_opnsense),
         ORCiD(R.drawable.thumb_orcid),
