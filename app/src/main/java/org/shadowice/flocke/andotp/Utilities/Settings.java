@@ -371,14 +371,6 @@ public class Settings {
         setBoolean(R.string.settings_key_security_backup_warning, value);
     }
 
-    public boolean getAndroid21DeprecationNoticeShown() {
-        return getBoolean(R.string.settings_key_android21_deprecation_notice_shown, false);
-    }
-
-    public void setAndroid21DeprecationNoticeShown(boolean value) {
-        setBoolean(R.string.settings_key_android21_deprecation_notice_shown, value);
-    }
-
     public boolean getSpecialFeatures() {
         return getBoolean(R.string.settings_key_special_features, false);
     }

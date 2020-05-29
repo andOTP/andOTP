@@ -64,7 +64,7 @@
     <string name="settings_key_clear_keystore" translatable="false">pref_clear_keystore</string>
 
     <string name="settings_key_last_used_dialog_shown" translatable="false">pref_last_used_dialog_shown</string>
-    <string name="settings_key_android21_deprecation_notice_shown" translatable="false">pref_android21_deprecation_notice_shown</string>
+    <string name="settings_key_android21_deprecation_notice_shown" translatable="false">pref_android21_deprecation_notice_shown</string>    <!-- Deprecated -->
 
     <!-- Default values -->
     <integer name="settings_default_tap_to_reveal_timeout">30</integer>
