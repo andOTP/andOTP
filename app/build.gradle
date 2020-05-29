@@ -30,8 +30,8 @@ android {
     lintOptions {
           abortOnError false
     }
-    dataBinding {
-        enabled = true
+    buildFeatures{
+        dataBinding = true
     }
     flavorDimensions 'market'
     productFlavors {
@@ -62,6 +62,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:${lifecycle_version}"
     implementation 'com.google.android.material:material:1.1.0'
 
+    //noinspection GradleDependency - because they messed up their version numbering
     implementation "commons-codec:commons-codec:1.14"
     implementation "com.github.aakira:expandable-layout:1.6.0"
     implementation "com.heinrichreimersoftware:material-intro:2.0.0"
