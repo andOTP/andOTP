@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="intro_slide1_title">Let\'s get started</string>
-    <string name="intro_slide1_desc">Welcome to <b>andOTP</b>, this wizard will guide you through
-        the initial setup. Please pay attention and read carefully otherwise you could lose data!
-        \n\nDon\'t worry, you can still change any of the options later in the <b>Settings</b>.</string>
+    <string name="intro_slide1_desc">Welcome to <b>andOTP</b>! This wizard will guide you through
+        the initial setup process. Please pay attention and read carefully in order to avoid losing data.
+        \n\nDon\'t worry, you can still change any of these options later on in the <b>Settings</b>.</string>
 
     <string name="intro_slide2_desc">To ensure the security of your accounts, <b>andOTP</b> uses
         encryption to store account data. Here you can choose which method of encryption will be
