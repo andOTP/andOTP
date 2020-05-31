@@ -5,8 +5,8 @@
         the initial setup. Please pay attention and read carefully otherwise you could lose data!
         \n\nDon\'t worry, you can still change any of the options later in the <b>Settings</b>.</string>
 
-    <string name="intro_slide2_desc">To ensure the security of your accounts <b>andOTP</b> only
-        stores them in encrypted data files. Here you can choose which method of encryption will be
+    <string name="intro_slide2_desc">To ensure the security of your accounts, <b>andOTP</b> uses
+        encryption to store account data. Here you can choose which method of encryption will be
         used.</string>
     <string name="intro_slide2_desc_keystore">The KeyStore is a system component of Android used to
         securely store cryptographic keys. The advantage of using the KeyStore is that the keys are
