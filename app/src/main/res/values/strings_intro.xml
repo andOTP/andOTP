@@ -8,15 +8,16 @@
     <string name="intro_slide2_desc">To ensure the security of your accounts <b>andOTP</b> only
         stores them in encrypted data files. Here you can choose which method of encryption will be
         used.</string>
-    <string name="intro_slide2_desc_keystore">The KeyStore is a system component of Android for
-        securely storing cryptographic keys. The advantage of this method is that the keys are
-        stored separated from the data files and can be backed by hardware cryptography (if your
-        device supports it). However, as the keys are not stored with the apps data, <b>this method
-        prevents external backup solutions (like Titanium) from working</b>. If you choose this
-        method you will have to rely on the internal backup functions provided by <b>andOTP</b>.
-        \n\n<b>Warning</b>: The KeyStore is known to cause a lot of problems, please only use it if
-        you absolutely have to. If you don\'t mind entering a password / PIN every time you start
-        <b>andOTP</b> it is <b>highly recommended to use the password-based encryption instead</b>.</string>
+    <string name="intro_slide2_desc_keystore">The KeyStore is a system component of Android used to
+        securely store cryptographic keys. The advantage of using the KeyStore is that the keys are
+        stored separately from <b>andOTP</b>\'s data, and can be backed by hardware-based encryption
+        (if your device supports it). However, as the keys are not stored with <b>andOTP</b>\'s data,
+        <b>this method prevents external backup solutions (like Titanium) from working</b>. If you
+        choose this method, you will have to rely on the internal backup functions provided by
+        <b>andOTP</b>.\n\n<b>Warning</b>: The KeyStore is known to cause many problems, so
+        please only use it if you absolutely have to. If you don\'t mind entering a password / PIN
+        every time you start <b>andOTP</b>, it is <b>highly recommended to use the password-based
+        encryption instead</b>.</string>
     <string name="intro_slide2_desc_password">This method will encrypt your data with a key
         generated from a password or PIN. The main advantage here is that this will work with
         external backup solutions (like Titanium) and is much less failure-prone than the KeyStore.
