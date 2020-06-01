@@ -24,12 +24,12 @@
         than the KeyStore. However, you will have to enter your credentials every time you start
         <b>andOTP</b>.</string>
 
-    <string name="intro_slide3_desc_keystore">Here you can setup an authentication to lock
-        <b>andOTP</b>. Since you have chosen <b>Android KeyStore</b> as encryption method this is
-        optional.</string>
-    <string name="intro_slide3_desc_password">Here you can setup an authentication to lock
-        <b>andOTP</b>. Since you have chosen <b>Password / PIN</b> as encryption method you need to
-        set either a password or a PIN to proceed.</string>
+    <string name="intro_slide3_desc_keystore">Here you can setup an authentication method to lock
+        <b>andOTP</b>. Since you have chosen <b>Android KeyStore</b> as your encryption method, this
+        step is optional.</string>
+    <string name="intro_slide3_desc_password">Here you can setup an authentication method to lock
+        <b>andOTP</b>. Since you have chosen <b>Password / PIN</b> as your encryption method, a
+        password or a PIN must be set to proceed.</string>
     <string name="intro_slide3_warn_no_password">Please set a password to continue!</string>
     <string name="intro_slide3_warn_no_pin">Please set a PIN to continue!</string>
     <string name="intro_slide3_warn_confirm_password">Please confirm your password to continue!</string>
