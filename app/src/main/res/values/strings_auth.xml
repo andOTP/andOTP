@@ -8,8 +8,8 @@
 
     <!-- Messages -->
     <string name="auth_msg_authenticate">Please authenticate to start andOTP!</string>
-    <string name="auth_msg_confirm_encryption">Please confirm your authentication to generate the
-        new encryption key!</string>
+    <string name="auth_msg_confirm_encryption">Please confirm authentication to generate your
+        encryption key!</string>
 
     <!-- Buttons -->
     <string name="auth_button_unlock">Unlock</string>
