@@ -475,7 +475,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         entries.get(realIndex).setLastUsed(timeStamp);
         entries.get(realIndex).setUsedFrequency(entryUsedFrequency + 1);
-        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
+        saveEntries(false);
 
         if (sortMode == SortMode.LAST_USED) {
             displayedEntries = sortEntries(displayedEntries);
@@ -498,7 +498,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             displayedEntries = new ArrayList<>(entries);
             notifyItemMoved(fromPosition, toPosition);
 
-            saveEntries(settings.getAutoBackupEncryptedFullEnabled());
+            saveEntries(false);
         }
 
         return true;
