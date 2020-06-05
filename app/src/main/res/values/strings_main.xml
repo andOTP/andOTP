@@ -92,7 +92,7 @@
     <string name="dialog_label_confirm_password">Confirm password</string>
 
     <string name="dialog_msg_auth">Please enter your device credentials to start andOTP.</string>
-    <string name="dialog_msg_confirm_delete">Are you sure you want do remove the account \"%1$s\"?</string>
+    <string name="dialog_msg_confirm_delete">Are you sure you want to remove the account \"%1$s\"?</string>
 
     <string name="dialog_msg_used_tokens">andOTP will track when you use your tokens (using the \"Tap
         to reveal\" feature or copying to clipboard) to be able to sort them by \"Most used\" or
