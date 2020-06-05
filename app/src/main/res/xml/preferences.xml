@@ -197,7 +197,7 @@
             android:key="@string/settings_key_backup_append_date_time"
             android:title="@string/settings_title_backup_append_date"
             android:summary="@string/settings_desc_backup_append_date"
-            android:defaultValue="false" />
+            android:defaultValue="true" />
 
         <CheckBoxPreference
             android:key="@string/settings_key_backup_ask"
