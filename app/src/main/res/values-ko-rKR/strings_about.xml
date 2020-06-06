@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">정보</string>
+
+    <string name="about_description">안드로이드를 위한 오픈 소스 2단계 보안</string>
+
+    <string name="about_tab_about">정보</string>
+    <string name="about_tab_libraries">라이브러리</string>
+
+    <!-- Misc -->
+    <string name="about_label_changelog">변경사항</string>
+    <string name="about_label_license">라이선스</string>
+    <string name="about_label_MIT">MIT 라이선스</string>
+    <string name="about_label_source">소스코드</string>
+    <string name="about_label_version">버전</string>
+    <string name="about_label_faq">FAQ</string>
+    <string name="about_label_faq_long">자주 묻는 질문</string>
+
+    <!-- Authors -->
+    <string name="about_title_authors">제작자</string>
+
+    <string name="about_label_main_developer">메인 개발자</string>
+    <string name="about_label_developer">개발자</string>
+    <string name="about_label_original_author">이 앱의 원본 개발자</string>
+    <string name="about_label_original_app">원본 앱</string>
+    <string name="about_label_website">웹사이트</string>
+    <string name="about_label_github" translatable="false">Github</string>
+    <string name="about_label_donate">기부하기</string>
+    <string name="about_name_author1" translatable="false">Jakob Nixdorf</string>
+    <string name="about_name_author_original" translatable="false">Bruno Bierbaumer</string>
+    <string name="about_name_author2" translatable="false">Richy HBM</string>
+
+    <string name="about_label_contributors">기여자</string>
+    <string name="about_label_translators">번역가</string>
+
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">썸네일 경고문</string>
+
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> 모든 썸네일의 사용권은 원작자가 있습니다.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> 여기에 있는 등록상표는 andOTP가 해당 상표에 대한 협력을 가지고 있다는 뜻이 아닙니다.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> 썸네일은 회사를 대표하는 데에만 사용되어애 합니다.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. 여기에 있는 썸네일을 회사를 대표하는 용도로 사용하지 않아선 안 됩니다.</b></string>
+
+    <!-- Support -->
+    <string name="about_title_support">개발 돕기</string>
+    <string name="about_desc_support">당신이 어떻게 andOTP를 도울 수 있는지 확인해 보세요.</string>
+
+    <string name="about_title_special_features">특수 기능</string>
+    <string name="about_dialog_special_features">특수 기능을 실행하시겠습니까? 대부분은 특수한 요청에 의해 설계되었으며, 주로 사용되는 알고리즘이 아닙니다.
+     이 기능들은 <b>공식적으로 지원되지 않으며, 특정한 제한점을 가질 수 있습니다.</b> 사용하기 전 GitHub 위키의 \"Special features\" 메뉴를 읽으세요. (그리고 이해하세요) </string>
+    <string name="about_toast_special_features">특수 기능 활성화됨</string>
+    <string name="about_toast_special_features_enabled">특수 기능이 이미 활성화 되어 있습니다.</string>
+    <string name="about_toast_copied_to_clipboard">기부 링크가 클립보드로 복사되었습니다.</string>
+</resources>
