@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_activity_title">인증하기</string>
+
+    <!-- Hints -->
+    <string name="auth_hint_password">비밀번호</string>
+    <string name="auth_hint_pin">PIN</string>
+
+    <!-- Messages -->
+    <string name="auth_msg_authenticate">비밀번호를 입력하여 andOTP를 시작하세요!</string>
+    <string name="auth_msg_confirm_encryption">인증하여 비밀번호를 생성하십시오!</string>
+
+    <!-- Buttons -->
+    <string name="auth_button_unlock">잠금 해제</string>
+
+    <!-- Toast messages -->
+    <string name="auth_toast_password_missing"><b>설정</b>에서 비밀번호를 설정하세요!</string>
+    <string name="auth_toast_pin_missing"><b>설정</b>에서 PIN을 설정하세요!</string>
+    <string name="auth_toast_password_again">틀린 비밀번호입니다. 다시 시도하세요!</string>
+    <string name="auth_toast_pin_again">틀린 PIN입니다. 다시 시도하세요!</string>
+</resources>
