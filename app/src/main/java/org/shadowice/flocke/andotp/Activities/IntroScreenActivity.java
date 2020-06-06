@@ -371,8 +371,7 @@ public class IntroScreenActivity extends IntroActivity {
                         passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         passwordConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
-                        passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-                        passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
+                        setPasswordTransformationMethod();
 
                         minLength = Constants.AUTH_MIN_PASSWORD_LENGTH;
                         lengthWarning = getString(R.string.settings_label_short_password, minLength);
@@ -392,8 +391,7 @@ public class IntroScreenActivity extends IntroActivity {
                         passwordInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
                         passwordConfirm.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
 
-                        passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-                        passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
+                        setPasswordTransformationMethod();
 
                         minLength = Constants.AUTH_MIN_PIN_LENGTH;
                         lengthWarning = getString(R.string.settings_label_short_pin, minLength);
@@ -416,6 +414,33 @@ public class IntroScreenActivity extends IntroActivity {
                     authWarnings.setVisibility(View.GONE);
 
                     updateNavigation();
+                }
+
+                private void setPasswordTransformationMethod() {
+                    passwordLayout.setEndIconOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            boolean wasShowingPassword = passwordInput.getTransformationMethod() instanceof PasswordTransformationMethod;
+                            // Dispatch password visibility change to both password and confirm inputs
+                            dispatchPasswordVisibilityChange(passwordInput, wasShowingPassword);
+                            dispatchPasswordVisibilityChange(passwordConfirm, wasShowingPassword);
+                            passwordLayout.refreshDrawableState();
+                        }
+                    });
+                    passwordInput.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    passwordConfirm.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+
+                private void dispatchPasswordVisibilityChange(EditText editText, boolean wasShowingPassword) {
+                    final int selection = editText.getSelectionEnd();
+                    if (wasShowingPassword) {
+                        editText.setTransformationMethod(null);
+                    } else {
+                        editText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    }
+                    if (selection >= 0) {
+                        editText.setSelection(selection);
+                    }
                 }
 
                 @Override
