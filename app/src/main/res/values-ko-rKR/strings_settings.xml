@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_activity_title">Settings</string>
+
+    <!-- Categories -->
+    <string name="settings_category_title_security">Security</string>
+    <string name="settings_category_title_ui">User interface</string>
+    <string name="settings_category_title_backup">Backup</string>
+
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">Tap to reveal</string>
+    <string name="settings_title_tap_to_reveal_timeout">Timeout for tap to reveal</string>
+    <string name="settings_title_auth">Authentication</string>
+    <string name="settings_title_auth_password">Password</string>
+    <string name="settings_title_auth_pin">PIN</string>
+    <string name="settings_title_encryption">Database encryption</string>
+    <string name="settings_title_panic">Panic Trigger</string>
+    <string name="settings_title_relock_screen_off">Re-lock on screen off</string>
+    <string name="settings_title_relock_background">Re-lock when going into the background</string>
+    <string name="settings_title_auth_inactivity">Re-lock on inactivity</string>
+    <string name="settings_title_auth_inactivity_delay">Delay for inactivity re-lock</string>
+    <string name="settings_title_block_accessibility">Block accessibility services</string>
+
+    <string name="settings_title_lang">Language</string>
+    <string name="settings_title_theme">Theme</string>
+    <string name="settings_title_card_layout">Card layout</string>
+    <string name="settings_title_label_size">Label font size</string>
+    <string name="settings_title_label_scroll">Scroll label</string>
+    <string name="settings_title_tap_single">Single-tap</string>
+    <string name="settings_title_tap_double">Double-tap</string>
+    <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
+    <string name="settings_title_split_group_size">Split Token with space</string>
+    <string name="settings_title_tag_functionality">Tag selection behavior</string>
+    <string name="settings_title_minimize_on_copy">Minimize app after copying OTP</string>
+    <string name="settings_title_search_includes">Search behavior</string>
+    <string name="settings_title_label_highlight_token">Highlight expiring tokens</string>
+    <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
+    <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
+
+    <string name="settings_title_backup_append_date">Append date to filename</string>
+    <string name="settings_title_backup_ask">Ask for filename</string>
+    <string name="settings_title_backup_location">Default backup location</string>
+    <string name="settings_title_backup_password">Backup password</string>
+    <string name="settings_title_auto_backup_password_enc">Automatically backup on new entries</string>
+
+    <string name="settings_title_backup_broadcasts">Backup Broadcasts</string>
+    <string name="settings_title_openpgp_provider">OpenPGP provider</string>
+    <string name="settings_title_openpgp_key_encrypt">OpenPGP encryption key</string>
+    <string name="settings_title_openpgp_key_sign">OpenPGP signing key (optional)</string>
+    <string name="settings_title_openpgp_verify">Verify encrypted backups</string>
+
+    <string name="settings_title_special_features">Enable special features</string>
+    <string name="settings_title_enable_screenshot">Enable screenshots</string>
+    <string name="settings_title_enable_android_backup_service">Enable Android sync</string>
+    <string name="settings_title_clear_keystore">Clear KeyStore</string>
+
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">Hide the OTP tokens by default, requiring them to be
+        revealed manually</string>
+    <string name="settings_desc_tap_to_reveal_timeout">Select the time (in sec) after which to hide
+        revealed entries again</string>
+    <string name="settings_desc_panic">Decide what happens when a Panic Trigger is received</string>
+    <string name="settings_desc_relock_screen_off">Require authentication after the devices screen
+        has been turned off</string>
+    <string name="settings_desc_relock_background">Require authentication after the app was sent to
+        the background (e.g. by pressing the home button)</string>
+    <string name="settings_desc_auth_inactivity">Require authentication after the device has been
+        inactive</string>
+    <string name="settings_desc_auth_inactivity_delay">Select the time (in sec) after which to
+        require reauthentication</string>
+    <string name="settings_desc_block_accessibility">Hide sensitive fields from the accessibility
+        services. <b>DO NOT enable this if you rely on the accessibility services!</b></string>
+
+    <string name="settings_desc_label_scroll">Scroll overlong labels instead of truncating them</string>
+    <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
+    <string name="settings_desc_search_includes">Specify which values should be included when searching</string>
+    <string name="settings_desc_label_highlight_token">Highlights token in red if it\'s expiring in 8 seconds</string>
+    <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
+    <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
+        This can slow down the app, only enable if really necessary.</string>
+
+    <string name="settings_desc_backup_append_date">Append the current date and time to the suggested
+        backup filename</string>
+    <string name="settings_desc_backup_ask">Ask for the filename every time a backup is created or
+        restored</string>
+    <string name="settings_desc_backup_location">Choose a default backup location</string>
+    <string name="settings_desc_backup_location_set">Backup location has been chosen</string>
+    <string name="settings_desc_backup_password">Set the password that is used to encrypt the
+        backups</string>
+
+    <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
+        entries are added, or edited, if settings conditions are met</string>
+
+    <string name="settings_desc_backup_broadcasts">Select which backup types can be triggered by
+        3rd-party apps using Broadcasts</string>
+
+    <string name="settings_desc_openpgp_key_encrypt">Mail address of the OpenPGP key used to encrypt
+        the backups</string>
+    <string name="settings_desc_openpgp_verify">Encrypted backups are only imported if they are
+        signed with a valid key</string>
+
+    <string name="settings_desc_special_features">Uncheck to disable the special features again</string>
+    <string name="settings_desc_enable_screenshot">Allow to take screenshots of the main screen
+        (disabled by default for security reasons)</string>
+    <string name="settings_desc_enable_android_backup_service">Enables andOTP to use Android\'s
+        built in backup service to backup keys and preferences</string>
+    <string name="settings_desc_clear_keystore">Delete the encryption key from the KeyStore</string>
+
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_pre_lollipop">This feature requires at least Android 5.0
+        (Lollipop) to work</string>
+    <string name="settings_toast_auth_device_not_secure">This feature requires a secure lock screen
+        to be set up (Settings -> Security -> Screenlock)</string>
+
+    <string name="settings_toast_password_empty">An empty password is not allowed, set the
+        Authentication to \"None\" to disable it!</string>
+
+    <string name="settings_toast_encryption_changing">Trying to change the database encryption,
+        please wait!</string>
+    <string name="settings_toast_encryption_change_success">Successfully changed the database
+        encryption!</string>
+    <string name="settings_toast_encryption_change_failed">Failed to change database encryption,
+        falling back to original state!</string>
+    <string name="settings_toast_encryption_backup_failed">Failed to create an internal
+        backup, aborting!</string>
+    <string name="settings_toast_encryption_no_key">Failed to get the encryption key, aborting!</string>
+    <string name="settings_toast_encryption_auth_failed">Authentication failed!</string>
+
+    <string name="settings_toast_auth_upgrade_failed">Failed to silently upgrade your password / PIN
+        to the new encryption, please manually reset it in the Settings!</string>
+
+    <string name="settings_dialog_title_warning">Warning</string>
+    <string name="settings_dialog_title_error">Error</string>
+    <string name="settings_dialog_title_clear_keystore">Clear the KeyStore?</string>
+    <string name="settings_dialog_title_android_sync">Android sync</string>
+
+    <string name="settings_dialog_msg_encryption_change">andOTP will now try to change the database
+        encryption. In case of a failure an internal backup will be restored and the encryption
+        remains unchanged.\n\n<b>However, it\'s always a good idea to have a backup in case
+        something unexpected happens!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">You can only use Password or PIN as
+        long as the database encryption is set to \"Password / PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">You first need to set the
+        Authentication to \"Password\" or \"PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">You first need to set a
+        Password or PIN before changing the encryption!</string>
+
+    <string name="settings_dialog_msg_clear_keystore_password">In some cases clearing the KeyStore
+        can help resolve problems. You should only proceed if you know what you are doing!\n\nSince
+        the <b>Database encryption</b> is set to <b>Password / PIN</b> you shouldn\'t lose any data
+        doing this (but it never hurts to have a backup anyways).\n\n<b>Are you really sure you want
+        to clear the KeyStore?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">In some cases clearing the KeyStore
+        can help resolve problems. You should only proceed if you know what you are doing!\n\n<b>Warning</b>:
+        Since the <b>Database encryption</b> is set to <b>Android KeyStore</b> you will lose all
+        your accounts. Make sure you have a backup!\n\n<b>Are you really sure you want to clear the
+        KeyStore?</b></string>
+
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">Android sync can not be used with keystore
+        encryption, <b>you should perform a manual backup!</b></string>
+
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>None</item>
+        <item>Password</item>
+        <item>PIN</item>
+        <item>Device credentials</item>
+    </string-array>
+
+    <string-array name="settings_entries_encryption">
+        <item>Android KeyStore</item>
+        <item>Password / PIN</item>
+    </string-array>
+
+    <string-array name="settings_entries_panic">
+        <item>Wipe all accounts</item>
+        <item>Reset app settings</item>
+    </string-array>
+
+    <string-array name="settings_entries_card_layout">
+        <item>Compact</item>
+        <item>Default</item>
+        <item>Full</item>
+    </string-array>
+
+    <string-array name="settings_entries_tap">
+        <item>Nothing</item>
+        <item>Reveal/Hide</item>
+        <item>Copy</item>
+        <item>Copy and go to background</item>
+    </string-array>
+
+    <string-array name="settings_entries_search_includes">
+        <item>Label</item>
+        <item>Issuer</item>
+        <item>Tags</item>
+    </string-array>
+
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Off</item>
+        <item>New Entries</item>
+        <item>Any Edits</item>
+    </string-array>
+
+    <string-array name="settings_entries_theme">
+        <item>Light theme</item>
+        <item>Dark theme</item>
+        <item>Black theme</item>
+    </string-array>
+
+    <string-array name="settings_entries_thumbnail_size">
+        <item>Hidden</item>
+        <item>Tiny</item>
+        <item>Small</item>
+        <item>Default</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+
+    <string-array name="settings_entries_split_group_size">
+        <item>Don\'t split</item>
+        <item>After two characters</item>
+        <item>After three characters</item>
+    </string-array>
+
+    <string-array name="settings_entries_tag_functionality">
+        <item>Show all entries matching <b>any</b> of the selected tags (or)</item>
+        <item>Only show entries matching <b>all</b> of the selected tags (and)</item>
+        <item>Switch between tags (only allow one tag to be selected at a time)</item>
+    </string-array>
+
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Plain-text backups</item>
+        <item>Encrypted backups</item>
+    </string-array>
+    
+    <!-- Special -->
+    <string name="settings_lang_sys_default">System default</string>
+
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">Enter new password</string>
+    <string name="settings_hint_pin">Enter new PIN</string>
+    <string name="settings_hint_password_confirm">Confirm password</string>
+    <string name="settings_hint_pin_confirm">Confirm PIN</string>
+
+    <string name="settings_label_short_password">The password needs to be at least %1$d characters long!</string>
+    <string name="settings_label_short_pin">The PIN needs to be at least %1$d digits long!</string>
+</resources>
