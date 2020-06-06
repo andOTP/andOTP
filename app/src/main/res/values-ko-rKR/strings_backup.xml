@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="backup_activity_title">백업</string>
+
+    <string name="backup_category_plain">평문 백업</string>
+    <string name="backup_category_crypt">암호화 백업</string>
+    <string name="backup_category_openpgp">OpenPGP 백업</string>
+
+    <string name="backup_title_export_plain">백업 (평문)</string>
+    <string name="backup_title_export_crypt">백업 (암호화)</string>
+    <string name="backup_title_export_openpgp">백업 (OpenPGP)</string>
+    <string name="backup_title_import_plain">복구 (평문)</string>
+    <string name="backup_title_import_crypt">복구 (암호화)</string>
+    <string name="backup_title_import_crypt_old">복구 (암호화, 구형 암호화)</string>
+    <string name="backup_title_import_openpgp">복구 (OpenPGP)</string>
+
+    <string name="backup_title_replace">존재하는 엔트리 덮어쓰기</string>
+
+    <string name="backup_desc_export_plain">모든 계정을 JSON 평문으로 저장하기</string>
+    <string name="backup_desc_export_crypt">모든 계정을 비밀번호가 있는 JSON으로 저장하기</string>
+    <string name="backup_desc_export_openpgp">모든 계정을 OpenPGP로 암호화된 JSON으로 저장하기</string>
+    <string name="backup_desc_import_plain">평문 JSON으로부터 복구하기</string>
+    <string name="backup_desc_import_crypt">비밀번호가 있는 JSON으로부터 복구하기</string>
+    <string name="backup_desc_import_crypt_old">비밀번호가 있는 <b>andOTP 0.6.3 버전 이하</b>로부터 생성된 JSON으로부터 복구하기</string>
+    <string name="backup_desc_import_openpgp">OpenPGP포 암호화된 JSON으로부터 복구하기</string>
+
+    <string name="backup_desc_crypt_setup"><b>설정</b>에서 복구 비밀번호를 찾을 수 없습니다.
+이것은 설정이 손상되었다는 뜻입니다. 백업 및 복구를 할 경우 비밀번호를 입력하여야 합니다.
+    </string>
+
+    <string name="backup_desc_openpgp_provider"><b>설정</b>에서 OpenPGP 프로바이더를 활성화해야 사용할 수 있습니다.
+    </string>
+    <string name="backup_desc_openpgp_keyid">암호화된 백업을 실행하기 전 <b>설정</b>
+    에서 키를 선택해야 합니다.
+    </string>
+
+    <string name="backup_desc_replace">활성화하면 모든 기존 항목을 가져올 때 교체됩니다.
+         백업만 존재합니다. 이전 항목과 백업 내용을 비활성화 한 경우
+         병합됩니다.</string>
+
+    <!-- 알림 창 -->
+    <string name="backup_dialog_title_security_warning">보안 경고</string>
+
+    <string name="backup_dialog_msg_export_warning">정말로 개인 정보와 비밀 키를 평문 JSON으로 보관하시겠어요? 만약 계속하신다면, <b>안전하게 보관하세요</b>!
+    </string>
+
+
+    <string name="backup_receiver_title_backup_failed">백업 실패</string>
+    <string name="backup_receiver_title_backup_success">백업 성공</string>
+
+    <string name="backup_receiver_plain_disabled">평문 백업이 비활성화 되어 있습니다. 설정에서 활성화 해주세요</string>
+    <string name="backup_receiver_encrypted_disabled">암호문 백업이 비활성화 되어 있습니다. 설정에서 활성화 해주세요</string>
+
+    <string name="backup_receiver_read_permission_failed">읽기 권한이 없습니다. 읽기 권한을 주고 나서 백업을 시도하세요.</string>
+    <string name="backup_receiver_write_permission_failed">쓰기 권한이 없습니다. 쓰기 권한을 주고 나서 백업을 시도하세요.</string>
+    <string name="backup_receiver_custom_encryption_failed">비밀번호/PIN 기반 암호화는 브로드캐스트 백업에서 지원되지 않습니다.</string>
+
+    <string name="backup_new_format_dialog_title">새로운 암호화 방법</string>
+    <string name="backup_new_format_dialog_msg">0.6.3버전의 andOTP부터, <b>새롭고 개선된 암호화 방법</b>이 비밀번호 암호화 백업에 사용됩니다.
+     기존 백업은 복구될 수 있지만, <b>새로운 백업은 개선된 암호화 방법으로 사용하는 것이 좋습니다</b>.
+     \n\n이 메시지는 다시 보이지 않습니다.</string>
+
+    <!-- 알림 채널 -->
+    <string name="notification_channel_name_backup_failed">자동 백업 실패</string>
+    <string name="notification_channel_name_backup_success">자동 백업 성공</string>
+
+    <string name="notification_channel_desc_backup_failed">이런 알림은 자동 백업이 실패했을 때 전송됩니다.</string>
+    <string name="notification_channel_desc_backup_success">이런 알림은 자동 백업이 성공했을 때 전송됩니다.</string>
+
+    <!-- 토스트 메시지 -->
+    <string name="backup_toast_no_location">설정에서 기본 백업 위치를 설정하십시오!</string>
+    <string name="backup_toast_location_access_failed">백업 위치를 접근할 수 없습니다.</string>
+    <string name="backup_toast_file_creation_failed">백업 파일 생성 실패!</string>
+
+    <string name="backup_toast_export_success">외부 저장소로 백업 성공</string>
+    <string name="backup_toast_export_failed">외부 저장소로 백업 실패</string>%
+    <string name="backup_toast_import_success">외부 저장소에서 복구 성공</string>
+    <string name="backup_toast_import_save_failed">복구된 엔트리를 저장할 수 없습니다</string>
+    <string name="backup_toast_import_decryption_failed">복구 파일 복호화 실패</string>
+    <string name="backup_toast_import_no_entries">복구된 데이터에서 엔트리를 찾을 수 없습니다.</string>
+    <string name="backup_toast_storage_not_accessible">외부 저장소에 접근할 수 없습니다</string>
+    <string name="backup_toast_openpgp_error">OpenPGP 오류: %s</string>
+    <string name="backup_toast_openpgp_not_verified">인증된 서명 없음</string>
+    <string name="backup_toast_crypt_password_not_set">비밀번호가 없습니다. <b>설정</b>을 확인해 주세요.</string>
+    <string name="backup_toast_file_selection_failed">파일 선택 창을 실행할 수 없습니다!</string>
+</resources>
