@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name" translatable="false">andOTP</string>
+
+    <!-- Buttons -->
+    <string name="button_cancel">취소</string>
+    <string name="button_enter_details">세부정보 입력</string>
+    <string name="button_scan_qr">QR 코드 스캔</string>
+    <string name="button_save">저장</string>
+    <string name="button_new_tag">새 태그</string>
+    <string name="button_settings">설정</string>
+    <string name="button_all_tags">모든 태그</string>
+    <string name="button_no_tags">태그 없음</string>
+    <string name="button_qr_from_image">이미지에서 QR 코드 가져오기</string>
+
+    <!-- Custom formatting -->
+    <string name="format_custom_period">%d초</string>
+    <string name="card_separator" translatable="false">&#160;-&#160;</string>
+
+    <!-- Hints -->
+    <string name="hint_label">라벨</string>
+    <string name="hint_secret">비밀번호</string>
+
+    <!-- Labels -->
+    <string name="label_clipboard_content" translatable="false">OTP Token</string>
+    <string name="label_hidden">숨김</string>
+    <string name="label_type">종류</string>
+    <string name="label_secret">비밀번호</string>
+    <string name="label_period">유효기간</string>
+    <string name="label_digits">자릿수</string>
+    <string name="label_counter">카운터</string>
+    <string name="label_issuer">발급자</string>
+    <string name="label_label">라벨</string>
+    <string name="label_algorithm">알고리즘</string>
+    <string name="label_tags">태그</string>
+    <string name="label_advanced">고급 설정</string>
+    <string name="label_counter_symbol" translatable="false">#</string>
+
+    <!-- Drawer -->
+    <string name="drawer_open">태그 보이기</string>
+    <string name="drawer_close">태그 숨기기</string>
+
+    <!-- Menu -->
+    <string name="menu_main_about">정보</string>
+    <string name="menu_main_backup">백업</string>
+    <string name="menu_main_search">검색</string>
+    <string name="menu_main_settings">설정</string>
+    <string name="menu_main_sort">정렬</string>
+
+    <string name="menu_sort_none">정렬되지 않음</string>
+    <string name="menu_sort_issuer">발급자</string>
+    <string name="menu_sort_label">라벨</string>
+    <string name="menu_sort_last_used">최근 사용</string>
+    <string name="menu_sort_most_used">최다 사용</string>
+
+    <string name="menu_popup_edit">편집</string>
+    <string name="menu_popup_change_image">사진 변경</string>
+    <string name="menu_popup_remove">삭제</string>
+    <string name="menu_popup_show_qr_code">QR 코드 보기</string>
+
+    <!-- Toast messages -->
+    <string name="toast_auth_failed">인증 실패, 재시도하세요!</string>
+    <string name="toast_auth_failed_fatal">인증 실패, andOTP를 종료합니다!</string>
+    <string name="toast_copied_to_clipboard">클립보드에 복사되었습니다</string>
+    <string name="toast_entry_exists">이 엔트리는 이미 존재합니다</string>
+    <string name="toast_invalid_qr_code">올바르지 않은 QR 코드</string>
+    <string name="toast_encryption_key_empty">암호화 키 로딩되지 않음</string>
+    <string name="toast_intent_creation_failed">올바르지 않은 인텐트 지급 코드</string>
+    <string name="toast_intent_creation_succeeded">인텐드 지급 코드 추가 성공</string>
+    <string name="toast_file_load_error">파일을 실행할 수 없음</string>
+    <string name="toast_qr_error">QR 코드를 찾거나 검증할 수 없음</string>
+    <string name="toast_qr_checksum_exception">QR 코드를 검증하는 중 체크섬을 확인할 수 없음</string>
+    <string name="toast_qr_format_error">QR 코드 포맷 오류</string>
+    <string name="toast_qr_unsuported">미지원 QR 코드</string>
+    <string name="toast_qr_failed_to_generate">QR 코드 생성 실패</string>
+
+    <!-- Errors -->
+    <string name="error_invalid_secret">올바르지 않은 비밀번호</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_title_auth">인증</string>
+    <string name="dialog_title_manual_entry">부가 정보 입력</string>
+    <string name="dialog_title_remove">삭제</string>
+    <string name="dialog_title_rename">이름 바꾸기</string>
+    <string name="dialog_title_counter">카운터</string>
+    <string name="dialog_title_used_tokens">토큰 사용량</string>
+    <string name="dialog_title_keystore_error">KeyStore 오류</string>
+    <string name="dialog_title_qr_code">QR 코드</string>
+
+    <string name="dialog_title_enter_password">비밀번호 입력</string>
+
+    <string name="dialog_label_enter_password">비밀번호 입력</string>
+    <string name="dialog_label_confirm_password">비밀번호 확인</string>
+
+    <string name="dialog_msg_auth">andOTP를 시작하기 위해 기기의 정보를 입력해 주세요.</string>
+    <string name="dialog_msg_confirm_delete">\"%1$s\" 계정을 지우시겠습니까?</string>
+
+    <string name="dialog_msg_used_tokens">andOTP 는 토큰 사용량을 측정할 겁니다. ( \"탭하여 보기\" 기능 및 클립보드 복사) 따라서  \"최다 사용됨\" 및
+        \"최근 사용됨\" 정렬을 사용할 수 있습니다.\n\n이 메시지는 다시 보이지 않습니다.</string>
+
+    <string name="dialog_msg_keystore_error">KeyStore에서 암호문을 로딩하는데 실패했습니다.
+        <b>추가된 엔트리는 모두 삭제될 겁니다.</b>\n\n계속 andOTP를 사용하려면, 설정에 들어가서 암호화 방법을 비밀번호, PIN으로 변경해 주세요.</string>
+
+    <!-- Shortcuts -->
+    <string name="shortcut_name_scan_qr">QR 코드 인식</string>
+    <string name="shortcut_name_import_qr">QR 코드 가져오기</string>
+    <string name="shortcut_name_enter_details">세부 정보 입력</string>
+</resources>
