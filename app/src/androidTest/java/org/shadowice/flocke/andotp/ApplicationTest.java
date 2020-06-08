@@ -176,6 +176,12 @@ public class ApplicationTest {
         Entry entry = new Entry("otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&ALGORITHM=SHA1&digits=6&period=30");
         assertEquals("john.doe@email.com", entry.getLabel());
 
+        Entry entry2 = new Entry("otpauth://totp/ :john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&ALGORITHM=SHA1&digits=6&period=30");
+        assertEquals(":john.doe@email.com", entry2.getLabel());
+
+        Entry entry3 = new Entry("otpauth://totp/ :john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=%20&ALGORITHM=SHA1&digits=6&period=30");
+        assertEquals("john.doe@email.com", entry3.getLabel());
+
         assertEquals("HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ", new String(new Base32().encode(entry.getSecret())));
 
 
