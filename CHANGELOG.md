@@ -2,8 +2,10 @@
 
 #### v0.8.0
 
- * Internal: Update Gradle
+ * Internal: Update Gradle and build tools
  * Internal: Min API Level set to 22 (Lollipop	5.1)
+ * Internal: Refactoring and reducing build warnings
+ 
 
 #### v0.7.1.1
 
