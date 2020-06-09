@@ -49,7 +49,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
-import com.heinrichreimersoftware.materialintro.app.OnNavigationBlockedListener;
 import com.heinrichreimersoftware.materialintro.app.SlideFragment;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
@@ -128,12 +127,9 @@ public class IntroScreenActivity extends IntroActivity {
                 .build()
         );
 
-        addOnNavigationBlockedListener(new OnNavigationBlockedListener() {
-            @Override
-            public void onNavigationBlocked(int position, int direction) {
-                if (position == 2)
-                    authenticationFragment.flashWarning();
-            }
+        addOnNavigationBlockedListener((position, direction) -> {
+            if (position == 2)
+                authenticationFragment.flashWarning();
         });
 
         addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
