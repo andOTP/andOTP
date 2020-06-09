@@ -62,7 +62,7 @@ public class EncryptedBackupBroadcastReceiver extends BackupBroadcastReceiver {
                 return;
             }
 
-            SecretKey encryptionKey = null;
+            SecretKey encryptionKey;
 
             if (settings.getEncryption() == Constants.EncryptionType.KEYSTORE) {
                 encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(context, false);
