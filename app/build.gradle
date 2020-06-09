@@ -69,7 +69,5 @@ dependencies {
     implementation "com.leinardi.android:speed-dial:3.1.1"
     implementation "com.mikepenz:aboutlibraries:6.2.3"
 
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
 }
