@@ -99,7 +99,7 @@
         \"Last used\".\n\nThis message will not be shown again.</string>
 
     <string name="dialog_msg_keystore_error">Failed to load the encryption key from the KeyStore.
-        <b>Any entries that are added will get lost.</b>\n\nTo still be able to use andOTP you can go
+        <b>Any entries that are added will be lost.</b>\n\nTo continue using andOTP, you can go
         to the <b>Settings</b> and switch the <b>Database encryption</b> to <b>Password / PIN</b>.</string>
 
     <!-- Shortcuts -->
