@@ -88,12 +88,7 @@ public class IntroScreenActivity extends IntroActivity {
         encryptionFragment = new EncryptionFragment();
         authenticationFragment = new AuthenticationFragment();
 
-        encryptionFragment.setEncryptionChangedCallback(new EncryptionFragment.EncryptionChangedCallback() {
-            @Override
-            public void onEncryptionChanged(Constants.EncryptionType newEncryptionType) {
-                authenticationFragment.updateEncryptionType(newEncryptionType);
-            }
-        });
+        encryptionFragment.setEncryptionChangedCallback(newEncryptionType -> authenticationFragment.updateEncryptionType(newEncryptionType));
 
         setButtonBackFunction(BUTTON_BACK_FUNCTION_BACK);
 
