@@ -73,8 +73,6 @@
     <string name="settings_desc_backup_append_date">A jelenlegi dátum és idő hozzáfűzése a biztonsági
         mentés javasolt nevéhez</string>
     <string name="settings_desc_backup_ask">Fájl nevének kérése minden alkalommal amikor biztonsági mentés jön létre vagy állítódik vissza</string>
-    <string name="settings_desc_backup_directory">Az automatikus és továbbított biztonsági mentések
-        könyvtára (a fájlnév a típustól függ)</string>
     <string name="settings_desc_backup_password">Állítsa be a jelszót amit a biztonsági mentések titkosításához használ</string>
     <string name="settings_desc_auto_backup_password_enc">Új titkosított biztonsági mentést hoz létre, ha új
         bejegyzések kerülnek hozzáadásra, szerkesztésre, vagy ha a

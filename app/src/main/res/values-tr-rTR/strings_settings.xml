@@ -71,8 +71,6 @@
     <string name="settings_desc_backup_append_date">Önerilen yedek adına mevcut tarih ve saati ekleme</string>
     <string name="settings_desc_backup_ask">Yedek yaratıldığında ya da 
         kurtarıldığında her zaman dosya adı sor</string>
-    <string name="settings_desc_backup_directory">Otomatik ve broadcast yedeklemeleri dizini
-        (dosya adları yedekleme türüne bağlı olacaktır)</string>
     <string name="settings_desc_backup_password">        Yedekleri şifrelemek için parola ayarların</string>
     <string name="settings_desc_auto_backup_password_enc">Yeni girişler eklendiğinde veya düzenlendiğinde,
         ayarlanan koşullar sağlanıyorsa yeni bir şifreli yedekleme oluşturur</string>

@@ -74,8 +74,6 @@ sarà richiesta nuovamente l\'autenticazione</string>
         file di backup suggerito</string>
     <string name="settings_desc_backup_ask">Chiedere il nome del file ogni volta che un backup
         viene creato o ripristinato</string>
-    <string name="settings_desc_backup_directory">Cartella per backup automatici e broadcast
-        (i nomi dei file dipendono dal tipo di backup)</string>
     <string name="settings_desc_backup_password">Impostare la password utilizzata per crittografare i
         backup</string>
     <string name="settings_desc_auto_backup_password_enc">Crea un nuovo backup cifrato quando vengono create nuove

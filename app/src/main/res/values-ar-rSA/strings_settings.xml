@@ -69,8 +69,6 @@
         This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">إلحاق بالتاريخ الحالي والوقت إلى اسم الملف النسخ الاحتياطي المقترح</string>
     <string name="settings_desc_backup_ask">اسأل عن اسم الملف كل مرة يتم إنشاء نسخة احتياطية أو نسخة مستعادة</string>
-    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
-        (filenames will depend on the backup type)</string>
     <string name="settings_desc_backup_password">إختر كلمة المرور التي سوف تستخدم لتشفير النسخ الإحتياطية</string>
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
         entries are added, or edited, if settings conditions are met</string>

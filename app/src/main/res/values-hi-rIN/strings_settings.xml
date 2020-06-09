@@ -65,7 +65,6 @@
         This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">बैकअप फ़ाइल नाम में सुझाए गए वर्तमान दिनांक और समय को लागू करें</string>
     <string name="settings_desc_backup_ask">हर बार एक बैकअप बनाने या पुनर्स्थापित करने के लिए फ़ाइल नाम के लिए पूछें</string>
-    <string name="settings_desc_backup_directory">स्वचालित और प्रसारण बैकअप के लिए निर्देशिका (फ़ाइल नाम बैकअप प्रकार पर निर्भर करेगा)</string>
     <string name="settings_desc_backup_password">पासवर्ड सेट करें जो बैकअप को कूटलेखन के लिए उपयोग होगा</string>
     <string name="settings_desc_auto_backup_password_enc">जब नई प्रविष्टियाँ जोड़ी जाती हैं या संपादित की जाती हैं, तो एक नया एन्क्रिप्टेड बैकअप बनाता है, अगर सेटिंग्स की शर्तों को पूरा किया जाता है</string>
     <string name="settings_desc_backup_broadcasts">ब्रॉडकास्ट का उपयोग करके तीसरी पार्टी ऐप्स द्वारा ट्रिगर होने वाले बैकअप प्रकार  का चयन करें</string>

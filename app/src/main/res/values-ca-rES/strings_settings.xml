@@ -73,8 +73,6 @@
     <string name="settings_desc_backup_append_date">Append the current date and time to the suggested
         backup filename</string>
     <string name="settings_desc_backup_ask">Demana el nom del fitxer cada vegada que es crea o restaura una còpia de seguretat</string>
-    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
-        (filenames will depend on the backup type)</string>
     <string name="settings_desc_backup_password">Contrasenya que s\'usarà per a xifrar les
         còpies de seguretat</string>
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new

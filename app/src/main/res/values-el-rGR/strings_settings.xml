@@ -74,8 +74,6 @@
         όνομα αρχείου αντιγράφου ασφαλείας</string>
     <string name="settings_desc_backup_ask">Ερώτηση για το όνομα του αρχείου κάθε φορά που δημιουργείται ένα αντίγραφο ασφαλείας ή
         επαναφορά αυτού</string>
-    <string name="settings_desc_backup_directory">Κατάλογος αυτόματων αντιγράφων και αντίγραφα broadcast
-        (τα ονόματα αρχείων θα εξαρτώνται από τον τύπο αντιγράφων ασφαλείας)</string>
     <string name="settings_desc_backup_password">Ορισμός κωδικού που χρησιμοποιείται για την κρυπτογράφηση
         αντιγράφων ασφαλείας</string>
     <string name="settings_desc_auto_backup_password_enc">Δημιουργία ενός νέου κρυπτογραφημένου αντιγράφου ασφαλείας όταν νέες

@@ -69,8 +69,6 @@
         Może to spowolnić działanie aplikacji, włącz to tylko w razie potrzeby.</string>
     <string name="settings_desc_backup_append_date">Dodaj bieżącą datę i czas do proponowanej nazwy pliku kopii zapasowej</string>
     <string name="settings_desc_backup_ask">Pytaj o nazwę pliku za każdym razem, gdy kopia zapasowa jest tworzona lub przywracana</string>
-    <string name="settings_desc_backup_directory">Katalog automatycznych i rozgłaszanych kopii zapasowych
-        (nazwy plików będą zależeć od typu kopii zapasowej)</string>
     <string name="settings_desc_backup_password">Ustaw hasło używane do szyfrowania kopii</string>
     <string name="settings_desc_auto_backup_password_enc">Tworzy nową zaszyfrowaną kopię zapasową po dodaniu
         lub edycji nowych wpisów, jeśli spełnione są warunki ustawień</string>

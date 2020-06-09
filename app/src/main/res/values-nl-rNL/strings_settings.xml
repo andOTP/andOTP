@@ -69,8 +69,6 @@
         This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">Voeg de huidige datum en tijd toe aan de voorgestelde back-up bestandsnaam</string>
     <string name="settings_desc_backup_ask">Vraag naar de bestandsnaam elke keer als een reservekopie is gemaakt of wordt teruggezet</string>
-    <string name="settings_desc_backup_directory">Map voor automatische en uitgezonden back-ups
-        (bestandsnamen zijn afhankelijk van het back-up type)</string>
     <string name="settings_desc_backup_password">Stel het wachtwoord in dat wordt gebruikt voor het versleutelen van de reservekopieën</string>
     <string name="settings_desc_auto_backup_password_enc">Maakt een nieuwe gecodeerde back-up wanneer nieuwe
         items zijn toegevoegd, gewijzigd of volgens de instellingen</string>

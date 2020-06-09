@@ -65,8 +65,6 @@
         This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">Přidá aktuální datum a čas k navrhovanému názvu záložního souboru</string>
     <string name="settings_desc_backup_ask">Dotazovat se na název souboru vždy při vytváření či obnovování zálohy</string>
-    <string name="settings_desc_backup_directory">Adresář pro automatické a příkazem spuštěné zálohování
-(názvy souborů závisí na typu zálohy)</string>
     <string name="settings_desc_backup_password">Nastaví heslo používané k šifrování záloh</string>
     <string name="settings_desc_auto_backup_password_enc">Vytvoří novou šifrovanou zálohu při vytvoření či úpravě položek, když jsou splněny podmínky z nastavení</string>
     <string name="settings_desc_backup_broadcasts">Vyberte, které typy zálohování můžou být spuštěny pomocí příkazů od aplikací třetí strany</string>

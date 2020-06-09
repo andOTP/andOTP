@@ -64,7 +64,6 @@
     <string name="settings_desc_show_individual_timeouts">为每个条目显示一个单独的超时栏。这可能会减慢应用速度，只有在真正需要时才启用。</string>
     <string name="settings_desc_backup_append_date">追加当前日期和时间到建议的备份文件名</string>
     <string name="settings_desc_backup_ask">每次创建或还原备份时都询问文件名</string>
-    <string name="settings_desc_backup_directory">自动备份并广播目录（文件名将取决于备份类型）</string>
     <string name="settings_desc_backup_password">设置用于加密备份的密码</string>
     <string name="settings_desc_auto_backup_password_enc">如果满足设置条件，新建或编辑条目时，同时新建一个加密备份。</string>
     <string name="settings_desc_backup_broadcasts">选择第三方应用可使用广播触发的备份类型</string>

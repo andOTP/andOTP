@@ -73,8 +73,6 @@
     <string name="settings_desc_backup_append_date">Додати поточну дату та час до назви запропонованого
         файлу резервної копії</string>
     <string name="settings_desc_backup_ask">Запитувати назву файлу при створенні або відновленні резервної копії</string>
-    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
-        (filenames will depend on the backup type)</string>
     <string name="settings_desc_backup_password">Установити пароль, який буде використовуватись для шифрування
         резервних копій</string>
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new

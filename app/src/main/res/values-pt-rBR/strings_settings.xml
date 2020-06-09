@@ -70,8 +70,6 @@
         This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">Inserir a data e hora atuais ao         nome de backup sugerido</string>
     <string name="settings_desc_backup_ask">Pedir o nome de arquivo sempre que um backup for criado ou        restaurado</string>
-    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
-        (filenames will depend on the backup type)</string>
     <string name="settings_desc_backup_password">Definir a senha usada para criptografar os        backups</string>
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
         entries are added, or edited, if settings conditions are met</string>

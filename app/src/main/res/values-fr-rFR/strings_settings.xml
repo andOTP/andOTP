@@ -68,8 +68,6 @@
         Cela peut ralentir l\'application, à activer uniquement si nécessaire.</string>
     <string name="settings_desc_backup_append_date">Ajouter la date et l\'heure au nom de fichier de sauvegarde proposé</string>
     <string name="settings_desc_backup_ask">Demander le nom du fichier à chaque fois qu\'une sauvegarde est créée ou restaurée</string>
-    <string name="settings_desc_backup_directory">Répertoire pour les sauvegardes automatiques et diffusées
-    (le nom des fichiers dépend du type de sauvegarde)</string>
     <string name="settings_desc_backup_password">Configurer le mot de passe utilisé pour chiffrer les sauvegardes</string>
     <string name="settings_desc_auto_backup_password_enc">Crée une nouvelle sauvegarde chiffrée lorsque de nouvelles entrées
     sont ajoutées ou modifiées, si les conditions paramétrées sont remplies</string>

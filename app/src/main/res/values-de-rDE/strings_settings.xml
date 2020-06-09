@@ -70,8 +70,6 @@
         Dies kann die App verlangsamen, nur aktivieren, wenn wirklich notwendig.</string>
     <string name="settings_desc_backup_append_date">Aktuelles Datum und die aktuelle Uhrzeit an den vorgeschlagenen Sicherungsdateinamen anhängen</string>
     <string name="settings_desc_backup_ask">Jedes Mal nach dem Dateinamen fragen, wenn eine Sicherung erstellt oder wiederhergestellt wird</string>
-    <string name="settings_desc_backup_directory">Verzeichnis für automatische und Broadcast-Backups
-        (Dateinamen hängen vom Backup-Typ ab)</string>
     <string name="settings_desc_backup_password">Passwort festlegen, mit dem die Sicherungen verschlüsselt werden sollen</string>
     <string name="settings_desc_auto_backup_password_enc">Erstellt eine neue verschlüsselte Datensicherung bei
         Erstellung oder Bearbeitung von Einträgen, wenn Bedingungen erfüllt sind</string>

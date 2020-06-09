@@ -73,8 +73,6 @@
         ficheiro de respaldo suxerido</string>
     <string name="settings_desc_backup_ask">Preguntar polo nome do ficheiro cada vez que unha copia de seguranza sexa creada ou
         restaurada</string>
-    <string name="settings_desc_backup_directory">O directorio para copia de apoio automática
-        (nomes de ficheiro dependerán to tipo de apoio)</string>
     <string name="settings_desc_backup_password">Establecer o contrasinal para cifrar as
         copias de apoio</string>
     <string name="settings_desc_auto_backup_password_enc">Crea unha nova copia de apoio cifrada cando

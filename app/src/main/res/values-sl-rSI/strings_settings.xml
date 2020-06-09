@@ -74,8 +74,6 @@
         imena varnostne kopije</string>
     <string name="settings_desc_backup_ask">Vprašaj po imenu varnostne kopije ob vsakem ustvarjanju
         ali obnavljanju</string>
-    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
-        (filenames will depend on the backup type)</string>
     <string name="settings_desc_backup_password">Nastavi geslo, ki bo uporabljeno za kodiranje
         varnostnih kopij</string>
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new

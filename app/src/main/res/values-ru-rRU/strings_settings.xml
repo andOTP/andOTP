@@ -67,7 +67,6 @@
     <string name="settings_desc_backup_append_date">Добавить текущую дату и время к предлагаемому
         названию резервной копии</string>
     <string name="settings_desc_backup_ask">Спрашивать об имени файла при создании резервной копии или        восстановлении</string>
-    <string name="settings_desc_backup_directory">Каталог для автоматических и запущенных из других приложений резервных копий (имя файла зависит от типа резервной копии)</string>
     <string name="settings_desc_backup_password">Установить пароль для шифрования резервных копий</string>
     <string name="settings_desc_auto_backup_password_enc">Создаёт новую зашифрованную резервную копию при добавлении или изменении записей если условия были выполнены</string>
     <string name="settings_desc_backup_broadcasts">Выберите, какие типы резервных копий могут быть сохранены 

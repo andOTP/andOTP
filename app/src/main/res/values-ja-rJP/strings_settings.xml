@@ -64,7 +64,6 @@
     <string name="settings_desc_show_individual_timeouts">すべてのエントリで「個別の有効期限表示」を有効化します。この設定によりアプリの動作が遅くなる可能性があるため、本当に必要な場合のみ有効化してください。</string>
     <string name="settings_desc_backup_append_date">提案されたバックアップファイル名に現在の日付と時刻を追加する</string>
     <string name="settings_desc_backup_ask">バックアップが作成または復元されるたびにファイル名を確認する</string>
-    <string name="settings_desc_backup_directory">自動バックアップおよびブロードキャストバックアップ用のディレクトリ (ファイル名はバックアップの種類によって異なります)</string>
     <string name="settings_desc_backup_password">バックアップの暗号化に使用するパスワードを設定</string>
     <string name="settings_desc_auto_backup_password_enc">新しいエントリが追加された、または既存のエントリが編集された場合に、新しい暗号化バックアップを作成します</string>
     <string name="settings_desc_backup_broadcasts">ブロードキャストを使用してサードパーティのアプリによってトリガーできるバックアップの種類を選択する</string>

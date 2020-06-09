@@ -74,8 +74,6 @@
         säkerhetskopieringsfilnamnet</string>
     <string name="settings_desc_backup_ask">Fråga efter filnamnet varje gång en säkerhetskopia skapas eller
         återställs</string>
-    <string name="settings_desc_backup_directory">Katalog för automatisk och broadcast-säkerhetskopiering
-        (filnamn beror på säkerhetskopieringstypen)</string>
     <string name="settings_desc_backup_password">Ange lösenordet som används för att kryptera
         säkerhetskopior</string>
     <string name="settings_desc_auto_backup_password_enc">Skapar en ny krypterad säkerhetskopia när nya
