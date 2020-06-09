@@ -93,8 +93,6 @@ voci o editate, se le condizioni delle impostazioni sono configurate</string>
         di backup integrato di Android per le chiavi di backup e le preferenze</string>
     <string name="settings_desc_clear_keystore">Eliminare la chiave di crittografia dal KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Questa funzionalità richiede almeno Android 5.0
-        (Lollipop) per funzionare</string>
     <string name="settings_toast_auth_device_not_secure">Questa funzionalità richiede la configurazione di una
         schermata di blocco sicuro (Impostazioni -&gt; Sicurezza -&gt; Blocco schermo)</string>
     <string name="settings_toast_password_empty">Non è consentita una password vuota, imposta

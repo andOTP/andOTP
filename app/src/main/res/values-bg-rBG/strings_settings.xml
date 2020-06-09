@@ -94,8 +94,6 @@
          вградената услуга на Android, за архивиране на ключове и предпочитания</string>
     <string name="settings_desc_clear_keystore">Изтриване на ключа за шифроване от Хранилището за ключове на Android</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Тази функция изисква минимум версия Android 5.0
-         (Lollipop), за да работи</string>
     <string name="settings_toast_auth_device_not_secure">За тази функция се изисква защитата
         за заключване на екрана да се настрои (Настройки -&gt; Сигурност -&gt; Заключване на екрана)
      </string>

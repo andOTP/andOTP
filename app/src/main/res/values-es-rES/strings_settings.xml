@@ -92,8 +92,6 @@
         incorporado en Android para hacer copias de seguridad de las claves y preferencias</string>
     <string name="settings_desc_clear_keystore">Elimina la clave de cifrado del almacen de claves</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Esta característica requiere al menos
-        Android 5.0 (Lollipop)</string>
     <string name="settings_toast_auth_device_not_secure">Esta característica requiere bloqueo de salvapantallas
         seguro (Settings -&gt; Security -&gt; Screenlock)</string>
     <string name="settings_toast_password_empty">Una contraseña vacía no está permitida,

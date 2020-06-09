@@ -76,7 +76,6 @@
     <string name="settings_desc_enable_android_backup_service">बैकअप कुंजियों और वरीयताओं के लिए एंड्रॉयड की अंतर्निहित बैकअप सेवा का उपयोग करने में सक्षम करता है</string>
     <string name="settings_desc_clear_keystore">कुंजी स्टोर से एन्क्रिप्शन कुंजी को हटाएं</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">इस फीचर को काम करने के लिए कम से कम एंड्रॉयड 5.0 (लॉलीपॉप) की आवश्यकता होती है</string>
     <string name="settings_toast_auth_device_not_secure">इस सुविधा को सेट करने के लिए एक सुरक्षित लॉक स्क्रीन की आवश्यकता होती है (सेटिंग्स-&gt; सुरक्षा-&gt; स्क्रीन लॉक)</string>
     <string name="settings_toast_password_empty">एक खाली पासवर्ड की अनुमति नहीं है, इसे अक्षम करने के लिए प्रमाणीकरण को \"कोई नहीं\" पर सेट करें!</string>
     <string name="settings_toast_encryption_changing">डेटाबेस कूटलेखन को बदलने की कोशिश कर रहा है, कृपया प्रतीक्षा करें!</string>

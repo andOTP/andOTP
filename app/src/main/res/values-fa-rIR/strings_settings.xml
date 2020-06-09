@@ -82,7 +82,6 @@
     <string name="settings_desc_enable_android_backup_service">AndOTP را قادر می‌کند تا از سرویس پشتیبان‌گیری داخلی اندروید استفاده کند تا از کلید‌ها و تنظیمات پشتیبان‌گیری کند</string>
     <string name="settings_desc_clear_keystore">کلید رمزنگاری را از KeyStore حذف کن</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">این قابلیت حداقل به اندروید ۵. ۰ (Lollipop) نیاز دارد تا کار کند</string>
     <string name="settings_toast_auth_device_not_secure">این قابلیت به یک قفل صفحه امن نیاز دارد تا تنظیم شود (تنظیمات-&lt; امنیت-&lt; قفل صفحه)</string>
     <string name="settings_toast_password_empty">یک گذرواژه خالی مجاز نیست، احراز هویت را روی «هیچکدام» تنظیم کنید تا غیرفعال شود!</string>
     <string name="settings_toast_encryption_changing">تلاش برای تغییر رمزنگاری پایگاه داده، لطفا صبر کنید!</string>

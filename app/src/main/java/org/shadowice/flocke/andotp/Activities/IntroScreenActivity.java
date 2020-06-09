@@ -466,10 +466,7 @@ public class IntroScreenActivity extends IntroActivity {
             } else if (authMethod == Constants.AuthMethod.DEVICE) {
                 KeyguardManager km = (KeyguardManager) getContext().getSystemService(KEYGUARD_SERVICE);
 
-                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    updateWarning(R.string.settings_toast_auth_device_pre_lollipop);
-                    return false;
-                } else if (! km.isKeyguardSecure()) {
+                if (! km.isKeyguardSecure()) {
                     updateWarning(R.string.settings_toast_auth_device_not_secure);
                     return false;
                 }

@@ -92,8 +92,6 @@
         built in backup service to backup keys and preferences</string>
     <string name="settings_desc_clear_keystore">Esborra la clau d\'encriptació del magatzem de claus</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Aquesta característica només funciona amb
-        Android 5.0 (Lollipop) o superior</string>
     <string name="settings_toast_auth_device_not_secure">Aquesta característica requereix un bloqueig de pantalla
         segur (Configuració -&gt; Seguretat -&gt; Bloqueig de pantalla)</string>
     <string name="settings_toast_password_empty">Les contrasenyes buides no són permeses,

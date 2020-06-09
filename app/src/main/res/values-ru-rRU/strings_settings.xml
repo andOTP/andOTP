@@ -81,7 +81,6 @@
         сервис резервного копирования для создания резервных копий ключей и настроек</string>
     <string name="settings_desc_clear_keystore">Удалить ключ шифрования из хранилища ключей</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Эта функция поддерживается с версии Android 5.0 (Lollipop)</string>
     <string name="settings_toast_auth_device_not_secure">Для этой функции требуется настроить безопасную блокировку экрана (Настройки -&gt; Безопасность -&gt; Блокировка экрана)</string>
     <string name="settings_toast_password_empty">Пустой пароль запрещён, для отключения пароля выключите Аутентификацию!</string>
     <string name="settings_toast_encryption_changing">Изменение шифрование базы данных, пожалуйста, подождите!</string>

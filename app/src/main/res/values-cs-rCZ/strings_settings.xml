@@ -77,7 +77,6 @@
     <string name="settings_desc_enable_android_backup_service">Povolí andOTP používat zálohovací službu systému Android k zálohování klíčů a předvoleb</string>
     <string name="settings_desc_clear_keystore">Odstranit šifrovací klíč z úložiště klíčů</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Tato funkce ke své činnosti vyžaduje alespoň Android 5.0 (Lollipop)</string>
     <string name="settings_toast_auth_device_not_secure">Tato funkce vyžaduje nastavení zámku obrazovky (Nastavení -&gt; Zabezpečení -&gt; Zámek obrazovky)</string>
     <string name="settings_toast_password_empty">Není povoleno prázdné heslo, nastavte přihlášení na \"Žádné\" pro zakázání!</string>
     <string name="settings_toast_encryption_changing">Pokouším se změnit šifrování databáze, prosím čekejte!</string>

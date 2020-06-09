@@ -92,8 +92,6 @@
         incluído en Android para gardar chaves e axustes</string>
     <string name="settings_desc_clear_keystore">Eliminar a chave de cifrado da KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Esta característica require polo menos
-        Android 5.0 (Lollipop)</string>
     <string name="settings_toast_auth_device_not_secure">Esta característica require bloqueo de pantalla
         seguro (Axustes -&gt; Seguranza -&gt; Bloqueo de pantalla)</string>
     <string name="settings_toast_password_empty">Non se pode deixar baleiro o contrasinal, establece

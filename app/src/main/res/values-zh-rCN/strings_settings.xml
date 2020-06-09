@@ -75,7 +75,6 @@
     <string name="settings_desc_enable_android_backup_service">允许 andOTP 使用 Android 内置的备份服务来备份密钥和首选项</string>
     <string name="settings_desc_clear_keystore">从密钥库中删除加密密钥</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">此功能需要 Android 5.0 或更高系统版本</string>
     <string name="settings_toast_auth_device_not_secure">此功能需要已设置安全锁屏（设置 -&gt; 安全 -&gt; 锁屏）</string>
     <string name="settings_toast_password_empty">不允许用空密码，将身份验证设置为“无”以禁用它！</string>
     <string name="settings_toast_encryption_changing">正尝试更改数据库的加密，请稍候！</string>

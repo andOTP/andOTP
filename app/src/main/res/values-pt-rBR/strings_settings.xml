@@ -84,7 +84,6 @@
     <string name="settings_desc_enable_android_backup_service">Habilita andOTP para utilizar o serviço         de backup nativo do Android para guardar chaves e preferências</string>
     <string name="settings_desc_clear_keystore">Deletar a chave de criptografia da KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Este recurso requer pelo menos Android 5.0        (Lollipop) para funcionar</string>
     <string name="settings_toast_auth_device_not_secure">Este recurso requer uma tela de bloqueio        segura para ser configurado (Configurações -&gt; Segurança -&gt; Bloqueio de tela)</string>
     <string name="settings_toast_password_empty">Não é permitida uma senha em branco. Para desabilitar a senha, mude a configuração de Autenticação para \"Nenhum\".</string>
     <string name="settings_toast_encryption_changing">Tentando modificar a criptografia do banco de dados,

@@ -75,7 +75,6 @@
     <string name="settings_desc_enable_android_backup_service">andOTP が Android の組み込みバックアップサービスを使用してキーと設定をバックアップできるようにする</string>
     <string name="settings_desc_clear_keystore">キーストアからの暗号化キーを削除</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">この機能を動作させるには Android 5.0 (Lollipop) 以上である必要があります</string>
     <string name="settings_toast_auth_device_not_secure">この機能では、セキュリティで保護されたロック画面を設定する必要があります (設定 -&gt; セキュリティー -&gt; スクリーンロック)</string>
     <string name="settings_toast_password_empty">空のパスワードは許可されていません、設定を「なし」にすると認証を無効にできます。</string>
     <string name="settings_toast_encryption_changing">データベース暗号化の変更中です、少々お待ちください！</string>

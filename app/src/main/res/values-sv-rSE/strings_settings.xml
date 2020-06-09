@@ -93,8 +93,6 @@
         inbyggda säkerhetskopieringstjänst för att säkerhetskopiera nycklar och inställningar</string>
     <string name="settings_desc_clear_keystore">Radera krypteringsnyckeln från KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Den här funktionen kräver minst Android 5.0
-        (Lollipop) för att fungera</string>
     <string name="settings_toast_auth_device_not_secure">Den här funktionen kräver en säker låsskärm
         att ställas in (Inställningar -&gt; Säkerhet -&gt; Skärmlås)</string>
     <string name="settings_toast_password_empty">Ett tomt lösenord är inte tillåtet, ställ in

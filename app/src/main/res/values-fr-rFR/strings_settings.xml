@@ -82,7 +82,6 @@
     <string name="settings_desc_enable_android_backup_service">Permet à AndOTP d\'utiliser le service de sauvegarde Android natif pour la sauvegarde des clés et préférences</string>
     <string name="settings_desc_clear_keystore">Supprimer la clé de chiffrement depuis le KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Cette fonctionnalité n\'est disponible que sur Android 5.0 (Lollipop) ou supérieur</string>
     <string name="settings_toast_auth_device_not_secure">Cette fonctionnalité nécessite l\'activation du verrouillage de l’écran (Paramètres -&gt; Sécurité -&gt; Verrouillage de l\'écran)</string>
     <string name="settings_toast_password_empty">Un mot de passe vide n\'est pas autorisé, définissez l\'Authentification sur \"Aucune\" pour la désactiver !</string>
     <string name="settings_toast_encryption_changing">Changement du chiffrement de la base de données, veuillez patienter !</string>

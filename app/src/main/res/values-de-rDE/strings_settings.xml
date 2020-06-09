@@ -85,8 +85,6 @@
     <string name="settings_desc_enable_android_backup_service">andOTP ermöglichen, den integrierten Datensicherungsdienst von Android zu nutzen, um Schlüssel und Einstellungen zu sichern</string>
     <string name="settings_desc_clear_keystore">Verschlüsselungsschlüssel aus dem KeyStore löschen</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Dieses Feature erfordert mindestens Android 5.0
-     (Lollipop) um zu funktionieren</string>
     <string name="settings_toast_auth_device_not_secure">Dieses Feature erfordert das ein geschützter Sperrbildschirm
         eingerichtet ist (Einstellungen -&gt; Sicherheit -&gt; Displaysperre)</string>
     <string name="settings_toast_password_empty">Ein leeres Passwort ist nicht zulässig, setzen Sie die Authentifizierung auf \"Keine\", um es zu deaktivieren!</string>

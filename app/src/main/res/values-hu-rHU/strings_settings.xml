@@ -90,8 +90,6 @@
         a kulcsok és beállítások mentéséhez</string>
     <string name="settings_desc_clear_keystore">Titkosítási kulcs törlése a KeyStore-ból</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Ezen funkció használatához legalább Android 5.0
-        (Lollipop) szükséges</string>
     <string name="settings_toast_auth_device_not_secure">Ezen funkció használatához biztonságos képernyőzár
         szükséges (Beállítások -&gt; Biztonság -&gt; Képernyőzár)</string>
     <string name="settings_toast_password_empty">Az üres jelszó nem engedélyezett, a letiltáshoz

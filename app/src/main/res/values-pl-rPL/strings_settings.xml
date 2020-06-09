@@ -84,7 +84,6 @@
         Androida do tworzenia kopii kluczy i ustawień</string>
     <string name="settings_desc_clear_keystore">Usuń klucz kryptograficzny z KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Ta funkcja wymaga systemu Android w wersji co najmniej 5.0 (Lolipop)</string>
     <string name="settings_toast_auth_device_not_secure">Ta funkcja wymaga włączenia blokady ekranu. Sprawdź Ustawienia - &gt; Zabezpieczenia - &gt; Blokada ekranu</string>
     <string name="settings_toast_password_empty">Puste hasło nie jest dozwolone. Zmień uwierzytelnianie na „Brak”, aby je wyłączyć!</string>
     <string name="settings_toast_encryption_changing">Próba zmiany szyfrowania bazy danych, proszę czekać!</string>

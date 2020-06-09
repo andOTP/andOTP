@@ -107,8 +107,6 @@
     <string name="settings_desc_clear_keystore">Delete the encryption key from the KeyStore</string>
 
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">This feature requires at least Android 5.0
-        (Lollipop) to work</string>
     <string name="settings_toast_auth_device_not_secure">This feature requires a secure lock screen
         to be set up (Settings -> Security -> Screenlock)</string>
 

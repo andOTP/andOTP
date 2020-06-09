@@ -83,8 +83,7 @@
     <string name="settings_desc_enable_android_backup_service">تمكين التطبيق أن يستعمل خدمة النسخ الموجودة في أندرويد لنسخ المفاتيح والتفضيلات</string>
     <string name="settings_desc_clear_keystore">حذف مفتاح التعمية من مخزن المفاتيح</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">هذه الخاصة تتطلب أندرويد ٥.٠ (Lollipop) على الأقل</string>
-    <string name="settings_toast_auth_device_not_secure">هذه الخاصة تتطلب ضبط القفل الآمن 
+    <string name="settings_toast_auth_device_not_secure">هذه الخاصة تتطلب ضبط القفل الآمن
 (الإعدادت -> شاشة القفل والحماية -> ضبط القفل الآمن) </string>
     <string name="settings_toast_password_empty">كلمة مرور فارغة مرفوضة. إختر نوع المصادقة كفارغة لتعطيلها!</string>
     <string name="settings_toast_encryption_changing">محاولة تغيير تشفيرة قاعدة البيانات،

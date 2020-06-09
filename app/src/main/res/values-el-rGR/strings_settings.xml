@@ -93,8 +93,6 @@
         ενσωματωμένης υπηρεσίας δημιουργίας αντιγράφων κλειδιών και προτιμήσεων</string>
     <string name="settings_desc_clear_keystore">Διαγραφή κλειδιού κρυπτογράφησης από το KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Αυτή η λειτουργία απαιτεί τουλάχιστον Android 5.0
-        (Lollipop) για να δουλέψει</string>
     <string name="settings_toast_auth_device_not_secure">Αυτή η λειτουργία απαιτεί μια ασφαλή οθόνη κλειδώματος
         και μπορεί να ρυθμιστεί στις (Ρυθμίσεις -&gt; Ασφάλεια -&gt; Κλείδωμα οθόνης)</string>
     <string name="settings_toast_password_empty">Δεν επιτρέπεται ένας κενός κωδικός πρόσβασης, ορίστε την
