@@ -69,8 +69,6 @@
         This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">Voeg de huidige datum en tijd toe aan de voorgestelde back-up bestandsnaam</string>
     <string name="settings_desc_backup_ask">Vraag naar de bestandsnaam elke keer als een reservekopie is gemaakt of wordt teruggezet</string>
-    <string name="settings_desc_backup_directory">Map voor automatische en uitgezonden back-ups
-        (bestandsnamen zijn afhankelijk van het back-up type)</string>
     <string name="settings_desc_backup_password">Stel het wachtwoord in dat wordt gebruikt voor het versleutelen van de reservekopieën</string>
     <string name="settings_desc_auto_backup_password_enc">Maakt een nieuwe gecodeerde back-up wanneer nieuwe
         items zijn toegevoegd, gewijzigd of volgens de instellingen</string>
@@ -83,7 +81,6 @@
     <string name="settings_desc_enable_android_backup_service">Laat andOTP toe om Android\'s ingebouwde reservekopie service te gebruiken om een kopie te maken van sleutels en voorkeuren</string>
     <string name="settings_desc_clear_keystore">Verwijderen de encryptiesleutel uit de sleutelopslag</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Deze functie vereist ten minste Android 5.0 (Lollipop)</string>
     <string name="settings_toast_auth_device_not_secure">Deze functie vereist een beveiligd vergrendelingsscherm (Instellingen -&gt; Beveiliging -&gt; Schermvergrendeling)</string>
     <string name="settings_toast_password_empty">Een leeg wachtwoord is niet toegestaan, stel de verificatie in op \"Geen\" om het uit te schakelen!</string>
     <string name="settings_toast_encryption_changing">Bezig met de database encryptie te proberen wijzigen, even geduld aub!</string>

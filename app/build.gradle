@@ -21,13 +21,17 @@ android {
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
             testCoverageEnabled = true
+
+            tasks.withType(JavaCompile) {
+                options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+            }
         }
     }
     lintOptions {
           abortOnError false
     }
-    dataBinding {
-        enabled = true
+    buildFeatures{
+        dataBinding = true
     }
     flavorDimensions 'market'
     productFlavors {
@@ -40,6 +44,10 @@ android {
         }
     }
     compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+
+        // Sets Java compatibility to Java 8
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -54,10 +62,11 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-process:${lifecycle_version}"
+    implementation "androidx.lifecycle:lifecycle-common-java8:${lifecycle_version}"
     implementation 'com.google.android.material:material:1.1.0'
 
+    //noinspection GradleDependency - because they messed up their version numbering
     implementation "commons-codec:commons-codec:1.14"
     implementation "com.github.aakira:expandable-layout:1.6.0"
     implementation "com.heinrichreimersoftware:material-intro:2.0.0"
@@ -67,4 +76,6 @@ dependencies {
     implementation "org.sufficientlysecure:openpgp-api:12.0"
     implementation "com.leinardi.android:speed-dial:3.1.1"
     implementation "com.mikepenz:aboutlibraries:6.2.3"
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.5'
 }

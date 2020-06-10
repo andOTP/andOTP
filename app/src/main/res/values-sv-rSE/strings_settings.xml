@@ -74,8 +74,6 @@
         säkerhetskopieringsfilnamnet</string>
     <string name="settings_desc_backup_ask">Fråga efter filnamnet varje gång en säkerhetskopia skapas eller
         återställs</string>
-    <string name="settings_desc_backup_directory">Katalog för automatisk och broadcast-säkerhetskopiering
-        (filnamn beror på säkerhetskopieringstypen)</string>
     <string name="settings_desc_backup_password">Ange lösenordet som används för att kryptera
         säkerhetskopior</string>
     <string name="settings_desc_auto_backup_password_enc">Skapar en ny krypterad säkerhetskopia när nya
@@ -93,8 +91,6 @@
         inbyggda säkerhetskopieringstjänst för att säkerhetskopiera nycklar och inställningar</string>
     <string name="settings_desc_clear_keystore">Radera krypteringsnyckeln från KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Den här funktionen kräver minst Android 5.0
-        (Lollipop) för att fungera</string>
     <string name="settings_toast_auth_device_not_secure">Den här funktionen kräver en säker låsskärm
         att ställas in (Inställningar -&gt; Säkerhet -&gt; Skärmlås)</string>
     <string name="settings_toast_password_empty">Ett tomt lösenord är inte tillåtet, ställ in

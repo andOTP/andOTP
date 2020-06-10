@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Jakob Nixdorf
+ * Copyright (C) 2018-2020 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,10 +27,6 @@ import android.animation.ObjectAnimator;
 import android.app.KeyguardManager;
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import androidx.viewpager.widget.ViewPager;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -47,8 +43,12 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
-import com.heinrichreimersoftware.materialintro.app.OnNavigationBlockedListener;
 import com.heinrichreimersoftware.materialintro.app.SlideFragment;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
@@ -87,12 +87,7 @@ public class IntroScreenActivity extends IntroActivity {
         encryptionFragment = new EncryptionFragment();
         authenticationFragment = new AuthenticationFragment();
 
-        encryptionFragment.setEncryptionChangedCallback(new EncryptionFragment.EncryptionChangedCallback() {
-            @Override
-            public void onEncryptionChanged(Constants.EncryptionType newEncryptionType) {
-                authenticationFragment.updateEncryptionType(newEncryptionType);
-            }
-        });
+        encryptionFragment.setEncryptionChangedCallback(newEncryptionType -> authenticationFragment.updateEncryptionType(newEncryptionType));
 
         setButtonBackFunction(BUTTON_BACK_FUNCTION_BACK);
 
@@ -132,12 +127,9 @@ public class IntroScreenActivity extends IntroActivity {
                 .build()
         );
 
-        addOnNavigationBlockedListener(new OnNavigationBlockedListener() {
-            @Override
-            public void onNavigationBlocked(int position, int direction) {
-                if (position == 2)
-                    authenticationFragment.flashWarning();
-            }
+        addOnNavigationBlockedListener((position, direction) -> {
+            if (position == 2)
+                authenticationFragment.flashWarning();
         });
 
         addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -474,10 +466,7 @@ public class IntroScreenActivity extends IntroActivity {
             } else if (authMethod == Constants.AuthMethod.DEVICE) {
                 KeyguardManager km = (KeyguardManager) getContext().getSystemService(KEYGUARD_SERVICE);
 
-                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    updateWarning(R.string.settings_toast_auth_device_pre_lollipop);
-                    return false;
-                } else if (! km.isKeyguardSecure()) {
+                if (! km.isKeyguardSecure()) {
                     updateWarning(R.string.settings_toast_auth_device_not_secure);
                     return false;
                 }

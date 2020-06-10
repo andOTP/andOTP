@@ -71,8 +71,6 @@
     <string name="settings_desc_backup_append_date">Önerilen yedek adına mevcut tarih ve saati ekleme</string>
     <string name="settings_desc_backup_ask">Yedek yaratıldığında ya da 
         kurtarıldığında her zaman dosya adı sor</string>
-    <string name="settings_desc_backup_directory">Otomatik ve broadcast yedeklemeleri dizini
-        (dosya adları yedekleme türüne bağlı olacaktır)</string>
     <string name="settings_desc_backup_password">        Yedekleri şifrelemek için parola ayarların</string>
     <string name="settings_desc_auto_backup_password_enc">Yeni girişler eklendiğinde veya düzenlendiğinde,
         ayarlanan koşullar sağlanıyorsa yeni bir şifreli yedekleme oluşturur</string>
@@ -87,9 +85,7 @@ ile yedeklenebileceğini seçin</string>
     <string name="settings_desc_enable_android_backup_service">andOTP\'nin anahtar ve ayarları yedeklemek için Android\'in dahili yedekleme servisini kullanmasını etkinleştirir</string>
     <string name="settings_desc_clear_keystore">KeyStore\'dan iifreleme anahtarını silin</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Bu özelliği kullanabilmek içim en az Android 5.0 
-        (Lollipop) gereklidir</string>
-    <string name="settings_toast_auth_device_not_secure">Bu özelliğin 
+    <string name="settings_toast_auth_device_not_secure">Bu özelliğin
         kurulabilmesi için güvenli bir kilit ekranı gereklidir. (Ayarlar &gt; Güvenlik &gt; Ekran Kilidi)</string>
     <string name="settings_toast_password_empty">Boş bir şifreye izin verilmez, Kimlik Doğrulama özelliğini
         devre dışı bırakmak için \"Hiçbiri\" olarak ayarlayın!</string>

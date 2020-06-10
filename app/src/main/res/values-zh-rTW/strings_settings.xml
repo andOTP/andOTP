@@ -67,8 +67,6 @@
         這可能會拖慢應用程式，請只在需要時啟用。</string>
     <string name="settings_desc_backup_append_date">將當前日期和時間追加到預設的備份檔案名中</string>
     <string name="settings_desc_backup_ask">每次新增或重新儲存備份時都要求鍵入檔案名</string>
-    <string name="settings_desc_backup_directory">自動與廣播備份的目錄
-        （檔案名稱將取決於備份類型）</string>
     <string name="settings_desc_backup_password">設定用於加密備份的密碼</string>
     <string name="settings_desc_auto_backup_password_enc">如果滿足設定的條件的話，新增項目或
         編輯時建立新的加密備份。</string>
@@ -80,7 +78,6 @@
     <string name="settings_desc_enable_android_backup_service">使 andOTP 能夠使用 Android 內建的備份服務來備份金鑰和偏好設定</string>
     <string name="settings_desc_clear_keystore">從金鑰庫中刪除加密金鑰</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">此功能需在 Android L（5.0）及以上系統運作</string>
     <string name="settings_toast_auth_device_not_secure">此功能需設定螢幕安全鎖（設定 &gt; 安全性 &gt; 螢幕鎖定）</string>
     <string name="settings_toast_password_empty">不允許使用空密碼，請將身份認證方式設定為「無」以禁用之！</string>
     <string name="settings_toast_encryption_changing">正嘗試變更資料庫加密方式，請稍候！</string>

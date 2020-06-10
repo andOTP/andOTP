@@ -73,8 +73,6 @@
     <string name="settings_desc_backup_append_date">Додати поточну дату та час до назви запропонованого
         файлу резервної копії</string>
     <string name="settings_desc_backup_ask">Запитувати назву файлу при створенні або відновленні резервної копії</string>
-    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
-        (filenames will depend on the backup type)</string>
     <string name="settings_desc_backup_password">Установити пароль, який буде використовуватись для шифрування
         резервних копій</string>
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
@@ -91,8 +89,6 @@
         службу для створення резервних копій ключів та налаштувань</string>
     <string name="settings_desc_clear_keystore">Видалити ключ шифрування з KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Ця функція підтримується з версії Android 5.0
-        (Lollipop)</string>
     <string name="settings_toast_auth_device_not_secure">Ця функція вимагає налаштування безпеки блокування екрана
         Щоб налаштувати безпеку блокування екрана (Налаштування -&gt; Безпека -&gt; Екран блокування)</string>
     <string name="settings_toast_password_empty">Пустий пароль не дозволений, для того, щоб вимкнути пароль,

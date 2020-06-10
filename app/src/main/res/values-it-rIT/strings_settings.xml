@@ -74,8 +74,6 @@ sarà richiesta nuovamente l\'autenticazione</string>
         file di backup suggerito</string>
     <string name="settings_desc_backup_ask">Chiedere il nome del file ogni volta che un backup
         viene creato o ripristinato</string>
-    <string name="settings_desc_backup_directory">Cartella per backup automatici e broadcast
-        (i nomi dei file dipendono dal tipo di backup)</string>
     <string name="settings_desc_backup_password">Impostare la password utilizzata per crittografare i
         backup</string>
     <string name="settings_desc_auto_backup_password_enc">Crea un nuovo backup cifrato quando vengono create nuove
@@ -93,8 +91,6 @@ voci o editate, se le condizioni delle impostazioni sono configurate</string>
         di backup integrato di Android per le chiavi di backup e le preferenze</string>
     <string name="settings_desc_clear_keystore">Eliminare la chiave di crittografia dal KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Questa funzionalità richiede almeno Android 5.0
-        (Lollipop) per funzionare</string>
     <string name="settings_toast_auth_device_not_secure">Questa funzionalità richiede la configurazione di una
         schermata di blocco sicuro (Impostazioni -&gt; Sicurezza -&gt; Blocco schermo)</string>
     <string name="settings_toast_password_empty">Non è consentita una password vuota, imposta

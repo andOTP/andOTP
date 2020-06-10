@@ -74,8 +74,6 @@
         όνομα αρχείου αντιγράφου ασφαλείας</string>
     <string name="settings_desc_backup_ask">Ερώτηση για το όνομα του αρχείου κάθε φορά που δημιουργείται ένα αντίγραφο ασφαλείας ή
         επαναφορά αυτού</string>
-    <string name="settings_desc_backup_directory">Κατάλογος αυτόματων αντιγράφων και αντίγραφα broadcast
-        (τα ονόματα αρχείων θα εξαρτώνται από τον τύπο αντιγράφων ασφαλείας)</string>
     <string name="settings_desc_backup_password">Ορισμός κωδικού που χρησιμοποιείται για την κρυπτογράφηση
         αντιγράφων ασφαλείας</string>
     <string name="settings_desc_auto_backup_password_enc">Δημιουργία ενός νέου κρυπτογραφημένου αντιγράφου ασφαλείας όταν νέες
@@ -93,8 +91,6 @@
         ενσωματωμένης υπηρεσίας δημιουργίας αντιγράφων κλειδιών και προτιμήσεων</string>
     <string name="settings_desc_clear_keystore">Διαγραφή κλειδιού κρυπτογράφησης από το KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Αυτή η λειτουργία απαιτεί τουλάχιστον Android 5.0
-        (Lollipop) για να δουλέψει</string>
     <string name="settings_toast_auth_device_not_secure">Αυτή η λειτουργία απαιτεί μια ασφαλή οθόνη κλειδώματος
         και μπορεί να ρυθμιστεί στις (Ρυθμίσεις -&gt; Ασφάλεια -&gt; Κλείδωμα οθόνης)</string>
     <string name="settings_toast_password_empty">Δεν επιτρέπεται ένας κενός κωδικός πρόσβασης, ορίστε την

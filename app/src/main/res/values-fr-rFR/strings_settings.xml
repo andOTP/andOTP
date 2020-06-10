@@ -68,8 +68,6 @@
         Cela peut ralentir l\'application, à activer uniquement si nécessaire.</string>
     <string name="settings_desc_backup_append_date">Ajouter la date et l\'heure au nom de fichier de sauvegarde proposé</string>
     <string name="settings_desc_backup_ask">Demander le nom du fichier à chaque fois qu\'une sauvegarde est créée ou restaurée</string>
-    <string name="settings_desc_backup_directory">Répertoire pour les sauvegardes automatiques et diffusées
-    (le nom des fichiers dépend du type de sauvegarde)</string>
     <string name="settings_desc_backup_password">Configurer le mot de passe utilisé pour chiffrer les sauvegardes</string>
     <string name="settings_desc_auto_backup_password_enc">Crée une nouvelle sauvegarde chiffrée lorsque de nouvelles entrées
     sont ajoutées ou modifiées, si les conditions paramétrées sont remplies</string>
@@ -82,7 +80,6 @@
     <string name="settings_desc_enable_android_backup_service">Permet à AndOTP d\'utiliser le service de sauvegarde Android natif pour la sauvegarde des clés et préférences</string>
     <string name="settings_desc_clear_keystore">Supprimer la clé de chiffrement depuis le KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Cette fonctionnalité n\'est disponible que sur Android 5.0 (Lollipop) ou supérieur</string>
     <string name="settings_toast_auth_device_not_secure">Cette fonctionnalité nécessite l\'activation du verrouillage de l’écran (Paramètres -&gt; Sécurité -&gt; Verrouillage de l\'écran)</string>
     <string name="settings_toast_password_empty">Un mot de passe vide n\'est pas autorisé, définissez l\'Authentification sur \"Aucune\" pour la désactiver !</string>
     <string name="settings_toast_encryption_changing">Changement du chiffrement de la base de données, veuillez patienter !</string>

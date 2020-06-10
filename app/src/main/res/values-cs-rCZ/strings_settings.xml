@@ -65,8 +65,6 @@
         This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">Přidá aktuální datum a čas k navrhovanému názvu záložního souboru</string>
     <string name="settings_desc_backup_ask">Dotazovat se na název souboru vždy při vytváření či obnovování zálohy</string>
-    <string name="settings_desc_backup_directory">Adresář pro automatické a příkazem spuštěné zálohování
-(názvy souborů závisí na typu zálohy)</string>
     <string name="settings_desc_backup_password">Nastaví heslo používané k šifrování záloh</string>
     <string name="settings_desc_auto_backup_password_enc">Vytvoří novou šifrovanou zálohu při vytvoření či úpravě položek, když jsou splněny podmínky z nastavení</string>
     <string name="settings_desc_backup_broadcasts">Vyberte, které typy zálohování můžou být spuštěny pomocí příkazů od aplikací třetí strany</string>
@@ -77,7 +75,6 @@
     <string name="settings_desc_enable_android_backup_service">Povolí andOTP používat zálohovací službu systému Android k zálohování klíčů a předvoleb</string>
     <string name="settings_desc_clear_keystore">Odstranit šifrovací klíč z úložiště klíčů</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Tato funkce ke své činnosti vyžaduje alespoň Android 5.0 (Lollipop)</string>
     <string name="settings_toast_auth_device_not_secure">Tato funkce vyžaduje nastavení zámku obrazovky (Nastavení -&gt; Zabezpečení -&gt; Zámek obrazovky)</string>
     <string name="settings_toast_password_empty">Není povoleno prázdné heslo, nastavte přihlášení na \"Žádné\" pro zakázání!</string>
     <string name="settings_toast_encryption_changing">Pokouším se změnit šifrování databáze, prosím čekejte!</string>

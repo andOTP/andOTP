@@ -69,8 +69,6 @@
         This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">إلحاق بالتاريخ الحالي والوقت إلى اسم الملف النسخ الاحتياطي المقترح</string>
     <string name="settings_desc_backup_ask">اسأل عن اسم الملف كل مرة يتم إنشاء نسخة احتياطية أو نسخة مستعادة</string>
-    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
-        (filenames will depend on the backup type)</string>
     <string name="settings_desc_backup_password">إختر كلمة المرور التي سوف تستخدم لتشفير النسخ الإحتياطية</string>
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
         entries are added, or edited, if settings conditions are met</string>
@@ -83,8 +81,7 @@
     <string name="settings_desc_enable_android_backup_service">تمكين التطبيق أن يستعمل خدمة النسخ الموجودة في أندرويد لنسخ المفاتيح والتفضيلات</string>
     <string name="settings_desc_clear_keystore">حذف مفتاح التعمية من مخزن المفاتيح</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">هذه الخاصة تتطلب أندرويد ٥.٠ (Lollipop) على الأقل</string>
-    <string name="settings_toast_auth_device_not_secure">هذه الخاصة تتطلب ضبط القفل الآمن 
+    <string name="settings_toast_auth_device_not_secure">هذه الخاصة تتطلب ضبط القفل الآمن
 (الإعدادت -> شاشة القفل والحماية -> ضبط القفل الآمن) </string>
     <string name="settings_toast_password_empty">كلمة مرور فارغة مرفوضة. إختر نوع المصادقة كفارغة لتعطيلها!</string>
     <string name="settings_toast_encryption_changing">محاولة تغيير تشفيرة قاعدة البيانات،

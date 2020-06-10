@@ -69,8 +69,6 @@
         اگر واقعا مورد نیاز است فعال شود ، زیرا میتواند موجب کند شدن  برنامه شود.</string>
     <string name="settings_desc_backup_append_date">تاریخ و زمان فعلی را به نام پرونده پشتیبان پیشنهادی اضافه کن</string>
     <string name="settings_desc_backup_ask">هر بار پشتیبان ساخته می‌شود یا بازنشانی می‌شود، یک نام پرونده بپرس</string>
-    <string name="settings_desc_backup_directory">دایرکتوری برای نسخه های پشتیبان خودکار و brodcast
-        (نام پرونده ها به نوع نسخه پشتیبان وابسته خواهد بود)</string>
     <string name="settings_desc_backup_password">گذرواژه ای که برای رمزنگاری پشتیبان‌ها استفاده می‌شود را تنظیم کنید</string>
     <string name="settings_desc_auto_backup_password_enc">زمانی که موارد جدید افزوده، یا ویرایش شده
         اگر شرایط تنظیمات برآورده شود، یک نسخه پشتیبان رمزنگاری شده تازه ایجاد میکند</string>
@@ -82,7 +80,6 @@
     <string name="settings_desc_enable_android_backup_service">AndOTP را قادر می‌کند تا از سرویس پشتیبان‌گیری داخلی اندروید استفاده کند تا از کلید‌ها و تنظیمات پشتیبان‌گیری کند</string>
     <string name="settings_desc_clear_keystore">کلید رمزنگاری را از KeyStore حذف کن</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">این قابلیت حداقل به اندروید ۵. ۰ (Lollipop) نیاز دارد تا کار کند</string>
     <string name="settings_toast_auth_device_not_secure">این قابلیت به یک قفل صفحه امن نیاز دارد تا تنظیم شود (تنظیمات-&lt; امنیت-&lt; قفل صفحه)</string>
     <string name="settings_toast_password_empty">یک گذرواژه خالی مجاز نیست، احراز هویت را روی «هیچکدام» تنظیم کنید تا غیرفعال شود!</string>
     <string name="settings_toast_encryption_changing">تلاش برای تغییر رمزنگاری پایگاه داده، لطفا صبر کنید!</string>

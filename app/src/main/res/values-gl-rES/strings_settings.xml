@@ -73,8 +73,6 @@
         ficheiro de respaldo suxerido</string>
     <string name="settings_desc_backup_ask">Preguntar polo nome do ficheiro cada vez que unha copia de seguranza sexa creada ou
         restaurada</string>
-    <string name="settings_desc_backup_directory">O directorio para copia de apoio automática
-        (nomes de ficheiro dependerán to tipo de apoio)</string>
     <string name="settings_desc_backup_password">Establecer o contrasinal para cifrar as
         copias de apoio</string>
     <string name="settings_desc_auto_backup_password_enc">Crea unha nova copia de apoio cifrada cando
@@ -92,8 +90,6 @@
         incluído en Android para gardar chaves e axustes</string>
     <string name="settings_desc_clear_keystore">Eliminar a chave de cifrado da KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Esta característica require polo menos
-        Android 5.0 (Lollipop)</string>
     <string name="settings_toast_auth_device_not_secure">Esta característica require bloqueo de pantalla
         seguro (Axustes -&gt; Seguranza -&gt; Bloqueo de pantalla)</string>
     <string name="settings_toast_password_empty">Non se pode deixar baleiro o contrasinal, establece

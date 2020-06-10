@@ -73,8 +73,6 @@
     <string name="settings_desc_backup_append_date">Append the current date and time to the suggested
         backup filename</string>
     <string name="settings_desc_backup_ask">Demana el nom del fitxer cada vegada que es crea o restaura una còpia de seguretat</string>
-    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
-        (filenames will depend on the backup type)</string>
     <string name="settings_desc_backup_password">Contrasenya que s\'usarà per a xifrar les
         còpies de seguretat</string>
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
@@ -92,8 +90,6 @@
         built in backup service to backup keys and preferences</string>
     <string name="settings_desc_clear_keystore">Esborra la clau d\'encriptació del magatzem de claus</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Aquesta característica només funciona amb
-        Android 5.0 (Lollipop) o superior</string>
     <string name="settings_toast_auth_device_not_secure">Aquesta característica requereix un bloqueig de pantalla
         segur (Configuració -&gt; Seguretat -&gt; Bloqueig de pantalla)</string>
     <string name="settings_toast_password_empty">Les contrasenyes buides no són permeses,

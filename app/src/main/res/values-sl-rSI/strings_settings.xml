@@ -74,8 +74,6 @@
         imena varnostne kopije</string>
     <string name="settings_desc_backup_ask">Vprašaj po imenu varnostne kopije ob vsakem ustvarjanju
         ali obnavljanju</string>
-    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
-        (filenames will depend on the backup type)</string>
     <string name="settings_desc_backup_password">Nastavi geslo, ki bo uporabljeno za kodiranje
         varnostnih kopij</string>
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
@@ -93,8 +91,6 @@
         varnostnega kopiranja za varnostno kopiranje ključev in nastavitev</string>
     <string name="settings_desc_clear_keystore">Izbrišite kodirni ključ iz KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Ta funkcija za delovanje potrebuje vsaj
-        Android 5.0(Lollipop)</string>
     <string name="settings_toast_auth_device_not_secure">Ta funkcija zahteva, da imate nastavljeno
         zaklepanje zaslona ( Nastavitve -&gt; Varnost -&gt; Zaklepanje zaslona)</string>
     <string name="settings_toast_password_empty">Prazno geslo ni dovoljeno. Nastavite

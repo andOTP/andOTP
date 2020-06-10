@@ -64,7 +64,6 @@
     <string name="settings_desc_show_individual_timeouts">为每个条目显示一个单独的超时栏。这可能会减慢应用速度，只有在真正需要时才启用。</string>
     <string name="settings_desc_backup_append_date">追加当前日期和时间到建议的备份文件名</string>
     <string name="settings_desc_backup_ask">每次创建或还原备份时都询问文件名</string>
-    <string name="settings_desc_backup_directory">自动备份并广播目录（文件名将取决于备份类型）</string>
     <string name="settings_desc_backup_password">设置用于加密备份的密码</string>
     <string name="settings_desc_auto_backup_password_enc">如果满足设置条件，新建或编辑条目时，同时新建一个加密备份。</string>
     <string name="settings_desc_backup_broadcasts">选择第三方应用可使用广播触发的备份类型</string>
@@ -75,7 +74,6 @@
     <string name="settings_desc_enable_android_backup_service">允许 andOTP 使用 Android 内置的备份服务来备份密钥和首选项</string>
     <string name="settings_desc_clear_keystore">从密钥库中删除加密密钥</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">此功能需要 Android 5.0 或更高系统版本</string>
     <string name="settings_toast_auth_device_not_secure">此功能需要已设置安全锁屏（设置 -&gt; 安全 -&gt; 锁屏）</string>
     <string name="settings_toast_password_empty">不允许用空密码，将身份验证设置为“无”以禁用它！</string>
     <string name="settings_toast_encryption_changing">正尝试更改数据库的加密，请稍候！</string>
