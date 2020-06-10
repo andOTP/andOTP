@@ -188,24 +188,6 @@ public class BackupActivity extends BaseActivity {
         }
 
         replace = v.findViewById(R.id.backup_replace);
-
-        if (! settings.getNewBackupFormatDialogShown()) {
-            showNewBackupInfo();
-        }
-    }
-
-    private void showNewBackupInfo() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.backup_new_format_dialog_title)
-                .setMessage(R.string.backup_new_format_dialog_msg)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        settings.setNewBackupFormatDialogShown(true);
-                    }
-                })
-                .create()
-                .show();
     }
 
     // End with a result

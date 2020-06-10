@@ -64,12 +64,6 @@
     <string name="backup_receiver_custom_encryption_failed">Password/PIN based encryption not
         supported with broadcast backup</string>
 
-    <string name="backup_new_format_dialog_title">New encryption method</string>
-    <string name="backup_new_format_dialog_msg">Since version 0.6.3 of andOTP, a <b>new and improved
-        encryption method</b> is used for password-protected backups. The old backups can still be
-        imported, but it is <b>highly recommended to create new backups with the improved
-        encryption</b>.\n\nThis message will not be shown again.</string>
-
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Automatic backup failed</string>
     <string name="notification_channel_name_backup_success">Automatic backup successful</string>

@@ -409,10 +409,6 @@ public class Settings {
         return getBoolean(R.string.settings_key_backup_ask, true);
     }
 
-    public String getBackupDir() {
-        return getString(R.string.settings_key_backup_directory, Constants.BACKUP_FOLDER);
-    }
-
     public String getBackupPassword() {
         return getString(R.string.settings_key_backup_password, "");
     }
@@ -529,14 +525,6 @@ public class Settings {
 
     public void setUsedTokensDialogShown(boolean value) {
         setBoolean(R.string.settings_key_last_used_dialog_shown, value);
-    }
-
-    public boolean getNewBackupFormatDialogShown() {
-        return getBoolean(R.string.settings_key_new_backup_format_dialog_shown, false);
-    }
-
-    public void setNewBackupFormatDialogShown(boolean value) {
-        setBoolean(R.string.settings_key_new_backup_format_dialog_shown, value);
     }
 
     public boolean getAndroidBackupServiceEnabled() {
