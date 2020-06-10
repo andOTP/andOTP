@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
- * Copyright (C) 2017-2018 Richy HBM
+ * Copyright (C) 2017-2020 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Richy HBM
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -168,6 +168,7 @@ public class EntryThumbnail {
         Lobsters(R.drawable.thumb_lobsters),
         LocalBitcoins(R.drawable.thumb_localbitcoins),
         LocalMonero(R.drawable.thumb_localmonero),
+        LoginGov(R.drawable.thumb_login_gov),
         LogMeIn(R.drawable.thumb_logmein),
         Mailbox(R.drawable.thumb_mailbox),
         Mailchimp(R.drawable.thumb_mailchimp),
@@ -182,6 +183,7 @@ public class EntryThumbnail {
         Microsoft(R.drawable.thumb_microsoft),
         MicrosoftTeams(R.drawable.thumb_microsoft_teams),
         Migadu(R.drawable.thumb_migadu),
+        Mint(R.drawable.thumb_mint),
         Miraheze(R.drawable.thumb_miraheze),
         Mixer(R.drawable.thumb_mixer),
         MongoDB(R.drawable.thumb_mongodb),
@@ -216,6 +218,7 @@ public class EntryThumbnail {
         Plurk(R.drawable.thumb_plurk),
         Posteo(R.drawable.thumb_posteo),
         Pretix(R.drawable.thumb_pretix),
+        Prey(R.drawable.thumb_prey),
         PrivateInternetAccess(R.drawable.thumb_private_internet_access),
         ProtonMail(R.drawable.thumb_protonmail),
         Proxmox(R.drawable.thumb_proxmox),
@@ -264,6 +267,7 @@ public class EntryThumbnail {
         Ubisoft(R.drawable.thumb_ubisoft),
         UbuntuOne(R.drawable.thumb_ubuntu_one),
         Uphold(R.drawable.thumb_uphold),
+        USAA(R.drawable.thumb_usaa),
         VagrantCloud(R.drawable.thumb_vagrant_cloud),
         VEXXHOST(R.drawable.thumb_vexxhost),
         VK(R.drawable.thumb_vk),
@@ -272,6 +276,7 @@ public class EntryThumbnail {
         Wallet(R.drawable.thumb_wallet),
         Wargaming(R.drawable.thumb_wargaming),
         Wasabi(R.drawable.thumb_wasabi),
+        Weclapp(R.drawable.thumb_weclapp),
         WebDe(R.drawable.thumb_web_de),
         Wikimedia(R.drawable.thumb_wikimedia),
         Wordpress(R.drawable.thumb_wordpress),

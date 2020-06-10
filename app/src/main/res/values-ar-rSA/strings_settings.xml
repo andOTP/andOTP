@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">تصميم البطاقة</string>
     <string name="settings_title_label_size">حجم خط إسم العلامات</string>
     <string name="settings_title_label_scroll">تسمية التمرير</string>
+    <string name="settings_title_tap_single">Single-tap</string>
+    <string name="settings_title_tap_double">Double-tap</string>
     <string name="settings_title_thumbnail_size_ask">حجم الصور المصغرة</string>
     <string name="settings_title_split_group_size">تقسيم تذكرة أمان النفاذ بمسافة بيضاء</string>
     <string name="settings_title_tag_functionality">سلوك إختيار العلامة</string>
     <string name="settings_title_minimize_on_copy">تصغير التطبيق عند نسخ رمز OTP</string>
     <string name="settings_title_search_includes">سلوك البحث</string>
     <string name="settings_title_label_highlight_token">Highlight expiring tokens</string>
+    <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
+    <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
     <string name="settings_title_backup_append_date">إلحاق تاريخ اليوم باسم الملف</string>
     <string name="settings_title_backup_ask">إسأل عن إسم الملف</string>
     <string name="settings_title_backup_directory">مجلد النسخ الإحتياطي</string>
@@ -60,10 +64,11 @@
     <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
     <string name="settings_desc_search_includes">Specify which values should be included when searching</string>
     <string name="settings_desc_label_highlight_token">Highlights token in red if it\'s expiring in 8 seconds</string>
+    <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
+    <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
+        This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">إلحاق بالتاريخ الحالي والوقت إلى اسم الملف النسخ الاحتياطي المقترح</string>
     <string name="settings_desc_backup_ask">اسأل عن اسم الملف كل مرة يتم إنشاء نسخة احتياطية أو نسخة مستعادة</string>
-    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
-        (filenames will depend on the backup type)</string>
     <string name="settings_desc_backup_password">إختر كلمة المرور التي سوف تستخدم لتشفير النسخ الإحتياطية</string>
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
         entries are added, or edited, if settings conditions are met</string>
@@ -76,8 +81,7 @@
     <string name="settings_desc_enable_android_backup_service">تمكين التطبيق أن يستعمل خدمة النسخ الموجودة في أندرويد لنسخ المفاتيح والتفضيلات</string>
     <string name="settings_desc_clear_keystore">حذف مفتاح التعمية من مخزن المفاتيح</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">هذه الخاصة تتطلب أندرويد ٥.٠ (Lollipop) على الأقل</string>
-    <string name="settings_toast_auth_device_not_secure">هذه الخاصة تتطلب ضبط القفل الآمن 
+    <string name="settings_toast_auth_device_not_secure">هذه الخاصة تتطلب ضبط القفل الآمن
 (الإعدادت -> شاشة القفل والحماية -> ضبط القفل الآمن) </string>
     <string name="settings_toast_password_empty">كلمة مرور فارغة مرفوضة. إختر نوع المصادقة كفارغة لتعطيلها!</string>
     <string name="settings_toast_encryption_changing">محاولة تغيير تشفيرة قاعدة البيانات،
@@ -128,6 +132,12 @@
         <item>مضغوطة</item>
         <item>افتراضية</item>
         <item>كاملة</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Nothing</item>
+        <item>Reveal/Hide</item>
+        <item>Copy</item>
+        <item>Copy and go to background</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Label</item>

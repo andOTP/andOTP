@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">Układ karty</string>
     <string name="settings_title_label_size">Rozmiar czcionki etykiet</string>
     <string name="settings_title_label_scroll">Przewijaj etykiety</string>
+    <string name="settings_title_tap_single">Pojedyncze stuknięcie</string>
+    <string name="settings_title_tap_double">Podwójne stuknięcie</string>
     <string name="settings_title_thumbnail_size_ask">Rozmiar miniaturek</string>
     <string name="settings_title_split_group_size">Rozdzielanie tokenu</string>
     <string name="settings_title_tag_functionality">Zachowanie znacznika</string>
     <string name="settings_title_minimize_on_copy">Zminimalizuj aplikację po skopiowaniu OTP</string>
     <string name="settings_title_search_includes">Zachowanie wyszukiwania</string>
     <string name="settings_title_label_highlight_token">Podświetl wygasające tokeny</string>
+    <string name="settings_title_hide_global_timeout">Ukryj globalny pasek czasu</string>
+    <string name="settings_title_show_individual_timeouts">Pokaż indywidualne limity czasu</string>
     <string name="settings_title_backup_append_date">Dodaj datę do nazwy pliku</string>
     <string name="settings_title_backup_ask">Pytaj o nazwę pliku</string>
     <string name="settings_title_backup_directory">Katalog kopii zapasowej</string>
@@ -60,10 +64,11 @@
     <string name="settings_desc_minimize_on_copy">Aplikacja zostanie zminimalizowana po skopiowaniu OTP do schowka</string>
     <string name="settings_desc_search_includes">Określ, które wartości powinny zostać uwzględnione podczas wyszukiwania</string>
     <string name="settings_desc_label_highlight_token">Podświetla token na czerwono, jeśli wygasa za 8 sekund</string>
+    <string name="settings_desc_hide_global_timeout">Ukryj globalny pasek limitu czasu widoczny u góry ekranu</string>
+    <string name="settings_desc_show_individual_timeouts">Pokaż indywidualny pasek limitu czasu dla każdego wpisu.
+        Może to spowolnić działanie aplikacji, włącz to tylko w razie potrzeby.</string>
     <string name="settings_desc_backup_append_date">Dodaj bieżącą datę i czas do proponowanej nazwy pliku kopii zapasowej</string>
     <string name="settings_desc_backup_ask">Pytaj o nazwę pliku za każdym razem, gdy kopia zapasowa jest tworzona lub przywracana</string>
-    <string name="settings_desc_backup_directory">Katalog automatycznych i rozgłaszanych kopii zapasowych
-        (nazwy plików będą zależeć od typu kopii zapasowej)</string>
     <string name="settings_desc_backup_password">Ustaw hasło używane do szyfrowania kopii</string>
     <string name="settings_desc_auto_backup_password_enc">Tworzy nową zaszyfrowaną kopię zapasową po dodaniu
         lub edycji nowych wpisów, jeśli spełnione są warunki ustawień</string>
@@ -77,7 +82,6 @@
         Androida do tworzenia kopii kluczy i ustawień</string>
     <string name="settings_desc_clear_keystore">Usuń klucz kryptograficzny z KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Ta funkcja wymaga systemu Android w wersji co najmniej 5.0 (Lolipop)</string>
     <string name="settings_toast_auth_device_not_secure">Ta funkcja wymaga włączenia blokady ekranu. Sprawdź Ustawienia - &gt; Zabezpieczenia - &gt; Blokada ekranu</string>
     <string name="settings_toast_password_empty">Puste hasło nie jest dozwolone. Zmień uwierzytelnianie na „Brak”, aby je wyłączyć!</string>
     <string name="settings_toast_encryption_changing">Próba zmiany szyfrowania bazy danych, proszę czekać!</string>
@@ -122,6 +126,12 @@
         <item>Kompaktowy</item>
         <item>Domyślny</item>
         <item>Pełny</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Nic</item>
+        <item>Ujawnij/Ukryj</item>
+        <item>Skopiuj</item>
+        <item>Skopiuj i przejdź do tła</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Etykieta</item>

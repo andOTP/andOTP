@@ -7,28 +7,32 @@
     <string name="settings_category_title_backup">Copia de seguranza</string>
     <!-- Titles -->
     <string name="settings_title_tap_to_reveal">Tocar para mostrar</string>
-    <string name="settings_title_tap_to_reveal_timeout">Tempo de espera para tocar para mostrar</string>
+    <string name="settings_title_tap_to_reveal_timeout">Tempo de espera para que ao tocar mostre</string>
     <string name="settings_title_auth">Autenticación</string>
     <string name="settings_title_auth_password">Contrasinal</string>
     <string name="settings_title_auth_pin">PIN</string>
     <string name="settings_title_encryption">Cifrado de Base de datos</string>
-    <string name="settings_title_panic">Panic Trigger</string>
-    <string name="settings_title_relock_screen_off">Coa pantalla apagada voltar a asegurar</string>
+    <string name="settings_title_panic">Botón do Pánico</string>
+    <string name="settings_title_relock_screen_off">Voltar a asegurar ao apagarse a pantalla</string>
     <string name="settings_title_relock_background">Bloquear cando pasa a segundo plano</string>
     <string name="settings_title_auth_inactivity">Bloquear ao quedar inactiva</string>
     <string name="settings_title_auth_inactivity_delay">Retraso para bloqueo por inactividade</string>
     <string name="settings_title_block_accessibility">Bloquear servizos de accesibilidade</string>
     <string name="settings_title_lang">Idioma</string>
-    <string name="settings_title_theme">Tema</string>
-    <string name="settings_title_card_layout">Disposición da tarxeta</string>
+    <string name="settings_title_theme">Decorado</string>
+    <string name="settings_title_card_layout">Disposición das entradas</string>
     <string name="settings_title_label_size">Tamaño da tipografía</string>
     <string name="settings_title_label_scroll">Desprazar etiqueta</string>
+    <string name="settings_title_tap_single">Un toque</string>
+    <string name="settings_title_tap_double">Dobre toque</string>
     <string name="settings_title_thumbnail_size_ask">Tamaño de miniatura</string>
-    <string name="settings_title_split_group_size">Separe o testemuño con espazo</string>
+    <string name="settings_title_split_group_size">Separa o testemuño cun espazo</string>
     <string name="settings_title_tag_functionality">Comportamento do selector de etiquetas</string>
     <string name="settings_title_minimize_on_copy">Minimizar app tras copiar OTP</string>
     <string name="settings_title_search_includes">Comportamento da busca</string>
     <string name="settings_title_label_highlight_token">Resaltar testemuños caducados</string>
+    <string name="settings_title_hide_global_timeout">Agochar a barra de caducidade</string>
+    <string name="settings_title_show_individual_timeouts">Mostrar caducidades individuais</string>
     <string name="settings_title_backup_append_date">Engadir data ao nome do ficheiro</string>
     <string name="settings_title_backup_ask">Preguntar polo nome do ficheiro</string>
     <string name="settings_title_backup_directory">Directorio de copias de seguranza</string>
@@ -41,13 +45,13 @@
     <string name="settings_title_openpgp_verify">Comprobar copias de seguranza cifradas</string>
     <string name="settings_title_special_features">Activar funcionalidades especiais</string>
     <string name="settings_title_enable_screenshot">Activar capturas de pantalla</string>
-    <string name="settings_title_enable_android_backup_service">Habilitar Android sync</string>
+    <string name="settings_title_enable_android_backup_service">Activar Android sync</string>
     <string name="settings_title_clear_keystore">Limpar KeyStore</string>
     <!-- Descriptions -->
     <string name="settings_desc_tap_to_reveal">Agochar códigos OTP, require mostralos manualmente</string>
     <string name="settings_desc_tap_to_reveal_timeout">Selecciona o tempo (en segundos) tras o cal esconder
         as entradas reveladas</string>
-    <string name="settings_desc_panic">Decide que facer cando se recibe un Panic Trigger</string>
+    <string name="settings_desc_panic">Escoller que facer cando se recibe unha ameaza de seguridade</string>
     <string name="settings_desc_relock_screen_off">Require autenticación depois de que a pantalla
         se apague</string>
     <string name="settings_desc_relock_background">Solicitar autenticación após a app foi enviada ao 
@@ -58,41 +62,40 @@
         solicita autenticación</string>
     <string name="settings_desc_block_accessibility">Agocharlle aos servizos de accesibilidade os
         campos con datos sensibles. <b>NON activar esto se dependes dos servizos de accesibilidade!</b></string>
-    <string name="settings_desc_label_scroll">Desprazar etiquetas largas no canto de truncalas</string>
+    <string name="settings_desc_label_scroll">Desprazar etiquetas largas no canto de recortalas</string>
     <string name="settings_desc_minimize_on_copy">A app minimizarase ao copiar o OTP ao portapapeis</string>
     <string name="settings_desc_search_includes">Indicar que valores se incluirán ao buscar</string>
     <string name="settings_desc_label_highlight_token">Resaltar testemuño en vermello se vai caducar en 8 segundos</string>
+    <string name="settings_desc_hide_global_timeout">Agochar a barra de caducidade xeral mostrada na parte superior</string>
+    <string name="settings_desc_show_individual_timeouts">Mostrar unha barra de progreso individual para cada entrada.
+        Pode facer máis lenta a app, actívao só se é preciso.</string>
     <string name="settings_desc_backup_append_date">Engadir a data actual e hora ao nome de
         ficheiro de respaldo suxerido</string>
     <string name="settings_desc_backup_ask">Preguntar polo nome do ficheiro cada vez que unha copia de seguranza sexa creada ou
         restaurada</string>
-    <string name="settings_desc_backup_directory">O directorio para copia de apoio automática
-        (nomes de ficheiro dependerán to tipo de apoio)</string>
     <string name="settings_desc_backup_password">Establecer o contrasinal para cifrar as
-        copias de seguranza</string>
+        copias de apoio</string>
     <string name="settings_desc_auto_backup_password_enc">Crea unha nova copia de apoio cifrada cando
         se engaden novas entradas, ou se editan, se se dan as condicións</string>
-    <string name="settings_desc_backup_broadcasts">Escolla que tipos de respaldo se poden activar por
-         aplicativos de terceiros utilizando Broadcasts</string>
+    <string name="settings_desc_backup_broadcasts">Escolle que tipos de copia se poden activar por
+         aplicacións de terceiros utilizando Broadcasts</string>
     <string name="settings_desc_openpgp_key_encrypt">Enderezo de correo para a chave OpenPGP utilizada para cifrar
-         os respaldos</string>
-    <string name="settings_desc_openpgp_verify">As copias de seguranza cifradas só se importan
+         as copias de apoio</string>
+    <string name="settings_desc_openpgp_verify">As copias de apoio cifradas só se importan
         se están asinadas con unha chave válida</string>
     <string name="settings_desc_special_features">Desmarcar para desactivar as funcionalidades especiais</string>
     <string name="settings_desc_enable_screenshot">Permitir capturas de pantalla da vista principal
         (Desactivado por defecto por razóns de seguridade)</string>
-    <string name="settings_desc_enable_android_backup_service">Permite que andOTP utilice o servizo de respaldo
-        incluído en Android para respaldar chaves e axustes</string>
+    <string name="settings_desc_enable_android_backup_service">Permite que andOTP utilice o servizo de copias de apoio
+        incluído en Android para gardar chaves e axustes</string>
     <string name="settings_desc_clear_keystore">Eliminar a chave de cifrado da KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Esta característica require polo menos
-        Android 5.0 (Lollipop)</string>
     <string name="settings_toast_auth_device_not_secure">Esta característica require bloqueo de pantalla
         seguro (Axustes -&gt; Seguranza -&gt; Bloqueo de pantalla)</string>
-    <string name="settings_toast_password_empty">Non se pode deixar baldeiro o contrasinal, estableza
-   Autenticación a \"Nada\" para deshabilitala!</string>
+    <string name="settings_toast_password_empty">Non se pode deixar baleiro o contrasinal, establece
+   Autenticación a \"Nada\" para desactivala!</string>
     <string name="settings_toast_encryption_changing">Intentando cambiar o cifrado da base de datos,
-   agarde por favor!</string>
+   agarda por favor!</string>
     <string name="settings_toast_encryption_change_success">Cambiouse correctamente o cifrado
    da base de datos!</string>
     <string name="settings_toast_encryption_change_failed">Fallou o cambio do cifrado da base de datos,
@@ -101,31 +104,31 @@
    interno, abortando!</string>
     <string name="settings_toast_encryption_no_key">Fallou ao obter a chave de cifrado, abortanto!</string>
     <string name="settings_toast_encryption_auth_failed">Fallou a autenticación!</string>
-    <string name="settings_toast_auth_upgrade_failed">Fallo ao actualizar o seu contrasinal / PIN
-   ao novo cifrado, por favor restablezao en Axustes!</string>
+    <string name="settings_toast_auth_upgrade_failed">Fallo ao actualizar o teu contrasinal / PIN
+   ao novo cifrado, por favor restableceo en Axustes!</string>
     <string name="settings_dialog_title_warning">Aviso</string>
     <string name="settings_dialog_title_error">Erro</string>
-    <string name="settings_dialog_title_clear_keystore">Limpar a KeyStore?</string>
+    <string name="settings_dialog_title_clear_keystore">Baleirar a KeyStore?</string>
     <string name="settings_dialog_title_android_sync">Android sync</string>
     <string name="settings_dialog_msg_encryption_change">andOTP intentará agora cambiar o cifrado 
-        da base de datos. En caso de fallo restaurarase un respaldo interno e o cifrado permanecerá
-        sin cambios.\n\n<b>Porén, sempre é boa idea ter copias de respaldo por si algo terrible acontece!</b></string>
-    <string name="settings_dialog_msg_auth_invalid_with_encryption">Só pode utilizar Contrasinal ou PIN
-     si o cifrado da base de datos se establece como \"Contrasinal / PIN\"!</string>
-    <string name="settings_dialog_msg_encryption_invalid_with_auth">Primeiro debe establecer
-    a Autenticación a \"Password\" ou \"PIN\"!</string>
-    <string name="settings_dialog_msg_encryption_invalid_without_credentials">Primeiro debe establecer un Contrasinal
+        da base de datos. En caso de fallo restaurarase unha copia interna e o cifrado permanecerá
+        sen cambios.\n\n<b>Porén, sempre é boa idea ter copias de apoio por se algo terrible acontece!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">Só podes utilizar Contrasinal ou PIN
+     se o cifrado da base de datos se establece como \"Contrasinal / PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">Primeiro debes establecer
+    a Autenticación a \"Contrasinal\" ou \"PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">Primeiro debes establecer un Contrasinal
      ou PIN antes de cambiar o cifrado!</string>
-    <string name="settings_dialog_msg_clear_keystore_password">En algúns casos limpar o KeyStore
-   pode axudar a resolver problemas. Só debería facer esto si sabe o que fai!\n\nXa que
-   o <b>Cifrado da Base de datos</b> está establecida a <b>Cotrasinal / PIN</b> non debería perder ningún
-   dato facendo esto (pero non está de máis ter un respaldo).\n\n<b>Está seguro de querer limpar a KeyStore?</b></string>
-    <string name="settings_dialog_msg_clear_keystore_keystore">En algúns casos limpar a KeyStore
-   pode axudar a resolver problemas. Só debería seguir si sabe o que fai!\n\n<b>Aviso</b>:
-   Xa que o <b>cifrado da base de datos</b> está establecido a <b>Android KeyStore</b> perderá todas as súas contas.
-   Asegúrese de ter un respaldo!\n\n<b>Seguro que quere limpar a KeyStore?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_password">Nalgúns casos baleirar o KeyStore
+   pode axudar a resolver problemas. Só deberías facer esto se sabes o que fas!\n\nXa que
+   o <b>Cifrado da Base de datos</b> está establecido a <b>Cotrasinal / PIN</b> non deberías perder ningún
+   dato facendo esto (pero non está de máis ter unha copia).\n\n<b>Tes a certeza de querer baleirar a KeyStore?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">Nalgúns casos limpar a KeyStore
+   pode axudar a resolver problemas. Só deberías seguir se sabes o que fas!\n\n<b>Aviso</b>:
+   Xa que o <b>cifrado da base de datos</b> está establecido a <b>Android KeyStore</b> perderás todas as túas contas.
+   Asegúrate de ter unha copia!\n\n<b>Seguro que queres baleirar a KeyStore?</b></string>
     <string name="settings_dialog_msg_android_sync_disabled_encryption">Android sync non se pode usar co cifrado
-        do almacén de chaves, <b>debe facer un respaldo manual!</b></string>
+        do almacén de chaves, <b>debes facer unha copia manual!</b></string>
     <!-- List entries -->
     <string-array name="settings_entries_auth">
         <item>Ningún</item>
@@ -146,6 +149,12 @@
         <item>Por omisión</item>
         <item>Completo</item>
     </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Nada</item>
+        <item>Mostrar/Agochar</item>
+        <item>Copiar</item>
+        <item>Copiar e mandar a segundo plano</item>
+    </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Etiqueta</item>
         <item>Provedor</item>
@@ -157,9 +166,9 @@
         <item>Calquera edición</item>
     </string-array>
     <string-array name="settings_entries_theme">
-        <item>Tema claro</item>
-        <item>Tema escuro</item>
-        <item>Tema negro</item>
+        <item>Decorado claro</item>
+        <item>Decorado escuro</item>
+        <item>Decorado negro</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Agochado</item>
@@ -171,8 +180,8 @@
     </string-array>
     <string-array name="settings_entries_split_group_size">
         <item>Non separar</item>
-        <item>Despóis de dous caracteres</item>
-        <item>Despois de tres caracteres</item>
+        <item>Após dous caracteres</item>
+        <item>Após tres caracteres</item>
     </string-array>
     <string-array name="settings_entries_tag_functionality">
         <item>Mostra todas as entradas coincidentes de <b>calquera</b> das etiquetas seleccionadas (ou)</item>
@@ -180,8 +189,8 @@
         <item>Cambiar entre etiquetas (só permite unha etiqueta seleccionada cada vez)</item>
     </string-array>
     <string-array name="settings_entries_backup_broadcasts">
-        <item>Respaldos en texto-plano</item>
-        <item>Respaldos cifrados</item>
+        <item>Copias en texto-plano</item>
+        <item>Copias cifradas</item>
     </string-array>
     <!-- Special -->
     <string name="settings_lang_sys_default">Predefinido do sistema</string>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">Относно</string>
+    <string name="about_description">Двойно удостоверяване с отворен код за Андроид</string>
+    <string name="about_tab_about">Относно</string>
+    <string name="about_tab_libraries">Библиотеки</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">Списък на промените</string>
+    <string name="about_label_license">Лиценз</string>
+    <string name="about_label_MIT">MIT лиценз</string>
+    <string name="about_label_source">Изходен код</string>
+    <string name="about_label_version">Версия</string>
+    <string name="about_label_faq">ЧЗВ</string>
+    <string name="about_label_faq_long">Често задавани въпроси</string>
+    <!-- Authors -->
+    <string name="about_title_authors">Автори</string>
+    <string name="about_label_main_developer">Основен разработчик</string>
+    <string name="about_label_developer">Разработчик</string>
+    <string name="about_label_original_author">Автор на оригиналното приложение</string>
+    <string name="about_label_original_app">Оригинално приложение</string>
+    <string name="about_label_website">Уебсайт</string>
+    <string name="about_label_donate">Даряване</string>
+    <string name="about_label_contributors">Разработчици</string>
+    <string name="about_label_translators">Преводачи</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">Права върху миниатюрите</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Всички миниатюри са търговски марки на съответните им
+        собственици.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> Използването на тези марки не е с изричното съгласие
+           на притежателя на търговска марка от andOTP,  нито обратното.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Миниатюрите трябва да се използват само, за да
+        представят компания или продукт, за който се отнасят.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Моля, не използвайте миниатюри за каквато и да е
+        цел освен да представят тази конкретна марка или услуга.</b></string>
+    <!-- Support -->
+    <string name="about_title_support">Подкрепете разработката</string>
+    <string name="about_desc_support">Разберете как можете да подкрепите развитието на andOTP</string>
+    <string name="about_title_special_features">Специални функции</string>
+    <string name="about_dialog_special_features">Сигурни ли сте, че искате да активирате специалните функции? 
+       Повечето от тях са нестандартни OTP алгоритми, които са имплементирани по заявка. 
+       Те <b>не се поддържат официално</b> и могат до доведат до  <b>известни ограничения</b>. 
+       Моля прочетете (и разберете) страницата „Сепциални функции“ в нашата GitHub Wiki секция за да научете повече преди 
+       използването им.</string>
+    <string name="about_toast_special_features">Специалните функции са ативирани</string>
+    <string name="about_toast_special_features_enabled">Специалните функции са вече ативирани</string>
+    <string name="about_toast_copied_to_clipboard">Връзката за дарения е копирана в клипборда</string>
+</resources>

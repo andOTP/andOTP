@@ -34,7 +34,7 @@
     <string name="backup_receiver_write_permission_failed">書き込み権限が付与されていないため、バックアップを実行する前に許可してください</string>
     <string name="backup_receiver_custom_encryption_failed">パスワード / PIN ベースの暗号化はブロードキャストバックアップでサポートされていません</string>
     <string name="backup_new_format_dialog_title">新しい暗号化形式</string>
-    <string name="backup_new_format_dialog_msg">andOTP 0.6.3 以降のバージョンでは、パスワードで暗号化されたバックアップに、<b>新しく改良された暗号化形式</b>が利用されます。古い暗号化形式を利用したバックアップは引き続き復元に利用できますが、<b>新しい暗号化形式を利用して新たにバックアップを作成することを強くお勧めします</b>。\n\nこのメッセージは再度表示はされません。</string>
+    <string name="backup_new_format_dialog_msg">andOTP 0.6.3 以降のバージョンでは、パスワードで暗号化されたバックアップに、<b>新しく改良された暗号化形式</b>が利用されます。古い暗号化形式を利用したバックアップは引き続き復元に利用できますが、<b>新しい暗号化形式を利用して新たにバックアップを作成することを強くお勧めします</b>。\n\nこのメッセージは再度表示されることはありません。</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">自動バックアップに失敗しました</string>
     <string name="notification_channel_name_backup_success">自動バックアップに成功しました</string>

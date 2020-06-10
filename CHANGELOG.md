@@ -1,5 +1,17 @@
 # Changelog
 
+#### v0.8.0
+
+ * Internal: Update Gradle and build tools
+ * Internal: Min API Level set to 22 (Lollipop	5.1)
+ * Internal: Refactoring and reducing build warnings
+ 
+
+#### v0.7.1.1
+
+ * Bug fix: Fix migration of old tap-to-reveal setting
+ * Bug fix: Cache encryption key when recreating main activity
+
 #### v0.7.1
 
  * Deprecation notice: This will be the last version to support Android versions below 5.1
@@ -15,9 +27,10 @@
  * Improvement: Rewording of the last used dialog (Issue #485)
  * Improvement: Handle the back key to close open drawers or the FAB overlay (Issue #499)
  * Improvement: Validate secrets during manual entry (Issue #500)
- * Thumbnails: Lots of new ones (thanks to all contributors)
  * Bug fix: Fix some remaining issues with the intro dialog (Issue #486)
  * Bug fix: Fix images containing gradients on API versions below 24 (Issue #539)
+ * Thumbnails: Lots of new ones (thanks to all contributors)
+ * Translations: Bulgarian (thanks to all the contributors on Crowdin)
 
 #### v0.7.0
 

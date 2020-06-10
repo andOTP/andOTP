@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  * Copyright (C) 2015 Bruno Bierbaumer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,22 +23,17 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
-import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -106,6 +101,9 @@ public class MainActivity extends BaseActivity
     private EncryptionType encryptionType = EncryptionType.KEYSTORE;
     private boolean requireAuthentication = false;
 
+    private boolean recreateActivity = false;
+    private boolean cacheEncKey = false;
+
     private Handler handler;
     private Runnable handlerTask;
 
@@ -131,27 +129,12 @@ public class MainActivity extends BaseActivity
         startActivityForResult(introIntent, Constants.INTENT_MAIN_INTRO);
     }
 
-    private void showAndroid21DeprecationNotice() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.dialog_title_android21_depreaction)
-                .setMessage(R.string.dialog_msg_android21_deprecation)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        settings.setAndroid21DeprecationNoticeShown(true);
-                    }
-                })
-                .setCancelable(false)
-                .create()
-                .show();
-    }
-
     public void authenticate(int messageId) {
         AuthMethod authMethod = settings.getAuthMethod();
 
         if (authMethod == AuthMethod.DEVICE) {
             KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP && km.isKeyguardSecure()) {
+            if (km.isKeyguardSecure()) {
                 Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
                 startActivityForResult(authIntent, Constants.INTENT_MAIN_AUTHENTICATE);
             }
@@ -222,10 +205,6 @@ public class MainActivity extends BaseActivity
            showFirstTimeWarning();
         }
 
-        if (!settings.getAndroid21DeprecationNoticeShown()) {
-            showAndroid21DeprecationNotice();
-        }
-
         speedDial = findViewById(R.id.speedDial);
         speedDial.inflate(R.menu.menu_fab);
 
@@ -240,7 +219,7 @@ public class MainActivity extends BaseActivity
                         ManualEntryDialog.show(MainActivity.this, settings, adapter);
                         return false;
                     case R.id.fabScanQRFromImage:
-                        openFileWithPermissions(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
+                        showOpenFileSelector(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
                         return false;
                     default:
                         return false;
@@ -259,6 +238,14 @@ public class MainActivity extends BaseActivity
 
         tagsDrawerAdapter = new TagsAdapter(this, new HashMap<String, Boolean>());
         adapter = new EntriesCardAdapter(this, tagsDrawerAdapter);
+
+        if (savedInstanceState != null) {
+            byte[] encKey = savedInstanceState.getByteArray("encKey");
+            if (encKey != null) {
+                adapter.setEncryptionKey(EncryptionHelper.generateSymmetricKey(encKey));
+                requireAuthentication = false;
+            }
+        }
 
         recList.setAdapter(adapter);
 
@@ -325,7 +312,7 @@ public class MainActivity extends BaseActivity
             if (intentAction.equals(INTENT_SCAN_QR)) {
                 scanQRCode();
             } else if (intentAction.equals(INTENT_IMPORT_QR)) {
-                openFileWithPermissions(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
+                showOpenFileSelector(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
             } else if (intentAction.equals(INTENT_ENTER_DETAILS)) {
                 ManualEntryDialog.show(MainActivity.this, settings, adapter);
             } else if (intentAction.equals(Intent.ACTION_VIEW)) {
@@ -412,6 +399,11 @@ public class MainActivity extends BaseActivity
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("filterString", filterString);
+
+        if (cacheEncKey) {
+            outState.putByteArray("encKey", adapter.getEncryptionKey().getEncoded());
+            cacheEncKey = false;
+        }
     }
 
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
@@ -431,7 +423,7 @@ public class MainActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_label_highlight_token)) ||
                 key.equals(getString(R.string.settings_key_card_layout)) ||
                 key.equals(getString(R.string.settings_key_hide_global_timeout))) {
-            recreate();
+            recreateActivity = true;
         }
     }
 
@@ -462,15 +454,15 @@ public class MainActivity extends BaseActivity
 
             if (encryptionChanged)
                 updateEncryption(newKey);
+
+            if (recreateActivity) {
+                cacheEncKey = true;
+                recreate();
+            }
         } else if (requestCode == Constants.INTENT_MAIN_AUTHENTICATE) {
             if (resultCode != RESULT_OK) {
                 Toast.makeText(getBaseContext(), R.string.toast_auth_failed_fatal, Toast.LENGTH_LONG).show();
-
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    finishAndRemoveTask();
-                } else {
-                    finish();
-                }
+                finishAndRemoveTask();
             } else {
                 requireAuthentication = false;
 
@@ -831,32 +823,11 @@ public class MainActivity extends BaseActivity
         return true;
     }
 
-    private void openFileWithPermissions(int intentId){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            showOpenFileSelector(intentId);
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constants.PERMISSIONS_MAIN_QR_READ_IMAGE);
-        }
-    }
-
     private void showOpenFileSelector(int intentId){
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("image/*");
         startActivityForResult(intent, intentId);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == Constants.PERMISSIONS_MAIN_QR_READ_IMAGE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showOpenFileSelector(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
-            } else {
-                Toast.makeText(this, R.string.backup_toast_storage_permissions, Toast.LENGTH_LONG).show();
-            }
-        } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
     }
     
     private void addQRCode(String result){

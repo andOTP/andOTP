@@ -39,7 +39,7 @@
 
     <string name="settings_title_backup_append_date">Append date to filename</string>
     <string name="settings_title_backup_ask">Ask for filename</string>
-    <string name="settings_title_backup_directory">Backup directory</string>
+    <string name="settings_title_backup_location">Default backup location</string>
     <string name="settings_title_backup_password">Backup password</string>
     <string name="settings_title_auto_backup_password_enc">Automatically backup on new entries</string>
 
@@ -83,8 +83,8 @@
         backup filename</string>
     <string name="settings_desc_backup_ask">Ask for the filename every time a backup is created or
         restored</string>
-    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
-        (filenames will depend on the backup type)</string>
+    <string name="settings_desc_backup_location">Choose a default backup location</string>
+    <string name="settings_desc_backup_location_set">Backup location has been chosen</string>
     <string name="settings_desc_backup_password">Set the password that is used to encrypt the
         backups</string>
 
@@ -107,8 +107,6 @@
     <string name="settings_desc_clear_keystore">Delete the encryption key from the KeyStore</string>
 
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">This feature requires at least Android 5.0
-        (Lollipop) to work</string>
     <string name="settings_toast_auth_device_not_secure">This feature requires a secure lock screen
         to be set up (Settings -> Security -> Screenlock)</string>
 

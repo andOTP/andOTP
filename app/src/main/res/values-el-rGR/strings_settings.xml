@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">Διάταξη κάρτας</string>
     <string name="settings_title_label_size">Μέγεθος γραμματοσειράς ετικέτας</string>
     <string name="settings_title_label_scroll">Ετικέτα κύλισης</string>
+    <string name="settings_title_tap_single">Single-tap</string>
+    <string name="settings_title_tap_double">Double-tap</string>
     <string name="settings_title_thumbnail_size_ask">Μέγεθος μικρογραφίας</string>
     <string name="settings_title_split_group_size">Διαχωρισμός τεκμηρίων με διάστημα</string>
     <string name="settings_title_tag_functionality">Επιλογή συμπεριφοράς ετικετών</string>
     <string name="settings_title_minimize_on_copy">Ελαχιστοποίηση εφαρμογής μετά την αντιγραφή του OTP</string>
     <string name="settings_title_search_includes">Συμπεριφορά αναζήτησης</string>
     <string name="settings_title_label_highlight_token">Επισήμανση τεκμηρίων που λήγουν</string>
+    <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
+    <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
     <string name="settings_title_backup_append_date">Προσθήκη ημερομηνίας στο όνομα αρχείου</string>
     <string name="settings_title_backup_ask">Ερώτηση για όνομα αρχείου</string>
     <string name="settings_title_backup_directory">Κατάλογος αντιγράφων</string>
@@ -63,12 +67,13 @@
     <string name="settings_desc_minimize_on_copy">Η εφαρμογή θα ελαχιστοποιείται όταν αντιγράφετε το OTP στο πρόχειρο</string>
     <string name="settings_desc_search_includes">Καθορίστε ποιες τιμές θα πρέπει να συμπεριληφθούν κατά την αναζήτηση</string>
     <string name="settings_desc_label_highlight_token">Επισήμανση τεκμηρίου με κόκκινο χρώμα αν λήγει σε 8 δευτερόλεπτα</string>
+    <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
+    <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
+        This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">Προσθέστε την τρέχουσα ημερομηνία και ώρα στο προτεινόμενο
         όνομα αρχείου αντιγράφου ασφαλείας</string>
     <string name="settings_desc_backup_ask">Ερώτηση για το όνομα του αρχείου κάθε φορά που δημιουργείται ένα αντίγραφο ασφαλείας ή
         επαναφορά αυτού</string>
-    <string name="settings_desc_backup_directory">Κατάλογος αυτόματων αντιγράφων και αντίγραφα broadcast
-        (τα ονόματα αρχείων θα εξαρτώνται από τον τύπο αντιγράφων ασφαλείας)</string>
     <string name="settings_desc_backup_password">Ορισμός κωδικού που χρησιμοποιείται για την κρυπτογράφηση
         αντιγράφων ασφαλείας</string>
     <string name="settings_desc_auto_backup_password_enc">Δημιουργία ενός νέου κρυπτογραφημένου αντιγράφου ασφαλείας όταν νέες
@@ -86,8 +91,6 @@
         ενσωματωμένης υπηρεσίας δημιουργίας αντιγράφων κλειδιών και προτιμήσεων</string>
     <string name="settings_desc_clear_keystore">Διαγραφή κλειδιού κρυπτογράφησης από το KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Αυτή η λειτουργία απαιτεί τουλάχιστον Android 5.0
-        (Lollipop) για να δουλέψει</string>
     <string name="settings_toast_auth_device_not_secure">Αυτή η λειτουργία απαιτεί μια ασφαλή οθόνη κλειδώματος
         και μπορεί να ρυθμιστεί στις (Ρυθμίσεις -&gt; Ασφάλεια -&gt; Κλείδωμα οθόνης)</string>
     <string name="settings_toast_password_empty">Δεν επιτρέπεται ένας κενός κωδικός πρόσβασης, ορίστε την
@@ -149,6 +152,12 @@
         <item>Συμπαγής</item>
         <item>Προεπιλογή</item>
         <item>Πλήρης</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Nothing</item>
+        <item>Reveal/Hide</item>
+        <item>Copy</item>
+        <item>Copy and go to background</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Ετικέτα</item>

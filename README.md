@@ -1,14 +1,14 @@
 #  andOTP -  Android OTP Authenticator
 
 [![Build Status](https://travis-ci.org/andOTP/andOTP.svg?branch=master)](https://travis-ci.org/andOTP/andOTP)
-[![Current release](https://img.shields.io/github/release/andOTP/andOTP/all.svg)](https://github.com/andOTP/andOTP/releases/download/v0.7.1-beta2/andOTP_v0.7.1-beta2.apk)
+[![Current release](https://img.shields.io/github/release/andOTP/andOTP/all.svg)](https://github.com/andOTP/andOTP/releases/download/v0.7.1.1/andOTP_v0.7.1.1.apk)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/andotp/localized.svg)](https://crowdin.com/project/andotp)
 [![Chat - Telegram](https://img.shields.io/badge/chat-Telegram-blue.svg)](https://t.me/andOTP)
 [![Chat - Matrix](https://img.shields.io/badge/chat-Matrix-blue.svg)](https://matrix.to/#/#andOTP:privacytools.io)
 
 ![andOTP](./assets/logo.png)
 
-andOTP is a two-factor authentication App for Android 4.4+.
+andOTP is a two-factor authentication App for Android 5.1+.
 
 It implements Time-based One-time Passwords (TOTP) and HMAC-Based One-Time Passwords (HOTP).
 Simply scan the QR code and login with the generated 6-digit code.
@@ -152,7 +152,7 @@ If you want to show your appreciation for our work with a small donation you can
 
 ## License:
 ```
-Copyright (C) 2017-2018 Jakob Nixdorf <andotp@shadowice.org>
+Copyright (C) 2017-2020 Jakob Nixdorf <andotp@shadowice.org>
 Copyright (C) 2015 Bruno Bierbaumer
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of

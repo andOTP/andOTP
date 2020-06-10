@@ -1,76 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="backup_activity_title">Copias de seguranza</string>
-    <string name="backup_category_plain">Copias de seguranza en texto plano</string>
-    <string name="backup_category_crypt">Copias de seguranza cifradas</string>
-    <string name="backup_category_openpgp">Copias de seguranza OpenPGP</string>
-    <string name="backup_title_export_plain">Copia de seguranza (texto plano)</string>
-    <string name="backup_title_export_crypt">Copia de seguranza (cifrada)</string>
-    <string name="backup_title_export_openpgp">Copia de seguranza (OpenPGP)</string>
+    <string name="backup_activity_title">Copias de apoio</string>
+    <string name="backup_category_plain">Copias de apoio en texto plano</string>
+    <string name="backup_category_crypt">Copias de apoio cifradas</string>
+    <string name="backup_category_openpgp">Copias de apoio OpenPGP</string>
+    <string name="backup_title_export_plain">Copia de apoio (texto plano)</string>
+    <string name="backup_title_export_crypt">Copia de apoio (cifrada)</string>
+    <string name="backup_title_export_openpgp">Copia de apoio (OpenPGP)</string>
     <string name="backup_title_import_plain">Restaurar (texto plano)</string>
     <string name="backup_title_import_crypt">Restaurar (cifrada)</string>
     <string name="backup_title_import_crypt_old">Restaurar (cifrado, cifrado antigo)</string>
     <string name="backup_title_import_openpgp">Restaurar (OpenPGP)</string>
     <string name="backup_title_replace">Substituír as entradas existentes</string>
-    <string name="backup_desc_export_plain">Facer copia de seguranza de todas as contas nun ficheiro de texto plano JSON</string>
-    <string name="backup_desc_export_crypt">Facer copia de seguranza de todas as contas nun ficheiro JSON con contrasinal</string>
-    <string name="backup_desc_export_openpgp">Facer copia de seguranza de todas as contas nun ficheiro JSON cifrado con OpenPGP</string>
+    <string name="backup_desc_export_plain">Facer copia de apoio de todas as contas nun ficheiro de texto plano JSON</string>
+    <string name="backup_desc_export_crypt">Facer copia de apoio de todas as contas nun ficheiro JSON con contrasinal</string>
+    <string name="backup_desc_export_openpgp">Facer copia de apoio de todas as contas nun ficheiro JSON cifrado con OpenPGP</string>
     <string name="backup_desc_import_plain">Restaurar contas desde un ficheiro JSON de texto plano</string>
     <string name="backup_desc_import_crypt">Restaurar contas desde un ficheiro JSON con contrasinal</string>
     <string name="backup_desc_import_crypt_old">Restuarar contas dun ficheiro JSON protexido por contrasinal
         creado cunha <b>versión de andOTP inferior a 0.6.3</b></string>
     <string name="backup_desc_import_openpgp">Restaurar contas desde un ficheiro JSON cifrado con OpenPGP</string>
-    <string name="backup_desc_crypt_setup">Houbo un erro ao cargar o contrasinal de respaldo desde os <b>Axustes</b>,
-    ou ben non se estableceu o contrasinal ou algo fallou. Pediráselle introducir
-    o contrasinal manualmente ao crear ou importar un respaldo.
+    <string name="backup_desc_crypt_setup">Houbo un erro ao cargar o contrasinal da copia desde os <b>Axustes</b>,
+    ou ben non se estableceu o contrasinal ou algo fallou. Pediráseche introducir
+    o contrasinal manualmente ao crear ou importar unha copia.
     </string>
-    <string name="backup_desc_openpgp_provider">Necesitas instalar un aplicarivo OpenPGP e activalo
+    <string name="backup_desc_openpgp_provider">Necesitas instalar unha aplicación OpenPGP e activala
         na <b>configuración</b> para usar esta opción.
     </string>
     <string name="backup_desc_openpgp_keyid">Necesitas seleccionar unha chave OpenPGP nos <b>Axustes</b>
-        antes de crear unha copia de seguranza cifrada.
+        antes de crear unha copia de apoio cifrada.
     </string>
-    <string name="backup_desc_replace">Si se habilita todas as entradas antigas reemplazaranse ao importar
-   o respaldo e só aparecerán as do respaldo. Si se deshabilita aparecerán tanto as entradas antigas como as do respaldo.</string>
+    <string name="backup_desc_replace">Se a activas, todas as entradas antigas reemplazaranse ao importar
+   a copia e só aparecerán as da copia. Sa a desactivas aparecerán tanto as entradas antigas como as do respaldo.</string>
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">Advertencia de seguranza</string>
     <string name="backup_dialog_msg_export_warning">¿Queres exportar a base de datos como
-        ficheiro de texto plano JSON? Este ficheiro inclúe as túas chaves secretas, por favor <b>manteno seguro</b>!
+        ficheiro de texto plano JSON? Este ficheiro inclúe as túas chaves segredas, por favor <b>manteno seguro</b>!
     </string>
-    <string name="backup_receiver_title_backup_failed">Erro na copia de seguranza</string>
-    <string name="backup_receiver_title_backup_success">Respaldo realizado correctamente</string>
-    <string name="backup_receiver_plain_disabled">Actualmente non se permiten os respaldos en texto plano,
-        vaia aos Axustes para activalos</string>
-    <string name="backup_receiver_encrypted_disabled">Actualmente non se permiten os respaldos cifrados,
-        vaia aos Axustes para activalos</string>
-    <string name="backup_receiver_read_permission_failed">Non se obtivo permiso de lectura, por favor 
-        axuste esto antes de intentar o respaldo</string>
-    <string name="backup_receiver_write_permission_failed">Non ten permiso de escritura, por favor
-        arranxe esto ante de intentas o respaldo</string>
+    <string name="backup_receiver_title_backup_failed">Erro na copia de apoio</string>
+    <string name="backup_receiver_title_backup_success">Copia realizada correctamente</string>
+    <string name="backup_receiver_plain_disabled">Actualmente non se permiten as copias en texto plano,
+        vai aos Axustes para activalos</string>
+    <string name="backup_receiver_encrypted_disabled">Actualmente non se permiten as copias cifradas,
+        vai aos Axustes para activalos</string>
+    <string name="backup_receiver_read_permission_failed">Non tes permiso de lectura, por favor 
+        arranxa esto antes de intentar a copia</string>
+    <string name="backup_receiver_write_permission_failed">Non tes permiso de escritura, por favor
+        arranxa esto ante de intentar a copia</string>
     <string name="backup_receiver_custom_encryption_failed">O cifrado con Contrasinal/PIN non
         está soportado con respaldo remoto</string>
     <string name="backup_new_format_dialog_title">Novo método de cifrado</string>
-    <string name="backup_new_format_dialog_msg">Dende a versión 0.6.3 de andOTP, úsase un <b>novo e mellorado
-        método de cifrado</b> para copias de seguridade protexidas por contrasinal. As copias de seguridade antigas
-        aínd poden ser importadas, pero é <b>moi recomendable crear novas copias de seguridade co novo cifrado
+    <string name="backup_new_format_dialog_msg">Desde a versión 0.6.3 de andOTP, úsase un <b>novo e mellorado
+        método de cifrado</b> para copias de apoio protexidas por contrasinal. As copias de apoio antigas
+        aínda poden ser importadas, pero é <b>moi recomendable crear novas copias de apoio co novo cifrado
         mellorado</b>.\n\nEsta mensaxe non se mostrará de novo.</string>
     <!-- Notification channels -->
-    <string name="notification_channel_name_backup_failed">Fallo no respaldo automático</string>
-    <string name="notification_channel_name_backup_success">Respaldo automático correcto</string>
-    <string name="notification_channel_desc_backup_failed">Estas notificacións móstranse cando un respaldo
-        automático fallou por algunha razón</string>
-    <string name="notification_channel_desc_backup_success">Estas notificacións mótranse cando
-        un respaldo automático se realizou correctamente</string>
+    <string name="notification_channel_name_backup_failed">Fallo na copia automática</string>
+    <string name="notification_channel_name_backup_success">Copia automática correcta</string>
+    <string name="notification_channel_desc_backup_failed">Estas notificacións móstranse cando unha copia
+        automática fallou por algunha razón</string>
+    <string name="notification_channel_desc_backup_success">Estas notificacións móstranse cando
+        unha copia automática se realizou correctamente</string>
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">Erro ao crear o directorio de copia de seguranza</string>
+    <string name="backup_toast_mkdir_failed">Erro ao crear o directorio de copia de apoio</string>
     <string name="backup_toast_export_success">Exportado correctamente ao almacenamento externo</string>
     <string name="backup_toast_export_failed">Fallo ao exportar ao almacenamento externo</string>
     <string name="backup_toast_import_success">Importado correctamente desde o almacenamento externo</string>
     <string name="backup_toast_import_save_failed">Erro ao gardar os elementos restaurados</string>
-    <string name="backup_toast_import_decryption_failed">Erro ao descifrar a copia de seguranza</string>
+    <string name="backup_toast_import_decryption_failed">Erro ao descifrar a copia de apoio</string>
     <string name="backup_toast_import_no_entries">Non se atoparon elementos nos datos importados</string>
-    <string name="backup_toast_storage_not_accessible">O almacenamento externo non é accesible actualmente</string>
-    <string name="backup_toast_storage_permissions">Permiso de almacenamento non concedido</string>
+    <string name="backup_toast_storage_not_accessible">O almacenaxe externo non é accesible actualmente</string>
+    <string name="backup_toast_storage_permissions">Permiso de almacenaxe non concedido</string>
     <string name="backup_toast_openpgp_error">Error OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">Non se detectou unha sinatura verificable</string>
     <string name="backup_toast_crypt_password_not_set">No se estableceu un contrasinal, revisa os <b>axustes</b></string>

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -278,26 +278,35 @@ public class ManualEntryDialog {
             public void afterTextChanged(Editable editable) {
                 if ((TextUtils.isEmpty(labelInput.getText()) && TextUtils.isEmpty(issuerInput.getText())) ||
                         (TextUtils.isEmpty(secretInput.getText()) && isNewEntry) ||
-                        TextUtils.isEmpty(digitsInput.getText()) ||
-                        Integer.parseInt(digitsInput.getText().toString()) == 0) {
+                        !isNonZeroIntegerInput(digitsInput)) {
                     positiveButton.setEnabled(false);
                 } else {
                     Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
                     if (type == Entry.OTPType.HOTP) {
-                        if (TextUtils.isEmpty(counterInput.getText())) {
-                            positiveButton.setEnabled(false);
-                        } else {
-                            positiveButton.setEnabled(true);
-                        }
+                        positiveButton.setEnabled(isZeroOrPositiveLongInput(counterInput));
                     } else if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
-                        if (TextUtils.isEmpty(periodInput.getText()) || Integer.parseInt(periodInput.getText().toString()) == 0) {
-                            positiveButton.setEnabled(false);
-                        } else {
-                            positiveButton.setEnabled(true);
-                        }
+                        positiveButton.setEnabled(isNonZeroIntegerInput(periodInput));
                     } else {
                         positiveButton.setEnabled(true);
                     }
+                }
+            }
+
+            private boolean isNonZeroIntegerInput(EditText editText) {
+                try {
+                    Editable text = editText.getText();
+                    return !TextUtils.isEmpty(text) && (Integer.parseInt(text.toString()) != 0);
+                } catch (NumberFormatException e) {
+                    return false;
+                }
+            }
+
+            private boolean isZeroOrPositiveLongInput(EditText editText) {
+                try {
+                    Editable text = editText.getText();
+                    return !TextUtils.isEmpty(text) && (Long.parseLong(text.toString()) >= 0);
+                } catch (NumberFormatException e) {
+                    return false;
                 }
             }
         };

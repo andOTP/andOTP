@@ -40,8 +40,9 @@
 
     <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
-    <string name="settings_key_backup_directory" translatable="false">pref_backup_directory</string>
-    <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>    <!-- Deprecated -->
+    <string name="settings_key_backup_location" translatable="false">pref_backup_location</string>
+    <string name="settings_key_backup_directory" translatable="false">pref_backup_directory</string>    <!-- Deprecated -->
+    <string name="settings_key_backup_password" translatable="false">pref_backup_password</string>      <!-- Deprecated -->
     <string name="settings_key_backup_password_enc" translatable="false">pref_backup_password_enc</string>
     <string name="settings_key_auto_backup_password_enc" translatable="false">pref_backup_auto_password_enc</string>
     <string name="settings_key_backup_broadcasts" translatable="false">pref_backup_broadcasts</string>
@@ -63,7 +64,7 @@
     <string name="settings_key_clear_keystore" translatable="false">pref_clear_keystore</string>
 
     <string name="settings_key_last_used_dialog_shown" translatable="false">pref_last_used_dialog_shown</string>
-    <string name="settings_key_android21_deprecation_notice_shown" translatable="false">pref_android21_deprecation_notice_shown</string>
+    <string name="settings_key_android21_deprecation_notice_shown" translatable="false">pref_android21_deprecation_notice_shown</string>    <!-- Deprecated -->
 
     <!-- Default values -->
     <integer name="settings_default_tap_to_reveal_timeout">30</integer>
@@ -155,6 +156,7 @@
         <item>el_GR</item>
         <item>ru_RU</item>
         <item>uk_UA</item>
+        <item>bg_BG</item>
         <item>ar_SA</item>
         <item>fa_IR</item>
         <item>hi_IN</item>
@@ -215,6 +217,7 @@
         <item>Ελληνικά</item>
         <item>Русский</item>
         <item>Українська</item>
+        <item>български</item>
         <item>العربية</item>
         <item>فارسی</item>
         <item>हिन्दी</item>
