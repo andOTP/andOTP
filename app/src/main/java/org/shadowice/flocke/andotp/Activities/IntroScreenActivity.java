@@ -355,50 +355,11 @@ public class IntroScreenActivity extends IntroActivity {
                     Constants.AuthMethod authMethod = selectionMapping.get(i);
 
                     if (authMethod == Constants.AuthMethod.PASSWORD) {
-                        credentialsLayout.setVisibility(View.VISIBLE);
-
-                        passwordLayout.setHint(getString(R.string.settings_hint_password));
-                        passwordConfirm.setHint(R.string.settings_hint_password_confirm);
-
-                        passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                        passwordConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-
-                        passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-                        passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
-
-                        minLength = Constants.AUTH_MIN_PASSWORD_LENGTH;
-                        lengthWarning = getString(R.string.settings_label_short_password, minLength);
-                        noPasswordWarning = getString(R.string.intro_slide3_warn_no_password);
-                        confirmPasswordWarning = getString(R.string.intro_slide3_warn_confirm_password);
-
-                        if (getIntroActivity().getCurrentSlidePosition() == slidePos) {
-                            passwordInput.requestFocus();
-                            UIHelper.showKeyboard(getContext(), passwordInput);
-                        }
+                        setupForPasswordInput();
                     } else if (authMethod == Constants.AuthMethod.PIN) {
-                        credentialsLayout.setVisibility(View.VISIBLE);
-
-                        passwordLayout.setHint(getString(R.string.settings_hint_pin));
-                        passwordConfirm.setHint(R.string.settings_hint_pin_confirm);
-
-                        passwordInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-                        passwordConfirm.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-
-                        passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-                        passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
-
-                        minLength = Constants.AUTH_MIN_PIN_LENGTH;
-                        lengthWarning = getString(R.string.settings_label_short_pin, minLength);
-                        noPasswordWarning = getString(R.string.intro_slide3_warn_no_pin);
-                        confirmPasswordWarning = getString(R.string.intro_slide3_warn_confirm_pin);
-
-                        if (getIntroActivity().getCurrentSlidePosition() == slidePos) {
-                            passwordInput.requestFocus();
-                            UIHelper.showKeyboard(getContext(), passwordInput);
-                        }
+                        setupForPinInput();
                     } else {
                         credentialsLayout.setVisibility(View.INVISIBLE);
-
                         UIHelper.hideKeyboard(getIntroActivity(), root);
                     }
 
@@ -408,6 +369,78 @@ public class IntroScreenActivity extends IntroActivity {
                     authWarnings.setVisibility(View.GONE);
 
                     updateNavigation();
+                }
+
+                private void setupForPasswordInput() {
+                    credentialsLayout.setVisibility(View.VISIBLE);
+
+                    passwordLayout.setHint(getString(R.string.settings_hint_password));
+                    passwordConfirm.setHint(R.string.settings_hint_password_confirm);
+
+                    passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    passwordConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+                    setPasswordTransformationMethod();
+
+                    minLength = Constants.AUTH_MIN_PASSWORD_LENGTH;
+                    lengthWarning = getString(R.string.settings_label_short_password, minLength);
+                    noPasswordWarning = getString(R.string.intro_slide3_warn_no_password);
+                    confirmPasswordWarning = getString(R.string.intro_slide3_warn_confirm_password);
+
+                    focusOnPasswordInput();
+                }
+
+                private void setPasswordTransformationMethod() {
+                    passwordLayout.setEndIconOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            boolean wasShowingPassword = passwordInput.getTransformationMethod() instanceof PasswordTransformationMethod;
+                            // Dispatch password visibility change to both password and confirm inputs
+                            dispatchPasswordVisibilityChange(passwordInput, wasShowingPassword);
+                            dispatchPasswordVisibilityChange(passwordConfirm, wasShowingPassword);
+                            passwordLayout.refreshDrawableState();
+                        }
+                    });
+                    passwordInput.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    passwordConfirm.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+
+                private void dispatchPasswordVisibilityChange(EditText editText, boolean wasShowingPassword) {
+                    final int selection = editText.getSelectionEnd();
+                    if (wasShowingPassword) {
+                        editText.setTransformationMethod(null);
+                    } else {
+                        editText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    }
+                    if (selection >= 0) {
+                        editText.setSelection(selection);
+                    }
+                }
+
+                private void focusOnPasswordInput() {
+                    if (getIntroActivity().getCurrentSlidePosition() == slidePos) {
+                        passwordInput.requestFocus();
+                        UIHelper.showKeyboard(getContext(), passwordInput);
+                    }
+                }
+
+                private void setupForPinInput() {
+                    credentialsLayout.setVisibility(View.VISIBLE);
+
+                    passwordLayout.setHint(getString(R.string.settings_hint_pin));
+                    passwordConfirm.setHint(R.string.settings_hint_pin_confirm);
+
+                    passwordInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+                    passwordConfirm.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+
+                    setPasswordTransformationMethod();
+
+                    minLength = Constants.AUTH_MIN_PIN_LENGTH;
+                    lengthWarning = getString(R.string.settings_label_short_pin, minLength);
+                    noPasswordWarning = getString(R.string.intro_slide3_warn_no_pin);
+                    confirmPasswordWarning = getString(R.string.intro_slide3_warn_confirm_pin);
+
+                    focusOnPasswordInput();
                 }
 
                 @Override
