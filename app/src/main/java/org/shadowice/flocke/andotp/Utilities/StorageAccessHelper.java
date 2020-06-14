@@ -26,12 +26,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 
-import org.apache.commons.codec.Charsets;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 public class StorageAccessHelper {
     public static boolean saveFile(Context context, Uri file, byte[] data) {
@@ -54,7 +53,7 @@ public class StorageAccessHelper {
     }
 
     public static boolean saveFile(Context context, Uri file, String data) {
-        return saveFile(context, file, data.getBytes(Charsets.UTF_8));
+        return saveFile(context, file, data.getBytes(StandardCharsets.UTF_8));
     }
 
     public static byte[] loadFile(Context context, Uri file) throws IOException {
@@ -77,7 +76,7 @@ public class StorageAccessHelper {
 
         try {
             byte[] content = loadFile(context, file);
-            result = new String(content, Charsets.UTF_8);
+            result = new String(content, StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }
