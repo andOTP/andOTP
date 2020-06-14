@@ -217,6 +217,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 for (String tag : tags) {
                     if (e.getTags().contains(tag)) {
                         foundMatchingTag = true;
+                        break;
                     }
                 }
             }
