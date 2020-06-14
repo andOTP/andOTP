@@ -750,13 +750,13 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public List<String> getTags() {
-        HashSet<String> tags = new HashSet<String>();
+        HashSet<String> tags = new HashSet<>();
 
         for(Entry entry : entries) {
             tags.addAll(entry.getTags());
         }
 
-        return new ArrayList<String>(tags);
+        return new ArrayList<>(tags);
     }
 
     public class EntryFilter extends Filter {
