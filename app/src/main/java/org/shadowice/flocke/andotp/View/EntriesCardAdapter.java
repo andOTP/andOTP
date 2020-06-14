@@ -801,10 +801,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         }
     }
 
-    public class IssuerComparator implements Comparator<Entry> {
+    public static class IssuerComparator implements Comparator<Entry> {
         Collator collator;
 
-        IssuerComparator(){
+        IssuerComparator() {
             collator = Collator.getInstance();
             collator.setStrength(Collator.PRIMARY);
         }
@@ -815,10 +815,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         }
     }
 
-    public class LabelComparator implements Comparator<Entry> {
+    public static class LabelComparator implements Comparator<Entry> {
         Collator collator;
 
-        LabelComparator(){
+        LabelComparator() {
             collator = Collator.getInstance();
             collator.setStrength(Collator.PRIMARY);
         }
@@ -829,14 +829,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         }
     }
 
-    public class LastUsedComparator implements Comparator<Entry> {
+    public static class LastUsedComparator implements Comparator<Entry> {
         @Override
         public int compare(Entry o1, Entry o2) {
             return Long.compare(o2.getLastUsed(), o1.getLastUsed());
         }
     }
 
-    public class MostUsedComparator implements Comparator<Entry> {
+    public static class MostUsedComparator implements Comparator<Entry> {
         @Override
         public int compare(Entry o1, Entry o2) {
             return Long.compare(o2.getUsedFrequency(), o1.getUsedFrequency());
