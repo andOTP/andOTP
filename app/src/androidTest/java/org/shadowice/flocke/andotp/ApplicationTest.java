@@ -24,6 +24,7 @@
 package org.shadowice.flocke.andotp;
 
 import android.content.Context;
+
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.apache.commons.codec.DecoderException;
@@ -114,7 +115,7 @@ public class ApplicationTest {
 
     @Test
     public void testEntry() throws Exception {
-        byte secret[] = "Das System ist sicher".getBytes();
+        byte[] secret = "Das System ist sicher".getBytes();
         String label = "5 von 5 Sterne";
         int period = 30;
 
