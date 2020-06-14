@@ -65,7 +65,7 @@
     <string name="toast_qr_error">Impossibile trovare/confermare il codice QR</string>
     <string name="toast_qr_checksum_exception">Checksum fallito durante la decodifica del codice QR</string>
     <string name="toast_qr_format_error">Formato QR Code errato</string>
-    <string name="toast_qr_unsuported">Codice QR non supportato</string>
+    <string name="toast_qr_unsupported">Codice QR non supportato</string>
     <string name="toast_qr_failed_to_generate">Generazione del codice QR fallita</string>
     <!-- Errors -->
     <string name="error_invalid_secret">Segreto non valido</string>

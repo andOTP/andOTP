@@ -65,7 +65,7 @@
     <string name="toast_qr_error">Kunde inte hitta/bekräfta QR-kod</string>
     <string name="toast_qr_checksum_exception">Verifiering av kontrollsumma misslyckades vid avkodning av QR-kod</string>
     <string name="toast_qr_format_error">Format fel i QR-kod</string>
-    <string name="toast_qr_unsuported">QR-kod stöds inte</string>
+    <string name="toast_qr_unsupported">QR-kod stöds inte</string>
     <string name="toast_qr_failed_to_generate">Misslyckades med att generera QR-kod</string>
     <!-- Errors -->
     <string name="error_invalid_secret">Ogiltig hemlighet</string>

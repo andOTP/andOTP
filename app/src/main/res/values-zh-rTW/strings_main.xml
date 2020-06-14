@@ -65,7 +65,7 @@
     <string name="toast_qr_error">無法找到／確認 QR code</string>
     <string name="toast_qr_checksum_exception">解碼 QR code 時雜湊碼驗證失敗</string>
     <string name="toast_qr_format_error">QR code 中的格式錯誤</string>
-    <string name="toast_qr_unsuported">不支援 QR Code</string>
+    <string name="toast_qr_unsupported">不支援 QR Code</string>
     <string name="toast_qr_failed_to_generate">生成 QR Code 失敗</string>
     <!-- Errors -->
     <string name="error_invalid_secret">無效的祕密</string>

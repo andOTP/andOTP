@@ -65,7 +65,7 @@
     <string name="toast_qr_error">تعذر العثور على/تأكيد رمز كيو آر</string>
     <string name="toast_qr_checksum_exception">فشل تدقيق المجموع أثناء فك ترميز رمز QR</string>
     <string name="toast_qr_format_error">نسق خاطئ في رمز الكيو آر</string>
-    <string name="toast_qr_unsuported">رمز QR غير مدعوم</string>
+    <string name="toast_qr_unsupported">رمز QR غير مدعوم</string>
     <string name="toast_qr_failed_to_generate">فشل في إنشاء رمز QR</string>
     <!-- Errors -->
     <string name="error_invalid_secret">سر غير صالح</string>
@@ -82,13 +82,14 @@
     <string name="dialog_label_enter_password">أدخل كلمة المرور</string>
     <string name="dialog_label_confirm_password">تأكيد كلمة المرور</string>
     <string name="dialog_msg_auth">الرجاء إدخال بيانات الإعتماد الخاصة بجهازك لتشغيل التطبيق.</string>
-    <string name="dialog_msg_confirm_delete">هل أنت متأكد من أنك تريد إزالة الحساب ؟</string>
+    <string name="dialog_msg_confirm_delete">هل أنت متأكد من أنك تريد إزالة الحساب \"%1$s\"؟</string>
     <string name="dialog_msg_used_tokens">سوف يتتبع andOTP استخدام الرموز المميزة الخاصة بك (باستخدام خاصية \"اضغط
         للكشف\" أو نسخ إلى الحافظة) لتتمكن من فرزها بواسطة \"الأكثر استخداما\" أو
         \"آخر مستخدم\".\n\nلن تظهر هذه الرسالة مرة أخرى.</string>
     <string name="dialog_msg_keystore_error">فشل تحميل مفتاح التشفير من مخزن المفاتيح.
 الإدخالات المضافة سوف تحذف. لمزاولة التطبيق,
  أبدل تشفيرة قاعدة البيانات الى كلمة مرور أو PIN في الإعدادات.</string>
+
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">مسح رمز QR</string>
     <string name="shortcut_name_import_qr">استيراد رمز كيو آر</string>

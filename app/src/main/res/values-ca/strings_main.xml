@@ -65,7 +65,7 @@
     <string name="toast_qr_error">No ha estat possible trobar/confirmar el codi QR</string>
     <string name="toast_qr_checksum_exception">La suma de verificació ha fallat mentre descodificava el QR</string>
     <string name="toast_qr_format_error">Error de format en el codi QR</string>
-    <string name="toast_qr_unsuported">Codi QR no suportat</string>
+    <string name="toast_qr_unsupported">Codi QR no suportat</string>
     <string name="toast_qr_failed_to_generate">La generació del codi QR ha fallat</string>
     <!-- Errors -->
     <string name="error_invalid_secret">Clau invàlida</string>

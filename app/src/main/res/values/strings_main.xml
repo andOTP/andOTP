@@ -78,7 +78,7 @@
     <string name="toast_qr_error">Could not find/confirm QR code</string>
     <string name="toast_qr_checksum_exception">Checksum verification failed while decoding QR code</string>
     <string name="toast_qr_format_error">Format error in QR code</string>
-    <string name="toast_qr_unsuported">QR Code not supported</string>
+    <string name="toast_qr_unsupported">QR Code not supported</string>
     <string name="toast_qr_failed_to_generate">Failed to generate QR Code</string>
 
     <!-- Errors -->

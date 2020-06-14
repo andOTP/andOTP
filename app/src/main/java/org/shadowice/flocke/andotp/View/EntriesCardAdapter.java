@@ -672,7 +672,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                     .create()
                     .show();
         } else {
-            Toast.makeText(context, R.string.toast_qr_unsuported, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.toast_qr_unsupported, Toast.LENGTH_LONG).show();
         }
     }
 

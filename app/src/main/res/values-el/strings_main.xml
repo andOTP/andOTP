@@ -65,7 +65,7 @@
     <string name="toast_qr_error">Δεν ήταν δυνατή η εύρεση/επιβεβαίωση του κώδικα QR</string>
     <string name="toast_qr_checksum_exception">Αποτυχία επαλήθευσης κατά την αποκωδικοποίηση του QR κώδικα</string>
     <string name="toast_qr_format_error">Σφάλμα μορφοποίησης κώδικα QR</string>
-    <string name="toast_qr_unsuported">Ο κώδικας QR δεν υποστηρίζεται</string>
+    <string name="toast_qr_unsupported">Ο κώδικας QR δεν υποστηρίζεται</string>
     <string name="toast_qr_failed_to_generate">Αποτυχία δημιουργίας κωδικού QR</string>
     <!-- Errors -->
     <string name="error_invalid_secret">Μη έγκυρο secret</string>

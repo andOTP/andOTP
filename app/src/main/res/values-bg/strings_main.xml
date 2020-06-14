@@ -65,7 +65,7 @@
     <string name="toast_qr_error">Не може да бъде намерен/потвърден QR кода</string>
     <string name="toast_qr_checksum_exception">Проверката на контролната сума не бе успешна при декодиране на QR кода</string>
     <string name="toast_qr_format_error">Грешка при форматирането в QR кода</string>
-    <string name="toast_qr_unsuported">QR кодът не се поддържа</string>
+    <string name="toast_qr_unsupported">QR кодът не се поддържа</string>
     <string name="toast_qr_failed_to_generate">Неуспешно генериране на QR код</string>
     <!-- Errors -->
     <string name="error_invalid_secret">Невалидна тайна</string>

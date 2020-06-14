@@ -65,7 +65,7 @@
     <string name="toast_qr_error">Невозможно распознать QR код</string>
     <string name="toast_qr_checksum_exception">Ошибка проверки целостности QR кода</string>
     <string name="toast_qr_format_error">Неверный формат в QR коде</string>
-    <string name="toast_qr_unsuported">QR-код не поддерживается</string>
+    <string name="toast_qr_unsupported">QR-код не поддерживается</string>
     <string name="toast_qr_failed_to_generate">Не удалось создать QR-код</string>
     <!-- Errors -->
     <string name="error_invalid_secret">Некорректный секрет</string>

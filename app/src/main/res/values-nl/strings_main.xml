@@ -65,7 +65,7 @@
     <string name="toast_qr_error">Kon QR-code niet vinden/bevestigen</string>
     <string name="toast_qr_checksum_exception">Checksum verificatie mislukte tijdens het decoderen van de QR-code</string>
     <string name="toast_qr_format_error">Formaat fout in QR-code</string>
-    <string name="toast_qr_unsuported">QR-Code niet ondersteund</string>
+    <string name="toast_qr_unsupported">QR-Code niet ondersteund</string>
     <string name="toast_qr_failed_to_generate">Genereren van QR-code mislukt</string>
     <!-- Errors -->
     <string name="error_invalid_secret">Ongeldig geheim</string>

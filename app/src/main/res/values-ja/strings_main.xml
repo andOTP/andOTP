@@ -65,7 +65,7 @@
     <string name="toast_qr_error">QR コードを発見・確認できませんでした</string>
     <string name="toast_qr_checksum_exception">QR コードのデコード中にチェックサムの検証に失敗しました</string>
     <string name="toast_qr_format_error">QR コードの形式エラー</string>
-    <string name="toast_qr_unsuported">この QR コードはサポートされていません</string>
+    <string name="toast_qr_unsupported">この QR コードはサポートされていません</string>
     <string name="toast_qr_failed_to_generate">QR コードの生成に失敗しました</string>
     <!-- Errors -->
     <string name="error_invalid_secret">無効な秘密鍵です</string>

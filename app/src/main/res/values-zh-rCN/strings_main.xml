@@ -65,7 +65,7 @@
     <string name="toast_qr_error">无法解析二维码</string>
     <string name="toast_qr_checksum_exception">解析二维码时效验失败</string>
     <string name="toast_qr_format_error">二维码格式错误</string>
-    <string name="toast_qr_unsuported">二维码不支持</string>
+    <string name="toast_qr_unsupported">二维码不支持</string>
     <string name="toast_qr_failed_to_generate">生成二维码失败</string>
     <!-- Errors -->
     <string name="error_invalid_secret">密钥无效</string>
