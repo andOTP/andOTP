@@ -120,16 +120,16 @@ public class ApplicationTest {
         int period = 30;
 
         String s = "{\"secret\":\"" + new String(new Base32().encode(secret)) + "\"," +
-                    "\"issuer\":\"\"," +
-                    "\"label\":\"" + label + "\"," +
-                    "\"digits\":6," +
-                    "\"type\":\"TOTP\"," +
-                    "\"algorithm\":\"SHA1\"," +
-                    "\"thumbnail\":\"Default\"," +
-                    "\"last_used\":0," +
-                    "\"used_frequency\":0," +
-                    "\"period\":" + Integer.toString(period) + "," +
-                    "\"tags\":[\"test1\",\"test2\"]}";
+                "\"issuer\":\"\"," +
+                "\"label\":\"" + label + "\"," +
+                "\"digits\":6," +
+                "\"type\":\"TOTP\"," +
+                "\"algorithm\":\"SHA1\"," +
+                "\"thumbnail\":\"Default\"," +
+                "\"last_used\":0," +
+                "\"used_frequency\":0," +
+                "\"period\":" + period + "," +
+                "\"tags\":[\"test1\",\"test2\"]}";
 
         Entry e = new Entry(new JSONObject(s));
         assertTrue(Arrays.equals(secret, e.getSecret()));
