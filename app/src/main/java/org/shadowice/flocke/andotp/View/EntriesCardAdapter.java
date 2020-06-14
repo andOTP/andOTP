@@ -375,12 +375,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         if (entry.isVisible()) {
             hideEntry(entry);
         } else {
-            entries.get(realIndex).setHideTask(new Runnable() {
-                @Override
-                public void run() {
-                    hideEntry(entry);
-                }
-            });
+            entries.get(realIndex).setHideTask(() -> hideEntry(entry));
             taskHandler.postDelayed(entries.get(realIndex).getHideTask(), settings.getTapToRevealTimeout() * 1000);
 
             if (entry.isCounterBased()) {
@@ -442,25 +437,19 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         AlertDialog dialog = builder.setTitle(R.string.dialog_title_counter)
                 .setView(container)
-                .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        int realIndex = getRealIndex(pos);
-                        long newCounter = Long.parseLong(input.getEditableText().toString());
+                .setPositiveButton(R.string.button_save, (dialogInterface, i) -> {
+                    int realIndex = getRealIndex(pos);
+                    long newCounter = Long.parseLong(input.getEditableText().toString());
 
-                        displayedEntries.get(pos).setCounter(newCounter);
-                        notifyItemChanged(pos);
+                    displayedEntries.get(pos).setCounter(newCounter);
+                    notifyItemChanged(pos);
 
-                        Entry e = entries.get(realIndex);
-                        e.setCounter(newCounter);
+                    Entry e = entries.get(realIndex);
+                    e.setCounter(newCounter);
 
-                        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
-                    }
+                    saveEntries(settings.getAutoBackupEncryptedFullEnabled());
                 })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                })
+                .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> {})
                 .create();
         addCounterValidationWatcher(input, dialog);
         dialog.show();
@@ -590,31 +579,25 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         final AlertDialog alert = builder.setTitle(R.string.menu_popup_change_image)
                 .setView(container)
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                })
+                .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> {})
                 .create();
 
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int realIndex = getRealIndex(pos);
-                EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
-                try {
-                    int realPos = thumbnailAdapter.getRealIndex(position);
-                    thumbnail = EntryThumbnail.EntryThumbnails.values()[realPos];
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                Entry e = entries.get(realIndex);
-                e.setThumbnail(thumbnail);
-
-                saveEntries(settings.getAutoBackupEncryptedFullEnabled());
-                notifyItemChanged(pos);
-                alert.cancel();
+        grid.setOnItemClickListener((parent, view, position, id) -> {
+            int realIndex1 = getRealIndex(pos);
+            EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
+            try {
+                int realPos = thumbnailAdapter.getRealIndex(position);
+                thumbnail = EntryThumbnail.EntryThumbnails.values()[realPos];
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
+            Entry e = entries.get(realIndex1);
+            e.setThumbnail(thumbnail);
+
+            saveEntries(settings.getAutoBackupEncryptedFullEnabled());
+            notifyItemChanged(pos);
+            alert.cancel();
         });
 
         alert.show();
@@ -628,22 +611,16 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         builder.setTitle(R.string.dialog_title_remove)
                 .setMessage(message)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        int realIndex = getRealIndex(pos);
+                .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
+                    int realIndex = getRealIndex(pos);
 
-                        displayedEntries.remove(pos);
-                        notifyItemRemoved(pos);
+                    displayedEntries.remove(pos);
+                    notifyItemRemoved(pos);
 
-                        entries.remove(realIndex);
-                        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
-                    }
+                    entries.remove(realIndex);
+                    saveEntries(settings.getAutoBackupEncryptedFullEnabled());
                 })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                })
+                .setNegativeButton(android.R.string.no, (dialogInterface, i) -> {})
                 .show();
     }
 
@@ -682,26 +659,23 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         MenuInflater inflate = popup.getMenuInflater();
         inflate.inflate(R.menu.menu_popup, popup.getMenu());
 
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                int id = item.getItemId();
+        popup.setOnMenuItemClickListener(item -> {
+            int id = item.getItemId();
 
-                if (id == R.id.menu_popup_edit) {
-                    ManualEntryDialog.show((MainActivity) context, settings, EntriesCardAdapter.this, entries.get(getRealIndex(pos)));
-                    return true;
-                } else if(id == R.id.menu_popup_changeImage) {
-                    changeThumbnail(pos);
-                    return true;
-                } else if (id == R.id.menu_popup_remove) {
-                    removeItem(pos);
-                    return true;
-                } else if (id == R.id.menu_popup_show_qr_code) {
-                    showQRCode(pos);
-                    return true;
-                } else {
-                    return false;
-                }
+            if (id == R.id.menu_popup_edit) {
+                ManualEntryDialog.show((MainActivity) context, settings, EntriesCardAdapter.this, entries.get(getRealIndex(pos)));
+                return true;
+            } else if(id == R.id.menu_popup_changeImage) {
+                changeThumbnail(pos);
+                return true;
+            } else if (id == R.id.menu_popup_remove) {
+                removeItem(pos);
+                return true;
+            } else if (id == R.id.menu_popup_show_qr_code) {
+                showQRCode(pos);
+                return true;
+            } else {
+                return false;
             }
         });
         popup.show();

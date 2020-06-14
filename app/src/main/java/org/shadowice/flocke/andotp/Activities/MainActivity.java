@@ -41,7 +41,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
-import android.widget.AdapterView;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -61,7 +60,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
 
 import org.shadowice.flocke.andotp.Database.Entry;
@@ -192,18 +190,15 @@ public class MainActivity extends BaseActivity
         if (settings.getAuthMethod() != AuthMethod.NONE && savedInstanceState == null)
             requireAuthentication = true;
 
-        setBroadcastCallback(new BroadcastReceivedCallback() {
-            @Override
-            public void onReceivedScreenOff() {
-                if (settings.getRelockOnScreenOff() && settings.getAuthMethod() != AuthMethod.NONE)
-                    requireAuthentication = true;
-            }
+        setBroadcastCallback(() -> {
+            if (settings.getRelockOnScreenOff() && settings.getAuthMethod() != AuthMethod.NONE)
+                requireAuthentication = true;
         });
 
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new ProcessLifecycleObserver());
 
-        if (! settings.getFirstTimeWarningShown()) {
-           showFirstTimeWarning();
+        if (!settings.getFirstTimeWarningShown()) {
+            showFirstTimeWarning();
         }
 
         speedDial = findViewById(R.id.speedDial);
@@ -211,9 +206,7 @@ public class MainActivity extends BaseActivity
 
         speedDial.getMainFab().setContentDescription(getString(R.string.button_add));
 
-        speedDial.setOnActionSelectedListener(new SpeedDialView.OnActionSelectedListener() {
-            @Override
-            public boolean onActionSelected(SpeedDialActionItem speedDialActionItem) {
+        speedDial.setOnActionSelectedListener(speedDialActionItem -> {
                 switch (speedDialActionItem.getId()) {
                     case R.id.fabScanQR:
                         scanQRCode();
@@ -227,8 +220,7 @@ public class MainActivity extends BaseActivity
                     default:
                         return false;
                 }
-            }
-        });
+            });
 
         speedDial.setOnChangeListener(new SpeedDialView.OnChangeListener() {
             @Override
@@ -401,12 +393,7 @@ public class MainActivity extends BaseActivity
     @Override
     public void onPause() {
         if(settings.getAuthMethod() == AuthMethod.DEVICE)
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    findViewById(R.id.cardList).setVisibility(View.INVISIBLE);
-                }
-            });
+            runOnUiThread(() -> findViewById(R.id.cardList).setVisibility(View.INVISIBLE));
         super.onPause();
         stopUpdater();
 
@@ -706,92 +693,83 @@ public class MainActivity extends BaseActivity
         final CheckedTextView noTagsButton = findViewById(R.id.no_tags_entries);
         final CheckedTextView allTagsButton = findViewById(R.id.all_tags_in_drawer);
 
-        allTagsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CheckedTextView checkedTextView = ((CheckedTextView)view);
-                checkedTextView.setChecked(!checkedTextView.isChecked());
+        allTagsButton.setOnClickListener(view -> {
+            CheckedTextView checkedTextView = ((CheckedTextView) view);
+            checkedTextView.setChecked(!checkedTextView.isChecked());
 
-                settings.setAllTagsToggle(checkedTextView.isChecked());
+            settings.setAllTagsToggle(checkedTextView.isChecked());
 
-                for(int i = 0; i < tagsDrawerListView.getChildCount(); i++) {
-                    CheckedTextView childCheckBox = (CheckedTextView) tagsDrawerListView.getChildAt(i);
-                    childCheckBox.setChecked(checkedTextView.isChecked());
-                }
+            for (int i = 0; i < tagsDrawerListView.getChildCount(); i++) {
+                CheckedTextView childCheckBox = (CheckedTextView) tagsDrawerListView.getChildAt(i);
+                childCheckBox.setChecked(checkedTextView.isChecked());
+            }
 
-                for (String tag: tagsDrawerAdapter.getTags()) {
-                    tagsDrawerAdapter.setTagState(tag, checkedTextView.isChecked());
-                    settings.setTagToggle(tag, checkedTextView.isChecked());
-                }
+            for (String tag : tagsDrawerAdapter.getTags()) {
+                tagsDrawerAdapter.setTagState(tag, checkedTextView.isChecked());
+                settings.setTagToggle(tag, checkedTextView.isChecked());
+            }
 
-                if(checkedTextView.isChecked()) {
-                    adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
-                } else {
-                    adapter.filterByTags(new ArrayList<>());
-                }
+            if (checkedTextView.isChecked()) {
+                adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+            } else {
+                adapter.filterByTags(new ArrayList<>());
             }
         });
         allTagsButton.setChecked(settings.getAllTagsToggle());
 
-        noTagsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CheckedTextView checkedTextView = ((CheckedTextView)view);
-                checkedTextView.setChecked(!checkedTextView.isChecked());
+        noTagsButton.setOnClickListener(view -> {
+            CheckedTextView checkedTextView = ((CheckedTextView) view);
+            checkedTextView.setChecked(!checkedTextView.isChecked());
 
-                if(settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
-                    checkedTextView.setChecked(true);
-                    allTagsButton.setChecked(false);
-                    settings.setAllTagsToggle(false);
+            if (settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
+                checkedTextView.setChecked(true);
+                allTagsButton.setChecked(false);
+                settings.setAllTagsToggle(false);
 
-                    for (String tag: tagsDrawerAdapter.getTags()) {
-                        settings.setTagToggle(tag, false);
-                        tagsDrawerAdapter.setTagState(tag, false);
-                    }
+                for (String tag : tagsDrawerAdapter.getTags()) {
+                    settings.setTagToggle(tag, false);
+                    tagsDrawerAdapter.setTagState(tag, false);
                 }
-
-                settings.setNoTagsToggle(checkedTextView.isChecked());
-                adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
             }
+
+            settings.setNoTagsToggle(checkedTextView.isChecked());
+            adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
         });
         noTagsButton.setChecked(settings.getNoTagsToggle());
 
         tagsDrawerListView.setAdapter(tagsDrawerAdapter);
-        tagsDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CheckedTextView checkedTextView = ((CheckedTextView)view);
+        tagsDrawerListView.setOnItemClickListener((parent, view, position, id) -> {
+            CheckedTextView checkedTextView = ((CheckedTextView) view);
 
-                if(settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
-                    allTagsButton.setChecked(false);
-                    settings.setAllTagsToggle(false);
-                    noTagsButton.setChecked(false);
-                    settings.setNoTagsToggle(false);
+            if (settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
+                allTagsButton.setChecked(false);
+                settings.setAllTagsToggle(false);
+                noTagsButton.setChecked(false);
+                settings.setNoTagsToggle(false);
 
-                    for (String tag: tagsDrawerAdapter.getTags()) {
-                        settings.setTagToggle(tag, false);
-                        tagsDrawerAdapter.setTagState(tag, false);
-                    }
-                    checkedTextView.setChecked(true);
-                }else {
-                    checkedTextView.setChecked(!checkedTextView.isChecked());
+                for (String tag : tagsDrawerAdapter.getTags()) {
+                    settings.setTagToggle(tag, false);
+                    tagsDrawerAdapter.setTagState(tag, false);
                 }
-
-                settings.setTagToggle(checkedTextView.getText().toString(), checkedTextView.isChecked());
-                tagsDrawerAdapter.setTagState(checkedTextView.getText().toString(), checkedTextView.isChecked());
-
-                if (! checkedTextView.isChecked()) {
-                    allTagsButton.setChecked(false);
-                    settings.setAllTagsToggle(false);
-                }
-
-                if (tagsDrawerAdapter.allTagsActive()) {
-                    allTagsButton.setChecked(true);
-                    settings.setAllTagsToggle(true);
-                }
-
-                adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+                checkedTextView.setChecked(true);
+            } else {
+                checkedTextView.setChecked(!checkedTextView.isChecked());
             }
+
+            settings.setTagToggle(checkedTextView.getText().toString(), checkedTextView.isChecked());
+            tagsDrawerAdapter.setTagState(checkedTextView.getText().toString(), checkedTextView.isChecked());
+
+            if (!checkedTextView.isChecked()) {
+                allTagsButton.setChecked(false);
+                settings.setAllTagsToggle(false);
+            }
+
+            if (tagsDrawerAdapter.allTagsActive()) {
+                allTagsButton.setChecked(true);
+                settings.setAllTagsToggle(true);
+            }
+
+            adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
         });
 
         adapter.filterByTags(tagsDrawerAdapter.getActiveTags());

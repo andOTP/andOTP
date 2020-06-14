@@ -22,9 +22,8 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
-import android.app.backup.BackupManager;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.backup.BackupManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -37,11 +36,11 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import androidx.appcompat.widget.Toolbar;
-
 import android.provider.DocumentsContract;
 import android.view.ViewStub;
 import android.widget.Toast;
+
+import androidx.appcompat.widget.Toolbar;
 
 import org.openintents.openpgp.util.OpenPgpAppPreference;
 import org.openintents.openpgp.util.OpenPgpKeyPreference;
@@ -304,19 +303,13 @@ public class SettingsActivity extends BaseActivity
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle(R.string.settings_dialog_title_warning)
                     .setMessage(R.string.settings_dialog_msg_encryption_change)
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            if (encryptionType == EncryptionType.PASSWORD)
-                                ((SettingsActivity) getActivity()).tryEncryptionChangeWithAuth(encryptionType);
-                            else if (encryptionType == EncryptionType.KEYSTORE)
-                                ((SettingsActivity) getActivity()).tryEncryptionChange(encryptionType, null);
-                        }
+                    .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
+                        if (encryptionType == EncryptionType.PASSWORD)
+                            ((SettingsActivity) getActivity()).tryEncryptionChangeWithAuth(encryptionType);
+                        else if (encryptionType == EncryptionType.KEYSTORE)
+                            ((SettingsActivity) getActivity()).tryEncryptionChange(encryptionType, null);
                     })
-                    .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                        }
+                    .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> {
                     })
                     .create()
                     .show();
@@ -347,12 +340,7 @@ public class SettingsActivity extends BaseActivity
             addPreferencesFromResource(R.xml.preferences);
 
             CredentialsPreference credentialsPreference = (CredentialsPreference) findPreference(getString(R.string.settings_key_auth));
-            credentialsPreference.setEncryptionChangeCallback(new CredentialsPreference.EncryptionChangeCallback() {
-                @Override
-                public boolean testEncryptionChange(byte[] newKey) {
-                    return ((SettingsActivity) getActivity()).tryEncryptionChange(settings.getEncryption(), newKey);
-                }
-            });
+            credentialsPreference.setEncryptionChangeCallback(newKey -> ((SettingsActivity) getActivity()).tryEncryptionChange(settings.getEncryption(), newKey));
 
             CheckBoxPreference blockAutofill = (CheckBoxPreference) findPreference(getString(R.string.settings_key_block_autofill));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -367,34 +355,31 @@ public class SettingsActivity extends BaseActivity
             catSecurity = (PreferenceCategory) findPreference(getString(R.string.settings_key_cat_security));
             encryption = (ListPreference) findPreference(getString(R.string.settings_key_encryption));
 
-            encryption.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(final Preference preference, Object o) {
-                    String newEncryption = (String) o;
-                    EncryptionType encryptionType = EncryptionType.valueOf(newEncryption.toUpperCase());
-                    EncryptionType oldEncryptionType = settings.getEncryption();
-                    AuthMethod authMethod = settings.getAuthMethod();
+            encryption.setOnPreferenceChangeListener((preference, o) -> {
+                String newEncryption = (String) o;
+                EncryptionType encryptionType = EncryptionType.valueOf(newEncryption.toUpperCase());
+                EncryptionType oldEncryptionType = settings.getEncryption();
+                AuthMethod authMethod = settings.getAuthMethod();
 
-                    if (encryptionType != oldEncryptionType) {
-                        if (encryptionType == EncryptionType.PASSWORD) {
-                            if (authMethod != AuthMethod.PASSWORD && authMethod != AuthMethod.PIN) {
-                                UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_with_auth);
+                if (encryptionType != oldEncryptionType) {
+                    if (encryptionType == EncryptionType.PASSWORD) {
+                        if (authMethod != AuthMethod.PASSWORD && authMethod != AuthMethod.PIN) {
+                            UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_with_auth);
+                            return false;
+                        } else {
+                            if (settings.getAuthCredentials().isEmpty()) {
+                                UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_without_credentials);
                                 return false;
-                            } else {
-                                if (settings.getAuthCredentials().isEmpty()) {
-                                    UIHelper.showGenericDialog(getActivity(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_encryption_invalid_without_credentials);
-                                    return false;
-                                }
                             }
-
-                            encryptionChangeWithDialog(EncryptionType.PASSWORD);
-                        } else if (encryptionType == EncryptionType.KEYSTORE) {
-                            encryptionChangeWithDialog(EncryptionType.KEYSTORE);
                         }
-                    }
 
-                    return false;
+                        encryptionChangeWithDialog(EncryptionType.PASSWORD);
+                    } else if (encryptionType == EncryptionType.KEYSTORE) {
+                        encryptionChangeWithDialog(EncryptionType.KEYSTORE);
+                    }
                 }
+
+                return false;
             });
 
             // Backup location
@@ -406,12 +391,9 @@ public class SettingsActivity extends BaseActivity
                 backupLocation.setSummary(R.string.settings_desc_backup_location);
             }
 
-            backupLocation.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    ((SettingsActivity) getActivity()).requestBackupAccess();
-                    return true;
-                }
+            backupLocation.setOnPreferenceClickListener(preference -> {
+                ((SettingsActivity) getActivity()).requestBackupAccess();
+                return true;
             });
 
             // OpenPGP
@@ -421,28 +403,25 @@ public class SettingsActivity extends BaseActivity
 
             pgpSigningKey.setOpenPgpProvider(pgpProvider.getValue());
 
-            if (pgpProvider.getValue() != null && ! pgpProvider.getValue().isEmpty()) {
+            if (pgpProvider.getValue() != null && !pgpProvider.getValue().isEmpty()) {
                 pgpEncryptionKey.setEnabled(true);
             } else {
                 pgpEncryptionKey.setEnabled(false);
             }
 
-            pgpProvider.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    if (newValue != null && ! ((String) newValue).isEmpty()) {
-                        pgpEncryptionKey.setEnabled(true);
-                    } else {
-                        pgpEncryptionKey.setEnabled(false);
-                    }
-
-                    pgpSigningKey.setOpenPgpProvider((String) newValue);
-
-                    return true;
+            pgpProvider.setOnPreferenceChangeListener((preference, newValue) -> {
+                if (newValue != null && !((String) newValue).isEmpty()) {
+                    pgpEncryptionKey.setEnabled(true);
+                } else {
+                    pgpEncryptionKey.setEnabled(false);
                 }
+
+                pgpSigningKey.setOpenPgpProvider((String) newValue);
+
+                return true;
             });
 
-            useAutoBackup = (ListPreference)findPreference(getString(R.string.settings_key_auto_backup_password_enc));
+            useAutoBackup = (ListPreference) findPreference(getString(R.string.settings_key_auto_backup_password_enc));
             updateAutoBackup();
 
             useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
@@ -455,37 +434,28 @@ public class SettingsActivity extends BaseActivity
                 addPreferencesFromResource(R.xml.preferences_special);
 
                 Preference clearKeyStore = findPreference(getString(R.string.settings_key_clear_keystore));
-                clearKeyStore.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                    @Override
-                    public boolean onPreferenceClick(Preference preference) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                clearKeyStore.setOnPreferenceClickListener(preference -> {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                        builder.setTitle(R.string.settings_dialog_title_clear_keystore);
-                        if (settings.getEncryption() == EncryptionType.PASSWORD)
-                            builder.setMessage(R.string.settings_dialog_msg_clear_keystore_password);
-                        else if (settings.getEncryption() == EncryptionType.KEYSTORE)
-                            builder.setMessage(R.string.settings_dialog_msg_clear_keystore_keystore);
+                    builder.setTitle(R.string.settings_dialog_title_clear_keystore);
+                    if (settings.getEncryption() == EncryptionType.PASSWORD)
+                        builder.setMessage(R.string.settings_dialog_msg_clear_keystore_password);
+                    else if (settings.getEncryption() == EncryptionType.KEYSTORE)
+                        builder.setMessage(R.string.settings_dialog_msg_clear_keystore_keystore);
 
-                        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                KeyStoreHelper.wipeKeys(getActivity());
-                                if (settings.getEncryption() == EncryptionType.KEYSTORE) {
-                                    DatabaseHelper.wipeDatabase(getActivity());
-                                    ((SettingsActivity) getActivity()).generateNewEncryptionKey();
-                                }
-                            }
-                        });
-                        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                            }
-                        });
+                    builder.setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
+                        KeyStoreHelper.wipeKeys(getActivity());
+                        if (settings.getEncryption() == EncryptionType.KEYSTORE) {
+                            DatabaseHelper.wipeDatabase(getActivity());
+                            ((SettingsActivity) getActivity()).generateNewEncryptionKey();
+                        }
+                    });
+                    builder.setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> {
+                    });
 
-                        builder.create().show();
+                    builder.create().show();
 
-                        return false;
-                    }
+                    return false;
                 });
             }
         }
