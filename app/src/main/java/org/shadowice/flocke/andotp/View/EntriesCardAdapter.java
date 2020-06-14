@@ -207,7 +207,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         for(Entry e : entries) {
             //Entries with no tags will always be shown
-            Boolean foundMatchingTag = e.getTags().isEmpty() && settings.getNoTagsToggle();
+            boolean foundMatchingTag = e.getTags().isEmpty() && settings.getNoTagsToggle();
 
             if(settings.getTagFunctionality() == Constants.TagFunctionality.AND) {
                 if(e.getTags().containsAll(tags)) {
