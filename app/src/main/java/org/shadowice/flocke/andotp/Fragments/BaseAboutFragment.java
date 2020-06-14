@@ -11,8 +11,6 @@ import android.content.pm.PackageManager;
 import android.graphics.ColorFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +18,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Settings;
@@ -151,9 +152,9 @@ public class BaseAboutFragment extends Fragment {
             }
         });
 
-        LinearLayout authorOrigialLayout = v.findViewById(R.id.aboutLayoutOriginalAuthor);
+        LinearLayout authorOriginalLayout = v.findViewById(R.id.aboutLayoutOriginalAuthor);
         TextView authorOriginalApp = v.findViewById(R.id.about_author_original_extra);
-        authorOrigialLayout.setOnClickListener(new View.OnClickListener() {
+        authorOriginalLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openURI(AUTHOR_ORIGINAL_GITHUB);
