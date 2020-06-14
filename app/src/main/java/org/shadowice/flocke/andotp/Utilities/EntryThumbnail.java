@@ -63,6 +63,7 @@ public class EntryThumbnail {
         ArenaNet(R.drawable.thumb_arenanet),
         AtlanticNet(R.drawable.thumb_atlantic_net),
         Atlassian(R.drawable.thumb_atlassian),
+        AutoDNS(R.drawable.thumb_autodns),
         AVM(R.drawable.thumb_avm),
         Backblaze(R.drawable.thumb_backblaze),
         BattleNet(R.drawable.thumb_battlenet),
