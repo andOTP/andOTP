@@ -168,11 +168,7 @@ public class SettingsActivity extends BaseActivity
             }
         }
 
-        if (fragment.useAutoBackup != null) {
-            fragment.useAutoBackup.setEnabled(BackupHelper.autoBackupType(this) == Constants.BackupType.ENCRYPTED);
-            if (!fragment.useAutoBackup.isEnabled())
-                fragment.useAutoBackup.setValue(Constants.AutoBackup.OFF.toString().toLowerCase(Locale.ENGLISH));
-        }
+        fragment.updateAutoBackup();
     }
 
     private void generateNewEncryptionKey() {
@@ -316,6 +312,20 @@ public class SettingsActivity extends BaseActivity
                     .show();
         }
 
+        public void updateAutoBackup() {
+            if (useAutoBackup != null) {
+                useAutoBackup.setEnabled(BackupHelper.autoBackupType(getActivity()) == Constants.BackupType.ENCRYPTED);
+                if (!useAutoBackup.isEnabled())
+                    useAutoBackup.setValue(Constants.AutoBackup.OFF.toString().toLowerCase(Locale.ENGLISH));
+
+                if (useAutoBackup.isEnabled()) {
+                    useAutoBackup.setSummary(R.string.settings_desc_auto_backup_password_enc);
+                } else {
+                    useAutoBackup.setSummary(R.string.settings_desc_auto_backup_requirements);
+                }
+            }
+        }
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -414,9 +424,7 @@ public class SettingsActivity extends BaseActivity
             });
 
             useAutoBackup = (ListPreference)findPreference(getString(R.string.settings_key_auto_backup_password_enc));
-            useAutoBackup.setEnabled(BackupHelper.autoBackupType(getActivity()) == Constants.BackupType.ENCRYPTED);
-            if(!useAutoBackup.isEnabled())
-                useAutoBackup.setValue(Constants.AutoBackup.OFF.toString().toLowerCase(Locale.ENGLISH));
+            updateAutoBackup();
 
             useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
             useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);
