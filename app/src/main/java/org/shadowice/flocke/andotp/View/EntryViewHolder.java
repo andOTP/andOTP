@@ -38,6 +38,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
