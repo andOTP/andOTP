@@ -74,7 +74,7 @@ public class DimensionConverter {
         if (matcher.matches()) {
             // -- Match found.
             // -- Extract value.
-            float value = Float.valueOf(matcher.group(1)).floatValue();
+            float value = Float.parseFloat(matcher.group(1));
             // -- Extract dimension units.
             String unit = matcher.group(3).toLowerCase();
             // -- Get Android dimension constant.
