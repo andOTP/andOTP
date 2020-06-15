@@ -140,7 +140,7 @@ public class ManualEntryDialog {
         }
         final TagsAdapter tagsAdapter = new TagsAdapter(callingActivity, tagsHashMap);
 
-        final Callable tagsCallable = () -> {
+        final Callable<?> tagsCallable = () -> {
             List<String> selectedTags = tagsAdapter.getActiveTags();
             StringBuilder stringBuilder = new StringBuilder();
             for (int j = 0; j < selectedTags.size(); j++) {

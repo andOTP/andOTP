@@ -38,13 +38,13 @@ import java.util.HashMap;
 import java.util.concurrent.Callable;
 
 public class TagsDialog {
-    public static void show(Context context, final TagsAdapter tagsAdapter, final Callable newTagCallable, final Callable selectedTagsCallable) {
+    public static void show(Context context, final TagsAdapter tagsAdapter, final Callable<?> newTagCallable, final Callable<?> selectedTagsCallable) {
         int margin = context.getResources().getDimensionPixelSize(R.dimen.activity_margin);
         int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
         int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
 
         final EditText input = new EditText(context);
-        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        input.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         final FrameLayout inputLayout = new FrameLayout(context);
         inputLayout.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
