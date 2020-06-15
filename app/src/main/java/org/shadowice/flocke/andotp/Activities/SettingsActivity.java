@@ -40,6 +40,7 @@ import android.provider.DocumentsContract;
 import android.view.ViewStub;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
 import org.openintents.openpgp.util.OpenPgpAppPreference;
@@ -110,7 +111,7 @@ public class SettingsActivity extends BaseActivity
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
         outState.putBoolean(Constants.EXTRA_SETTINGS_ENCRYPTION_CHANGED, encryptionChanged);

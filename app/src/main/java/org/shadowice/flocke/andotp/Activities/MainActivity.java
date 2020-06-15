@@ -46,6 +46,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -402,7 +403,7 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("filterString", filterString);
 
@@ -434,7 +435,7 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         tagsToggle.onConfigurationChanged(newConfig);
     }
@@ -847,7 +848,7 @@ public class MainActivity extends BaseActivity
 
     private class ProcessLifecycleObserver implements DefaultLifecycleObserver {
         @Override
-        public void onStop(LifecycleOwner owner) {
+        public void onStop(@NonNull LifecycleOwner owner) {
             if (MainActivity.this.settings.getRelockOnBackground())
                 MainActivity.this.requireAuthentication = true;
         }
