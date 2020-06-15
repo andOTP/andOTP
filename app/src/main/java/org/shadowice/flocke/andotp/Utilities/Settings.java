@@ -137,7 +137,7 @@ public class Settings {
     }
 
     private Set<String> getStringSet(int keyId, Set<String> defaultValue) {
-        return new HashSet<String>(settings.getStringSet(getResString(keyId), defaultValue));
+        return new HashSet<>(settings.getStringSet(getResString(keyId), defaultValue));
     }
 
     private void setBoolean(int keyId, boolean value) {
@@ -475,12 +475,12 @@ public class Settings {
 
     public boolean getTagToggle(String tag) {
         //The tag toggle holds tags that are unchecked in order to default to checked.
-        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<String>());
+        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<>());
         return !toggledTags.contains(tag);
     }
 
     public void setTagToggle(String tag, Boolean value) {
-        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<String>());
+        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<>());
         if(value)
             toggledTags.remove(tag);
         else

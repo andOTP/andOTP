@@ -37,7 +37,7 @@ public class DimensionConverter {
     // -- Initialize dimension string to constant lookup.
     public static final Map<String, Integer> dimensionConstantLookup = initDimensionConstantLookup();
     private static Map<String, Integer> initDimensionConstantLookup() {
-        Map<String, Integer> m = new HashMap<String, Integer>();
+        Map<String, Integer> m = new HashMap<>();
         m.put("px", TypedValue.COMPLEX_UNIT_PX);
         m.put("dip", TypedValue.COMPLEX_UNIT_DIP);
         m.put("dp", TypedValue.COMPLEX_UNIT_DIP);
