@@ -137,7 +137,7 @@ public class ApplicationTest {
 
         String[] tags = new String[]{"test1", "test2"};
         assertEquals(tags.length, e.getTags().size());
-        assertTrue(Arrays.equals(tags, e.getTags().toArray(new String[e.getTags().size()])));
+        assertTrue(Arrays.equals(tags, e.getTags().toArray(new String[0])));
 
         assertEquals(s, e.toJSON().toString());
     }
@@ -189,7 +189,7 @@ public class ApplicationTest {
         assertEquals("HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ", new String(new Base32().encode(entry.getSecret())));
         String[] tags = new String[]{"test1", "test2"};
         assertEquals(tags.length, entry.getTags().size());
-        assertTrue(Arrays.equals(tags, entry.getTags().toArray(new String[entry.getTags().size()])));
+        assertTrue(Arrays.equals(tags, entry.getTags().toArray(new String[0])));
     }
 
     @Test
