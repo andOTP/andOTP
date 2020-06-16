@@ -23,6 +23,7 @@
 package org.shadowice.flocke.andotp.Activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -91,6 +92,9 @@ public class AuthenticateActivity extends ThemedActivity
 
         if (settings.getBlockAccessibility())
             passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && settings.getBlockAutofill())
+            passwordLayout.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
 
         passwordLabel.setText(labelMsg);
 

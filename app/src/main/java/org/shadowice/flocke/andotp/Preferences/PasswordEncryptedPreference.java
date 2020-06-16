@@ -25,6 +25,7 @@ package org.shadowice.flocke.andotp.Preferences;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.preference.DialogPreference;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -102,6 +103,11 @@ public class PasswordEncryptedPreference extends DialogPreference
         if (settings.getBlockAccessibility()) {
             passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
             passwordConfirm.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && settings.getBlockAutofill()) {
+            passwordLayout.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
+            passwordConfirm.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO);
         }
 
         Button btnCancel = view.findViewById(R.id.btnCancel);

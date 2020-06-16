@@ -344,6 +344,15 @@ public class SettingsActivity extends BaseActivity
                 }
             });
 
+            CheckBoxPreference blockAutofill = (CheckBoxPreference) findPreference(getString(R.string.settings_key_block_autofill));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                blockAutofill.setEnabled(true);
+                blockAutofill.setSummary(R.string.settings_desc_block_autofill);
+            } else {
+                blockAutofill.setEnabled(false);
+                blockAutofill.setSummary(R.string.settings_desc_block_autofill_android);
+            }
+
             // Authentication
             catSecurity = (PreferenceCategory) findPreference(getString(R.string.settings_key_cat_security));
             encryption = (ListPreference) findPreference(getString(R.string.settings_key_encryption));

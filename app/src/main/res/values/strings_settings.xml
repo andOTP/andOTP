@@ -20,6 +20,7 @@
     <string name="settings_title_auth_inactivity">Re-lock on inactivity</string>
     <string name="settings_title_auth_inactivity_delay">Delay for inactivity re-lock</string>
     <string name="settings_title_block_accessibility">Block accessibility services</string>
+    <string name="settings_title_block_autofill">Block autofill</string>
 
     <string name="settings_title_lang">Language</string>
     <string name="settings_title_theme">Theme</string>
@@ -70,6 +71,10 @@
         require reauthentication</string>
     <string name="settings_desc_block_accessibility">Hide sensitive fields from the accessibility
         services. <b>DO NOT enable this if you rely on the accessibility services!</b></string>
+    <string name="settings_desc_block_autofill">Block autofill services from accessing password
+        fields inside the app</string>
+    <string name="settings_desc_block_autofill_android">This feature requires an Android version
+        above 8.0 (Oreo)</string>
 
     <string name="settings_desc_label_scroll">Scroll overlong labels instead of truncating them</string>
     <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
