@@ -35,7 +35,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
@@ -64,6 +63,8 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private FrameLayout thumbnailFrame;
     private ImageView visibleImg;
     private ImageView thumbnailImg;
+    private ImageButton menuButton;
+    private ImageButton copyButton;
     private TextView value;
     private TextView issuer;
     private TextView label;
@@ -92,8 +93,8 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         counter = v.findViewById(R.id.counter);
         progressBar = v.findViewById(R.id.cardProgressBar);
 
-        ImageButton menuButton = v.findViewById(R.id.menuButton);
-        ImageButton copyButton = v.findViewById(R.id.copyButton);
+        menuButton = v.findViewById(R.id.menuButton);
+        copyButton = v.findViewById(R.id.copyButton);
         ImageView invisibleImg = v.findViewById(R.id.coverImg);
 
         // Style the buttons in the current theme colors
@@ -168,27 +169,38 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         final String tokenFormatted = Tools.formatToken(entry.getCurrentOTP(), settings.getTokenSplitGroupSize());
 
+        String contentHint = "";
+
         String issuerText = entry.getIssuer();
         if (!TextUtils.isEmpty(issuerText)) {
-            issuer.setText(entry.getIssuer());
+            issuer.setText(issuerText);
             issuer.setVisibility(View.VISIBLE);
+
+            contentHint = issuerText;
         } else {
             issuer.setVisibility(View.GONE);
         }
 
         String labelText = entry.getLabel();
         if (!TextUtils.isEmpty(labelText)) {
-            label.setText(entry.getLabel());
+            label.setText(labelText);
             label.setVisibility(View.VISIBLE);
+
+            contentHint = labelText;
         } else {
             label.setVisibility(View.GONE);
         }
 
-        if (! issuerText.isEmpty() && ! labelText.isEmpty()) {
+        if (!TextUtils.isEmpty(issuerText) && !TextUtils.isEmpty(labelText)) {
             separator.setVisibility(View.VISIBLE);
+
+            contentHint = issuerText + " - " + labelText;
         } else {
             separator.setVisibility(View.GONE);
         }
+
+        copyButton.setContentDescription(context.getString(R.string.button_card_copy_format, contentHint));
+        menuButton.setContentDescription(context.getString(R.string.button_card_options_format, contentHint));
 
         value.setText(tokenFormatted);
         // save the unformatted token to the tag of this TextView for copy/paste

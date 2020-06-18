@@ -57,6 +57,12 @@
     <string name="menu_popup_remove">Remove</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
 
+    <!-- Buttons -->
+    <string name="button_card_options">More options</string>
+    <string name="button_card_options_format">More options for %1$s</string>
+    <string name="button_card_copy">Copy token</string>
+    <string name="button_card_copy_format">Copy %1$s token</string>
+
     <!-- Toast messages -->
     <string name="toast_auth_failed">Authentication failed, please try again!</string>
     <string name="toast_auth_failed_fatal">Authentication failed, closing andOTP!</string>
