@@ -28,12 +28,41 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.content.res.AppCompatResources;
 
 import org.shadowice.flocke.andotp.R;
 
 public class EntryThumbnail {
+    public static Bitmap getThumbnailGraphic(Context context, String issuer, String label, int size, EntryThumbnails thumbnail) {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
+        if (thumbnail == EntryThumbnails.Default && size > 0) {
+            LetterBitmap letterBitmap = new LetterBitmap(context);
+            String letterSrc = issuer.isEmpty() ? label : issuer;
+            return letterBitmap.getLetterTile(letterSrc, letterSrc, size, size);
+        } else if (thumbnail != EntryThumbnails.Default) {
+
+            try {
+                if (thumbnail.getAssetType() == AssetType.Vector) {
+                    Drawable drawable = AppCompatResources.getDrawable(context, thumbnail.getResource());
+                    Bitmap bitmap = Bitmap.createBitmap(drawable.getMinimumWidth(), drawable.getMinimumHeight(), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(bitmap);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    drawable.draw(canvas);
+                    return bitmap;
+                } else {
+                    return BitmapFactory.decodeResource(context.getResources(), thumbnail.getResource());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round);
+    }
+
     private enum AssetType {
         Bitmap,
         Vector
@@ -112,6 +141,7 @@ public class EntryThumbnail {
         ElectronicArts(R.drawable.thumb_electronic_arts),
         Email(R.drawable.thumb_email),
         EpicGames(R.drawable.thumb_epic_games),
+        ESEA(R.drawable.thumb_esea),
         Etsy(R.drawable.thumb_etsy),
         Eveonline(R.drawable.thumb_eveonline),
         Evernote(R.drawable.thumb_evernote),
@@ -314,45 +344,18 @@ public class EntryThumbnail {
             this.assetType = assetType;
         }
 
-        public int getResource() {
-            return resource;
-        }
-        public AssetType getAssetType() {
-            return assetType;
-        }
-
         public static EntryThumbnails valueOfIgnoreCase(String thumbnail) {
             for (EntryThumbnails entryThumbnails : values())
                 if (entryThumbnails.name().equalsIgnoreCase(thumbnail)) return entryThumbnails;
-                throw new IllegalArgumentException();
-        }
-    }
-
-    public static Bitmap getThumbnailGraphic(Context context, String issuer, String label, int size, EntryThumbnails thumbnail) {
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-
-        if (thumbnail == EntryThumbnails.Default && size > 0) {
-            LetterBitmap letterBitmap = new LetterBitmap(context);
-            String letterSrc = issuer.isEmpty() ? label : issuer;
-            return letterBitmap.getLetterTile(letterSrc, letterSrc, size, size);
-        } else if (thumbnail != EntryThumbnails.Default) {
-
-            try {
-                if (thumbnail.getAssetType() == AssetType.Vector) {
-                    Drawable drawable = AppCompatResources.getDrawable(context, thumbnail.getResource());
-                    Bitmap bitmap = Bitmap.createBitmap(drawable.getMinimumWidth(), drawable.getMinimumHeight(), Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(bitmap);
-                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    drawable.draw(canvas);
-                    return bitmap;
-                } else {
-                    return BitmapFactory.decodeResource(context.getResources(), thumbnail.getResource());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            throw new IllegalArgumentException();
         }
 
-        return BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round);
+        public int getResource() {
+            return resource;
+        }
+
+        public AssetType getAssetType() {
+            return assetType;
+        }
     }
 }
