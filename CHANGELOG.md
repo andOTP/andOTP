@@ -3,13 +3,17 @@
 #### v0.8.0
 
  * New feature: **Storage Access Framework** (remove all manual storage permissions and use the SAF everywhere)
+ * New feature: New setting to block autofill access to important fields (Issue #493)
  * Improvement: Improve some English strings (Issue #149, PR #571 and #576 by @jsoberg)
  * Improvement: Don't automatically backup when updating last used or when moving cards
  * Improvement: Enable the "append date to backups" option by default
  * Improvement: Strip issuer from the label when adding via URL/QR code (Issue #551, PR #560 by @shivasheeshyadav)
  * Improvement: Remove the "new backup format warning" (has been there long enough)
+ * Improvement: Show requirements for auto backups in the settings (Issue #492)
+ * Improvement: Fix some accessibility issues (Issue #498)
  * Bug fix: Make the automatic thumbnail selection case insensitive (Issue #564)
  * Bug fix: Validate Integer input for counter, digits and period (Issue #569, PR #570 by @jsoberg)
+ * Bug fix: Visibility of the password confirmation field (Issue #580, PR #582 by @jsoberg)
  * Internal: Update Gradle and build tools
  * Internal: Min API Level set to 22 (Lollipop	5.1)
  * Internal: Refactoring and reducing build warnings
