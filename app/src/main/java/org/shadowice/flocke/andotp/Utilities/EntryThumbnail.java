@@ -41,6 +41,7 @@ public class EntryThumbnail {
 
     public enum EntryThumbnails {
         Default(R.mipmap.ic_launcher_round),
+        TwentyThreeAndMe(R.drawable.thumb_23andme),
         OneAndOne(R.drawable.thumb_1and1),
         OnePassword(R.drawable.thumb_1password),
         Adafruit(R.drawable.thumb_adafruit),
