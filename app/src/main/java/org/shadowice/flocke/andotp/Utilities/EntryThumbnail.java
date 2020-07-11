@@ -217,6 +217,7 @@ public class EntryThumbnail {
         PCloud(R.drawable.thumb_pcloud),
         Phabricator(R.drawable.thumb_phabricator),
         phpMyAdmin(R.drawable.thumb_phpmyadmin),
+        Pluralsight(R.drawable.thumb_pluralsight),
         Plurk(R.drawable.thumb_plurk),
         Posteo(R.drawable.thumb_posteo),
         Pretix(R.drawable.thumb_pretix),
