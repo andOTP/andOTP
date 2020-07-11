@@ -181,6 +181,7 @@ public class EntryThumbnail {
         Matomo(R.drawable.thumb_matomo),
         Mediawiki(R.mipmap.thumb_mediawiki, AssetType.Bitmap),
         Mega(R.drawable.thumb_mega),
+        MercadoLibre(R.drawable.thumb_mercadolibre),
         Microsoft(R.drawable.thumb_microsoft),
         MicrosoftTeams(R.drawable.thumb_microsoft_teams),
         Migadu(R.drawable.thumb_migadu),
