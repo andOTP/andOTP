@@ -231,6 +231,7 @@ public class EntryThumbnail {
         Rackspace(R.drawable.thumb_rackspace),
         Reddit(R.drawable.thumb_reddit),
         RipeNNC(R.drawable.thumb_ripe_ncc),
+        Ripio(R.drawable.thumb_ripio),
         Robinhood(R.drawable.thumb_robinhood),
         Rockstar(R.drawable.thumb_rockstar),
         RSS(R.drawable.thumb_rss),
