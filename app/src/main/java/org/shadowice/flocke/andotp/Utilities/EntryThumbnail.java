@@ -115,6 +115,7 @@ public class EntryThumbnail {
         Cisco(R.drawable.thumb_cisco),
         CloudDownload(R.drawable.thumb_cloud_download),
         Cloudflare(R.drawable.thumb_cloudflare),
+        Clubhouse(R.drawable.thumb_clubhouse),
         Cobranded(R.drawable.thumb_cobranded),
         Codegiant(R.drawable.thumb_codegiant),
         Coinbase(R.drawable.thumb_coinbase),
