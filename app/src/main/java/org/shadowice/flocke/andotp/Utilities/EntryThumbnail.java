@@ -41,9 +41,9 @@ public class EntryThumbnail {
 
     public enum EntryThumbnails {
         Default(R.mipmap.ic_launcher_round),
-        TwentyThreeAndMe(R.drawable.thumb_23andme),
         OneAndOne(R.drawable.thumb_1and1),
         OnePassword(R.drawable.thumb_1password),
+        TwentyThreeAndMe(R.drawable.thumb_23andme),
         Adafruit(R.drawable.thumb_adafruit),
         AdGuard(R.drawable.thumb_adguard),
         Adobe(R.drawable.thumb_adobe),
@@ -269,8 +269,8 @@ public class EntryThumbnail {
         Uber(R.drawable.thumb_uber),
         UbiquitiNetworks(R.drawable.thumb_ubnt),
         Ubisoft(R.drawable.thumb_ubisoft),
-        UbuntuOne(R.drawable.thumb_ubuntu_one),
         Unity(R.drawable.thumb_unity),
+        UbuntuOne(R.drawable.thumb_ubuntu_one),
         Uphold(R.drawable.thumb_uphold),
         USAA(R.drawable.thumb_usaa),
         VagrantCloud(R.drawable.thumb_vagrant_cloud),
