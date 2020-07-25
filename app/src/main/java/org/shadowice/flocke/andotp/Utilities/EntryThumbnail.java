@@ -28,6 +28,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.content.res.AppCompatResources;
 
@@ -286,6 +287,7 @@ public class EntryThumbnail {
         Weclapp(R.drawable.thumb_weclapp),
         WebDe(R.drawable.thumb_web_de),
         Wikimedia(R.drawable.thumb_wikimedia),
+        Wordfence(R.drawable.thumb_wordfence),
         Wordpress(R.drawable.thumb_wordpress),
         Workplace(R.drawable.thumb_workplace),
         Xero(R.drawable.thumb_xero),
