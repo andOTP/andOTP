@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">Card layout</string>
     <string name="settings_title_label_size">Tamanho de fonte do rótulo</string>
     <string name="settings_title_label_scroll">Rolagem de rótulos</string>
+    <string name="settings_title_tap_single">Single-tap</string>
+    <string name="settings_title_tap_double">Double-tap</string>
     <string name="settings_title_thumbnail_size_ask">Tamanho da miniatura</string>
     <string name="settings_title_split_group_size">Dividir token com espaço</string>
     <string name="settings_title_tag_functionality">Comportamento de seleção de marcador</string>
     <string name="settings_title_minimize_on_copy">Minimize app after copying OTP</string>
     <string name="settings_title_search_includes">Search behavior</string>
     <string name="settings_title_label_highlight_token">Highlight expiring tokens</string>
+    <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
+    <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
     <string name="settings_title_backup_append_date">Inserir data ao nome do arquivo</string>
     <string name="settings_title_backup_ask">Pedir o nome do arquivo</string>
     <string name="settings_title_backup_directory">Diretório de backup</string>
@@ -61,10 +65,11 @@
     <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
     <string name="settings_desc_search_includes">Specify which values should be included when searching</string>
     <string name="settings_desc_label_highlight_token">Highlights token in red if it\'s expiring in 8 seconds</string>
+    <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
+    <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
+        This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">Inserir a data e hora atuais ao         nome de backup sugerido</string>
     <string name="settings_desc_backup_ask">Pedir o nome de arquivo sempre que um backup for criado ou        restaurado</string>
-    <string name="settings_desc_backup_directory">Directory for automatic and broadcast backups
-        (filenames will depend on the backup type)</string>
     <string name="settings_desc_backup_password">Definir a senha usada para criptografar os        backups</string>
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
         entries are added, or edited, if settings conditions are met</string>
@@ -77,7 +82,6 @@
     <string name="settings_desc_enable_android_backup_service">Habilita andOTP para utilizar o serviço         de backup nativo do Android para guardar chaves e preferências</string>
     <string name="settings_desc_clear_keystore">Deletar a chave de criptografia da KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Este recurso requer pelo menos Android 5.0        (Lollipop) para funcionar</string>
     <string name="settings_toast_auth_device_not_secure">Este recurso requer uma tela de bloqueio        segura para ser configurado (Configurações -&gt; Segurança -&gt; Bloqueio de tela)</string>
     <string name="settings_toast_password_empty">Não é permitida uma senha em branco. Para desabilitar a senha, mude a configuração de Autenticação para \"Nenhum\".</string>
     <string name="settings_toast_encryption_changing">Tentando modificar a criptografia do banco de dados,
@@ -138,6 +142,12 @@
         <item>Compact</item>
         <item>Default</item>
         <item>Full</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Nothing</item>
+        <item>Reveal/Hide</item>
+        <item>Copy</item>
+        <item>Copy and go to background</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Label</item>

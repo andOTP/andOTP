@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,9 +25,8 @@ package org.shadowice.flocke.andotp.Preferences;
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.content.Context;
+import android.os.Build;
 import android.preference.DialogPreference;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -42,6 +41,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Constants;
@@ -132,6 +134,11 @@ public class CredentialsPreference extends DialogPreference
             passwordConfirm.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && settings.getBlockAutofill()) {
+            passwordLayout.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
+            passwordConfirm.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO);
+        }
+
         toShortWarning = view.findViewById(R.id.toShortWarning);
 
         passwordInput.addTextChangedListener(this);
@@ -174,10 +181,7 @@ public class CredentialsPreference extends DialogPreference
         if (value == AuthMethod.DEVICE) {
             KeyguardManager km = (KeyguardManager) getContext().getSystemService(KEYGUARD_SERVICE);
 
-            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
-                Toast.makeText(getContext(), R.string.settings_toast_auth_device_pre_lollipop, Toast.LENGTH_LONG).show();
-                return;
-            } else if (! km.isKeyguardSecure()) {
+            if (! km.isKeyguardSecure()) {
                 Toast.makeText(getContext(), R.string.settings_toast_auth_device_not_secure, Toast.LENGTH_LONG).show();
                 return;
             }

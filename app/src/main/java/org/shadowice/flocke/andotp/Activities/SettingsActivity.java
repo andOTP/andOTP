@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -36,6 +38,8 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import androidx.appcompat.widget.Toolbar;
+
+import android.provider.DocumentsContract;
 import android.view.ViewStub;
 import android.widget.Toast;
 
@@ -85,6 +89,15 @@ public class SettingsActivity extends BaseActivity
         if (keyMaterial != null && keyMaterial.length > 0)
             encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
 
+        if (savedInstanceState != null) {
+            encryptionChanged = savedInstanceState.getBoolean(Constants.EXTRA_SETTINGS_ENCRYPTION_CHANGED, false);
+
+            byte[] encKey = savedInstanceState.getByteArray(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY);
+            if (encKey != null) {
+                encryptionKey = EncryptionHelper.generateSymmetricKey(encKey);
+            }
+        }
+
         fragment = new SettingsFragment();
 
         getFragmentManager().beginTransaction()
@@ -93,6 +106,14 @@ public class SettingsActivity extends BaseActivity
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPref.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBoolean(Constants.EXTRA_SETTINGS_ENCRYPTION_CHANGED, encryptionChanged);
+        outState.putByteArray(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY, encryptionKey.getEncoded());
     }
 
     public void finishWithResult() {
@@ -124,7 +145,8 @@ public class SettingsActivity extends BaseActivity
 
         if (key.equals(getString(R.string.settings_key_theme)) ||
                 key.equals(getString(R.string.settings_key_locale)) ||
-                key.equals(getString(R.string.settings_key_special_features))) {
+                key.equals(getString(R.string.settings_key_special_features)) ||
+                key.equals(getString(R.string.settings_key_backup_location))) {
             recreate();
         } else if(key.equals(getString(R.string.settings_key_encryption))) {
             if (settings.getEncryption() != EncryptionType.PASSWORD) {
@@ -146,11 +168,7 @@ public class SettingsActivity extends BaseActivity
             }
         }
 
-        if (fragment.useAutoBackup != null) {
-            fragment.useAutoBackup.setEnabled(BackupHelper.autoBackupType(this) == Constants.BackupType.ENCRYPTED);
-            if (!fragment.useAutoBackup.isEnabled())
-                fragment.useAutoBackup.setValue(Constants.AutoBackup.OFF.toString().toLowerCase(Locale.ENGLISH));
-        }
+        fragment.updateAutoBackup();
     }
 
     private void generateNewEncryptionKey() {
@@ -215,6 +233,19 @@ public class SettingsActivity extends BaseActivity
         return false;
     }
 
+    private void requestBackupAccess() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
+                | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+                | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && settings.isBackupLocationSet())
+            intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, settings.getBackupLocation());
+
+        startActivityForResult(intent, Constants.INTENT_SETTINGS_BACKUP_LOCATION);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -233,6 +264,13 @@ public class SettingsActivity extends BaseActivity
             } else {
                 Toast.makeText(this, R.string.settings_toast_encryption_auth_failed, Toast.LENGTH_LONG).show();
             }
+        } else if (requestCode == Constants.INTENT_SETTINGS_BACKUP_LOCATION && resultCode == RESULT_OK) {
+            Uri treeUri = data.getData();
+            if (treeUri != null) {
+                final int takeFlags = data.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                getContentResolver().takePersistableUriPermission(treeUri, takeFlags);
+                settings.setBackupLocation(treeUri);
+            }
         } else if (fragment.pgpSigningKey.handleOnActivityResult(requestCode, resultCode, data)) {
             // handled by OpenPgpKeyPreference
             return;
@@ -244,6 +282,7 @@ public class SettingsActivity extends BaseActivity
 
         Settings settings;
         ListPreference encryption;
+        Preference backupLocation;
         ListPreference useAutoBackup;
         CheckBoxPreference useAndroidSync;
 
@@ -273,6 +312,20 @@ public class SettingsActivity extends BaseActivity
                     .show();
         }
 
+        public void updateAutoBackup() {
+            if (useAutoBackup != null) {
+                useAutoBackup.setEnabled(BackupHelper.autoBackupType(getActivity()) == Constants.BackupType.ENCRYPTED);
+                if (!useAutoBackup.isEnabled())
+                    useAutoBackup.setValue(Constants.AutoBackup.OFF.toString().toLowerCase(Locale.ENGLISH));
+
+                if (useAutoBackup.isEnabled()) {
+                    useAutoBackup.setSummary(R.string.settings_desc_auto_backup_password_enc);
+                } else {
+                    useAutoBackup.setSummary(R.string.settings_desc_auto_backup_requirements);
+                }
+            }
+        }
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -290,6 +343,15 @@ public class SettingsActivity extends BaseActivity
                     return ((SettingsActivity) getActivity()).tryEncryptionChange(settings.getEncryption(), newKey);
                 }
             });
+
+            CheckBoxPreference blockAutofill = (CheckBoxPreference) findPreference(getString(R.string.settings_key_block_autofill));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                blockAutofill.setEnabled(true);
+                blockAutofill.setSummary(R.string.settings_desc_block_autofill);
+            } else {
+                blockAutofill.setEnabled(false);
+                blockAutofill.setSummary(R.string.settings_desc_block_autofill_android);
+            }
 
             // Authentication
             catSecurity = (PreferenceCategory) findPreference(getString(R.string.settings_key_cat_security));
@@ -325,6 +387,23 @@ public class SettingsActivity extends BaseActivity
                 }
             });
 
+            // Backup location
+            backupLocation = findPreference(getString(R.string.settings_key_backup_location));
+
+            if (settings.isBackupLocationSet()) {
+                backupLocation.setSummary(R.string.settings_desc_backup_location_set);
+            } else {
+                backupLocation.setSummary(R.string.settings_desc_backup_location);
+            }
+
+            backupLocation.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    ((SettingsActivity) getActivity()).requestBackupAccess();
+                    return true;
+                }
+            });
+
             // OpenPGP
             pgpProvider = (OpenPgpAppPreference) findPreference(getString(R.string.settings_key_openpgp_provider));
             pgpEncryptionKey = (EditTextPreference) findPreference(getString(R.string.settings_key_openpgp_key_encrypt));
@@ -354,9 +433,7 @@ public class SettingsActivity extends BaseActivity
             });
 
             useAutoBackup = (ListPreference)findPreference(getString(R.string.settings_key_auto_backup_password_enc));
-            useAutoBackup.setEnabled(BackupHelper.autoBackupType(getActivity()) == Constants.BackupType.ENCRYPTED);
-            if(!useAutoBackup.isEnabled())
-                useAutoBackup.setValue(Constants.AutoBackup.OFF.toString().toLowerCase(Locale.ENGLISH));
+            updateAutoBackup();
 
             useAndroidSync = (CheckBoxPreference) findPreference(getString(R.string.settings_key_enable_android_backup_service));
             useAndroidSync.setEnabled(settings.getEncryption() == EncryptionType.PASSWORD);

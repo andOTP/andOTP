@@ -68,6 +68,12 @@
             android:summary="@string/settings_desc_block_accessibility"
             android:defaultValue="false" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_block_autofill"
+            android:title="@string/settings_title_block_autofill"
+            android:summary="@string/settings_desc_block_autofill"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -197,7 +203,7 @@
             android:key="@string/settings_key_backup_append_date_time"
             android:title="@string/settings_title_backup_append_date"
             android:summary="@string/settings_desc_backup_append_date"
-            android:defaultValue="false" />
+            android:defaultValue="true" />
 
         <CheckBoxPreference
             android:key="@string/settings_key_backup_ask"
@@ -206,10 +212,10 @@
             android:disableDependentsState="true"
             android:defaultValue="true" />
 
-        <EditTextPreference
-            android:key="@string/settings_key_backup_directory"
-            android:title="@string/settings_title_backup_directory"
-            android:summary="@string/settings_desc_backup_directory" />
+        <Preference
+            android:key="@string/settings_key_backup_location"
+            android:title="@string/settings_title_backup_location"
+            android:summary="@string/settings_desc_backup_location" />
 
         <org.shadowice.flocke.andotp.Preferences.PasswordEncryptedPreference
             android:key="@string/settings_key_backup_password_enc"

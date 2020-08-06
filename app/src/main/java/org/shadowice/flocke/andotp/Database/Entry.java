@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  * Copyright (C) 2015 Bruno Bierbaumer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -130,10 +130,10 @@ public class Entry {
         }
 
         String secret = uri.getQueryParameter("secret");
-        String label = uri.getPath().substring(1);
 
         String counter = uri.getQueryParameter("counter");
         String issuer = uri.getQueryParameter("issuer");
+        String label = getStrippedLabel(issuer, uri.getPath().substring(1));
         String period = uri.getQueryParameter("period");
         String digits = uri.getQueryParameter("digits");
         String algorithm = uri.getQueryParameter("algorithm");
@@ -235,7 +235,7 @@ public class Entry {
         }
 
         try {
-            this.thumbnail = EntryThumbnail.EntryThumbnails.valueOf(jsonObj.getString(JSON_THUMBNAIL));
+            this.thumbnail = EntryThumbnail.EntryThumbnails.valueOfIgnoreCase(jsonObj.getString(JSON_THUMBNAIL));
         } catch(Exception e) {
             this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
         }
@@ -532,5 +532,19 @@ public class Entry {
         }
 
         return true;
+    }
+
+    /**
+     * Returns the label with issuer prefix removed (if present)
+     * @param issuer
+     * @param label
+     * @return
+     */
+    private String getStrippedLabel(String issuer, String label) {
+        if (issuer == null || issuer.isEmpty() || !label.startsWith(issuer + ":")) {
+            return label.trim();
+        } else {
+            return label.substring(issuer.length() + 1).trim();
+        }
     }
 }

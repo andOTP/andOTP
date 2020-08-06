@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,6 +34,7 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -41,6 +42,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -173,16 +175,20 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         if(auto_backup) {
             Constants.BackupType backupType = BackupHelper.autoBackupType(context);
             if (backupType == Constants.BackupType.ENCRYPTED) {
-                Uri backupFilename = Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(context, Constants.BackupType.ENCRYPTED));
+                BackupHelper.BackupFile cryptBackupFile = BackupHelper.backupFile(context, settings.getBackupLocation(), Constants.BackupType.ENCRYPTED);
 
-                byte[] keyMaterial = encryptionKey.getEncoded();
-                SecretKey encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
+                if (cryptBackupFile.file != null) {
+                    byte[] keyMaterial = encryptionKey.getEncoded();
+                    SecretKey encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
 
-                boolean success = BackupHelper.backupToFile(context, backupFilename, settings.getBackupPasswordEnc(), encryptionKey);
-                if (success) {
-                    Toast.makeText(context, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
+                    boolean success = BackupHelper.backupToFile(context, cryptBackupFile.file.getUri(), settings.getBackupPasswordEnc(), encryptionKey);
+                    if (success) {
+                        Toast.makeText(context, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(context, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+                    }
                 } else {
-                    Toast.makeText(context, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, cryptBackupFile.errorMessage, Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -434,7 +440,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
         container.addView(input);
 
-        builder.setTitle(R.string.dialog_title_counter)
+        AlertDialog dialog = builder.setTitle(R.string.dialog_title_counter)
                 .setView(container)
                 .setPositiveButton(R.string.button_save, new DialogInterface.OnClickListener() {
                     @Override
@@ -455,8 +461,38 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {}
                 })
-                .create()
-                .show();
+                .create();
+        addCounterValidationWatcher(input, dialog);
+        dialog.show();
+    }
+
+    private void addCounterValidationWatcher(EditText input, AlertDialog dialog) {
+        TextWatcher counterWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable input) {
+                Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                if (positive != null) {
+                    positive.setEnabled(isZeroOrPositiveLongInput(input));
+                }
+            }
+
+            private boolean isZeroOrPositiveLongInput(Editable input) {
+                try {
+                    return !TextUtils.isEmpty(input) && (Long.parseLong(input.toString()) >= 0);
+                } catch (NumberFormatException e) {
+                    return false;
+                }
+            }
+        };
+        input.addTextChangedListener(counterWatcher);
     }
 
     private boolean updateLastUsedAndFrequency(int position, int realIndex) {
@@ -471,7 +507,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         entries.get(realIndex).setLastUsed(timeStamp);
         entries.get(realIndex).setUsedFrequency(entryUsedFrequency + 1);
-        saveEntries(settings.getAutoBackupEncryptedFullEnabled());
+        saveEntries(false);
 
         if (sortMode == SortMode.LAST_USED) {
             displayedEntries = sortEntries(displayedEntries);
@@ -494,7 +530,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             displayedEntries = new ArrayList<>(entries);
             notifyItemMoved(fromPosition, toPosition);
 
-            saveEntries(settings.getAutoBackupEncryptedFullEnabled());
+            saveEntries(false);
         }
 
         return true;

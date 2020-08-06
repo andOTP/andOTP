@@ -213,6 +213,7 @@
                             android:layout_gravity="center_vertical"
                             android:padding="@dimen/activity_margin_small"
                             android:background="?android:attr/selectableItemBackground"
+                            android:contentDescription="@string/button_card_copy"
                             app:srcCompat="@drawable/ic_content_copy_gray" />
 
                         <ImageButton
@@ -222,6 +223,7 @@
                             android:layout_gravity="center_vertical"
                             android:padding="@dimen/activity_margin_small"
                             android:background="?android:attr/selectableItemBackground"
+                            android:contentDescription="@string/button_card_options"
                             app:srcCompat="@drawable/ic_more_vert_gray" />
                     </LinearLayout>
 

@@ -25,7 +25,6 @@ package org.shadowice.flocke.andotp.Receivers;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
@@ -53,8 +52,6 @@ public class PlainTextBackupBroadcastReceiver extends BackupBroadcastReceiver {
             if (!canSaveBackup(context))
                 return;
 
-            Uri savePath = Tools.buildUri(settings.getBackupDir(), BackupHelper.backupFilename(context, Constants.BackupType.PLAIN_TEXT));
-
             SecretKey encryptionKey = null;
 
             if (settings.getEncryption() == Constants.EncryptionType.KEYSTORE) {
@@ -65,10 +62,17 @@ public class PlainTextBackupBroadcastReceiver extends BackupBroadcastReceiver {
             }
 
             if (Tools.isExternalStorageWritable()) {
+                BackupHelper.BackupFile backupFile = BackupHelper.backupFile(context, settings.getBackupLocation(), Constants.BackupType.PLAIN_TEXT);
+
+                if (backupFile.file == null) {
+                    NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_FAILED, R.string.backup_receiver_title_backup_failed, backupFile.errorMessage);
+                    return;
+                }
+
                 ArrayList<Entry> entries = DatabaseHelper.loadDatabase(context, encryptionKey);
 
-                if (StorageAccessHelper.saveFile(context, savePath, DatabaseHelper.entriesToString(entries))) {
-                    NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_SUCCESS, R.string.backup_receiver_title_backup_success, savePath.getPath());
+                if (StorageAccessHelper.saveFile(context, backupFile.file.getUri(), DatabaseHelper.entriesToString(entries))) {
+                    NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_SUCCESS, R.string.backup_receiver_title_backup_success, backupFile.file.getName());
                 } else {
                     NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_FAILED, R.string.backup_receiver_title_backup_failed, R.string.backup_toast_export_failed);
                 }

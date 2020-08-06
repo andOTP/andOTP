@@ -57,6 +57,14 @@
     <string name="menu_popup_remove">Remove</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
 
+    <!-- Buttons -->
+    <string name="button_card_options">More options</string>
+    <string name="button_card_options_format">More options for %1$s</string>
+    <string name="button_card_copy">Copy token</string>
+    <string name="button_card_copy_format">Copy %1$s token</string>
+    <string name="button_add">Add new account</string>
+    <string name="button_close_menu">Close menu</string>
+
     <!-- Toast messages -->
     <string name="toast_auth_failed">Authentication failed, please try again!</string>
     <string name="toast_auth_failed_fatal">Authentication failed, closing andOTP!</string>
@@ -92,14 +100,14 @@
     <string name="dialog_label_confirm_password">Confirm password</string>
 
     <string name="dialog_msg_auth">Please enter your device credentials to start andOTP.</string>
-    <string name="dialog_msg_confirm_delete">Are you sure you want do remove the account \"%1$s\"?</string>
+    <string name="dialog_msg_confirm_delete">Are you sure you want to remove the account \"%1$s\"?</string>
 
     <string name="dialog_msg_used_tokens">andOTP will track when you use your tokens (using the \"Tap
         to reveal\" feature or copying to clipboard) to be able to sort them by \"Most used\" or
         \"Last used\".\n\nThis message will not be shown again.</string>
 
     <string name="dialog_msg_keystore_error">Failed to load the encryption key from the KeyStore.
-        <b>Any entries that are added will get lost.</b>\n\nTo still be able to use andOTP you can go
+        <b>Any entries that are added will be lost.</b>\n\nTo continue using andOTP, you can go
         to the <b>Settings</b> and switch the <b>Database encryption</b> to <b>Password / PIN</b>.</string>
 
     <!-- Shortcuts -->

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -86,16 +86,7 @@ public class Constants {
     public final static int INTENT_BACKUP_OPEN_DOCUMENT_CRYPT_OLD   = 208;
 
     public static final int INTENT_SETTINGS_AUTHENTICATE        = 300;
-
-    // Permission requests (Format: A1x with A = parent Activity, x = number of the request)
-    public final static int PERMISSIONS_MAIN_QR_READ_IMAGE              = 111;
-    public final static int PERMISSIONS_BACKUP_READ_IMPORT_PLAIN        = 210;
-    public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_PLAIN       = 211;
-    public final static int PERMISSIONS_BACKUP_READ_IMPORT_CRYPT        = 212;
-    public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_CRYPT       = 213;
-    public final static int PERMISSIONS_BACKUP_READ_IMPORT_PGP          = 214;
-    public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_PGP         = 215;
-    public final static int PERMISSIONS_BACKUP_READ_IMPORT_CRYPT_OLD    = 216;
+    public static final int INTENT_SETTINGS_BACKUP_LOCATION     = 301;
 
     // Intent extras
     public final static String EXTRA_AUTH_PASSWORD_KEY              = "password_key";

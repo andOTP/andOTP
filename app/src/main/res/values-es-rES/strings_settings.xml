@@ -14,7 +14,7 @@
     <string name="settings_title_encryption">Cifrado de base de datos</string>
     <string name="settings_title_panic">Botón del pánico</string>
     <string name="settings_title_relock_screen_off">Volver a bloquear cuando se apaga la pantalla</string>
-    <string name="settings_title_relock_background">Re-lock when going into the background</string>
+    <string name="settings_title_relock_background">Volver a bloquear cuando se ponga en segundo plano</string>
     <string name="settings_title_auth_inactivity">Volver a bloquear por inactividad</string>
     <string name="settings_title_auth_inactivity_delay">Retraso para volver a bloquear por inactividad</string>
     <string name="settings_title_block_accessibility">Bloquear servicios de accesibilidad</string>
@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">Diseño de tarjeta</string>
     <string name="settings_title_label_size">Tamaño de fuente</string>
     <string name="settings_title_label_scroll">Desplazar etiqueta</string>
+    <string name="settings_title_tap_single">Un toque</string>
+    <string name="settings_title_tap_double">Doble toque</string>
     <string name="settings_title_thumbnail_size_ask">Tamaño de miniatura</string>
     <string name="settings_title_split_group_size">Separar el código con espacio</string>
     <string name="settings_title_tag_functionality">Comportamiento de la selección de etiquetas</string>
     <string name="settings_title_minimize_on_copy">Minimizar aplicación después de copiar OTP</string>
     <string name="settings_title_search_includes">Comportamiento de búsqueda</string>
     <string name="settings_title_label_highlight_token">Resaltar tokens que expiran</string>
+    <string name="settings_title_hide_global_timeout">Ocultar barra de tiempo de espera global</string>
+    <string name="settings_title_show_individual_timeouts">Mostrar límites de tiempo individuales</string>
     <string name="settings_title_backup_append_date">Concatenar fecha al nombre del fichero</string>
     <string name="settings_title_backup_ask">Pedir nombre de fichero</string>
     <string name="settings_title_backup_directory">Carpeta para copias de seguridad</string>
@@ -62,12 +66,13 @@
     <string name="settings_desc_minimize_on_copy">La aplicación se minimizará cuando copie el OTP al portapapeles</string>
     <string name="settings_desc_search_includes">Especifique qué valores deben incluirse al buscar</string>
     <string name="settings_desc_label_highlight_token">Resaltar token en rojo si expira en 8 segundos</string>
+    <string name="settings_desc_hide_global_timeout">Ocultar la barra de tiempo de espera global mostrada en la parte superior de la pantalla</string>
+    <string name="settings_desc_show_individual_timeouts">Mostrar una barra de tiempo de espera individual para cada entrada.
+        Esto puede ralentizar la aplicación, solo actívalo si es realmente necesario.</string>
     <string name="settings_desc_backup_append_date">Concatena la fecha y hora actual al nombre sugerido
         para el fichero de la copia de seguridad</string>
     <string name="settings_desc_backup_ask">Pedir nombre de fichero cada vvez que una copia de seguridad
         es creada o restaurada</string>
-    <string name="settings_desc_backup_directory">Directorio para copias de seguridad automáticas y de difusión
-        (los nombres de los archivos dependerán del tipo de copia de seguridad)</string>
     <string name="settings_desc_backup_password">Establecer la contraseña usada para cifrar las
         copias de seguridad</string>
     <string name="settings_desc_auto_backup_password_enc">Crea una nueva copia de seguridad cifrada cuando se añaden o editan nuevas entradas
@@ -85,8 +90,6 @@
         incorporado en Android para hacer copias de seguridad de las claves y preferencias</string>
     <string name="settings_desc_clear_keystore">Elimina la clave de cifrado del almacen de claves</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Esta característica requiere al menos
-        Android 5.0 (Lollipop)</string>
     <string name="settings_toast_auth_device_not_secure">Esta característica requiere bloqueo de salvapantallas
         seguro (Settings -&gt; Security -&gt; Screenlock)</string>
     <string name="settings_toast_password_empty">Una contraseña vacía no está permitida,
@@ -149,6 +152,12 @@
         <item>Predeterminado</item>
         <item>Completa</item>
     </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Nada</item>
+        <item>Revelar/Ocultar</item>
+        <item>Copiar</item>
+        <item>Copiar y poner en segundo plano</item>
+    </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Nombre</item>
         <item>Emisor</item>
@@ -157,7 +166,7 @@
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Desactivado</item>
         <item>Nuevas entradas</item>
-        <item>Any Edits</item>
+        <item>Cualquier edición</item>
     </string-array>
     <string-array name="settings_entries_theme">
         <item>Tema claro</item>

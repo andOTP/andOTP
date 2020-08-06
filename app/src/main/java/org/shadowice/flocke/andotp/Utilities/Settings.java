@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,7 @@ package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.Base64;
 
@@ -57,15 +58,7 @@ public class Settings {
         this.context = context;
         this.settings = PreferenceManager.getDefaultSharedPreferences(context);
 
-        setupDeviceDependedDefaults();
         migrateDeprecatedSettings();
-    }
-
-    private void setupDeviceDependedDefaults() {
-        if (! settings.contains(getResString(R.string.settings_key_backup_directory))
-                || settings.getString(getResString(R.string.settings_key_backup_directory), "").isEmpty()) {
-            setString(R.string.settings_key_backup_directory, Constants.BACKUP_FOLDER);
-        }
     }
 
     private void migrateDeprecatedSettings() {
@@ -89,7 +82,9 @@ public class Settings {
         }
 
         if (settings.contains(getResString(R.string.settings_key_tap_to_reveal))) {
-            setString(R.string.settings_key_tap_single, Constants.TapMode.REVEAL.toString().toLowerCase(Locale.ENGLISH));
+            if (getBoolean(R.string.settings_key_tap_to_reveal, false)) {
+                setString(R.string.settings_key_tap_single, Constants.TapMode.REVEAL.toString().toLowerCase(Locale.ENGLISH));
+            }
             remove(R.string.settings_key_tap_to_reveal);
         }
 
@@ -414,10 +409,6 @@ public class Settings {
         return getBoolean(R.string.settings_key_backup_ask, true);
     }
 
-    public String getBackupDir() {
-        return getString(R.string.settings_key_backup_directory, Constants.BACKUP_FOLDER);
-    }
-
     public String getBackupPassword() {
         return getString(R.string.settings_key_backup_password, "");
     }
@@ -536,14 +527,6 @@ public class Settings {
         setBoolean(R.string.settings_key_last_used_dialog_shown, value);
     }
 
-    public boolean getNewBackupFormatDialogShown() {
-        return getBoolean(R.string.settings_key_new_backup_format_dialog_shown, false);
-    }
-
-    public void setNewBackupFormatDialogShown(boolean value) {
-        setBoolean(R.string.settings_key_new_backup_format_dialog_shown, value);
-    }
-
     public boolean getAndroidBackupServiceEnabled() {
         return getBoolean(R.string.settings_key_enable_android_backup_service, true);
     }
@@ -553,7 +536,7 @@ public class Settings {
 	}
 
     public boolean getIsAppendingDateTimeToBackups() {
-        return getBoolean(R.string.settings_key_backup_append_date_time, false);
+        return getBoolean(R.string.settings_key_backup_append_date_time, true);
     }
 
     public int getAuthInactivityDelay() {
@@ -601,5 +584,21 @@ public class Settings {
     public Constants.TapMode getTapDouble() {
         String doubleTap = getString(R.string.settings_key_tap_double, R.string.settings_default_tap_double);
         return Constants.TapMode.valueOf(doubleTap.toUpperCase(Locale.ENGLISH));
+    }
+
+    public void setBackupLocation(Uri uri) {
+        setString(R.string.settings_key_backup_location, uri.toString());
+    }
+
+    public Uri getBackupLocation() {
+        return Uri.parse(getString(R.string.settings_key_backup_location, ""));
+    }
+
+    public boolean isBackupLocationSet() {
+        return !getString(R.string.settings_key_backup_location, "").isEmpty();
+    }
+
+    public boolean getBlockAutofill() {
+        return getBoolean(R.string.settings_key_block_autofill, false);
     }
 }

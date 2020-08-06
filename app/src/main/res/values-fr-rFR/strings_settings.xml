@@ -23,12 +23,16 @@
     <string name="settings_title_card_layout">Disposition des cartes</string>
     <string name="settings_title_label_size">Taille de la police des titres</string>
     <string name="settings_title_label_scroll">Défilement des libellés</string>
+    <string name="settings_title_tap_single">Appui simple</string>
+    <string name="settings_title_tap_double">Appui double</string>
     <string name="settings_title_thumbnail_size_ask">Taille des miniatures</string>
     <string name="settings_title_split_group_size">Séparer le jeton avec des espaces</string>
     <string name="settings_title_tag_functionality">Comportement de la sélection par tag</string>
     <string name="settings_title_minimize_on_copy">Minimiser l\'appli après la copie du jeton OTP</string>
     <string name="settings_title_search_includes">Comportement de la recherche</string>
     <string name="settings_title_label_highlight_token">Surligner les jetons qui vont expirer</string>
+    <string name="settings_title_hide_global_timeout">Masquer la barre globale d\'expiration</string>
+    <string name="settings_title_show_individual_timeouts">Afficher les expirations par entrée</string>
     <string name="settings_title_backup_append_date">Ajouter la date au nom de fichier</string>
     <string name="settings_title_backup_ask">Demander le nom du fichier</string>
     <string name="settings_title_backup_directory">Répertoire de sauvegarde</string>
@@ -59,10 +63,11 @@
     <string name="settings_desc_minimize_on_copy">L\'appli sera réduite à la copie du jeton OTP dans le presse-papiers</string>
     <string name="settings_desc_search_includes">Choisissez quelles valeurs seront incluses lors de la recherche</string>
     <string name="settings_desc_label_highlight_token">Surligne les jeton en rouge s\'ils expirent dans moins de 8 secondes</string>
+    <string name="settings_desc_hide_global_timeout">Masquer la barre globale d\'expiration affichée en haut de l\'écran</string>
+    <string name="settings_desc_show_individual_timeouts">Afficher une barre d\'expiration individuelle pour chaque entrée.
+        Cela peut ralentir l\'application, à activer uniquement si nécessaire.</string>
     <string name="settings_desc_backup_append_date">Ajouter la date et l\'heure au nom de fichier de sauvegarde proposé</string>
     <string name="settings_desc_backup_ask">Demander le nom du fichier à chaque fois qu\'une sauvegarde est créée ou restaurée</string>
-    <string name="settings_desc_backup_directory">Répertoire pour les sauvegardes automatiques et diffusées
-    (le nom des fichiers dépend du type de sauvegarde)</string>
     <string name="settings_desc_backup_password">Configurer le mot de passe utilisé pour chiffrer les sauvegardes</string>
     <string name="settings_desc_auto_backup_password_enc">Crée une nouvelle sauvegarde chiffrée lorsque de nouvelles entrées
     sont ajoutées ou modifiées, si les conditions paramétrées sont remplies</string>
@@ -75,7 +80,6 @@
     <string name="settings_desc_enable_android_backup_service">Permet à AndOTP d\'utiliser le service de sauvegarde Android natif pour la sauvegarde des clés et préférences</string>
     <string name="settings_desc_clear_keystore">Supprimer la clé de chiffrement depuis le KeyStore</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">Cette fonctionnalité n\'est disponible que sur Android 5.0 (Lollipop) ou supérieur</string>
     <string name="settings_toast_auth_device_not_secure">Cette fonctionnalité nécessite l\'activation du verrouillage de l’écran (Paramètres -&gt; Sécurité -&gt; Verrouillage de l\'écran)</string>
     <string name="settings_toast_password_empty">Un mot de passe vide n\'est pas autorisé, définissez l\'Authentification sur \"Aucune\" pour la désactiver !</string>
     <string name="settings_toast_encryption_changing">Changement du chiffrement de la base de données, veuillez patienter !</string>
@@ -127,6 +131,12 @@
         <item>Compacte</item>
         <item>Par défaut</item>
         <item>Complète</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Ne rien faire</item>
+        <item>Révéler/Masquer</item>
+        <item>Copier</item>
+        <item>Copier et aller en arrière-plan</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Étiquette</item>

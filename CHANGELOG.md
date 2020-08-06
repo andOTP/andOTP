@@ -1,5 +1,49 @@
 # Changelog
 
+#### v0.8.0
+
+ * New feature: **Storage Access Framework** (remove all manual storage permissions and use the SAF everywhere)
+ * New feature: New setting to block autofill access to important fields (Issue #493)
+ * Improvement: Improve some English strings (Issue #149, PR #571 and #576 by @jsoberg)
+ * Improvement: Don't automatically backup when updating last used or when moving cards
+ * Improvement: Enable the "append date to backups" option by default
+ * Improvement: Strip issuer from the label when adding via URL/QR code (Issue #551, PR #560 by @shivasheeshyadav)
+ * Improvement: Remove the "new backup format warning" (has been there long enough)
+ * Improvement: Show requirements for auto backups in the settings (Issue #492)
+ * Improvement: Fix some accessibility issues (Issue #498)
+ * Bug fix: Make the automatic thumbnail selection case insensitive (Issue #564)
+ * Bug fix: Validate Integer input for counter, digits and period (Issue #569, PR #570 by @jsoberg)
+ * Bug fix: Visibility of the password confirmation field (Issue #580, PR #582 by @jsoberg)
+ * Internal: Update Gradle and build tools
+ * Internal: Min API Level set to 22 (Lollipop	5.1)
+ * Internal: Refactoring and reducing build warnings
+ * Thumbnails: Lots of new ones (thanks to all contributors)
+
+#### v0.7.1.1
+
+ * Bug fix: Fix migration of old tap-to-reveal setting
+ * Bug fix: Cache encryption key when recreating main activity
+
+#### v0.7.1
+
+ * Deprecation notice: This will be the last version to support Android versions below 5.1
+ * New feature: Show QR codes of stored accounts (PR #501 by @tilosp)
+ * New feature: Support Steam URIs (Issue #510)
+ * New feature: Move Steam out of the Special features
+ * New feature: Unify the edit dialog for entries (Issue #241)
+ * New feature: Add an option to hide the global timeout bar (Issue #166)
+ * New feature: Add an option to show individual timeout bars for all cards (Issue #166)
+ * New feature: Add options to configure single and double taps on entries (Issue #489)
+ * Improvement: Increase the iterations for the password generation to 150000
+ * Improvement: Show cards as transparent while dragging (Issue #487, PR #488 by @Ullas-Aithal)
+ * Improvement: Rewording of the last used dialog (Issue #485)
+ * Improvement: Handle the back key to close open drawers or the FAB overlay (Issue #499)
+ * Improvement: Validate secrets during manual entry (Issue #500)
+ * Bug fix: Fix some remaining issues with the intro dialog (Issue #486)
+ * Bug fix: Fix images containing gradients on API versions below 24 (Issue #539)
+ * Thumbnails: Lots of new ones (thanks to all contributors)
+ * Translations: Bulgarian (thanks to all the contributors on Crowdin)
+
 #### v0.7.0
 
  * New feature: Generate a new HOTP token when revealing (Issue #334, PR #366 by @moritzgloeckl)
