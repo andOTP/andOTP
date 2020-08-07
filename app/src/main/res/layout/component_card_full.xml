@@ -8,6 +8,8 @@
     android:layout_marginTop="@dimen/activity_margin_xsmall"
     android:layout_marginBottom="@dimen/activity_margin_xsmall"
     app:contentPadding="0dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
     style="?attr/cardStyle">
 
     <LinearLayout

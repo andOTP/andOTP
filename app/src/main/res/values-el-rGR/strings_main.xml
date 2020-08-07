@@ -10,6 +10,7 @@
     <string name="button_all_tags">Όλες οι ετικέτες</string>
     <string name="button_no_tags">Χωρίς ετικέτες</string>
     <string name="button_qr_from_image">Κώδικας QR από εικόνα</string>
+    <string name="button_accept">Αποδοχή</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d\"</string>
     <!-- Hints -->
@@ -45,6 +46,7 @@
     <string name="menu_popup_change_image">Αλλαγή εικόνας</string>
     <string name="menu_popup_remove">Διαγραφή</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
+    <string name="menu_popup_establish_pin">Ορίστε το PIN</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">Η ταυτοποίηση απέτυχε. Παρακαλώ προσπάθησε ξανά!</string>
     <string name="toast_auth_failed_fatal">Απέτυχε ο έλεγχος ταυτότητας, κλείνει το andOTP!</string>
@@ -74,6 +76,7 @@
     <string name="dialog_title_android21_depreaction">Deprecation notice</string>
     <string name="dialog_title_enter_password">Εισάγετε κωδικό</string>
     <string name="dialog_label_enter_password">Εισάγετε κωδικό</string>
+    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_label_confirm_password">Επιβεβαίωση κωδικού</string>
     <string name="dialog_msg_auth">Παρακαλούμε εισαγάγετε τα διαπιστευτήριά σας για να ανοίξετε το andOTP.</string>
     <string name="dialog_msg_confirm_delete">Σίγουρα θέλετε να αφαιρέσετε το λογαριασμό \"%1$s\";</string>

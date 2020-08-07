@@ -40,11 +40,12 @@ import java.util.Objects;
 
 public class Entry {
     public enum OTPType {
-        TOTP, HOTP, STEAM
+        TOTP, HOTP, MOTP, STEAM
     }
 
     private static final OTPType DEFAULT_TYPE = OTPType.TOTP;
     private static final int DEFAULT_PERIOD = 30;
+    private static final String MOTP_NO_PIN_CODE = "PINREQ";
 
     private static final String JSON_SECRET = "secret";
     private static final String JSON_ISSUER = "issuer";
@@ -79,6 +80,7 @@ public class Entry {
     public static final int COLOR_RED = 1;
     private static final int EXPIRY_TIME = 8;
     private int color = COLOR_DEFAULT;
+    private String pin = "";
 
     public Entry(){}
 
@@ -106,6 +108,16 @@ public class Entry {
         setThumbnailFromIssuer(issuer);
     }
 
+    public Entry(OTPType type, String secret, String issuer, String label, List<String> tags) {
+        this.type = type;
+        this.secret = secret.getBytes();
+        this.issuer = issuer;
+        this.label = label;
+        this.tags = tags;
+        this.period = TokenCalculator.TOTP_DEFAULT_PERIOD;
+        setThumbnailFromIssuer(issuer);
+    }
+
     public Entry(String contents) throws Exception {
         contents = contents.replaceFirst("otpauth", "http");
         Uri uri = Uri.parse(contents);
@@ -121,6 +133,9 @@ public class Entry {
                 break;
             case "hotp":
                 type = OTPType.HOTP;
+                break;
+            case "motp":
+                type = OTPType.MOTP;
                 break;
             case "steam":
                 type = OTPType.STEAM;
@@ -155,7 +170,11 @@ public class Entry {
 
         this.issuer = issuer;
         this.label = label;
-        this.secret = new Base32().decode(secret.toUpperCase());
+        if(type == OTPType.MOTP) {
+            this.secret = secret.getBytes();
+        }else{
+            this.secret = new Base32().decode(secret.toUpperCase());
+        }
 
         if (digits != null) {
             this.digits = Integer.parseInt(digits);
@@ -323,7 +342,7 @@ public class Entry {
     }
 
     public boolean isTimeBased() {
-        return type == OTPType.TOTP || type == OTPType.STEAM;
+        return type == OTPType.TOTP || type == OTPType.STEAM || type == OTPType.MOTP;
     }
 
     public boolean isCounterBased() { return type == OTPType.HOTP; }
@@ -444,7 +463,19 @@ public class Entry {
         return currentOTP;
     }
 
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+
     public boolean updateOTP() {
+        return updateOTP(false);
+    }
+
+    public boolean updateOTP(boolean updateNow) {
         if (type == OTPType.TOTP || type == OTPType.STEAM) {
             long time = System.currentTimeMillis() / 1000;
             long counter = time / this.getPeriod();
@@ -465,6 +496,22 @@ public class Entry {
         } else if (type == OTPType.HOTP) {
             currentOTP = TokenCalculator.HOTP(secret, counter, digits, algorithm);
             return true;
+        } else if (type == OTPType.MOTP) {
+            long time = System.currentTimeMillis() / 1000;
+            long counter = time / this.getPeriod();
+            if (counter > last_update || updateNow) {
+                String currentPin = this.getPin();
+                if (currentPin.isEmpty()) {
+                    currentOTP = MOTP_NO_PIN_CODE;
+                } else {
+                    currentOTP = TokenCalculator.MOTP(currentPin, new String(this.secret));
+                }
+                last_update = counter;
+                setColor(COLOR_DEFAULT);
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }

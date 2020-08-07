@@ -10,6 +10,7 @@
     <string name="button_all_tags">كافة العلامات</string>
     <string name="button_no_tags">بدون علامات</string>
     <string name="button_qr_from_image">رمز كيو آر مِن صورة</string>
+    <string name="button_accept">اقبل</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d ثا</string>
     <!-- Hints -->
@@ -45,6 +46,7 @@
     <string name="menu_popup_change_image">تغيير الصورة</string>
     <string name="menu_popup_remove">حذف</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
+    <string name="menu_popup_establish_pin">أدخل رمز PIN</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">أخفقت المصادقة، الرجاء إعادة المحاولة !</string>
     <string name="toast_auth_failed_fatal">أخفقت عملية المصادقة، جارٍ إغلاق التطبيق!</string>
@@ -73,6 +75,7 @@
     <string name="dialog_title_qr_code">QR Code</string>
     <string name="dialog_title_android21_depreaction">Deprecation notice</string>
     <string name="dialog_title_enter_password">أدخل كلمة المرور</string>
+    <string name="dialog_title_pin">دبوس</string>
     <string name="dialog_label_enter_password">أدخل كلمة المرور</string>
     <string name="dialog_label_confirm_password">تأكيد كلمة المرور</string>
     <string name="dialog_msg_auth">الرجاء إدخال بيانات الإعتماد الخاصة بجهازك لتشغيل التطبيق.</string>

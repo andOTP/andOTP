@@ -48,10 +48,17 @@ public class UIHelper {
                 .show();
     }
 
-    public static void showKeyboard(Context context, View view) {
+    public static void showKeyboard(Context context, View view){
+        showKeyboard(context,view,false);
+    }
+
+    public static void showKeyboard(Context context, View view, Boolean showForced) {
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(view, 0);
+            if(showForced)
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+            else
+                imm.showSoftInput(view, 0);
         }
     }
 

@@ -10,6 +10,7 @@
     <string name="button_all_tags">Alle labels</string>
     <string name="button_no_tags">Geen labels</string>
     <string name="button_qr_from_image">QR-code van afbeelding</string>
+    <string name="button_accept">Accepteren</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
     <!-- Hints -->
@@ -45,6 +46,7 @@
     <string name="menu_popup_change_image">Afbeelding wijzigen</string>
     <string name="menu_popup_remove">Verwijderen</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
+    <string name="menu_popup_establish_pin">PIN instellen</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">Authenticatie mislukt. Probeer opnieuw!</string>
     <string name="toast_auth_failed_fatal">Verificatie is mislukt, andOTP wordt afgesloten!</string>
@@ -73,6 +75,7 @@
     <string name="dialog_title_qr_code">QR Code</string>
     <string name="dialog_title_android21_depreaction">Deprecation notice</string>
     <string name="dialog_title_enter_password">Wachtwoord invoeren</string>
+    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_label_enter_password">Wachtwoord invoeren</string>
     <string name="dialog_label_confirm_password">Wachtwoord bevestigen</string>
     <string name="dialog_msg_auth">Voer de referenties van uw apparaat in om te beginnen met andOTP.</string>

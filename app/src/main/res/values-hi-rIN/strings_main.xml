@@ -10,6 +10,7 @@
     <string name="button_all_tags">सभी टैग</string>
     <string name="button_no_tags">कोई टैग नहीं</string>
     <string name="button_qr_from_image">छवि से क्यूआर कोड</string>
+    <string name="button_accept">स्वीकार करना</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d सेकेंड</string>
     <!-- Hints -->
@@ -45,6 +46,7 @@
     <string name="menu_popup_change_image">छवि बदलें</string>
     <string name="menu_popup_remove">हटाएं</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
+    <string name="menu_popup_establish_pin">पिन सेट करें</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">प्रमाणीकरण असफल| कृपया पुन: प्रयास करें!</string>
     <string name="toast_auth_failed_fatal">प्रमाणीकरण विफल, समापन andOTP!</string>
@@ -73,6 +75,7 @@
     <string name="dialog_title_qr_code">QR Code</string>
     <string name="dialog_title_android21_depreaction">Deprecation notice</string>
     <string name="dialog_title_enter_password">अपना पासवोर्ड डाले</string>
+    <string name="dialog_title_pin">पिन</string>
     <string name="dialog_label_enter_password">अपना पासवोर्ड डाले</string>
     <string name="dialog_label_confirm_password">पासवर्ड की पुष्टि करें</string>
     <string name="dialog_msg_auth">AndOTP शुरू करने के लिए कृपया अपनी यंत्र साख दर्ज करें।</string>

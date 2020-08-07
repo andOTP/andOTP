@@ -10,6 +10,7 @@
     <string name="button_all_tags">Tüm etiketler</string>
     <string name="button_no_tags">Etiket yok</string>
     <string name="button_qr_from_image">Görüntüden QR kodu</string>
+    <string name="button_accept">Kabul etmek</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d lar(ler)</string>
     <!-- Hints -->
@@ -45,6 +46,7 @@
     <string name="menu_popup_change_image">Görseli değiştir</string>
     <string name="menu_popup_remove">Kaldır</string>
     <string name="menu_popup_show_qr_code">QR Kodunu Göster</string>
+    <string name="menu_popup_establish_pin">PIN ayarla</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">Kimlik doğrulama başarısız oldu, lütfen tekrar deneyin!</string>
     <string name="toast_auth_failed_fatal">Kimlik doğrulama başarısız oldu, andOTP kapatılıyor!</string>
@@ -73,6 +75,7 @@
     <string name="dialog_title_qr_code">QR Kodu</string>
     <string name="dialog_title_android21_depreaction">Destek sonlandırma bildirimi</string>
     <string name="dialog_title_enter_password">Şifre girin</string>
+    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_label_enter_password">Şifre Girin</string>
     <string name="dialog_label_confirm_password">Şifreyi doğrula</string>
     <string name="dialog_msg_auth">Lütfen andOTP\'yi başlatmak için cihaz kimlik bilgilerinizi girin.</string>

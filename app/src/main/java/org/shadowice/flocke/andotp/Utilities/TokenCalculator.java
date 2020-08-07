@@ -26,6 +26,7 @@ package org.shadowice.flocke.andotp.Utilities;
 import java.nio.ByteBuffer;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -114,5 +115,16 @@ public class TokenCalculator {
         }
 
         return r;
+    }
+
+    public static String MOTP(String PIN, String secret)
+    {
+        Date dateNow = new Date();
+        String epoch = "" + (dateNow.getTime());
+        epoch = epoch.substring(0, epoch.length() - 4);
+        String otp = epoch + secret + PIN;
+        MD5 hash = new MD5(otp);
+        otp = hash.asHex().substring(0, 6);
+        return otp;
     }
 }

@@ -36,11 +36,14 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -66,6 +69,7 @@ import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
+import org.shadowice.flocke.andotp.Utilities.UIHelper;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperAdapter;
 
 import java.text.Collator;
@@ -96,6 +100,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     private SortMode sortMode = SortMode.UNSORTED;
     private TagsAdapter tagsFilterAdapter;
     private Settings settings;
+
+    private static final int ESTABLISH_PIN_MENU_INDEX = 4;
 
     public EntriesCardAdapter(Context context, TagsAdapter tagsFilterAdapter) {
         this.context = context;
@@ -354,6 +360,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             @Override
             public void onCounterLongPressed(int position) {
                 setCounter(position);
+            }
+
+            @Override
+            public void onItemClickListener(int position) {
+                final Entry entry = displayedEntries.get(position);
+                if(entry.getType() == Entry.OTPType.MOTP && entry.getPin().isEmpty()){
+                    establishPIN(position);
+                }
             }
         });
 
@@ -620,6 +634,52 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         alert.show();
     }
 
+    public void establishPIN(final int pos) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
+        int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
+
+        final EditText input = new EditText(context);
+        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        input.setRawInputType(InputType.TYPE_NUMBER_VARIATION_PASSWORD  | InputType.TYPE_CLASS_NUMBER);
+        input.setText(displayedEntries.get(pos).getPin());
+        input.setSingleLine();
+        input.requestFocus();
+        input.setTransformationMethod(new PasswordTransformationMethod());
+        UIHelper.showKeyboard(context,input,true);
+
+        FrameLayout container = new FrameLayout(context);
+        container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
+        container.addView(input);
+
+        builder.setTitle(R.string.dialog_title_pin)
+                .setCancelable(false)
+                .setView(container)
+                .setPositiveButton(R.string.button_accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int realIndex = getRealIndex(pos);
+                        String newPin = input.getEditableText().toString();
+
+                        displayedEntries.get(pos).setPin(newPin);
+                        Entry e = entries.get(realIndex);
+                        e.setPin(newPin);
+                        e.updateOTP(true);
+                        notifyDataSetChanged();
+                        UIHelper.hideKeyboard(context,input);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        UIHelper.hideKeyboard(context,input);
+                    }
+                })
+                .create()
+                .show();
+    }
+
     public void removeItem(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -682,6 +742,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         MenuInflater inflate = popup.getMenuInflater();
         inflate.inflate(R.menu.menu_popup, popup.getMenu());
 
+        if (displayedEntries.get(pos).getType() == Entry.OTPType.MOTP){
+             MenuItem item = popup.getMenu().getItem(ESTABLISH_PIN_MENU_INDEX);
+             item.setVisible(true);
+        }
+
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -692,6 +757,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                     return true;
                 } else if(id == R.id.menu_popup_changeImage) {
                     changeThumbnail(pos);
+                    return true;
+                } else if (id == R.id.menu_popup_establishPin) {
+                    establishPIN(pos);
                     return true;
                 } else if (id == R.id.menu_popup_remove) {
                     removeItem(pos);
