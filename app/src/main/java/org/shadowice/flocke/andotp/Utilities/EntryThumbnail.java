@@ -231,6 +231,7 @@ public class EntryThumbnail {
         Pushover(R.drawable.thumb_pushover),
         PyPI(R.drawable.thumb_pypi),
         PythonAnywhere(R.drawable.thumb_python_anywhere),
+        QNAP(R.drawable.thumb_qnap),
         Rackspace(R.drawable.thumb_rackspace),
         Reddit(R.drawable.thumb_reddit),
         RipeNNC(R.drawable.thumb_ripe_ncc),
