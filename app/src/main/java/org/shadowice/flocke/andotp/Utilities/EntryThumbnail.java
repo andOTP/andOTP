@@ -90,6 +90,7 @@ public class EntryThumbnail {
         Codegiant(R.drawable.thumb_codegiant),
         Coinbase(R.drawable.thumb_coinbase),
         CoinJar(R.drawable.thumb_coinjar),
+        CoinTracker(R.drawable.thumb_cointracker),
         ComputerBase(R.drawable.thumb_computerbase),
         ConnectWiseManage(R.drawable.thumb_connectwise_manage),
         CozyCloud(R.drawable.thumb_cozycloud),
