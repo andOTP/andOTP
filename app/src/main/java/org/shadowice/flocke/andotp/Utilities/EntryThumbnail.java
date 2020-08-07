@@ -94,6 +94,7 @@ public class EntryThumbnail {
         ConnectWiseManage(R.drawable.thumb_connectwise_manage),
         CozyCloud(R.drawable.thumb_cozycloud),
         Crowdin(R.drawable.thumb_crowdin),
+        Cyon(R.drawable.thumb_cyon),
         Dashlane(R.drawable.thumb_dashlane),
         Debian(R.drawable.thumb_debian),
         Degiro(R.drawable.thumb_degiro),
