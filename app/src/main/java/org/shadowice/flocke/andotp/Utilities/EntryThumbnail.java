@@ -51,6 +51,7 @@ public class EntryThumbnail {
         Airbrake(R.drawable.thumb_airbrake),
         AirTable(R.drawable.thumb_airtable),
         AllegroPl(R.drawable.thumb_allegropl),
+        Alwaysdata(R.drawable.thumb_alwaysdata),
         Amazon(R.drawable.thumb_amazon),
         AmazonWebServices(R.drawable.thumb_amazonwebservices),
         AngelList(R.drawable.thumb_angellist),
