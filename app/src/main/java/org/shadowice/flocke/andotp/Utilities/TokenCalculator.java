@@ -25,6 +25,7 @@ package org.shadowice.flocke.andotp.Utilities;
 
 import java.nio.ByteBuffer;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
@@ -123,8 +124,22 @@ public class TokenCalculator {
         String epoch = "" + (dateNow.getTime());
         epoch = epoch.substring(0, epoch.length() - 4);
         String otp = epoch + secret + PIN;
-        MD5 hash = new MD5(otp);
-        otp = hash.asHex().substring(0, 6);
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            digest.update(otp.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < messageDigest.length; i++)
+                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
+
+            otp = hexString.substring(0, 6);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            otp="";
+        }
         return otp;
     }
 }

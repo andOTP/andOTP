@@ -210,7 +210,7 @@ public class IntroScreenActivity extends IntroActivity {
                 }
             });
 
-            selection.setSelection(selectionMapping.indexOfValue(Constants.EncryptionType.KEYSTORE));
+            selection.setSelection(selectionMapping.indexOfValue(Constants.EncryptionType.PASSWORD));
 
             return root;
         }
@@ -466,7 +466,7 @@ public class IntroScreenActivity extends IntroActivity {
             passwordInput.addTextChangedListener(textWatcher);
             passwordConfirm.addTextChangedListener(textWatcher);
 
-            selection.setSelection(selectionMapping.indexOfValue(Constants.AuthMethod.NONE));
+            selection.setSelection(selectionMapping.indexOfValue(Constants.AuthMethod.PASSWORD));
 
             return root;
         }
