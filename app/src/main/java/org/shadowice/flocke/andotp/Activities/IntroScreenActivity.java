@@ -41,6 +41,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -63,6 +64,7 @@ public class IntroScreenActivity extends IntroActivity {
 
     private EncryptionFragment encryptionFragment;
     private AuthenticationFragment authenticationFragment;
+    private AndroidSyncFragment androidSyncFragment;
 
     private void saveSettings() {
         Constants.EncryptionType encryptionType = encryptionFragment.getEncryptionType();
@@ -70,6 +72,7 @@ public class IntroScreenActivity extends IntroActivity {
 
         settings.setEncryption(encryptionType);
         settings.setAuthMethod(authMethod);
+        settings.setAndroidBackupServiceEnabled(androidSyncFragment.getSyncEnabled());
 
         if (authMethod == Constants.AuthMethod.PASSWORD || authMethod == Constants.AuthMethod.PIN) {
             String password = authenticationFragment.getPassword();
@@ -86,6 +89,7 @@ public class IntroScreenActivity extends IntroActivity {
 
         encryptionFragment = new EncryptionFragment();
         authenticationFragment = new AuthenticationFragment();
+        androidSyncFragment = new AndroidSyncFragment(encryptionFragment);
 
         encryptionFragment.setEncryptionChangedCallback(newEncryptionType -> authenticationFragment.updateEncryptionType(newEncryptionType));
 
@@ -118,6 +122,13 @@ public class IntroScreenActivity extends IntroActivity {
                 .build()
         );
 
+        addSlide(new FragmentSlide.Builder()
+                .background(R.color.colorPrimary)
+                .backgroundDark(R.color.colorPrimaryDark)
+                .fragment(androidSyncFragment)
+                .build()
+        );
+
         addSlide(new SimpleSlide.Builder()
                 .title(R.string.intro_slide4_title)
                 .description(R.string.intro_slide4_desc)
@@ -127,6 +138,7 @@ public class IntroScreenActivity extends IntroActivity {
                 .build()
         );
 
+
         addOnNavigationBlockedListener((position, direction) -> {
             if (position == 2)
                 authenticationFragment.flashWarning();
@@ -135,7 +147,7 @@ public class IntroScreenActivity extends IntroActivity {
         addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                if (position == 3)
+                if (position == getSlides().size() - 1)
                     saveSettings();
             }
 
@@ -217,6 +229,39 @@ public class IntroScreenActivity extends IntroActivity {
 
         public interface EncryptionChangedCallback {
             void onEncryptionChanged(Constants.EncryptionType newEncryptionType);
+        }
+    }
+
+    public static class AndroidSyncFragment extends SlideFragment {
+        private Switch introAndroidSync;
+        private EncryptionFragment encryptionFragment;
+
+        public AndroidSyncFragment(EncryptionFragment encryptionFragment) {
+            this.encryptionFragment = encryptionFragment;
+        }
+
+        public boolean getSyncEnabled()
+        {
+            return introAndroidSync.isChecked();
+        }
+
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View root = inflater.inflate(R.layout.component_intro_android_sync, container, false);
+
+            introAndroidSync = root.findViewById(R.id.introAndroidSync);
+            introAndroidSync.setOnCheckedChangeListener((compoundButton, b) -> {
+                compoundButton.setText( b ?
+                                R.string.settings_toast_android_sync_enabled :
+                        R.string.settings_toast_android_sync_disabled
+                );
+            });
+
+            introAndroidSync.setChecked(encryptionFragment.getEncryptionType() != Constants.EncryptionType.KEYSTORE);
+            introAndroidSync.setEnabled(encryptionFragment.getEncryptionType() != Constants.EncryptionType.KEYSTORE);
+
+            return root;
         }
     }
 
