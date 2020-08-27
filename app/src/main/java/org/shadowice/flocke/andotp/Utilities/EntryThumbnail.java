@@ -96,6 +96,7 @@ public class EntryThumbnail {
         AVM(R.drawable.thumb_avm),
         Backblaze(R.drawable.thumb_backblaze),
         BattleNet(R.drawable.thumb_battlenet),
+        BestBuy(R.drawable.thumb_bestbuy),
         Betterment(R.drawable.thumb_betterment),
         Binance(R.drawable.thumb_binance),
         BitBucket(R.drawable.thumb_bitbucket),
