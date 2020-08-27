@@ -133,6 +133,7 @@ public class EntryThumbnail {
         Debian(R.drawable.thumb_debian),
         Degiro(R.drawable.thumb_degiro),
         Denic(R.drawable.thumb_denic),
+        Deribit(R.drawable.thumb_deribit),
         Diaspora(R.drawable.thumb_diaspora),
         Digidentity(R.drawable.thumb_digidentity),
         DigitalOcean(R.drawable.thumb_digital_ocean),
