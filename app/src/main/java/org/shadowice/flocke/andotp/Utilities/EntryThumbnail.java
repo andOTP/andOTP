@@ -110,6 +110,7 @@ public class EntryThumbnail {
         Bitwala(R.drawable.thumb_bitwala),
         Bitwarden(R.drawable.thumb_bitwarden),
         BlockchainInfo(R.drawable.thumb_blockchain_info),
+        BraveRewards(R.drawable.thumb_braverewards),
         Bugcrowd(R.drawable.thumb_bugcrowd),
         CEXio(R.drawable.thumb_cexio),
         ChurchTools(R.drawable.thumb_church_tools),
