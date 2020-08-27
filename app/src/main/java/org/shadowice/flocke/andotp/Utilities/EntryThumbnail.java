@@ -299,6 +299,7 @@ public class EntryThumbnail {
         StarCitizen(R.drawable.thumb_starcitizen),
         Steam(R.drawable.thumb_steam),
         Stripe(R.drawable.thumb_stripe),
+        Sumologic(R.drawable.thumb_sumologic),
         Sync(R.drawable.thumb_sync),
         Synology(R.drawable.thumb_synology),
         TeaHub(R.drawable.thumb_teahub),
