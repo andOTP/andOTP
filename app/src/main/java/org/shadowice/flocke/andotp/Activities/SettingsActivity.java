@@ -66,10 +66,12 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 
 public class SettingsActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener{
-    SettingsFragment fragment;
 
-    SecretKey encryptionKey = null;
-    boolean encryptionChanged = false;
+    private SettingsFragment fragment;
+    private SharedPreferences prefs;
+
+    private SecretKey encryptionKey = null;
+    private boolean encryptionChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,8 +106,8 @@ public class SettingsActivity extends BaseActivity
                 .replace(R.id.container_content, fragment)
                 .commit();
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPref.registerOnSharedPreferenceChangeListener(this);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -277,18 +279,26 @@ public class SettingsActivity extends BaseActivity
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        prefs.unregisterOnSharedPreferenceChangeListener(this);
+        prefs = null;
+
+        super.onDestroy();
+    }
+
     public static class SettingsFragment extends PreferenceFragment {
-        PreferenceCategory catSecurity;
+        private PreferenceCategory catSecurity;
 
-        Settings settings;
-        ListPreference encryption;
-        Preference backupLocation;
-        ListPreference useAutoBackup;
-        CheckBoxPreference useAndroidSync;
+        private Settings settings;
+        private ListPreference encryption;
+        private Preference backupLocation;
+        private ListPreference useAutoBackup;
+        private CheckBoxPreference useAndroidSync;
 
-        OpenPgpAppPreference pgpProvider;
-        EditTextPreference pgpEncryptionKey;
-        OpenPgpKeyPreference pgpSigningKey;
+        private OpenPgpAppPreference pgpProvider;
+        private EditTextPreference pgpEncryptionKey;
+        private OpenPgpKeyPreference pgpSigningKey;
 
         public void encryptionChangeWithDialog(final EncryptionType encryptionType) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
