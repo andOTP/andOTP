@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.ConfirmedPasswordTransformationHelper;
 import org.shadowice.flocke.andotp.Utilities.Tools;
 
 public class PasswordEntryDialog extends AppCompatDialog
@@ -42,6 +43,7 @@ public class PasswordEntryDialog extends AppCompatDialog
         TextInputLayout passwordLayout = findViewById(R.id.passwordInputLayout);
         passwordInput = findViewById(R.id.passwordInput);
         passwordConfirm = findViewById(R.id.passwordConfirm);
+        ConfirmedPasswordTransformationHelper.setup(passwordLayout, passwordInput, passwordConfirm);
 
         if (blockAccessibility) {
             passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
