@@ -3,7 +3,7 @@ name: Thumbnail request
 about: Request a new thumbnail
 title: "[Thumbnail]"
 labels: enhancement, thumbnail
-assignees: flocke, RichyHBM
+assignees: flocke, RichyHBM, ziegenberg
 
 ---
 
