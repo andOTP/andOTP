@@ -25,6 +25,8 @@ package org.shadowice.flocke.andotp.View;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.ColorFilter;
+
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
@@ -105,56 +107,62 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         visibleImg.getDrawable().setColorFilter(colorFilter);
         invisibleImg.getDrawable().setColorFilter(colorFilter);
 
-        // Setup onClickListeners
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (callback != null)
-                    callback.onMenuButtonClicked(view, getAdapterPosition());
-            }
-        });
+        setupOnClickListeners(menuButton, copyButton);
 
-        copyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (callback != null)
-                    callback.onCopyButtonClicked(value.getTag().toString(), getAdapterPosition());
-            }
-        });
+        setTapToReveal(tapToReveal);
+    }
 
-        counterLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (callback != null)
-                    callback.onCounterClicked(getAdapterPosition());
-            }
-        });
+    private void setupOnClickListeners(ImageButton menuButton, ImageButton copyButton) {
+        menuButton.setOnClickListener(view ->
+            adapterPositionSafeCallback((callback, adapterPosition) ->
+                callback.onMenuButtonClicked(view, adapterPosition)
+            )
+        );
 
-        counterLayout.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                if (callback != null)
-                    callback.onCounterLongPressed(getAdapterPosition());
+        copyButton.setOnClickListener(view ->
+            adapterPositionSafeCallback((callback, adapterPosition) ->
+                callback.onCopyButtonClicked(value.getTag().toString(), adapterPosition)
+            )
+        );
 
-                return false;
-            }
+        counterLayout.setOnClickListener(view ->
+            adapterPositionSafeCallback(Callback::onCounterClicked)
+        );
+
+        counterLayout.setOnLongClickListener(view -> {
+            adapterPositionSafeCallback(Callback::onCounterLongPressed);
+            return false;
         });
 
         card.setOnClickListener(new SimpleDoubleClickListener() {
             @Override
             public void onSingleClick(View v) {
-                if (callback != null)
-                    callback.onCardSingleClicked(getAdapterPosition(), value.getTag().toString());
+                adapterPositionSafeCallback((callback, adapterPosition) ->
+                    callback.onCardSingleClicked(adapterPosition, value.getTag().toString())
+                );
             }
 
             @Override
             public void onDoubleClick(View v) {
-                if (callback != null)
-                    callback.onCardDoubleClicked(getAdapterPosition(), value.getTag().toString());
+                adapterPositionSafeCallback((callback, adapterPosition) ->
+                    callback.onCardDoubleClicked(adapterPosition, value.getTag().toString())
+                );
             }
         });
+    }
 
-        setTapToReveal(tapToReveal);
+    @FunctionalInterface
+    private interface AdapterPositionSafeCallbackConsumer {
+        /** The specified {@link Callback} is guaranteed to be non-null, and adapterPosition is
+         * guaranteed to be a valid position. */
+        void accept(@NonNull Callback callback, int adapterPosition);
+    }
+
+    private void adapterPositionSafeCallback(AdapterPositionSafeCallbackConsumer safeCallback) {
+        int clickedPosition = getAdapterPosition();
+        if (callback != null && clickedPosition != RecyclerView.NO_POSITION) {
+            safeCallback.accept(callback, clickedPosition);
+        }
     }
 
     public void updateValues(Entry entry) {
