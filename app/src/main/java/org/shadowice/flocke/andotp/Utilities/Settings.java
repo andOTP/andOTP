@@ -48,8 +48,8 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class Settings {
-    private static final List<String> oldLangs = Arrays.asList("system", "en", "cs", "de", "es", "fr", "gl", "nl", "pl", "ru", "zh");
-    private static final List<String> newLangs = Arrays.asList("system", "en_US", "cs_CZ", "de_DE", "es_ES", "fr_FR", "gl_ES", "nl_NL", "pl_PL", "ru_RU", "zh_CN");
+    private static final List<String> newLangs = Arrays.asList("ar",    "bg",    "ca",    "cs",    "de",    "el",    "en",    "es",    "fa",    "fr",    "gl",    "hi",    "hu",    "it",    "ja",    "nl",    "pl",    "pt_BR", "ru",    "sl",    "sv",    "tr",    "uk",    "zh_CN", "zh_TW");
+    private static final List<String> oldLangs = Arrays.asList("ar_SA", "bg_BG", "ca_ES", "cs_CZ", "de_DE", "el_GR", "en_US", "es_ES", "fa_IR", "fr_FR", "gl_ES", "hi_IN", "hu_HU", "it_IT", "ja_JP", "nl_NL", "pl_PL", "pt_BR", "ru_RU", "sl_SI", "sv_SE", "tr_TR", "uk_UA", "zh_CN", "zh_TW");
 
     private Context context;
     private SharedPreferences settings;
@@ -72,13 +72,13 @@ public class Settings {
             remove(R.string.settings_key_auth_pin);
         }
 
-        if (settings.contains(getResString(R.string.settings_key_lang))) {
-            String lang = getString(R.string.settings_key_lang, R.string.settings_default_locale);
+        if (settings.contains(getResString(R.string.settings_key_locale))) {
+            String lang = getString(R.string.settings_key_locale, R.string.settings_default_lang);
 
             if (oldLangs.contains(lang))
                 setLocale(newLangs.get(oldLangs.indexOf(lang)));
 
-            remove(R.string.settings_key_lang);
+            remove(R.string.settings_key_locale);
         }
 
         if (settings.contains(getResString(R.string.settings_key_tap_to_reveal))) {
@@ -320,11 +320,11 @@ public class Settings {
     }
 
     public void setLocale(String locale) {
-        setString(R.string.settings_key_locale, locale);
+        setString(R.string.settings_key_lang, locale);
     }
 
     public Locale getLocale() {
-        String lang = getString(R.string.settings_key_locale, R.string.settings_default_locale);
+        String lang = getString(R.string.settings_key_lang, R.string.settings_default_lang);
 
         if (lang.equals("system")) {
             return Tools.getSystemLocale();

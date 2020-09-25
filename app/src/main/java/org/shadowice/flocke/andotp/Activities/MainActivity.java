@@ -435,7 +435,7 @@ public class MainActivity extends BaseActivity
         } else if (key.equals(getString(R.string.settings_key_tap_single)) ||
                 key.equals(getString(R.string.settings_key_tap_double)) ||
                 key.equals(getString(R.string.settings_key_theme)) ||
-                key.equals(getString(R.string.settings_key_locale)) ||
+                key.equals(getString(R.string.settings_key_lang)) ||
                 key.equals(getString(R.string.settings_key_enable_screenshot)) ||
                 key.equals(getString(R.string.settings_key_tag_functionality)) ||
                 key.equals(getString(R.string.settings_key_label_highlight_token)) ||

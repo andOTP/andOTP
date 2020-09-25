@@ -22,8 +22,8 @@
     <string name="settings_key_block_accessibility" translatable="false">pref_block_accessibility</string>
     <string name="settings_key_block_autofill" translatable="false">pref_block_autofill</string>
 
-    <string name="settings_key_lang" translatable="false">pref_lang</string>    <!-- Deprecated -->
-    <string name="settings_key_locale" translatable="false">pref_locale</string>
+    <string name="settings_key_lang" translatable="false">pref_lang</string>
+    <string name="settings_key_locale" translatable="false">pref_locale</string>                        <!-- Deprecated -->
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size_sp</string>
     <string name="settings_key_card_layout" translatable="false">pref_card_layout</string>
@@ -71,7 +71,7 @@
     <integer name="settings_default_tap_to_reveal_timeout">30</integer>
     <integer name="settings_default_auth_inactivity_delay">30</integer>
     <string name="settings_default_encryption" translatable="false">keystore</string>
-    <string name="settings_default_locale" translatable="false">system</string>
+    <string name="settings_default_lang" translatable="false">system</string>
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">18</integer>
     <string name="settings_default_card_layout" translatable="false">default</string>
@@ -135,33 +135,31 @@
         <item>all_edits</item>
     </string-array>
 
-
-
-    <string-array name="settings_values_locale" translatable="false">
+    <string-array name="settings_values_lang" translatable="false">
         <item>system</item>
-        <item>ca_ES</item>
-        <item>de_DE</item>
-        <item>en_US</item>
-        <item>es_ES</item>
-        <item>fr_FR</item>
-        <item>gl_ES</item>
-        <item>it_IT</item>
-        <item>hu_HU</item>
-        <item>nl_NL</item>
-        <item>pl_PL</item>
+        <item>ca</item>
+        <item>de</item>
+        <item>en</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>gl</item>
+        <item>it</item>
+        <item>hu</item>
+        <item>nl</item>
+        <item>pl</item>
         <item>pt_BR</item>
-        <item>sl_SI</item>
-        <item>sv_SE</item>
-        <item>tr_TR</item>
-        <item>cs_CZ</item>
-        <item>el_GR</item>
-        <item>ru_RU</item>
-        <item>uk_UA</item>
-        <item>bg_BG</item>
-        <item>ar_SA</item>
-        <item>fa_IR</item>
-        <item>hi_IN</item>
-        <item>ja_JP</item>
+        <item>sl</item>
+        <item>sv</item>
+        <item>tr</item>
+        <item>cs</item>
+        <item>el</item>
+        <item>ru</item>
+        <item>uk</item>
+        <item>bg</item>
+        <item>ar</item>
+        <item>fa</item>
+        <item>hi</item>
+        <item>ja</item>
         <item>zh_CN</item>
         <item>zh_TW</item>
     </string-array>
