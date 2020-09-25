@@ -28,12 +28,41 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.content.res.AppCompatResources;
 
 import org.shadowice.flocke.andotp.R;
 
 public class EntryThumbnail {
+    public static Bitmap getThumbnailGraphic(Context context, String issuer, String label, int size, EntryThumbnails thumbnail) {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
+        if (thumbnail == EntryThumbnails.Default && size > 0) {
+            LetterBitmap letterBitmap = new LetterBitmap(context);
+            String letterSrc = issuer.isEmpty() ? label : issuer;
+            return letterBitmap.getLetterTile(letterSrc, letterSrc, size, size);
+        } else if (thumbnail != EntryThumbnails.Default) {
+
+            try {
+                if (thumbnail.getAssetType() == AssetType.Vector) {
+                    Drawable drawable = AppCompatResources.getDrawable(context, thumbnail.getResource());
+                    Bitmap bitmap = Bitmap.createBitmap(drawable.getMinimumWidth(), drawable.getMinimumHeight(), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(bitmap);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    drawable.draw(canvas);
+                    return bitmap;
+                } else {
+                    return BitmapFactory.decodeResource(context.getResources(), thumbnail.getResource());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round);
+    }
+
     private enum AssetType {
         Bitmap,
         Vector
@@ -63,6 +92,7 @@ public class EntryThumbnail {
         ArenaNet(R.drawable.thumb_arenanet),
         AtlanticNet(R.drawable.thumb_atlantic_net),
         Atlassian(R.drawable.thumb_atlassian),
+        AutoDNS(R.drawable.thumb_autodns),
         AVM(R.drawable.thumb_avm),
         Backblaze(R.drawable.thumb_backblaze),
         BattleNet(R.drawable.thumb_battlenet),
@@ -85,6 +115,7 @@ public class EntryThumbnail {
         Cisco(R.drawable.thumb_cisco),
         CloudDownload(R.drawable.thumb_cloud_download),
         Cloudflare(R.drawable.thumb_cloudflare),
+        Clubhouse(R.drawable.thumb_clubhouse),
         Cobranded(R.drawable.thumb_cobranded),
         Codegiant(R.drawable.thumb_codegiant),
         Coinbase(R.drawable.thumb_coinbase),
@@ -111,6 +142,7 @@ public class EntryThumbnail {
         ElectronicArts(R.drawable.thumb_electronic_arts),
         Email(R.drawable.thumb_email),
         EpicGames(R.drawable.thumb_epic_games),
+        ESEA(R.drawable.thumb_esea),
         Etsy(R.drawable.thumb_etsy),
         Eveonline(R.drawable.thumb_eveonline),
         Evernote(R.drawable.thumb_evernote),
@@ -150,6 +182,7 @@ public class EntryThumbnail {
         IBM(R.drawable.thumb_ibm),
         Iconomi(R.drawable.thumb_iconomi),
         IFTTT(R.drawable.thumb_ifttt),
+        Infomaniak(R.drawable.thumb_infomaniak),
         Instagram(R.drawable.thumb_instagram),
         INWX(R.drawable.thumb_inwx),
         Itchio(R.drawable.thumb_itchio),
@@ -199,10 +232,12 @@ public class EntryThumbnail {
         Nintendo(R.drawable.thumb_nintendo),
         NoStarchPress(R.drawable.thumb_no_starch_press),
         NPM(R.drawable.thumb_npm),
+        NTPPoolProject(R.drawable.thumb_ntppoolproject),
         Oculus(R.drawable.thumb_oculus),
         Office(R.drawable.thumb_office),
         Okta(R.drawable.thumb_okta),
         OnlineNet(R.drawable.thumb_online),
+        OpenVPN(R.drawable.thumb_openvpn),
         OpenVZ(R.drawable.thumb_openvz),
         OPNsense(R.drawable.thumb_opnsense),
         ORCiD(R.drawable.thumb_orcid),
@@ -235,6 +270,7 @@ public class EntryThumbnail {
         Ripio(R.drawable.thumb_ripio),
         Robinhood(R.drawable.thumb_robinhood),
         Rockstar(R.drawable.thumb_rockstar),
+        Roundcube(R.drawable.thumb_roundcube),
         RSS(R.drawable.thumb_rss),
         Samsung(R.drawable.thumb_samsung),
         SAP(R.drawable.thumb_sap),
@@ -310,45 +346,18 @@ public class EntryThumbnail {
             this.assetType = assetType;
         }
 
-        public int getResource() {
-            return resource;
-        }
-        public AssetType getAssetType() {
-            return assetType;
-        }
-
         public static EntryThumbnails valueOfIgnoreCase(String thumbnail) {
             for (EntryThumbnails entryThumbnails : values())
                 if (entryThumbnails.name().equalsIgnoreCase(thumbnail)) return entryThumbnails;
-                throw new IllegalArgumentException();
-        }
-    }
-
-    public static Bitmap getThumbnailGraphic(Context context, String issuer, String label, int size, EntryThumbnails thumbnail) {
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-
-        if (thumbnail == EntryThumbnails.Default && size > 0) {
-            LetterBitmap letterBitmap = new LetterBitmap(context);
-            String letterSrc = issuer.isEmpty() ? label : issuer;
-            return letterBitmap.getLetterTile(letterSrc, letterSrc, size, size);
-        } else if (thumbnail != EntryThumbnails.Default) {
-
-            try {
-                if (thumbnail.getAssetType() == AssetType.Vector) {
-                    Drawable drawable = AppCompatResources.getDrawable(context, thumbnail.getResource());
-                    Bitmap bitmap = Bitmap.createBitmap(drawable.getMinimumWidth(), drawable.getMinimumHeight(), Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(bitmap);
-                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    drawable.draw(canvas);
-                    return bitmap;
-                } else {
-                    return BitmapFactory.decodeResource(context.getResources(), thumbnail.getResource());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            throw new IllegalArgumentException();
         }
 
-        return BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round);
+        public int getResource() {
+            return resource;
+        }
+
+        public AssetType getAssetType() {
+            return assetType;
+        }
     }
 }
