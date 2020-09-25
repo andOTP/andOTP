@@ -888,4 +888,10 @@ public class MainActivity extends BaseActivity
 
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    protected void onDestroy() {
+        settings.unregisterPreferenceChangeListener(this);
+        super.onDestroy();
+    }
 }
