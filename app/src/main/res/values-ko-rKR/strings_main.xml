@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">andOTP</string>
 
     <!-- Buttons -->
     <string name="button_cancel">취소</string>
@@ -14,14 +13,14 @@
 
     <!-- Custom formatting -->
     <string name="format_custom_period">%d초</string>
-    <string name="card_separator" translatable="false">&#160;-&#160;</string>
+
 
     <!-- Hints -->
     <string name="hint_label">라벨</string>
     <string name="hint_secret">비밀번호</string>
 
     <!-- Labels -->
-    <string name="label_clipboard_content" translatable="false">OTP Token</string>
+
     <string name="label_hidden">숨김</string>
     <string name="label_type">종류</string>
     <string name="label_secret">비밀번호</string>
