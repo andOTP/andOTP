@@ -46,6 +46,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.ConfirmedPasswordTransformationHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.UIHelper;
@@ -256,8 +257,7 @@ public class CredentialsPreference extends DialogPreference
             passwordLayout.setHint(getContext().getString(R.string.settings_hint_password));
             passwordConfirm.setHint(R.string.settings_hint_password_confirm);
 
-            passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            passwordConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            ConfirmedPasswordTransformationHelper.setup(passwordLayout, passwordInput, passwordConfirm);
 
             passwordInput.setTransformationMethod(new PasswordTransformationMethod());
             passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
@@ -278,8 +278,7 @@ public class CredentialsPreference extends DialogPreference
             passwordInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
             passwordConfirm.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
 
-            passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-            passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
+            ConfirmedPasswordTransformationHelper.setup(passwordLayout, passwordInput, passwordConfirm);
 
             minLength = Constants.AUTH_MIN_PIN_LENGTH;
             toShortWarning.setText(getContext().getString(R.string.settings_label_short_pin, minLength));

@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/auth_hint_password"
-        app:passwordToggleEnabled="true" >
+        app:endIconMode="password_toggle" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordEdit"
