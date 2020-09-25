@@ -24,11 +24,9 @@
     <string name="about_label_original_author">이 앱의 원본 개발자</string>
     <string name="about_label_original_app">원본 앱</string>
     <string name="about_label_website">웹사이트</string>
-    <string name="about_label_github" translatable="false">Github</string>
+
     <string name="about_label_donate">기부하기</string>
-    <string name="about_name_author1" translatable="false">Jakob Nixdorf</string>
-    <string name="about_name_author_original" translatable="false">Bruno Bierbaumer</string>
-    <string name="about_name_author2" translatable="false">Richy HBM</string>
+
 
     <string name="about_label_contributors">기여자</string>
     <string name="about_label_translators">번역가</string>
