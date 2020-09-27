@@ -236,6 +236,7 @@ public class EntryThumbnail {
         Mixer(R.drawable.thumb_mixer),
         MongoDB(R.drawable.thumb_mongodb),
         MVPSnet(R.drawable.thumb_mvpsnet),
+        MyGovAU(R.drawable.thumb_my_gov_au),
         NameCheap(R.drawable.thumb_namecheap),
         NameCom(R.drawable.thumb_namecom),
         NAS(R.drawable.thumb_nas),
