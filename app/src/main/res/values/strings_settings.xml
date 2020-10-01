@@ -21,6 +21,7 @@
     <string name="settings_title_auth_inactivity_delay">Delay for inactivity re-lock</string>
     <string name="settings_title_block_accessibility">Block accessibility services</string>
     <string name="settings_title_block_autofill">Block autofill</string>
+    <string name="settings_title_auto_unlock_after_autofill">Unlock automatically after autofill</string>
 
     <string name="settings_title_lang">Language</string>
     <string name="settings_title_theme">Theme</string>
@@ -73,7 +74,9 @@
         services. <b>DO NOT enable this if you rely on the accessibility services!</b></string>
     <string name="settings_desc_block_autofill">Block autofill services from accessing password
         fields inside the app</string>
-    <string name="settings_desc_block_autofill_android">This feature requires an Android version
+    <string name="settings_desc_auto_unlock_after_autofill">Unlock if the password has been filled
+        in by autofill</string>
+    <string name="settings_desc_autofill_requires_android_o">This feature requires an Android version
         above 8.0 (Oreo)</string>
 
     <string name="settings_desc_label_scroll">Scroll overlong labels instead of truncating them</string>

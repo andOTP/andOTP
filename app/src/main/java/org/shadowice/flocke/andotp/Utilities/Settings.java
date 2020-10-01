@@ -601,4 +601,8 @@ public class Settings {
     public boolean getBlockAutofill() {
         return getBoolean(R.string.settings_key_block_autofill, false);
     }
+
+    public boolean getAutoUnlockAfterAutofill() {
+        return getBoolean(R.string.settings_key_auto_unlock_after_autofill, false);
+    }
 }

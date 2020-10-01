@@ -25,7 +25,6 @@ package org.shadowice.flocke.andotp.Activities;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.appcompat.widget.Toolbar;
 import android.text.InputType;
@@ -46,6 +45,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
+import org.shadowice.flocke.andotp.View.AutoFillable.AutoFillableTextInputEditText;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -56,12 +56,13 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 public class AuthenticateActivity extends ThemedActivity
     implements EditText.OnEditorActionListener, View.OnClickListener {
     private String password;
+    private final AutoFillableTextInputEditText.AutoFillTextListener autoFillTextListener = text -> checkPassword(text.toString());
 
     AuthMethod authMethod;
     String newEncryption = "";
     boolean oldPassword = false;
 
-    TextInputEditText passwordInput;
+    AutoFillableTextInputEditText passwordInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,5 +208,19 @@ public class AuthenticateActivity extends ThemedActivity
     public void onBackPressed() {
         finishWithResult(false, null);
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (settings.getAutoUnlockAfterAutofill()) {
+            passwordInput.setAutoFillTextListener(autoFillTextListener);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        passwordInput.setAutoFillTextListener(null);
+        super.onStop();
     }
 }
