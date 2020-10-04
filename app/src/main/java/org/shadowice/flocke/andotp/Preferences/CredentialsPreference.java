@@ -32,6 +32,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -48,6 +49,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.ConfirmedPasswordTransformationHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
+import org.shadowice.flocke.andotp.Utilities.EditorActionHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
@@ -60,7 +62,7 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 
 public class CredentialsPreference extends DialogPreference
-    implements AdapterView.OnItemClickListener, View.OnClickListener, TextWatcher {
+    implements AdapterView.OnItemClickListener, View.OnClickListener, TextWatcher, TextView.OnEditorActionListener {
     public static final AuthMethod DEFAULT_VALUE = AuthMethod.NONE;
 
     public interface EncryptionChangeCallback {
@@ -144,6 +146,7 @@ public class CredentialsPreference extends DialogPreference
 
         passwordInput.addTextChangedListener(this);
         passwordConfirm.addTextChangedListener(this);
+        passwordConfirm.setOnEditorActionListener(this);
 
         Button btnCancel = view.findViewById(R.id.btnCancel);
         btnSave = view.findViewById(R.id.btnSave);
@@ -301,6 +304,20 @@ public class CredentialsPreference extends DialogPreference
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         value = entryValues.get(position);
         updateLayout();
+    }
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (EditorActionHelper.isActionDoneOrKeyboardEnter(actionId, event)) {
+            if (btnSave.isEnabled()) btnSave.performClick();
+            return true;
+        } else if (EditorActionHelper.isActionUpKeyboardEnter(event)) {
+            // Ignore action up after keyboard enter. Otherwise the cancel button would be selected
+            // after pressing enter with an invalid password.
+            return true;
+        }
+
+        return false;
     }
 
     // Needed stub functions

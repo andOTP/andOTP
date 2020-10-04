@@ -32,6 +32,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.SparseArray;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,7 @@ import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.ConfirmedPasswordTransformationHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
+import org.shadowice.flocke.andotp.Utilities.EditorActionHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
@@ -221,7 +223,7 @@ public class IntroScreenActivity extends IntroActivity {
         }
     }
 
-    public static class AuthenticationFragment extends SlideFragment {
+    public static class AuthenticationFragment extends SlideFragment implements TextView.OnEditorActionListener {
         private Constants.EncryptionType encryptionType = Constants.EncryptionType.KEYSTORE;
 
         private int slidePos = -1;
@@ -440,9 +442,25 @@ public class IntroScreenActivity extends IntroActivity {
             passwordInput.addTextChangedListener(textWatcher);
             passwordConfirm.addTextChangedListener(textWatcher);
 
+            passwordConfirm.setOnEditorActionListener(this);
+
             selection.setSelection(selectionMapping.indexOfValue(Constants.AuthMethod.PASSWORD));
 
             return root;
+        }
+
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (EditorActionHelper.isActionDoneOrKeyboardEnter(actionId, event)) {
+                nextSlide();
+                return true;
+            } else if (EditorActionHelper.isActionUpKeyboardEnter(event)) {
+                // Ignore action up after keyboard enter. Otherwise the go-back button would be selected
+                // after pressing enter with an invalid password.
+                return true;
+            }
+
+            return false;
         }
 
         @Override
