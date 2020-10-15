@@ -120,12 +120,10 @@ public class BackupHelper {
             System.arraycopy(salt, 0, data, Constants.INT_LENGTH, Constants.ENCRYPTION_IV_LENGTH);
             System.arraycopy(encrypted, 0, data, Constants.INT_LENGTH + Constants.ENCRYPTION_IV_LENGTH, encrypted.length);
 
-            StorageAccessHelper.saveFile(context, uri, data);
+            return StorageAccessHelper.saveFile(context, uri, data);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-
-        return true;
     }
 }
