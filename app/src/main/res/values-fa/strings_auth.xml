@@ -8,9 +8,9 @@
     <string name="auth_msg_authenticate">لطفا برای شروع andOTP
 احراز هویت کنید!</string>
     <string name="auth_msg_confirm_encryption">لطفا احراز هویت خود را تایید کنید تا
-        کلید رمزنگاری جدید تولید شوند!</string>
+        کلید رمزگذاری جدید تولید شوند!</string>
     <!-- Buttons -->
-    <string name="auth_button_unlock">بازگشایی قفل</string>
+    <string name="auth_button_unlock">بازکردن</string>
     <!-- Toast messages -->
     <string name="auth_toast_password_missing">لطفا در <b>تنظیمات</b> یک گذرواژه تعیین کنید!</string>
     <string name="auth_toast_pin_missing">لطفا در <b>تنظیمات</b> یک پین تعیین کنید!</string>

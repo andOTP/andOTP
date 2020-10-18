@@ -38,18 +38,15 @@
     <string name="backup_receiver_read_permission_failed">Η άδεια για ανάγνωση δεν έχει δοθεί, παρακαλώ παραχωρήστε την πριν προσπαθήσετε να πάρετε αντίγραφο ασφαλείας</string>
     <string name="backup_receiver_write_permission_failed">Η άδεια για εγγραφή δεν έχει δοθεί, παρακαλώ παραχωρήστε την πριν προσπαθήσετε να πάρετε αντίγραφο ασφαλείας</string>
     <string name="backup_receiver_custom_encryption_failed">Η κρυπτογράφηση με κωδικό πρόσβασης ή PIN δεν υποστηρίζεται στα αντίγραφα ασφαλείας μέσω εκπομπής</string>
-    <string name="backup_new_format_dialog_title">Νέα μέθοδος κρυπτογράφησης</string>
-    <string name="backup_new_format_dialog_msg">Από την έκδοση 0.6.3 της εφαρμογής andOTP, μία <b> νέα και βελτιωμένη
-        μέθοδος κρυπτογράφησης</b> που χρησιμοποιείται για αντίγραφα ασφαλείας που προστατεύονται με κωδικό πρόσβασης. Τα παλιά αντίγραφα ασφαλείας μπορούν ακόμα να είναι
-        εισάγονται, αλλά <b>Συνιστάται ιδιαίτερα να δημιουργήσετε νέα αντίγραφα ασφαλείας με τη βελτιωμένη
-        μέθοδο κρυπτογράφησης</b>.\n\nΑυτό το μήνυμα δεν θα εμφανιστεί ξανά.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Αποτυχία αυτόματης λήψης αντιγράφου ασφαλείας</string>
     <string name="notification_channel_name_backup_success">Επιτυχής αυτόματη λήψη αντιγράφου ασφαλείας</string>
     <string name="notification_channel_desc_backup_failed">Αυτές οι ειδοποιήσεις εμφανίζονται όταν μία αυτόματη λήψη αντιγράφου ασφαλείας απέτυχε για κάποιο λόγο</string>
     <string name="notification_channel_desc_backup_success">Αυτές οι ειδοποιήσεις εμφανίζονται όταν μία αυτόματη λήψη αντιγράφου ασφαλείας ήταν επιτυχής</string>
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">Αποτυχία δημιουργίας φακέλου αντιγράφων ασφαλείας</string>
+    <string name="backup_toast_no_location">Καθορίστε μια προεπιλεγμένη θέση για δημιουργία αντιγράφων ασφαλείας στις ρυθμίσεις!</string>
+    <string name="backup_toast_location_access_failed">Αποτυχία πρόσβασης στην τοποθεσία αντιγράφων ασφαλείας!</string>
+    <string name="backup_toast_file_creation_failed">Αποτυχία δημιουργίας αντιγράφου ασφαλείας!</string>
     <string name="backup_toast_export_success">Εξαγωγή σε εξωτερική αποθήκευση επιτυχής</string>
     <string name="backup_toast_export_failed">Η εξαγωγή σε εξωτερική συσκευή αποθήκευσης απέτυχε</string>
     <string name="backup_toast_import_success">Εισαγωγή από εξωτερική αποθήκευση επιτυχής</string>
@@ -57,7 +54,6 @@
     <string name="backup_toast_import_decryption_failed">Η αποκρυπτογράφηση του αντιγράφου ασφαλείας απέτυχε</string>
     <string name="backup_toast_import_no_entries">Δεν βρέθηκαν εγγραφές στα δεδομένα που εισήχθηκαν</string>
     <string name="backup_toast_storage_not_accessible">Η εξωτερική αποθήκευση δεν είναι διαθέσιμη αυτή τη στιγμή</string>
-    <string name="backup_toast_storage_permissions">Η άδεια για τον αποθηκευτικό χώρο δε χορηγήθηκε</string>
     <string name="backup_toast_openpgp_error">Σφάλμα OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">Δεν ανιχνεύτηκε επαληθευμένη υπογραφή</string>
     <string name="backup_toast_crypt_password_not_set">Ο κωδικός πρόσβασης δεν έχει οριστεί, ελέγξτε τις <b>ρυθμίσεις</b></string>

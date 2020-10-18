@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Buttons -->
+    <string name="button_cancel">Encaboxar</string>
+    <string name="button_enter_details">Amestar a mano</string>
+    <string name="button_scan_qr">Escaniar códigu QR</string>
+    <string name="button_save">Guardar</string>
+    <string name="button_new_tag">Etiqueta nueva</string>
+    <string name="button_settings">Axustes</string>
+    <string name="button_all_tags">Toles etiquetes</string>
+    <string name="button_no_tags">Ensin etiquetes</string>
+    <string name="button_qr_from_image">Códigu QR a partir d\'una imaxe</string>
+    <!-- Custom formatting -->
+    <string name="format_custom_period">%d s</string>
+    <!-- Hints -->
+    <string name="hint_label">Etiqueta</string>
+    <string name="hint_secret">Secretu</string>
+    <!-- Labels -->
+    <string name="label_hidden">Anubrióse</string>
+    <string name="label_type">Triba</string>
+    <string name="label_secret">Secretu</string>
+    <string name="label_period">Periodu</string>
+    <string name="label_digits">Díxitos</string>
+    <string name="label_counter">Contador</string>
+    <string name="label_issuer">Emisor</string>
+    <string name="label_label">Etiqueta</string>
+    <string name="label_algorithm">Algoritmu</string>
+    <string name="label_tags">Etiquetes</string>
+    <string name="label_advanced">Opciones avanzaes</string>
+    <!-- Drawer -->
+    <string name="drawer_open">Amosar etiquetes</string>
+    <string name="drawer_close">Anubrir etiquetes</string>
+    <!-- Menu -->
+    <string name="menu_main_about">Tocante a</string>
+    <string name="menu_main_backup">Copia seguranza</string>
+    <string name="menu_main_search">Guetar</string>
+    <string name="menu_main_settings">Axustes</string>
+    <string name="menu_main_sort">Ordenar</string>
+    <string name="menu_sort_none">Ensin ordenar</string>
+    <string name="menu_sort_issuer">Emisor</string>
+    <string name="menu_sort_label">Etiqueta</string>
+    <string name="menu_sort_last_used">Últimu usu</string>
+    <string name="menu_sort_most_used">Lo más usao</string>
+    <string name="menu_popup_edit">Editar</string>
+    <string name="menu_popup_change_image">Camudar imaxe</string>
+    <string name="menu_popup_remove">Desaniciar</string>
+    <string name="menu_popup_show_qr_code">Amosar el códigu QR</string>
+    <!-- Buttons -->
+    <string name="button_card_options">Más opciones</string>
+    <string name="button_card_options_format">Más opciones de %1$s</string>
+    <string name="button_card_copy">Copiar el pase</string>
+    <string name="button_card_copy_format">Copiar el pase de %1$s</string>
+    <string name="button_add">Amestar una cuenta</string>
+    <string name="button_close_menu">Zarrar el menú</string>
+    <!-- Toast messages -->
+    <string name="toast_auth_failed">Falló l\'autenticación, ¡volvi tentalo!</string>
+    <string name="toast_auth_failed_fatal">Falló l\'autenticación, ¡zarrando andOTP!</string>
+    <string name="toast_copied_to_clipboard">Copióse al cartafueyu</string>
+    <string name="toast_entry_exists">Esta entrada yá esiste</string>
+    <string name="toast_invalid_qr_code">El códigu QR nun ye válidu</string>
+    <string name="toast_encryption_key_empty">Nun se cargó la clave de cifráu</string>
+    <string name="toast_intent_creation_failed">El códigu propuestu nun ye válidu</string>
+    <string name="toast_intent_creation_succeeded">Amestóse\'l códigu propuestu</string>
+    <string name="toast_file_load_error">Nun pudo abrise\'l ficheru</string>
+    <string name="toast_qr_error">Nun pudo alcontrase/confirmase\'l códigu QR</string>
+    <string name="toast_qr_checksum_exception">Falló la verificación de la suma de comprobación mentanso se descifraba\'l códigu QR</string>
+    <string name="toast_qr_format_error">Fallu de formatu nel códigu QR</string>
+    <string name="toast_qr_unsuported">El códigu QR nun se sofita</string>
+    <string name="toast_qr_failed_to_generate">Fallu al xenerar el códigu QR</string>
+    <!-- Errors -->
+    <string name="error_invalid_secret">El secretu nun ye válidu</string>
+    <!-- Dialogs -->
+    <string name="dialog_title_auth">Autenticación</string>
+    <string name="dialog_title_manual_entry">Amestar a mano</string>
+    <string name="dialog_title_remove">Desaniciar</string>
+    <string name="dialog_title_rename">Renomáu</string>
+    <string name="dialog_title_counter">Contador</string>
+    <string name="dialog_title_used_tokens">Usu de pases</string>
+    <string name="dialog_title_keystore_error">Fallu del almacén de claves</string>
+    <string name="dialog_title_qr_code">Códigu QR</string>
+    <string name="dialog_title_enter_password">Introducción de contraseña</string>
+    <string name="dialog_label_enter_password">Introduz la contraseña</string>
+    <string name="dialog_label_confirm_password">Confirma la contraseña</string>
+    <string name="dialog_msg_auth">Introduz les credenciales del preséu p\'aniciar andOTP, por favor.</string>
+    <string name="dialog_msg_confirm_delete">¿De xuru que quies desaniciar la cuenta «%1$s»?</string>
+    <string name="dialog_msg_used_tokens">andOTP va saber cuándo uses los pases (col usu de la
+        carauterística «Tocar p\'amosar» o copiar al cartafueyu) pa ser a ordenalos por «Más 
+        usu» o «Últimu usu».\n\nEsti mensaxe nun va amosase de nueves.</string>
+    <string name="dialog_msg_keystore_error">Falló la carga de la clave de cifráu del almacén de claves.
+        <b>Va perdese cualesquier entrada que s\'amieste.</b>\n\nPa ser entá a usar andOTP, pues
+        dir a <b>Axustes</b> y cambiar el <b>cifráu de labase de datos</b> o la <b>Contraseña / PIN</b>.</string>
+    <!-- Shortcuts -->
+    <string name="shortcut_name_scan_qr">Escaniar códigu QR</string>
+    <string name="shortcut_name_import_qr">Importar un códigu QR</string>
+    <string name="shortcut_name_enter_details">Amestar a mano</string>
+</resources>

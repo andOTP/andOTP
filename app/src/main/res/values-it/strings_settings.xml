@@ -18,6 +18,7 @@
     <string name="settings_title_auth_inactivity">Blocca nuovamente quando inattivo</string>
     <string name="settings_title_auth_inactivity_delay">Ritarda il blocco quando inattivo</string>
     <string name="settings_title_block_accessibility">Blocca servizi di accessibilità</string>
+    <string name="settings_title_block_autofill">Blocca autocompletamento</string>
     <string name="settings_title_lang">Lingua</string>
     <string name="settings_title_theme">Tema</string>
     <string name="settings_title_card_layout">Layout scheda</string>
@@ -35,7 +36,7 @@
     <string name="settings_title_show_individual_timeouts">Mostra i singoli timeout</string>
     <string name="settings_title_backup_append_date">Aggiungi la data al nome del file</string>
     <string name="settings_title_backup_ask">Chiedi un nome di file</string>
-    <string name="settings_title_backup_directory">Cartella backup</string>
+    <string name="settings_title_backup_location">Posizione di backup predefinita</string>
     <string name="settings_title_backup_password">Imposta password di backup</string>
     <string name="settings_title_auto_backup_password_enc">Backup automatico delle nuove voci</string>
     <string name="settings_title_backup_broadcasts">Backup Broadcast</string>
@@ -63,6 +64,10 @@
 sarà richiesta nuovamente l\'autenticazione</string>
     <string name="settings_desc_block_accessibility">Nascondi i campi sensibili dai servizi di accessibilità.
 <b> NON abilitarlo se fai affidamento sui servizi di accessibilità!</b></string>
+    <string name="settings_desc_block_autofill">Impedisci ai servizi di autocompletamento di accedere ai campi
+        delle password nell\'app</string>
+    <string name="settings_desc_block_autofill_android">Questa funzione richiede una versione di Android
+        superiore alla 8.0 (Oreo)</string>
     <string name="settings_desc_label_scroll">Etichette che scorrono invece che venire troncate</string>
     <string name="settings_desc_minimize_on_copy">L\'app verrà minimizzata quando si copia un codice OTP negli appunti</string>
     <string name="settings_desc_search_includes">Specifica quali valori devono essere inclusi durante la ricerca</string>
@@ -74,10 +79,14 @@ sarà richiesta nuovamente l\'autenticazione</string>
         file di backup suggerito</string>
     <string name="settings_desc_backup_ask">Chiedere il nome del file ogni volta che un backup
         viene creato o ripristinato</string>
+    <string name="settings_desc_backup_location">Scegli una posizione di backup predefinita</string>
+    <string name="settings_desc_backup_location_set">La posizione di backup è stata scelta</string>
     <string name="settings_desc_backup_password">Impostare la password utilizzata per crittografare i
         backup</string>
     <string name="settings_desc_auto_backup_password_enc">Crea un nuovo backup cifrato quando vengono create nuove
 voci o editate, se le condizioni delle impostazioni sono configurate</string>
+    <string name="settings_desc_auto_backup_requirements">Imposta una posizione di backup predefinita ed una
+        password di backup per attivare questa opzione</string>
     <string name="settings_desc_backup_broadcasts">Seleziona quali tipi di backup possono essere
         attivati da app di terze parti tramite Broadcast</string>
     <string name="settings_desc_openpgp_key_encrypt">Indirizzo di posta della chiave OpenPGP utilizzata per

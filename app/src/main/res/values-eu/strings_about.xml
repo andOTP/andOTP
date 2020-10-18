@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">Honi buruz</string>
+    <string name="about_description">Androiderako kode irekiko bi faktoreko autentifikazioa</string>
+    <string name="about_tab_about">Honi buruz</string>
+    <string name="about_tab_libraries">Liburutegiak</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">Aldaketa erregistroa</string>
+    <string name="about_label_license">Lizentzia</string>
+    <string name="about_label_MIT">MIT Lizentzia</string>
+    <string name="about_label_source">Iturburu kodea</string>
+    <string name="about_label_version">Bertsioa</string>
+    <string name="about_label_faq">Maiz egiten diren galderak</string>
+    <string name="about_label_faq_long">Maiz egiten diren galderak</string>
+    <!-- Authors -->
+    <string name="about_title_authors">Egileak</string>
+    <string name="about_label_main_developer">Garatzaile nagusia</string>
+    <string name="about_label_developer">Garatzailea</string>
+    <string name="about_label_original_author">Jatorrizko aplikazioaren egilea</string>
+    <string name="about_label_original_app">Jatorrizko aplikazioa</string>
+    <string name="about_label_website">Webgunea</string>
+    <string name="about_label_donate">Dohaintza</string>
+    <string name="about_label_contributors">Laguntzaileak</string>
+    <string name="about_label_translators">Itzultzaileak</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">Irudi txikiei buruz</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Irudi txiki bakoitza bere jabearena da.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> Marka horiek erabiltzeak ez du esan nahi
+        andOTPk horien inolako harremanik duenik, edo alderantziz.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Irudi txiki horiek beren enpresa edo
+        zerbitzuaren erreferentzia egiteko erabili behar dira soilik.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Mesedez ez erabili irudi txiki hauek
+        beren marka adierazteko ez den ezertarako.</b></string>
+    <!-- Support -->
+    <string name="about_title_support">Babestu garapena</string>
+    <string name="about_desc_support">Irakurri gehiago andOTPren garapenari nola lagundu jakiteko</string>
+    <string name="about_title_special_features">Ezaugarri bereziak</string>
+    <string name="about_dialog_special_features">Ezarpen bereziak aktibatu nahi dituzu?
+        Gehienak estandarrak ez diren OTP algoritmoak dira norbaitek bereziki eskatuta inplementatutakoak.
+        <b>Ez ditugu ofizialki sostengatzen</b> eta <b>muga batzuk</b> izan ditzakete,
+        mesedez irakurri (eta ulertu) ezazu Githubeko wikian dagoen \"Special features\" orrialdea
+        ezer egiten hasi aurretik.</string>
+    <string name="about_toast_special_features">Ezaugarri bereziak aktibatuta</string>
+    <string name="about_toast_special_features_enabled">Ezaugarri bereziak jada aktibatuta daude</string>
+    <string name="about_toast_copied_to_clipboard">Dohaintza egiteko esteka arbelera kopiatu da</string>
+</resources>

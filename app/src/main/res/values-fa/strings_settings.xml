@@ -4,20 +4,21 @@
     <!-- Categories -->
     <string name="settings_category_title_security">امنیت</string>
     <string name="settings_category_title_ui">رابط کاربری</string>
-    <string name="settings_category_title_backup">پشتیبان گیری</string>
+    <string name="settings_category_title_backup">پشتیبان‌گیری</string>
     <!-- Titles -->
     <string name="settings_title_tap_to_reveal">ضربه برای آشکار کردن</string>
-    <string name="settings_title_tap_to_reveal_timeout">وقفه برای ضربه برای آشکار کردن</string>
+    <string name="settings_title_tap_to_reveal_timeout">وقفه ضربه برای آشکار کردن</string>
     <string name="settings_title_auth">احراز هویت</string>
     <string name="settings_title_auth_password">گذرواژه</string>
     <string name="settings_title_auth_pin">پین</string>
     <string name="settings_title_encryption">رمزنگاری پایگاه داده</string>
     <string name="settings_title_panic">ماشه هراس</string>
-    <string name="settings_title_relock_screen_off">در زمان خاموش شدن صفحه، قفل شو</string>
+    <string name="settings_title_relock_screen_off">هنگام خاموش شدن صفحه، قفل شو</string>
     <string name="settings_title_relock_background">هنگام رفتن به پس زمینه قفل شو</string>
     <string name="settings_title_auth_inactivity">هنگام عدم فعالیت قفل شو</string>
-    <string name="settings_title_auth_inactivity_delay">تاخیر برای قفل شدن هنگام عدم فعالیت</string>
+    <string name="settings_title_auth_inactivity_delay">درنگ برای قفل شدن هنگام عدم فعالیت</string>
     <string name="settings_title_block_accessibility">مسدود کردن خدمات دسترسی</string>
+    <string name="settings_title_block_autofill">مسدودسازی پرکردن خودکار</string>
     <string name="settings_title_lang">زبان</string>
     <string name="settings_title_theme">پوسته</string>
     <string name="settings_title_card_layout">چیدمان کارت‌ها</string>
@@ -28,14 +29,14 @@
     <string name="settings_title_thumbnail_size_ask">اندازه تصاویر بند انگشتی</string>
     <string name="settings_title_split_group_size">توکن را با فاصله جدا کن</string>
     <string name="settings_title_tag_functionality">رفتار انتخاب تگ</string>
-    <string name="settings_title_minimize_on_copy">کوچک کردن برنامه بعد از روگرفت از رمز یک‌بارمصرف</string>
+    <string name="settings_title_minimize_on_copy">کوچک کردن برنامه بعد از روگیری رمز</string>
     <string name="settings_title_search_includes">رفتار جستجو</string>
     <string name="settings_title_label_highlight_token">برجسته سازی توکن های منقضی شده</string>
     <string name="settings_title_hide_global_timeout">پنهان کردن نوار سراسری زمان بندی</string>
     <string name="settings_title_show_individual_timeouts">نمایش زمان بندی های منحصر بفرد</string>
-    <string name="settings_title_backup_append_date">اضافه کردن تاریخ به نام پرونده</string>
+    <string name="settings_title_backup_append_date">افزودن تاریخ به نام پرونده</string>
     <string name="settings_title_backup_ask">پرسیدن نام پرونده</string>
-    <string name="settings_title_backup_directory">محل پرونده پشتیبان</string>
+    <string name="settings_title_backup_location">محل پیش‌فرض ذخیره نسخه پشتیبان</string>
     <string name="settings_title_backup_password">گذرواژه پرونده پشتیبان</string>
     <string name="settings_title_auto_backup_password_enc">پشتیبان گیری خودکار در موارد تازه</string>
     <string name="settings_title_backup_broadcasts">پشتیبان گیری از Broadcasts</string>
@@ -59,9 +60,13 @@
     <string name="settings_desc_auth_inactivity_delay">میزان زمانی (به ثانیه) که بعد از آن
         احراز هویت دوباره نیاز است را انتخاب کنید</string>
     <string name="settings_desc_block_accessibility">پنهان کردن فیلد های حساس از خدمات
-        دسترسی.<b>این گزینه را اگر به خدمات دسترسی تکیه دارید فعال نکنید! </b></string>
-    <string name="settings_desc_label_scroll">برچسب‌های بلند را اسکرول کن، به جای اینکه ادامه آن‌ها را ببُری</string>
-    <string name="settings_desc_minimize_on_copy">برنامه زمانی که شما رمز یکبار مصرف را به کلیپ بورد کپی کنید کوچک خواهد شد</string>
+        دسترسی.<b>این گزینه را اگر به خدمات دسترسی متکی هستید فعال نکنید! </b></string>
+    <string name="settings_desc_block_autofill">خدمت‌های پرکردن خودکار را در مقابل دسترسی به قسمت‌های
+        مربوط به گذرواژه در برنامه مسدود کنید</string>
+    <string name="settings_desc_block_autofill_android">این ویژگی نیازمند داشتن اندروید بالاتر از
+        نسخه ۸ (اوریو) است</string>
+    <string name="settings_desc_label_scroll">به‌جای اینکه برچسب‌های بسیار بلند را کوتاه کنی، آن‌ها را فهرست کن</string>
+    <string name="settings_desc_minimize_on_copy">برنامه زمانی که شما رمز یکبار مصرف را به کلیپ بورد روگیری کنید کوچک خواهد شد</string>
     <string name="settings_desc_search_includes">مشخص کنید کدام مقادیر باید هنگام جستجو شامل شوند</string>
     <string name="settings_desc_label_highlight_token">توکن را هنگامی که طی ۸ ثانیه منقضی میشود را به رنگ قرمز برجسته میکند</string>
     <string name="settings_desc_hide_global_timeout">نوار زمان بندی سراسری نشان داده شده در بالای صفحه را پنهان کن</string>
@@ -69,12 +74,16 @@
         اگر واقعا مورد نیاز است فعال شود ، زیرا میتواند موجب کند شدن  برنامه شود.</string>
     <string name="settings_desc_backup_append_date">تاریخ و زمان فعلی را به نام پرونده پشتیبان پیشنهادی اضافه کن</string>
     <string name="settings_desc_backup_ask">هر بار پشتیبان ساخته می‌شود یا بازنشانی می‌شود، یک نام پرونده بپرس</string>
+    <string name="settings_desc_backup_location">محل پیش‌فرض ذخیره نسخه پشتیبان را انتخاب کنید</string>
+    <string name="settings_desc_backup_location_set">محل ذخیره نسخه پشتیبان انتخاب شده است</string>
     <string name="settings_desc_backup_password">گذرواژه ای که برای رمزنگاری پشتیبان‌ها استفاده می‌شود را تنظیم کنید</string>
-    <string name="settings_desc_auto_backup_password_enc">زمانی که موارد جدید افزوده، یا ویرایش شده
-        اگر شرایط تنظیمات برآورده شود، یک نسخه پشتیبان رمزنگاری شده تازه ایجاد میکند</string>
+    <string name="settings_desc_auto_backup_password_enc">زمانی که موارد جدید افزوده، یا ویرایش شد
+        اگر شرایط تنظیمات برآورده شود، یک نسخه پشتیبان رمزگذاری شده تازه ایجاد میکند</string>
+    <string name="settings_desc_auto_backup_requirements">برای فعال کردن این گزینه، محل پیش‌فرض ذخیره نسخه پشتیبان و
+        گذرواژه نسخه پشتیبان را تنظیم کنید</string>
     <string name="settings_desc_backup_broadcasts">انتخاب کنید کدام نوع پشتیبان‌گیری بتواند توسط Broadcast های برنامه‌های سوم شخص اعمال شود</string>
     <string name="settings_desc_openpgp_key_encrypt">آدرس پست الکترونیکی کلید OpenPGP  استفاده شود برای رمزنگاری پشتیبان‌ها</string>
-    <string name="settings_desc_openpgp_verify">پشتیبان‌های رمزنگاری شده، فقط اگر با یک کلید معتبر امضا شده اند، بازنشانی شوند</string>
+    <string name="settings_desc_openpgp_verify">پشتیبان‌های رمزگذاری شده، فقط اگر با یک کلید معتبر امضا شده اند، بازنشانی شوند</string>
     <string name="settings_desc_special_features">تیک را بردارید تا قابلیت‌های ویژه دوباره غیرفعال شوند</string>
     <string name="settings_desc_enable_screenshot">اجازه بده تا از صفحه اصلی برنامه تصویر برداری شود (به صورت پیشفرض به دلایل امنیتی غیرفعال است)</string>
     <string name="settings_desc_enable_android_backup_service">AndOTP را قادر می‌کند تا از سرویس پشتیبان‌گیری داخلی اندروید استفاده کند تا از کلید‌ها و تنظیمات پشتیبان‌گیری کند</string>
@@ -85,10 +94,12 @@
     <string name="settings_toast_encryption_changing">تلاش برای تغییر رمزنگاری پایگاه داده، لطفا صبر کنید!</string>
     <string name="settings_toast_encryption_change_success">رمزنگاری پایگاه داده با موفقیت تغییر کرد!</string>
     <string name="settings_toast_encryption_change_failed">شکست در تغییر رمزنگاری پایگاه داده، در حال برگشت به حالت اصلی!</string>
-    <string name="settings_toast_encryption_backup_failed">شکست در ساخت یک پشتیبان داخلی، در حال بازگشت به حالت قبل!</string>
+    <string name="settings_toast_encryption_backup_failed">ساخت پشتیبان داخلی شکست خورد
+        در حال لغو کردن!</string>
     <string name="settings_toast_encryption_no_key">شکست در گرفتن کلید رمزنگاری، در حال بازگشت به حالت قبل!</string>
-    <string name="settings_toast_encryption_auth_failed">شکست در احراز هویت!</string>
-    <string name="settings_toast_auth_upgrade_failed">شکست در بهبود رمز عبور / پین به صورت نامحسوس به رمزنگاری جدید، لطفا به صورت دستی آن را در تنظیمات باز تنظیم کنید!</string>
+    <string name="settings_toast_encryption_auth_failed">تایید هویت ناموفق بود!</string>
+    <string name="settings_toast_auth_upgrade_failed">ارتقای نامحسوس گذرواژه / پین شما به رمزگذاری جدید ناموفق بود
+لطفا به شیوه دستی در تنظیمات بازنشانی کنید!</string>
     <string name="settings_dialog_title_warning">هشدار</string>
     <string name="settings_dialog_title_error">خطا</string>
     <string name="settings_dialog_title_clear_keystore">پاکسازی KeyStore؟</string>
@@ -123,8 +134,8 @@
     <string-array name="settings_entries_tap">
         <item>هیچ چیز</item>
         <item>نمایش/پهنان کردن</item>
-        <item>رونوشت</item>
-        <item>کپی کردن و رفتن به پس زمینه</item>
+        <item>روگیری</item>
+        <item>روگیری و رفتن به پس زمینه</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>برچسب</item>
@@ -161,7 +172,7 @@
     </string-array>
     <string-array name="settings_entries_backup_broadcasts">
         <item>پشتیبان‌های متن آشکار</item>
-        <item>پشتیبان‌های رمزنگاری شده</item>
+        <item>پشتیبان‌های رمزگذاری شده</item>
     </string-array>
     <!-- Special -->
     <string name="settings_lang_sys_default">پیش‌فرض سیستم</string>

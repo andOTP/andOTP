@@ -6,7 +6,8 @@
     <string name="auth_hint_pin">PIN 码</string>
     <!-- Messages -->
     <string name="auth_msg_authenticate">请验证身份以启动 andOTP !</string>
-    <string name="auth_msg_confirm_encryption">请确认您的身份验证，以生成新的加密密钥！</string>
+    <string name="auth_msg_confirm_encryption">请确认身份验证以生成您的
+        加密密钥！</string>
     <!-- Buttons -->
     <string name="auth_button_unlock">解锁​​​​</string>
     <!-- Toast messages -->

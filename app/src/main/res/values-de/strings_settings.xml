@@ -18,6 +18,7 @@
     <string name="settings_title_auth_inactivity">Bei Inaktivität sperren</string>
     <string name="settings_title_auth_inactivity_delay">Zeit bis zur Inaktivitätssperre</string>
     <string name="settings_title_block_accessibility">Eingabehilfen blockieren</string>
+    <string name="settings_title_block_autofill">Autofill verhindern</string>
     <string name="settings_title_lang">Sprache</string>
     <string name="settings_title_theme">Design</string>
     <string name="settings_title_card_layout">Kartenlayout</string>
@@ -35,7 +36,7 @@
     <string name="settings_title_show_individual_timeouts">Individuelle Timeouts anzeigen</string>
     <string name="settings_title_backup_append_date">Datum an den Dateinamen anhängen</string>
     <string name="settings_title_backup_ask">Nach Dateinamen fragen</string>
-    <string name="settings_title_backup_directory">Sicherungsverzeichnis</string>
+    <string name="settings_title_backup_location">Standard-Sicherungsort</string>
     <string name="settings_title_backup_password">Datensicherungs-Passwort</string>
     <string name="settings_title_auto_backup_password_enc">Automatische Datensicherung bei neuen Einträgen</string>
     <string name="settings_title_backup_broadcasts">Broadcasts-Sicherungen</string>
@@ -61,6 +62,9 @@
     <string name="settings_desc_auth_inactivity_delay">Zeit (in Sekunden) nach der erneute
         Authentifizierung benötigt wird</string>
     <string name="settings_desc_block_accessibility">Verstecke vertrauliche Einträge vor den Eingabehilfsdiensten.        <b>NICHT aktivieren, wenn Eingabehilfe benötigt wird!</b></string>
+    <string name="settings_desc_block_autofill">Hindert Autofill-Dienste am Zugriff auf Passwortfelder in der App</string>
+    <string name="settings_desc_block_autofill_android">Dieses Feature erfordert eine Android-Version
+        höher als 8.0 (Oreo)</string>
     <string name="settings_desc_label_scroll">Überlange Beschriftungen scrollen, statt diese abzuschneiden</string>
     <string name="settings_desc_minimize_on_copy">App wird minimiert wenn der OTP Code kopiert wurde</string>
     <string name="settings_desc_search_includes">Welche Werte sollen in der Suche enthalten sein?</string>
@@ -70,11 +74,15 @@
         Dies kann die App verlangsamen, nur aktivieren, wenn wirklich notwendig.</string>
     <string name="settings_desc_backup_append_date">Aktuelles Datum und die aktuelle Uhrzeit an den vorgeschlagenen Sicherungsdateinamen anhängen</string>
     <string name="settings_desc_backup_ask">Jedes Mal nach dem Dateinamen fragen, wenn eine Sicherung erstellt oder wiederhergestellt wird</string>
+    <string name="settings_desc_backup_location">Wählen Sie eine Standard-Sicherungsort</string>
+    <string name="settings_desc_backup_location_set">Sicherungsort wurde ausgewählt</string>
     <string name="settings_desc_backup_password">Passwort festlegen, mit dem die Sicherungen verschlüsselt werden sollen</string>
     <string name="settings_desc_auto_backup_password_enc">Erstellt eine neue verschlüsselte Datensicherung bei
         Erstellung oder Bearbeitung von Einträgen, wenn Bedingungen erfüllt sind</string>
+    <string name="settings_desc_auto_backup_requirements">Legen Sie einen Standard-Sicherungsort fest und setzen sie ein
+        Sicherungspasswort, um diese Option zu aktivieren</string>
     <string name="settings_desc_backup_broadcasts">Über Broadcasts auswählen, welche Sicherungstypen von Drittanbieteranwendungen ausgelöst werden können.</string>
-    <string name="settings_desc_openpgp_key_encrypt">EMail-Adresse, mit welcher der OpenPGP-Schlüssel verschlüsselt wurde</string>
+    <string name="settings_desc_openpgp_key_encrypt">E-Mail-Adresse, mit welcher der OpenPGP-Schlüssel verschlüsselt wurde</string>
     <string name="settings_desc_openpgp_verify">Verschlüsselte Sicherungen werden nur importiert,
         wenn sie mit einem gültigen Schlüssel signiert sind</string>
     <string name="settings_desc_special_features">Haken entfernen, um die speziellen Funktionen wieder zu deaktivieren</string>

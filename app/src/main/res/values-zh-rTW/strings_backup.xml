@@ -37,17 +37,15 @@
     <string name="backup_receiver_read_permission_failed">讀取被拒絕，請在備份前允許此權限</string>
     <string name="backup_receiver_write_permission_failed">寫入被拒絕，請在備份前允許此權限</string>
     <string name="backup_receiver_custom_encryption_failed">透過外部程式執行自動備份時，不支援基於 密碼 / PIN 的加密方式</string>
-    <string name="backup_new_format_dialog_title">新加密方法</string>
-    <string name="backup_new_format_dialog_msg">andOTP自0.6.3版開始，<b>全新和改進了的加密方式是用於密碼保護的備份。</b>
-        舊備份的仍然可以導入，但是我們<b>強烈建議你使用改進了的加密方式來創建新的備份。</b>
-        \n\n此消息將不再顯示。</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">自動備份失敗</string>
     <string name="notification_channel_name_backup_success">自動備份成功</string>
     <string name="notification_channel_desc_backup_failed">自動備份因某些原因失敗時，將顯示此通知</string>
     <string name="notification_channel_desc_backup_success">自動備份成功時將顯示此通知</string>
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">建立備份資料夾失敗</string>
+    <string name="backup_toast_no_location">請在設定中設定預設的備份位置！</string>
+    <string name="backup_toast_location_access_failed">存取備份位置失敗！</string>
+    <string name="backup_toast_file_creation_failed">建立備份檔案失敗！</string>
     <string name="backup_toast_export_success">成功匯出至外部儲存裝置</string>
     <string name="backup_toast_export_failed">匯出到外部儲存裝置失敗</string>
     <string name="backup_toast_import_success">成功從外部儲存裝置匯入</string>
@@ -55,7 +53,6 @@
     <string name="backup_toast_import_decryption_failed">解密備份失敗</string>
     <string name="backup_toast_import_no_entries">匯入的資料中未發現有效條目</string>
     <string name="backup_toast_storage_not_accessible">當前無法訪問外部儲存裝置</string>
-    <string name="backup_toast_storage_permissions">未授予儲存空間權限</string>
     <string name="backup_toast_openpgp_error">OpenPGP 出錯：%s</string>
     <string name="backup_toast_openpgp_not_verified">未檢測到有效的數位簽章</string>
     <string name="backup_toast_crypt_password_not_set">無密碼，請檢查<b>設定</b></string>

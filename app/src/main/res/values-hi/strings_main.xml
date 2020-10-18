@@ -45,6 +45,13 @@
     <string name="menu_popup_change_image">छवि बदलें</string>
     <string name="menu_popup_remove">हटाएं</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
+    <!-- Buttons -->
+    <string name="button_card_options">More options</string>
+    <string name="button_card_options_format">More options for %1$s</string>
+    <string name="button_card_copy">Copy token</string>
+    <string name="button_card_copy_format">Copy %1$s token</string>
+    <string name="button_add">Add new account</string>
+    <string name="button_close_menu">Close menu</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">प्रमाणीकरण असफल| कृपया पुन: प्रयास करें!</string>
     <string name="toast_auth_failed_fatal">प्रमाणीकरण विफल, समापन andOTP!</string>
@@ -71,7 +78,6 @@
     <string name="dialog_title_used_tokens">Tokens usage</string>
     <string name="dialog_title_keystore_error">कुंजी स्टोर त्रुटि</string>
     <string name="dialog_title_qr_code">QR Code</string>
-    <string name="dialog_title_android21_depreaction">Deprecation notice</string>
     <string name="dialog_title_enter_password">अपना पासवोर्ड डाले</string>
     <string name="dialog_label_enter_password">अपना पासवोर्ड डाले</string>
     <string name="dialog_label_confirm_password">पासवर्ड की पुष्टि करें</string>
@@ -81,11 +87,6 @@
         to reveal\" feature or copying to clipboard) to be able to sort them by \"Most used\" or
         \"Last used\".\n\nThis message will not be shown again.</string>
     <string name="dialog_msg_keystore_error">KeyStore से एन्क्रिप्शन कुंजी लोड करने में विफल। <b>जो भी प्रविष्टियाँ जोड़ी गई हैं, वे लुप्त हो जाएँगी।</b>\n\nअभी andOTP का उपयोग करने में सक्षम होने के लिए आप <b>सेटिंग</b> पर जा सकते हैं और <b>डेटाबेस एन्क्रिप्शन</b> को <b>पासवर्ड / पिन</b> स्विच कर सकते हैं।</string>
-    <string name="dialog_msg_android21_deprecation">This will be the last version of andOTP to
-        support Android versions below 5.1 (Lollipop). The increased effort required to maintain a
-        separate storage implementation just for those older versions as well as their low market
-        shares make a continued support infeasible for our small team.\n\nThis message will not be
-        shown again.</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">क्यूआर कोड स्कैन करें</string>
     <string name="shortcut_name_import_qr">क्यूआर कोड आयात करें</string>

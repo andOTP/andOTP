@@ -11,7 +11,7 @@
     <string name="about_label_source">Codi font</string>
     <string name="about_label_version">Versió</string>
     <string name="about_label_faq">FAQ</string>
-    <string name="about_label_faq_long">Frequently asked questions</string>
+    <string name="about_label_faq_long">Qüestions freqüents</string>
     <!-- Authors -->
     <string name="about_title_authors">Autors</string>
     <string name="about_label_main_developer">Programador principal</string>
@@ -19,22 +19,22 @@
     <string name="about_label_original_author">Autor de l\'aplicació original</string>
     <string name="about_label_original_app">Aplicació original</string>
     <string name="about_label_website">Lloc web</string>
-    <string name="about_label_donate">Donar</string>
+    <string name="about_label_donate">Feu una donació</string>
     <string name="about_label_contributors">Col·laboradors</string>
     <string name="about_label_translators">Traductors</string>
     <!-- Thumbnail disclaimer -->
-    <string name="about_title_thumbnail_disclaimer">Avís miniatura</string>
-    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> totes les miniatures són marques registrades dels seus
+    <string name="about_title_thumbnail_disclaimer">Avís sobre les miniatures</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Totes les miniatures són marques registrades dels seus
         respectius propietaris.</string>
-    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> l\'ús de les marques comercials no
-        indica aprovació del titular de la marca per andOTP, ni viceversa.</string>
-    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Miniatures només usades per
-        representar l\'empresa o producte al qual es refereixen.</string>
-    <string name="about_thumbnails_disclaimer_no4"><b>4. No utilitzeu miniatures per a qualsevol propòsit
-        excepte per representar aquella marca determinada o servei.</b></string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> L\'ús de les marques comercials no
+        indica aprovació del titular de la marca per part d\'andOTP, ni viceversa.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Les miniatures només s\'haurien de fer servir per a
+        representar l\'empresa o producte al qual es fan referència.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. No utilitzeu les miniatures per a cap altre propòsit que no sigui
+        representar aquella marca determinada o servei.</b></string>
     <!-- Support -->
     <string name="about_title_support">Doneu suport al desenvolupament</string>
-    <string name="about_desc_support">Find out how you can support the development of andOTP</string>
+    <string name="about_desc_support">Vegeu com podeu donar suport al desenvolupament d\'andOTP</string>
     <string name="about_title_special_features">Característiques especials</string>
     <string name="about_dialog_special_features">Esteu segur que voleu habilitar les característiques
         especials? La major part són algorismes OTP no estàndard que es van implementar

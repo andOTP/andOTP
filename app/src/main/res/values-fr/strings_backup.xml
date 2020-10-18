@@ -36,19 +36,15 @@
     <string name="backup_receiver_read_permission_failed">L\'autorisation de lecture n\'est pas accordée, veuillez le faire avant d’effectuer la sauvegarde</string>
     <string name="backup_receiver_write_permission_failed">L\'autorisation d\'écriture n\'est pas accordée, veuillez le faire avant d’effectuer la sauvegarde</string>
     <string name="backup_receiver_custom_encryption_failed">Le chiffrement à base de mot de passe ou code PIN n\'est pas supporté par la sauvegarde par diffusion</string>
-    <string name="backup_new_format_dialog_title">Nouvelle méthode de chiffrement</string>
-    <string name="backup_new_format_dialog_msg">Depuis la version 0.6.3 de andOTP, une <b>nouvelle méthode
-        de chiffrement améliorée</b> est utilisée pour les sauvegardres protégées par mot de passe.
-        Les anciennes sauvegardes peuvent toujours être importées mais il est <b>hautement
-        recommandé de créer de nouvelles sauvegardes avec le chiffrement amélioré</b>.\n\nCe 
-        message ne sera pas affiché une seconde fois.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Échec de la sauvegarde automatique</string>
     <string name="notification_channel_name_backup_success">Succès de la sauvegarde automatique</string>
     <string name="notification_channel_desc_backup_failed">Ces notifications sont affichées quand une sauvegarde automatique a échoué pour une raison quelconque</string>
     <string name="notification_channel_desc_backup_success">Ces notifications sont affichées quand une sauvegarde automatique a réussi</string>
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">Échec de la création du répertoire de sauvegarde</string>
+    <string name="backup_toast_no_location">Veuillez définir un emplacement de sauvegarde par défaut dans les paramètres !</string>
+    <string name="backup_toast_location_access_failed">Impossible d\'accéder à l\'emplacement de la sauvegarde !</string>
+    <string name="backup_toast_file_creation_failed">Impossible de créer le fichier de sauvegarde !</string>
     <string name="backup_toast_export_success">Sauvegarde vers le stockage externe effectuée avec succès</string>
     <string name="backup_toast_export_failed">La sauvegarde vers le stockage externe a échoué</string>
     <string name="backup_toast_import_success">Restauration depuis le stockage externe effectuée avec succès</string>
@@ -56,7 +52,6 @@
     <string name="backup_toast_import_decryption_failed">Échec du déchiffrement de la sauvegarde</string>
     <string name="backup_toast_import_no_entries">Aucune entrée trouvée dans les données importées</string>
     <string name="backup_toast_storage_not_accessible">Stockage externe non disponible</string>
-    <string name="backup_toast_storage_permissions">Permission d\'accéder au stockage refusée</string>
     <string name="backup_toast_openpgp_error">Erreur OpenPGP : %s</string>
     <string name="backup_toast_openpgp_not_verified">Aucune signature vérifiée n\'a été trouvée</string>
     <string name="backup_toast_crypt_password_not_set">Aucun mot de passe défini, vérifiez les <b>paramètres</b></string>

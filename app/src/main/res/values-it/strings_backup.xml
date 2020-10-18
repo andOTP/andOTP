@@ -49,8 +49,6 @@
         di autorizzarli prima di tentare il backup</string>
     <string name="backup_receiver_custom_encryption_failed">Crittografia basata su password / PIN
         non supportata con backup broadcast</string>
-    <string name="backup_new_format_dialog_title">Nuovo metodo di cifratura</string>
-    <string name="backup_new_format_dialog_msg">Dalla versione 0.6.3 di andOTP è stato aggiunto un nuovo e migliore metodo di cifratura, usato per i backup protetti da password. I vecchi backup possono ancora essere importati, ma è altamente consigliata la creazione di nuovi backup con le funzionalità migliorate di cifratura. Questo messaggio non sarà visualizzato nuovamente.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Backup automatico fallito</string>
     <string name="notification_channel_name_backup_success">Backup automatico eseguito con successo</string>
@@ -59,7 +57,9 @@
     <string name="notification_channel_desc_backup_success">Queste notifiche vengono mostrate quando un
         backup automatico viene eseguito con successo</string>
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">Impossibile creare la cartella dei backup</string>
+    <string name="backup_toast_no_location">Devi impostare una posizione di backup predefinita nelle impostazioni!</string>
+    <string name="backup_toast_location_access_failed">Accesso alla posizione di backup fallito!</string>
+    <string name="backup_toast_file_creation_failed">Creazione del file di backup fallita!</string>
     <string name="backup_toast_export_success">Esportazione nella memoria esterna completata con successo</string>
     <string name="backup_toast_export_failed">Esportazione nella memoria esterna fallita</string>
     <string name="backup_toast_import_success">Importazione dalla memoria esterna completata con successo</string>
@@ -67,7 +67,6 @@
     <string name="backup_toast_import_decryption_failed">Decrittazione del backup fallita</string>
     <string name="backup_toast_import_no_entries">Nessuna voce trovata nei dati importati</string>
     <string name="backup_toast_storage_not_accessible">Memoria esterna attualmente non accessibile</string>
-    <string name="backup_toast_storage_permissions">Permessi di archiviazione non concessi</string>
     <string name="backup_toast_openpgp_error">Errore OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">Non è stata rilevata nessuna firma verificata</string>
     <string name="backup_toast_crypt_password_not_set">Password non impostata, controlla le <b>Impostazioni</b></string>

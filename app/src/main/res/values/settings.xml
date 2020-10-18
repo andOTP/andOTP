@@ -137,10 +137,12 @@
 
     <string-array name="settings_values_lang" translatable="false">
         <item>system</item>
+        <item>ast</item>
         <item>ca</item>
         <item>de</item>
         <item>en</item>
         <item>es</item>
+        <item>eu</item>
         <item>fr</item>
         <item>gl</item>
         <item>it</item>
@@ -156,6 +158,7 @@
         <item>ru</item>
         <item>uk</item>
         <item>bg</item>
+        <item>iw</item>
         <item>ar</item>
         <item>fa</item>
         <item>hi</item>
@@ -198,10 +201,12 @@
 
     <string-array name="settings_entries_lang" translatable="false">
         <item>@string/settings_lang_sys_default</item>
+        <item>Asturianu</item>
         <item>Català</item>
         <item>Deutsch</item>
         <item>English</item>
         <item>Español</item>
+        <item>Euskara</item>
         <item>Français</item>
         <item>Galego</item>
         <item>Italiano</item>
@@ -217,6 +222,7 @@
         <item>Русский</item>
         <item>Українська</item>
         <item>български</item>
+        <item>עִברִית</item>
         <item>العربية</item>
         <item>فارسی</item>
         <item>हिन्दी</item>

@@ -18,24 +18,25 @@
     <string name="settings_title_auth_inactivity">Zamknout při nečinnosti</string>
     <string name="settings_title_auth_inactivity_delay">Zpoždění zámku při neaktivitě</string>
     <string name="settings_title_block_accessibility">Blokovat služby usnadnění přístupu</string>
+    <string name="settings_title_block_autofill">Blokovat automatické vyplňování</string>
     <string name="settings_title_lang">Jazyk</string>
     <string name="settings_title_theme">Vzhled</string>
     <string name="settings_title_card_layout">Rozložení karet</string>
     <string name="settings_title_label_size">Velikost písma popisku</string>
     <string name="settings_title_label_scroll">Pohybující se popisky</string>
-    <string name="settings_title_tap_single">Single-tap</string>
-    <string name="settings_title_tap_double">Double-tap</string>
+    <string name="settings_title_tap_single">Jedno klepnutí</string>
+    <string name="settings_title_tap_double">Dvojí poklepání</string>
     <string name="settings_title_thumbnail_size_ask">Velikost náhledu</string>
     <string name="settings_title_split_group_size">Rozdělit token mezerami</string>
     <string name="settings_title_tag_functionality">Chování výběru štítků</string>
     <string name="settings_title_minimize_on_copy">Minimalizovat aplikaci po zkopírování OTP</string>
     <string name="settings_title_search_includes">Způsob vyhledávání</string>
     <string name="settings_title_label_highlight_token">Zvýraznit tokeny s končící platností</string>
-    <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
-    <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
+    <string name="settings_title_hide_global_timeout">Skrýt společnou časovou lištu</string>
+    <string name="settings_title_show_individual_timeouts">Zobrazit individuální časové limity</string>
     <string name="settings_title_backup_append_date">Přidání data k názvu souboru</string>
     <string name="settings_title_backup_ask">Zadejte název souboru</string>
-    <string name="settings_title_backup_directory">Adresář záloh</string>
+    <string name="settings_title_backup_location">Výchozí umístění zálohy</string>
     <string name="settings_title_backup_password">Heslo pro zálohu</string>
     <string name="settings_title_auto_backup_password_enc">Automaticky zálohovat při přidání nových položek</string>
     <string name="settings_title_backup_broadcasts">Příkazy k zálohování</string>
@@ -56,17 +57,24 @@
     <string name="settings_desc_auth_inactivity">Vyžadovat přihlášení poté, co bylo zařízení neaktivní</string>
     <string name="settings_desc_auth_inactivity_delay">Zvolte čas v sekundách, po kterém bude opět potřeba přihlášení</string>
     <string name="settings_desc_block_accessibility">Skrýt pole s citlivými informacemi před službami pro usnadnění přístupu. <b>NEAKTIVUJTE pokud spoléháte na služby usnadnění přístupu!</b></string>
+    <string name="settings_desc_block_autofill">Blokovat službám automatického vyplňování přístup k polím sloužícím k zadání
+        hesla uvnitř aplikace</string>
+    <string name="settings_desc_block_autofill_android">Tato funkce vyžaduje vyšší verzi Android 
+         než 8.0 (Oreo)</string>
     <string name="settings_desc_label_scroll">Posouvat příliš dlouhé popisky namísto zkracování</string>
     <string name="settings_desc_minimize_on_copy">Aplikace bude minimalizována, když zkopírujete OTP do schránky</string>
     <string name="settings_desc_search_includes">Určete, které hodnoty by měly být zahrnuty při hledání</string>
     <string name="settings_desc_label_highlight_token">Zvýraznit token červeně, pokud vyprší do 8 sekund</string>
-    <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
-    <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
-        This can slow down the app, only enable if really necessary.</string>
+    <string name="settings_desc_hide_global_timeout">Skrýt společnou časovou lištu v horní části obrazovky</string>
+    <string name="settings_desc_show_individual_timeouts">Zobrazit individuální časový limit pro každý záznam.
+        Může to zpomalit aplikaci, povolte, pouze pokud je to opravdu nutné.</string>
     <string name="settings_desc_backup_append_date">Přidá aktuální datum a čas k navrhovanému názvu záložního souboru</string>
     <string name="settings_desc_backup_ask">Dotazovat se na název souboru vždy při vytváření či obnovování zálohy</string>
+    <string name="settings_desc_backup_location">Zvolte výchozí umístění zálohy</string>
+    <string name="settings_desc_backup_location_set">Umístění zálohy bylo vybráno</string>
     <string name="settings_desc_backup_password">Nastaví heslo používané k šifrování záloh</string>
     <string name="settings_desc_auto_backup_password_enc">Vytvoří novou šifrovanou zálohu při vytvoření či úpravě položek, když jsou splněny podmínky z nastavení</string>
+    <string name="settings_desc_auto_backup_requirements">Pro povolení této volby nastavte umístění zálohy a heslo pro zálohu</string>
     <string name="settings_desc_backup_broadcasts">Vyberte, které typy zálohování můžou být spuštěny pomocí příkazů od aplikací třetí strany</string>
     <string name="settings_desc_openpgp_key_encrypt">E-mailová adresa OpenPGP klíče použitého k šifrování záloh</string>
     <string name="settings_desc_openpgp_verify">Šifrované zálohy jsou importovány pouze, jsou-li podepsány platným klíčem</string>
@@ -117,10 +125,10 @@ V případě chyby bude obnovena interní záloha a šifrování zůstane nezmě
         <item>Plná</item>
     </string-array>
     <string-array name="settings_entries_tap">
-        <item>Nothing</item>
-        <item>Reveal/Hide</item>
-        <item>Copy</item>
-        <item>Copy and go to background</item>
+        <item>Nic</item>
+        <item>Zobrazit/skrýt</item>
+        <item>Kopírovat</item>
+        <item>Kopírovat a přejít na pozadí</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Popisek</item>

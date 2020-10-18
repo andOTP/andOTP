@@ -6,8 +6,8 @@
     <string name="auth_hint_pin">PIN</string>
     <!-- Messages -->
     <string name="auth_msg_authenticate">Prosim preverite svojo identiteto, da lahko začnete uporabljati andOTP!</string>
-    <string name="auth_msg_confirm_encryption">Potrdite metodo preverjanja pristnosti, da ustvarite
-        nov šifrirni ključ!</string>
+    <string name="auth_msg_confirm_encryption">Please confirm authentication to generate your
+        encryption key!</string>
     <!-- Buttons -->
     <string name="auth_button_unlock">Odkleni</string>
     <!-- Toast messages -->
