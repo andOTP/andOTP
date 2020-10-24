@@ -79,6 +79,7 @@ public class EntryThumbnail {
         AirBNB(R.drawable.thumb_airbnb),
         Airbrake(R.drawable.thumb_airbrake),
         AirTable(R.drawable.thumb_airtable),
+        AirVPN(R.drawable.thumb_airvpn),
         AllegroPl(R.drawable.thumb_allegropl),
         Alwaysdata(R.drawable.thumb_alwaysdata),
         Amazon(R.drawable.thumb_amazon),
