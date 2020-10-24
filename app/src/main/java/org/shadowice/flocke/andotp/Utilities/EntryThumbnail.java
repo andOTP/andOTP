@@ -118,6 +118,7 @@ public class EntryThumbnail {
         CEXio(R.drawable.thumb_cexio),
         ChurchTools(R.drawable.thumb_church_tools),
         Cisco(R.drawable.thumb_cisco),
+        Citrix(R.drawable.thumb_citrix),
         CloudDownload(R.drawable.thumb_cloud_download),
         Cloudflare(R.drawable.thumb_cloudflare),
         Clubhouse(R.drawable.thumb_clubhouse),
