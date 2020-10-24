@@ -189,6 +189,7 @@ public class EntryThumbnail {
         HitBTC(R.drawable.thumb_hitbtc),
         HMRC(R.drawable.thumb_hmrc),
         HomeAssistant(R.drawable.thumb_home_assistant),
+        HostingDE(R.drawable.thumb_hosting_de),
         Hover(R.drawable.thumb_hover),
         HumbleBundle(R.drawable.thumb_humblebundle),
         HurricaneElectric(R.drawable.thumb_hurricane_electric),
