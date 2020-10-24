@@ -303,6 +303,7 @@ public class EntryThumbnail {
         Skrill(R.drawable.thumb_skrill),
         Slack(R.drawable.thumb_slack),
         Snapchat(R.drawable.thumb_snapchat),
+        SOGo(R.drawable.thumb_sogo),
         Sophos(R.drawable.thumb_sophos),
         SourceForge(R.drawable.thumb_sourceforge),
         Squarespace(R.drawable.thumb_squarespace),
