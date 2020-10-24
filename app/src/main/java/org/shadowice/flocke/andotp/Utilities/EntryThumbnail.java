@@ -341,6 +341,7 @@ public class EntryThumbnail {
         WebDe(R.drawable.thumb_web_de),
         Weclapp(R.drawable.thumb_weclapp),
         Wikimedia(R.drawable.thumb_wikimedia),
+        Wildduck(R.drawable.thumb_wildduck),
         Wordfence(R.drawable.thumb_wordfence),
         Wordpress(R.drawable.thumb_wordpress),
         Workplace(R.drawable.thumb_workplace),
