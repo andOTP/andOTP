@@ -158,6 +158,7 @@ public class EntryThumbnail {
         FACEIT(R.drawable.thumb_faceit),
         Fanatical(R.drawable.thumb_fanatical),
         Fastmail(R.drawable.thumb_fastmail),
+        FidelityInvestments(R.drawable.thumb_fidelity_investments),
         Figma(R.drawable.thumb_figma),
         Fingerprint(R.drawable.thumb_fingerprint),
         Finnair(R.drawable.thumb_finnair),
