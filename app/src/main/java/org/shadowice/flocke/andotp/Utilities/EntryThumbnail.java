@@ -315,6 +315,7 @@ public class EntryThumbnail {
         TeaHub(R.drawable.thumb_teahub),
         TeamViewer(R.drawable.thumb_teamviewer),
         Terminal(R.drawable.thumb_terminal),
+        TeslaMotors(R.drawable.thumb_tesla_motors),
         TMobile(R.drawable.thumb_t_mobile),
         TransIP(R.drawable.thumb_transip),
         Trello(R.drawable.thumb_trello),
