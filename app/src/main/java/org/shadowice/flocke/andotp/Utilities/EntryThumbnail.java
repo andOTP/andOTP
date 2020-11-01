@@ -23,6 +23,8 @@
 
 package org.shadowice.flocke.andotp.Utilities;
 
+import java.util.regex.Pattern;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -377,6 +379,15 @@ public class EntryThumbnail {
         public static EntryThumbnails valueOfIgnoreCase(String thumbnail) {
             for (EntryThumbnails entryThumbnails : values())
                 if (entryThumbnails.name().equalsIgnoreCase(thumbnail)) return entryThumbnails;
+            throw new IllegalArgumentException();
+        }
+
+        public static EntryThumbnails valueOfFuzzy(String thumbnail) {
+            for (EntryThumbnails entryThumbnails : values()) {
+                Pattern re = Pattern.compile("\\b" + Pattern.quote(entryThumbnails.name()) + "\\b", Pattern.CASE_INSENSITIVE);
+                if (re.matcher(thumbnail).find())
+	                return entryThumbnails;
+            }
             throw new IllegalArgumentException();
         }
 

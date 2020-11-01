@@ -493,7 +493,11 @@ public class Entry {
         try {
             this.thumbnail = EntryThumbnail.EntryThumbnails.valueOfIgnoreCase(issuer);
         } catch(Exception e) {
-            this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
+            try {
+                this.thumbnail = EntryThumbnail.EntryThumbnails.valueOfFuzzy(issuer);
+            } catch(Exception e2) {
+                this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
+            }
         }
     }
 
