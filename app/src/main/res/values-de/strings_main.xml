@@ -45,6 +45,8 @@
     <string name="menu_popup_change_image">Bild ändern</string>
     <string name="menu_popup_remove">Entfernen</string>
     <string name="menu_popup_show_qr_code">Zeige QR-Code</string>
+    <string name="menu_send_keystrokes">Als Keystrokes teilen</string>
+
     <!-- Buttons -->
     <string name="button_card_options">Weitere Optionen</string>
     <string name="button_card_options_format">Weitere Optionen für %1$s</string>

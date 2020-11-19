@@ -61,7 +61,7 @@ public class Constants {
     }
 
     public enum TapMode {
-        NOTHING, REVEAL, COPY, COPY_BACKGROUND
+        NOTHING, REVEAL, COPY, COPY_BACKGROUND, SEND_KEYSTROKES
     }
 
     public enum LabelDisplay {

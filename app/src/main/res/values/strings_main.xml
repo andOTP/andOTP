@@ -62,6 +62,7 @@
     <string name="menu_popup_remove">Remove</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
     <string name="menu_popup_establish_pin">Enter pin</string>
+    <string name="menu_send_keystrokes">Share as Keystrokes</string>
 
     <!-- Buttons -->
     <string name="button_card_options">More options</string>

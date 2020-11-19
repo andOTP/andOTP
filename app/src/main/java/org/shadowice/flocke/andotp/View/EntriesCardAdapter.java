@@ -26,6 +26,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -319,6 +320,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                         establishPinIfNeeded(position);
                         copyHandler(position, text, true);
                         break;
+                    case SEND_KEYSTROKES:
+                        establishPinIfNeeded(position);
+                        sendKeystrokes(position);
+                        break;
                     default:
                         // If tap-to-reveal is disabled a single tab still needs to establish the PIN
                         if (!settings.getTapToReveal())
@@ -341,6 +346,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                     case COPY_BACKGROUND:
                         establishPinIfNeeded(position);
                         copyHandler(position, text, true);
+                        break;
+                    case SEND_KEYSTROKES:
+                        establishPinIfNeeded(position);
+                        sendKeystrokes(position);
                         break;
                     default:
                         break;
@@ -671,6 +680,19 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 .show();
     }
 
+    // sends the current OTP code via a "Send Action" with the MIME type "text/x-keystrokes"
+    // other apps (eg. https://github.com/KDE/kdeconnect-android ) can listen for this and handle
+    // the current code on their own (eg. sending it to a connected device/browser/...)
+    private void sendKeystrokes(final int pos) {
+        String otp = displayedEntries.get(pos).getCurrentOTP();
+        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+        sendIntent.setType("text/x-keystrokes");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, otp);
+        if (sendIntent.resolveActivity(this.context.getPackageManager()) != null) {
+            this.context.startActivity(sendIntent);
+        }
+    }
+
     private void showQRCode(final int pos) {
         Uri uri = displayedEntries.get(pos).toUri();
         if (uri != null) {
@@ -728,6 +750,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 return true;
             } else if (id == R.id.menu_popup_show_qr_code) {
                 showQRCode(pos);
+                return true;
+            } else if (id == R.id.menu_send_keystrokes) {
+                sendKeystrokes(pos);
                 return true;
             } else {
                 return false;

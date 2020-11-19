@@ -133,6 +133,7 @@
         <item>reveal</item>
         <item>copy</item>
         <item>copy_background</item>
+        <item>send_keystrokes</item>
     </string-array>
 
     <string-array name="settings_values_search_includes" translatable="false">

@@ -205,6 +205,7 @@
         <item>Reveal/Hide</item>
         <item>Copy</item>
         <item>Copy and go to background</item>
+        <item>Share as Keystrokes</item>
     </string-array>
 
     <string-array name="settings_entries_search_includes">

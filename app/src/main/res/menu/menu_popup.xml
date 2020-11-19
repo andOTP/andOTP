@@ -22,4 +22,8 @@
         android:id="@+id/menu_popup_remove"
         android:title="@string/menu_popup_remove" />
 
+    <item
+        android:id="@+id/menu_send_keystrokes"
+        android:title="@string/menu_send_keystrokes" />
+
 </menu>
