@@ -60,7 +60,7 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 
 public class CredentialsPreference extends DialogPreference
-    implements AdapterView.OnItemClickListener, View.OnClickListener, TextWatcher {
+        implements AdapterView.OnItemClickListener, View.OnClickListener, TextWatcher {
     public static final AuthMethod DEFAULT_VALUE = AuthMethod.NONE;
 
     public interface EncryptionChangeCallback {
@@ -121,7 +121,7 @@ public class CredentialsPreference extends DialogPreference
 
         int index = entryValues.indexOf(value);
         listView.setSelection(index);
-        listView.setItemChecked(index,true);
+        listView.setItemChecked(index, true);
         listView.setOnItemClickListener(this);
 
         credentialsLayout = view.findViewById(R.id.credentialsLayout);
@@ -172,17 +172,15 @@ public class CredentialsPreference extends DialogPreference
     private void saveValues() {
         byte[] newKey = null;
 
-        if (settings.getEncryption() == EncryptionType.PASSWORD) {
-            if (value == AuthMethod.NONE || value == AuthMethod.DEVICE) {
-                UIHelper.showGenericDialog(getContext(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_auth_invalid_with_encryption);
-                return;
-            }
+        if (settings.getEncryption() == EncryptionType.PASSWORD && value == AuthMethod.NONE || value == AuthMethod.DEVICE) {
+            UIHelper.showGenericDialog(getContext(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_auth_invalid_with_encryption);
+            return;
         }
 
         if (value == AuthMethod.DEVICE) {
             KeyguardManager km = (KeyguardManager) getContext().getSystemService(KEYGUARD_SERVICE);
 
-            if (! km.isKeyguardSecure()) {
+            if (!km.isKeyguardSecure()) {
                 Toast.makeText(getContext(), R.string.settings_toast_auth_device_not_secure, Toast.LENGTH_LONG).show();
                 return;
             }
@@ -201,7 +199,7 @@ public class CredentialsPreference extends DialogPreference
             if (newKey == null || encryptionChangeCallback == null)
                 return;
 
-            if (! encryptionChangeCallback.testEncryptionChange(newKey))
+            if (!encryptionChangeCallback.testEncryptionChange(newKey))
                 return;
         }
 
@@ -305,10 +303,12 @@ public class CredentialsPreference extends DialogPreference
 
     // Needed stub functions
     @Override
-    public void afterTextChanged(Editable s) {}
+    public void afterTextChanged(Editable s) {
+    }
 
     @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    }
 
 
 }

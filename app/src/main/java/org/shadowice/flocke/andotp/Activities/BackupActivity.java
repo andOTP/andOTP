@@ -543,11 +543,9 @@ public class BackupActivity extends BaseActivity {
             if (requestCode == Constants.INTENT_BACKUP_ENCRYPT_PGP) {
                 if (os != null)
                     doBackupEncrypted(file, outputStreamToString(os));
-            } else if (requestCode == Constants.INTENT_BACKUP_DECRYPT_PGP) {
-                if (os != null) {
-                    if (settings.getOpenPGPVerify()) {
-                        OpenPgpSignatureResult sigResult = result.getParcelableExtra(OpenPgpApi.RESULT_SIGNATURE);
-
+            } else if (requestCode == Constants.INTENT_BACKUP_DECRYPT_PGP && os != null) {
+                if (settings.getOpenPGPVerify()) {
+                    OpenPgpSignatureResult sigResult = result.getParcelableExtra(OpenPgpApi.RESULT_SIGNATURE);
                         if (sigResult.getResult() == OpenPgpSignatureResult.RESULT_VALID_KEY_CONFIRMED) {
                             restoreEntries(outputStreamToString(os));
                         } else {
@@ -556,7 +554,6 @@ public class BackupActivity extends BaseActivity {
                     } else {
                         restoreEntries(outputStreamToString(os));
                     }
-                }
             }
         } else if (result.getIntExtra(OpenPgpApi.RESULT_CODE, OpenPgpApi.RESULT_CODE_ERROR) == OpenPgpApi.RESULT_CODE_USER_INTERACTION_REQUIRED) {
             PendingIntent pi = result.getParcelableExtra(OpenPgpApi.RESULT_INTENT);
