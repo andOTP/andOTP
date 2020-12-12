@@ -294,6 +294,7 @@ public class EntryThumbnail {
         RSS(R.drawable.thumb_rss),
         Samsung(R.drawable.thumb_samsung),
         SAP(R.drawable.thumb_sap),
+        Saxobank(R.drawable.thumb_saxobank),
         Scaleway(R.drawable.thumb_scaleway),
         School(R.drawable.thumb_school),
         Sciebo(R.drawable.thumb_sciebo),
