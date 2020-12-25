@@ -188,6 +188,12 @@
             android:summary="@string/settings_desc_show_individual_timeouts"
             android:defaultValue="false" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_focus_search_on_start"
+            android:title="@string/settings_title_focus_search_on_start"
+            android:summary="@string/settings_desc_focus_search_on_start"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -576,6 +576,10 @@ public class Settings {
         return getBoolean(R.string.settings_key_show_individual_timeouts, false);
     }
 
+    public boolean isFocusSearchOnStartEnabled() {
+        return getBoolean(R.string.settings_key_focus_search_on_start, false);
+    }
+
     public Constants.TapMode getTapSingle() {
         String singleTap = getString(R.string.settings_key_tap_single, R.string.settings_default_tap_single);
         return Constants.TapMode.valueOf(singleTap.toUpperCase(Locale.ENGLISH));

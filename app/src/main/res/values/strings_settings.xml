@@ -37,6 +37,7 @@
     <string name="settings_title_label_highlight_token">Highlight expiring tokens</string>
     <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
     <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
+    <string name="settings_title_focus_search_on_start">Focus search on app start</string>
 
     <string name="settings_title_backup_append_date">Append date to filename</string>
     <string name="settings_title_backup_ask">Ask for filename</string>
@@ -83,6 +84,7 @@
     <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
     <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
         This can slow down the app, only enable if really necessary.</string>
+    <string name="settings_desc_focus_search_on_start">Focus the search immediately after opening the app.</string>
 
     <string name="settings_desc_backup_append_date">Append the current date and time to the suggested
         backup filename</string>
