@@ -131,6 +131,7 @@ public class EntryThumbnail {
         ComputerBase(R.drawable.thumb_computerbase),
         ConnectWiseManage(R.drawable.thumb_connectwise_manage),
         CozyCloud(R.drawable.thumb_cozycloud),
+        CrowdSupply(R.drawable.thumb_crowd_supply),
         Crowdin(R.drawable.thumb_crowdin),
         Cyon(R.drawable.thumb_cyon),
         Dashlane(R.drawable.thumb_dashlane),
