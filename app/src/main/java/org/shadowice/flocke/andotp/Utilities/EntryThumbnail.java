@@ -249,6 +249,7 @@ public class EntryThumbnail {
         NAS(R.drawable.thumb_nas),
         netcup(R.drawable.thumb_netcup),
         NextCloud(R.drawable.thumb_nextcloud),
+        NextDNS(R.drawable.thumb_nextdns),
         Nintendo(R.drawable.thumb_nintendo),
         NoStarchPress(R.drawable.thumb_no_starch_press),
         NOYB(R.drawable.thumb_noyb),
