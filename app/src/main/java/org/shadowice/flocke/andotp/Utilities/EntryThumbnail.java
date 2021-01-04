@@ -207,6 +207,7 @@ public class EntryThumbnail {
         Joomla(R.drawable.thumb_joomla),
         KDE(R.drawable.thumb_kde),
         Keeper(R.drawable.thumb_keeper),
+        Keycloak(R.drawable.thumb_keycloak),
         Kickstarter(R.drawable.thumb_kickstarter),
         Kraken(R.drawable.thumb_kraken),
         Kucoin(R.drawable.thumb_kucoin),
