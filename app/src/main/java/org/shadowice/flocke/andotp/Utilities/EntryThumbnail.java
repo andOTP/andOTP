@@ -87,6 +87,7 @@ public class EntryThumbnail {
         AngelList(R.drawable.thumb_angellist),
         AnimeBytes(R.drawable.thumb_animebytes),
         Anonaddy(R.drawable.thumb_anonaddy),
+        AnyDesk(R.drawable.thumb_anydesk),
         Apache(R.drawable.thumb_apache),
         Apple(R.drawable.thumb_apple),
         Appveyor(R.drawable.thumb_appveyor),
