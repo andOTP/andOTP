@@ -240,6 +240,7 @@ public class EntryThumbnail {
         Mediawiki(R.mipmap.thumb_mediawiki, AssetType.Bitmap),
         Mega(R.drawable.thumb_mega),
         MercadoLibre(R.drawable.thumb_mercadolibre),
+        Mercury(R.drawable.thumb_mercury),
         Microsoft(R.drawable.thumb_microsoft),
         MicrosoftTeams(R.drawable.thumb_microsoft_teams),
         Migadu(R.drawable.thumb_migadu),
