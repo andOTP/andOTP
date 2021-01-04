@@ -225,6 +225,7 @@ public class EntryThumbnail {
         LoginGov(R.drawable.thumb_login_gov),
         LogMeIn(R.drawable.thumb_logmein),
         LuaDNS(R.drawable.thumb_luadns),
+        MailDE(R.drawable.thumb_mail_de),
         Mailbox(R.drawable.thumb_mailbox),
         Mailchimp(R.drawable.thumb_mailchimp),
         Mailcow(R.drawable.thumb_mailcow),
