@@ -232,6 +232,7 @@ public class EntryThumbnail {
         Mailgun(R.drawable.thumb_mailgun),
         Mailru(R.drawable.thumb_mailru),
         Malwaretips(R.drawable.thumb_malwaretips),
+        Mangadex(R.drawable.thumb_mangadex),
         Mapbox(R.drawable.thumb_mapbox),
         Mastodon(R.drawable.thumb_mastodon),
         Matomo(R.drawable.thumb_matomo),
