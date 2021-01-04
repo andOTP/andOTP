@@ -179,6 +179,7 @@ public class EntryThumbnail {
         GitHub(R.drawable.thumb_github),
         GitLab(R.drawable.thumb_gitlab),
         GMX(R.drawable.thumb_gmx),
+        GoatCounter(R.drawable.thumb_goatcounter),
         GoDaddy(R.drawable.thumb_godaddy),
         Gogs(R.drawable.thumb_gogs),
         Google(R.drawable.thumb_google),
