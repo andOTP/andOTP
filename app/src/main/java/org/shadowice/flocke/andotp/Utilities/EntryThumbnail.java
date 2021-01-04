@@ -197,6 +197,7 @@ public class EntryThumbnail {
         IBM(R.drawable.thumb_ibm),
         Iconomi(R.drawable.thumb_iconomi),
         IFTTT(R.drawable.thumb_ifttt),
+        ImmoScout24(R.drawable.thumb_immo_scout24),
         Infomaniak(R.drawable.thumb_infomaniak),
         Instagram(R.drawable.thumb_instagram),
         INWX(R.drawable.thumb_inwx),
