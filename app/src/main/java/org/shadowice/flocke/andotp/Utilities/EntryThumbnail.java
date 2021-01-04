@@ -253,6 +253,7 @@ public class EntryThumbnail {
         NameCom(R.drawable.thumb_namecom),
         NAS(R.drawable.thumb_nas),
         netcup(R.drawable.thumb_netcup),
+        netlify(R.drawable.thumb_netlify),
         NextCloud(R.drawable.thumb_nextcloud),
         NextDNS(R.drawable.thumb_nextdns),
         Nintendo(R.drawable.thumb_nintendo),
