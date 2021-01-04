@@ -277,6 +277,7 @@ public class EntryThumbnail {
         PeeringDB(R.drawable.thumb_peeringdb),
         Phabricator(R.drawable.thumb_phabricator),
         phpMyAdmin(R.drawable.thumb_phpmyadmin),
+        PlayStation(R.drawable.thumb_playstation),
         Plex(R.drawable.thumb_plex),
         Pluralsight(R.drawable.thumb_pluralsight),
         Plurk(R.drawable.thumb_plurk),
