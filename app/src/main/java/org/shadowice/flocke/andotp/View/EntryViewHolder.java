@@ -27,8 +27,7 @@ import android.content.Context;
 import android.graphics.ColorFilter;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
