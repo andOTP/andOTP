@@ -344,12 +344,16 @@ public class Settings {
 
         int theme = R.style.AppTheme_NoActionBar;
 
-        if (themeName.equals("light")) {
-            theme = R.style.AppTheme_NoActionBar;
-        } else if (themeName.equals("dark")) {
-            theme = R.style.AppTheme_Dark_NoActionBar;
-        } else if (themeName.equals("black")) {
-            theme = R.style.AppTheme_Black_NoActionBar;
+        switch (themeName) {
+            case "light":
+                theme = R.style.AppTheme_NoActionBar;
+                break;
+            case "dark":
+                theme = R.style.AppTheme_Dark_NoActionBar;
+                break;
+            case "black":
+                theme = R.style.AppTheme_Black_NoActionBar;
+                break;
         }
 
         return theme;

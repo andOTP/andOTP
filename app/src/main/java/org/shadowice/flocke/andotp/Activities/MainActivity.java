@@ -321,22 +321,27 @@ public class MainActivity extends BaseActivity
             String intentAction = callingIntent.getAction();
             callingIntent.setAction(null);
 
-            if (intentAction.equals(INTENT_SCAN_QR)) {
-                scanQRCode();
-            } else if (intentAction.equals(INTENT_IMPORT_QR)) {
-                showOpenFileSelector(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
-            } else if (intentAction.equals(INTENT_ENTER_DETAILS)) {
-                ManualEntryDialog.show(MainActivity.this, settings, adapter);
-            } else if (intentAction.equals(Intent.ACTION_VIEW)) {
-                try {
-                    Entry entry = new Entry(callingIntent.getDataString());
-                    entry.updateOTP();
-                    entry.setLastUsed(System.currentTimeMillis());
-                    adapter.addEntry(entry);
-                    Toast.makeText(this, R.string.toast_intent_creation_succeeded, Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
-                    Toast.makeText(this, R.string.toast_intent_creation_failed, Toast.LENGTH_LONG).show();
-                }
+            switch (intentAction) {
+                case INTENT_SCAN_QR:
+                    scanQRCode();
+                    break;
+                case INTENT_IMPORT_QR:
+                    showOpenFileSelector(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
+                    break;
+                case INTENT_ENTER_DETAILS:
+                    ManualEntryDialog.show(MainActivity.this, settings, adapter);
+                    break;
+                case Intent.ACTION_VIEW:
+                    try {
+                        Entry entry = new Entry(callingIntent.getDataString());
+                        entry.updateOTP();
+                        entry.setLastUsed(System.currentTimeMillis());
+                        adapter.addEntry(entry);
+                        Toast.makeText(this, R.string.toast_intent_creation_succeeded, Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText(this, R.string.toast_intent_creation_failed, Toast.LENGTH_LONG).show();
+                    }
+                    break;
             }
         }
     }
