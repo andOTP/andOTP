@@ -46,10 +46,11 @@
 
             <EditText
                 android:id="@+id/manual_issuer"
-                android:layout_weight="7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/label_issuer"/>
+                android:layout_weight="7"
+                android:hint="@string/label_issuer"
+                android:inputType="text" />
 
         </LinearLayout>
 
@@ -67,10 +68,11 @@
 
             <EditText
                 android:id="@+id/manual_label"
-                android:layout_weight="7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_label"/>
+                android:layout_weight="7"
+                android:hint="@string/hint_label"
+                android:inputType="text" />
 
         </LinearLayout>
 
