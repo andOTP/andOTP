@@ -99,6 +99,7 @@ public class Tools {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return Resources.getSystem().getConfiguration().getLocales().get(0);
         } else {
+            // TODO: Delete when minSdkVersion > API level 24.
             return Resources.getSystem().getConfiguration().locale;
         }
     }
