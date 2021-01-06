@@ -486,16 +486,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
     private boolean updateLastUsedAndFrequency(int position, int realIndex) {
         long timeStamp = System.currentTimeMillis();
-        long entryUsedFrequency = entries.get(realIndex).getUsedFrequency();
 
         if (position >= 0) {
-            long displayEntryUsedFrequency = displayedEntries.get(position).getUsedFrequency();
             displayedEntries.get(position).setLastUsed(timeStamp);
-            displayedEntries.get(position).setUsedFrequency(displayEntryUsedFrequency + 1);
+            displayedEntries.get(position).setUsedFrequency(displayedEntries.get(position).getUsedFrequency() + 1);
         }
 
         entries.get(realIndex).setLastUsed(timeStamp);
-        entries.get(realIndex).setUsedFrequency(entryUsedFrequency + 1);
+        entries.get(realIndex).setUsedFrequency(entries.get(realIndex).getUsedFrequency() + 1);
         saveEntries(false);
 
         if (sortMode == SortMode.LAST_USED) {
