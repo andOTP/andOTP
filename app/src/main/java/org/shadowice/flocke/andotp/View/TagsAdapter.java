@@ -24,12 +24,13 @@
 package org.shadowice.flocke.andotp.View;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
+
+import androidx.annotation.NonNull;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Utilities.Settings;
@@ -105,7 +106,7 @@ public class TagsAdapter extends ArrayAdapter<String> {
     }
 
     public HashMap<String, Boolean> getTagsWithState() {
-        return new HashMap<String, Boolean>(tagsState);
+        return new HashMap<>(tagsState);
     }
 
     public void setTags(HashMap<String, Boolean> tags) {

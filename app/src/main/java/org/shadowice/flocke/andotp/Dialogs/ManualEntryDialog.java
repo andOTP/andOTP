@@ -23,8 +23,6 @@
 package org.shadowice.flocke.andotp.Dialogs;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import androidx.appcompat.app.AppCompatDelegate;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -37,6 +35,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
@@ -135,33 +135,25 @@ public class ManualEntryDialog {
 
         List<String> allTags = adapter.getTags();
         HashMap<String, Boolean> tagsHashMap = new HashMap<>();
-        for(String tag: allTags) {
+        for (String tag : allTags) {
             tagsHashMap.put(tag, false);
         }
         final TagsAdapter tagsAdapter = new TagsAdapter(callingActivity, tagsHashMap);
 
-        final Callable tagsCallable = new Callable() {
-            @Override
-            public Object call() throws Exception {
-                List<String> selectedTags = tagsAdapter.getActiveTags();
-                StringBuilder stringBuilder = new StringBuilder();
-                for(int j = 0; j < selectedTags.size(); j++) {
-                    stringBuilder.append(selectedTags.get(j));
-                    if(j < selectedTags.size() - 1) {
-                        stringBuilder.append(", ");
-                    }
+        final Callable<?> tagsCallable = () -> {
+            List<String> selectedTags = tagsAdapter.getActiveTags();
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int j = 0; j < selectedTags.size(); j++) {
+                stringBuilder.append(selectedTags.get(j));
+                if (j < selectedTags.size() - 1) {
+                    stringBuilder.append(", ");
                 }
-                tagsInput.setText(stringBuilder.toString());
-                return null;
             }
+            tagsInput.setText(stringBuilder.toString());
+            return null;
         };
 
-        tagsInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TagsDialog.show(callingActivity, tagsAdapter, tagsCallable, tagsCallable);
-            }
-        });
+        tagsInput.setOnClickListener(view -> TagsDialog.show(callingActivity, tagsAdapter, tagsCallable, tagsCallable));
 
         final Button expandButton = inputView.findViewById(R.id.dialog_expand_button);
 
@@ -170,12 +162,7 @@ public class ManualEntryDialog {
 
         final ExpandableLinearLayout expandLayout = inputView.findViewById(R.id.dialog_expand_layout);
 
-        expandButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                expandLayout.toggle();
-            }
-        });
+        expandButton.setOnClickListener(view -> expandLayout.toggle());
 
         expandLayout.setListener(new ExpandableLayoutListenerAdapter() {
             @Override
@@ -195,9 +182,7 @@ public class ManualEntryDialog {
         builder.setTitle(R.string.dialog_title_manual_entry)
                 .setView(inputView)
                 .setPositiveButton(R.string.button_save, null)
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
+                .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> {
                 });
 
         AlertDialog dialog = builder.create();
@@ -205,62 +190,59 @@ public class ManualEntryDialog {
 
         final Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
 
-        positiveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Replace spaces with empty characters
-                String secret = secretInput.getText().toString().replaceAll("\\s+","");
+        positiveButton.setOnClickListener(view -> {
+            //Replace spaces with empty characters
+            String secret = secretInput.getText().toString().replaceAll("\\s+", "");
 
-                if (!Entry.validateSecret(secret)) {
-                    secretInput.setError(callingActivity.getString(R.string.error_invalid_secret));
-                    return;
-                }
-
-                Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
-                TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
-                int digits = Integer.parseInt(digitsInput.getText().toString());
-
-                String issuer = issuerInput.getText().toString();
-                String label = labelInput.getText().toString();
-
-                if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
-                    int period = Integer.parseInt(periodInput.getText().toString());
-
-                    if (oldEntry == null) {
-                        Entry e = new Entry(type, secret, period, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
-                        e.updateOTP();
-                        e.setLastUsed(System.currentTimeMillis());
-
-                        adapter.addEntry(e);
-                    } else {
-                        oldEntry.setIssuer(issuer);
-                        oldEntry.setLabel(label);
-                        oldEntry.setTags(tagsAdapter.getActiveTags());
-
-                        adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
-                    }
-
-                    callingActivity.refreshTags();
-                } else if (type == Entry.OTPType.HOTP) {
-                    long counter = Long.parseLong(counterInput.getText().toString());
-
-                    if (oldEntry == null) {
-                        Entry e = new Entry(type, secret, counter, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
-                        e.updateOTP();
-                        e.setLastUsed(System.currentTimeMillis());
-
-                        adapter.addEntry(e);
-                    } else {
-                        oldEntry.setIssuer(issuer);
-                        oldEntry.setLabel(label);
-                        oldEntry.setTags(tagsAdapter.getActiveTags());
-
-                        adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
-                    }
-                }
-
-                dialog.dismiss();
+            if (!Entry.validateSecret(secret)) {
+                secretInput.setError(callingActivity.getString(R.string.error_invalid_secret));
+                return;
             }
+
+            Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
+            TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
+            int digits = Integer.parseInt(digitsInput.getText().toString());
+
+            String issuer = issuerInput.getText().toString();
+            String label = labelInput.getText().toString();
+
+            if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
+                int period = Integer.parseInt(periodInput.getText().toString());
+
+                if (oldEntry == null) {
+                    Entry e = new Entry(type, secret, period, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
+                    e.updateOTP();
+                    e.setLastUsed(System.currentTimeMillis());
+
+                    adapter.addEntry(e);
+                } else {
+                    oldEntry.setIssuer(issuer);
+                    oldEntry.setLabel(label);
+                    oldEntry.setTags(tagsAdapter.getActiveTags());
+
+                    adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
+                }
+
+                callingActivity.refreshTags();
+            } else if (type == Entry.OTPType.HOTP) {
+                long counter = Long.parseLong(counterInput.getText().toString());
+
+                if (oldEntry == null) {
+                    Entry e = new Entry(type, secret, counter, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
+                    e.updateOTP();
+                    e.setLastUsed(System.currentTimeMillis());
+
+                    adapter.addEntry(e);
+                } else {
+                    oldEntry.setIssuer(issuer);
+                    oldEntry.setLabel(label);
+                    oldEntry.setTags(tagsAdapter.getActiveTags());
+
+                    adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
+                }
+            }
+
+            dialog.dismiss();
         });
 
         positiveButton.setEnabled(false);

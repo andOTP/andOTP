@@ -4,15 +4,12 @@ import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.ColorFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Settings;
@@ -76,35 +76,32 @@ public class BaseAboutFragment extends Fragment {
 
         LinearLayout versionLayout = v.findViewById(R.id.about_layout_version);
 
-        versionLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                long thisTap = System.currentTimeMillis();
+        versionLayout.setOnClickListener(view -> {
+            long thisTap = System.currentTimeMillis();
 
-                if (thisTap - lastTap < 500) {
-                    taps = taps + 1;
+            if (thisTap - lastTap < 500) {
+                taps = taps + 1;
 
-                    if (currentToast != null && taps <= 7)
-                        currentToast.cancel();
+                if (currentToast != null && taps <= 7)
+                    currentToast.cancel();
 
-                    if (taps >= 3 && taps <= 7)
-                        currentToast = Toast.makeText(getActivity(), String.valueOf(taps), Toast.LENGTH_SHORT);
+                if (taps >= 3 && taps <= 7)
+                    currentToast = Toast.makeText(getActivity(), String.valueOf(taps), Toast.LENGTH_SHORT);
 
-                    if (taps == 7) {
-                        if (settings.getSpecialFeatures())
-                            currentToast = Toast.makeText(getActivity(), R.string.about_toast_special_features_enabled, Toast.LENGTH_LONG);
-                        else
-                            enableSpecialFeatures();
-                    }
-
-                    if (currentToast != null)
-                        currentToast.show();
-                } else {
-                    taps = 0;
+                if (taps == 7) {
+                    if (settings.getSpecialFeatures())
+                        currentToast = Toast.makeText(getActivity(), R.string.about_toast_special_features_enabled, Toast.LENGTH_LONG);
+                    else
+                        enableSpecialFeatures();
                 }
 
-                lastTap = thisTap;
+                if (currentToast != null)
+                    currentToast.show();
+            } else {
+                taps = 0;
             }
+
+            lastTap = thisTap;
         });
 
         TextView version = v.findViewById(R.id.about_text_version);
@@ -115,76 +112,33 @@ public class BaseAboutFragment extends Fragment {
         LinearLayout source = v.findViewById(R.id.about_layout_source);
         LinearLayout faq = v.findViewById(R.id.about_layout_faq);
 
-        license.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(MIT_URI);
-            }
-        });
-        changelog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(CHANGELOG_URI);
-            }
-        });
-        source.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(GITHUB_URI);
-            }
-        });
+        license.setOnClickListener(view -> openURI(MIT_URI));
+        changelog.setOnClickListener(view -> openURI(CHANGELOG_URI));
+        source.setOnClickListener(view -> openURI(GITHUB_URI));
         faq.setOnClickListener((View view) -> openURI(FAQ_URI));
 
         LinearLayout author1Layout = v.findViewById(R.id.aboutLayoutAuthor1);
-        author1Layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(AUTHOR1_GITHUB);
-            }
-        });
+        author1Layout.setOnClickListener(view -> openURI(AUTHOR1_GITHUB));
 
         LinearLayout author2Layout = v.findViewById(R.id.aboutLayoutAuthor2);
-        author2Layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(AUTHOR2_GITHUB);
-            }
-        });
+        author2Layout.setOnClickListener(view -> openURI(AUTHOR2_GITHUB));
 
-        LinearLayout authorOrigialLayout = v.findViewById(R.id.aboutLayoutOriginalAuthor);
+        LinearLayout authorOriginalLayout = v.findViewById(R.id.aboutLayoutOriginalAuthor);
         TextView authorOriginalApp = v.findViewById(R.id.about_author_original_extra);
-        authorOrigialLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(AUTHOR_ORIGINAL_GITHUB);
-            }
-        });
-        authorOriginalApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    openURI(AUTHOR_ORIGINAL_EXTRA);
-                } catch(Exception ignored) {
-                    copyToClipboard(AUTHOR_ORIGINAL_EXTRA);
-                }
+        authorOriginalLayout.setOnClickListener(view -> openURI(AUTHOR_ORIGINAL_GITHUB));
+        authorOriginalApp.setOnClickListener(view -> {
+            try {
+                openURI(AUTHOR_ORIGINAL_EXTRA);
+            } catch (Exception ignored) {
+                copyToClipboard(AUTHOR_ORIGINAL_EXTRA);
             }
         });
 
         LinearLayout contributors = v.findViewById(R.id.about_layout_contributors);
-        contributors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(CONTRIBUTORS_URI);
-            }
-        });
+        contributors.setOnClickListener(view -> openURI(CONTRIBUTORS_URI));
 
         LinearLayout supportLayout = v.findViewById(R.id.about_layout_support);
-        supportLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openURI(SUPPORT_URI);
-            }
-        });
+        supportLayout.setOnClickListener(view -> openURI(SUPPORT_URI));
 
         return v;
     }
@@ -193,16 +147,11 @@ public class BaseAboutFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.about_title_special_features)
                 .setMessage(R.string.about_dialog_special_features)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        settings.setSpecialFeatures(true);
-                        Toast.makeText(getActivity(), R.string.about_toast_special_features, Toast.LENGTH_LONG).show();
-                    }
+                .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
+                    settings.setSpecialFeatures(true);
+                    Toast.makeText(getActivity(), R.string.about_toast_special_features, Toast.LENGTH_LONG).show();
                 })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
+                .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> {
                 })
                 .create()
                 .show();

@@ -43,12 +43,9 @@ public abstract class SimpleDoubleClickListener implements View.OnClickListener 
         } else {
             firstTap = true;
 
-            v.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (firstTap)
-                        onSingleClick(v);
-                }
+            v.postDelayed(() -> {
+                if (firstTap)
+                    onSingleClick(v);
             }, DOUBLE_CLICK_TIME_DELTA);
         }
 

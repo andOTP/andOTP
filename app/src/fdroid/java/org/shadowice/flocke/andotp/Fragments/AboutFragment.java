@@ -24,25 +24,19 @@ public class AboutFragment extends BaseAboutFragment {
         View extra1 = inflater.inflate(R.layout.part_author_extra, null);
         View extra2 = inflater.inflate(R.layout.part_author_extra, null);
 
-        extra1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    openURI(ABOUT_AUTHOR1_EXTRA_LINK);
-                } catch (Exception ignored) {
-                    copyToClipboard(ABOUT_AUTHOR1_EXTRA_LINK);
-                }
+        extra1.setOnClickListener(view -> {
+            try {
+                openURI(ABOUT_AUTHOR1_EXTRA_LINK);
+            } catch (Exception ignored) {
+                copyToClipboard(ABOUT_AUTHOR1_EXTRA_LINK);
             }
         });
 
-        extra2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    openURI(ABOUT_AUTHOR2_EXTRA_LINK);
-                } catch (Exception ignored) {
-                    copyToClipboard(ABOUT_AUTHOR2_EXTRA_LINK);
-                }
+        extra2.setOnClickListener(view -> {
+            try {
+                openURI(ABOUT_AUTHOR2_EXTRA_LINK);
+            } catch (Exception ignored) {
+                copyToClipboard(ABOUT_AUTHOR2_EXTRA_LINK);
             }
         });
 

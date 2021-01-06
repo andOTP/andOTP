@@ -24,7 +24,6 @@ package org.shadowice.flocke.andotp.Utilities;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -37,12 +36,9 @@ public class UIHelper {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(titleId)
                 .setMessage(messageId)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if(onOk != null)
-                            onOk.run();
-                    }
+                .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
+                    if (onOk != null)
+                        onOk.run();
                 })
                 .create()
                 .show();

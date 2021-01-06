@@ -32,8 +32,7 @@ import java.io.OutputStream;
 
 class FileHelper {
     static byte[] readFileToBytes(File file) throws IOException {
-        final InputStream in = new FileInputStream(file);
-        try {
+        try (InputStream in = new FileInputStream(file)) {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             byte[] buffer = new byte[1024];
             int count;
@@ -41,8 +40,6 @@ class FileHelper {
                 bytes.write(buffer, 0, count);
             }
             return bytes.toByteArray();
-        } finally {
-            in.close();
         }
     }
 

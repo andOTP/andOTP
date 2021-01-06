@@ -65,7 +65,7 @@
     <string name="toast_qr_error">A QR-kód nem található/erősíthető meg</string>
     <string name="toast_qr_checksum_exception">Az ellenőrzőösszeg-ellenőrzés a QR-kód dekódolásakor sikertelen</string>
     <string name="toast_qr_format_error">Formátumhiba a QR-kódban</string>
-    <string name="toast_qr_unsuported">A QR-kód nem támogatott</string>
+    <string name="toast_qr_unsupported">A QR-kód nem támogatott</string>
     <string name="toast_qr_failed_to_generate">A QR-kód előállítása sikertelen</string>
     <!-- Errors -->
     <string name="error_invalid_secret">Érvénytelen titok</string>

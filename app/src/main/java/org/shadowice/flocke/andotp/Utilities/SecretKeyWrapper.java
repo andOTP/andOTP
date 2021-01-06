@@ -19,7 +19,6 @@ package org.shadowice.flocke.andotp.Utilities;
 
 import android.annotation.SuppressLint;
 
-import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.security.KeyPair;
 import java.security.KeyStore;
@@ -47,7 +46,7 @@ public class SecretKeyWrapper {
      */
     @SuppressLint("GetInstance")
     public SecretKeyWrapper(KeyPair keyPair)
-            throws GeneralSecurityException, IOException {
+            throws GeneralSecurityException {
         mCipher = Cipher.getInstance(Constants.ALGORITHM_ASYMMETRIC);
         mPair = keyPair;
     }

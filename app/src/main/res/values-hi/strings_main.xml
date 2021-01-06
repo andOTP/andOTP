@@ -65,7 +65,7 @@
     <string name="toast_qr_error">क्यूआर कोड नहीं मिला / पुष्टि नहीं की जा सकी</string>
     <string name="toast_qr_checksum_exception">क्यूआर कोड को डिकोड करते समय चेकसम सत्यापन विफल हो गया</string>
     <string name="toast_qr_format_error">क्यूआर कोड में प्रारूप त्रुटि</string>
-    <string name="toast_qr_unsuported">QR Code not supported</string>
+    <string name="toast_qr_unsupported">QR Code not supported</string>
     <string name="toast_qr_failed_to_generate">Failed to generate QR Code</string>
     <!-- Errors -->
     <string name="error_invalid_secret">Invalid secret</string>

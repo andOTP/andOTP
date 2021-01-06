@@ -65,7 +65,7 @@
     <string name="toast_qr_error">QR kodu bulunamadı/doğrulanamadı</string>
     <string name="toast_qr_checksum_exception">QR kodu çözülürken sağlama toplamı doğrulaması başarısız oldu</string>
     <string name="toast_qr_format_error">QR kodunda format hatası</string>
-    <string name="toast_qr_unsuported">QR Kodu desteklenmiyor</string>
+    <string name="toast_qr_unsupported">QR Kodu desteklenmiyor</string>
     <string name="toast_qr_failed_to_generate">QR Kodu oluşturulamadı</string>
     <!-- Errors -->
     <string name="error_invalid_secret">Geçersiz gizli anahtar</string>

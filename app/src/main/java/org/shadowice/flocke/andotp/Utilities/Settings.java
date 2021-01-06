@@ -137,7 +137,7 @@ public class Settings {
     }
 
     private Set<String> getStringSet(int keyId, Set<String> defaultValue) {
-        return new HashSet<String>(settings.getStringSet(getResString(keyId), defaultValue));
+        return new HashSet<>(settings.getStringSet(getResString(keyId), defaultValue));
     }
 
     private void setBoolean(int keyId, boolean value) {
@@ -344,12 +344,16 @@ public class Settings {
 
         int theme = R.style.AppTheme_NoActionBar;
 
-        if (themeName.equals("light")) {
-            theme = R.style.AppTheme_NoActionBar;
-        } else if (themeName.equals("dark")) {
-            theme = R.style.AppTheme_Dark_NoActionBar;
-        } else if (themeName.equals("black")) {
-            theme = R.style.AppTheme_Black_NoActionBar;
+        switch (themeName) {
+            case "light":
+                theme = R.style.AppTheme_NoActionBar;
+                break;
+            case "dark":
+                theme = R.style.AppTheme_Dark_NoActionBar;
+                break;
+            case "black":
+                theme = R.style.AppTheme_Black_NoActionBar;
+                break;
         }
 
         return theme;
@@ -475,12 +479,12 @@ public class Settings {
 
     public boolean getTagToggle(String tag) {
         //The tag toggle holds tags that are unchecked in order to default to checked.
-        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<String>());
+        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<>());
         return !toggledTags.contains(tag);
     }
 
     public void setTagToggle(String tag, Boolean value) {
-        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<String>());
+        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<>());
         if(value)
             toggledTags.remove(tag);
         else
@@ -504,7 +508,7 @@ public class Settings {
 
     public int getTokenSplitGroupSize() {
         // the setting is of type "String", because ListPreference does not support integer arrays for its entryValues
-        return  Integer.valueOf(
+        return Integer.parseInt(
                 getString(R.string.settings_key_split_group_size, R.string.settings_default_split_group_size)
         );
     }

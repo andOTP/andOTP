@@ -105,7 +105,7 @@ public class EncryptionHelper {
     }
 
     public static byte[] encrypt(SecretKey secretKey, IvParameterSpec iv, byte[] plainText)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException {
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(Constants.ALGORITHM_SYMMETRIC);
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
 
@@ -127,7 +127,7 @@ public class EncryptionHelper {
     }
 
     public static byte[] encrypt(PublicKey publicKey, byte[] plaintext)
-            throws NoSuchPaddingException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, InvalidAlgorithmParameterException {
+            throws NoSuchPaddingException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(Constants.ALGORITHM_ASYMMETRIC);
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
@@ -151,7 +151,7 @@ public class EncryptionHelper {
     }
 
     public static byte[] decrypt(PrivateKey privateKey, byte[] cipherText)
-            throws NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
+            throws NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException {
         Cipher cipher = Cipher.getInstance(Constants.ALGORITHM_ASYMMETRIC);
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
 

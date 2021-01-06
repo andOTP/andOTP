@@ -24,6 +24,7 @@
 package org.shadowice.flocke.andotp;
 
 import android.content.Context;
+
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.apache.commons.codec.DecoderException;
@@ -114,21 +115,21 @@ public class ApplicationTest {
 
     @Test
     public void testEntry() throws Exception {
-        byte secret[] = "Das System ist sicher".getBytes();
+        byte[] secret = "Das System ist sicher".getBytes();
         String label = "5 von 5 Sterne";
         int period = 30;
 
         String s = "{\"secret\":\"" + new String(new Base32().encode(secret)) + "\"," +
-                    "\"issuer\":\"\"," +
-                    "\"label\":\"" + label + "\"," +
-                    "\"digits\":6," +
-                    "\"type\":\"TOTP\"," +
-                    "\"algorithm\":\"SHA1\"," +
-                    "\"thumbnail\":\"Default\"," +
-                    "\"last_used\":0," +
-                    "\"used_frequency\":0," +
-                    "\"period\":" + Integer.toString(period) + "," +
-                    "\"tags\":[\"test1\",\"test2\"]}";
+                "\"issuer\":\"\"," +
+                "\"label\":\"" + label + "\"," +
+                "\"digits\":6," +
+                "\"type\":\"TOTP\"," +
+                "\"algorithm\":\"SHA1\"," +
+                "\"thumbnail\":\"Default\"," +
+                "\"last_used\":0," +
+                "\"used_frequency\":0," +
+                "\"period\":" + period + "," +
+                "\"tags\":[\"test1\",\"test2\"]}";
 
         Entry e = new Entry(new JSONObject(s));
         assertTrue(Arrays.equals(secret, e.getSecret()));
@@ -136,7 +137,7 @@ public class ApplicationTest {
 
         String[] tags = new String[]{"test1", "test2"};
         assertEquals(tags.length, e.getTags().size());
-        assertTrue(Arrays.equals(tags, e.getTags().toArray(new String[e.getTags().size()])));
+        assertTrue(Arrays.equals(tags, e.getTags().toArray(new String[0])));
 
         assertEquals(s, e.toJSON().toString());
     }
@@ -188,7 +189,7 @@ public class ApplicationTest {
         assertEquals("HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ", new String(new Base32().encode(entry.getSecret())));
         String[] tags = new String[]{"test1", "test2"};
         assertEquals(tags.length, entry.getTags().size());
-        assertTrue(Arrays.equals(tags, entry.getTags().toArray(new String[entry.getTags().size()])));
+        assertTrue(Arrays.equals(tags, entry.getTags().toArray(new String[0])));
     }
 
     @Test

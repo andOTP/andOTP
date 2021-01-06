@@ -65,7 +65,7 @@
     <string name="toast_qr_error">Nelze najít/potvrdit QR kód</string>
     <string name="toast_qr_checksum_exception">Ověření kontrolního součtu se nezdařilo při dekódování QR kódu</string>
     <string name="toast_qr_format_error">Chyba formátu v QR kódu</string>
-    <string name="toast_qr_unsuported">QR kód není podporován</string>
+    <string name="toast_qr_unsupported">QR kód není podporován</string>
     <string name="toast_qr_failed_to_generate">Generování QR kódu se nezdařilo</string>
     <!-- Errors -->
     <string name="error_invalid_secret">Neplatný klíč</string>

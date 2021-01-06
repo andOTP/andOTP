@@ -65,7 +65,7 @@
     <string name="toast_qr_error">ناتوانی در یافتن/تایید کد QR</string>
     <string name="toast_qr_checksum_exception">تایید Checksum هنگام رمزگشایی کد QR ناموفق بود</string>
     <string name="toast_qr_format_error">خطای قالب در کد QR</string>
-    <string name="toast_qr_unsuported">کد QR پشتیبانی نمی شود</string>
+    <string name="toast_qr_unsupported">کد QR پشتیبانی نمی شود</string>
     <string name="toast_qr_failed_to_generate">ناموفق در تولید کد QR</string>
     <!-- Errors -->
     <string name="error_invalid_secret">رمز نامعتبر</string>
