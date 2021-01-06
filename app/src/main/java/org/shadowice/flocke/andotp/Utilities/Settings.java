@@ -51,8 +51,8 @@ public class Settings {
     private static final List<String> newLangs = Arrays.asList("ar",    "bg",    "ca",    "cs",    "de",    "el",    "en",    "es",    "fa",    "fr",    "gl",    "hi",    "hu",    "it",    "ja",    "nl",    "pl",    "pt_BR", "ru",    "sl",    "sv",    "tr",    "uk",    "zh_CN", "zh_TW");
     private static final List<String> oldLangs = Arrays.asList("ar_SA", "bg_BG", "ca_ES", "cs_CZ", "de_DE", "el_GR", "en_US", "es_ES", "fa_IR", "fr_FR", "gl_ES", "hi_IN", "hu_HU", "it_IT", "ja_JP", "nl_NL", "pl_PL", "pt_BR", "ru_RU", "sl_SI", "sv_SE", "tr_TR", "uk_UA", "zh_CN", "zh_TW");
 
-    private Context context;
-    private SharedPreferences settings;
+    private final Context context;
+    private final SharedPreferences settings;
 
     public Settings(Context context) {
         this.context = context;

@@ -40,11 +40,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class ThumbnailSelectionAdapter extends BaseAdapter {
-    private Context context;
-    private List<EntryThumbnail.EntryThumbnails> items;
+    private final Context context;
+    private final List<EntryThumbnail.EntryThumbnails> items;
     private String issuer = "Example";
     private String label = "Example";
-    private Settings settings;
+    private final Settings settings;
 
     ThumbnailSelectionAdapter(Context context, String issuer, String label) {
         items = new ArrayList<>(EntryThumbnail.EntryThumbnails.values().length);

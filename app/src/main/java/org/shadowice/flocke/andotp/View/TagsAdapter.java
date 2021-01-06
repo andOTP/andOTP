@@ -41,7 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class TagsAdapter extends ArrayAdapter<String> {
-    private Context context;
+    private final Context context;
     private List<String> tagsOrder;
     private HashMap<String, Boolean> tagsState;
     private static final int layoutResourceId = android.R.layout.simple_list_item_multiple_choice;

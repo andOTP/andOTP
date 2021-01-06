@@ -27,12 +27,12 @@ public class PasswordEntryDialog extends AppCompatDialog
         void onPasswordEntered(String newPassword);
     }
 
-    private Mode dialogMode;
-    private PasswordEnteredCallback callback;
+    private final Mode dialogMode;
+    private final PasswordEnteredCallback callback;
 
-    private TextInputEditText passwordInput;
-    private EditText passwordConfirm;
-    private Button okButton;
+    private final TextInputEditText passwordInput;
+    private final EditText passwordConfirm;
+    private final Button okButton;
 
     public PasswordEntryDialog(Context context, Mode newMode, boolean blockAccessibility, boolean blockAutofill, PasswordEnteredCallback newCallback) {
         super(context, Tools.getThemeResource(context, R.attr.dialogTheme));

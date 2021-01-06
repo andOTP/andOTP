@@ -82,8 +82,8 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     implements ItemTouchHelperAdapter, Filterable {
-    private Context context;
-    private Handler taskHandler;
+    private final Context context;
+    private final Handler taskHandler;
     private EntryFilter filter;
     private ArrayList<Entry> entries;
     private ArrayList<Entry> displayedEntries;
@@ -93,8 +93,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     private SecretKey encryptionKey = null;
 
     private SortMode sortMode = SortMode.UNSORTED;
-    private TagsAdapter tagsFilterAdapter;
-    private Settings settings;
+    private final TagsAdapter tagsFilterAdapter;
+    private final Settings settings;
 
     public EntriesCardAdapter(Context context, TagsAdapter tagsFilterAdapter) {
         this.context = context;
@@ -731,7 +731,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public class EntryFilter extends Filter {
-        private List<Constants.SearchIncludes> filterValues = settings.getSearchValues();
+        private final List<Constants.SearchIncludes> filterValues = settings.getSearchValues();
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -773,7 +773,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public static class IssuerComparator implements Comparator<Entry> {
-        Collator collator;
+        final Collator collator;
 
         IssuerComparator() {
             collator = Collator.getInstance();
@@ -787,7 +787,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public static class LabelComparator implements Comparator<Entry> {
-        Collator collator;
+        final Collator collator;
 
         LabelComparator() {
             collator = Collator.getInstance();

@@ -93,8 +93,8 @@ public class DimensionConverter {
     }
 
     private static class InternalDimension {
-        float value;
-        int unit;
+        final float value;
+        final int unit;
 
         public InternalDimension(float value, int unit) {
             this.value = value;

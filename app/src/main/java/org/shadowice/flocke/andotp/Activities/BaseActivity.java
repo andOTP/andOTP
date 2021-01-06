@@ -57,7 +57,7 @@ public abstract class BaseActivity extends ThemedActivity {
     }
 
     public class ScreenOffReceiver extends BroadcastReceiver {
-        public IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+        public final IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
 
         @Override
         public void onReceive(Context context, Intent intent) {

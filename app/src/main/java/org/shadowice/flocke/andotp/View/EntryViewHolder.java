@@ -56,26 +56,26 @@ import static org.shadowice.flocke.andotp.Activities.MainActivity.animatorDurati
 
 public class EntryViewHolder extends RecyclerView.ViewHolder
         implements ItemTouchHelperViewHolder {
-    private Context context;
+    private final Context context;
     private Callback callback;
     private boolean tapToReveal;
 
-    private CardView card;
-    private LinearLayout valueLayout;
-    private LinearLayout coverLayout;
-    private LinearLayout counterLayout;
-    private FrameLayout thumbnailFrame;
-    private ImageView visibleImg;
-    private ImageView thumbnailImg;
-    private ImageButton menuButton;
-    private ImageButton copyButton;
-    private TextView value;
-    private TextView issuer;
-    private TextView label;
-    private TextView separator;
-    private TextView counter;
-    private TextView tags;
-    private MaterialProgressBar progressBar;
+    private final CardView card;
+    private final LinearLayout valueLayout;
+    private final LinearLayout coverLayout;
+    private final LinearLayout counterLayout;
+    private final FrameLayout thumbnailFrame;
+    private final ImageView visibleImg;
+    private final ImageView thumbnailImg;
+    private final ImageButton menuButton;
+    private final ImageButton copyButton;
+    private final TextView value;
+    private final TextView issuer;
+    private final TextView label;
+    private final TextView separator;
+    private final TextView counter;
+    private final TextView tags;
+    private final MaterialProgressBar progressBar;
 
     public EntryViewHolder(Context context, final View v, boolean tapToReveal) {
         super(v);

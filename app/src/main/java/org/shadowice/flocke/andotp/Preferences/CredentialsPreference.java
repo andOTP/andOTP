@@ -67,7 +67,7 @@ public class CredentialsPreference extends DialogPreference
         boolean testEncryptionChange(byte[] newKey);
     }
 
-    private List<String> entries;
+    private final List<String> entries;
     private static final List<AuthMethod> entryValues = Arrays.asList(
             AuthMethod.NONE,
             AuthMethod.PASSWORD,
@@ -77,7 +77,7 @@ public class CredentialsPreference extends DialogPreference
 
     private int minLength = 0;
 
-    private Settings settings;
+    private final Settings settings;
     private AuthMethod value = AuthMethod.NONE;
     private EncryptionChangeCallback encryptionChangeCallback = null;
 
