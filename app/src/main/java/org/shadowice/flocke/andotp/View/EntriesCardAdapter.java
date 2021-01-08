@@ -84,7 +84,7 @@ import javax.crypto.SecretKey;
 import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
-        implements ItemTouchHelperAdapter, Filterable {
+    implements ItemTouchHelperAdapter, Filterable {
     private Context context;
     private Handler taskHandler;
     private EntryFilter filter;
@@ -131,7 +131,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public void addEntry(Entry e) {
-        if (!entries.contains(e)) {
+        if (! entries.contains(e)) {
             entries.add(e);
             saveAndRefresh(settings.getAutoBackupEncryptedPasswordsEnabled());
         } else {
@@ -153,15 +153,15 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         List<String> inUseTags = getTags();
 
         HashMap<String, Boolean> tagsHashMap = new HashMap<>();
-        for (String tag : tagsFilterAdapter.getTags()) {
+        for(String tag: tagsFilterAdapter.getTags()) {
             if (inUseTags.contains(tag))
                 tagsHashMap.put(tag, false);
         }
-        for (String tag : tagsFilterAdapter.getActiveTags()) {
+        for(String tag: tagsFilterAdapter.getActiveTags()) {
             if (inUseTags.contains(tag))
                 tagsHashMap.put(tag, true);
         }
-        for (String tag : getTags()) {
+        for(String tag: getTags()) {
             if (inUseTags.contains(tag) && !tagsHashMap.containsKey(tag))
                 tagsHashMap.put(tag, true);
         }
@@ -173,7 +173,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void saveEntries(boolean auto_backup) {
         DatabaseHelper.saveDatabase(context, entries, encryptionKey);
 
-        if (auto_backup) {
+        if(auto_backup) {
             Constants.BackupType backupType = BackupHelper.autoBackupType(context);
             if (backupType == Constants.BackupType.ENCRYPTED) {
                 BackupHelper.BackupFile cryptBackupFile = BackupHelper.backupFile(context, settings.getBackupLocation(), Constants.BackupType.ENCRYPTED);
@@ -206,12 +206,12 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         tagsFilter = tags;
         List<Entry> matchingEntries = new ArrayList<>();
 
-        for (Entry e : entries) {
+        for(Entry e : entries) {
             //Entries with no tags will always be shown
             Boolean foundMatchingTag = e.getTags().isEmpty() && settings.getNoTagsToggle();
 
-            if (settings.getTagFunctionality() == Constants.TagFunctionality.AND) {
-                if (e.getTags().containsAll(tags)) {
+            if(settings.getTagFunctionality() == Constants.TagFunctionality.AND) {
+                if(e.getTags().containsAll(tags)) {
                     foundMatchingTag = true;
                 }
             } else {
@@ -222,7 +222,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 }
             }
 
-            if (foundMatchingTag) {
+            if(foundMatchingTag) {
                 matchingEntries.add(e);
             }
         }
@@ -242,7 +242,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 boolean color_changed = false;
 
                 // Check color change only if highlighting token feature is enabled and the entry is visible
-                if (settings.isHighlightTokenOptionEnabled())
+                if(settings.isHighlightTokenOptionEnabled())
                     color_changed = cardVisible && e.hasColorChanged();
 
                 change = change || item_changed || color_changed ||
@@ -261,7 +261,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         if (!entry.isTimeBased())
             entry.updateOTP();
 
-        if (settings.isHighlightTokenOptionEnabled())
+        if(settings.isHighlightTokenOptionEnabled())
             entryViewHolder.updateColor(entry.getColor());
 
         entryViewHolder.updateValues(entry);
@@ -269,7 +269,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         entryViewHolder.setLabelSize(settings.getLabelSize());
         entryViewHolder.setLabelScroll(settings.getScrollLabel());
 
-        if (settings.getThumbnailVisible())
+        if(settings.getThumbnailVisible())
             entryViewHolder.setThumbnailSize(settings.getThumbnailSize());
     }
 
@@ -365,7 +365,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     private void copyHandler(final int position, final String text, final boolean dropToBackground) {
         Tools.copyToClipboard(context, text);
         updateLastUsedAndFrequency(position, getRealIndex(position));
-        if (context != null && dropToBackground) {
+        if(context != null && dropToBackground) {
             ((MainActivity) context).moveTaskToBack(true);
         }
     }
@@ -461,8 +461,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
+                    public void onClick(DialogInterface dialogInterface, int i) {}
                 })
                 .create();
         addCounterValidationWatcher(input, dialog);
@@ -554,12 +553,10 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         input.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             @Override
             public void afterTextChanged(Editable editable) {
@@ -648,8 +645,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
+                    public void onClick(DialogInterface dialogInterface, int i) {}
                 })
                 .show();
     }
@@ -674,8 +670,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
             new AlertDialog.Builder(context)
                     .setTitle(R.string.dialog_title_qr_code)
-                    .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                    })
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> {})
                     .setView(image)
                     .create()
                     .show();
@@ -698,7 +693,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 if (id == R.id.menu_popup_edit) {
                     ManualEntryDialog.show((MainActivity) context, settings, EntriesCardAdapter.this, entries.get(getRealIndex(pos)));
                     return true;
-                } else if (id == R.id.menu_popup_changeImage) {
+                } else if(id == R.id.menu_popup_changeImage) {
                     changeThumbnail(pos);
                     return true;
                 } else if (id == R.id.menu_popup_remove) {
@@ -759,7 +754,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public List<String> getTags() {
         HashSet<String> tags = new HashSet<String>();
 
-        for (Entry entry : entries) {
+        for(Entry entry: entries) {
             tags.addAll(entry.getTags());
         }
 
@@ -775,7 +770,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             final FilterResults filterResults = new FilterResults();
 
             ArrayList<Entry> filtered = new ArrayList<>();
-            if (constraint != null && constraint.length() != 0) {
+            if (constraint != null && constraint.length() != 0){
                 for (int i = 0; i < entries.size(); i++) {
                     if (filterValues.contains(Constants.SearchIncludes.LABEL) && entries.get(i).getLabel().toLowerCase().contains(constraint.toString().toLowerCase())) {
                         filtered.add(entries.get(i));
@@ -811,7 +806,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public class IssuerComparator implements Comparator<Entry> {
         Collator collator;
 
-        IssuerComparator() {
+        IssuerComparator(){
             collator = Collator.getInstance();
             collator.setStrength(Collator.PRIMARY);
         }
@@ -825,7 +820,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public class LabelComparator implements Comparator<Entry> {
         Collator collator;
 
-        LabelComparator() {
+        LabelComparator(){
             collator = Collator.getInstance();
             collator.setStrength(Collator.PRIMARY);
         }
