@@ -118,7 +118,7 @@ public class MainActivity extends BaseActivity
     private CountDownTimer countDownTimer;
 
     // QR code scanning
-    private void scanQRCode() {
+    private void scanQRCode(){
         new IntentIntegrator(MainActivity.this)
                 .setOrientationLocked(false)
                 .setBeepEnabled(false)
@@ -177,7 +177,7 @@ public class MainActivity extends BaseActivity
 
         setTitle(R.string.app_name);
 
-        if (!settings.getScreenshotsEnabled())
+        if (! settings.getScreenshotsEnabled())
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         setContentView(R.layout.activity_main);
@@ -203,8 +203,8 @@ public class MainActivity extends BaseActivity
 
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new ProcessLifecycleObserver());
 
-        if (!settings.getFirstTimeWarningShown()) {
-            showFirstTimeWarning();
+        if (! settings.getFirstTimeWarningShown()) {
+			showFirstTimeWarning();
         }
 
         speedDial = findViewById(R.id.speedDial);
@@ -295,7 +295,8 @@ public class MainActivity extends BaseActivity
         });
 
         handler = new Handler();
-        handlerTask = new Runnable() {
+        handlerTask = new Runnable() 
+		{
             @Override
             public void run() {
                 if (!settings.isHideGlobalTimeoutEnabled()) {
@@ -392,7 +393,7 @@ public class MainActivity extends BaseActivity
         }
 
         View cardList = findViewById(R.id.cardList);
-        if (cardList.getVisibility() == View.INVISIBLE)
+        if(cardList.getVisibility() == View.INVISIBLE)
             cardList.setVisibility(View.VISIBLE);
 
         startUpdater();
@@ -400,7 +401,7 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onPause() {
-        if (settings.getAuthMethod() == AuthMethod.DEVICE)
+        if(settings.getAuthMethod() == AuthMethod.DEVICE)
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -458,8 +459,8 @@ public class MainActivity extends BaseActivity
         super.onActivityResult(requestCode, resultCode, intent);
 
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        if (result != null) {
-            if (result.getContents() != null) {
+        if(result != null) {
+            if(result.getContents() != null) {
                 addQRCode(result.getContents());
             }
         } else if (requestCode == Constants.INTENT_MAIN_BACKUP && resultCode == RESULT_OK) {
@@ -610,7 +611,7 @@ public class MainActivity extends BaseActivity
             if (adapter.getEncryptionKey() != null)
                 settingsIntent.putExtra(Constants.EXTRA_SETTINGS_ENCRYPTION_KEY, adapter.getEncryptionKey().getEncoded());
             startActivityForResult(settingsIntent, Constants.INTENT_MAIN_SETTINGS);
-        } else if (id == R.id.action_about) {
+        } else if (id == R.id.action_about){
             Intent aboutIntent = new Intent(this, AboutActivity.class);
             startActivity(aboutIntent);
             return true;
@@ -626,7 +627,7 @@ public class MainActivity extends BaseActivity
             item.setChecked(true);
             sortMenu.setIcon(R.drawable.ic_sort_inverted_label_white);
             saveSortMode(SortMode.ISSUER);
-            if (adapter != null) {
+            if(adapter != null) {
                 adapter.setSortMode(SortMode.ISSUER);
                 touchHelperCallback.setDragEnabled(false);
             }
@@ -646,7 +647,7 @@ public class MainActivity extends BaseActivity
                 adapter.setSortMode(SortMode.LAST_USED);
                 touchHelperCallback.setDragEnabled(false);
             }
-            if (!settings.getUsedTokensDialogShown())
+            if (! settings.getUsedTokensDialogShown())
                 showUsedTokensDialog();
         } else if (id == R.id.menu_sort_most_used) {
             item.setChecked(true);
@@ -656,7 +657,7 @@ public class MainActivity extends BaseActivity
                 adapter.setSortMode(SortMode.MOST_USED);
                 touchHelperCallback.setDragEnabled(false);
             }
-            if (!settings.getUsedTokensDialogShown())
+            if (! settings.getUsedTokensDialogShown())
                 showUsedTokensDialog();
         } else if (tagsToggle.onOptionsItemSelected(item)) {
             return true;
@@ -703,22 +704,22 @@ public class MainActivity extends BaseActivity
         allTagsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CheckedTextView checkedTextView = ((CheckedTextView) view);
+                CheckedTextView checkedTextView = ((CheckedTextView)view);
                 checkedTextView.setChecked(!checkedTextView.isChecked());
 
                 settings.setAllTagsToggle(checkedTextView.isChecked());
 
-                for (int i = 0; i < tagsDrawerListView.getChildCount(); i++) {
+                for(int i = 0; i < tagsDrawerListView.getChildCount(); i++) {
                     CheckedTextView childCheckBox = (CheckedTextView) tagsDrawerListView.getChildAt(i);
                     childCheckBox.setChecked(checkedTextView.isChecked());
                 }
 
-                for (String tag : tagsDrawerAdapter.getTags()) {
+                for(String tag : tagsDrawerAdapter.getTags()) {
                     tagsDrawerAdapter.setTagState(tag, checkedTextView.isChecked());
                     settings.setTagToggle(tag, checkedTextView.isChecked());
                 }
 
-                if (checkedTextView.isChecked()) {
+                if(checkedTextView.isChecked()) {
                     adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
                 } else {
                     adapter.filterByTags(new ArrayList<String>());
@@ -730,15 +731,15 @@ public class MainActivity extends BaseActivity
         noTagsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CheckedTextView checkedTextView = ((CheckedTextView) view);
+                CheckedTextView checkedTextView = ((CheckedTextView)view);
                 checkedTextView.setChecked(!checkedTextView.isChecked());
 
-                if (settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
+                if(settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
                     checkedTextView.setChecked(true);
                     allTagsButton.setChecked(false);
                     settings.setAllTagsToggle(false);
 
-                    for (String tag : tagsDrawerAdapter.getTags()) {
+                    for (String tag: tagsDrawerAdapter.getTags()) {
                         settings.setTagToggle(tag, false);
                         tagsDrawerAdapter.setTagState(tag, false);
                     }
@@ -754,27 +755,27 @@ public class MainActivity extends BaseActivity
         tagsDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CheckedTextView checkedTextView = ((CheckedTextView) view);
+                CheckedTextView checkedTextView = ((CheckedTextView)view);
 
-                if (settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
+                if(settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
                     allTagsButton.setChecked(false);
                     settings.setAllTagsToggle(false);
                     noTagsButton.setChecked(false);
                     settings.setNoTagsToggle(false);
 
-                    for (String tag : tagsDrawerAdapter.getTags()) {
+                    for (String tag: tagsDrawerAdapter.getTags()) {
                         settings.setTagToggle(tag, false);
                         tagsDrawerAdapter.setTagState(tag, false);
                     }
                     checkedTextView.setChecked(true);
-                } else {
+                }else {
                     checkedTextView.setChecked(!checkedTextView.isChecked());
                 }
 
                 settings.setTagToggle(checkedTextView.getText().toString(), checkedTextView.isChecked());
                 tagsDrawerAdapter.setTagState(checkedTextView.getText().toString(), checkedTextView.isChecked());
 
-                if (!checkedTextView.isChecked()) {
+                if (! checkedTextView.isChecked()) {
                     allTagsButton.setChecked(false);
                     settings.setAllTagsToggle(false);
                 }
@@ -793,13 +794,13 @@ public class MainActivity extends BaseActivity
 
     public void refreshTags() {
         HashMap<String, Boolean> tagsHashMap = new HashMap<>();
-        for (String tag : tagsDrawerAdapter.getTags()) {
+        for(String tag: tagsDrawerAdapter.getTags()) {
             tagsHashMap.put(tag, false);
         }
-        for (String tag : tagsDrawerAdapter.getActiveTags()) {
+        for(String tag: tagsDrawerAdapter.getActiveTags()) {
             tagsHashMap.put(tag, true);
         }
-        for (String tag : adapter.getTags()) {
+        for(String tag: adapter.getTags()) {
             if (!tagsHashMap.containsKey(tag))
                 tagsHashMap.put(tag, true);
         }
@@ -808,7 +809,7 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
-    public void onUserInteraction() {
+    public void onUserInteraction(){
         super.onUserInteraction();
 
         // Refresh Blackout Timer
@@ -840,15 +841,15 @@ public class MainActivity extends BaseActivity
         return true;
     }
 
-    private void showOpenFileSelector(int intentId) {
+    private void showOpenFileSelector(int intentId){
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("image/*");
         startActivityForResult(intent, intentId);
     }
 
-    private void addQRCode(String result) {
-        if (!TextUtils.isEmpty(result)) {
+    private void addQRCode(String result){
+        if(!TextUtils.isEmpty(result)) {
             try {
                 Entry e = new Entry(result);
                 e.updateOTP();
