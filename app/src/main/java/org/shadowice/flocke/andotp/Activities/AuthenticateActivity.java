@@ -62,10 +62,9 @@ public class AuthenticateActivity extends ThemedActivity
 
     private AuthMethod authMethod;
     private String newEncryption = "";
-    private boolean oldPassword = false;
     private String password;
+    private boolean oldPassword = false;
 
-    private TextInputLayout passwordLayout;
     private TextInputEditText passwordInput;
 
     @Override
@@ -80,6 +79,18 @@ public class AuthenticateActivity extends ThemedActivity
         if (password.isEmpty()) {
             password = settings.getOldCredentials(authMethod);
             oldPassword = true;
+        }
+
+        // If our password is still empty at this point, we can't do anything.
+        if (password.isEmpty()) {
+            int missingPwResId = (authMethod == AuthMethod.PASSWORD)
+                    ? R.string.auth_toast_password_missing : R.string.auth_toast_pin_missing;
+            Toast.makeText(this, missingPwResId, Toast.LENGTH_LONG).show();
+            finishWithResult(true, null);
+        }
+        // If we're not using password or pin for auth method, we have nothing to authenticate here.
+        if (authMethod != AuthMethod.PASSWORD && authMethod != AuthMethod.PIN) {
+            finishWithResult(true, null);
         }
 
         setTitle(R.string.auth_activity_title);
@@ -105,20 +116,6 @@ public class AuthenticateActivity extends ThemedActivity
         initPasswordLayoutView(v);
         initPasswordInputView(v);
         initUnlockButtonView(v);
-
-        if (authMethod == AuthMethod.PASSWORD) {
-            if (password.isEmpty())
-                finishFromEmptyPassword(R.string.auth_toast_password_missing);
-            else
-                setupPasswordFields(R.string.auth_hint_password, (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD));
-        } else if (authMethod == AuthMethod.PIN) {
-            if (password.isEmpty())
-                finishFromEmptyPassword(R.string.auth_toast_pin_missing);
-            else
-                setupPasswordFields(R.string.auth_hint_pin, (InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD));
-        } else {
-            finishWithResult(true, null);
-        }
     }
 
     private void initPasswordLabelView(View v) {
@@ -128,7 +125,10 @@ public class AuthenticateActivity extends ThemedActivity
     }
 
     private void initPasswordLayoutView(View v) {
-        passwordLayout = v.findViewById(R.id.passwordLayout);
+        TextInputLayout passwordLayout = v.findViewById(R.id.passwordLayout);
+
+        int hintResId = (authMethod == AuthMethod.PASSWORD) ? R.string.auth_hint_password : R.string.auth_hint_pin;
+        passwordLayout.setHint(getString(hintResId));
 
         if (settings.getBlockAccessibility())
             passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
@@ -139,6 +139,10 @@ public class AuthenticateActivity extends ThemedActivity
 
     private void initPasswordInputView(View v) {
         passwordInput = v.findViewById(R.id.passwordEdit);
+        int inputType = (authMethod == AuthMethod.PASSWORD)
+                ? (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)
+                : (InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        passwordInput.setInputType(inputType);
         passwordInput.setTransformationMethod(new PasswordTransformationMethod());
         passwordInput.setOnEditorActionListener(this);
     }
@@ -146,16 +150,6 @@ public class AuthenticateActivity extends ThemedActivity
     private void initUnlockButtonView(View v) {
         Button unlockButton = v.findViewById(R.id.buttonUnlock);
         unlockButton.setOnClickListener(this);
-    }
-
-    private void finishFromEmptyPassword(@StringRes int missingPwResId) {
-        Toast.makeText(this, missingPwResId, Toast.LENGTH_LONG).show();
-        finishWithResult(true, null);
-    }
-
-    private void setupPasswordFields(@StringRes int hintResId, int inputType) {
-        passwordLayout.setHint(getString(hintResId));
-        passwordInput.setInputType(inputType);
     }
 
     @Override
