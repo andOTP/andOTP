@@ -27,6 +27,8 @@ import android.os.Build;
 import android.os.Bundle;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
@@ -35,6 +37,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewStub;
 import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,6 +49,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
+import org.shadowice.flocke.andotp.Utilities.EncryptionHelper.PBKDF2Credentials;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -55,84 +59,103 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 
 public class AuthenticateActivity extends ThemedActivity
     implements EditText.OnEditorActionListener, View.OnClickListener {
+
+    private AuthMethod authMethod;
+    private String newEncryption = "";
+    private boolean oldPassword = false;
     private String password;
 
-    AuthMethod authMethod;
-    String newEncryption = "";
-    boolean oldPassword = false;
-
-    TextInputEditText passwordInput;
+    private TextInputLayout passwordLayout;
+    private TextInputEditText passwordInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (! settings.getScreenshotsEnabled())
+            getWindow().setFlags(LayoutParams.FLAG_SECURE, LayoutParams.FLAG_SECURE);
+
+        authMethod = settings.getAuthMethod();
+        newEncryption = getIntent().getStringExtra(Constants.EXTRA_AUTH_NEW_ENCRYPTION);
+        password = settings.getAuthCredentials();
+        if (password.isEmpty()) {
+            password = settings.getOldCredentials(authMethod);
+            oldPassword = true;
+        }
 
         setTitle(R.string.auth_activity_title);
-
-        if (! settings.getScreenshotsEnabled())
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
         setContentView(R.layout.activity_container);
+        initToolbar();
+        initPasswordViews();
 
+        getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+    }
+
+    private void initToolbar() {
         Toolbar toolbar = findViewById(R.id.container_toolbar);
         toolbar.setNavigationIcon(null);
         setSupportActionBar(toolbar);
+    }
 
+    private void initPasswordViews() {
         ViewStub stub = findViewById(R.id.container_stub);
         stub.setLayoutResource(R.layout.content_authenticate);
         View v = stub.inflate();
 
-        Intent callingIntent = getIntent();
-        int labelMsg = callingIntent.getIntExtra(Constants.EXTRA_AUTH_MESSAGE, R.string.auth_msg_authenticate);
-        newEncryption = callingIntent.getStringExtra(Constants.EXTRA_AUTH_NEW_ENCRYPTION);
+        initPasswordLabelView(v);
+        initPasswordLayoutView(v);
+        initPasswordInputView(v);
+        initUnlockButtonView(v);
 
+        if (authMethod == AuthMethod.PASSWORD) {
+            if (password.isEmpty())
+                finishFromEmptyPassword(R.string.auth_toast_password_missing);
+            else
+                setupPasswordFields(R.string.auth_hint_password, (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD));
+        } else if (authMethod == AuthMethod.PIN) {
+            if (password.isEmpty())
+                finishFromEmptyPassword(R.string.auth_toast_pin_missing);
+            else
+                setupPasswordFields(R.string.auth_hint_pin, (InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD));
+        } else {
+            finishWithResult(true, null);
+        }
+    }
+
+    private void initPasswordLabelView(View v) {
+        int labelMsg = getIntent().getIntExtra(Constants.EXTRA_AUTH_MESSAGE, R.string.auth_msg_authenticate);
         TextView passwordLabel = v.findViewById(R.id.passwordLabel);
-        TextInputLayout passwordLayout = v.findViewById(R.id.passwordLayout);
-        passwordInput = v.findViewById(R.id.passwordEdit);
+        passwordLabel.setText(labelMsg);
+    }
+
+    private void initPasswordLayoutView(View v) {
+        passwordLayout = v.findViewById(R.id.passwordLayout);
 
         if (settings.getBlockAccessibility())
             passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && settings.getBlockAutofill())
             passwordLayout.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
+    }
 
-        passwordLabel.setText(labelMsg);
-
-        authMethod = settings.getAuthMethod();
-        password = settings.getAuthCredentials();
-
-        if (password.isEmpty()) {
-            password = settings.getOldCredentials(authMethod);
-            oldPassword = true;
-        }
-
-        if (authMethod == AuthMethod.PASSWORD) {
-            if (password.isEmpty()) {
-                Toast.makeText(this, R.string.auth_toast_password_missing, Toast.LENGTH_LONG).show();
-                finishWithResult(true, null);
-            } else {
-                passwordLayout.setHint(getString(R.string.auth_hint_password));
-                passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            }
-        } else if (authMethod == AuthMethod.PIN) {
-            if (password.isEmpty()) {
-                Toast.makeText(this, R.string.auth_toast_pin_missing, Toast.LENGTH_LONG).show();
-                finishWithResult(true, null);
-            } else {
-                passwordLayout.setHint(getString(R.string.auth_hint_pin));
-                passwordInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-            }
-        } else {
-            finishWithResult(true, null);
-        }
-
+    private void initPasswordInputView(View v) {
+        passwordInput = v.findViewById(R.id.passwordEdit);
         passwordInput.setTransformationMethod(new PasswordTransformationMethod());
         passwordInput.setOnEditorActionListener(this);
+    }
 
+    private void initUnlockButtonView(View v) {
         Button unlockButton = v.findViewById(R.id.buttonUnlock);
         unlockButton.setOnClickListener(this);
+    }
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+    private void finishFromEmptyPassword(@StringRes int missingPwResId) {
+        Toast.makeText(this, missingPwResId, Toast.LENGTH_LONG).show();
+        finishWithResult(true, null);
+    }
+
+    private void setupPasswordFields(@StringRes int hintResId, int inputType) {
+        passwordLayout.setHint(getString(hintResId));
+        passwordInput.setInputType(inputType);
     }
 
     @Override
@@ -146,14 +169,13 @@ public class AuthenticateActivity extends ThemedActivity
             checkPassword(v.getText().toString());
             return true;
         }
-
         return false;
     }
 
     public void checkPassword(String plainPassword) {
         if (! oldPassword) {
             try {
-                EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, settings.getSalt(), settings.getIterations());
+                PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, settings.getSalt(), settings.getIterations());
                 byte[] passwordArray = Base64.decode(password, Base64.URL_SAFE);
 
                 if (Arrays.equals(passwordArray, credentials.password)) {
@@ -192,10 +214,8 @@ public class AuthenticateActivity extends ThemedActivity
 
         if (newEncryption != null && ! newEncryption.isEmpty())
             data.putExtra(Constants.EXTRA_AUTH_NEW_ENCRYPTION, newEncryption);
-
         if (key != null)
             data.putExtra(Constants.EXTRA_AUTH_PASSWORD_KEY, key);
-
         if (success)
             setResult(RESULT_OK, data);
 
