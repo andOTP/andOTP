@@ -28,7 +28,6 @@ import android.os.Bundle;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
@@ -36,7 +35,6 @@ import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewStub;
-import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -62,8 +60,8 @@ public class AuthenticateActivity extends ThemedActivity
 
     private AuthMethod authMethod;
     private String newEncryption = "";
-    private String password;
-    private boolean oldPassword = false;
+    private String existingAuthCredentials;
+    private boolean isAuthUpgrade = false;
 
     private TextInputEditText passwordInput;
 
@@ -75,14 +73,14 @@ public class AuthenticateActivity extends ThemedActivity
 
         authMethod = settings.getAuthMethod();
         newEncryption = getIntent().getStringExtra(Constants.EXTRA_AUTH_NEW_ENCRYPTION);
-        password = settings.getAuthCredentials();
-        if (password.isEmpty()) {
-            password = settings.getOldCredentials(authMethod);
-            oldPassword = true;
+        existingAuthCredentials = settings.getAuthCredentials();
+        if (existingAuthCredentials.isEmpty()) {
+            existingAuthCredentials = settings.getOldCredentials(authMethod);
+            isAuthUpgrade = true;
         }
 
         // If our password is still empty at this point, we can't do anything.
-        if (password.isEmpty()) {
+        if (existingAuthCredentials.isEmpty()) {
             int missingPwResId = (authMethod == AuthMethod.PASSWORD)
                     ? R.string.auth_toast_password_missing : R.string.auth_toast_pin_missing;
             Toast.makeText(this, missingPwResId, Toast.LENGTH_LONG).show();
@@ -167,10 +165,10 @@ public class AuthenticateActivity extends ThemedActivity
     }
 
     public void checkPassword(String plainPassword) {
-        if (! oldPassword) {
+        if (!isAuthUpgrade) {
             try {
                 PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, settings.getSalt(), settings.getIterations());
-                byte[] passwordArray = Base64.decode(password, Base64.URL_SAFE);
+                byte[] passwordArray = Base64.decode(existingAuthCredentials, Base64.URL_SAFE);
 
                 if (Arrays.equals(passwordArray, credentials.password)) {
                     finishWithResult(true, credentials.key);
@@ -184,7 +182,7 @@ public class AuthenticateActivity extends ThemedActivity
         } else {
             String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(plainPassword)));
 
-            if (hashedPassword.equals(password)) {
+            if (hashedPassword.equals(existingAuthCredentials)) {
                 byte[] key = settings.setAuthCredentials(plainPassword);
 
                 if (key == null)
