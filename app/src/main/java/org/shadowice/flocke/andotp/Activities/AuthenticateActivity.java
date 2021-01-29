@@ -28,7 +28,6 @@ import android.os.Bundle;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
@@ -40,6 +39,7 @@ import android.view.WindowManager.LayoutParams;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,6 +65,7 @@ public class AuthenticateActivity extends ThemedActivity
 
     private TextInputEditText passwordInput;
     private Button unlockButton;
+    private ProgressBar unlockProgress;
 
     private AuthenticationTask activeTask;
 
@@ -116,7 +117,7 @@ public class AuthenticateActivity extends ThemedActivity
         initPasswordLabelView(v);
         initPasswordLayoutView(v);
         initPasswordInputView(v);
-        initUnlockButtonView(v);
+        initUnlockViews(v);
     }
 
     private void initPasswordLabelView(View v) {
@@ -148,9 +149,12 @@ public class AuthenticateActivity extends ThemedActivity
         passwordInput.setOnEditorActionListener(this);
     }
 
-    private void initUnlockButtonView(View v) {
+    private void initUnlockViews(View v) {
         unlockButton = v.findViewById(R.id.buttonUnlock);
         unlockButton.setOnClickListener(this);
+        unlockButton.setVisibility(View.VISIBLE);
+        unlockProgress = v.findViewById(R.id.unlockProgress);
+        unlockProgress.setVisibility(View.GONE);
     }
 
     @Override
@@ -168,11 +172,20 @@ public class AuthenticateActivity extends ThemedActivity
     }
 
     private void startAuthTask(String plainPassword) {
+        // Don't start another task if this was already started.
+        if (activeTask != null) {
+            return;
+        }
+        displayUnlockProgress();
+        activeTask = new AuthenticationTask(this, this::handleResult, isAuthUpgrade, existingAuthCredentials, plainPassword);
+        activeTask.execute();
+    }
+
+    private void displayUnlockProgress() {
         passwordInput.setEnabled(false);
         unlockButton.setEnabled(false);
-        Callback callback = this::handleResult;
-        activeTask = new AuthenticationTask(this, callback, isAuthUpgrade, existingAuthCredentials, plainPassword);
-        activeTask.execute();
+        unlockButton.setVisibility(View.INVISIBLE);
+        unlockProgress.setVisibility(View.VISIBLE);
     }
 
     private void handleResult(Result result) {
@@ -203,7 +216,8 @@ public class AuthenticateActivity extends ThemedActivity
     /** @return true if the task was active and was completed, false otherwise. */
     private boolean completeTaskIfActive() {
         try {
-            // This will cause the main thread to wait, but it'll ensure that the task completes.
+            // This will cause the main thread to lock, but ensures that our Activity result will be set.
+            // This task shouldn't take more than 1-2 seconds to complete from starting.
             if (activeTask != null) {
                 handleResult(activeTask.get());
                 return true;
