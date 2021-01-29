@@ -80,7 +80,7 @@ public class AuthenticationTask extends AsyncTask<Void, Void, Result> {
             }
             return Result.failure();
         } catch (NoSuchAlgorithmException | InvalidKeySpecException | IllegalArgumentException e) {
-            Log.e("DecodePasswordTask", "Problem decoding password", e);
+            Log.e("AuthenticationTask", "Problem decoding password", e);
             return Result.failure();
         }
     }
