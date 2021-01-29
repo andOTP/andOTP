@@ -45,7 +45,6 @@ import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Tasks.AuthenticationTask;
-import org.shadowice.flocke.andotp.Tasks.AuthenticationTask.Callback;
 import org.shadowice.flocke.andotp.Tasks.AuthenticationTask.Result;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 
@@ -55,8 +54,6 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 
 public class AuthenticateActivity extends ThemedActivity
         implements EditText.OnEditorActionListener, View.OnClickListener {
-
-    private static final String KEY_WAS_TASK_ACTIVE = "AuthenticateActivity.WasTaskActive";
 
     private AuthMethod authMethod;
     private String newEncryption = "";
