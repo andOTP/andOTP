@@ -50,22 +50,6 @@ public class AuthenticationTask extends AsyncTask<Void, Void, Result> {
     }
 
     @NonNull
-    private Result confirmAuthentication() {
-        try {
-            PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, settings.getSalt(), settings.getIterations());
-            byte[] passwordArray = Base64.decode(existingAuthCredentials, Base64.URL_SAFE);
-
-            if (Arrays.equals(passwordArray, credentials.password)) {
-                return Result.success(credentials.key);
-            }
-            return Result.failure();
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException | IllegalArgumentException e) {
-            Log.e("DecodePasswordTask", "Problem decoding password", e);
-            return Result.failure();
-        }
-    }
-
-    @NonNull
     private Result upgradeAuthentication() {
         String hashedPassword = new String(Hex.encodeHex(DigestUtils.sha256(plainPassword)));
         if (!hashedPassword.equals(existingAuthCredentials))
@@ -83,6 +67,22 @@ public class AuthenticationTask extends AsyncTask<Void, Void, Result> {
             return Result.upgradeFailure();
         else
             return Result.success(key);
+    }
+
+    @NonNull
+    private Result confirmAuthentication() {
+        try {
+            PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, settings.getSalt(), settings.getIterations());
+            byte[] passwordArray = Base64.decode(existingAuthCredentials, Base64.URL_SAFE);
+
+            if (Arrays.equals(passwordArray, credentials.password)) {
+                return Result.success(credentials.key);
+            }
+            return Result.failure();
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException | IllegalArgumentException e) {
+            Log.e("DecodePasswordTask", "Problem decoding password", e);
+            return Result.failure();
+        }
     }
 
     @Override
