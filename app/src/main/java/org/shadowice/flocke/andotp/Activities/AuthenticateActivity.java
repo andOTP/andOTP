@@ -63,6 +63,7 @@ public class AuthenticateActivity extends ThemedActivity
     private String existingAuthCredentials;
     private boolean isAuthUpgrade = false;
 
+    private TextInputLayout passwordLayout;
     private TextInputEditText passwordInput;
     private Button unlockButton;
     private ProgressBar unlockProgress;
@@ -127,16 +128,15 @@ public class AuthenticateActivity extends ThemedActivity
     }
 
     private void initPasswordLayoutView(View v) {
-        TextInputLayout passwordLayout = v.findViewById(R.id.passwordLayout);
-
+        passwordLayout = v.findViewById(R.id.passwordLayout);
         int hintResId = (authMethod == AuthMethod.PASSWORD) ? R.string.auth_hint_password : R.string.auth_hint_pin;
         passwordLayout.setHint(getString(hintResId));
-
-        if (settings.getBlockAccessibility())
+        if (settings.getBlockAccessibility()) {
             passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && settings.getBlockAutofill())
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && settings.getBlockAutofill()) {
             passwordLayout.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
+        }
     }
 
     private void initPasswordInputView(View v) {
@@ -152,9 +152,7 @@ public class AuthenticateActivity extends ThemedActivity
     private void initUnlockViews(View v) {
         unlockButton = v.findViewById(R.id.buttonUnlock);
         unlockButton.setOnClickListener(this);
-        unlockButton.setVisibility(View.VISIBLE);
         unlockProgress = v.findViewById(R.id.unlockProgress);
-        unlockProgress.setVisibility(View.GONE);
     }
 
     @Override
@@ -182,6 +180,7 @@ public class AuthenticateActivity extends ThemedActivity
     }
 
     private void displayUnlockProgress() {
+        passwordLayout.setEnabled(false);
         passwordInput.setEnabled(false);
         unlockButton.setEnabled(false);
         unlockButton.setVisibility(View.INVISIBLE);
