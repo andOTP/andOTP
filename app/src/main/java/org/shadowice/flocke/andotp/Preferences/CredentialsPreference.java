@@ -262,9 +262,6 @@ public class CredentialsPreference extends DialogPreference
 
             ConfirmedPasswordTransformationHelper.setup(passwordLayout, passwordInput, passwordConfirm);
 
-            passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-            passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
-
             minLength = Constants.AUTH_MIN_PASSWORD_LENGTH;
             toShortWarning.setText(getContext().getString(R.string.settings_label_short_password, minLength));
 
