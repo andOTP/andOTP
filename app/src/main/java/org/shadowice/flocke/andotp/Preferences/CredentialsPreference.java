@@ -30,7 +30,6 @@ import android.preference.DialogPreference;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
@@ -67,7 +66,7 @@ public class CredentialsPreference extends DialogPreference
         boolean testEncryptionChange(byte[] newKey);
     }
 
-    private List<String> entries;
+    private final List<String> entries;
     private static final List<AuthMethod> entryValues = Arrays.asList(
             AuthMethod.NONE,
             AuthMethod.PASSWORD,
@@ -77,7 +76,7 @@ public class CredentialsPreference extends DialogPreference
 
     private int minLength = 0;
 
-    private Settings settings;
+    private final Settings settings;
     private AuthMethod value = AuthMethod.NONE;
     private EncryptionChangeCallback encryptionChangeCallback = null;
 
@@ -230,14 +229,10 @@ public class CredentialsPreference extends DialogPreference
 
         if (password.length() >= minLength) {
             toShortWarning.setVisibility(View.GONE);
-
             String confirm = passwordConfirm.getEditableText().toString();
 
-            if (!password.isEmpty() && !confirm.isEmpty() && password.equals(confirm)) {
-                btnSave.setEnabled(true);
-            } else {
-                btnSave.setEnabled(false);
-            }
+            boolean canSave = !password.isEmpty() && !confirm.isEmpty() && password.equals(confirm);
+            btnSave.setEnabled(canSave);
         } else {
             toShortWarning.setVisibility(View.VISIBLE);
         }
