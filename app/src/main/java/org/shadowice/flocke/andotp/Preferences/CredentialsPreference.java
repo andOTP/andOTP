@@ -287,6 +287,12 @@ public class CredentialsPreference extends DialogPreference
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         value = entryValues.get(position);
         updateLayout();
+        clearInputFields();
+    }
+
+    private void clearInputFields() {
+        passwordInput.setText(null);
+        passwordConfirm.setText(null);
     }
 
     // Needed stub functions
