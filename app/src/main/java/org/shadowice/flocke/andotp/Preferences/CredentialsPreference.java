@@ -257,6 +257,9 @@ public class CredentialsPreference extends DialogPreference
             passwordLayout.setHint(getContext().getString(R.string.settings_hint_password));
             passwordConfirm.setHint(R.string.settings_hint_password_confirm);
 
+            passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            passwordConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
             ConfirmedPasswordTransformationHelper.setup(passwordLayout, passwordInput, passwordConfirm);
 
             passwordInput.setTransformationMethod(new PasswordTransformationMethod());
