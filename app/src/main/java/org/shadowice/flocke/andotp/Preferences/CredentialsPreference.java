@@ -244,57 +244,43 @@ public class CredentialsPreference extends DialogPreference
     }
 
     private void updateLayout() {
-        if (value == AuthMethod.NONE) {
+        if (value == AuthMethod.NONE || value == AuthMethod.DEVICE) {
             credentialsLayout.setVisibility(View.GONE);
-
-            if (getDialog() != null)
-                UIHelper.hideKeyboard(getContext(), getDialog().getCurrentFocus());
-
+            if (getDialog() != null) {
+                UIHelper.hideKeyboard(getContext(), passwordInput);
+            }
             btnSave.setEnabled(true);
-        } else if (value == AuthMethod.PASSWORD) {
-            credentialsLayout.setVisibility(View.VISIBLE);
-
-            passwordLayout.setHint(getContext().getString(R.string.settings_hint_password));
-            passwordConfirm.setHint(R.string.settings_hint_password_confirm);
-
-            passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            passwordConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-
-            ConfirmedPasswordTransformationHelper.setup(passwordLayout, passwordInput, passwordConfirm);
-
-            minLength = Constants.AUTH_MIN_PASSWORD_LENGTH;
-            toShortWarning.setText(getContext().getString(R.string.settings_label_short_password, minLength));
-
-            passwordInput.requestFocus();
-            UIHelper.showKeyboard(getContext(), passwordInput);
-
-            btnSave.setEnabled(false);
-        } else if (value == AuthMethod.PIN) {
-            credentialsLayout.setVisibility(View.VISIBLE);
-
-            passwordLayout.setHint(getContext().getString(R.string.settings_hint_pin));
-            passwordConfirm.setHint(R.string.settings_hint_pin_confirm);
-
-            passwordInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-            passwordConfirm.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-
-            ConfirmedPasswordTransformationHelper.setup(passwordLayout, passwordInput, passwordConfirm);
-
-            minLength = Constants.AUTH_MIN_PIN_LENGTH;
-            toShortWarning.setText(getContext().getString(R.string.settings_label_short_pin, minLength));
-
-            passwordInput.requestFocus();
-            UIHelper.showKeyboard(getContext(), passwordInput);
-
-            btnSave.setEnabled(false);
-        } else if (value == AuthMethod.DEVICE) {
-            credentialsLayout.setVisibility(View.GONE);
-
-            if (getDialog() != null)
-                UIHelper.hideKeyboard(getContext(), getDialog().getCurrentFocus());
-
-            btnSave.setEnabled(true);
+        } else if (value == AuthMethod.PASSWORD || value == AuthMethod.PIN) {
+            prepareAuthMethodInputFields();
         }
+    }
+
+    private void prepareAuthMethodInputFields() {
+        if (value != AuthMethod.PIN && value != AuthMethod.PASSWORD) {
+            return;
+        }
+        boolean isPassword = value == AuthMethod.PASSWORD;
+
+        credentialsLayout.setVisibility(View.VISIBLE);
+        int layoutHintRes = isPassword ? R.string.settings_hint_password : R.string.settings_hint_pin;
+        passwordLayout.setHint(getContext().getString(layoutHintRes));
+        int confirmHintRes = isPassword ? R.string.settings_hint_password_confirm : R.string.settings_hint_pin_confirm;
+        passwordConfirm.setHint(confirmHintRes);
+
+        int inputType = isPassword ?
+                (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD) :
+                (InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        passwordInput.setInputType(inputType);
+        passwordConfirm.setInputType(inputType);
+        ConfirmedPasswordTransformationHelper.setup(passwordLayout, passwordInput, passwordConfirm);
+
+        minLength = isPassword ? Constants.AUTH_MIN_PASSWORD_LENGTH : Constants.AUTH_MIN_PIN_LENGTH;
+        int shortWarningRes = isPassword ? R.string.settings_label_short_password : R.string.settings_label_short_pin;
+        toShortWarning.setText(getContext().getString(shortWarningRes, minLength));
+
+        passwordInput.requestFocus();
+        UIHelper.showKeyboard(getContext(), passwordInput);
+        btnSave.setEnabled(false);
     }
 
     @Override
