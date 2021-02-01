@@ -2,14 +2,12 @@ package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Handler;
-import android.os.Looper;
-import android.widget.Toast;
 
 import androidx.documentfile.provider.DocumentFile;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Tasks.BackupTask;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
@@ -106,25 +104,31 @@ public class BackupHelper {
         return Constants.BackupType.UNAVAILABLE;
     }
 
-    public static void backupToFileAsync(Context context, Uri uri, String password, SecretKey encryptionKey, boolean silent) {
+    public static void backupToFileAsync(Context context, Uri uri, String password, SecretKey encryptionKey, BackupTask.BackupCallback callback, boolean silent) {
         ArrayList<Entry> entries = DatabaseHelper.loadDatabase(context, encryptionKey);
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        BackupCrypt runnable = new BackupCrypt(context, uri, password, entries, silent);
 
-        executor.execute(runnable);
+        BackupTask backupTask = new BackupTask(context, Constants.BackupType.ENCRYPTED, DatabaseHelper.entriesToString(entries), callback);
+
+        if (uri != null)
+            backupTask.setUri(uri);
+
+        backupTask.setPassword(password);
+        backupTask.setSilent(silent);
+
+        executor.execute(backupTask);
     }
 
     public static boolean backupToFile(Context context, Uri uri, String password, SecretKey encryptionKey) {
         ArrayList<Entry> entries = DatabaseHelper.loadDatabase(context, encryptionKey);
-        return backupToFile(context, uri, password, entries);
-    }
-
-    public static boolean backupToFile(Context context, Uri uri, String password, ArrayList<Entry> entries)
-    {
-
         String plain = DatabaseHelper.entriesToString(entries);
 
+        return backupToFile(context, uri, password, plain);
+    }
+
+    public static boolean backupToFile(Context context, Uri uri, String password, String plain)
+    {
         boolean success = true;
 
         try {
@@ -148,74 +152,5 @@ public class BackupHelper {
         }
 
         return success;
-    }
-
-    public static class BackupCrypt implements Runnable {
-        final private Context context;
-        final private Uri uri;
-        final private String password;
-        final private ArrayList<Entry> entries;
-        final private boolean silent;
-
-        public BackupCrypt(Context context, Uri uri, String password, ArrayList<Entry> entries, boolean silent) {
-            this.context = context;
-            this.uri = uri;
-            this.password = password;
-            this.entries = entries;
-            this.silent = silent;
-        }
-
-        @Override
-        public void run() {
-            boolean success = backupToFile(context, uri, password, entries);
-
-            if (!silent) {
-                if (success) {
-                    postMessage(R.string.backup_toast_export_success);
-                } else {
-                    postMessage(R.string.backup_toast_export_failed);
-                }
-            }
-        }
-
-        void postMessage(int msgId) {
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(context, msgId, Toast.LENGTH_LONG).show();
-                }
-            });
-        }
-    }
-
-    public static class SaveStringToFile implements Runnable {
-        final private Context context;
-        final private Uri uri;
-        final private String data;
-
-        public SaveStringToFile(Context context, Uri uri, String data) {
-            this.context = context;
-            this.uri = uri;
-            this.data = data;
-        }
-
-        @Override
-        public void run() {
-            boolean success = StorageAccessHelper.saveFile(context, uri, data);
-
-            if (success)
-                postMessage(R.string.backup_toast_export_success);
-            else
-                postMessage(R.string.backup_toast_export_failed);
-        }
-
-        void postMessage(int msgId) {
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(context, msgId, Toast.LENGTH_LONG).show();
-                }
-            });
-        }
     }
 }

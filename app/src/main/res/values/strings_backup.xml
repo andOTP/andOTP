@@ -2,33 +2,10 @@
 <resources>
     <string name="backup_activity_title">Backups</string>
 
-    <string name="backup_category_plain">Plain-text backups</string>
-    <string name="backup_category_crypt">Encrypted backups</string>
-    <string name="backup_category_openpgp">OpenPGP backups</string>
-
-    <string name="backup_title_export_plain">Backup (plain-text)</string>
-    <string name="backup_title_export_crypt">Backup (encrypted)</string>
-    <string name="backup_title_export_openpgp">Backup (OpenPGP)</string>
-    <string name="backup_title_import_plain">Restore (plain-text)</string>
-    <string name="backup_title_import_crypt">Restore (encrypted)</string>
-    <string name="backup_title_import_crypt_old">Restore (encrypted, old encryption)</string>
-    <string name="backup_title_import_openpgp">Restore (OpenPGP)</string>
-
     <string name="backup_title_replace">Replace existing entries</string>
-
-    <string name="backup_desc_export_plain">Backup all accounts in a plain-text JSON file</string>
-    <string name="backup_desc_export_crypt">Backup all accounts in a password-protected JSON file</string>
-    <string name="backup_desc_export_openpgp">Backup all accounts in an OpenPGP-encrypted JSON file</string>
-    <string name="backup_desc_import_plain">Restore accounts from a plain-text JSON file</string>
-    <string name="backup_desc_import_crypt">Restore accounts from a password-protected JSON file</string>
-    <string name="backup_desc_import_crypt_old">Restore accounts from a password-protected JSON file
-        created with an <b>andOTP version lower than 0.6.3</b></string>
-    <string name="backup_desc_import_openpgp">Restore accounts from an OpenPGP-encrypted JSON file</string>
-
-    <string name="backup_desc_crypt_setup">Failed to load the backup password from the <b>Settings</b>,
-        this either means no password was set or something went wrong. You will be asked to enter
-        the password manually when creating or importing a backup.
-    </string>
+    <string name="backup_desc_replace">If enabled all old entries are replaced when importing a
+        backup and only the backup is present. If disabled the old entries and the backups content
+        are merged.</string>
 
     <string name="backup_desc_openpgp_provider">You need to install an OpenPGP provider and enable
         it in the <b>Settings</b> to use this feature.
@@ -37,17 +14,11 @@
         before you can create encrypted backups.
     </string>
 
-    <string name="backup_desc_replace">If enabled all old entries are replaced when importing a
-        backup and only the backup is present. If disabled the old entries and the backups content
-        are merged.</string>
-
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">Security warning</string>
-
     <string name="backup_dialog_msg_export_warning">Do you really want to export the database as
         plain-text JSON file? This file contains all your secret keys, please <b>keep it safe</b>!
     </string>
-
 
     <string name="backup_receiver_title_backup_failed">Backup failed</string>
     <string name="backup_receiver_title_backup_success">Backup successful</string>
@@ -89,4 +60,32 @@
     <string name="backup_toast_openpgp_not_verified">No verified signature detected</string>
     <string name="backup_toast_crypt_password_not_set">Password not set, check the <b>Settings</b></string>
     <string name="backup_toast_file_selection_failed">Can\'t open file selection dialog!</string>
+
+    <string name="backup_label_type">Backup type: </string>
+
+    <string name="backup_label_warning_plain">The backup will be stored in an unencrypted plain-text
+        file. Please only use if strictly necessary and <b>keep the file safe</b>!</string>
+    <string name="backup_label_crypt">The backup will be stored encrypted with a custom password
+        using AES 256-bit encryption. You can setup a default password in the settings if you
+        don\'t want to have to enter it every time you create a backup.</string>
+    <string name="backup_label_pgp">The backup will be stored encrypted using the PGP key you
+        specified in the settings. The encryption will be handled by a 3rd party app.</string>
+
+    <string name="backup_check_restore_old">Restore old backup format (created with an andOTP version
+        before 0.6.3)</string>
+
+    <string name="backup_button_backup">Create backup</string>
+    <string name="backup_button_restore">Restore backup</string>
+
+    <string-array name="backup_list_type_names">
+        <item>Plain-text</item>
+        <item>Encrypted</item>
+        <item>OpenPGP</item>
+    </string-array>
+
+    <string-array name="backup_list_type_values" translatable="false">
+        <item>plain</item>
+        <item>crypt</item>
+        <item>pgp</item>
+    </string-array>
 </resources>
