@@ -62,8 +62,6 @@ public class AuthenticateActivity extends ThemedActivity
     private String existingAuthCredentials;
     private boolean isAuthUpgrade = false;
 
-    private boolean isTaskRunning = false;
-
     private TextInputLayout passwordLayout;
     private TextInputEditText passwordInput;
     private Button unlockButton;
@@ -72,8 +70,6 @@ public class AuthenticateActivity extends ThemedActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        checkBackgroundTask();
-
         if (! settings.getScreenshotsEnabled())
             getWindow().setFlags(LayoutParams.FLAG_SECURE, LayoutParams.FLAG_SECURE);
 
@@ -101,21 +97,8 @@ public class AuthenticateActivity extends ThemedActivity
         setContentView(R.layout.activity_container);
         initToolbar();
         initPasswordViews();
-        if (isTaskRunning) {
-            setupUiForRunningTask();
-        }
 
         getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-    }
-
-    private void checkBackgroundTask() {
-        TaskFragment taskFragment = findTaskFragment();
-        if (taskFragment != null) {
-            // If we have the task fragment in our fragment manager, we know that we started the
-            // task before a configuration change and need to set a new callback.
-            isTaskRunning = true;
-            taskFragment.task.setCallback(this::handleResult);
-        }
     }
 
     @Nullable
@@ -174,8 +157,23 @@ public class AuthenticateActivity extends ThemedActivity
         unlockProgress = v.findViewById(R.id.unlockProgress);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkBackgroundTask();
+    }
+
+    private void checkBackgroundTask() {
+        TaskFragment taskFragment = findTaskFragment();
+        if (taskFragment != null) {
+            // If we have the task fragment in our fragment manager, we know that we started the
+            // task before a configuration change and need to set a new callback.
+            taskFragment.task.setCallback(this::handleResult);
+            setupUiForRunningTask();
+        }
+    }
+
     private void setupUiForRunningTask() {
-        isTaskRunning = true;
         passwordLayout.setEnabled(false);
         passwordInput.setEnabled(false);
         unlockButton.setEnabled(false);
