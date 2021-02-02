@@ -28,6 +28,11 @@ public class AuthenticationTask extends UiBasedBackgroundTask<Result> {
     private final String existingAuthCredentials;
     private final String plainPassword;
 
+    /**
+     * @param context Context to be used to query settings (the application Context will be used to avoid memory leaks).
+     * @param isAuthUpgrade true if this is an authentication upgrade and new credentials should be saved, false if this is just confirmation.
+     * @param existingAuthCredentials The existing hashed authentication credentials that we have stored.
+     * @param plainPassword The plaintext user-entered password to check authentication with. */
     public AuthenticationTask(Context context, boolean isAuthUpgrade, String existingAuthCredentials, String plainPassword) {
         super(Result.failure());
         Context applicationContext = context.getApplicationContext();

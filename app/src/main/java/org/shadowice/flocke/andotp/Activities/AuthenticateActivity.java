@@ -246,7 +246,7 @@ public class AuthenticateActivity extends ThemedActivity
         super.onBackPressed();
     }
 
-    /** Retained instance fragment to hold a running @link{{@link AuthenticationTask}} between configuration changes.*/
+    /** Retained instance fragment to hold a running {@link AuthenticationTask} between configuration changes.*/
     public static class TaskFragment extends Fragment {
 
         AuthenticationTask task;
