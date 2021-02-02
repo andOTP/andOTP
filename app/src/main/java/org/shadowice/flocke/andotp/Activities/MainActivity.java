@@ -34,6 +34,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+
+import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -56,6 +58,7 @@ import android.widget.AdapterView;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -114,6 +117,8 @@ public class MainActivity extends BaseActivity
     private String filterString;
 
     private CountDownTimer countDownTimer;
+    private ProgressBar progressBar;
+    private TextView emptyListView;
 
     // QR code scanning
     private void scanQRCode(){
@@ -245,8 +250,8 @@ public class MainActivity extends BaseActivity
             }
         });
 
-        final ProgressBar progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(settings.isHideGlobalTimeoutEnabled() ? View.GONE : View.VISIBLE);
+        progressBar = findViewById(R.id.progressBar);
+        emptyListView = findViewById(R.id.emptyListView);
 
         RecyclerView recList = findViewById(R.id.cardList);
         recList.setHasFixedSize(true);
@@ -256,6 +261,43 @@ public class MainActivity extends BaseActivity
 
         tagsDrawerAdapter = new TagsAdapter(this, new HashMap<String, Boolean>());
         adapter = new EntriesCardAdapter(this, tagsDrawerAdapter);
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                hideProgressBar();
+            }
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount) {
+                super.onItemRangeChanged(positionStart, itemCount);
+                hideProgressBar();
+            }
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount, @Nullable Object payload) {
+                super.onItemRangeChanged(positionStart, itemCount, payload);
+                hideProgressBar();
+            }
+
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                hideProgressBar();
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+                hideProgressBar();
+            }
+
+            @Override
+            public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
+                super.onItemRangeMoved(fromPosition, toPosition, itemCount);
+                hideProgressBar();
+            }
+        });
 
         if (savedInstanceState != null) {
             byte[] encKey = savedInstanceState.getByteArray("encKey");
@@ -897,5 +939,16 @@ public class MainActivity extends BaseActivity
     protected void onDestroy() {
         settings.unregisterPreferenceChangeListener(this);
         super.onDestroy();
+    }
+
+    /**
+     * This function will hide the progress bar if the token list is empty along with
+     * showing a view which has instruction on how to add the tokens
+     * */
+    private void hideProgressBar(){
+        int itemCount = adapter.getItemCount();
+        progressBar.setVisibility((settings.isHideGlobalTimeoutEnabled() || itemCount <= 0) ? View.GONE : View.VISIBLE);
+        emptyListView.setVisibility(itemCount > 0 ? View.GONE : View.VISIBLE);
+
     }
 }
