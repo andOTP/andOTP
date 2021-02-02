@@ -20,19 +20,18 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
-public class AuthenticationTask extends AsyncTask<Void, Void, Result> {
+public class AuthenticationTask extends UiBasedBackgroundTask<Result> {
 
     private final Settings settings;
-    private final Callback callback;
 
     private final boolean isAuthUpgrade;
     private final String existingAuthCredentials;
     private final String plainPassword;
 
-    public AuthenticationTask(Context context, Callback callback, boolean isAuthUpgrade, String existingAuthCredentials, String plainPassword) {
+    public AuthenticationTask(Context context, boolean isAuthUpgrade, String existingAuthCredentials, String plainPassword) {
+        super(Result.failure());
         Context applicationContext = context.getApplicationContext();
         this.settings = new Settings(applicationContext);
-        this.callback = callback;
 
         this.isAuthUpgrade = isAuthUpgrade;
         this.existingAuthCredentials = existingAuthCredentials;
@@ -41,7 +40,7 @@ public class AuthenticationTask extends AsyncTask<Void, Void, Result> {
 
     @Override
     @NonNull
-    protected Result doInBackground(Void... ignore) {
+    protected Result doInBackground() {
         if (isAuthUpgrade) {
             return upgradeAuthentication();
         } else {
@@ -83,16 +82,6 @@ public class AuthenticationTask extends AsyncTask<Void, Void, Result> {
             Log.e("AuthenticationTask", "Problem decoding password", e);
             return Result.failure();
         }
-    }
-
-    @Override
-    protected void onPostExecute(Result result) {
-        callback.onComplete(result);
-    }
-
-    @FunctionalInterface
-    public interface Callback {
-        void onComplete(Result result);
     }
 
     public static class Result {
