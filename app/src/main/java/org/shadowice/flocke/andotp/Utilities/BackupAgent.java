@@ -29,6 +29,8 @@ import android.app.backup.BackupDataOutput;
 import android.app.backup.FileBackupHelper;
 import android.app.backup.SharedPreferencesBackupHelper;
 import android.os.ParcelFileDescriptor;
+import android.util.Log;
+
 
 import java.io.IOException;
 
@@ -44,19 +46,29 @@ public class BackupAgent extends BackupAgentHelper {
     @Override
     public void onBackup(ParcelFileDescriptor oldState, BackupDataOutput data, ParcelFileDescriptor newState) throws IOException {
         Settings settings = new Settings(this);
+        StringBuilder stringBuilder = new StringBuilder("onBackup called with the backup service set to ");
+        stringBuilder.append(settings.getAndroidBackupServiceEnabled() ? "enabled" : "disabled");
 
         if(settings.getAndroidBackupServiceEnabled()) {
             synchronized (DatabaseHelper.DatabaseFileLock) {
+                stringBuilder.append(" calling parent onBackup");
                 super.onBackup(oldState, data, newState);
             }
         }
+        Log.d(BackupAgent.class.getSimpleName(), stringBuilder.toString());
     }
 
     @Override
     public void onRestore(BackupDataInput data, int appVersionCode, ParcelFileDescriptor newState) throws IOException {
+        Settings settings = new Settings(this);
+        StringBuilder stringBuilder = new StringBuilder("onRestore called with the backup service set to ");
+        stringBuilder.append(settings.getAndroidBackupServiceEnabled() ? "enabled" : "disabled");
+
         synchronized (DatabaseHelper.DatabaseFileLock) {
+            stringBuilder.append(" but restore happens regardless, calling parent onRestore");
             super.onRestore(data, appVersionCode, newState);
         }
+        Log.d(BackupAgent.class.getSimpleName(), stringBuilder.toString());
     }
 
     @Override

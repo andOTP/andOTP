@@ -62,6 +62,8 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.crypto.SecretKey;
 
@@ -357,10 +359,10 @@ public class BackupActivity extends BaseActivity {
         if (Tools.isExternalStorageWritable()) {
             ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this, encryptionKey);
 
-            if (StorageAccessHelper.saveFile(this, uri, DatabaseHelper.entriesToString(entries)))
-                Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(this, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            BackupHelper.SaveStringToFile runnable = new BackupHelper.SaveStringToFile(this, uri, DatabaseHelper.entriesToString(entries));
+
+            executor.execute(runnable);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
@@ -464,14 +466,7 @@ public class BackupActivity extends BaseActivity {
 
     private void doBackupCryptWithPassword(Uri uri, String password) {
         if (Tools.isExternalStorageWritable()) {
-
-            boolean success = BackupHelper.backupToFile(this, uri, password, encryptionKey);
-
-            if (success) {
-                Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
-            }
+            BackupHelper.backupToFileAsync(this, uri, password, encryptionKey, false);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
@@ -496,12 +491,10 @@ public class BackupActivity extends BaseActivity {
 
     private void doBackupEncrypted(Uri uri, String data) {
         if (Tools.isExternalStorageWritable()) {
-            boolean success = StorageAccessHelper.saveFile(this, uri, data);
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            BackupHelper.SaveStringToFile runnable = new BackupHelper.SaveStringToFile(this, uri, data);
 
-            if (success)
-                Toast.makeText(this, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(this, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
+            executor.execute(runnable);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
