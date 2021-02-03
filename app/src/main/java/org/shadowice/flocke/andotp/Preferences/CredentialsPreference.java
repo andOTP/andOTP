@@ -171,17 +171,15 @@ public class CredentialsPreference extends DialogPreference
     private void saveValues() {
         byte[] newKey = null;
 
-        if (settings.getEncryption() == EncryptionType.PASSWORD) {
-            if (value == AuthMethod.NONE || value == AuthMethod.DEVICE) {
-                UIHelper.showGenericDialog(getContext(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_auth_invalid_with_encryption);
-                return;
-            }
+        if (settings.getEncryption() == EncryptionType.PASSWORD && value == AuthMethod.NONE || value == AuthMethod.DEVICE) {
+            UIHelper.showGenericDialog(getContext(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_auth_invalid_with_encryption);
+            return;
         }
 
         if (value == AuthMethod.DEVICE) {
             KeyguardManager km = (KeyguardManager) getContext().getSystemService(KEYGUARD_SERVICE);
 
-            if (! km.isKeyguardSecure()) {
+            if (!km.isKeyguardSecure()) {
                 Toast.makeText(getContext(), R.string.settings_toast_auth_device_not_secure, Toast.LENGTH_LONG).show();
                 return;
             }

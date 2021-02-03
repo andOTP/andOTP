@@ -29,9 +29,11 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Handler;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -152,17 +154,16 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         HashMap<String, Boolean> tagsHashMap = new HashMap<>();
         for(String tag: tagsFilterAdapter.getTags()) {
-            if(inUseTags.contains(tag))
+            if (inUseTags.contains(tag))
                 tagsHashMap.put(tag, false);
         }
         for(String tag: tagsFilterAdapter.getActiveTags()) {
-            if(inUseTags.contains(tag))
+            if (inUseTags.contains(tag))
                 tagsHashMap.put(tag, true);
         }
         for(String tag: getTags()) {
-            if(inUseTags.contains(tag))
-                if(!tagsHashMap.containsKey(tag))
-                    tagsHashMap.put(tag, true);
+            if (inUseTags.contains(tag) && !tagsHashMap.containsKey(tag))
+                tagsHashMap.put(tag, true);
         }
 
         tagsFilterAdapter.setTags(tagsHashMap);
@@ -272,7 +273,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             entryViewHolder.setThumbnailSize(settings.getThumbnailSize());
     }
 
-    @Override @NonNull
+    @Override
+    @NonNull
     public EntryViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         int cardLayout = R.layout.component_card_default;
 
@@ -364,7 +366,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         Tools.copyToClipboard(context, text);
         updateLastUsedAndFrequency(position, getRealIndex(position));
         if(context != null && dropToBackground) {
-            ((MainActivity)context).moveTaskToBack(true);
+            ((MainActivity) context).moveTaskToBack(true);
         }
     }
 
@@ -400,7 +402,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         realEntry.setCounter(counter);
         realEntry.updateOTP();
-        
+
         saveEntries(settings.getAutoBackupEncryptedFullEnabled());
     }
 
@@ -431,7 +433,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
 
         final EditText input = new EditText(context);
-        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        input.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         input.setText(String.format(Locale.ENGLISH, "%d", displayedEntries.get(pos).getCounter()));
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         input.setSingleLine();
@@ -546,7 +548,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         final ThumbnailSelectionAdapter thumbnailAdapter = new ThumbnailSelectionAdapter(context, entries.get(realIndex).getIssuer(), entries.get(realIndex).getLabel());
 
         final EditText input = new EditText(context);
-        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        input.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         input.setSingleLine();
 
         input.addTextChangedListener(new TextWatcher() {
@@ -592,7 +594,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 .setView(container)
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
                 })
                 .create();
 
@@ -653,7 +656,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             Bitmap bitmap;
             try {
                 bitmap = new BarcodeEncoder().encodeBitmap(uri.toString(), BarcodeFormat.QR_CODE, 0, 0);
-            } catch(Exception ignored) {
+            } catch (Exception ignored) {
                 Toast.makeText(context, R.string.toast_qr_failed_to_generate, Toast.LENGTH_LONG).show();
                 return;
             }
@@ -751,7 +754,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public List<String> getTags() {
         HashSet<String> tags = new HashSet<String>();
 
-        for(Entry entry : entries) {
+        for(Entry entry: entries) {
             tags.addAll(entry.getTags());
         }
 
@@ -844,6 +847,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
     public interface Callback {
         void onMoveEventStart();
+
         void onMoveEventStop();
     }
 }

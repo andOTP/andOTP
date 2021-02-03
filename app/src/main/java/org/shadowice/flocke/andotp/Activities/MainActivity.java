@@ -34,6 +34,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -45,6 +46,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
+
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -202,7 +204,7 @@ public class MainActivity extends BaseActivity
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new ProcessLifecycleObserver());
 
         if (! settings.getFirstTimeWarningShown()) {
-           showFirstTimeWarning();
+			showFirstTimeWarning();
         }
 
         speedDial = findViewById(R.id.speedDial);
@@ -293,8 +295,8 @@ public class MainActivity extends BaseActivity
         });
 
         handler = new Handler();
-        handlerTask = new Runnable()
-        {
+        handlerTask = new Runnable() 
+		{
             @Override
             public void run() {
                 if (!settings.isHideGlobalTimeoutEnabled()) {
@@ -491,10 +493,8 @@ public class MainActivity extends BaseActivity
 
                 updateEncryption(authKey);
             }
-        } else if (requestCode == Constants.INTENT_MAIN_QR_OPEN_IMAGE && resultCode == RESULT_OK) {
-            if (intent != null) {
-                addQRCode(ScanQRCodeFromFile.scanQRImage(this, intent.getData()));
-            }
+        } else if (requestCode == Constants.INTENT_MAIN_QR_OPEN_IMAGE && resultCode == RESULT_OK && intent != null) {
+            addQRCode(ScanQRCodeFromFile.scanQRImage(this, intent.getData()));
         }
     }
 
@@ -718,7 +718,7 @@ public class MainActivity extends BaseActivity
                     childCheckBox.setChecked(checkedTextView.isChecked());
                 }
 
-                for (String tag: tagsDrawerAdapter.getTags()) {
+                for(String tag : tagsDrawerAdapter.getTags()) {
                     tagsDrawerAdapter.setTagState(tag, checkedTextView.isChecked());
                     settings.setTagToggle(tag, checkedTextView.isChecked());
                 }
@@ -805,7 +805,7 @@ public class MainActivity extends BaseActivity
             tagsHashMap.put(tag, true);
         }
         for(String tag: adapter.getTags()) {
-            if(!tagsHashMap.containsKey(tag))
+            if (!tagsHashMap.containsKey(tag))
                 tagsHashMap.put(tag, true);
         }
         tagsDrawerAdapter.setTags(tagsHashMap);
@@ -851,7 +851,7 @@ public class MainActivity extends BaseActivity
         intent.setType("image/*");
         startActivityForResult(intent, intentId);
     }
-    
+
     private void addQRCode(String result){
         if(!TextUtils.isEmpty(result)) {
             try {

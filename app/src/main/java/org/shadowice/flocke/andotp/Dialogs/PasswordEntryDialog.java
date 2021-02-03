@@ -1,6 +1,7 @@
 package org.shadowice.flocke.andotp.Dialogs;
 
 import android.content.Context;
+
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -19,9 +20,9 @@ import org.shadowice.flocke.andotp.Utilities.ConfirmedPasswordTransformationHelp
 import org.shadowice.flocke.andotp.Utilities.Tools;
 
 public class PasswordEntryDialog extends AppCompatDialog
-    implements View.OnClickListener, TextWatcher {
+        implements View.OnClickListener, TextWatcher {
 
-    public enum Mode { ENTER, UPDATE }
+    public enum Mode {ENTER, UPDATE}
 
     public interface PasswordEnteredCallback {
         void onPasswordEntered(String newPassword);
@@ -82,14 +83,16 @@ public class PasswordEntryDialog extends AppCompatDialog
             okButton.setEnabled(false);
     }
 
-    public void afterTextChanged(Editable s) {}
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+    public void afterTextChanged(Editable s) {
+    }
+
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    }
 
     // View.OnClickListener
-    public void onClick(View view)  {
-        if (view.getId() == R.id.buttonOk) {
-            if (callback != null)
-                callback.onPasswordEntered(passwordInput.getText().toString());
+    public void onClick(View view) {
+        if (view.getId() == R.id.buttonOk && callback != null) {
+            callback.onPasswordEntered(passwordInput.getText().toString());
         }
 
         dismiss();
