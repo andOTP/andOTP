@@ -69,8 +69,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingStart="@dimen/activity_margin_small"
-                android:paddingEnd="@dimen/activity_margin_small"
+                android:paddingStart="@dimen/activity_margin_large"
+                android:paddingEnd="@dimen/activity_margin_large"
                 android:clipToPadding="false"
                 android:text="@string/empty_list_view_text"
                 android:textSize="18sp"
