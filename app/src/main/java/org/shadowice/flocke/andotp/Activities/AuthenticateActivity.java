@@ -32,6 +32,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+
+import android.text.Editable;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
@@ -52,7 +54,7 @@ import org.shadowice.flocke.andotp.Utilities.Constants;
 
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 
-public class AuthenticateActivity extends ThemedActivity
+public class AuthenticateActivity extends BaseActivity
         implements EditText.OnEditorActionListener, View.OnClickListener {
 
     private static final String TAG_TASK_FRAGMENT = "AuthenticateActivity.TaskFragmentTag";
@@ -98,12 +100,13 @@ public class AuthenticateActivity extends ThemedActivity
         initToolbar();
         initPasswordViews();
 
-        getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-    }
+        setBroadcastCallback(() -> {
+                if (settings.getRelockOnScreenOff()) {
+                    cancelBackgroundTask();
+                }
+            });
 
-    @Nullable
-    private TaskFragment findTaskFragment() {
-        return (TaskFragment) getFragmentManager().findFragmentByTag(TAG_TASK_FRAGMENT);
+        getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 
     private void initToolbar() {
@@ -157,6 +160,14 @@ public class AuthenticateActivity extends ThemedActivity
         unlockProgress = v.findViewById(R.id.unlockProgress);
     }
 
+    private void cancelBackgroundTask() {
+        TaskFragment taskFragment = findTaskFragment();
+        if (taskFragment != null) {
+            taskFragment.task.cancel();
+        }
+        setupUiForTaskState(false);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -165,25 +176,29 @@ public class AuthenticateActivity extends ThemedActivity
 
     private void checkBackgroundTask() {
         TaskFragment taskFragment = findTaskFragment();
-        if (taskFragment != null) {
-            // If we have the task fragment in our fragment manager, we know that we started the
-            // task before a configuration change and need to set a new callback.
+        if (taskFragment != null && !taskFragment.task.isCanceled()) {
             taskFragment.task.setCallback(this::handleResult);
-            setupUiForRunningTask();
+            setupUiForTaskState(true);
         }
     }
 
-    private void setupUiForRunningTask() {
-        passwordLayout.setEnabled(false);
-        passwordInput.setEnabled(false);
-        unlockButton.setEnabled(false);
-        unlockButton.setVisibility(View.INVISIBLE);
-        unlockProgress.setVisibility(View.VISIBLE);
+    @Nullable
+    private TaskFragment findTaskFragment() {
+        return (TaskFragment) getFragmentManager().findFragmentByTag(TAG_TASK_FRAGMENT);
+    }
+
+    private void setupUiForTaskState(boolean isTaskRunning) {
+        passwordLayout.setEnabled(!isTaskRunning);
+        passwordInput.setEnabled(!isTaskRunning);
+        unlockButton.setEnabled(!isTaskRunning);
+        unlockButton.setVisibility(isTaskRunning? View.INVISIBLE : View.VISIBLE);
+        unlockProgress.setVisibility(isTaskRunning ? View.VISIBLE : View.GONE);
     }
 
     @Override
     public void onClick(View view) {
-        startAuthTask(passwordInput.getText().toString());
+        Editable text = passwordInput.getText();
+        startAuthTask(text != null ? text.toString() : "");
     }
 
     @Override
@@ -197,18 +212,20 @@ public class AuthenticateActivity extends ThemedActivity
 
     private void startAuthTask(String plainPassword) {
         TaskFragment taskFragment = findTaskFragment();
-        // Don't start another task if this was already started.
-        if (taskFragment == null) {
-            // Add a retained task fragment so that we will be able to know if a task was running on a configuration change.
+        // Don't start a task if we already have an active task running.
+        if (taskFragment == null || taskFragment.task.isCanceled()) {
             AuthenticationTask task = new AuthenticationTask(this, isAuthUpgrade, existingAuthCredentials, plainPassword);
             task.setCallback(this::handleResult);
-            taskFragment = new TaskFragment();
+
+            if (taskFragment == null) {
+                taskFragment = new TaskFragment();
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(taskFragment, TAG_TASK_FRAGMENT)
+                        .commit();
+            }
             taskFragment.startTask(task);
-            getFragmentManager()
-                    .beginTransaction()
-                    .add(taskFragment, TAG_TASK_FRAGMENT)
-                    .commit();
-            setupUiForRunningTask();
+            setupUiForTaskState(true);
         }
     }
 
@@ -257,10 +274,8 @@ public class AuthenticateActivity extends ThemedActivity
         }
 
         public void startTask(@NonNull AuthenticationTask task) {
-            if (this.task == null) {
-                this.task = task;
-                task.execute();
-            }
+            this.task = task;
+            task.execute();
         }
     }
 }
