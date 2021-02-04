@@ -26,6 +26,8 @@ public abstract class UiBasedBackgroundTask<Result> {
     @Nullable
     private Result awaitedResult;
 
+    private volatile boolean isCanceled = false;
+
     /** @param failedResult The result to return if the task fails (throws an exception or returns null). */
     public UiBasedBackgroundTask(@NonNull Result failedResult) {
         this.failedResult = failedResult;
@@ -37,6 +39,10 @@ public abstract class UiBasedBackgroundTask<Result> {
      *                   be stored until a new callback is set. */
     public void setCallback(@Nullable UiCallback<Result> callback) {
         synchronized (callbackLock) {
+            // Don't bother doing anything if the task was canceled.
+            if (isCanceled()) {
+                return;
+            }
             this.callback = callback;
             // If we have an awaited result and are setting a new callback, publish the result immediately.
             if (awaitedResult != null && callback != null) {
@@ -66,6 +72,10 @@ public abstract class UiBasedBackgroundTask<Result> {
         }
 
         synchronized (callbackLock) {
+            // Don't bother issuing callback or storing result if this task is canceled.
+            if (isCanceled()) {
+                return;
+            }
             if (callback != null) {
                 emitResultOnMainThread(callback, result);
             } else {
@@ -80,6 +90,16 @@ public abstract class UiBasedBackgroundTask<Result> {
      *         and the provided default Result will be returned. */
     @NonNull
     protected abstract Result doInBackground() throws Exception;
+
+    @AnyThread
+    public boolean isCanceled() {
+        return isCanceled;
+    }
+
+    @AnyThread
+    public void cancel() {
+        isCanceled = true;
+    }
 
     @FunctionalInterface
     public interface UiCallback<Result> {
