@@ -66,6 +66,7 @@ public class AuthenticateActivity extends BaseActivity
     private String newEncryption = "";
     private String existingAuthCredentials;
     private boolean isAuthUpgrade = false;
+    private ProcessLifecycleObserver observer;
 
     private TextInputLayout passwordLayout;
     private TextInputEditText passwordInput;
@@ -109,8 +110,9 @@ public class AuthenticateActivity extends BaseActivity
                 }
             });
 
+        observer = new ProcessLifecycleObserver();
         ProcessLifecycleOwner.get().getLifecycle()
-                .addObserver(new ProcessLifecycleObserver());
+                .addObserver(observer);
 
         getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
@@ -174,6 +176,15 @@ public class AuthenticateActivity extends BaseActivity
         setupUiForTaskState(false);
     }
 
+    private class ProcessLifecycleObserver implements DefaultLifecycleObserver {
+        @Override
+        public void onStop(LifecycleOwner owner) {
+            if (settings.getRelockOnBackground()) {
+                cancelBackgroundTask();
+            }
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -201,13 +212,11 @@ public class AuthenticateActivity extends BaseActivity
         unlockProgress.setVisibility(isTaskRunning ? View.VISIBLE : View.GONE);
     }
 
-    private class ProcessLifecycleObserver implements DefaultLifecycleObserver {
-        @Override
-        public void onStop(LifecycleOwner owner) {
-            if (settings.getRelockOnBackground()) {
-                cancelBackgroundTask();
-            }
-        }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ProcessLifecycleOwner.get().getLifecycle()
+                .removeObserver(observer);
     }
 
     @Override
