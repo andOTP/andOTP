@@ -32,6 +32,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ProcessLifecycleOwner;
 
 import android.text.Editable;
 import android.text.InputType;
@@ -105,6 +108,9 @@ public class AuthenticateActivity extends BaseActivity
                     cancelBackgroundTask();
                 }
             });
+
+        ProcessLifecycleOwner.get().getLifecycle()
+                .addObserver(new ProcessLifecycleObserver());
 
         getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
@@ -193,6 +199,15 @@ public class AuthenticateActivity extends BaseActivity
         unlockButton.setEnabled(!isTaskRunning);
         unlockButton.setVisibility(isTaskRunning? View.INVISIBLE : View.VISIBLE);
         unlockProgress.setVisibility(isTaskRunning ? View.VISIBLE : View.GONE);
+    }
+
+    private class ProcessLifecycleObserver implements DefaultLifecycleObserver {
+        @Override
+        public void onStop(LifecycleOwner owner) {
+            if (settings.getRelockOnBackground()) {
+                cancelBackgroundTask();
+            }
+        }
     }
 
     @Override
