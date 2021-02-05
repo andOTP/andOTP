@@ -197,6 +197,10 @@ public class AuthenticateActivity extends BaseActivity
         TaskFragment taskFragment = findTaskFragment();
         if (taskFragment != null) {
             if (taskFragment.task.isCanceled()) {
+                // The task was canceled, so remove the task fragment and reset password input.
+                getFragmentManager().beginTransaction()
+                        .remove(taskFragment)
+                        .commit();
                 resetPasswordInput();
             } else {
                 taskFragment.task.setCallback(this::handleResult);
