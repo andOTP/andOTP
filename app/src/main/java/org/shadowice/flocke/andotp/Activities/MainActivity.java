@@ -951,4 +951,9 @@ public class MainActivity extends BaseActivity
         emptyListView.setVisibility(itemCount > 0 ? View.GONE : View.VISIBLE);
 
     }
+
+    @Override
+    protected boolean shouldDestroyOnScreenOff() {
+        return false;
+    }
 }

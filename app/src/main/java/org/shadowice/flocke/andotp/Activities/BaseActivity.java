@@ -67,7 +67,7 @@ public abstract class BaseActivity extends ThemedActivity {
     }
 
     protected boolean shouldDestroyOnScreenOff() {
-        return getClass() != MainActivity.class;
+        return true;
     }
 
     interface BroadcastReceivedCallback {
