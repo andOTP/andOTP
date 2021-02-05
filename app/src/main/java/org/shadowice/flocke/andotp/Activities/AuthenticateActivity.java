@@ -213,13 +213,6 @@ public class AuthenticateActivity extends BaseActivity
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ProcessLifecycleOwner.get().getLifecycle()
-                .removeObserver(observer);
-    }
-
-    @Override
     public void onClick(View view) {
         Editable text = passwordInput.getText();
         startAuthTask(text != null ? text.toString() : "");
@@ -272,6 +265,12 @@ public class AuthenticateActivity extends BaseActivity
     }
 
     @Override
+    public void onBackPressed() {
+        finishWithResult(false, null);
+        super.onBackPressed();
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         // We don't want the task to callback to a dead activity and cause a memory leak, so null it here.
@@ -282,9 +281,15 @@ public class AuthenticateActivity extends BaseActivity
     }
 
     @Override
-    public void onBackPressed() {
-        finishWithResult(false, null);
-        super.onBackPressed();
+    protected void onDestroy() {
+        ProcessLifecycleOwner.get().getLifecycle()
+                .removeObserver(observer);
+        super.onDestroy();
+    }
+
+    @Override
+    protected boolean shouldDestroyOnScreenOff() {
+        return false;
     }
 
     /** Retained instance fragment to hold a running {@link AuthenticationTask} between configuration changes.*/
