@@ -23,6 +23,7 @@
 package org.shadowice.flocke.andotp.Activities;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.view.WindowManager.LayoutParams;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -193,10 +195,21 @@ public class AuthenticateActivity extends BaseActivity
 
     private void checkBackgroundTask() {
         TaskFragment taskFragment = findTaskFragment();
-        if (taskFragment != null && !taskFragment.task.isCanceled()) {
-            taskFragment.task.setCallback(this::handleResult);
-            setupUiForTaskState(true);
+        if (taskFragment != null) {
+            if (taskFragment.task.isCanceled()) {
+                resetPasswordInput();
+            } else {
+                taskFragment.task.setCallback(this::handleResult);
+                setupUiForTaskState(true);
+            }
         }
+    }
+
+    private void resetPasswordInput() {
+        passwordInput.setText("");
+        passwordInput.requestFocus();
+        InputMethodManager keyboard = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        keyboard.showSoftInput(passwordInput, 0);
     }
 
     @Nullable
