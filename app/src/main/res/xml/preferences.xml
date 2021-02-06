@@ -183,6 +183,12 @@
             android:defaultValue="false" />
 
         <CheckBoxPreference
+            android:key="@string/settings_key_hide_issuer"
+            android:title="@string/settings_title_hide_issuer"
+            android:summary="@string/settings_desc_hide_issuer"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
             android:key="@string/settings_key_show_individual_timeouts"
             android:title="@string/settings_title_show_individual_timeouts"
             android:summary="@string/settings_desc_show_individual_timeouts"

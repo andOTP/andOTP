@@ -482,7 +482,8 @@ public class MainActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_tag_functionality)) ||
                 key.equals(getString(R.string.settings_key_label_highlight_token)) ||
                 key.equals(getString(R.string.settings_key_card_layout)) ||
-                key.equals(getString(R.string.settings_key_hide_global_timeout))) {
+                key.equals(getString(R.string.settings_key_hide_global_timeout)) ||
+                key.equals(getString(R.string.settings_key_hide_issuer))) {
             recreateActivity = true;
         }
     }
