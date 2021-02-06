@@ -53,7 +53,10 @@ import org.openintents.openpgp.util.OpenPgpServiceConnection;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Dialogs.PasswordEntryDialog;
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Tasks.BackupTask;
+import org.shadowice.flocke.andotp.Tasks.EncryptedBackupTask;
+import org.shadowice.flocke.andotp.Tasks.GenericBackupTask;
+import org.shadowice.flocke.andotp.Tasks.PGPBackupTask;
+import org.shadowice.flocke.andotp.Tasks.PlainTextBackupTask;
 import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
@@ -68,13 +71,10 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import javax.crypto.SecretKey;
 
-public class BackupActivity extends BaseActivity
-    implements BackupTask.BackupCallback {
+public class BackupActivity extends BaseActivity {
     private final static String TAG = BackupActivity.class.getSimpleName();
 
     private Constants.BackupType backupType = Constants.BackupType.ENCRYPTED;
@@ -259,36 +259,18 @@ public class BackupActivity extends BaseActivity
             pgpServiceConnection.unbindFromService();
     }
 
-    @Override
-    public void onBackupFinished() {
-        hideProgress();
+    private void handleBackupTaskResult(GenericBackupTask.BackupTaskResult result) {
+        Toast.makeText(this, result.messageId, Toast.LENGTH_LONG).show();
+        showBackupProgress(false);
     }
 
-    @Override
-    public void onBackupFailed() {
-        hideProgress();
-    }
+    private void showBackupProgress(boolean running) {
+        btnBackup.setEnabled(!running);
+        btnRestore.setEnabled(!running);
+        chkOldFormat.setEnabled(!running);
+        swReplace.setEnabled(!running);
 
-    private void showProgress(boolean restore) {
-        btnBackup.setEnabled(false);
-        btnRestore.setEnabled(false);
-        chkOldFormat.setEnabled(false);
-        swReplace.setEnabled(false);
-
-        if (restore)
-            progressRestore.setVisibility(View.VISIBLE);
-        else
-            progressBackup.setVisibility(View.VISIBLE);
-    }
-
-    private void hideProgress() {
-        btnBackup.setEnabled(true);
-        btnRestore.setEnabled(true);
-        chkOldFormat.setEnabled(true);
-        swReplace.setEnabled(true);
-
-        progressRestore.setVisibility(View.GONE);
-        progressBackup.setVisibility(View.GONE);
+        progressBackup.setVisibility(running ? View.VISIBLE : View.GONE);
     }
 
     // Get the result from external activities
@@ -414,15 +396,11 @@ public class BackupActivity extends BaseActivity
         if (Tools.isExternalStorageWritable()) {
             ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this, encryptionKey);
 
-            ExecutorService executor = Executors.newSingleThreadExecutor();
+            PlainTextBackupTask task = new PlainTextBackupTask(this, entries, uri);
+            task.setCallback(this::handleBackupTaskResult);
 
-            BackupTask backupTask = new BackupTask(this, Constants.BackupType.PLAIN_TEXT, DatabaseHelper.entriesToString(entries), this);
-
-            if (uri != null)
-                backupTask.setUri(uri);
-
-            showProgress(false);
-            executor.execute(backupTask);
+            task.execute();
+            showBackupProgress(true);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
@@ -524,8 +502,13 @@ public class BackupActivity extends BaseActivity
 
     private void doBackupCryptWithPassword(Uri uri, String password) {
         if (Tools.isExternalStorageWritable()) {
-            showProgress(false);
-            BackupHelper.backupToFileAsync(this, uri, password, encryptionKey, this, false);
+            ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this, encryptionKey);
+
+            EncryptedBackupTask task = new EncryptedBackupTask(this, entries, password, uri);
+            task.setCallback(this::handleBackupTaskResult);
+
+            task.execute();
+            showBackupProgress(true);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
@@ -548,15 +531,11 @@ public class BackupActivity extends BaseActivity
 
     private void doBackupEncrypted(Uri uri, String data) {
         if (Tools.isExternalStorageWritable()) {
-            ExecutorService executor = Executors.newSingleThreadExecutor();
+            PGPBackupTask task = new PGPBackupTask(this, data, uri);
+            task.setCallback(this::handleBackupTaskResult);
 
-            BackupTask backupTask = new BackupTask(this, Constants.BackupType.OPEN_PGP, data, this);
-
-            if (uri != null)
-                backupTask.setUri(uri);
-
-            showProgress(false);
-            executor.execute(backupTask);
+            task.execute();
+            showBackupProgress(true);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }

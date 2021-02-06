@@ -7,13 +7,10 @@ import androidx.documentfile.provider.DocumentFile;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Tasks.BackupTask;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import javax.crypto.SecretKey;
 
@@ -102,22 +99,6 @@ public class BackupHelper {
         }
 
         return Constants.BackupType.UNAVAILABLE;
-    }
-
-    public static void backupToFileAsync(Context context, Uri uri, String password, SecretKey encryptionKey, BackupTask.BackupCallback callback, boolean silent) {
-        ArrayList<Entry> entries = DatabaseHelper.loadDatabase(context, encryptionKey);
-
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-
-        BackupTask backupTask = new BackupTask(context, Constants.BackupType.ENCRYPTED, DatabaseHelper.entriesToString(entries), callback);
-
-        if (uri != null)
-            backupTask.setUri(uri);
-
-        backupTask.setPassword(password);
-        backupTask.setSilent(silent);
-
-        executor.execute(backupTask);
     }
 
     public static boolean backupToFile(Context context, Uri uri, String password, SecretKey encryptionKey) {
