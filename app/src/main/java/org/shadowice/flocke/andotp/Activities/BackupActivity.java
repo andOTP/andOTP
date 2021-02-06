@@ -23,6 +23,7 @@
 package org.shadowice.flocke.andotp.Activities;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -30,6 +31,9 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 import android.text.TextUtils;
@@ -76,6 +80,7 @@ import javax.crypto.SecretKey;
 
 public class BackupActivity extends BaseActivity {
     private final static String TAG = BackupActivity.class.getSimpleName();
+    private static final String TAG_TASK_FRAGMENT = "BackupActivity.TaskFragmentTag";
 
     private Constants.BackupType backupType = Constants.BackupType.ENCRYPTED;
     private SecretKey encryptionKey = null;
@@ -96,6 +101,7 @@ public class BackupActivity extends BaseActivity {
     private ProgressBar progressRestore;
 
     private boolean reload = false;
+    private boolean allowExit = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -241,14 +247,18 @@ public class BackupActivity extends BaseActivity {
     // Go back to the main activity
     @Override
     public boolean onSupportNavigateUp() {
-        finishWithResult();
+        if (allowExit)
+            finishWithResult();
+
         return true;
     }
 
     @Override
     public void onBackPressed() {
-        finishWithResult();
-        super.onBackPressed();
+        if (allowExit) {
+            finishWithResult();
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -259,12 +269,32 @@ public class BackupActivity extends BaseActivity {
             pgpServiceConnection.unbindFromService();
     }
 
+    // TODO: Show more information about the finished backup (e.g. a notification with the file name)
+    private void notifyBackupState(int msgId) {
+        Toast.makeText(this, msgId, Toast.LENGTH_LONG).show();
+    }
+
     private void handleBackupTaskResult(GenericBackupTask.BackupTaskResult result) {
-        Toast.makeText(this, result.messageId, Toast.LENGTH_LONG).show();
         showBackupProgress(false);
+
+        if (result.messageId != 0)
+            notifyBackupState(result.messageId);
+
+        // Clean up the task fragment
+        TaskFragment taskFragment = findTaskFragment();
+        if (taskFragment != null) {
+            getFragmentManager().beginTransaction()
+                    .remove(taskFragment)
+                    .commit();
+        }
+
+        if (result.success)
+            finishWithResult();
     }
 
     private void showBackupProgress(boolean running) {
+        allowExit = !running;
+
         btnBackup.setEnabled(!running);
         btnRestore.setEnabled(!running);
         chkOldFormat.setEnabled(!running);
@@ -399,8 +429,7 @@ public class BackupActivity extends BaseActivity {
             PlainTextBackupTask task = new PlainTextBackupTask(this, entries, uri);
             task.setCallback(this::handleBackupTaskResult);
 
-            task.execute();
-            showBackupProgress(true);
+            startBackupTask(task);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
@@ -507,8 +536,7 @@ public class BackupActivity extends BaseActivity {
             EncryptedBackupTask task = new EncryptedBackupTask(this, entries, password, uri);
             task.setCallback(this::handleBackupTaskResult);
 
-            task.execute();
-            showBackupProgress(true);
+            startBackupTask(task);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
@@ -534,8 +562,7 @@ public class BackupActivity extends BaseActivity {
             PGPBackupTask task = new PGPBackupTask(this, data, uri);
             task.setCallback(this::handleBackupTaskResult);
 
-            task.execute();
-            showBackupProgress(true);
+            startBackupTask(task);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
@@ -608,6 +635,82 @@ public class BackupActivity extends BaseActivity {
         } else if (result.getIntExtra(OpenPgpApi.RESULT_CODE, OpenPgpApi.RESULT_CODE_ERROR) == OpenPgpApi.RESULT_CODE_ERROR) {
             OpenPgpError error = result.getParcelableExtra(OpenPgpApi.RESULT_ERROR);
             Toast.makeText(this, String.format(getString(R.string.backup_toast_openpgp_error), error.getMessage()), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Nullable
+    private TaskFragment findTaskFragment() {
+        return (TaskFragment) getFragmentManager().findFragmentByTag(TAG_TASK_FRAGMENT);
+    }
+
+    private void startBackupTask(GenericBackupTask task) {
+        TaskFragment taskFragment = findTaskFragment();
+
+        // Don't start a task if we already have an active task running.
+        if (taskFragment == null || taskFragment.task.isCanceled()) {
+            if (taskFragment == null) {
+                taskFragment = new TaskFragment();
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(taskFragment, TAG_TASK_FRAGMENT)
+                        .commit();
+            }
+
+            taskFragment.startTask(task);
+
+            showBackupProgress(true);
+        }
+    }
+
+    private void checkBackgroundTask() {
+        TaskFragment taskFragment = findTaskFragment();
+        if (taskFragment != null) {
+            if (taskFragment.task.isCanceled()) {
+                // The task was canceled or has finished, so remove the task fragment.
+                getFragmentManager().beginTransaction()
+                        .remove(taskFragment)
+                        .commit();
+            } else {
+                taskFragment.task.setCallback(this::handleBackupTaskResult);
+                showBackupProgress(true);
+            }
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // We don't want the task to callback to a dead activity and cause a memory leak, so null it here.
+        TaskFragment taskFragment = findTaskFragment();
+        if (taskFragment != null) {
+            taskFragment.task.setCallback(null);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkBackgroundTask();
+    }
+
+    @Override
+    protected boolean shouldDestroyOnScreenOff() {
+        return allowExit;   // Don't destroy the backup activity as long as a backup task is running
+    }
+
+    /** Retained instance fragment to hold a running {@link GenericBackupTask} between configuration changes.*/
+    public static class TaskFragment extends Fragment {
+        GenericBackupTask task;
+
+        public TaskFragment() {
+            super();
+            setRetainInstance(true);
+        }
+
+        public void startTask(@NonNull GenericBackupTask task) {
+            this.task = task;
+            this.task.execute();
         }
     }
 }

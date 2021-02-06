@@ -34,7 +34,7 @@ public abstract class GenericBackupTask extends UiBasedBackgroundTask<GenericBac
             BackupHelper.BackupFile backupFile = BackupHelper.backupFile(applicationContext, settings.getBackupLocation(), type);
 
             if (backupFile.file == null)
-                return new BackupTaskResult(backupFile.errorMessage);
+                return new BackupTaskResult(false, backupFile.errorMessage);
 
             uri = backupFile.file.getUri();
         }
@@ -53,18 +53,20 @@ public abstract class GenericBackupTask extends UiBasedBackgroundTask<GenericBac
 
 
     public static class BackupTaskResult {
+        public final boolean success;
         public final int messageId;
 
-        public BackupTaskResult(int messageId) {
+        public BackupTaskResult(boolean success, int messageId) {
+            this.success = success;
             this.messageId = messageId;
         }
 
         public static BackupTaskResult success() {
-            return new BackupTaskResult(R.string.backup_toast_export_success);
+            return new BackupTaskResult(true, R.string.backup_toast_export_success);
         }
 
         public static BackupTaskResult failure() {
-            return new BackupTaskResult(R.string.backup_toast_export_failed);
+            return new BackupTaskResult(false, R.string.backup_toast_export_failed);
         }
     }
 }
