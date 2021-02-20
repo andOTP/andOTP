@@ -133,6 +133,7 @@ If you want to show your appreciation for our work with a small donation you can
  * [OpenPGP API library](https://github.com/open-keychain/openpgp-api)
  * [VNTNumberPickerPreference](https://github.com/vanniktech/VNTNumberPickerPreference)
  * [ZXing Android Embedded](https://github.com/journeyapps/zxing-android-embedded)
+ * [Droid Sans Mono Zeromod](https://github.com/AlbertoDorado/droid-sans-mono-zeromod)
 
 #### Code examples used:
 
