@@ -363,12 +363,17 @@ public class SettingsActivity extends BaseActivity
             });
 
             CheckBoxPreference blockAutofill = (CheckBoxPreference) findPreference(getString(R.string.settings_key_block_autofill));
+            CheckBoxPreference autoUnlockAfterAutofill = (CheckBoxPreference) findPreference(getString(R.string.settings_key_auto_unlock_after_autofill));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 blockAutofill.setEnabled(true);
                 blockAutofill.setSummary(R.string.settings_desc_block_autofill);
+                autoUnlockAfterAutofill.setEnabled(true);
+                autoUnlockAfterAutofill.setSummary(R.string.settings_desc_auto_unlock_after_autofill);
             } else {
                 blockAutofill.setEnabled(false);
-                blockAutofill.setSummary(R.string.settings_desc_block_autofill_android);
+                blockAutofill.setSummary(R.string.settings_desc_autofill_requires_android_o);
+                autoUnlockAfterAutofill.setEnabled(false);
+                autoUnlockAfterAutofill.setSummary(R.string.settings_desc_autofill_requires_android_o);
             }
 
             // Authentication
