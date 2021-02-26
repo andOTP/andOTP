@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_activity_title">Autentifikatu</string>
+    <!-- Hints -->
+    <string name="auth_hint_password">Pasahitza</string>
+    <string name="auth_hint_pin">PINa</string>
+    <!-- Messages -->
+    <string name="auth_msg_authenticate">Autentifikatu andOTP irekitzeko!</string>
+    <string name="auth_msg_confirm_encryption">Konfirmatu autentifikazioa zure
+        zifratze-gakoa sortzeko!</string>
+    <!-- Buttons -->
+    <string name="auth_button_unlock">Desblokeatu</string>
+    <!-- Toast messages -->
+    <string name="auth_toast_password_missing">Ezarri mesedez pasahitza <b>Ezarpenak</b> atalean!</string>
+    <string name="auth_toast_pin_missing">Ezarri mesedez PINa <b>Ezarpenak</b> atalean!</string>
+    <string name="auth_toast_password_again">Pasahitza ez da zuzena, mesedez saiatu berriro!</string>
+    <string name="auth_toast_pin_again">PINa ez da zuzena, mesedez saiatu berriro!</string>
+</resources>

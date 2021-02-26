@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">אודות</string>
+    <string name="about_description">אימות דו שלבי עם קוד פתוח לאנדרואיד</string>
+    <string name="about_tab_about">אודות</string>
+    <string name="about_tab_libraries">ספריות</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">רשימת שינויים</string>
+    <string name="about_label_license">רישיון</string>
+    <string name="about_label_MIT">רישיון MIT</string>
+    <string name="about_label_source">קוד מקור</string>
+    <string name="about_label_version">גירסה</string>
+    <string name="about_label_faq">שאלות נפוצות</string>
+    <string name="about_label_faq_long">שאלות נפוצות</string>
+    <!-- Authors -->
+    <string name="about_title_authors">מחברים</string>
+    <string name="about_label_main_developer">מפתח ראשי</string>
+    <string name="about_label_developer">מפתח</string>
+    <string name="about_label_original_author">מחבר האפליקציה המקורית</string>
+    <string name="about_label_original_app">אפליקציה מקורית</string>
+    <string name="about_label_website">אתר אינטרנט</string>
+    <string name="about_label_donate">תרום</string>
+    <string name="about_label_contributors">מתנדבים</string>
+    <string name="about_label_translators">מתרגמים</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">הצהרת ויתור תמונה מוקטנת</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> כל התמונות המוקטנות הינן סימנים מסחריים של בעליהם בהתאמה.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> השימוש בסימנים מסחריים אלה אינו
+        מעיד על הסכמה של בעל הסימן המסחרי על ידי andOTP, וגם לא להיפך.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> יש להשתמש בתמונות ממוזערות רק כדי
+        לייצג את החברה או המוצר שאליו הם מתייחסים.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b> 4. אנא אל תשתמש בתמונות ממוזערות לכל
+        מטרה שהיא למעט לייצג את אותו מותג או שירות.</b></string>
+    <!-- Support -->
+    <string name="about_title_support">תמיכה בפיתוח</string>
+    <string name="about_desc_support">גלה כיצד תוכל לתמוך בפיתוח של andOTP</string>
+    <string name="about_title_special_features">תכונות מיוחדות</string>
+    <string name="about_dialog_special_features">האם אתה בטוח שברצונך לאפשר את התכונות
+        המיוחדות? רובן הן אלגוריתמים לא סטנדרטיים של OTP אשר יושמו על פי בקשה
+        מיוחדת. הן לא <b>נתמכות רשמית</b> והן יכולות להגיע עם <b>מגבלות
+        מסויימות</b>, אנא קרא (והבן) את הדף \"תכונות מיוחדות\" ב-Github
+        wiki כדי ללמוד עוד לפני השימוש בהן.</string>
+    <string name="about_toast_special_features">תכונות חדשות מאופשרות</string>
+    <string name="about_toast_special_features_enabled">תכונות חדשות כבר מאופשרות</string>
+    <string name="about_toast_copied_to_clipboard">קישור לתרומה הועתק ללוח</string>
+</resources>

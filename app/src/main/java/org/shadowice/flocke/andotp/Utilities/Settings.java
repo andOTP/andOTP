@@ -576,6 +576,10 @@ public class Settings {
         return getBoolean(R.string.settings_key_show_individual_timeouts, false);
     }
 
+    public boolean isFocusSearchOnStartEnabled() {
+        return getBoolean(R.string.settings_key_focus_search_on_start, false);
+    }
+
     public Constants.TapMode getTapSingle() {
         String singleTap = getString(R.string.settings_key_tap_single, R.string.settings_default_tap_single);
         return Constants.TapMode.valueOf(singleTap.toUpperCase(Locale.ENGLISH));
@@ -600,5 +604,14 @@ public class Settings {
 
     public boolean getBlockAutofill() {
         return getBoolean(R.string.settings_key_block_autofill, false);
+    }
+
+    public void setDefaultBackupType(Constants.BackupType type) {
+        setString(R.string.settings_key_backup_default_type, type.name().toLowerCase(Locale.ENGLISH));
+    }
+
+    public Constants.BackupType getDefaultBackupType() {
+        String defaultType = getString(R.string.settings_key_backup_default_type, Constants.BackupType.ENCRYPTED.name());
+        return Constants.BackupType.valueOf(defaultType.toUpperCase(Locale.ENGLISH));
     }
 }

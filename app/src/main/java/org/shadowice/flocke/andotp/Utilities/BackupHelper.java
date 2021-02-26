@@ -101,10 +101,16 @@ public class BackupHelper {
         return Constants.BackupType.UNAVAILABLE;
     }
 
-    public static boolean backupToFile(Context context, Uri uri, String password, SecretKey encryptionKey)
-    {
+    public static boolean backupToFile(Context context, Uri uri, String password, SecretKey encryptionKey) {
         ArrayList<Entry> entries = DatabaseHelper.loadDatabase(context, encryptionKey);
         String plain = DatabaseHelper.entriesToString(entries);
+
+        return backupToFile(context, uri, password, plain);
+    }
+
+    public static boolean backupToFile(Context context, Uri uri, String password, String plain)
+    {
+        boolean success = true;
 
         try {
             int iter = EncryptionHelper.generateRandomIterations();
@@ -120,12 +126,12 @@ public class BackupHelper {
             System.arraycopy(salt, 0, data, Constants.INT_LENGTH, Constants.ENCRYPTION_IV_LENGTH);
             System.arraycopy(encrypted, 0, data, Constants.INT_LENGTH + Constants.ENCRYPTION_IV_LENGTH, encrypted.length);
 
-            StorageAccessHelper.saveFile(context, uri, data);
+            success = StorageAccessHelper.saveFile(context, uri, data);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            success = false;
         }
 
-        return true;
+        return success;
     }
 }

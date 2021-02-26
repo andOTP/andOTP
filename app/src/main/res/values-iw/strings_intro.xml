@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intro_slide1_title">בוא נתחיל</string>
+    <string name="intro_slide1_desc">ברוך הבא ל <b>andOTP</b>, אשף זה ינחה אותך         בהתקנה הראשונית. אנא הקדש תשומת לב וקרא בקפידה, אחרת אתה יכול לאבד את הנתונים שלך!         \n\nאל דאגה, אתה עדיין יכול לשנות כל אחת מהאפשרויות מאוחר יותר ב<b>הגדרות</b>.</string>
+    <string name="intro_slide2_desc">כדי לוודא את אבטחת החשבונות שלך <b>andOTP</b>         יאחסן אותם רק בקבצי נתונים מוצפנים. כאן אתה יכול לבחור איזו שיטת הצפנה תהיה         בשימוש.</string>
+    <string name="intro_slide2_desc_keystore">ה- KeyStore הינו רכיב מערכת של אנדרואיד בשביל
+         אחסנת מפתחות באופן מאובטח. היתרון בשיטה זו הוא שהמפתחות
+         מאוחסנים בנפרד מקבצי הנתונים, ויכולים להיות מגובים על ידי הצפנת חומרה (אם
+         מכשירך תומך בזה). למרות זאת, כמו שהמפתחות לא מאוחסנים עם נתוני האפליקציות, <b>שיטה זו
+         מונעת מפתרונות גיבוי חיצוני (כמו Titanium) מלפעול</b>. אם אתה בוחר
+         שיטה זו, אתה תצטרך להסתמך על פונקציות הגיבוי הפנימי המסופקות ע\"י <b>andOTP</b>.
+        \n\n<b>אזהרה</b>: ה-KeyStore ידוע בגרימת הרבה בעיות, אנא השתמש בזה רק אם 
+        אתה לחלוטין חייב. אם לא אכפת לך להכניס סיסמה / קוד PIN בכל פעם שאתה מפעיל את
+        <b>andOTP</b>, זה מאוד <b>מומלץ להשתמש בהצפנה מבוססת סיסמה במקום</b>.</string>
+    <string name="intro_slide2_desc_password">שיטה זו תצפין את הנתונים שלך באמצעות מפתח
+         שנוצר מסיסמה או קוד PIN. היתרון העקרי כאן הוא שזה יעבוד עם
+         פתרונות גיבוי חיצוני (כמו Titanium) וזה הרבה פחות מועד לכישלון מאשר KeyStore.
+         למרות זאת, אתה תהיה חייב להכניס את האישורים המזהים שלך בכל פעם שאתה מתחיל את <b>andOTP</b>.</string>
+    <string name="intro_slide3_desc_keystore">כאן אתה יכול להגדיר אימות לנעילת
+         <b>andOTP</b>. היות ובחרת <b>Android KeyStore</b> כשיטת הצפנה, זה
+     אופציונלי.</string>
+    <string name="intro_slide3_desc_password">כאן אתה יכול להגדיר אימות לנעילת
+         <b>andOTP</b>. היות ובחרת <b>סיסמה / קוד PIN </b> כשיטת הצפנה, אתה צריך
+         להגדיר סיסמה או קוד PIN כדי להמשיך.</string>
+    <string name="intro_slide3_warn_no_password">אנא הגדר סיסמה כדי להמשיך!</string>
+    <string name="intro_slide3_warn_no_pin">אנא הגדר קוד PIN כדי להמשיך!</string>
+    <string name="intro_slide3_warn_confirm_password">אנא אשר את הסיסמה שלך כדי להמשיך!</string>
+    <string name="intro_slide3_warn_confirm_pin">אנא אשר את הקוד PIN שלך כדי להמשיך!</string>
+    <string name="intro_slide4_title">הסתיים</string>
+    <string name="intro_slide4_desc">ההגדרות שלך נשמרו, הינך מוכן להשתמש ב
+        <b>andOTP</b> עכשיו!</string>
+</resources>

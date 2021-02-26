@@ -45,6 +45,13 @@
     <string name="menu_popup_change_image">Bild ändern</string>
     <string name="menu_popup_remove">Entfernen</string>
     <string name="menu_popup_show_qr_code">Zeige QR-Code</string>
+    <!-- Buttons -->
+    <string name="button_card_options">Weitere Optionen</string>
+    <string name="button_card_options_format">Weitere Optionen für %1$s</string>
+    <string name="button_card_copy">Token kopieren</string>
+    <string name="button_card_copy_format">%1$s Token kopieren</string>
+    <string name="button_add">Neues Konto hinzufügen</string>
+    <string name="button_close_menu">Menü schließen</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">Authentifizierung fehlgeschlagen, bitte erneut versuchen!</string>
     <string name="toast_auth_failed_fatal">Authentifizierung fehlgeschlagen, andOTP wird geschlossen!</string>
@@ -71,7 +78,6 @@
     <string name="dialog_title_used_tokens">Verwendete Token</string>
     <string name="dialog_title_keystore_error">KeyStore Fehler</string>
     <string name="dialog_title_qr_code">QR-Code</string>
-    <string name="dialog_title_android21_depreaction">Hinweis</string>
     <string name="dialog_title_enter_password">Passwort eingeben</string>
     <string name="dialog_label_enter_password">Passwort eingeben</string>
     <string name="dialog_label_confirm_password">Passwort bestätigen</string>
@@ -81,11 +87,6 @@
         um anzuzeigen\" verwenden oder die sie in die Zwischenablage kopieren), um sie nach \"meistbenutzt\" oder
         \"zuletzt verwendet\" zu sortieren.\n\nDiese Nachricht wird nicht wieder angezeigt.</string>
     <string name="dialog_msg_keystore_error">Fehler beim Laden des Verschlüsselungsschlüssels aus dem KeyStore. <b>Alle Einträge, die hinzugefügt werden, gehen verloren.</b>\n\nUm andOTP dennoch verwenden zu können, rufe die <b>Einstellungen</b> auf und setze die <b>Datenbank-Verschlüsselung</b> auf <b>Passwort / PIN</b>.</string>
-    <string name="dialog_msg_android21_deprecation">Dies wird die letzte Version von andOTP sein, die
-        Android-Versionen niedriger als 5.1 (Lollipop) unterstützt. Der erhöhte Aufwand zur Aufrechterhaltung einer separaten 
-        Speicherimplementierung nur für diese älteren Versionen und deren geringer Marktanteil 
-        machen eine fortgesetzte Unterstützung für unser kleines Team unmöglich.\n\nDiese Nachricht wird nicht erneut
-        angezeigt.</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">QR-Code scannen</string>
     <string name="shortcut_name_import_qr">QR-Code importieren</string>

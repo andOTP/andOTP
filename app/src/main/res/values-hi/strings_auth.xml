@@ -6,7 +6,8 @@
     <string name="auth_hint_pin">पिन</string>
     <!-- Messages -->
     <string name="auth_msg_authenticate">कृपया andOTP शुरू करने के लिए प्रमाणित करें!</string>
-    <string name="auth_msg_confirm_encryption">कृप्या          नई एन्क्रिप्शन कुंजी जेनरेट करने के लिए अपने प्रमाणीकरण की पुष्टि करें!</string>
+    <string name="auth_msg_confirm_encryption">Please confirm authentication to generate your
+        encryption key!</string>
     <!-- Buttons -->
     <string name="auth_button_unlock">अनलॉक करें</string>
     <!-- Toast messages -->

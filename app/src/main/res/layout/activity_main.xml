@@ -66,7 +66,19 @@
                 android:paddingTop="@dimen/activity_margin_xsmall"
                 android:paddingBottom="@dimen/fab_recyclerview_padding"
                 android:clipToPadding="false" />
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/activity_margin_large"
+                android:paddingEnd="@dimen/activity_margin_large"
+                android:clipToPadding="false"
+                android:text="@string/empty_list_view_text"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                tools:visibility="visible"
+                android:visibility="gone"
+                android:id="@+id/emptyListView"/>
             <include layout="@layout/component_tags" />
 
         </androidx.drawerlayout.widget.DrawerLayout>

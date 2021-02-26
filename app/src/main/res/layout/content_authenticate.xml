@@ -34,12 +34,27 @@
     <requestFocus/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/buttonUnlock"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        style="?android:attr/buttonBarButtonStyle"
-        android:text="@string/auth_button_unlock" />
+        android:layout_gravity="end">
+
+        <Button
+            android:id="@+id/buttonUnlock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="@string/auth_button_unlock" />
+
+        <ProgressBar
+            android:id="@+id/unlockProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyle"
+            android:layout_centerVertical="true"
+            android:layout_alignEnd="@id/buttonUnlock"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

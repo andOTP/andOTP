@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Buttons -->
+    <string name="button_cancel">Ezeztatu</string>
+    <string name="button_enter_details">Xehetasunak idatzi</string>
+    <string name="button_scan_qr">QR kodea eskaneatu</string>
+    <string name="button_save">Gorde</string>
+    <string name="button_new_tag">Etiketa berria</string>
+    <string name="button_settings">Ezarpenak</string>
+    <string name="button_all_tags">Etiketa guztiak</string>
+    <string name="button_no_tags">Etiketarik ez</string>
+    <string name="button_qr_from_image">QR kodea iruditik</string>
+    <!-- Custom formatting -->
+    <string name="format_custom_period">%d s</string>
+    <!-- Hints -->
+    <string name="hint_label">Etiketa</string>
+    <string name="hint_secret">Sekretua</string>
+    <!-- Labels -->
+    <string name="label_hidden">Ezkutua</string>
+    <string name="label_type">Mota</string>
+    <string name="label_secret">Sekretua</string>
+    <string name="label_period">Iraupena</string>
+    <string name="label_digits">Digituak</string>
+    <string name="label_counter">Kontagailua</string>
+    <string name="label_issuer">Jaulkitzailea</string>
+    <string name="label_label">Etiketa</string>
+    <string name="label_algorithm">Algoritmoa</string>
+    <string name="label_tags">Etiketak</string>
+    <string name="label_advanced">Aukera aurreratuak</string>
+    <!-- Drawer -->
+    <string name="drawer_open">Etiketak erakutsi</string>
+    <string name="drawer_close">Etiketak ezkutatu</string>
+    <!-- Menu -->
+    <string name="menu_main_about">Honi buruz</string>
+    <string name="menu_main_backup">Segurtasun kopia</string>
+    <string name="menu_main_search">Bilatu</string>
+    <string name="menu_main_settings">Ezarpenak</string>
+    <string name="menu_main_sort">Ordenatu</string>
+    <string name="menu_sort_none">Ordenatu gabe</string>
+    <string name="menu_sort_issuer">Jaulkitzailea</string>
+    <string name="menu_sort_label">Etiketa</string>
+    <string name="menu_sort_last_used">Azken erabiltze-data</string>
+    <string name="menu_sort_most_used">Gehien erabilia</string>
+    <string name="menu_popup_edit">Editatu</string>
+    <string name="menu_popup_change_image">Irudia aldatu</string>
+    <string name="menu_popup_remove">Ezabatu</string>
+    <string name="menu_popup_show_qr_code">Erakutsi QR kodea</string>
+    <!-- Buttons -->
+    <string name="button_card_options">Aukera gehiago</string>
+    <string name="button_card_options_format">Aukera gehiago: %1$s</string>
+    <string name="button_card_copy">Kopiatu tokena</string>
+    <string name="button_card_copy_format">Kopiatu %1$s tokena</string>
+    <string name="button_add">Gehitu kontu berria</string>
+    <string name="button_close_menu">Itxi menua</string>
+    <!-- Toast messages -->
+    <string name="toast_auth_failed">Autentifikazioak huts egin du. Mesedez, saiatu berriro!</string>
+    <string name="toast_auth_failed_fatal">Autentifikazioak huts egin du, andOTP itxi egingo da!</string>
+    <string name="toast_copied_to_clipboard">Arbelera kopiatu da</string>
+    <string name="toast_entry_exists">Sarrera hau badago</string>
+    <string name="toast_invalid_qr_code">QR kodea ez da zuzena</string>
+    <string name="toast_encryption_key_empty">Zifratze-gakoa ez da kargatu</string>
+    <string name="toast_intent_creation_failed">Aplikazioak kode okerra pasatu du</string>
+    <string name="toast_intent_creation_succeeded">Aplikazioak pasatutako kodea ondo gehitu da</string>
+    <string name="toast_file_load_error">Ezin da fitxategia ireki</string>
+    <string name="toast_qr_error">Ezin da QR kodea bilatu/baieztatu</string>
+    <string name="toast_qr_checksum_exception">Errorea gertatu da QR kodea deskodetzean</string>
+    <string name="toast_qr_format_error">Errorea QR kodearen formatuan</string>
+    <string name="toast_qr_unsuported">QR kode hau ez da zuzena</string>
+    <string name="toast_qr_failed_to_generate">Huts egin du QR kodea sortzean</string>
+    <!-- Errors -->
+    <string name="error_invalid_secret">Sekretua ez da zuzena</string>
+    <!-- Dialogs -->
+    <string name="dialog_title_auth">Autentifikatu</string>
+    <string name="dialog_title_manual_entry">Xehetasunak idatzi</string>
+    <string name="dialog_title_remove">Ezabatu</string>
+    <string name="dialog_title_rename">Aldatu izena</string>
+    <string name="dialog_title_counter">Kontagailua</string>
+    <string name="dialog_title_used_tokens">Tokenen erabilera</string>
+    <string name="dialog_title_keystore_error">KeyStorearen errorea</string>
+    <string name="dialog_title_qr_code">QR kodea</string>
+    <string name="dialog_title_enter_password">Pasahitza sartu</string>
+    <string name="dialog_label_enter_password">Pasahitza sartu</string>
+    <string name="dialog_label_confirm_password">Pasahitza berretsi</string>
+    <string name="dialog_msg_auth">Sartu zure gailuaren kredentzialak andOTP hasteko.</string>
+    <string name="dialog_msg_confirm_delete">\"%1$s\" ezabatu nahi duzu?</string>
+    <string name="dialog_msg_used_tokens">andOTPk zure tokean noiz erabiltzen dituzun
+        gordeko du (\"Sakatu erakusteko\" erabiltzen duzunean edo arbelera kopiatzean) horrela
+        \"Gehien erabiliak\" edo \"Azkenaldian erabiliak\" zerrendetan erabiltzeko. \n\nMezu hau ez da berriz erakutsiko.</string>
+    <string name="dialog_msg_keystore_error">Ezin izan da zifratze-gakoa kargatu.
+        <b>Gehitutako sarrerak galdu egingo dira.</b>\n\nandOTP erabiltzen jarraitzeko
+        <b>Ezarpenak</b> atalera joan eta aldatu <b>Datu-basearen zifratzea</b>ren balioa <b>Pasahitza/PINa</b> izatera.</string>
+    <!-- Shortcuts -->
+    <string name="shortcut_name_scan_qr">QR kodea eskaneatu</string>
+    <string name="shortcut_name_import_qr">QR kodea inportatu</string>
+    <string name="shortcut_name_enter_details">Xehetasunak idatzi</string>
+</resources>

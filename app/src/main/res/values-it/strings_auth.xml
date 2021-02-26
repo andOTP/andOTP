@@ -6,8 +6,8 @@
     <string name="auth_hint_pin">PIN</string>
     <!-- Messages -->
     <string name="auth_msg_authenticate">Autenticati per iniziare a utilizzare andOTP!</string>
-    <string name="auth_msg_confirm_encryption">Conferma la tua autenticazione per generare la
-  nuova chiave crittografica!</string>
+    <string name="auth_msg_confirm_encryption">Conferma l\'autenticazione per generare la tua
+        chiave crittografica!</string>
     <!-- Buttons -->
     <string name="auth_button_unlock">Sblocca</string>
     <!-- Toast messages -->

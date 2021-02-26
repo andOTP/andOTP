@@ -33,15 +33,15 @@
     <string name="backup_receiver_read_permission_failed">कृपया बैकअप का प्रयास करने से         पहले पढ़ने की अनुमति प्रदान करें</string>
     <string name="backup_receiver_write_permission_failed">कृपया बैकअप का प्रयास करने से         पहले लेखन की अनुमति प्रदान करें</string>
     <string name="backup_receiver_custom_encryption_failed">पासवर्ड / पिन आधारित एन्क्रिप्शन प्रसारण बैकअप के साथ समर्थित नहीं है</string>
-    <string name="backup_new_format_dialog_title">नई एन्क्रिप्शन विधि</string>
-    <string name="backup_new_format_dialog_msg">AndOTP के संस्करण 0.6.3 के बाद से, <b>नया और बेहतर एन्क्रिप्शन विधि</b> का उपयोग पासवर्ड-संरक्षित बैकअप के लिए किया जाता है। पुराने बैकअप अभी भी आयात किए जा सकते हैं, लेकिन बेहतर एन्क्रिप्शन के साथ नए बैकअप बनाने की अत्यधिक अनुशंसा की जाती है| \n\nसंदेश फिर से नहीं दिखाया जाएगा।</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">स्वचालित बैकअप विफल</string>
     <string name="notification_channel_name_backup_success">स्वचालित बैकअप सफल</string>
     <string name="notification_channel_desc_backup_failed">स्वचालित बैकअप किसी कारण से विफल होने पर ये सूचनाएं दिखाई जाती हैं |</string>
     <string name="notification_channel_desc_backup_success">स्वचालित बैकअप सफल होने पर ये सूचनाएं दिखाई जाती हैं|</string>
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">बैकअप निर्देशिका बनाने में विफल</string>
+    <string name="backup_toast_no_location">Please set a default backup location in the settings!</string>
+    <string name="backup_toast_location_access_failed">Failed to access backup location!</string>
+    <string name="backup_toast_file_creation_failed">Failed to create backup file!</string>
     <string name="backup_toast_export_success">निर्यात बाहरी संग्रहण के लिए सफल</string>
     <string name="backup_toast_export_failed">बाहरी संग्रहण में निर्यात विफल रहा</string>
     <string name="backup_toast_import_success">बाह्य संग्रहण से आयात सफल</string>
@@ -49,7 +49,6 @@
     <string name="backup_toast_import_decryption_failed">बैकअप का डिक्रिप्शन विफल रहा</string>
     <string name="backup_toast_import_no_entries">आयातित डेटा में कोई प्रविष्टियाँ नहीं मिलीं</string>
     <string name="backup_toast_storage_not_accessible">बाहरी संग्रहण वर्तमान में सुलभ नहीं है</string>
-    <string name="backup_toast_storage_permissions">भंडारण की अनुमति नहीं दी गई</string>
     <string name="backup_toast_openpgp_error">ओपन-पीजीपी त्रुटि: %s</string>
     <string name="backup_toast_openpgp_not_verified">कोई सत्यापित हस्ताक्षर नहीं मिला</string>
     <string name="backup_toast_crypt_password_not_set">पासवर्ड सेट नहीं है, <b>सेटिंग</b> जांचें</string>

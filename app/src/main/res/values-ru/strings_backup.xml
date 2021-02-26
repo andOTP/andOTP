@@ -47,11 +47,6 @@
         сделайте это перед началом резервного копирования</string>
     <string name="backup_receiver_custom_encryption_failed">Пароль/PIN-код на основе шифрования не 
         поддерживается со сторонними приложениями для создания резервных копий</string>
-    <string name="backup_new_format_dialog_title">Новый метод шифрования</string>
-    <string name="backup_new_format_dialog_msg">Начиная с версии andOTP 0.6.3  &lt;b&gt;используется новый
-        и улучшенный метод&lt;/b&gt; шифрования для защищенных паролем резервных копий. Старые резервные копии могут быть
-        импортированы, однако настоятельно рекомендуется создать новые резервные копии с улучшенным 
-        шифрованием&lt;/b&gt;.\n\nЭто сообщение не будет показано снова.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Автоматическое резервное копирование не удалось</string>
     <string name="notification_channel_name_backup_success">Автоматическое резервное копирование успешно завершено</string>
@@ -60,7 +55,9 @@
     <string name="notification_channel_desc_backup_success">Эти уведомления отображаются 
         при успешном автоматическом резервном копировании</string>
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">Не удалось создать каталог для резервной копии</string>
+    <string name="backup_toast_no_location">Пожалуйста, установите в настройках место по умолчанию для резервного копирования!</string>
+    <string name="backup_toast_location_access_failed">Не удалось получить доступ к месту резервного копирования!</string>
+    <string name="backup_toast_file_creation_failed">Не удалось создать резервную копию!</string>
     <string name="backup_toast_export_success">Экспорт на внешний носитель выполнен успешно</string>
     <string name="backup_toast_export_failed">Экспорт на внешний носитель выполнить не удалось</string>
     <string name="backup_toast_import_success">Импорт из внешнего носителя выполнен успешно</string>
@@ -68,7 +65,6 @@
     <string name="backup_toast_import_decryption_failed">Ошибка расшифровки резервной копии</string>
     <string name="backup_toast_import_no_entries">Нет записей в импортированных данных</string>
     <string name="backup_toast_storage_not_accessible">Внешний носитель в настоящее время недоступен</string>
-    <string name="backup_toast_storage_permissions">Необходимо разрешение на доступ к памяти устройства</string>
     <string name="backup_toast_openpgp_error">Ошибка OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">Обнаружена недействительная подпись</string>
     <string name="backup_toast_crypt_password_not_set">Пароль не установлен, проверьте <b>Настройки</b></string>

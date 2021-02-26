@@ -14,17 +14,18 @@
     <string name="settings_title_encryption">تشفير قاعدة البيانات</string>
     <string name="settings_title_panic">زر الذعر</string>
     <string name="settings_title_relock_screen_off">الإقفال عند إغلاق الجهاز</string>
-    <string name="settings_title_relock_background">Re-lock when going into the background</string>
-    <string name="settings_title_auth_inactivity">Re-lock on inactivity</string>
-    <string name="settings_title_auth_inactivity_delay">Delay for inactivity re-lock</string>
-    <string name="settings_title_block_accessibility">Block accessibility services</string>
+    <string name="settings_title_relock_background">إعادة قفل عند الذهاب إلى الخلفية</string>
+    <string name="settings_title_auth_inactivity">إعادة قفل عند عدم النشاط</string>
+    <string name="settings_title_auth_inactivity_delay">تأخير إعادة قفل عدم النشاط</string>
+    <string name="settings_title_block_accessibility">حظر إمكانية الوصول</string>
+    <string name="settings_title_block_autofill">حظر التعبئة التلقائية</string>
     <string name="settings_title_lang">اللغة</string>
     <string name="settings_title_theme">المظهر</string>
     <string name="settings_title_card_layout">تصميم البطاقة</string>
     <string name="settings_title_label_size">حجم خط إسم العلامات</string>
     <string name="settings_title_label_scroll">تسمية التمرير</string>
-    <string name="settings_title_tap_single">Single-tap</string>
-    <string name="settings_title_tap_double">Double-tap</string>
+    <string name="settings_title_tap_single">نقرة</string>
+    <string name="settings_title_tap_double">نقر مزدوج</string>
     <string name="settings_title_thumbnail_size_ask">حجم الصور المصغرة</string>
     <string name="settings_title_split_group_size">تقسيم تذكرة أمان النفاذ بمسافة بيضاء</string>
     <string name="settings_title_tag_functionality">سلوك إختيار العلامة</string>
@@ -35,7 +36,7 @@
     <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
     <string name="settings_title_backup_append_date">إلحاق تاريخ اليوم باسم الملف</string>
     <string name="settings_title_backup_ask">إسأل عن إسم الملف</string>
-    <string name="settings_title_backup_directory">مجلد النسخ الإحتياطي</string>
+    <string name="settings_title_backup_location">Default backup location</string>
     <string name="settings_title_backup_password">كلمة المرور للنسخة الإحتياطية</string>
     <string name="settings_title_auto_backup_password_enc">نسخ احتياطي تلقائي للإدخالات الجديدة</string>
     <string name="settings_title_backup_broadcasts">النسخ الاحتياطي المبث</string>
@@ -60,6 +61,10 @@
         require reauthentication</string>
     <string name="settings_desc_block_accessibility">Hide sensitive fields from the accessibility
         services. <b>DO NOT enable this if you rely on the accessibility services!</b></string>
+    <string name="settings_desc_block_autofill">Block autofill services from accessing password
+        fields inside the app</string>
+    <string name="settings_desc_block_autofill_android">This feature requires an Android version
+        above 8.0 (Oreo)</string>
     <string name="settings_desc_label_scroll">قم بتمرير علامات متجاورة بدلاً من اقتطاعها</string>
     <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
     <string name="settings_desc_search_includes">Specify which values should be included when searching</string>
@@ -69,9 +74,13 @@
         This can slow down the app, only enable if really necessary.</string>
     <string name="settings_desc_backup_append_date">إلحاق بالتاريخ الحالي والوقت إلى اسم الملف النسخ الاحتياطي المقترح</string>
     <string name="settings_desc_backup_ask">اسأل عن اسم الملف كل مرة يتم إنشاء نسخة احتياطية أو نسخة مستعادة</string>
+    <string name="settings_desc_backup_location">Choose a default backup location</string>
+    <string name="settings_desc_backup_location_set">Backup location has been chosen</string>
     <string name="settings_desc_backup_password">إختر كلمة المرور التي سوف تستخدم لتشفير النسخ الإحتياطية</string>
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
         entries are added, or edited, if settings conditions are met</string>
+    <string name="settings_desc_auto_backup_requirements">Set a default backup location and a
+        backup password to enable this option</string>
     <string name="settings_desc_backup_broadcasts">حدد أنواع النسخ الإحتياطي التي يمكن تشغيلها بواسطة تطبيقات البث</string>
     <string name="settings_desc_openpgp_key_encrypt">عنوان البريد الإلكتروني للمفتاح  المستخدَم لتشفير النسخ الإحتياطية</string>
     <string name="settings_desc_openpgp_verify">النسخ المشفرة تسترد فقط إذا وقعوا بمفتاح صالح</string>
@@ -81,7 +90,7 @@
     <string name="settings_desc_enable_android_backup_service">تمكين التطبيق أن يستعمل خدمة النسخ الموجودة في أندرويد لنسخ المفاتيح والتفضيلات</string>
     <string name="settings_desc_clear_keystore">حذف مفتاح التعمية من مخزن المفاتيح</string>
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_not_secure">هذه الخاصة تتطلب ضبط القفل الآمن
+    <string name="settings_toast_auth_device_not_secure">هذه الخاصة تتطلب ضبط القفل الآمن 
 (الإعدادت -> شاشة القفل والحماية -> ضبط القفل الآمن) </string>
     <string name="settings_toast_password_empty">كلمة مرور فارغة مرفوضة. إختر نوع المصادقة كفارغة لتعطيلها!</string>
     <string name="settings_toast_encryption_changing">محاولة تغيير تشفيرة قاعدة البيانات،

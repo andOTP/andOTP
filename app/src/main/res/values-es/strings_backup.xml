@@ -45,18 +45,15 @@
         hazlo antes de intentar hacer una copia de seguridad</string>
     <string name="backup_receiver_custom_encryption_failed">Cifrado basado en clave/PIN no
         soportado en la copia de seguridad de difusión</string>
-    <string name="backup_new_format_dialog_title">Nuevo método de cifrado</string>
-    <string name="backup_new_format_dialog_msg">A partir de la versión 0.6.3 de andOTP, se utiliza un <b>nuevo y mejorado
-        método de cifrado</b> para copias de seguridad protegidas por contraseña. Las copias de seguridad antiguas aún pueden ser
-        importadas, pero es <b>sumamente recomendable crear nuevas copias de seguridad con
-        el cifrado mejorado</b>.\n\nEste mensaje no se mostrará nuevamente.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Falló la copia de seguridad automática</string>
     <string name="notification_channel_name_backup_success">La copia de seguridad automática se realizó con éxito</string>
     <string name="notification_channel_desc_backup_failed">Estas notificaciones se muestran cuando una copia de seguridad automática falla por algún motivo</string>
     <string name="notification_channel_desc_backup_success">Estas notificaciones se muestran cuando una copia de seguridad automática se realiza con éxito</string>
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">Fallo al crear la carpeta para copias de seguridad</string>
+    <string name="backup_toast_no_location">Por favor, establezca una ubicación de copia de seguridad predeterminada en la configuración!</string>
+    <string name="backup_toast_location_access_failed">¡Error al acceder a la ubicación de la copia de seguridad!</string>
+    <string name="backup_toast_file_creation_failed">¡Error al crear el archivo de copia de seguridad!</string>
     <string name="backup_toast_export_success">Exportado a almacenamiento externo con éxito</string>
     <string name="backup_toast_export_failed">Fallo al exportar al almacenamiento externo</string>
     <string name="backup_toast_import_success">Importado desde el almacenamiento externo con éxito</string>
@@ -64,7 +61,6 @@
     <string name="backup_toast_import_decryption_failed">Fallo al descifrar la copia de seguridad</string>
     <string name="backup_toast_import_no_entries">No se encontraron elementos en los datos importados</string>
     <string name="backup_toast_storage_not_accessible">Almacenamiento externo actualmente inaccesible</string>
-    <string name="backup_toast_storage_permissions">Permiso de almacenamiento no concecido</string>
     <string name="backup_toast_openpgp_error">Error OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">Ninguna firma verificable detectada</string>
     <string name="backup_toast_crypt_password_not_set">Contraseña no establecida, revise los <b>Ajustes</b></string>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="backup_activity_title">Segurtasun-kopiak</string>
+    <string name="backup_category_plain">Segurtasun-kopia arruntak</string>
+    <string name="backup_category_crypt">Zifratutako segurtasun-kopiak</string>
+    <string name="backup_category_openpgp">OpenPGP segurtasun-kopiak</string>
+    <string name="backup_title_export_plain">Segurtasun-kopia (arrunta)</string>
+    <string name="backup_title_export_crypt">Segurtasun-kopia (zifratuta)</string>
+    <string name="backup_title_export_openpgp">Segurtasun-kopia (OpenPGP)</string>
+    <string name="backup_title_import_plain">Berrezarri (arrunta)</string>
+    <string name="backup_title_import_crypt">Berrezarri (zifratuta)</string>
+    <string name="backup_title_import_crypt_old">Berrezarri (zifratuta, zifratze zaharra)</string>
+    <string name="backup_title_import_openpgp">Berrezarri (OpenPGP)</string>
+    <string name="backup_title_replace">Ordezkatu existitzen diren sarrerak</string>
+    <string name="backup_desc_export_plain">Kontu guztien segurtasun-kopia JSON fitxategi baten egin</string>
+    <string name="backup_desc_export_crypt">Kontu guztien segurtasun-kopia pasahitzez babestutako JSON fitxategi baten egin</string>
+    <string name="backup_desc_export_openpgp">Kontu guztien segurtasun-kopia OpenPGPrekin zifratutako JSON fitxategi baten egin</string>
+    <string name="backup_desc_import_plain">Kontuak JSON fitxategi batetik berrezarri</string>
+    <string name="backup_desc_import_crypt">Kontuak pasahitzez babestutako JSON fitxategi batetik berrezarri</string>
+    <string name="backup_desc_import_crypt_old">Kontuak <b>andOTP 0.6.3 baino txikiagoarekin sortutako</b>
+        pasahitzez babestutako JSON fitxategi batetik berrezarri</string>
+    <string name="backup_desc_import_openpgp">Kontuak OpenPGPrekin zifratutako fitxategi batetik berrezarri</string>
+    <string name="backup_desc_crypt_setup">Errorea gertatuta da pasahitza <b>Ezarpenak</b> ataletik kargatzean,
+        pasahitzik ez zela ezarri edo zerbait ondo ez dela irten esan nahi du honek. Segurtasun-kopia bat
+        sortu edo inportatzean pasahitza sartzeko eskatuko dizugu. 
+    </string>
+    <string name="backup_desc_openpgp_provider">OpenPGP hornitzaile bat instalatu behar duzu eta
+        <b>Ezarpenak</b> atalean aktibatu.
+    </string>
+    <string name="backup_desc_openpgp_keyid">OpenPGP gako bat aukeratu behar duzu <b>Ezarpenak</b>
+        atalean zifratutako segurtasun-kopiak sortu aurretik.
+    </string>
+    <string name="backup_desc_replace">Aktibatuta badago sarrera zaharrak ezabatu egingo dira
+        segurtasun-kopia berreskuratzean eta segurtasun-kopia badago bakarrik. Desaktibatuta badago
+        sarrera zaharrak eta segurtasun-kopiaren edukiak elkartu egingo dira.</string>
+    <!-- Dialogs -->
+    <string name="backup_dialog_title_security_warning">Segurtasun oharra</string>
+    <string name="backup_dialog_msg_export_warning">Datu-basea JSON formatuko testu fitxategi gisa esportatu nahi duzu?
+        Fitxategiak zure gako-pribatuak ditu, mesedez <b>gorde ezazu ondo</b>!
+    </string>
+    <string name="backup_receiver_title_backup_failed">Segurtasun-kopia egiteak huts egin du</string>
+    <string name="backup_receiver_title_backup_success">Backup Arrakastatsua</string>
+    <string name="backup_receiver_plain_disabled">Ezin dira testu arrunteko segurtasun-kopiak egin,
+        joan ezarpenetara hau aktibatzeko</string>
+    <string name="backup_receiver_encrypted_disabled">Ezin dira zifratutako segurtasun-kopiak egin,
+        joan ezarpenetara hau aktibatzeko</string>
+    <string name="backup_receiver_read_permission_failed">Ez dut irakurtzeko baimenik, eman baimena
+        segurtasun-kopia bat egin aurretik</string>
+    <string name="backup_receiver_write_permission_failed">Ez dut idazteko baimenik, eman baimena
+        segurtasun-kopia bat egin aurretik</string>
+    <string name="backup_receiver_custom_encryption_failed">Pasahitz/PIN bidezko zifratzea ezin da
+        kanpotik aktibatutako segurtasun-kopien moduarekin erabili</string>
+    <!-- Notification channels -->
+    <string name="notification_channel_name_backup_failed">Huts egin du segurtasun-kopia automatikoak</string>
+    <string name="notification_channel_name_backup_success">Segurtasun-kopia automatikoa ondo egin da</string>
+    <string name="notification_channel_desc_backup_failed">Jakinarazpen hauek segurtasun-kopia automatiko batek
+        huts egiten duenean erakusten dira</string>
+    <string name="notification_channel_desc_backup_success">Jakinarazpen hauek segurtasun-kopia automatiko bat
+        ondo egiten denean erakusten dira</string>
+    <!-- Toast messages -->
+    <string name="backup_toast_no_location">Ezarri mesedez segurtasun-kopia egiteko tokia ezarpenetan!</string>
+    <string name="backup_toast_location_access_failed">Huts egin du segurtasun-kopien karpetara sartzeak!</string>
+    <string name="backup_toast_file_creation_failed">Huts egin du segurtasun-kopiaren fitxategia sortzeak!</string>
+    <string name="backup_toast_export_success">Ondo esportatu da kanpoko biltegiratzean</string>
+    <string name="backup_toast_export_failed">Huts egin du kanpoko biltegiratzera esportatzeak</string>
+    <string name="backup_toast_import_success">Ondo inportatu da kanpoko biltegiratzetik</string>
+    <string name="backup_toast_import_save_failed">Huts egin du berreskuratutako sarrerak gordetzeak</string>
+    <string name="backup_toast_import_decryption_failed">Huts egin du segurtasun-kopia deszifratzeak</string>
+    <string name="backup_toast_import_no_entries">Inportatutako datuetan ez dago sarrerarik</string>
+    <string name="backup_toast_storage_not_accessible">Ezin da kanpoko biltegiratzea orain erabili</string>
+    <string name="backup_toast_openpgp_error">OpenPGP Errorea: %s</string>
+    <string name="backup_toast_openpgp_not_verified">Egiaztatu gabeko sinadura aurkitu da</string>
+    <string name="backup_toast_crypt_password_not_set">Pasahitza ez dago ezarrita, begiratu <b>Ezarpenak</b> atalean</string>
+    <string name="backup_toast_file_selection_failed">Ezin da fitxategia aukeratzeko leihoa ireki!</string>
+</resources>

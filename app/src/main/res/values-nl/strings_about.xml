@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="about_activity_title">Over</string>
-    <string name="about_description">Open source twee-factor-authenticatie voor Android</string>
+    <string name="about_description">Open source tweefactorauthenticatie voor Android</string>
     <string name="about_tab_about">Over</string>
     <string name="about_tab_libraries">Bibliotheken</string>
     <!-- Misc -->

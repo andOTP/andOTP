@@ -18,6 +18,7 @@
     <string name="settings_title_auth_inactivity">不活动时重新锁定</string>
     <string name="settings_title_auth_inactivity_delay">不活动时重新锁定延迟</string>
     <string name="settings_title_block_accessibility">阻止辅助服务</string>
+    <string name="settings_title_block_autofill">屏蔽自动填充</string>
     <string name="settings_title_lang">语言</string>
     <string name="settings_title_theme">主题</string>
     <string name="settings_title_card_layout">卡片布局</string>
@@ -35,7 +36,7 @@
     <string name="settings_title_show_individual_timeouts">显示个别超时</string>
     <string name="settings_title_backup_append_date">追加日期到文件名</string>
     <string name="settings_title_backup_ask">询问文件名</string>
-    <string name="settings_title_backup_directory">备份目录</string>
+    <string name="settings_title_backup_location">默认备份位置</string>
     <string name="settings_title_backup_password">备份密码</string>
     <string name="settings_title_auto_backup_password_enc">自动备份新条目</string>
     <string name="settings_title_backup_broadcasts">备份广播</string>
@@ -56,6 +57,8 @@
     <string name="settings_desc_auth_inactivity">设备待机后需要验证</string>
     <string name="settings_desc_auth_inactivity_delay">选择需要重新验证的延时（秒）</string>
     <string name="settings_desc_block_accessibility">隐藏辅助服务中的敏感字段。 <b>如果您依赖辅助服务，请不要启用此选项！</b></string>
+    <string name="settings_desc_block_autofill">阻止自动填充服务访问应用内的密码        区域</string>
+    <string name="settings_desc_block_autofill_android">此功能需要 Android 8.0 (Oreo) 以上        版本</string>
     <string name="settings_desc_label_scroll">过长的名称滚动显示，而非截断显示。</string>
     <string name="settings_desc_minimize_on_copy">当您复制 OTP 到剪贴板时应用将被最小化</string>
     <string name="settings_desc_search_includes">指定搜索时应包含的值</string>
@@ -64,8 +67,12 @@
     <string name="settings_desc_show_individual_timeouts">为每个条目显示一个单独的超时栏。这可能会减慢应用速度，只有在真正需要时才启用。</string>
     <string name="settings_desc_backup_append_date">追加当前日期和时间到建议的备份文件名</string>
     <string name="settings_desc_backup_ask">每次创建或还原备份时都询问文件名</string>
+    <string name="settings_desc_backup_location">选择默认的备份位置</string>
+    <string name="settings_desc_backup_location_set">已选择备份位置</string>
     <string name="settings_desc_backup_password">设置用于加密备份的密码</string>
     <string name="settings_desc_auto_backup_password_enc">如果满足设置条件，新建或编辑条目时，同时新建一个加密备份。</string>
+    <string name="settings_desc_auto_backup_requirements">设置默认的备份位置和
+        备份密码以启用此选项</string>
     <string name="settings_desc_backup_broadcasts">选择第三方应用可使用广播触发的备份类型</string>
     <string name="settings_desc_openpgp_key_encrypt">用于加密备份的 OpenPGP 密钥电邮地址</string>
     <string name="settings_desc_openpgp_verify">只导入包含有效签名密钥的加密备份</string>

@@ -46,11 +46,6 @@
          това преди да опитате да направите резервно копие</string>
     <string name="backup_receiver_custom_encryption_failed">Криптиране на база Парола/ПИН код, не
          се поддържа с резервно копие чрез външно приложение</string>
-    <string name="backup_new_format_dialog_title">Нов метод за криптиране</string>
-    <string name="backup_new_format_dialog_msg">От версия 0.6.3 на andOTP, <b>нов и подобрен
-         метод за криптиране</b> се използва за защитени, с парола, резервни копия. Старите резервни копия
-         все още могат да бъдат импортиран, но е <b>силно препоръчително да създавате нови резервни копия с подобрен
-         метод на криптиране</b>.\n\nТова съобщение няма да бъде показано отново.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Автоматичното архивиране не бе успешно</string>
     <string name="notification_channel_name_backup_success">Автоматичното архивиране е успешно</string>
@@ -59,7 +54,9 @@
     <string name="notification_channel_desc_backup_success">Тези известия се показват, когато
          автоматичното архивиране е успешно</string>
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">Неуспешно създаване на директория за резервни копия</string>
+    <string name="backup_toast_no_location">Please set a default backup location in the settings!</string>
+    <string name="backup_toast_location_access_failed">Failed to access backup location!</string>
+    <string name="backup_toast_file_creation_failed">Failed to create backup file!</string>
     <string name="backup_toast_export_success">Експортирането във външно хранилище е успешно</string>
     <string name="backup_toast_export_failed">Експортирането в външно хранилище е неуспешно</string>
     <string name="backup_toast_import_success">Импортиране от външно хранилище е успешно</string>
@@ -67,7 +64,6 @@
     <string name="backup_toast_import_decryption_failed">Декриптирането на архива не бе успешно</string>
     <string name="backup_toast_import_no_entries">Няма намерени записи в импортираните данни</string>
     <string name="backup_toast_storage_not_accessible">В момента външното хранилище не е достъпно</string>
-    <string name="backup_toast_storage_permissions">Разрешението за съхранение не е предоставено</string>
     <string name="backup_toast_openpgp_error">OpenPGP Грешка: %s</string>
     <string name="backup_toast_openpgp_not_verified">Не е открит проверен подпис</string>
     <string name="backup_toast_crypt_password_not_set">Паролата не е зададена, проверете в <b>Настройки</b></string>

@@ -18,6 +18,7 @@
     <string name="settings_title_auth_inactivity">不活躍時重新鎖定</string>
     <string name="settings_title_auth_inactivity_delay">不活躍時重新鎖定的延遲</string>
     <string name="settings_title_block_accessibility">封鎖無障礙服務</string>
+    <string name="settings_title_block_autofill">封鎖自動填入</string>
     <string name="settings_title_lang">語言</string>
     <string name="settings_title_theme">佈景主題</string>
     <string name="settings_title_card_layout">卡片佈局</string>
@@ -35,7 +36,7 @@
     <string name="settings_title_show_individual_timeouts">顯示獨立逾時</string>
     <string name="settings_title_backup_append_date">為檔案名追加日期</string>
     <string name="settings_title_backup_ask">詢問檔案名</string>
-    <string name="settings_title_backup_directory">備份資料夾</string>
+    <string name="settings_title_backup_location">預設備份位置</string>
     <string name="settings_title_backup_password">備份密碼</string>
     <string name="settings_title_auto_backup_password_enc">自動備份新項目</string>
     <string name="settings_title_backup_broadcasts">備份廣播</string>
@@ -58,6 +59,10 @@
     <string name="settings_desc_auth_inactivity_delay">選取需要再次驗證的時間嚴遲（以秒計）</string>
     <string name="settings_desc_block_accessibility">對無障礙服務隱藏敏感欄位。
         <b>如果您會依賴無障礙服務的話，請勿啟用此選項！</b></string>
+    <string name="settings_desc_block_autofill">避免自動填入服務存取應用程式
+        中的密碼欄位</string>
+    <string name="settings_desc_block_autofill_android">此功能需要 Android 版本
+        8.0 (Oreo) 以上</string>
     <string name="settings_desc_label_scroll">水平滾動超長標籤而非截斷它們</string>
     <string name="settings_desc_minimize_on_copy">應用程式將會在您把 OTP 複製到剪貼簿時最小化</string>
     <string name="settings_desc_search_includes">指定搜尋時應該包含哪些值</string>
@@ -67,9 +72,13 @@
         這可能會拖慢應用程式，請只在需要時啟用。</string>
     <string name="settings_desc_backup_append_date">將當前日期和時間追加到預設的備份檔案名中</string>
     <string name="settings_desc_backup_ask">每次新增或重新儲存備份時都要求鍵入檔案名</string>
+    <string name="settings_desc_backup_location">選擇預設備份位置</string>
+    <string name="settings_desc_backup_location_set">備份位置已選擇</string>
     <string name="settings_desc_backup_password">設定用於加密備份的密碼</string>
     <string name="settings_desc_auto_backup_password_enc">如果滿足設定的條件的話，新增項目或
         編輯時建立新的加密備份。</string>
+    <string name="settings_desc_auto_backup_requirements">設定預設備份位置與
+        備份密碼以啟用此選項</string>
     <string name="settings_desc_backup_broadcasts">選取第三方程式使用廣播可觸發哪種備份類型</string>
     <string name="settings_desc_openpgp_key_encrypt">用於加密的OpenPGP 密鑰電郵地址</string>
     <string name="settings_desc_openpgp_verify">僅匯入有效金鑰簽署的加密備份</string>

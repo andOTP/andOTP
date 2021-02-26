@@ -5,10 +5,10 @@
     <string name="button_enter_details">Ajouter les détails</string>
     <string name="button_scan_qr">Scanner un QR-Code</string>
     <string name="button_save">Enregistrer</string>
-    <string name="button_new_tag">Nouveau tag</string>
+    <string name="button_new_tag">Nouvelle étiquette</string>
     <string name="button_settings">Paramètres</string>
-    <string name="button_all_tags">Tous les tags</string>
-    <string name="button_no_tags">Aucun tag</string>
+    <string name="button_all_tags">Toutes les étiquettes</string>
+    <string name="button_no_tags">Aucune étiquette</string>
     <string name="button_qr_from_image">QR-code à partir d\'une image</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
@@ -25,11 +25,11 @@
     <string name="label_issuer">Émetteur</string>
     <string name="label_label">Titre</string>
     <string name="label_algorithm">Algorithme</string>
-    <string name="label_tags">Tags</string>
+    <string name="label_tags">Étiquettes</string>
     <string name="label_advanced">Options avancées</string>
     <!-- Drawer -->
-    <string name="drawer_open">Afficher les tags</string>
-    <string name="drawer_close">Cacher les tags</string>
+    <string name="drawer_open">Afficher les étiquettes</string>
+    <string name="drawer_close">Cacher les étiquettes</string>
     <!-- Menu -->
     <string name="menu_main_about">À propos</string>
     <string name="menu_main_backup">Sauvegarde</string>
@@ -45,6 +45,13 @@
     <string name="menu_popup_change_image">Modifier l\'image</string>
     <string name="menu_popup_remove">Supprimer</string>
     <string name="menu_popup_show_qr_code">Montrer le QR Code</string>
+    <!-- Buttons -->
+    <string name="button_card_options">Plus d\'options</string>
+    <string name="button_card_options_format">Plus d\'options pour %1$s</string>
+    <string name="button_card_copy">Copier le jeton</string>
+    <string name="button_card_copy_format">Copier le jeton %1$s</string>
+    <string name="button_add">Ajouter un nouveau compte</string>
+    <string name="button_close_menu">Fermer le menu</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">Échec d\'authentification, veuillez réessayer !</string>
     <string name="toast_auth_failed_fatal">Échec d\'authentification, fermeture d\'andOTP !</string>
@@ -71,7 +78,6 @@
     <string name="dialog_title_used_tokens">Utilisation des jetons</string>
     <string name="dialog_title_keystore_error">Erreur KeyStore</string>
     <string name="dialog_title_qr_code">QR Code</string>
-    <string name="dialog_title_android21_depreaction">Avis d\'obsolescence</string>
     <string name="dialog_title_enter_password">Saisir le mot de passe</string>
     <string name="dialog_label_enter_password">Saisir le mot de passe</string>
     <string name="dialog_label_confirm_password">Confirmer le mot de passe</string>
@@ -82,11 +88,6 @@
         par \"Utilisé le plus\" ou \"Dernier utilisé\".\n\nCe message ne sera pas afficher à nouveau.</string>
     <string name="dialog_msg_keystore_error">Échec du chargement de la clé de chiffrement à partir de l\'armoire à clés.
 <b>Toute entrée ajoutée sera perdue.</b>\n\nPour continuer à utiliser andOTP, vous pouvez aller dans les <b>paramètres</b> pour passer de <b>Chiffrement de la base de données</b> à <b>Mot de passe / Code PIN</b>.</string>
-    <string name="dialog_msg_android21_deprecation">Ce sera la dernière version d\'andOTP à
-        supporter les versions d\'Android inférieures à 5.1 (Lollipop). Les efforts croissants
-        nécessaires pour maintenir une implémentation de stockage séparée juste pour les anciennes
-        versions ainsi que leurs parts de marché faibles rendent impossible le support continu
-        pour notre petite équipe.\n\nCe message ne sera pas affiché à nouveau.</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Scanner le QR-code</string>
     <string name="shortcut_name_import_qr">Importer un QR-code</string>
