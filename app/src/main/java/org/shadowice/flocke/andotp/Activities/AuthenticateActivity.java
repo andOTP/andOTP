@@ -55,6 +55,7 @@ import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Tasks.AuthenticationTask;
 import org.shadowice.flocke.andotp.Tasks.AuthenticationTask.Result;
 import org.shadowice.flocke.andotp.Utilities.Constants;
+import org.shadowice.flocke.andotp.Utilities.EditorActionHelper;
 import org.shadowice.flocke.andotp.View.AutoFillable.AutoFillableTextInputEditText;
 
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
@@ -238,7 +239,7 @@ public class AuthenticateActivity extends BaseActivity
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if (actionId == EditorInfo.IME_ACTION_DONE) {
+        if (EditorActionHelper.isActionDoneOrKeyboardEnter(actionId, event)) {
             startAuthTask(v.getText().toString());
             return true;
         }
