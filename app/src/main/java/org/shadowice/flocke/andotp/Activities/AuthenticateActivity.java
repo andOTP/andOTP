@@ -61,7 +61,7 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 
 public class AuthenticateActivity extends BaseActivity
         implements EditText.OnEditorActionListener, View.OnClickListener {
-    private final AutoFillableTextInputEditText.AutoFillTextListener autoFillTextListener = text -> checkPassword(text.toString());
+    private final AutoFillableTextInputEditText.AutoFillTextListener autoFillTextListener = text -> startAuthTask(text.toString());
 
     private static final String TAG_TASK_FRAGMENT = "AuthenticateActivity.TaskFragmentTag";
     
