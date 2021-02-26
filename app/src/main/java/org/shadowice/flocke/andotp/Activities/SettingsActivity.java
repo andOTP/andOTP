@@ -40,6 +40,7 @@ import android.preference.PreferenceManager;
 import androidx.appcompat.widget.Toolbar;
 
 import android.provider.DocumentsContract;
+import android.util.Log;
 import android.view.ViewStub;
 import android.widget.Toast;
 
@@ -168,6 +169,13 @@ public class SettingsActivity extends BaseActivity
                 if (fragment.useAndroidSync != null)
                     fragment.useAndroidSync.setEnabled(true);
             }
+        } else if(key.equals(getString(R.string.settings_key_enable_android_backup_service)))
+        {
+            Log.d(SettingsActivity.class.getSimpleName(), "onSharedPreferenceChanged called modifying settings_key_enable_android_backup_service service is now: " +
+                    (settings.getAndroidBackupServiceEnabled() ? "enabled" : "disabled"));
+
+            int message = settings.getAndroidBackupServiceEnabled() ? R.string.settings_toast_android_sync_enabled : R.string.settings_toast_android_sync_disabled;
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
 
         fragment.updateAutoBackup();

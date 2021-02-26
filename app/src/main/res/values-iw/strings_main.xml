@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Buttons -->
+    <string name="button_cancel">בטל</string>
+    <string name="button_enter_details">הכנס פרטים</string>
+    <string name="button_scan_qr">סרוק קוד-QR</string>
+    <string name="button_save">שמור</string>
+    <string name="button_new_tag">תג חדש</string>
+    <string name="button_settings">הגדרות</string>
+    <string name="button_all_tags">כל התוויות</string>
+    <string name="button_no_tags">ללא תגיות</string>
+    <string name="button_qr_from_image">קוד QR מתמונה</string>
+    <!-- Custom formatting -->
+    <string name="format_custom_period">%d שניות</string>
+    <!-- Hints -->
+    <string name="hint_label">תווית</string>
+    <string name="hint_secret">סוד</string>
+    <!-- Labels -->
+    <string name="label_hidden">מוסתר</string>
+    <string name="label_type">סוג</string>
+    <string name="label_secret">סוד</string>
+    <string name="label_period">תקופה</string>
+    <string name="label_digits">ספרות</string>
+    <string name="label_counter">מונה</string>
+    <string name="label_issuer">מנפיק</string>
+    <string name="label_label">תווית</string>
+    <string name="label_algorithm">אלגוריתם</string>
+    <string name="label_tags">תגים</string>
+    <string name="label_advanced">אפשרויות מתקדמות</string>
+    <!-- Drawer -->
+    <string name="drawer_open">הצג תגיות</string>
+    <string name="drawer_close">הסתר תגיות</string>
+    <!-- Menu -->
+    <string name="menu_main_about">אודות</string>
+    <string name="menu_main_backup">גיבוי</string>
+    <string name="menu_main_search">חפש</string>
+    <string name="menu_main_settings">הגדרות</string>
+    <string name="menu_main_sort">מיון</string>
+    <string name="menu_sort_none">לא ממוין</string>
+    <string name="menu_sort_issuer">מנפיק</string>
+    <string name="menu_sort_label">תווית</string>
+    <string name="menu_sort_last_used">שימוש אחרון</string>
+    <string name="menu_sort_most_used">הכי משומש</string>
+    <string name="menu_popup_edit">ערוך</string>
+    <string name="menu_popup_change_image">שנה תמונה</string>
+    <string name="menu_popup_remove">הסר</string>
+    <string name="menu_popup_show_qr_code">הצג קוד QR</string>
+    <!-- Buttons -->
+    <string name="button_card_options">אפשרויות נוספות</string>
+    <string name="button_card_options_format">אפשרויות נוספות עבור %1$s</string>
+    <string name="button_card_copy">העתק אסימון</string>
+    <string name="button_card_copy_format">העתק אסימון %1$s</string>
+    <string name="button_add">הוסף חשבון חדש</string>
+    <string name="button_close_menu">סגור תפריט</string>
+    <!-- Toast messages -->
+    <string name="toast_auth_failed">אימות נכשל, אנא נסה שוב!</string>
+    <string name="toast_auth_failed_fatal">אימות נכשל, סוגר את andOTP!</string>
+    <string name="toast_copied_to_clipboard">הועתק ללוח</string>
+    <string name="toast_entry_exists">ערך זה כבר קיים</string>
+    <string name="toast_invalid_qr_code">קוד QR לא תקין</string>
+    <string name="toast_encryption_key_empty">מפתח הצפנה לא נטען</string>
+    <string name="toast_intent_creation_failed">הועבר קוד לא חוקי שנוסף על ידי הישום</string>
+    <string name="toast_intent_creation_succeeded">נוסף קוד שסופק על ידי הישום</string>
+    <string name="toast_file_load_error">לא היה ניתן לפתוח את הקובץ</string>
+    <string name="toast_qr_error">לא היה ניתן למצוא/לאמת קוד QR</string>
+    <string name="toast_qr_checksum_exception">אימות סכום הבדיקה נכשל בעת פענוח קוד QR</string>
+    <string name="toast_qr_format_error">שגיאת פורמט בקוד QR</string>
+    <string name="toast_qr_unsuported">קוד QR אינו נתמך</string>
+    <string name="toast_qr_failed_to_generate">יצירת קוד QR נכשלה</string>
+    <!-- Errors -->
+    <string name="error_invalid_secret">סוד לא חוקי</string>
+    <!-- Dialogs -->
+    <string name="dialog_title_auth">אימות</string>
+    <string name="dialog_title_manual_entry">הכנס פרטים</string>
+    <string name="dialog_title_remove">הסר</string>
+    <string name="dialog_title_rename">שנה שם</string>
+    <string name="dialog_title_counter">מונה</string>
+    <string name="dialog_title_used_tokens">שימוש באסימונים</string>
+    <string name="dialog_title_keystore_error">שגיאת KeyStore</string>
+    <string name="dialog_title_qr_code">קוד QR</string>
+    <string name="dialog_title_enter_password">הכנס סיסמה</string>
+    <string name="dialog_label_enter_password">הכנס סיסמה</string>
+    <string name="dialog_label_confirm_password">אשר סיסמה</string>
+    <string name="dialog_msg_auth">אנא הכנס את האישורים המזהים של מכשירך כדי להפעיל את andOTP.</string>
+    <string name="dialog_msg_confirm_delete">האם אתה בטוח שברצונך להסיר את החשבון \"%1$s\"?</string>
+    <string name="dialog_msg_used_tokens">andOTP יעקוב אחר השימוש באסימונים שלך (באמצעות הפיטצ\'ר \"הקש
+        כדי לחשוף\" או העתקה ללוח) כדי להיות מסוגל למיין אותם לפי \"הנפוץ ביותר\" או
+        \"נעשה שימוש אחרון\".\n\nהודעה זו לא תוצג שוב.</string>
+    <string name="dialog_msg_keystore_error">טעינת מפתח ההצפנה מ- KeyStore נכשלה.
+        <b>כל חשבון שנוסף יאבד.</b>\n\nכדי שתוכל עדיין להשתמש ב- andOTP, אתה יכול לגשת
+        ל<b>הגדרות</b> ולהחליף את <b>הצפנת מסד הנתונים</b> ל<b>סיסמה / קוד PIN</b>.</string>
+    <!-- Shortcuts -->
+    <string name="shortcut_name_scan_qr">סרוק קוד-QR</string>
+    <string name="shortcut_name_import_qr">ייבא קוד QR</string>
+    <string name="shortcut_name_enter_details">הכנס פרטים</string>
+</resources>

@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="intro_slide1_title">Let\'s get started</string>
-    <string name="intro_slide1_desc">Welcome to <b>andOTP</b>, this wizard will guide you through
-        the initial setup. Please pay attention and read carefully otherwise you could lose data!
-        \n\nDon\'t worry, you can still change any of the options later in the <b>Settings</b>.</string>
-    <string name="intro_slide2_desc">To ensure the security of your accounts <b>andOTP</b> only
-        stores them in encrypted data files. Here you can choose which method of encryption will be
-        used.</string>
-    <string name="intro_slide2_desc_keystore">The KeyStore is a system component of Android for
-        securely storing cryptographic keys. The advantage of this method is that the keys are
-        stored separated from the data files and can be backed by hardware cryptography (if your
-        device supports it). However, as the keys are not stored with the apps data, <b>this method
-        prevents external backup solutions (like Titanium) from working</b>. If you choose this
-        method you will have to rely on the internal backup functions provided by <b>andOTP</b>.
-        \n\n<b>Warning</b>: The KeyStore is known to cause a lot of problems, please only use it if
-        you absolutely have to. If you don\'t mind entering a password / PIN every time you start
-        <b>andOTP</b> it is <b>highly recommended to use the password-based encryption instead</b>.</string>
+    <string name="intro_slide1_title">Comencem</string>
+    <string name="intro_slide1_desc">Benvinguda a <b>andOTP</b>! Aquest assistents us guiarà en el
+        procés de configuració inicial. Pareu atenció i llegiu atentament per tal d\'evitar la pèrdua de dades.
+        \n\nNo patiu, podreu canviar qualsevol opció a <b>Preferències</b>.</string>
+    <string name="intro_slide2_desc">Per tal de garantir la seguretat dels vostres comptes, <b>andOTP</b> fa servir
+        xifratge per a desar les dades. Aquí podeu triar el mètode de xifratge que 
+        s\'hi farà servir.</string>
+    <string name="intro_slide2_desc_keystore">The KeyStore is a system component of Android used to
+        securely store cryptographic keys. The advantage of using the KeyStore is that the keys are
+        stored separately from <b>andOTP</b>\'s data, and can be backed by hardware-based encryption
+        (if your device supports it). However, as the keys are not stored with <b>andOTP</b>\'s data,
+        <b>this method prevents external backup solutions (like Titanium) from working</b>. If you
+        choose this method, you will have to rely on the internal backup functions provided by
+        <b>andOTP</b>.\n\n<b>Warning</b>: The KeyStore is known to cause many problems, so
+        please only use it if you absolutely have to. If you don\'t mind entering a password / PIN
+        every time you start <b>andOTP</b>, it is <b>highly recommended to use the password-based
+        encryption instead</b>.</string>
     <string name="intro_slide2_desc_password">This method will encrypt your data with a key
-        generated from a password or PIN. The main advantage here is that this will work with
-        external backup solutions (like Titanium) and is much less failure-prone than the KeyStore.
-        However, you will have to enter your credentials every time you start <b>andOTP</b>.</string>
-    <string name="intro_slide3_desc_keystore">Here you can setup an authentication to lock
-        <b>andOTP</b>. Since you have chosen <b>Android KeyStore</b> as encryption method this is
-        optional.</string>
-    <string name="intro_slide3_desc_password">Here you can setup an authentication to lock
-        <b>andOTP</b>. Since you have chosen <b>Password / PIN</b> as encryption method you need to
-        set either a password or a PIN to proceed.</string>
+        generated from a password or PIN. The main advantage of using this method is that external
+        backup solutions (like Titanium) will work as expected, and it is much less failure-prone
+        than the KeyStore. However, you will have to enter your credentials every time you start
+        <b>andOTP</b>.</string>
+    <string name="intro_slide3_desc_keystore">Here you can setup an authentication method to lock
+        <b>andOTP</b>. Since you have chosen <b>Android KeyStore</b> as your encryption method, this
+        step is optional.</string>
+    <string name="intro_slide3_desc_password">Here you can setup an authentication method to lock
+        <b>andOTP</b>. Since you have chosen <b>Password / PIN</b> as your encryption method, a
+        password or a PIN must be set to proceed.</string>
     <string name="intro_slide3_warn_no_password">Please set a password to continue!</string>
     <string name="intro_slide3_warn_no_pin">Please set a PIN to continue!</string>
     <string name="intro_slide3_warn_confirm_password">Please confirm your password to continue!</string>
     <string name="intro_slide3_warn_confirm_pin">Please confirm your PIN to continue!</string>
     <string name="intro_slide4_title">Finished</string>
-    <string name="intro_slide4_desc">Your settings have been saved, you are all set to use
-        <b>andOTP</b> now!</string>
+    <string name="intro_slide4_desc">Your settings have been saved, you are now all set to use
+        <b>andOTP</b>!</string>
 </resources>

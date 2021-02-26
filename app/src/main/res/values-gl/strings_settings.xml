@@ -18,6 +18,7 @@
     <string name="settings_title_auth_inactivity">Bloquear ao quedar inactiva</string>
     <string name="settings_title_auth_inactivity_delay">Retraso para bloqueo por inactividade</string>
     <string name="settings_title_block_accessibility">Bloquear servizos de accesibilidade</string>
+    <string name="settings_title_block_autofill">Bloquear autocompletado</string>
     <string name="settings_title_lang">Idioma</string>
     <string name="settings_title_theme">Decorado</string>
     <string name="settings_title_card_layout">Disposición das entradas</string>
@@ -35,7 +36,7 @@
     <string name="settings_title_show_individual_timeouts">Mostrar caducidades individuais</string>
     <string name="settings_title_backup_append_date">Engadir data ao nome do ficheiro</string>
     <string name="settings_title_backup_ask">Preguntar polo nome do ficheiro</string>
-    <string name="settings_title_backup_directory">Directorio de copias de seguranza</string>
+    <string name="settings_title_backup_location">Localización por omisión</string>
     <string name="settings_title_backup_password">Contrasinal da copia de seguranza</string>
     <string name="settings_title_auto_backup_password_enc">Copia de seguranza automática das novas entradas</string>
     <string name="settings_title_backup_broadcasts">Respaldo Broadcasts</string>
@@ -62,6 +63,10 @@
         solicita autenticación</string>
     <string name="settings_desc_block_accessibility">Agocharlle aos servizos de accesibilidade os
         campos con datos sensibles. <b>NON activar esto se dependes dos servizos de accesibilidade!</b></string>
+    <string name="settings_desc_block_autofill">Bloquear que servizos de autocompletado accedan
+a campos de contrasinal dentro da app</string>
+    <string name="settings_desc_block_autofill_android">Esta característica require Android
+superior a 8.0 (Oreo)</string>
     <string name="settings_desc_label_scroll">Desprazar etiquetas largas no canto de recortalas</string>
     <string name="settings_desc_minimize_on_copy">A app minimizarase ao copiar o OTP ao portapapeis</string>
     <string name="settings_desc_search_includes">Indicar que valores se incluirán ao buscar</string>
@@ -73,10 +78,14 @@
         ficheiro de respaldo suxerido</string>
     <string name="settings_desc_backup_ask">Preguntar polo nome do ficheiro cada vez que unha copia de seguranza sexa creada ou
         restaurada</string>
+    <string name="settings_desc_backup_location">Escolle a localización por omisión</string>
+    <string name="settings_desc_backup_location_set">Foi escollida a localización para a copia</string>
     <string name="settings_desc_backup_password">Establecer o contrasinal para cifrar as
         copias de apoio</string>
     <string name="settings_desc_auto_backup_password_enc">Crea unha nova copia de apoio cifrada cando
         se engaden novas entradas, ou se editan, se se dan as condicións</string>
+    <string name="settings_desc_auto_backup_requirements">Establece a localización por omisión para a copia
+e un contrasinal para activar esta opción</string>
     <string name="settings_desc_backup_broadcasts">Escolle que tipos de copia se poden activar por
          aplicacións de terceiros utilizando Broadcasts</string>
     <string name="settings_desc_openpgp_key_encrypt">Enderezo de correo para a chave OpenPGP utilizada para cifrar

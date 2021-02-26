@@ -18,6 +18,7 @@
     <string name="settings_title_auth_inactivity">Блокировать при бездействии</string>
     <string name="settings_title_auth_inactivity_delay">Задержка для блокировки при бездействии</string>
     <string name="settings_title_block_accessibility">Блокировать службы специальных возможностей</string>
+    <string name="settings_title_block_autofill">Запретить автозаполнение</string>
     <string name="settings_title_lang">Язык</string>
     <string name="settings_title_theme">Тема оформления</string>
     <string name="settings_title_card_layout">Карточки</string>
@@ -35,7 +36,7 @@
     <string name="settings_title_show_individual_timeouts">Показать индивидуальные таймауты</string>
     <string name="settings_title_backup_append_date">Добавить дату к имени файла</string>
     <string name="settings_title_backup_ask">Спрашивать об имени файла</string>
-    <string name="settings_title_backup_directory">Каталог резервной копии</string>
+    <string name="settings_title_backup_location">Место по умолчанию для резервного копирования</string>
     <string name="settings_title_backup_password">Пароль для резервной копии</string>
     <string name="settings_title_auto_backup_password_enc">Автоматическое резервирование при добавлении новых записей</string>
     <string name="settings_title_backup_broadcasts">Резервная копия с помощью стороннего приложения</string>
@@ -57,6 +58,10 @@
     <string name="settings_desc_auth_inactivity">Требовать аутентификацию после отсутствия активности устройства</string>
     <string name="settings_desc_auth_inactivity_delay">Выберите время (в секундах), после которого требовать аутентификацию</string>
     <string name="settings_desc_block_accessibility">Скрыть конфиденциальные поля от служб специальных возможностей. <b>НЕ ВКЛЮЧАЙТЕ эту настройку если вы используете службы специальных возможностей!</b></string>
+    <string name="settings_desc_block_autofill">Запретить службам автозаполнения доступ к полям
+         пароля внутри приложения</string>
+    <string name="settings_desc_block_autofill_android">Эта функция требует Android версии
+        выше 8.0 (Оreo)</string>
     <string name="settings_desc_label_scroll">Прокрутка слишком длинных ярлыков вместо их усечения</string>
     <string name="settings_desc_minimize_on_copy">Приложение будет свёрнуто после копирования токена</string>
     <string name="settings_desc_search_includes">Укажите, какие значения должны использоваться при поиске</string>
@@ -67,8 +72,12 @@
     <string name="settings_desc_backup_append_date">Добавить текущую дату и время к предлагаемому
         названию резервной копии</string>
     <string name="settings_desc_backup_ask">Спрашивать об имени файла при создании резервной копии или        восстановлении</string>
+    <string name="settings_desc_backup_location">Выберите место по умолчанию для резервного копирования</string>
+    <string name="settings_desc_backup_location_set">Место по умолчанию для резервного копирования было выбрано</string>
     <string name="settings_desc_backup_password">Установить пароль для шифрования резервных копий</string>
     <string name="settings_desc_auto_backup_password_enc">Создаёт новую зашифрованную резервную копию при добавлении или изменении записей если условия были выполнены</string>
+    <string name="settings_desc_auto_backup_requirements">Установите место по умолчанию для резервного копирования
+        и пароль для резервной копии, чтобы включить эту опцию</string>
     <string name="settings_desc_backup_broadcasts">Выберите, какие типы резервных копий могут быть сохранены 
         сторонними приложениями для создания резервных копий</string>
     <string name="settings_desc_openpgp_key_encrypt">Почтовый адрес OpenPGP ключа, используемого 

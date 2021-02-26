@@ -6,7 +6,7 @@
     <string name="auth_hint_pin">PIN</string>
     <!-- Messages -->
     <string name="auth_msg_authenticate">andOTP を起動するために認証を行ってください！</string>
-    <string name="auth_msg_confirm_encryption">新しい暗号化キーを生成するために、認証情報を入力してください。</string>
+    <string name="auth_msg_confirm_encryption">あなたの暗号鍵を生成するために、認証情報を入力してください。</string>
     <!-- Buttons -->
     <string name="auth_button_unlock">解除</string>
     <!-- Toast messages -->

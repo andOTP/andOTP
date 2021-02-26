@@ -33,15 +33,15 @@
     <string name="backup_receiver_read_permission_failed">読み込み権限が付与されていないため、バックアップを実行する前に許可してください</string>
     <string name="backup_receiver_write_permission_failed">書き込み権限が付与されていないため、バックアップを実行する前に許可してください</string>
     <string name="backup_receiver_custom_encryption_failed">パスワード / PIN ベースの暗号化はブロードキャストバックアップでサポートされていません</string>
-    <string name="backup_new_format_dialog_title">新しい暗号化形式</string>
-    <string name="backup_new_format_dialog_msg">andOTP 0.6.3 以降のバージョンでは、パスワードで暗号化されたバックアップに、<b>新しく改良された暗号化形式</b>が利用されます。古い暗号化形式を利用したバックアップは引き続き復元に利用できますが、<b>新しい暗号化形式を利用して新たにバックアップを作成することを強くお勧めします</b>。\n\nこのメッセージは再度表示されることはありません。</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">自動バックアップに失敗しました</string>
     <string name="notification_channel_name_backup_success">自動バックアップに成功しました</string>
     <string name="notification_channel_desc_backup_failed">これらの通知は、何らかの理由で自動バックアップが失敗した場合に表示されます</string>
     <string name="notification_channel_desc_backup_success">これらの通知は、自動バックアップが成功した場合に表示されます</string>
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">バックアップディレクトリの作成に失敗しました</string>
+    <string name="backup_toast_no_location">既定のバックアップ保存先を設定してください。</string>
+    <string name="backup_toast_location_access_failed">バックアップ保存先へのアクセスに失敗しました。</string>
+    <string name="backup_toast_file_creation_failed">バックアップファイルの作成に失敗しました。</string>
     <string name="backup_toast_export_success">外部ストレージへのエクスポートに成功しました</string>
     <string name="backup_toast_export_failed">外部ストレージへのエクスポートに失敗しました</string>
     <string name="backup_toast_import_success">外部ストレージからのインポートに成功しました</string>
@@ -49,7 +49,6 @@
     <string name="backup_toast_import_decryption_failed">バックアップの復号化に失敗しました</string>
     <string name="backup_toast_import_no_entries">インポートされたデータにエントリが見つかりません</string>
     <string name="backup_toast_storage_not_accessible">外部ストレージは現在アクセスできません</string>
-    <string name="backup_toast_storage_permissions">ストレージへのアクセス権限がありません</string>
     <string name="backup_toast_openpgp_error">OpenPGP エラー: %s</string>
     <string name="backup_toast_openpgp_not_verified">確認済みの署名が見つかりません</string>
     <string name="backup_toast_crypt_password_not_set">パスワードが設定されていません、 <b>設定</b> を確認してください</string>

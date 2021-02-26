@@ -49,11 +49,6 @@
         arranxa esto ante de intentar a copia</string>
     <string name="backup_receiver_custom_encryption_failed">O cifrado con Contrasinal/PIN non
         está soportado con respaldo remoto</string>
-    <string name="backup_new_format_dialog_title">Novo método de cifrado</string>
-    <string name="backup_new_format_dialog_msg">Desde a versión 0.6.3 de andOTP, úsase un <b>novo e mellorado
-        método de cifrado</b> para copias de apoio protexidas por contrasinal. As copias de apoio antigas
-        aínda poden ser importadas, pero é <b>moi recomendable crear novas copias de apoio co novo cifrado
-        mellorado</b>.\n\nEsta mensaxe non se mostrará de novo.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Fallo na copia automática</string>
     <string name="notification_channel_name_backup_success">Copia automática correcta</string>
@@ -62,7 +57,9 @@
     <string name="notification_channel_desc_backup_success">Estas notificacións móstranse cando
         unha copia automática se realizou correctamente</string>
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">Erro ao crear o directorio de copia de apoio</string>
+    <string name="backup_toast_no_location">Establece a localización para a copia de apoio!</string>
+    <string name="backup_toast_location_access_failed">Fallo ao acceder a localización!</string>
+    <string name="backup_toast_file_creation_failed">Fallo ao crear a copia de apoio!</string>
     <string name="backup_toast_export_success">Exportado correctamente ao almacenamento externo</string>
     <string name="backup_toast_export_failed">Fallo ao exportar ao almacenamento externo</string>
     <string name="backup_toast_import_success">Importado correctamente desde o almacenamento externo</string>
@@ -70,7 +67,6 @@
     <string name="backup_toast_import_decryption_failed">Erro ao descifrar a copia de apoio</string>
     <string name="backup_toast_import_no_entries">Non se atoparon elementos nos datos importados</string>
     <string name="backup_toast_storage_not_accessible">O almacenaxe externo non é accesible actualmente</string>
-    <string name="backup_toast_storage_permissions">Permiso de almacenaxe non concedido</string>
     <string name="backup_toast_openpgp_error">Error OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">Non se detectou unha sinatura verificable</string>
     <string name="backup_toast_crypt_password_not_set">No se estableceu un contrasinal, revisa os <b>axustes</b></string>

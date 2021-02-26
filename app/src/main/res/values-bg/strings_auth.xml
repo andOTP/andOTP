@@ -6,8 +6,8 @@
     <string name="auth_hint_pin">ПИН код</string>
     <!-- Messages -->
     <string name="auth_msg_authenticate">Моля, удостоверете се, за да стартирате andOTP!</string>
-    <string name="auth_msg_confirm_encryption">Моля, удостоверете се, за да генерирате 
-        нов ключ за криптиране!</string>
+    <string name="auth_msg_confirm_encryption">Please confirm authentication to generate your
+        encryption key!</string>
     <!-- Buttons -->
     <string name="auth_button_unlock">Отключване</string>
     <!-- Toast messages -->

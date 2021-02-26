@@ -6,7 +6,8 @@
     <string name="auth_hint_pin">Pincode</string>
     <!-- Messages -->
     <string name="auth_msg_authenticate">Gelieve verifiëren om andOTP te starten!</string>
-    <string name="auth_msg_confirm_encryption">Bevestig je verificatie om een nieuwe sleutel aan te maken!</string>
+    <string name="auth_msg_confirm_encryption">Bevestig verificatie om je
+        encryptiesleutel te genereren!</string>
     <!-- Buttons -->
     <string name="auth_button_unlock">Ontgrendelen</string>
     <!-- Toast messages -->

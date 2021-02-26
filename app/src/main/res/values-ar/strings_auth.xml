@@ -5,14 +5,14 @@
     <string name="auth_hint_password">كلمة المرور</string>
     <string name="auth_hint_pin">‏رمز PIN</string>
     <!-- Messages -->
-    <string name="auth_msg_authenticate">الرجاء قم بالمصادقة قبل تشغيل التطبيق!</string>
-    <string name="auth_msg_confirm_encryption">يرجى تأكيد المصادقة لخلق
-        مفتاح التشفير الجديد!</string>
+    <string name="auth_msg_authenticate">الرجاء المصادقة لبدء andOTP!</string>
+    <string name="auth_msg_confirm_encryption">يرجى تأكيد المصادقة لتوليد
+        مفتاح تشفيرك!</string>
     <!-- Buttons -->
-    <string name="auth_button_unlock">فتح</string>
+    <string name="auth_button_unlock">فتح القفل</string>
     <!-- Toast messages -->
     <string name="auth_toast_password_missing">الرجاء تعيين كلمة مرور في <b>الإعدادات</b>!</string>
     <string name="auth_toast_pin_missing">الرجاء تعيين PIN في <b>الإعدادات</b>!</string>
-    <string name="auth_toast_password_again">كلمة المرور خاطئة، حاول مُجددًا من فضلك!</string>
-    <string name="auth_toast_pin_again">رمز الـ PIN خاطئ، الرجاء إعادة المحاولة من مُجددًا!</string>
+    <string name="auth_toast_password_again">كلمة المرور خاطئة، الرجاء المحاولة مُجددًا!</string>
+    <string name="auth_toast_pin_again">رمز PIN خاطئ، الرجاء المحاولة مُجددًا!</string>
 </resources>

@@ -18,6 +18,7 @@
     <string name="settings_title_auth_inactivity">Re-lock on inactivity</string>
     <string name="settings_title_auth_inactivity_delay">Delay for inactivity re-lock</string>
     <string name="settings_title_block_accessibility">Block accessibility services</string>
+    <string name="settings_title_block_autofill">Block autofill</string>
     <string name="settings_title_lang">Jezik</string>
     <string name="settings_title_theme">Tema</string>
     <string name="settings_title_card_layout">Card layout</string>
@@ -35,7 +36,7 @@
     <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
     <string name="settings_title_backup_append_date">Pripni datum imenu datoteke</string>
     <string name="settings_title_backup_ask">Vprašaj za ime datoteke</string>
-    <string name="settings_title_backup_directory">Mapa varnostnega kopiranja</string>
+    <string name="settings_title_backup_location">Default backup location</string>
     <string name="settings_title_backup_password">Varnostno geslo</string>
     <string name="settings_title_auto_backup_password_enc">Automatically backup on new entries</string>
     <string name="settings_title_backup_broadcasts">Varnostno kopiranje preko zunanjih naprav</string>
@@ -63,6 +64,10 @@
         require reauthentication</string>
     <string name="settings_desc_block_accessibility">Hide sensitive fields from the accessibility
         services. <b>DO NOT enable this if you rely on the accessibility services!</b></string>
+    <string name="settings_desc_block_autofill">Block autofill services from accessing password
+        fields inside the app</string>
+    <string name="settings_desc_block_autofill_android">This feature requires an Android version
+        above 8.0 (Oreo)</string>
     <string name="settings_desc_label_scroll">Premakni predolge oznake namesto njihovega odrezanja z zaslona</string>
     <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
     <string name="settings_desc_search_includes">Specify which values should be included when searching</string>
@@ -74,10 +79,14 @@
         imena varnostne kopije</string>
     <string name="settings_desc_backup_ask">Vprašaj po imenu varnostne kopije ob vsakem ustvarjanju
         ali obnavljanju</string>
+    <string name="settings_desc_backup_location">Choose a default backup location</string>
+    <string name="settings_desc_backup_location_set">Backup location has been chosen</string>
     <string name="settings_desc_backup_password">Nastavi geslo, ki bo uporabljeno za kodiranje
         varnostnih kopij</string>
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
         entries are added, or edited, if settings conditions are met</string>
+    <string name="settings_desc_auto_backup_requirements">Set a default backup location and a
+        backup password to enable this option</string>
     <string name="settings_desc_backup_broadcasts">Izberite katera varnostna kopiranja so lahko sprožena
         preko tretjih aplikacij</string>
     <string name="settings_desc_openpgp_key_encrypt">Poštni naslov OpenPGP ključa je uporabljen za kodiranje

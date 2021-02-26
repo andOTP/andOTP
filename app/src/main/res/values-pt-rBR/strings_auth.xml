@@ -6,8 +6,8 @@
     <string name="auth_hint_pin">PIN</string>
     <!-- Messages -->
     <string name="auth_msg_authenticate">Por favor, autentique-se para iniciar o aplicativo.</string>
-    <string name="auth_msg_confirm_encryption">Por favor confirme a sua senha para gerar uma
-        nova chave de encriptação!</string>
+    <string name="auth_msg_confirm_encryption">Por favor, confirme sua autenticação para gerar
+        sua chave de criptografia!</string>
     <!-- Buttons -->
     <string name="auth_button_unlock">Desbloquear</string>
     <!-- Toast messages -->

@@ -6,7 +6,8 @@
     <string name="auth_hint_pin">PIN</string>
     <!-- Messages -->
     <string name="auth_msg_authenticate">Παρακαλώ ταυτοποιηθείτε για να ξεκινήσει ο andOTP!</string>
-    <string name="auth_msg_confirm_encryption">Παρακαλώ επιβεβαιώστε την ταυτοποίησή σας για να παραχθεί το καινούριο κλειδί κρυπτογράφησης!</string>
+    <string name="auth_msg_confirm_encryption">Παρακαλώ επιβεβαιώστε την επαλήθευση, για να δημιουργήσετε το δικό σας
+        κλειδί κρυπτογράφησης!</string>
     <!-- Buttons -->
     <string name="auth_button_unlock">Ξεκλείδωμα</string>
     <!-- Toast messages -->

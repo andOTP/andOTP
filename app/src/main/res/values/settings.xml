@@ -39,6 +39,7 @@
     <string name="settings_key_label_highlight_token" translatable="false">pref_label_highlight_token</string>
     <string name="settings_key_hide_global_timeout" translatable="false">pref_hide_global_timeout</string>
     <string name="settings_key_show_individual_timeouts" translatable="false">pref_show_individual_timeouts</string>
+    <string name="settings_key_focus_search_on_start" translatable="false">pref_focus_search_on_start</string>
 
     <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
@@ -53,6 +54,7 @@
     <string name="settings_key_openpgp_key_sign" translatable="false">pref_openpgp_key_sign</string>
     <string name="settings_key_openpgp_verify" translatable="false">pref_openpgp_verify</string>
     <string name="settings_key_new_backup_format_dialog_shown" translatable="false">pref_new_backup_dialog_shown</string>   <!--Deprecated -->
+    <string name="settings_key_backup_default_type" translatable="false">pref_backup_default_type</string>
 
     <string name="settings_key_security_backup_warning" translatable="false">pref_security_backup_warning_shown</string>
     <string name="settings_key_sort_mode" translatable="false">pref_sort_mode</string>
@@ -138,10 +140,12 @@
 
     <string-array name="settings_values_lang" translatable="false">
         <item>system</item>
+        <item>ast</item>
         <item>ca</item>
         <item>de</item>
         <item>en</item>
         <item>es</item>
+        <item>eu</item>
         <item>fr</item>
         <item>gl</item>
         <item>it</item>
@@ -157,6 +161,7 @@
         <item>ru</item>
         <item>uk</item>
         <item>bg</item>
+        <item>iw</item>
         <item>ar</item>
         <item>fa</item>
         <item>hi</item>
@@ -199,10 +204,12 @@
 
     <string-array name="settings_entries_lang" translatable="false">
         <item>@string/settings_lang_sys_default</item>
+        <item>Asturianu</item>
         <item>Català</item>
         <item>Deutsch</item>
         <item>English</item>
         <item>Español</item>
+        <item>Euskara</item>
         <item>Français</item>
         <item>Galego</item>
         <item>Italiano</item>
@@ -218,6 +225,7 @@
         <item>Русский</item>
         <item>Українська</item>
         <item>български</item>
+        <item>עִברִית</item>
         <item>العربية</item>
         <item>فارسی</item>
         <item>हिन्दी</item>

@@ -6,8 +6,8 @@
     <string name="auth_hint_pin">PIN-kod</string>
     <!-- Messages -->
     <string name="auth_msg_authenticate">Vänligen verifiera för att starta andOTP!</string>
-    <string name="auth_msg_confirm_encryption">Vänligen bekräfta din autentisering för att generera
-        ny krypteringsnyckel!</string>
+    <string name="auth_msg_confirm_encryption">Bekräfta autentisering för att generera din
+        krypteringsnyckel!</string>
     <!-- Buttons -->
     <string name="auth_button_unlock">Lås upp</string>
     <!-- Toast messages -->

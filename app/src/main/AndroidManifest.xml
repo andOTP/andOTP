@@ -6,6 +6,8 @@
     android:installLocation="auto"
     package="org.shadowice.flocke.andotp">
 
+    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" /> <!-- Needed to support SDK below 24, see build.gradle -->
+
     <application
         android:allowBackup="true"
         android:backupAgent=".Utilities.BackupAgent"

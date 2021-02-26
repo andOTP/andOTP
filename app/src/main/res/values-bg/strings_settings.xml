@@ -18,6 +18,7 @@
     <string name="settings_title_auth_inactivity">Повторно заключване при бездействие</string>
     <string name="settings_title_auth_inactivity_delay">Забавяне за повторно заключване при неактивност</string>
     <string name="settings_title_block_accessibility">Блокиране на услугите за достъпност</string>
+    <string name="settings_title_block_autofill">Block autofill</string>
     <string name="settings_title_lang">Език</string>
     <string name="settings_title_theme">Тема</string>
     <string name="settings_title_card_layout">Вид оформление</string>
@@ -35,7 +36,7 @@
     <string name="settings_title_show_individual_timeouts">Показване на индивидуални времена за изчакване</string>
     <string name="settings_title_backup_append_date">Добавяне на датата към името на файла</string>
     <string name="settings_title_backup_ask">Попитай за името на файла</string>
-    <string name="settings_title_backup_directory">Директория за резервни копия</string>
+    <string name="settings_title_backup_location">Default backup location</string>
     <string name="settings_title_backup_password">Парола за резервни копия</string>
     <string name="settings_title_auto_backup_password_enc">Автоматично архивиране на нови записи</string>
     <string name="settings_title_backup_broadcasts">Резервная копия с помощта на външни приложения</string>
@@ -63,6 +64,10 @@
          изисква повторно удостоверяване</string>
     <string name="settings_desc_block_accessibility">Скриване на чувствителни полета от услугите
      за достъпност. <b>НЕ активирайте това, ако използвате услугите за достъпност!</b></string>
+    <string name="settings_desc_block_autofill">Block autofill services from accessing password
+        fields inside the app</string>
+    <string name="settings_desc_block_autofill_android">This feature requires an Android version
+        above 8.0 (Oreo)</string>
     <string name="settings_desc_label_scroll">Превъртане на дългите етикети, вместо да бъдат съкращавани</string>
     <string name="settings_desc_minimize_on_copy">Приложението ще бъде минимизирано, когато копирате OTP токенът в клипборда</string>
     <string name="settings_desc_search_includes">Посочете кои стойности трябва да бъдат включени при търсенето</string>
@@ -75,10 +80,14 @@
     <string name="settings_desc_backup_ask">Попитайте за името на файла всеки път, когато се създаде или възстановява 
        резервно копие
        </string>
+    <string name="settings_desc_backup_location">Choose a default backup location</string>
+    <string name="settings_desc_backup_location_set">Backup location has been chosen</string>
     <string name="settings_desc_backup_password">Задайте паролата, която да се използва за криптиране на
          резервните копия</string>
     <string name="settings_desc_auto_backup_password_enc">Създаване на ново криптирано резервно копие, когато новите
          записи се добавят или редактират, ако са изпълнени условията за настройките</string>
+    <string name="settings_desc_auto_backup_requirements">Set a default backup location and a
+        backup password to enable this option</string>
     <string name="settings_desc_backup_broadcasts">Изберете какви типове резервни копия могат да бъдат запазени от
          приложения на трети страни за създаване на резервно копие</string>
     <string name="settings_desc_openpgp_key_encrypt">Пощенски адрес на OpenPGP ключа, използван за криптиране на

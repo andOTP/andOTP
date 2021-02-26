@@ -10,15 +10,16 @@
     <string name="settings_title_tap_to_reveal_timeout">Durée d\'affichage des jetons</string>
     <string name="settings_title_auth">Identification</string>
     <string name="settings_title_auth_password">Mot de passe</string>
-    <string name="settings_title_auth_pin">Code PIN</string>
+    <string name="settings_title_auth_pin">NIP</string>
     <string name="settings_title_encryption">Chiffrement de la base de données</string>
     <string name="settings_title_panic">Bouton d\'urgence</string>
-    <string name="settings_title_relock_screen_off">Re-verouiller à l\'extinction de l\'écran</string>
+    <string name="settings_title_relock_screen_off">Re-verrouiller à l\'extinction de l\'écran</string>
     <string name="settings_title_relock_background">Re-verrouiller au passage en arrière-plan</string>
     <string name="settings_title_auth_inactivity">Re-verrouiller en cas d\'inactivité</string>
     <string name="settings_title_auth_inactivity_delay">Délai de re-verrouillage pour inactivité</string>
     <string name="settings_title_block_accessibility">Bloquer les services d\'accessibilité</string>
-    <string name="settings_title_lang">Langage</string>
+    <string name="settings_title_block_autofill">Bloquer l\'autoremplissage</string>
+    <string name="settings_title_lang">Langue</string>
     <string name="settings_title_theme">Thème</string>
     <string name="settings_title_card_layout">Disposition des cartes</string>
     <string name="settings_title_label_size">Taille de la police des titres</string>
@@ -27,7 +28,7 @@
     <string name="settings_title_tap_double">Appui double</string>
     <string name="settings_title_thumbnail_size_ask">Taille des miniatures</string>
     <string name="settings_title_split_group_size">Séparer le jeton avec des espaces</string>
-    <string name="settings_title_tag_functionality">Comportement de la sélection par tag</string>
+    <string name="settings_title_tag_functionality">Comportement de la sélection par étiquette</string>
     <string name="settings_title_minimize_on_copy">Minimiser l\'appli après la copie du jeton OTP</string>
     <string name="settings_title_search_includes">Comportement de la recherche</string>
     <string name="settings_title_label_highlight_token">Surligner les jetons qui vont expirer</string>
@@ -35,12 +36,12 @@
     <string name="settings_title_show_individual_timeouts">Afficher les expirations par entrée</string>
     <string name="settings_title_backup_append_date">Ajouter la date au nom de fichier</string>
     <string name="settings_title_backup_ask">Demander le nom du fichier</string>
-    <string name="settings_title_backup_directory">Répertoire de sauvegarde</string>
+    <string name="settings_title_backup_location">Emplacement de sauvegarde par défaut</string>
     <string name="settings_title_backup_password">Mot de passe de sauvegarde</string>
     <string name="settings_title_auto_backup_password_enc">Sauvegarde automatique à l\'ajout de nouvelles entrées</string>
     <string name="settings_title_backup_broadcasts">Sauvegardes par diffusion</string>
     <string name="settings_title_openpgp_provider">Fournisseur OpenPGP</string>
-    <string name="settings_title_openpgp_key_encrypt">Clé de chiffrage OpenPGP</string>
+    <string name="settings_title_openpgp_key_encrypt">Clé de chiffrement OpenPGP</string>
     <string name="settings_title_openpgp_key_sign">Clé de signature OpenPGP (optionnel)</string>
     <string name="settings_title_openpgp_verify">Vérifier les sauvegardes chiffrées</string>
     <string name="settings_title_special_features">Activer les fonctionnalités spéciales</string>
@@ -59,6 +60,10 @@
     authentification est exigée</string>
     <string name="settings_desc_block_accessibility">Masquer les champs sensibles aux services d\'accessibilité.
     <b>N\'activez PAS ceci si vous avez besoin des services d\'accessibilité !</b></string>
+    <string name="settings_desc_block_autofill">Empêcher les services de saisie automatique d\'accéder aux champs
+        du mot de passe dans l\'appli</string>
+    <string name="settings_desc_block_autofill_android">Cette fonctionnalité nécessite une version Android
+        supérieure à 8.0 (Oreo)</string>
     <string name="settings_desc_label_scroll">Faire défiler les libellés trop longs plutôt que de les tronquer</string>
     <string name="settings_desc_minimize_on_copy">L\'appli sera réduite à la copie du jeton OTP dans le presse-papiers</string>
     <string name="settings_desc_search_includes">Choisissez quelles valeurs seront incluses lors de la recherche</string>
@@ -68,11 +73,15 @@
         Cela peut ralentir l\'application, à activer uniquement si nécessaire.</string>
     <string name="settings_desc_backup_append_date">Ajouter la date et l\'heure au nom de fichier de sauvegarde proposé</string>
     <string name="settings_desc_backup_ask">Demander le nom du fichier à chaque fois qu\'une sauvegarde est créée ou restaurée</string>
+    <string name="settings_desc_backup_location">Choisissez un emplacement de sauvegarde par défaut</string>
+    <string name="settings_desc_backup_location_set">L\'emplacement de la sauvegarde a été choisi</string>
     <string name="settings_desc_backup_password">Configurer le mot de passe utilisé pour chiffrer les sauvegardes</string>
     <string name="settings_desc_auto_backup_password_enc">Crée une nouvelle sauvegarde chiffrée lorsque de nouvelles entrées
     sont ajoutées ou modifiées, si les conditions paramétrées sont remplies</string>
+    <string name="settings_desc_auto_backup_requirements">Définir un emplacement de sauvegarde par défaut et un
+        mot de passe de sauvegarde pour activer cette option</string>
     <string name="settings_desc_backup_broadcasts">Sélectionner quelles types de sauvegardes peuvent être appelés pas les applications tiers en utilisant la diffusion</string>
-    <string name="settings_desc_openpgp_key_encrypt">Adresse mail de la clé OpenPGP utilisée pour chiffrer
+    <string name="settings_desc_openpgp_key_encrypt">Adresse courriel de la clé OpenPGP utilisée pour chiffrer
         les sauvegardes</string>
     <string name="settings_desc_openpgp_verify">Les sauvegardes chiffrées ne sont restaurées que lorsqu\'elles sont signées avec une clé valide</string>
     <string name="settings_desc_special_features">Décochez pour désactiver les fonctionnalités spéciales</string>
@@ -116,12 +125,12 @@
     <string-array name="settings_entries_auth">
         <item>Aucune</item>
         <item>Mot de passe</item>
-        <item>Code PIN</item>
+        <item>NIP</item>
         <item>Identification du périphérique</item>
     </string-array>
     <string-array name="settings_entries_encryption">
         <item>KeyStore Android</item>
-        <item>Mot de passe / PIN</item>
+        <item>Mot de passe / NIP</item>
     </string-array>
     <string-array name="settings_entries_panic">
         <item>Supprimer l\'ensemble des comptes</item>
@@ -141,7 +150,7 @@
     <string-array name="settings_entries_search_includes">
         <item>Étiquette</item>
         <item>Émetteur</item>
-        <item>Tags</item>
+        <item>Étiquettes</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Désactivé</item>
@@ -167,9 +176,9 @@
         <item>Après trois caractères</item>
     </string-array>
     <string-array name="settings_entries_tag_functionality">
-        <item>Afficher les entrées correspondant à <b>au moins une</b> des balises sélectionnées (ou)</item>
-        <item>Afficher les entrées correspondant à <b>toutes</b> les balises sélectionnées (et)</item>
-        <item>Basculer entre les tags (seul un tag ne peut être sélectionné à la fois)</item>
+        <item>Afficher les entrées correspondant à <b>au moins une</b> des étiquettes sélectionnées (ou)</item>
+        <item>Afficher les entrées correspondant à <b>toutes</b> les étiquettes sélectionnées (et)</item>
+        <item>Basculer entre les étiquettes (autorise seulement une étiquette à être sélectionnée à la fois)</item>
     </string-array>
     <string-array name="settings_entries_backup_broadcasts">
         <item>Sauvegardes en clair</item>
@@ -179,10 +188,10 @@
     <string name="settings_lang_sys_default">Par défaut du système</string>
     <!-- PasswordPreference -->
     <string name="settings_hint_password">Saisir le nouveau mot de passe</string>
-    <string name="settings_hint_pin">Saisir le nouveau code PIN</string>
+    <string name="settings_hint_pin">Saisir le nouveau NIP</string>
     <string name="settings_hint_password_confirm">      Confirmer le mot de passe
     </string>
-    <string name="settings_hint_pin_confirm">Confirmer le code PIN</string>
+    <string name="settings_hint_pin_confirm">Confirmer le NIP</string>
     <string name="settings_label_short_password">Le mot de passe doit comporter au moins %1$d caractères !</string>
-    <string name="settings_label_short_pin">Le code PIN doit comporter au moins %1$d chiffres !</string>
+    <string name="settings_label_short_pin">Le NIP doit comporter au moins %1$d chiffres !</string>
 </resources>

@@ -45,6 +45,13 @@
     <string name="menu_popup_change_image">更改图像</string>
     <string name="menu_popup_remove">移除</string>
     <string name="menu_popup_show_qr_code">显示二维码</string>
+    <!-- Buttons -->
+    <string name="button_card_options">更多选项</string>
+    <string name="button_card_options_format">%1$s 的更多选项</string>
+    <string name="button_card_copy">复制令牌</string>
+    <string name="button_card_copy_format">复制 %1$s 令牌</string>
+    <string name="button_add">添加新账户</string>
+    <string name="button_close_menu">关闭菜单</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">验证失败，请重试！</string>
     <string name="toast_auth_failed_fatal">验证失败，正在关闭 andOTP！</string>
@@ -71,7 +78,6 @@
     <string name="dialog_title_used_tokens">令牌使用情况</string>
     <string name="dialog_title_keystore_error">密钥库错误</string>
     <string name="dialog_title_qr_code">二维码</string>
-    <string name="dialog_title_android21_depreaction">禁用通知</string>
     <string name="dialog_title_enter_password">输入密码</string>
     <string name="dialog_label_enter_password">输入密码</string>
     <string name="dialog_label_confirm_password">确认密码</string>
@@ -79,8 +85,6 @@
     <string name="dialog_msg_confirm_delete">您确定要删除账户“%1$s”吗？</string>
     <string name="dialog_msg_used_tokens">andOTP 会跟踪您的令牌使用情况（通过 \"点击显示\"功能或复制到剪贴板），以便能够按「最常用」或「最近使用」排序。\n\n此消息将不会再次显示。</string>
     <string name="dialog_msg_keystore_error">从密钥库加载加密密钥失败。<b>添加的任何项都将丢失。</b>\n\n如要继续使用 andOTP，您可以到 <b>设置</b> 中将 <b>数据库加密</b> 切换为 <b>密码/PIN</b>。</string>
-    <string name="dialog_msg_android21_deprecation">这将是 andOTP 最后一个支持低于 Android 5.1（Lollipop）的版本。 
-为那些低市场份额的旧机型维护一个单独版本，往往需要更多工作，对于我们这个小团队来说精力不被允许。\n\n此消息不会再次显示。</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">扫描二维码</string>
     <string name="shortcut_name_import_qr">导入二维码</string>

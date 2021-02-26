@@ -18,24 +18,25 @@
     <string name="settings_title_auth_inactivity">Lezárás tétlenségkor</string>
     <string name="settings_title_auth_inactivity_delay">A tétlenség miatt lezárás késleltetése</string>
     <string name="settings_title_block_accessibility">Akadálymentesítési szolgáltatások blokkolása</string>
+    <string name="settings_title_block_autofill">Automatikus kitöltés blokkolása</string>
     <string name="settings_title_lang">Nyelv</string>
     <string name="settings_title_theme">Téma</string>
     <string name="settings_title_card_layout">Kártyák elrendezése</string>
     <string name="settings_title_label_size">Cím betűmérete</string>
     <string name="settings_title_label_scroll">Cím görgetése</string>
-    <string name="settings_title_tap_single">Single-tap</string>
-    <string name="settings_title_tap_double">Double-tap</string>
+    <string name="settings_title_tap_single">Egy koppintás</string>
+    <string name="settings_title_tap_double">Dupla koppintás</string>
     <string name="settings_title_thumbnail_size_ask">Bélyegképek mérete</string>
     <string name="settings_title_split_group_size">Token elválasztása szóközzel</string>
     <string name="settings_title_tag_functionality">Címkekiválasztás viselkedése</string>
     <string name="settings_title_minimize_on_copy">Alkalmazás minimalizálása az OTP másolása után</string>
     <string name="settings_title_search_includes">Keresés viselkedése</string>
     <string name="settings_title_label_highlight_token">Lejáró tokenek kiemelése</string>
-    <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
-    <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
+    <string name="settings_title_hide_global_timeout">Globális időtúllépési sáv elrejtése</string>
+    <string name="settings_title_show_individual_timeouts">Időtúllépések egyenkénti megjelenítése</string>
     <string name="settings_title_backup_append_date">Dátum hozzáfűzése a fájlnévhez</string>
     <string name="settings_title_backup_ask">Fájlnév bekérése</string>
-    <string name="settings_title_backup_directory">Biztonsági mentés könyvtára</string>
+    <string name="settings_title_backup_location">Biztonsági mentés alapértelmezett helye</string>
     <string name="settings_title_backup_password">Biztonsági mentés jelszava</string>
     <string name="settings_title_auto_backup_password_enc">Új bejegyzések automatikus biztonsági mentése</string>
     <string name="settings_title_backup_broadcasts">Továbbított biztonsági mentés</string>
@@ -63,20 +64,30 @@
         után hitelesítés szükséges</string>
     <string name="settings_desc_block_accessibility">Érzékeny mezők elrejtése az akadálymentesítési
         szolgáltatások elől. <b>NE kapcsolja be, ha használja ezeket!</b></string>
+    <string name="settings_desc_block_autofill">Az automatikus kitöltési szolgáltatások blokkolása,
+        hogy ne férjenek hozzá az alkalmazáson belüli
+        jelszómezőkhöz</string>
+    <string name="settings_desc_block_autofill_android">A funkcióhoz 8.0-s (Oreo) vagy újabb
+        Android verzió szükséges</string>
     <string name="settings_desc_label_scroll">A hosszabb címek görgetése a levágásuk helyett</string>
     <string name="settings_desc_minimize_on_copy">Az alkalmazás minimalizálva lesz, ha a vágólapra másolja az OTP-t</string>
     <string name="settings_desc_search_includes">Adja meg, hogy mely értékek legyenek belevéve a keresésbe</string>
     <string name="settings_desc_label_highlight_token">Tokenek kiemelése vörössel, ha 8 másodpercen belül lejár</string>
-    <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
-    <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
-        This can slow down the app, only enable if really necessary.</string>
+    <string name="settings_desc_hide_global_timeout">A képernyő tetején található globális időtúllépési sáv elrejtése</string>
+    <string name="settings_desc_show_individual_timeouts">Külön időtúllépési sáv megjelenítése minden bejegyzéshez.
+        Ez lelassíthatja az alkalmazást, csak akkor engedélyezze, ha szükséges.</string>
     <string name="settings_desc_backup_append_date">A jelenlegi dátum és idő hozzáfűzése a biztonsági
         mentés javasolt nevéhez</string>
     <string name="settings_desc_backup_ask">Fájl nevének kérése minden alkalommal amikor biztonsági mentés jön létre vagy állítódik vissza</string>
+    <string name="settings_desc_backup_location">Válassza ki a biztonsági mentés alapértelmezett helyét</string>
+    <string name="settings_desc_backup_location_set">A biztonsági mentés helye kiválasztva</string>
     <string name="settings_desc_backup_password">Állítsa be a jelszót amit a biztonsági mentések titkosításához használ</string>
     <string name="settings_desc_auto_backup_password_enc">Új titkosított biztonsági mentést hoz létre, ha új
         bejegyzések kerülnek hozzáadásra, szerkesztésre, vagy ha a
         beállításokban megadott feltételek teljesülnek</string>
+    <string name="settings_desc_auto_backup_requirements">A beállítás engedélyezéséhez állítsa be a
+        biztonsági mentés alapértelmezett
+        helyét és jelszavát</string>
     <string name="settings_desc_backup_broadcasts">Jelölje ki, hogy melyik biztonsági másolat típusokat indíthatja el a harmadik féltől származó alkalmazás a Broadcasts segítségével</string>
     <string name="settings_desc_openpgp_key_encrypt">A biztonsági mentések titkosításához használt OpenPGP-kulcs e-mail címe</string>
     <string name="settings_desc_openpgp_verify">A titkosított biztonsági másolatokat csak akkor lehet importálni, ha érvényes kulccsal írnak alá</string>
@@ -151,10 +162,10 @@
         <item>Teljes</item>
     </string-array>
     <string-array name="settings_entries_tap">
-        <item>Nothing</item>
-        <item>Reveal/Hide</item>
-        <item>Copy</item>
-        <item>Copy and go to background</item>
+        <item>Semmi</item>
+        <item>Megjelenítés/elrejtés</item>
+        <item>Másolás</item>
+        <item>Másolás és háttérbe küldés</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Cím</item>

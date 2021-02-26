@@ -6,7 +6,7 @@
     <string name="auth_hint_pin">PIN</string>
     <!-- Messages -->
     <string name="auth_msg_authenticate">Přihlašte se pro spuštění andOTP!</string>
-    <string name="auth_msg_confirm_encryption">Prosím potvrďte své přihlášení pro vygenerování nového šifrovacího klíče!</string>
+    <string name="auth_msg_confirm_encryption">Pro vygenerování šifrovacího klíče prosím potvrďte své přihlášení!</string>
     <!-- Buttons -->
     <string name="auth_button_unlock">Odemknout</string>
     <!-- Toast messages -->

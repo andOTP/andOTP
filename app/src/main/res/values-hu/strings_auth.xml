@@ -6,8 +6,8 @@
     <string name="auth_hint_pin">PIN-kód</string>
     <!-- Messages -->
     <string name="auth_msg_authenticate">Hitelesítse magát az andOTP indításához!</string>
-    <string name="auth_msg_confirm_encryption">Erősítse meg a hitelesítését az új titkosítási
-        kulcs előállításához!</string>
+    <string name="auth_msg_confirm_encryption">Erősítse meg a hitelesítést a titkosítási
+        kulcsa előállításához!</string>
     <!-- Buttons -->
     <string name="auth_button_unlock">Feloldás</string>
     <!-- Toast messages -->

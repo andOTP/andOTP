@@ -45,6 +45,13 @@
     <string name="menu_popup_change_image">Ändra bild</string>
     <string name="menu_popup_remove">Ta bort</string>
     <string name="menu_popup_show_qr_code">Visa QR-kod</string>
+    <!-- Buttons -->
+    <string name="button_card_options">Fler alternativ</string>
+    <string name="button_card_options_format">Fler alternativ för %1$s</string>
+    <string name="button_card_copy">Kopiera token</string>
+    <string name="button_card_copy_format">Kopiera %1$s token</string>
+    <string name="button_add">Lägg till nytt konto</string>
+    <string name="button_close_menu">Stäng menyn</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">Autentisering misslyckades, vänligen försök igen!</string>
     <string name="toast_auth_failed_fatal">Autentisering misslyckades, stänger andOTP!</string>
@@ -71,7 +78,6 @@
     <string name="dialog_title_used_tokens">Tokens användning</string>
     <string name="dialog_title_keystore_error">KeyStore-fel</string>
     <string name="dialog_title_qr_code">QR-kod</string>
-    <string name="dialog_title_android21_depreaction">Avskrivningsnotis</string>
     <string name="dialog_title_enter_password">Ange lösenord</string>
     <string name="dialog_label_enter_password">Ange lösenord</string>
     <string name="dialog_label_confirm_password">Bekräfta lösenord</string>
@@ -83,11 +89,6 @@
     <string name="dialog_msg_keystore_error">Det gick inte att läsa in krypteringsnyckeln från KeyStore.
         <b>Alla poster som läggs till kommer att gå förlorade.</b>\n\nFör att fortfarande kunna använda andOTP kan du gå
         till <b>Inställningar</b> och byta <b>Databas-kryptering</b> till <b>Lösenord / PIN-kod</b>.</string>
-    <string name="dialog_msg_android21_deprecation">Detta är den senaste versionen av andOTP som
-        stöder Android versionen under 5.1 (Lollipop). Den ökande insatsen som krävs för att underhålla
-        separata lagringsimplementationer för äldre versioner samt deras låga marknadsandelar
-        gör fortsatt support infeasible för vår lilla team.\n\nDetta meddelande kommer inte 
-        visas igen.</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Skanna QR-kod</string>
     <string name="shortcut_name_import_qr">Importera QR kod</string>

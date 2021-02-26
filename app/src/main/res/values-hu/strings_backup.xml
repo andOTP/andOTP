@@ -50,11 +50,6 @@
         mielőtt biztonsági mentést hozna létre</string>
     <string name="backup_receiver_custom_encryption_failed">A jelszó/PIN-kód alapú titkosítás nem
         támogatott a közvetített biztonsági mentésnél</string>
-    <string name="backup_new_format_dialog_title">Új titkosítási mód</string>
-    <string name="backup_new_format_dialog_msg">Az andOTP 0.6.3-as verziója óta a jelszavak egy <b>új és továbbfejlesztett
-        titkosítási eljárással</b> kerülnek titkosításra. A régi mentések továbbra is 
-        importálhatók, de <b>erősen ajánlott új biztonsági mentést létrehozni a továbbfejlesztett
-        titkosítással</b>.\n\nEz az üzenet nem jelenik meg újra.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Az automatikus biztonsági mentés sikertelen</string>
     <string name="notification_channel_name_backup_success">Az automatikus biztonsági mentés sikeres</string>
@@ -63,7 +58,9 @@
     <string name="notification_channel_desc_backup_success">Ezek az értesítések akkor jelennek meg,
         ha a biztonsági mentés sikeres volt</string>
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">A biztonsági mentés könyvtárának létrehozása sikertelen</string>
+    <string name="backup_toast_no_location">Adja meg a biztonsági mentés alapértelmezett helyét a beállításokban.</string>
+    <string name="backup_toast_location_access_failed">A biztonsági mentés helyének elérése sikertelen.</string>
+    <string name="backup_toast_file_creation_failed">A biztonsági mentés fájljának létrehozása sikertelen.</string>
     <string name="backup_toast_export_success">A külső tárolóra történő exportálás sikeres</string>
     <string name="backup_toast_export_failed">A külső tárolóra történő exportálás sikertelen</string>
     <string name="backup_toast_import_success">A külső tárolóról történő importálás sikeres</string>
@@ -71,7 +68,6 @@
     <string name="backup_toast_import_decryption_failed">A biztonsági másolat visszafejtése sikertelen</string>
     <string name="backup_toast_import_no_entries">Nem található bejegyzés az importált adatokban</string>
     <string name="backup_toast_storage_not_accessible">A külső tároló jelenleg nem érhető el</string>
-    <string name="backup_toast_storage_permissions">A Tároló engedély nincs megadva</string>
     <string name="backup_toast_openpgp_error">OpenPGP hiba: %s</string>
     <string name="backup_toast_openpgp_not_verified">Nem hitelesített aláírás észlelve</string>
     <string name="backup_toast_crypt_password_not_set">A jelszó nincs beállítva, ellenőrizze a <b>Beállítások</b> alatt</string>

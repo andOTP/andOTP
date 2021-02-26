@@ -19,6 +19,7 @@
  * Bug fix: Crash when clicking on an entry multiple times (Issue #631, PR #634 by @jsoberg)
  * Bug fix: Crash during settings changes (Issue #639, PR #640 by @jsoberg)
  * Bug fix: Don't use regionalized language codes (Issue #567)
+ * Bug fix: Report backup failure correctly (Issue #671)
  * Internal: Update Gradle, build tools and dependencies
  * Internal: Min API Level set to 22 (Lollipop	5.1)
  * Internal: Refactoring and reducing build warnings

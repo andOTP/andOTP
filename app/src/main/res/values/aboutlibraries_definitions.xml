@@ -74,19 +74,4 @@
     <string name="library_OpenPGPAPI_repositoryLink">https://github.com/open-keychain/openpgp-api</string>
 
     <string name="library_OpenPGPAPI_licenseId">apache_2_0</string>
-
-    <!-- ZXing Android Embedded -->
-    <string name="define_ZXingAndroidEmbedded"></string>
-    <string name="library_ZXingAndroidEmbedded_author">Journey Mobile</string>
-    <string name="library_ZXingAndroidEmbedded_authorWebsite">https://journeyapps.com</string>
-
-    <string name="library_ZXingAndroidEmbedded_libraryName">ZXing Android Embedded</string>
-    <string name="library_ZXingAndroidEmbedded_libraryDescription">Barcode scanning library for Android, using ZXing for decoding.</string>
-    <string name="library_ZXingAndroidEmbedded_libraryWebsite">https://github.com/journeyapps/zxing-android-embedded</string>
-    <string name="library_ZXingAndroidEmbedded_libraryVersion">3.6.0</string>
-
-    <string name="library_ZXingAndroidEmbedded_isOpenSource">true</string>
-    <string name="library_ZXingAndroidEmbedded_repositoryLink">https://github.com/journeyapps/zxing-android-embedded</string>
-
-    <string name="library_ZXingAndroidEmbedded_licenseId">mit</string>
 </resources>

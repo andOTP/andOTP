@@ -18,6 +18,7 @@
     <string name="settings_title_auth_inactivity">Volver a bloquear por inactividad</string>
     <string name="settings_title_auth_inactivity_delay">Retraso para volver a bloquear por inactividad</string>
     <string name="settings_title_block_accessibility">Bloquear servicios de accesibilidad</string>
+    <string name="settings_title_block_autofill">Bloquear autorelleno</string>
     <string name="settings_title_lang">Idioma</string>
     <string name="settings_title_theme">Aspecto</string>
     <string name="settings_title_card_layout">Diseño de tarjeta</string>
@@ -35,7 +36,7 @@
     <string name="settings_title_show_individual_timeouts">Mostrar límites de tiempo individuales</string>
     <string name="settings_title_backup_append_date">Concatenar fecha al nombre del fichero</string>
     <string name="settings_title_backup_ask">Pedir nombre de fichero</string>
-    <string name="settings_title_backup_directory">Carpeta para copias de seguridad</string>
+    <string name="settings_title_backup_location">Ubicación de copia de seguridad por defecto</string>
     <string name="settings_title_backup_password">Contraseña de copia de seguridad</string>
     <string name="settings_title_auto_backup_password_enc">Copia de seguridad automática en nuevas entradas</string>
     <string name="settings_title_backup_broadcasts">Copia de seguridad de difusión</string>
@@ -62,6 +63,10 @@
         requerir reautenticación</string>
     <string name="settings_desc_block_accessibility">Ocultar campos sensibles de los servicios
         de accesibilidad. <b>¡NO actives esto si utilizas los servicios de accesibilidad!</b></string>
+    <string name="settings_desc_block_autofill">Bloquear servicios de autorrelleno accediendo a campos de contraseña
+        dentro de la aplicación</string>
+    <string name="settings_desc_block_autofill_android">Esta función requiere una versión de Android
+        superior a 8.0 (Oreo)</string>
     <string name="settings_desc_label_scroll">Desplazar etiquetas en lugar de truncarlas</string>
     <string name="settings_desc_minimize_on_copy">La aplicación se minimizará cuando copie el OTP al portapapeles</string>
     <string name="settings_desc_search_includes">Especifique qué valores deben incluirse al buscar</string>
@@ -73,10 +78,14 @@
         para el fichero de la copia de seguridad</string>
     <string name="settings_desc_backup_ask">Pedir nombre de fichero cada vvez que una copia de seguridad
         es creada o restaurada</string>
+    <string name="settings_desc_backup_location">Elija una ubicación de copia de seguridad por defecto</string>
+    <string name="settings_desc_backup_location_set">Se ha seleccionado la ubicación de la copia de seguridad</string>
     <string name="settings_desc_backup_password">Establecer la contraseña usada para cifrar las
         copias de seguridad</string>
     <string name="settings_desc_auto_backup_password_enc">Crea una nueva copia de seguridad cifrada cuando se añaden o editan nuevas entradas
         si se cumplen las condiciones de configuración</string>
+    <string name="settings_desc_auto_backup_requirements">Establecer una ubicación de copia de seguridad por defecto y una contraseña de copia de seguridad
+        para habilitar esta opción</string>
     <string name="settings_desc_backup_broadcasts">Selecciona qué tipos de copias de seguridad pueden ser ejecutadas por
         aplicaciones de terceros usando difusión</string>
     <string name="settings_desc_openpgp_key_encrypt">Dirección de correo de la clave OpenPGP usada para cifrar
