@@ -40,6 +40,7 @@
     <string name="settings_key_hide_global_timeout" translatable="false">pref_hide_global_timeout</string>
     <string name="settings_key_show_individual_timeouts" translatable="false">pref_show_individual_timeouts</string>
     <string name="settings_key_focus_search_on_start" translatable="false">pref_focus_search_on_start</string>
+    <string name="settings_key_hide_issuer" translatable="false">pref_hide_issuer</string>
 
     <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>

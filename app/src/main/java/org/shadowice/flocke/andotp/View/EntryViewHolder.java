@@ -180,7 +180,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         String contentHint = "";
 
         String issuerText = entry.getIssuer();
-        if (!TextUtils.isEmpty(issuerText)) {
+        if (!TextUtils.isEmpty(issuerText) && !settings.isHideIssuerEnabled()) {
             issuer.setText(issuerText);
             issuer.setVisibility(View.VISIBLE);
 
@@ -199,7 +199,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             label.setVisibility(View.GONE);
         }
 
-        if (!TextUtils.isEmpty(issuerText) && !TextUtils.isEmpty(labelText)) {
+        if (!TextUtils.isEmpty(issuerText) && !TextUtils.isEmpty(labelText) && !settings.isHideIssuerEnabled()) {
             separator.setVisibility(View.VISIBLE);
 
             contentHint = issuerText + " - " + labelText;
