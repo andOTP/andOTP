@@ -61,7 +61,7 @@
     <string name="library_materialintro_licenseId">mit</string>
 
     <!-- OpenPGP API -->
-    <string name="define_OpenPGPAPI"></string>
+        <string name="define_OpenPGPAPI"></string>
     <string name="library_OpenPGPAPI_author">Dominik Schürmann</string>
     <string name="library_OpenPGPAPI_authorWebsite">https://www.schuermann.eu/</string>
 
@@ -74,4 +74,17 @@
     <string name="library_OpenPGPAPI_repositoryLink">https://github.com/open-keychain/openpgp-api</string>
 
     <string name="library_OpenPGPAPI_licenseId">apache_2_0</string>
+
+    <!-- Droid Sans Mono Slashed Font -->
+    <string name="define_MonoSlashedFont"></string>
+    <string name="library_MonoSlashedFont_author"> Alberto Dorado</string>
+
+    <string name="library_MonoSlashedFont_libraryName">Droid Sans Mono Zeromod</string>
+    <string name="library_MonoSlashedFont_libraryDescription">Replaces Droid Sans Mono font\'s zero character with slashed zero/dotted zero.</string>
+    <string name="library_MonoSlashedFont_libraryWebsite">https://github.com/AlbertoDorado/droid-sans-mono-zeromod</string>
+
+    <string name="library_MonoSlashedFont_isOpenSource">true</string>
+    <string name="library_MonoSlashedFont_repositoryLink">https://github.com/AlbertoDorado/droid-sans-mono-zeromod</string>
+
+    <string name="library_MonoSlashedFont_licenseId">apache_2_0</string>
 </resources>

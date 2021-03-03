@@ -94,7 +94,7 @@
                 android:background="?attr/editTextBackground"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textIsSelectable="true"
-                android:fontFamily="monospace"
+                android:fontFamily="@font/droid_sans_mono_slashed"
                 android:maxLines="3"
                 android:visibility="gone" />
 
@@ -103,7 +103,7 @@
                 android:layout_weight="7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
+                android:fontFamily="@font/droid_sans_mono_slashed"
                 android:inputType="textMultiLine"
                 android:maxLines="3"
                 android:hint="@string/hint_secret" />
