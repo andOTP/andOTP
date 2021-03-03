@@ -27,7 +27,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import androidx.annotation.NonNull;
@@ -56,14 +55,17 @@ import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Tasks.AuthenticationTask;
 import org.shadowice.flocke.andotp.Tasks.AuthenticationTask.Result;
 import org.shadowice.flocke.andotp.Utilities.Constants;
+import org.shadowice.flocke.andotp.Utilities.EditorActionHelper;
+import org.shadowice.flocke.andotp.View.AutoFillable.AutoFillableTextInputEditText;
 
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 
 public class AuthenticateActivity extends BaseActivity
         implements EditText.OnEditorActionListener, View.OnClickListener {
+    private final AutoFillableTextInputEditText.AutoFillTextListener autoFillTextListener = text -> startAuthTask(text.toString());
 
     private static final String TAG_TASK_FRAGMENT = "AuthenticateActivity.TaskFragmentTag";
-
+    
     private AuthMethod authMethod;
     private String newEncryption = "";
     private String existingAuthCredentials;
@@ -71,7 +73,7 @@ public class AuthenticateActivity extends BaseActivity
     private ProcessLifecycleObserver observer;
 
     private TextInputLayout passwordLayout;
-    private TextInputEditText passwordInput;
+    AutoFillableTextInputEditText passwordInput;
     private Button unlockButton;
     private ProgressBar unlockProgress;
 
@@ -237,7 +239,7 @@ public class AuthenticateActivity extends BaseActivity
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if (actionId == EditorInfo.IME_ACTION_DONE) {
+        if (EditorActionHelper.isActionDoneOrKeyboardEnter(actionId, event)) {
             startAuthTask(v.getText().toString());
             return true;
         }
@@ -288,6 +290,14 @@ public class AuthenticateActivity extends BaseActivity
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        if (settings.getAutoUnlockAfterAutofill()) {
+            passwordInput.setAutoFillTextListener(autoFillTextListener);
+        }
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         // We don't want the task to callback to a dead activity and cause a memory leak, so null it here.
@@ -295,6 +305,12 @@ public class AuthenticateActivity extends BaseActivity
         if (taskFragment != null) {
             taskFragment.task.setCallback(null);
         }
+    }
+
+    @Override
+    protected void onStop() {
+        passwordInput.setAutoFillTextListener(null);
+        super.onStop();
     }
 
     @Override

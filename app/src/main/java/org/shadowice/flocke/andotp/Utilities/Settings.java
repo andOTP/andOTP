@@ -606,6 +606,10 @@ public class Settings {
         return getBoolean(R.string.settings_key_block_autofill, false);
     }
 
+    public boolean getAutoUnlockAfterAutofill() {
+        return getBoolean(R.string.settings_key_auto_unlock_after_autofill, false);
+    }
+      
     public void setDefaultBackupType(Constants.BackupType type) {
         setString(R.string.settings_key_backup_default_type, type.name().toLowerCase(Locale.ENGLISH));
     }

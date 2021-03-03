@@ -32,6 +32,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.SparseArray;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,7 @@ import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.ConfirmedPasswordTransformationHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
+import org.shadowice.flocke.andotp.Utilities.EditorActionHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
@@ -266,7 +268,7 @@ public class IntroScreenActivity extends IntroActivity {
         }
     }
 
-    public static class AuthenticationFragment extends SlideFragment {
+    public static class AuthenticationFragment extends SlideFragment implements TextView.OnEditorActionListener {
         private Constants.EncryptionType encryptionType = Constants.EncryptionType.KEYSTORE;
 
         private int slidePos = -1;
@@ -275,6 +277,7 @@ public class IntroScreenActivity extends IntroActivity {
         private String lengthWarning = "";
         private String noPasswordWarning = "";
         private String confirmPasswordWarning = "";
+        private String passwordMismatchWarning = "";
 
         private TextView desc = null;
         private Spinner selection = null;
@@ -432,6 +435,7 @@ public class IntroScreenActivity extends IntroActivity {
                     lengthWarning = getString(R.string.settings_label_short_password, minLength);
                     noPasswordWarning = getString(R.string.intro_slide3_warn_no_password);
                     confirmPasswordWarning = getString(R.string.intro_slide3_warn_confirm_password);
+                    passwordMismatchWarning = getString(R.string.intro_slide3_warn_password_mismatch);
 
                     focusOnPasswordInput();
                 }
@@ -458,6 +462,7 @@ public class IntroScreenActivity extends IntroActivity {
                     lengthWarning = getString(R.string.settings_label_short_pin, minLength);
                     noPasswordWarning = getString(R.string.intro_slide3_warn_no_pin);
                     confirmPasswordWarning = getString(R.string.intro_slide3_warn_confirm_pin);
+                    passwordMismatchWarning = getString(R.string.intro_slide3_warn_pin_mismatch);
 
                     focusOnPasswordInput();
                 }
@@ -485,9 +490,25 @@ public class IntroScreenActivity extends IntroActivity {
             passwordInput.addTextChangedListener(textWatcher);
             passwordConfirm.addTextChangedListener(textWatcher);
 
+            passwordConfirm.setOnEditorActionListener(this);
+
             selection.setSelection(selectionMapping.indexOfValue(Constants.AuthMethod.PASSWORD));
 
             return root;
+        }
+
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (EditorActionHelper.isActionDoneOrKeyboardEnter(actionId, event)) {
+                nextSlide();
+                return true;
+            } else if (EditorActionHelper.isActionUpKeyboardEnter(event)) {
+                // Ignore action up after keyboard enter. Otherwise the go-back button would be selected
+                // after pressing enter with an invalid password.
+                return true;
+            }
+
+            return false;
         }
 
         @Override
@@ -506,6 +527,9 @@ public class IntroScreenActivity extends IntroActivity {
                         if (! confirm.isEmpty() && confirm.equals(password)) {
                             hideWarning();
                             return true;
+                        } else if (! confirm.isEmpty() && ! confirm.equals(password)) {
+                            updateWarning(passwordMismatchWarning);
+                            return false;
                         } else {
                             updateWarning(confirmPasswordWarning);
                             return false;

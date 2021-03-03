@@ -21,6 +21,7 @@
     <string name="settings_key_auth_inactivity_delay" translatable="false">pref_auth_inactivity_timeout</string>
     <string name="settings_key_block_accessibility" translatable="false">pref_block_accessibility</string>
     <string name="settings_key_block_autofill" translatable="false">pref_block_autofill</string>
+    <string name="settings_key_auto_unlock_after_autofill" translatable="false">pref_auto_unlock_after_autofill</string>
 
     <string name="settings_key_lang" translatable="false">pref_lang</string>
     <string name="settings_key_locale" translatable="false">pref_locale</string>                        <!-- Deprecated -->
