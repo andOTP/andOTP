@@ -506,18 +506,19 @@ public class Entry {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Entry entry = (Entry) o;
-        return period == entry.period &&
-                digits == entry.digits &&
-                type == entry.type &&
+        return type == entry.type &&
+                period == entry.period &&
                 counter == entry.counter &&
+                digits == entry.digits &&
                 algorithm == entry.algorithm &&
                 Arrays.equals(secret, entry.secret) &&
-                Objects.equals(label, entry.label);
+                Objects.equals(label, entry.label) &&
+                Objects.equals(issuer, entry.issuer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, period, counter, digits, algorithm, secret, label);
+        return Objects.hash(type, period, counter, digits, algorithm, secret, label, issuer);
     }
 
     public void setColor(int color) {
