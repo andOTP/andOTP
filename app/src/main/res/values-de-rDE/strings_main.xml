@@ -10,7 +10,6 @@
     <string name="button_all_tags">Alle Marker</string>
     <string name="button_no_tags">Keine Marker</string>
     <string name="button_qr_from_image">QR-Code aus Bild</string>
-    <string name="button_accept">Akzeptiere</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
     <!-- Hints -->
@@ -46,7 +45,6 @@
     <string name="menu_popup_change_image">Bild ändern</string>
     <string name="menu_popup_remove">Entfernen</string>
     <string name="menu_popup_show_qr_code">Zeige QR-Code</string>
-    <string name="menu_popup_establish_pin">PIN einstellen</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">Authentifizierung fehlgeschlagen, bitte erneut versuchen!</string>
     <string name="toast_auth_failed_fatal">Authentifizierung fehlgeschlagen, andOTP wird geschlossen!</string>
@@ -75,7 +73,6 @@
     <string name="dialog_title_qr_code">QR-Code</string>
     <string name="dialog_title_android21_depreaction">Hinweis</string>
     <string name="dialog_title_enter_password">Passwort eingeben</string>
-    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_label_enter_password">Passwort eingeben</string>
     <string name="dialog_label_confirm_password">Passwort bestätigen</string>
     <string name="dialog_msg_auth">Bitte geben Sie die Anmeldeinformationen Ihres Geräts ein, um andOTP zu starten.</string>

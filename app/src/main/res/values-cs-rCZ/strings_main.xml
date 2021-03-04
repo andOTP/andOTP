@@ -10,7 +10,6 @@
     <string name="button_all_tags">Všechny štítky</string>
     <string name="button_no_tags">Bez štítku</string>
     <string name="button_qr_from_image">QR kód z obrázku</string>
-    <string name="button_accept">Přijmout</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
     <!-- Hints -->
@@ -46,7 +45,6 @@
     <string name="menu_popup_change_image">Změnit obrázek</string>
     <string name="menu_popup_remove">Smazat</string>
     <string name="menu_popup_show_qr_code">Ukaž QR kód</string>
-    <string name="menu_popup_establish_pin">Zadejte PIN</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">Chyba ověření, zkuste to prosím znovu!</string>
     <string name="toast_auth_failed_fatal">Ověření se nezdařilo, zavírám andOTP!</string>
@@ -75,7 +73,6 @@
     <string name="dialog_title_qr_code">QR kód</string>
     <string name="dialog_title_android21_depreaction">Oznámení o ukončení podpory</string>
     <string name="dialog_title_enter_password">Zadejte heslo</string>
-    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_label_enter_password">Zadejte heslo</string>
     <string name="dialog_label_confirm_password">Potvrďte heslo</string>
     <string name="dialog_msg_auth">Prosím zadejte heslo zařízení ke spuštění andOTP.</string>

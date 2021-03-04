@@ -10,7 +10,6 @@
     <string name="button_all_tags">Tous les tags</string>
     <string name="button_no_tags">Aucun tag</string>
     <string name="button_qr_from_image">QR-code à partir d\'une image</string>
-    <string name="button_accept">Accepter</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
     <!-- Hints -->
@@ -46,7 +45,6 @@
     <string name="menu_popup_change_image">Modifier l\'image</string>
     <string name="menu_popup_remove">Supprimer</string>
     <string name="menu_popup_show_qr_code">Montrer le QR Code</string>
-    <string name="menu_popup_establish_pin">Définir le code PIN</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">Échec d\'authentification, veuillez réessayer !</string>
     <string name="toast_auth_failed_fatal">Échec d\'authentification, fermeture d\'andOTP !</string>
@@ -75,7 +73,6 @@
     <string name="dialog_title_qr_code">QR Code</string>
     <string name="dialog_title_android21_depreaction">Avis d\'obsolescence</string>
     <string name="dialog_title_enter_password">Saisir le mot de passe</string>
-    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_label_enter_password">Saisir le mot de passe</string>
     <string name="dialog_label_confirm_password">Confirmer le mot de passe</string>
     <string name="dialog_msg_auth">Veuillez entrer les informations d\'identification du périphérique pour démarrer andOTP.</string>

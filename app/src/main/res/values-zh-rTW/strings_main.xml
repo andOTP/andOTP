@@ -10,7 +10,6 @@
     <string name="button_all_tags">所有標籤</string>
     <string name="button_no_tags">無標籤</string>
     <string name="button_qr_from_image">從圖片而來的 QR code</string>
-    <string name="button_accept">接受</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d 秒</string>
     <!-- Hints -->
@@ -46,7 +45,6 @@
     <string name="menu_popup_change_image">變更影像</string>
     <string name="menu_popup_remove">移除</string>
     <string name="menu_popup_show_qr_code">顯示 QR Code</string>
-    <string name="menu_popup_establish_pin">設置密碼</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">認證失敗，請再試一次！</string>
     <string name="toast_auth_failed_fatal">認證失敗，andOTP 正在關閉！</string>
@@ -75,7 +73,6 @@
     <string name="dialog_title_qr_code">QR Code</string>
     <string name="dialog_title_android21_depreaction">棄用通知</string>
     <string name="dialog_title_enter_password">請輸入密碼</string>
-    <string name="dialog_title_pin">密碼</string>
     <string name="dialog_label_enter_password">輸入密碼</string>
     <string name="dialog_label_confirm_password">確認密碼</string>
     <string name="dialog_msg_auth">請鍵入設備憑證來開啟 andOTP。</string>

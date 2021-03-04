@@ -10,7 +10,6 @@
     <string name="button_all_tags">Усі мітки</string>
     <string name="button_no_tags">Немає міток</string>
     <string name="button_qr_from_image">QR code from image</string>
-    <string name="button_accept">Прийміть</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d с</string>
     <!-- Hints -->
@@ -46,7 +45,6 @@
     <string name="menu_popup_change_image">Змінити зображення</string>
     <string name="menu_popup_remove">Видалити</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
-    <string name="menu_popup_establish_pin">Встановити PIN-код</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">Аутентифікація не пройдена. Будь ласка, спробуйте ще раз!</string>
     <string name="toast_auth_failed_fatal">Автентифікація не пройдена, закриття andOTP!</string>
@@ -75,7 +73,6 @@
     <string name="dialog_title_qr_code">QR Code</string>
     <string name="dialog_title_android21_depreaction">Deprecation notice</string>
     <string name="dialog_title_enter_password">Введіть пароль</string>
-    <string name="dialog_title_pin">PIN-код</string>
     <string name="dialog_label_enter_password">Введіть пароль</string>
     <string name="dialog_label_confirm_password">Підтвердіть пароль</string>
     <string name="dialog_msg_auth">Будь ласка, підтвердіть дані вашого пристрою, щоб запустити andOTP.</string>

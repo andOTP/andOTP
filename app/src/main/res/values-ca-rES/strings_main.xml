@@ -10,7 +10,6 @@
     <string name="button_all_tags">Totes les etiquetes</string>
     <string name="button_no_tags">Sense etiquetes</string>
     <string name="button_qr_from_image">QR code from image</string>
-    <string name="button_accept">Acceptar</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
     <!-- Hints -->
@@ -46,7 +45,6 @@
     <string name="menu_popup_change_image">Canvia la imatge</string>
     <string name="menu_popup_remove">Suprimeix</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
-    <string name="menu_popup_establish_pin">Introduir PIN</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">Error d\'autenticació. Torneu-ho a intentar!</string>
     <string name="toast_auth_failed_fatal">L\'autenticació ha fallat, andOTP es tancarà!</string>
@@ -75,7 +73,6 @@
     <string name="dialog_title_qr_code">QR Code</string>
     <string name="dialog_title_android21_depreaction">Deprecation notice</string>
     <string name="dialog_title_enter_password">Introduïu la contrasenya</string>
-    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_label_enter_password">Introduïu la contrasenya</string>
     <string name="dialog_label_confirm_password">Confirmeu la contrasenya</string>
     <string name="dialog_msg_auth">Per favor, introduïu les vostres credencials per a iniciar andOTP.</string>

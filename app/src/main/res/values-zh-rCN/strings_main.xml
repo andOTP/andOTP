@@ -10,7 +10,6 @@
     <string name="button_all_tags">所有标签</string>
     <string name="button_no_tags">无标签</string>
     <string name="button_qr_from_image">相册中选择二维码</string>
-    <string name="button_accept">接受</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d 秒</string>
     <!-- Hints -->
@@ -46,7 +45,6 @@
     <string name="menu_popup_change_image">更改图像</string>
     <string name="menu_popup_remove">移除</string>
     <string name="menu_popup_show_qr_code">显示二维码</string>
-    <string name="menu_popup_establish_pin">设置密码</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">验证失败，请重试！</string>
     <string name="toast_auth_failed_fatal">验证失败，正在关闭 andOTP！</string>
@@ -75,7 +73,6 @@
     <string name="dialog_title_qr_code">二维码</string>
     <string name="dialog_title_android21_depreaction">禁用通知</string>
     <string name="dialog_title_enter_password">输入密码</string>
-    <string name="dialog_title_pin">密码</string>
     <string name="dialog_label_enter_password">输入密码</string>
     <string name="dialog_label_confirm_password">确认密码</string>
     <string name="dialog_msg_auth">请输入您的设备凭据以启动 andOTP。</string>

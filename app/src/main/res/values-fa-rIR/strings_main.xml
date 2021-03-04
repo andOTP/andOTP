@@ -10,7 +10,6 @@
     <string name="button_all_tags">همه تگ‌ها</string>
     <string name="button_no_tags">بدون تگ</string>
     <string name="button_qr_from_image">کد QR از تصویر</string>
-    <string name="button_accept">قبول کنید</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d ثانیه</string>
     <!-- Hints -->
@@ -46,7 +45,6 @@
     <string name="menu_popup_change_image">تغییر تصویر</string>
     <string name="menu_popup_remove">حذف</string>
     <string name="menu_popup_show_qr_code">نمایش کد QR</string>
-    <string name="menu_popup_establish_pin">پین را تنظیم کنید</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">احراز هویت ناموفق بود، لطفا دوباره تلاش کنید!</string>
     <string name="toast_auth_failed_fatal">احراز هویت ناموفق بود، در حال بستن andOTP!</string>
@@ -75,7 +73,6 @@
     <string name="dialog_title_qr_code">کد QR</string>
     <string name="dialog_title_android21_depreaction">اخطار استهلاک</string>
     <string name="dialog_title_enter_password">گذرواژه را وارد کنید</string>
-    <string name="dialog_title_pin">پین</string>
     <string name="dialog_label_enter_password">گذرواژه را وارد کنید</string>
     <string name="dialog_label_confirm_password">تایید گذرواژه</string>
     <string name="dialog_msg_auth">برای شروع andOTP لطفا اعتبارنامه دستگاه خود را وارد کنید.</string>

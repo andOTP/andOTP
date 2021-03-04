@@ -10,7 +10,6 @@
     <string name="button_all_tags">Összes címke</string>
     <string name="button_no_tags">Nincs címke</string>
     <string name="button_qr_from_image">QR-kód képből</string>
-    <string name="button_accept">Elfogad</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d másodperc</string>
     <!-- Hints -->
@@ -46,7 +45,6 @@
     <string name="menu_popup_change_image">Kép módosítása</string>
     <string name="menu_popup_remove">Eltávolítás</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
-    <string name="menu_popup_establish_pin">Állítsa be a PIN-kódot</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">A hitelesítés sikertelen, próbálja újra!</string>
     <string name="toast_auth_failed_fatal">A hitelesítés sikertelen, az andOTP bezárul!</string>
@@ -75,7 +73,6 @@
     <string name="dialog_title_qr_code">QR Code</string>
     <string name="dialog_title_android21_depreaction">Deprecation notice</string>
     <string name="dialog_title_enter_password">Jelszó megadása</string>
-    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_label_enter_password">Jelszó megadása</string>
     <string name="dialog_label_confirm_password">Jelszó megerősítése</string>
     <string name="dialog_msg_auth">Kérjük, adja meg a készülék hitelesítő adatait az andOTP indításához.</string>
