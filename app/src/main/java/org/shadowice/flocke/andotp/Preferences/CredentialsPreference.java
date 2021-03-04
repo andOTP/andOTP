@@ -86,7 +86,7 @@ public class CredentialsPreference extends DialogPreference
     private TextInputLayout passwordLayout;
     private TextInputEditText passwordInput;
     private EditText passwordConfirm;
-    private TextView toShortWarning;
+    private TextView tooShortWarning;
 
     private Button btnSave;
 
@@ -141,7 +141,7 @@ public class CredentialsPreference extends DialogPreference
             passwordConfirm.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO);
         }
 
-        toShortWarning = view.findViewById(R.id.toShortWarning);
+        tooShortWarning = view.findViewById(R.id.tooShortWarning);
 
         passwordInput.addTextChangedListener(this);
         passwordConfirm.addTextChangedListener(this);
@@ -231,13 +231,13 @@ public class CredentialsPreference extends DialogPreference
         String password = passwordInput.getEditableText().toString();
 
         if (password.length() >= minLength) {
-            toShortWarning.setVisibility(View.GONE);
+            tooShortWarning.setVisibility(View.GONE);
             String confirm = passwordConfirm.getEditableText().toString();
 
             boolean canSave = !password.isEmpty() && !confirm.isEmpty() && password.equals(confirm);
             btnSave.setEnabled(canSave);
         } else {
-            toShortWarning.setVisibility(View.VISIBLE);
+            tooShortWarning.setVisibility(View.VISIBLE);
         }
     }
 
@@ -274,7 +274,7 @@ public class CredentialsPreference extends DialogPreference
 
         minLength = isPassword ? Constants.AUTH_MIN_PASSWORD_LENGTH : Constants.AUTH_MIN_PIN_LENGTH;
         int shortWarningRes = isPassword ? R.string.settings_label_short_password : R.string.settings_label_short_pin;
-        toShortWarning.setText(getContext().getString(shortWarningRes, minLength));
+        tooShortWarning.setText(getContext().getString(shortWarningRes, minLength));
 
         passwordInput.requestFocus();
         UIHelper.showKeyboard(getContext(), passwordInput);
