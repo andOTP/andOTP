@@ -335,6 +335,7 @@ public class EntryThumbnail {
         TeaHub(R.drawable.thumb_teahub),
         TeamViewer(R.drawable.thumb_teamviewer),
         Terminal(R.drawable.thumb_terminal),
+        TerraformCloud(R.drawable.thumb_terraform_cloud),
         TeslaMotors(R.drawable.thumb_tesla_motors),
         TMobile(R.drawable.thumb_t_mobile),
         TransIP(R.drawable.thumb_transip),
