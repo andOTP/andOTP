@@ -49,7 +49,7 @@
             android:autofillHints="password" />
 
         <TextView
-            android:id="@+id/toShortWarning"
+            android:id="@+id/tooShortWarning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/activity_margin"
