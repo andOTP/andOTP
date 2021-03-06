@@ -126,6 +126,7 @@ public class EntryThumbnail {
         Cloudflare(R.drawable.thumb_cloudflare),
         Clubhouse(R.drawable.thumb_clubhouse),
         Cobranded(R.drawable.thumb_cobranded),
+        Code42(R.drawable.thumb_code42),
         Codeberg(R.drawable.thumb_codeberg),
         Codegiant(R.drawable.thumb_codegiant),
         Coinbase(R.drawable.thumb_coinbase),
