@@ -75,11 +75,16 @@ public class PasswordEntryDialog extends AppCompatDialog
 
         if (this.dialogMode == Mode.UPDATE) {
             passwordConfirm.setVisibility(View.VISIBLE);
+
             passwordInput.addTextChangedListener(this);
             passwordConfirm.addTextChangedListener(this);
+
             passwordConfirm.setOnEditorActionListener(this);
         } else if (this.dialogMode == Mode.ENTER) {
             passwordConfirm.setVisibility(View.GONE);
+
+            passwordInput.addTextChangedListener(this);
+
             passwordInput.setOnEditorActionListener(this);
         }
     }
@@ -88,7 +93,8 @@ public class PasswordEntryDialog extends AppCompatDialog
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if (passwordInput.getEditableText().length() >= Constants.AUTH_MIN_PASSWORD_LENGTH) {
             tooShortWarning.setVisibility(View.GONE);
-            okButton.setEnabled(TextUtils.equals(passwordInput.getEditableText(), passwordConfirm.getEditableText()));
+
+            okButton.setEnabled(dialogMode == Mode.ENTER || TextUtils.equals(passwordInput.getEditableText(), passwordConfirm.getEditableText()));
         }
         else {
             tooShortWarning.setVisibility(View.VISIBLE);
