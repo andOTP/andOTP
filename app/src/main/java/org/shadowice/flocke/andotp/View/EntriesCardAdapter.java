@@ -248,7 +248,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         entryViewHolder.updateValues(entry);
 
         entryViewHolder.setLabelSize(settings.getLabelSize());
-        entryViewHolder.setLabelScroll(settings.getScrollLabel());
+        entryViewHolder.setLabelScroll(settings.getLabelDisplay());
 
         if(settings.getThumbnailVisible())
             entryViewHolder.setThumbnailSize(settings.getThumbnailSize());

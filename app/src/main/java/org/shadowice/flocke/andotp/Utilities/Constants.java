@@ -68,6 +68,10 @@ public class Constants {
         NOTHING, REVEAL, COPY, COPY_BACKGROUND
     }
 
+    public enum LabelDisplay {
+        TRUNCATE, SCROLL, MULTILINE
+    }
+
     // Intents (Format: A0x with A = parent Activity, x = number of the intent)
     public final static int INTENT_MAIN_AUTHENTICATE            = 100;
     public final static int INTENT_MAIN_SETTINGS                = 101;

@@ -40,6 +40,7 @@ import android.widget.TextView;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
@@ -280,15 +281,26 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         thumbnailImg.requestLayout();
     }
 
-    public void setLabelScroll(boolean active) {
-        if (active) {
-            label.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-            label.setHorizontallyScrolling(true);
-            label.setSelected(true);
-        } else {
-            label.setEllipsize(TextUtils.TruncateAt.END);
-            label.setHorizontallyScrolling(false);
-            label.setSelected(false);
+    public void setLabelScroll(Constants.LabelDisplay labelDisplay) {
+        switch (labelDisplay) {
+            case TRUNCATE:
+                label.setEllipsize(TextUtils.TruncateAt.END);
+                label.setHorizontallyScrolling(false);
+                label.setSelected(false);
+                label.setMaxLines(1);
+                break;
+            case SCROLL:
+                label.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                label.setHorizontallyScrolling(true);
+                label.setSelected(true);
+                label.setMaxLines(1);
+                break;
+            case MULTILINE:
+                label.setEllipsize(null);
+                label.setHorizontallyScrolling(false);
+                label.setSelected(false);
+                label.setMaxLines(10);
+                break;
         }
     }
 

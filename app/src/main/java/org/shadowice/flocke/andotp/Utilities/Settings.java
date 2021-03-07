@@ -88,6 +88,13 @@ public class Settings {
             remove(R.string.settings_key_tap_to_reveal);
         }
 
+        if (settings.contains(getResString(R.string.settings_key_label_scroll))) {
+            if (getBoolean(R.string.settings_key_label_scroll, false)) {
+                setString(R.string.settings_key_label_display, Constants.LabelDisplay.SCROLL.toString().toLowerCase(Locale.ENGLISH));
+            }
+            remove(R.string.settings_key_label_scroll);
+        }
+
         if (settings.contains(getResString(R.string.settings_key_backup_password))) {
             String plainPassword = getBackupPassword();
 
@@ -359,10 +366,6 @@ public class Settings {
         return getInt(R.string.settings_key_label_size, R.integer.settings_default_label_size);
     }
 
-    public boolean getScrollLabel() {
-        return getBoolean(R.string.settings_key_label_scroll, false);
-    }
-
     public boolean getFirstTimeWarningShown() {
         return getBoolean(R.string.settings_key_security_backup_warning, false);
     }
@@ -621,5 +624,10 @@ public class Settings {
     public Constants.BackupType getDefaultBackupType() {
         String defaultType = getString(R.string.settings_key_backup_default_type, Constants.BackupType.ENCRYPTED.name());
         return Constants.BackupType.valueOf(defaultType.toUpperCase(Locale.ENGLISH));
+    }
+
+    public Constants.LabelDisplay getLabelDisplay() {
+        String labelDisplay = getString(R.string.settings_key_label_display, R.string.settings_default_label_display);
+        return Constants.LabelDisplay.valueOf(labelDisplay.toUpperCase(Locale.ENGLISH));
     }
 }

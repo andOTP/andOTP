@@ -27,7 +27,7 @@
     <string name="settings_title_theme">Theme</string>
     <string name="settings_title_card_layout">Card layout</string>
     <string name="settings_title_label_size">Label font size</string>
-    <string name="settings_title_label_scroll">Scroll label</string>
+    <string name="settings_title_label_display">Label display</string>
     <string name="settings_title_tap_single">Single-tap</string>
     <string name="settings_title_tap_double">Double-tap</string>
     <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
@@ -81,7 +81,6 @@
     <string name="settings_desc_autofill_requires_android_o">This feature requires an Android version
         above 8.0 (Oreo)</string>
 
-    <string name="settings_desc_label_scroll">Scroll overlong labels instead of truncating them</string>
     <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
     <string name="settings_desc_search_includes">Specify which values should be included when searching</string>
     <string name="settings_desc_label_highlight_token">Highlights token in red if it\'s expiring in 8 seconds</string>
@@ -221,6 +220,12 @@
         <item>Light theme</item>
         <item>Dark theme</item>
         <item>Black theme</item>
+    </string-array>
+
+    <string-array name="settings_entries_label_display">
+        <item>Truncate</item>
+        <item>Scroll</item>
+        <item>Multiple lines</item>
     </string-array>
 
     <string-array name="settings_entries_thumbnail_size">
