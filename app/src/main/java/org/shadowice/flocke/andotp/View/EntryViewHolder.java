@@ -29,7 +29,12 @@ import android.graphics.ColorFilter;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
@@ -55,26 +60,24 @@ import static org.shadowice.flocke.andotp.Activities.MainActivity.animatorDurati
 
 public class EntryViewHolder extends RecyclerView.ViewHolder
         implements ItemTouchHelperViewHolder {
-    private Context context;
+    private final Context context;
     private Callback callback;
     private boolean tapToReveal;
 
-    private CardView card;
-    private LinearLayout valueLayout;
-    private LinearLayout coverLayout;
-    private LinearLayout counterLayout;
-    private FrameLayout thumbnailFrame;
-    private ImageView visibleImg;
-    private ImageView thumbnailImg;
-    private ImageButton menuButton;
-    private ImageButton copyButton;
-    private TextView value;
-    private TextView issuer;
-    private TextView label;
-    private TextView separator;
-    private TextView counter;
-    private TextView tags;
-    private MaterialProgressBar progressBar;
+    private final CardView card;
+    private final LinearLayout valueLayout;
+    private final LinearLayout coverLayout;
+    private final LinearLayout counterLayout;
+    private final FrameLayout thumbnailFrame;
+    private final ImageView visibleImg;
+    private final ImageView thumbnailImg;
+    private final ImageButton menuButton;
+    private final ImageButton copyButton;
+    private final TextView value;
+    private final TextView label;
+    private final TextView counter;
+    private final TextView tags;
+    private final MaterialProgressBar progressBar;
 
     public EntryViewHolder(Context context, final View v, boolean tapToReveal) {
         super(v);
@@ -88,9 +91,7 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         thumbnailFrame = v.findViewById(R.id.thumbnailFrame);
         thumbnailImg = v.findViewById(R.id.thumbnailImg);
         coverLayout = v.findViewById(R.id.coverLayout);
-        issuer = v.findViewById(R.id.textViewIssuer);
         label = v.findViewById(R.id.textViewLabel);
-        separator = v.findViewById(R.id.textViewSeparator);
         tags = v.findViewById(R.id.textViewTags);
         counterLayout = v.findViewById(R.id.counterLayout);
         counter = v.findViewById(R.id.counter);
@@ -178,35 +179,40 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         final String tokenFormatted = Tools.formatToken(entry.getCurrentOTP(), settings.getTokenSplitGroupSize());
 
+        String issuerText = entry.getIssuer();
+        String labelText = entry.getLabel();
+
         String contentHint = "";
 
-        String issuerText = entry.getIssuer();
+        SpannableStringBuilder labelBuilder = new SpannableStringBuilder();
+
         if (!TextUtils.isEmpty(issuerText) && !settings.isHideIssuerEnabled()) {
-            issuer.setText(issuerText);
-            issuer.setVisibility(View.VISIBLE);
+            labelBuilder.append(issuerText);
+
+            labelBuilder.setSpan(new StyleSpan(Typeface.BOLD), 0, issuerText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
             contentHint = issuerText;
-        } else {
-            issuer.setVisibility(View.GONE);
-        }
-
-        String labelText = entry.getLabel();
-        if (!TextUtils.isEmpty(labelText)) {
-            label.setText(labelText);
-            label.setVisibility(View.VISIBLE);
-
-            contentHint = labelText;
-        } else {
-            label.setVisibility(View.GONE);
         }
 
         if (!TextUtils.isEmpty(issuerText) && !TextUtils.isEmpty(labelText) && !settings.isHideIssuerEnabled()) {
-            separator.setVisibility(View.VISIBLE);
+            String separatorText = "\u00a0-\u00a0"; // \u00a0 = non-breaking space
+
+            if (settings.getCardLayout() == Constants.CardLayouts.FULL)
+                separatorText = "\n";
+
+            labelBuilder.append(separatorText);
 
             contentHint = issuerText + " - " + labelText;
-        } else {
-            separator.setVisibility(View.GONE);
         }
+
+        if (!TextUtils.isEmpty(labelText)) {
+            labelBuilder.append(labelText);
+
+            if (TextUtils.isEmpty(issuerText) || settings.isHideIssuerEnabled())
+                contentHint = labelText;
+        }
+
+        label.setText(labelBuilder);
 
         copyButton.setContentDescription(context.getString(R.string.button_card_copy_format, contentHint));
         menuButton.setContentDescription(context.getString(R.string.button_card_options_format, contentHint));
@@ -281,19 +287,19 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         thumbnailImg.requestLayout();
     }
 
-    public void setLabelScroll(Constants.LabelDisplay labelDisplay) {
+    public void setLabelScroll(Constants.LabelDisplay labelDisplay, Constants.CardLayouts cardLayout) {
         switch (labelDisplay) {
             case TRUNCATE:
                 label.setEllipsize(TextUtils.TruncateAt.END);
                 label.setHorizontallyScrolling(false);
                 label.setSelected(false);
-                label.setMaxLines(1);
+                label.setMaxLines(cardLayout == Constants.CardLayouts.FULL ? 2 : 1);
                 break;
             case SCROLL:
                 label.setEllipsize(TextUtils.TruncateAt.MARQUEE);
                 label.setHorizontallyScrolling(true);
                 label.setSelected(true);
-                label.setMaxLines(1);
+                label.setMaxLines(cardLayout == Constants.CardLayouts.FULL ? 2 : 1);
                 break;
             case MULTILINE:
                 label.setEllipsize(null);
