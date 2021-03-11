@@ -99,6 +99,8 @@ public class Constants {
 
     public final static String EXTRA_BACKUP_ENCRYPTION_KEY          = "encryption_key";
 
+    public final static String EXTRA_INTRO_FINISHED                 = "setup_finished";
+
     public final static String EXTRA_SETTINGS_ENCRYPTION_CHANGED    = "encryption_changed";
     public final static String EXTRA_SETTINGS_ENCRYPTION_KEY        = "encryption_key";
 

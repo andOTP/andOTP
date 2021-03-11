@@ -538,6 +538,14 @@ public class MainActivity extends BaseActivity
             if (intent != null) {
                 addQRCode(ScanQRCodeFromFile.scanQRImage(this, intent.getData()));
             }
+        } else if (requestCode == Constants.INTENT_MAIN_INTRO) {
+            boolean setupFinished = false;
+
+            if (resultCode == RESULT_OK && intent != null)
+                setupFinished = intent.getBooleanExtra(Constants.EXTRA_INTRO_FINISHED, false);
+
+            if (!setupFinished)
+                finishAndRemoveTask();
         }
     }
 
