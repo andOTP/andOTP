@@ -353,8 +353,11 @@ public class Entry {
         return issuer;
     }
 
-    public void setIssuer(String issuer) {
+    public void setIssuer(String issuer, boolean updateThumbnail) {
         this.issuer = issuer;
+
+        if (updateThumbnail && issuer != null)
+            setThumbnailFromIssuer(issuer);
     }
 
     public String getLabel() {
