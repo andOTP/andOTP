@@ -249,6 +249,7 @@ public class EntryThumbnail {
         Microsoft(R.drawable.thumb_microsoft),
         MicrosoftTeams(R.drawable.thumb_microsoft_teams),
         Migadu(R.drawable.thumb_migadu),
+        Migros(R.drawable.thumb_migros),
         Mint(R.drawable.thumb_mint),
         Mintos(R.drawable.thumb_mintos),
         Miraheze(R.drawable.thumb_miraheze),
