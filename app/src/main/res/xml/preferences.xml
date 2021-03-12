@@ -102,6 +102,12 @@
             android:entryValues="@array/settings_values_theme_mode"
             android:defaultValue="@string/settings_default_theme_mode" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_theme_black_auto"
+            android:title="@string/settings_title_theme_black_auto"
+            android:summary="@string/settings_desc_theme_black_auto"
+            android:defaultValue="false" />
+
         <ListPreference
             android:key="@string/settings_key_theme"
             android:title="@string/settings_title_theme"

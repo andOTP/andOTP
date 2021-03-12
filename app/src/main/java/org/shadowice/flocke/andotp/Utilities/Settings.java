@@ -358,10 +358,15 @@ public class Settings {
         String themeMode = getString(R.string.settings_key_theme_mode, R.string.settings_default_theme_mode);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && themeMode.equals("auto")){
+            boolean blackTheme = getBoolean(R.string.settings_key_theme_black_auto, false);
+
             switch (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
                 //Dark Mode
                 case Configuration.UI_MODE_NIGHT_YES:
-                    theme = R.style.AppTheme_Dark_NoActionBar;
+                    if (blackTheme)
+                        theme = R.style.AppTheme_Black_NoActionBar;
+                    else
+                        theme = R.style.AppTheme_Dark_NoActionBar;
                     break;
                 //Light Mode / Undefined mode / Default mode
                 case Configuration.UI_MODE_NIGHT_NO:
