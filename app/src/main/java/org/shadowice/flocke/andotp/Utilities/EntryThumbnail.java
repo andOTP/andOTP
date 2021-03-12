@@ -294,6 +294,7 @@ public class EntryThumbnail {
         Plex(R.drawable.thumb_plex),
         Pluralsight(R.drawable.thumb_pluralsight),
         Plurk(R.drawable.thumb_plurk),
+        Porkbun(R.drawable.thumb_porkbun),
         Posteo(R.drawable.thumb_posteo),
         Pretix(R.drawable.thumb_pretix),
         Prey(R.drawable.thumb_prey),
