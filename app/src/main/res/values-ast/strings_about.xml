@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">Tocante a </string>
+    <string name="about_description">Autenticación en dos pasos de códigu llibre p\'Android</string>
+    <string name="about_tab_about">Tocante a</string>
+    <string name="about_tab_libraries">Biblioteques</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">Rexistru de cambeos</string>
+    <string name="about_label_license">Llicencia</string>
+    <string name="about_label_MIT">Llicencia MIT</string>
+    <string name="about_label_source">Códigu fonte</string>
+    <string name="about_label_version">Versión</string>
+    <string name="about_label_faq">FAQ</string>
+    <string name="about_label_faq_long">Entrugues frecuentes</string>
+    <!-- Authors -->
+    <string name="about_title_authors">Autores</string>
+    <string name="about_label_main_developer">Densendolcador principal</string>
+    <string name="about_label_developer">Desendolcador</string>
+    <string name="about_label_original_author">Autor de l\'aplicación orixinal</string>
+    <string name="about_label_original_app">Aplicación orixinal</string>
+    <string name="about_label_website">Sitiu web</string>
+    <string name="about_label_donate">Donar</string>
+    <string name="about_label_contributors">Collaboradores</string>
+    <string name="about_label_translators">Traductores</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">Avisu de renuncia de les miniatures</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Toles miniatures son marques rexistraes
+        de los sos respeutivos miembros.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> L\'usu d\'estes marques rexistraes nun
+        indiquen rellación col dueñu de los drechos d\'autor y andOTP o viceversa.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Les miniatures namás deberíen usase
+        pa representar la compaña o serviciu qu\'indiquen.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Nun uses les miniatures pa otru
+        propósitu que nun seya\'l de representar una marca o serviciu en particular.</b></string>
+    <!-- Support -->
+    <string name="about_title_support">Sofita\'l desendolcu</string>
+    <string name="about_desc_support">Descubri cómo pues sofitar el desendolcu d\'andOTP</string>
+    <string name="about_title_special_features">Carauterístiques especiales</string>
+    <string name="about_dialog_special_features">¿De xuru que quies activar les carauterístiques
+        especiales? La mayoría d\'elles son algoritmos OTP que nun son estándares y
+        s\'implementaron so petición. Nun tán <b>sofitaes oficialmente</b> y puen venir con
+        <b>ciertes llendes</b>, llei (y entiendi) la páxina «Carauterístiques especiales» na wiki de
+        GitHub pa deprender más enantes d\'usales.</string>
+    <string name="about_toast_special_features">Activáronse les carauterístiques especial</string>
+    <string name="about_toast_special_features_enabled">Les carauterístiques especiales yá s\'activaron</string>
+    <string name="about_toast_copied_to_clipboard">L\'enllaz de donación copióse al cartafueyu</string>
+</resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">Σχετικά</string>
+    <string name="about_description">Εφαρμογή ανοιχτού κώδικα για ταυτοποίηση δυο παραγόντων για το Android</string>
+    <string name="about_tab_about">Περί</string>
+    <string name="about_tab_libraries">Βιβλιοθήκες</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">Αρχείο αλλαγών</string>
+    <string name="about_label_license">Άδεια Χρήσης</string>
+    <string name="about_label_MIT">Άδεια MIT</string>
+    <string name="about_label_source">Πηγαίος κώδικας</string>
+    <string name="about_label_version">Έκδοση</string>
+    <string name="about_label_faq">Συχνές ερωτήσεις</string>
+    <string name="about_label_faq_long">Συχνές ερωτήσεις</string>
+    <!-- Authors -->
+    <string name="about_title_authors">Δημιουργοί</string>
+    <string name="about_label_main_developer">Κύριοι προγραμματιστές</string>
+    <string name="about_label_developer">Προγραμματιστής</string>
+    <string name="about_label_original_author">Δημιουργός αρχικής εφαρμογής</string>
+    <string name="about_label_original_app">Αρχική εφαρμογή</string>
+    <string name="about_label_website">Ιστοσελίδα</string>
+    <string name="about_label_donate">Δωρεά</string>
+    <string name="about_label_contributors">Συντελεστές</string>
+    <string name="about_label_translators">Μεταφραστές</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">Αποποίηση ευθυνών για μικρογραφίες</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Όλες οι μικρογραφίες είναι εμπορικά σήματα των αντίστοιχων ιδιοκτητών τους.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> Η χρήση αυτών των εμπορικών σημάτων δεν υποδηλώνει έγκριση του δικαιούχου του εμπορικού σήματος από το andOTP, ούτε το αντίστροφο.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Οι μικρογραφίες πρέπει να χρησιμοποιείται μόνο για να εκπροσωπείται η εταιρεία ή το προϊόν στο οποίο παραπέμπουν.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Παρακαλώ μην χρησιμοποιείτε μικρογραφίες για οποιονδήποτε σκοπό εκτός από το να εκπροσωπηθεί η συγκεκριμένη μάρκα ή υπηρεσία.</b></string>
+    <!-- Support -->
+    <string name="about_title_support">Υποστηρίξτε την ανάπτυξη της εφαρμογής</string>
+    <string name="about_desc_support">Μάθετε πώς μπορείτε να υποστηρίξετε την ανάπτυξη του andOTP</string>
+    <string name="about_title_special_features">Ειδικά χαρακτηριστικά</string>
+    <string name="about_dialog_special_features">Είστε σίγουροι ότι θέλετε να ενεργοποιήσετε τα ειδικά χαρακτηριστικά; Τα περισσότερα από αυτά δεν είναι πρότυποι αλγόριθμοι OTP και υλοποιήθηκαν μετά από ειδικά αιτήματα. <b>Δεν υποστηρίζονται επίσημα</b> και μπορεί να έχουν <b>ορισμένους περιορισμούς</b>, παρακαλώ διαβάστε (και κατανοήστε) την σελίδα \"Ειδικά χαρακτηριστικά\" στο wiki στο Github για να μάθετε περισσότερα πριν τα χρησιμοποιήσετε.</string>
+    <string name="about_toast_special_features">Τα ειδικά χαρακτηριστικά είναι ενεργοποιημένα</string>
+    <string name="about_toast_special_features_enabled">Τα ειδικά χαρακτηριστικά είναι ήδη ενεργοποιημένα</string>
+    <string name="about_toast_copied_to_clipboard">Ο σύνδεσμος δωρεάς αντιγράφηκε στο πρόχειρο</string>
+</resources>

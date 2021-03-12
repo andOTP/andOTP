@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_activity_title">Preferències</string>
+    <!-- Categories -->
+    <string name="settings_category_title_security">Seguretat</string>
+    <string name="settings_category_title_ui">Interfície d\'usuari</string>
+    <string name="settings_category_title_backup">Còpia de seguretat</string>
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">Toqueu per a mostrar</string>
+    <string name="settings_title_tap_to_reveal_timeout">Temps d\'espera per a \"toqueu per a mostrar\"</string>
+    <string name="settings_title_auth">Autenticació</string>
+    <string name="settings_title_auth_password">Contrasenya</string>
+    <string name="settings_title_auth_pin">PIN</string>
+    <string name="settings_title_encryption">Xifratge de la base de dades</string>
+    <string name="settings_title_panic">Botó del pànic</string>
+    <string name="settings_title_relock_screen_off">Torna a blocar quan s\'apaga la pantalla</string>
+    <string name="settings_title_relock_background">Torna a blocar quan l\'aplicació va a segon pla</string>
+    <string name="settings_title_auth_inactivity">Torna a blocar després d\'un període d\'inactivitat</string>
+    <string name="settings_title_auth_inactivity_delay">Temps d\'espera per al blocat per inactivitat</string>
+    <string name="settings_title_block_accessibility">Bloca els serveis d\'accessibilitat</string>
+    <string name="settings_title_block_autofill">Bloca l\'emplenament automàtic</string>
+    <string name="settings_title_lang">Idioma</string>
+    <string name="settings_title_theme">Tema</string>
+    <string name="settings_title_card_layout">Disposició de les targetes</string>
+    <string name="settings_title_label_size">Mida de la lletra de l\'etiqueta</string>
+    <string name="settings_title_label_scroll">Permet el desplaçament a les etiquetes</string>
+    <string name="settings_title_tap_single">Un toc</string>
+    <string name="settings_title_tap_double">Doble toc</string>
+    <string name="settings_title_thumbnail_size_ask">Mida de la miniatura</string>
+    <string name="settings_title_split_group_size">Separa el testimoni amb espais</string>
+    <string name="settings_title_tag_functionality">Comportament de la selecció de les etiquetes</string>
+    <string name="settings_title_minimize_on_copy">Minimitza l\'aplicació després de copiar l\'OTP</string>
+    <string name="settings_title_search_includes">Comportament de la cerca</string>
+    <string name="settings_title_label_highlight_token">Destaca els testimonis que caduquen</string>
+    <string name="settings_title_hide_global_timeout">Amaga la barra global de temps d\'espera</string>
+    <string name="settings_title_show_individual_timeouts">Mostra els temps d\'espera individuals</string>
+    <string name="settings_title_backup_append_date">Afegeix la data al nom del fitxer</string>
+    <string name="settings_title_backup_ask">Demana el nom de fitxer</string>
+    <string name="settings_title_backup_location">Localització per defecte per a les còpies de seguretat</string>
+    <string name="settings_title_backup_password">Contrasenya de la còpia de seguretat</string>
+    <string name="settings_title_auto_backup_password_enc">Fes una còpia de seguretat en crear una nova entrada</string>
+    <string name="settings_title_backup_broadcasts">Backup Broadcasts</string>
+    <string name="settings_title_openpgp_provider">Proveïdor d’OpenPGP</string>
+    <string name="settings_title_openpgp_key_encrypt">Clau de xifrat d\'OpenPGP</string>
+    <string name="settings_title_openpgp_key_sign">Clau de signat d\'OpenPGP (opcional)</string>
+    <string name="settings_title_openpgp_verify">Verifica les còpies de seguretat xifrades</string>
+    <string name="settings_title_special_features">Habilita les característiques especials</string>
+    <string name="settings_title_enable_screenshot">Permet screenshots</string>
+    <string name="settings_title_enable_android_backup_service">Enable Android sync</string>
+    <string name="settings_title_clear_keystore">Neteja el magatzem de claus</string>
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">Amaga els testimonis OTP per defecte, caldrà
+        mostrar-los manualment</string>
+    <string name="settings_desc_tap_to_reveal_timeout">Indiqueu durant quant de temps (en segons)
+        es mostraran les entrades</string>
+    <string name="settings_desc_panic">Decidiu què fer quan es prem el botó del pànic</string>
+    <string name="settings_desc_relock_screen_off">Demana autenticació després que la pantalla
+        s\'hagi apagat</string>
+    <string name="settings_desc_relock_background">Demana autenticació després que l\'aplicació 
+        se\'n vagi a segon pla (p. ex. prement el botó «inici»)</string>
+    <string name="settings_desc_auth_inactivity">Demana autenticació després que el dispositiu ha
+        estat inactiu</string>
+    <string name="settings_desc_auth_inactivity_delay">Indiqueu després quant de temps (en segons)
+        es demanarà reautenticació</string>
+    <string name="settings_desc_block_accessibility">Oculta els camps sensibles als serveis
+        d\'accessibilitat. <b>NO l\'activeu si us calen els serveis d\'accessibilitat</b></string>
+    <string name="settings_desc_block_autofill">Bloca l\'accés dels serveis d\'emplenament automàtic
+        als camps de contrasenya en l\'aplicació</string>
+    <string name="settings_desc_block_autofill_android">Aquesta característica exigeix una versió d\'Android
+        superior a la 8.0 (Oreo)</string>
+    <string name="settings_desc_label_scroll">Les etiquetes llargues es desplacen en comptes de truncar-les</string>
+    <string name="settings_desc_minimize_on_copy">L\'aplicació es minimitzarà després d\'haver copiat l\'OTP al portaretalls</string>
+    <string name="settings_desc_search_includes">Especifiqueu quins valors haurien de ser inclosos en la cerca</string>
+    <string name="settings_desc_label_highlight_token">Destaca el testimoni en vermell si caduca en 8 segons</string>
+    <string name="settings_desc_hide_global_timeout">Amaga la barra global de temps d\'espera en la part superior de la pantalla</string>
+    <string name="settings_desc_show_individual_timeouts">Mostra una barra de temps d\'espera per a cada entrada.
+        Això pot alentir l\'aplicació, activeu-la només si realment us cal.</string>
+    <string name="settings_desc_backup_append_date">Afegeix la data i hora actuals al nom suggerit per
+        al fitxer de còpia de seguretat</string>
+    <string name="settings_desc_backup_ask">Demana el nom del fitxer cada vegada que es crea o restaura una còpia de seguretat</string>
+    <string name="settings_desc_backup_location">Tria una localització per defecte per a les còpies de seguretat</string>
+    <string name="settings_desc_backup_location_set">S\'ha triat la localització per a les còpies de seguretat</string>
+    <string name="settings_desc_backup_password">Contrasenya que s\'usarà per a xifrar les
+        còpies de seguretat</string>
+    <string name="settings_desc_auto_backup_password_enc">Crea una còpia de seguretat nova quan s\'afegeixin o
+        editin entrades, si s\'hi compleixen les condicions</string>
+    <string name="settings_desc_auto_backup_requirements">Trieu una localització per defecte per a les còpies de seguretat i
+        una contrasenya per a activar aquesta opció</string>
+    <string name="settings_desc_backup_broadcasts">Select which backup types can be triggered by
+        3rd-party apps using Broadcasts</string>
+    <string name="settings_desc_openpgp_key_encrypt">Adreça de correu de la clau OpenPGP usada per a
+        xifrar les còpies de seguretat</string>
+    <string name="settings_desc_openpgp_verify">Només s\'importaran còpies xifrades si s\'han
+        signat amb una clau vàlida</string>
+    <string name="settings_desc_special_features">Desmarqueu per a deshabilitar les característiques especials</string>
+    <string name="settings_desc_enable_screenshot">Permet fer captures de la pantalla principal
+        (desactivat per defecte per motius de seguretat)</string>
+    <string name="settings_desc_enable_android_backup_service">Permet que andOTP faci servir el servei de còpies de seguretat
+        inclòs a Android per a desar les claus i les preferències</string>
+    <string name="settings_desc_clear_keystore">Esborra la clau d\'encriptació del magatzem de claus</string>
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_not_secure">Aquesta característica requereix un bloqueig de pantalla
+        segur (Configuració -&gt; Seguretat -&gt; Bloqueig de pantalla)</string>
+    <string name="settings_toast_password_empty">Les contrasenyes buides no són permeses,
+        trieu autenticació nul·la per a desactivar-la!</string>
+    <string name="settings_toast_encryption_changing">S\'està mirant de canviar el xifratge de la base de dades;
+        per favor, espereu!</string>
+    <string name="settings_toast_encryption_change_success">S\'ha canviat el xifratge de la base de
+        dades amb èxit!</string>
+    <string name="settings_toast_encryption_change_failed">No ha estat possible canviar el xifratge de la
+        base de dades: romandrà en l\'estat original!</string>
+    <string name="settings_toast_encryption_backup_failed">No ha estat possible crear la còpia
+        interna, s\'ha interromput!</string>
+    <string name="settings_toast_encryption_no_key">No ha estat possible obtenir la clau de xifratge, s\'ha interromput!</string>
+    <string name="settings_toast_encryption_auth_failed">Ha fallat l\'autenticació!</string>
+    <string name="settings_toast_auth_upgrade_failed">Ha fallat l\'actualització automàtica de la contrasenya / PIN
+        per al nou xifratge; per favor, reinicialitzeu-la manualment en la configuració!</string>
+    <string name="settings_dialog_title_warning">Alerta</string>
+    <string name="settings_dialog_title_error">Error</string>
+    <string name="settings_dialog_title_clear_keystore">Voleu neteja el magatzem de claus?</string>
+    <string name="settings_dialog_title_android_sync">Sistema de còpies de seguretat d\'Android</string>
+    <string name="settings_dialog_msg_encryption_change">andOTP will now try to change the database
+        encryption. In case of a failure an internal backup will be restored and the encryption
+        remains unchanged.\n\n<b>However, it\'s always a good idea to have a backup in case
+        something unexpected happens!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">Només podeu usar una contrasenya o un PIN
+        si el xifratge de la base de dades s\'ha establert a \"contrasenya / PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">Primer cal definir l\'autenticació a \"contrasenya\" o \"PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">Cal establir una contrasenya o PIN abans de canviar l\'encriptació!</string>
+    <string name="settings_dialog_msg_clear_keystore_password">En alguns casos, netejar el magatzem de claus
+        pot ajudar a resoldre problemes. Feu-ho només si sabeu què feu!\\n\nAtés que el xifratge de la <b>base de dades</b> està definit a <b>contrasenya / PIN</b> no hauríeu de perdre-hi
+        dades (fer una cópia de seguretat sempre va bé, però).\n\n<b>Segur que voleu netejar
+        el magatzem de claus (KeyStore)?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">En alguns casos, netejar el magatzem de claus
+        pot ajudar a resoldre problemes. Feu-ho només si sabeu què feu!\\n\n<b>Alerta</b>:
+        Atés que el xifratge de la <b>base de dades</b> està definit a <b>Android KeyStore</b> perdreu tots els
+        comptes. Comproveu que n\'heu fet una còpia!\n\n<b>Segur que voleu netejar el magatzem de claus
+        (KeyStore)?</b></string>
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">Android sync can not be used with keystore
+        encryption, <b>you should perform a manual backup!</b></string>
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>Cap</item>
+        <item>Contrasenya</item>
+        <item>PIN</item>
+        <item>Credencials del dispositiu</item>
+    </string-array>
+    <string-array name="settings_entries_encryption">
+        <item>Android KeyStore</item>
+        <item>Contrasenya / PIN</item>
+    </string-array>
+    <string-array name="settings_entries_panic">
+        <item>Suprimeix tots els comptes</item>
+        <item>Reinicialitza les opcions de l\'aplicació</item>
+    </string-array>
+    <string-array name="settings_entries_card_layout">
+        <item>Compacte</item>
+        <item>Per defecte</item>
+        <item>Complet</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Res</item>
+        <item>Mostra/Oculta</item>
+        <item>Copia</item>
+        <item>Copia i passa a segon pla</item>
+    </string-array>
+    <string-array name="settings_entries_search_includes">
+        <item>Etiqueta</item>
+        <item>Emissor</item>
+        <item>Etiquetes</item>
+    </string-array>
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Off</item>
+        <item>Entrada nova</item>
+        <item>Totes les edicions</item>
+    </string-array>
+    <string-array name="settings_entries_theme">
+        <item>Tema clar</item>
+        <item>Tema fosc</item>
+        <item>Tema negre</item>
+    </string-array>
+    <string-array name="settings_entries_thumbnail_size">
+        <item>Ocult</item>
+        <item>Molt petita</item>
+        <item>Petita</item>
+        <item>Per defecte</item>
+        <item>Mitjana</item>
+        <item>Grossa</item>
+    </string-array>
+    <string-array name="settings_entries_split_group_size">
+        <item>No dividir</item>
+        <item>Després de dos caràcters</item>
+        <item>Després de tres caràcters</item>
+    </string-array>
+    <string-array name="settings_entries_tag_functionality">
+        <item>Mostra totes les entrades en què hi ha <b>alguna</b> de les etiquetes (OR)</item>
+        <item>Mostra totes les entrades en què apareixen <b>totes</b> les etiquetes (AND)</item>
+        <item>Commuta entre etiquetes (només permet de seleccionar una etiqueta cada vegada)</item>
+    </string-array>
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Còpies de seguretat en text pla</item>
+        <item>Còpies de seguretat xifrada</item>
+    </string-array>
+    <!-- Special -->
+    <string name="settings_lang_sys_default">Valor del sistema per defecte</string>
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">Introduïu la contrasenya nova</string>
+    <string name="settings_hint_pin">Introduïu el PIN nou</string>
+    <string name="settings_hint_password_confirm">Confirmeu la contrasenya</string>
+    <string name="settings_hint_pin_confirm">Confirmeu el PIN</string>
+    <string name="settings_label_short_password">La contrasenya ha de tenir, si més no, %1$d caràcters!</string>
+    <string name="settings_label_short_pin">El PIN ha de tindre, si més no, %1$d xifres!</string>
+</resources>

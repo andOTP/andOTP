@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">Névjegy</string>
+    <string name="about_description">Nyílt forráskódú kétfaktoros hitelesítő Androidra</string>
+    <string name="about_tab_about">Névjegy</string>
+    <string name="about_tab_libraries">Könyvtárak</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">Változásnapló</string>
+    <string name="about_label_license">Licenc</string>
+    <string name="about_label_MIT">MIT licenc</string>
+    <string name="about_label_source">Forráskód</string>
+    <string name="about_label_version">Verzió</string>
+    <string name="about_label_faq">GyIK</string>
+    <string name="about_label_faq_long">Gyakran ismételt kérdések</string>
+    <!-- Authors -->
+    <string name="about_title_authors">Szerzők</string>
+    <string name="about_label_main_developer">Fő fejlesztő</string>
+    <string name="about_label_developer">Fejlesztő</string>
+    <string name="about_label_original_author">Az eredeti alkalmazás szerzője</string>
+    <string name="about_label_original_app">Az eredeti alkalmazás</string>
+    <string name="about_label_website">Honlap</string>
+    <string name="about_label_donate">Adományozás</string>
+    <string name="about_label_contributors">Közreműködők</string>
+    <string name="about_label_translators">Fordítók</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">Jogi nyilatkozat a bélyegképekről</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Az összes bélyegkép a tulajdonosuk védjegye.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> Ezen védjegyek használata nem
+         jelenti azt, hogy az andOTP támogatná a védjegy tulajdonosát, vagy fordítva.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> A bélyegképek csak arra vannak használva, hogy
+         képviseljék azt a vállalatot vagy terméket, amelyre vonatkoznak.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Ne használja a más célra a bélyegképeket,
+         mint az adott márka vagy szolgáltatás reprezentálása.</b></string>
+    <!-- Support -->
+    <string name="about_title_support">Támogassa a fejlesztést</string>
+    <string name="about_desc_support">Tudja meg hogyan támogathatja az andOTP fejlesztését</string>
+    <string name="about_title_special_features">Speciális funkciók</string>
+    <string name="about_dialog_special_features">Biztos, hogy engedélyezi a speciális
+        funkciókat?  A javuk nem szabványos OTP algoritmus, melyek különleges kérésre lettek megvalósítva.
+        Ezek <b>nem hivatalosan támogatottak</b> és <b>különböző korlátozásokkal rendelkeznek</b>,
+        olvassa el (és értse meg) a „Speciális tulajdonságok” oldalt a Github wikin,
+        hogy többet tudjon meg a használatuk előtt.</string>
+    <string name="about_toast_special_features">Speciális funkciók engedélyezve</string>
+    <string name="about_toast_special_features_enabled">A speciális funkciók már engedélyezettek</string>
+    <string name="about_toast_copied_to_clipboard">Az adományozási hivatkozás a vágólapra lett másolva</string>
+</resources>

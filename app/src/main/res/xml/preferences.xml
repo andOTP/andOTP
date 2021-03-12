@@ -7,18 +7,11 @@
         android:key="@string/settings_key_cat_security"
         android:title="@string/settings_category_title_security">
 
-        <CheckBoxPreference
-            android:key="@string/settings_key_tap_to_reveal"
-            android:title="@string/settings_title_tap_to_reveal"
-            android:summary="@string/settings_desc_tap_to_reveal"
-            android:defaultValue="false" />
-
         <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
             android:key="@string/settings_key_tap_to_reveal_timeout"
             android:title="@string/settings_title_tap_to_reveal_timeout"
             android:dialogMessage="@string/settings_desc_tap_to_reveal_timeout"
             android:defaultValue="@integer/settings_default_tap_to_reveal_timeout"
-            android:dependency="@string/settings_key_tap_to_reveal"
             app:vnt_minValue="@integer/settings_min_tap_to_reveal_timeout"
             app:vnt_maxValue="@integer/settings_max_tap_to_reveal_timeout" />
 
@@ -48,6 +41,45 @@
             android:summary="@string/settings_desc_relock_screen_off"
             android:defaultValue="true" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_relock_background"
+            android:title="@string/settings_title_relock_background"
+            android:summary="@string/settings_desc_relock_background"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_auth_inactivity"
+            android:title="@string/settings_title_auth_inactivity"
+            android:summary="@string/settings_desc_auth_inactivity"
+            android:defaultValue="false" />
+
+        <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
+            android:key="@string/settings_key_auth_inactivity_delay"
+            android:title="@string/settings_title_auth_inactivity_delay"
+            android:dialogMessage="@string/settings_desc_auth_inactivity_delay"
+            android:defaultValue="@integer/settings_default_auth_inactivity_delay"
+            android:dependency="@string/settings_key_auth_inactivity"
+            app:vnt_minValue="@integer/settings_auth_min_inactivity_delay"
+            app:vnt_maxValue="@integer/settings_auth_max_inactivity_delay" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_block_accessibility"
+            android:title="@string/settings_title_block_accessibility"
+            android:summary="@string/settings_desc_block_accessibility"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_block_autofill"
+            android:title="@string/settings_title_block_autofill"
+            android:summary="@string/settings_desc_block_autofill"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_auto_unlock_after_autofill"
+            android:title="@string/settings_title_auto_unlock_after_autofill"
+            android:summary="@string/settings_desc_auto_unlock_after_autofill"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -55,12 +87,12 @@
         android:key="@string/settings_key_cat_ui">
 
         <ListPreference
-            android:key="@string/settings_key_locale"
+            android:key="@string/settings_key_lang"
             android:title="@string/settings_title_lang"
             android:summary="%s"
             android:entries="@array/settings_entries_lang"
-            android:entryValues="@array/settings_values_locale"
-            android:defaultValue="@string/settings_default_locale" />
+            android:entryValues="@array/settings_values_lang"
+            android:defaultValue="@string/settings_default_lang" />
 
         <ListPreference
             android:key="@string/settings_key_theme_mode"
@@ -86,6 +118,22 @@
             android:entryValues="@array/settings_values_card_layout"
             android:defaultValue="@string/settings_default_card_layout" />
 
+        <ListPreference
+            android:key="@string/settings_key_tap_single"
+            android:title="@string/settings_title_tap_single"
+            android:summary="%s"
+            android:entries="@array/settings_entries_tap"
+            android:entryValues="@array/settings_values_tap"
+            android:defaultValue="@string/settings_default_tap_single" />
+
+        <ListPreference
+            android:key="@string/settings_key_tap_double"
+            android:title="@string/settings_title_tap_double"
+            android:summary="%s"
+            android:entries="@array/settings_entries_tap"
+            android:entryValues="@array/settings_values_tap"
+            android:defaultValue="@string/settings_default_tap_double" />
+
         <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
             android:key="@string/settings_key_label_size"
             android:title="@string/settings_title_label_size"
@@ -93,15 +141,18 @@
             app:vnt_maxValue="@integer/settings_max_label_size"
             app:vnt_minValue="@integer/settings_min_label_size" />
 
-        <CheckBoxPreference
-            android:key="@string/settings_key_label_scroll"
-            android:title="@string/settings_title_label_scroll"
-            android:summary="@string/settings_desc_label_scroll"
-            android:defaultValue="false" />
+        <ListPreference
+            android:key="@string/settings_key_label_display"
+            android:title="@string/settings_title_label_display"
+            android:summary="%s"
+            android:entries="@array/settings_entries_label_display"
+            android:entryValues="@array/settings_values_label_display"
+            android:defaultValue="@string/settings_default_label_display" />
 
         <ListPreference
             android:key="@string/settings_key_thumbnail_size"
             android:title="@string/settings_title_thumbnail_size_ask"
+            android:summary="%s"
             android:entries="@array/settings_entries_thumbnail_size"
             android:entryValues="@array/settings_values_thumbnail_size"
             android:defaultValue="@string/settings_default_thumbnail_size" />
@@ -122,6 +173,12 @@
             android:entryValues="@array/settings_values_tag_functionality"
             android:defaultValue="@string/settings_default_tag_functionality" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_minimize_on_copy"
+            android:title="@string/settings_title_minimize_on_copy"
+            android:summary="@string/settings_desc_minimize_on_copy"
+            android:defaultValue="false" />
+
         <MultiSelectListPreference
             android:key="@string/settings_key_search_includes"
             android:title="@string/settings_title_search_includes"
@@ -136,23 +193,46 @@
             android:summary="@string/settings_desc_label_highlight_token"
             android:defaultValue="true" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_hide_global_timeout"
+            android:title="@string/settings_title_hide_global_timeout"
+            android:summary="@string/settings_desc_hide_global_timeout"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_hide_issuer"
+            android:title="@string/settings_title_hide_issuer"
+            android:summary="@string/settings_desc_hide_issuer"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_show_individual_timeouts"
+            android:title="@string/settings_title_show_individual_timeouts"
+            android:summary="@string/settings_desc_show_individual_timeouts"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_focus_search_on_start"
+            android:title="@string/settings_title_focus_search_on_start"
+            android:summary="@string/settings_desc_focus_search_on_start"
+            android:defaultValue="false" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/settings_category_title_backup">
 
-		<CheckBoxPreference
+	<CheckBoxPreference
             android:key="@string/settings_key_enable_android_backup_service"
             android:title="@string/settings_title_enable_android_backup_service"
             android:summary="@string/settings_desc_enable_android_backup_service"
-            android:defaultValue="false" />
+            android:defaultValue="true" />
 
         <CheckBoxPreference
             android:key="@string/settings_key_backup_append_date_time"
             android:title="@string/settings_title_backup_append_date"
             android:summary="@string/settings_desc_backup_append_date"
-            android:defaultValue="false" />
+            android:defaultValue="true" />
 
         <CheckBoxPreference
             android:key="@string/settings_key_backup_ask"
@@ -161,22 +241,23 @@
             android:disableDependentsState="true"
             android:defaultValue="true" />
 
-        <EditTextPreference
-            android:key="@string/settings_key_backup_directory"
-            android:title="@string/settings_title_backup_directory"
-            android:summary="@string/settings_desc_backup_directory"
-            android:dependency="@string/settings_key_backup_ask" />
+        <Preference
+            android:key="@string/settings_key_backup_location"
+            android:title="@string/settings_title_backup_location"
+            android:summary="@string/settings_desc_backup_location" />
 
         <org.shadowice.flocke.andotp.Preferences.PasswordEncryptedPreference
             android:key="@string/settings_key_backup_password_enc"
             android:title="@string/settings_title_backup_password"
             android:summary="@string/settings_desc_backup_password" />
 
-        <CheckBoxPreference
+        <ListPreference
             android:key="@string/settings_key_auto_backup_password_enc"
             android:title="@string/settings_title_auto_backup_password_enc"
             android:summary="@string/settings_desc_auto_backup_password_enc"
-            android:defaultValue="false" />
+            android:entries="@array/settings_entries_auto_backup_password_enc"
+            android:entryValues="@array/settings_values_auto_backup_password_enc"
+            android:defaultValue="@string/settings_default_auto_backup_password_enc" />
 
         <MultiSelectListPreference
             android:key="@string/settings_key_backup_broadcasts"

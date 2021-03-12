@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
- * Copyright (C) 2017-2018 Richy HBM
+ * Copyright (C) 2017-2020 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Richy HBM
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,13 +27,13 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.text.TextPaint;
+import android.util.TypedValue;
 
 import org.shadowice.flocke.andotp.R;
 
@@ -76,11 +76,7 @@ class LetterBitmap {
     /**
      * The font size used to display the letter
      */
-    private final int mTileLetterFontSize;
-    /**
-     * The default image to display
-     */
-    private final Bitmap mDefaultBitmap;
+    private final float mTileLetterFontSizeScale;
 
     /**
      * Constructor for <code>LetterTileProvider</code>
@@ -96,9 +92,10 @@ class LetterBitmap {
         mPaint.setAntiAlias(true);
 
         mColors = res.obtainTypedArray(R.array.letter_tile_colors);
-        mTileLetterFontSize = res.getDimensionPixelSize(R.dimen.tile_letter_font_size);
 
-        mDefaultBitmap = BitmapFactory.decodeResource(res, android.R.drawable.sym_def_app_icon);
+        TypedValue typedValue = new TypedValue();
+        res.getValue(R.dimen.tile_letter_font_size_scale, typedValue, true);
+        mTileLetterFontSizeScale = typedValue.getFloat();
     }
 
     /**
@@ -123,7 +120,7 @@ class LetterBitmap {
         c.drawColor(pickColor(key));
 
         mFirstChar[0] = Character.toUpperCase(firstChar);
-        mPaint.setTextSize(mTileLetterFontSize);
+        mPaint.setTextSize(mTileLetterFontSizeScale * height);
         mPaint.getTextBounds(mFirstChar, 0, 1, mBounds);
         c.drawText(mFirstChar, 0, 1, width / 2, height / 2
                 + (mBounds.bottom - mBounds.top) / 2, mPaint);

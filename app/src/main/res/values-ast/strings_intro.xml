@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intro_slide1_title">Vamos entamar</string>
+    <string name="intro_slide1_desc">Afáyate n\'<b>andOTP</b>, esti encontu va guiate pente la
+        configuración inicial. ¡Llei con procuru darréu que podríes perder datos!
+        \n\nNun t\'esmolezas, entá pues camudar cualesquier opción más sero n\'<b>Axustes</b>.</string>
+    <string name="intro_slide2_desc">P\'asegurar la seguranza de les cuentes, <b>andOTP</b>
+        namás les atroxa en ficheros cifraos. Equí pues escoyer el métodu de cifráu que va usase.</string>
+    <string name="intro_slide2_desc_keystore">L\'almacenamientu de claves ye un componente del sistema Android
+        p\'atroxar de mou seguru les claves criptográfiques. La ventaya d\'esti métodu ye que les claves
+        atróxense separtaes de los ficheros de datos y la criptografía del hardware pue facer copies
+        de seguranza (si\'l preséu lo sofita). Por embargu y darréu que les claves nun s\'atroxen colos
+        datos de les aplicaciones, <b>esti métodu evita que funcionen les soluciones de copies de
+        seguranza (como Titanum)</b>. Si escueyes esti métodu vas tener d\'encontate nes funciones
+        de copies de seguranza internes d\'<b>andOTP</b>.\n\n<b>Alvertencia:</b> L\'almacenamientu
+        de claves tien l\'enclín a causar munchos problemes, úsalu namás si lu precises daveres. Si nun
+        t\'importa introducir una contraseña / PIN cada vegada qu\'anicies <b>andOTP</b>, <b>aconséyase
+        muncho usar el cifráu basáu en contraseña.</b></string>
+    <string name="intro_slide2_desc_password">Esti métodu va cifrar los datos con una clave
+        xenerada de magar una contraseña o PIN. La ventaya principal equí ye qu\'esto va
+        funcionar con soluciones esternes de copies de seguranza (como Titanium), y nun falla
+        tanto como l\'almacén de claves. Por embargu, vas tener d\'introducir les credenciales
+        cada vegada qu\'anicies <b>andOTP</b>.</string>
+    <string name="intro_slide3_desc_keystore">Equí pues configurar una autenticación pa bloquiar
+        <b>andOTP</b>. Darréu qu\'escoyesti <b>Almacén de claves d\'Android</b> como métodu de
+        cifráu, esto ye opcional.</string>
+    <string name="intro_slide3_desc_password">Equí pues configurar una autenticación pa bloquiar
+        <b>andOTP</b>. Darréu qu\'escoyesti <b>Contraseña / PIN</b> como métodu de cifráu, precises
+        afitar una contraseña o un PIN pa siguir.</string>
+    <string name="intro_slide3_warn_no_password">¡Afita una contraseña pa siguir!</string>
+    <string name="intro_slide3_warn_no_pin">¡Afita un PIN pa siguir!</string>
+    <string name="intro_slide3_warn_confirm_password">¡Confirma la contraseña pa siguir!</string>
+    <string name="intro_slide3_warn_confirm_pin">¡Confirma\'l PIN pa siguir!</string>
+    <string name="intro_slide4_title">Finesti</string>
+    <string name="intro_slide4_desc">Guardáronse los axutes, ¡yá tas preparáu pa
+        usar <b>andOTP</b>!</string>
+</resources>

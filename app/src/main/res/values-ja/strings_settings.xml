@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_activity_title">設定</string>
+    <!-- Categories -->
+    <string name="settings_category_title_security">セキュリティ</string>
+    <string name="settings_category_title_ui">ユーザーインターフェース</string>
+    <string name="settings_category_title_backup">バックアップ</string>
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">タップして表示</string>
+    <string name="settings_title_tap_to_reveal_timeout">タップして表示の表示時間</string>
+    <string name="settings_title_auth">認証</string>
+    <string name="settings_title_auth_password">パスワード</string>
+    <string name="settings_title_auth_pin">PIN</string>
+    <string name="settings_title_encryption">データベース暗号化</string>
+    <string name="settings_title_panic">パニックトリガー</string>
+    <string name="settings_title_relock_screen_off">画面オフでロック</string>
+    <string name="settings_title_relock_background">バックグラウンド時にロック</string>
+    <string name="settings_title_auth_inactivity">非アクティブでロック</string>
+    <string name="settings_title_auth_inactivity_delay">非アクティブでロックの遅延時間</string>
+    <string name="settings_title_block_accessibility">ユーザー補助サービスをブロック</string>
+    <string name="settings_title_block_autofill">自動入力をブロック</string>
+    <string name="settings_title_lang">言語</string>
+    <string name="settings_title_theme">テーマ</string>
+    <string name="settings_title_card_layout">カードレイアウト</string>
+    <string name="settings_title_label_size">ラベルのフォントサイズ</string>
+    <string name="settings_title_label_scroll">ラベルをスクロール</string>
+    <string name="settings_title_tap_single">シングルタップ</string>
+    <string name="settings_title_tap_double">ダブルタップ</string>
+    <string name="settings_title_thumbnail_size_ask">サムネイルのサイズ</string>
+    <string name="settings_title_split_group_size">トークンの分割表示</string>
+    <string name="settings_title_tag_functionality">タグ選択の動作</string>
+    <string name="settings_title_minimize_on_copy">OTP コピー後にアプリを最小化</string>
+    <string name="settings_title_search_includes">検索の動作</string>
+    <string name="settings_title_label_highlight_token">有効期限切れ直前のトークンを強調表示</string>
+    <string name="settings_title_hide_global_timeout">全体の有効期限表示を行わない</string>
+    <string name="settings_title_show_individual_timeouts">個別の有効期限表示を行う</string>
+    <string name="settings_title_backup_append_date">日付をファイル名に追加</string>
+    <string name="settings_title_backup_ask">ファイルを確認</string>
+    <string name="settings_title_backup_location">既定のバックアップ保存先</string>
+    <string name="settings_title_backup_password">バックアップパスワード</string>
+    <string name="settings_title_auto_backup_password_enc">新しいエントリの自動バックアップ</string>
+    <string name="settings_title_backup_broadcasts">バックアップブロードキャスト</string>
+    <string name="settings_title_openpgp_provider">OpenPGP プロバイダ</string>
+    <string name="settings_title_openpgp_key_encrypt">OpenPGP 暗号化キー</string>
+    <string name="settings_title_openpgp_key_sign">OpenPGP 署名キー (オプション)</string>
+    <string name="settings_title_openpgp_verify">暗号化バックアップの検証</string>
+    <string name="settings_title_special_features">特別機能を有効化</string>
+    <string name="settings_title_enable_screenshot">スクリーンショットを有効化</string>
+    <string name="settings_title_enable_android_backup_service">Android sync を有効化</string>
+    <string name="settings_title_clear_keystore">キーストアをクリア</string>
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">OTP トークンを既定では非表示にし、トークンをタッチした時のみ表示する</string>
+    <string name="settings_desc_tap_to_reveal_timeout">表示されたエントリを再度非表示にするまでの時間 (秒) を選択してください</string>
+    <string name="settings_desc_panic">パニックトリガーを受信したときの動作を設定します</string>
+    <string name="settings_desc_relock_screen_off">デバイススクリーンがオフになった後に認証を要求する</string>
+    <string name="settings_desc_relock_background">アプリがバックグラウンドになった後に認証を要求する (例えば、ホームボタンを押した場合など)</string>
+    <string name="settings_desc_auth_inactivity">デバイスが非アクティブになった後に認証を要求する</string>
+    <string name="settings_desc_auth_inactivity_delay">再度認証を要求するまでの時間 (秒) を選択してください</string>
+    <string name="settings_desc_block_accessibility">機密性の高い項目をユーザー補助サービスから非表示にします。<b>ユーザー補助サービスを使用している場合は、この機能を有効にしないでください！</b></string>
+    <string name="settings_desc_block_autofill">自動入力サービスによるアプリ内のパスワードフィールドへのアクセスをブロックします</string>
+    <string name="settings_desc_block_autofill_android">この機能を利用するには Android 8.0 (Oreo) 以上のバージョンが必要です</string>
+    <string name="settings_desc_label_scroll">ラベルが長すぎる場合はスクロールする</string>
+    <string name="settings_desc_minimize_on_copy">OTP をクリップボードにコピーしたら、アプリを最小化する</string>
+    <string name="settings_desc_search_includes">検索の対象に含める値を指定します</string>
+    <string name="settings_desc_label_highlight_token">8秒以内に有効期限切れになるトークンを強調表示する</string>
+    <string name="settings_desc_hide_global_timeout">画面上部に表示される「全体の有効期限表示」を無効化します</string>
+    <string name="settings_desc_show_individual_timeouts">すべてのエントリで「個別の有効期限表示」を有効化します。この設定によりアプリの動作が遅くなる可能性があるため、本当に必要な場合のみ有効化してください。</string>
+    <string name="settings_desc_backup_append_date">提案されたバックアップファイル名に現在の日付と時刻を追加する</string>
+    <string name="settings_desc_backup_ask">バックアップが作成または復元されるたびにファイル名を確認する</string>
+    <string name="settings_desc_backup_location">既定のバックアップ保存先を選択</string>
+    <string name="settings_desc_backup_location_set">バックアップ保存先が選択されました</string>
+    <string name="settings_desc_backup_password">バックアップの暗号化に使用するパスワードを設定</string>
+    <string name="settings_desc_auto_backup_password_enc">新しいエントリが追加された、または既存のエントリが編集された場合に、新しい暗号化バックアップを作成します</string>
+    <string name="settings_desc_auto_backup_requirements">このオプションを有効にするには、既定のバックアップ保存先とバックアップパスワードを設定してください</string>
+    <string name="settings_desc_backup_broadcasts">ブロードキャストを使用してサードパーティのアプリによってトリガーできるバックアップの種類を選択する</string>
+    <string name="settings_desc_openpgp_key_encrypt">バックアップの暗号化に使用する OpenPGP キーのメールアドレス</string>
+    <string name="settings_desc_openpgp_verify">暗号化バックアップは、有効なキーで署名されている場合にのみインポートされます</string>
+    <string name="settings_desc_special_features">特別機能を再び無効にする場合はチェックを外します</string>
+    <string name="settings_desc_enable_screenshot">メイン画面のスクリーンショットを撮ることができます (セキュリティ上の理由でデフォルトでは無効になっています)</string>
+    <string name="settings_desc_enable_android_backup_service">andOTP が Android の組み込みバックアップサービスを使用してキーと設定をバックアップできるようにする</string>
+    <string name="settings_desc_clear_keystore">キーストアからの暗号化キーを削除</string>
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_not_secure">この機能では、セキュリティで保護されたロック画面を設定する必要があります (設定 -&gt; セキュリティー -&gt; スクリーンロック)</string>
+    <string name="settings_toast_password_empty">空のパスワードは許可されていません、設定を「なし」にすると認証を無効にできます。</string>
+    <string name="settings_toast_encryption_changing">データベース暗号化の変更中です、少々お待ちください！</string>
+    <string name="settings_toast_encryption_change_success">データベース暗号化が正常に変更されました！</string>
+    <string name="settings_toast_encryption_change_failed">データベース暗号化の変更に失敗したため、元の状態に戻しました！</string>
+    <string name="settings_toast_encryption_backup_failed">内部バックアップの作成に失敗しました！</string>
+    <string name="settings_toast_encryption_no_key">暗号化キーの取得に失敗しました！</string>
+    <string name="settings_toast_encryption_auth_failed">認証に失敗しました！</string>
+    <string name="settings_toast_auth_upgrade_failed">自動的に パスワード / PIN を新しい暗号化にアップグレードできませんでした、設定で手動でリセットしてください！</string>
+    <string name="settings_dialog_title_warning">警告</string>
+    <string name="settings_dialog_title_error">エラー</string>
+    <string name="settings_dialog_title_clear_keystore">キーストアをクリアしますか？</string>
+    <string name="settings_dialog_title_android_sync">Android sync</string>
+    <string name="settings_dialog_msg_encryption_change">andOTP はデータベースの暗号化を変更しようとします。 障害が発生した場合、内部バックアップが復元され、暗号化は変更されません。\n\n<b>ただし、予期しないことが発生した場合に備えてバックアップを作成することをお勧めします！</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">パスワードまたは PIN は、データベース暗号化が「パスワード / PIN」に設定されている場合のみ使用できます！</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">まず、認証を「パスワード」または「PIN」に設定する必要があります！</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">暗号化を変更する前に、まずパスワードまたは PIN を設定する必要があります！</string>
+    <string name="settings_dialog_msg_clear_keystore_password">場合によっては、キーストアをクリアすると問題の解決に役立つことがあります。あなたが何をしているか知っている場合にのみ、続行する必要があります！\n\n<b>データベース暗号化</b>は、 <b>パスワード / PIN</b> に設定されているので、これを行っている間にデータを失うことはありません (しかし、とにかくバックアップを取っても問題ありません) 。\n\n<b>本当にキーストアをクリアしてもよろしいですか?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">場合によっては、キーストアをクリアすると問題の解決に役立つことがあります。あなたが何をしているか知っている場合にのみ、続行する必要があります！\n\n<b>警告</b>：<b>データベース暗号化</b>は、 <b>Android キーストア</b> に設定されているため、すべてのアカウントが失われます。バックアップがあることを確認してください！\n\n<b>本当にキーストアをクリアしてもよろしいですか?</b></string>
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">Android sync は、キーストアによる暗号化で使用することはできません、<b>あなたは手動バックアップを実行する必要があります！</b></string>
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>なし</item>
+        <item>パスワード</item>
+        <item>PIN</item>
+        <item>デバイス認証情報</item>
+    </string-array>
+    <string-array name="settings_entries_encryption">
+        <item>Android キーストア</item>
+        <item>パスワード / PIN</item>
+    </string-array>
+    <string-array name="settings_entries_panic">
+        <item>すべてのアカウントを削除</item>
+        <item>アプリの設定をリセット</item>
+    </string-array>
+    <string-array name="settings_entries_card_layout">
+        <item>コンパクト</item>
+        <item>デフォルト</item>
+        <item>フル</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>なし</item>
+        <item>表示/非表示</item>
+        <item>コピー</item>
+        <item>コピーしてバックグラウンドへ移動</item>
+    </string-array>
+    <string-array name="settings_entries_search_includes">
+        <item>ラベル</item>
+        <item>発行者</item>
+        <item>タグ</item>
+    </string-array>
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>オフ</item>
+        <item>新しいエントリ</item>
+        <item>すべての編集</item>
+    </string-array>
+    <string-array name="settings_entries_theme">
+        <item>ライトテーマ</item>
+        <item>ダークテーマ</item>
+        <item>ブラックテーマ</item>
+    </string-array>
+    <string-array name="settings_entries_thumbnail_size">
+        <item>非表示</item>
+        <item>最小</item>
+        <item>小</item>
+        <item>デフォルト</item>
+        <item>中</item>
+        <item>大</item>
+    </string-array>
+    <string-array name="settings_entries_split_group_size">
+        <item>分割しない</item>
+        <item>2文字ごとに分割</item>
+        <item>3文字ごとに分割</item>
+    </string-array>
+    <string-array name="settings_entries_tag_functionality">
+        <item>選択したタグの <b>いずれか</b> に一致するすべてのエントリを表示する (or)</item>
+        <item>選択した <b>すべて</b> のタグに一致するエントリのみを表示する (and)</item>
+        <item>タグを切り替える (一度に1つのタグしか選択できない)</item>
+    </string-array>
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>非暗号化バックアップ</item>
+        <item>暗号化バックアップ</item>
+    </string-array>
+    <!-- Special -->
+    <string name="settings_lang_sys_default">デバイスの言語</string>
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">新しいパスワードを入力</string>
+    <string name="settings_hint_pin">新しい PIN を入力</string>
+    <string name="settings_hint_password_confirm">パスワードの確認</string>
+    <string name="settings_hint_pin_confirm">PIN の確認</string>
+    <string name="settings_label_short_password">パスワードは %1$d 文字以上にする必要があります！</string>
+    <string name="settings_label_short_pin">PIN は %1$d 桁以上にする必要があります！</string>
+</resources>

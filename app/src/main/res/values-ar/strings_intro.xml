@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intro_slide1_title">دعنا نبدأ</string>
+    <string name="intro_slide1_desc">مرحبا بكم في <b>andOTP</b>. المساعد التالي سوف يساعدكم في الإعداد الأوّلي.
+يرجى الانتباه والقراءة جيدًا لتجنب خسارة البيانات!
+\n\nلا داعٍ للقلق، يمكنك تغيير أي من الخيارات لاحقًا في <b>الإعدادات</b>.</string>
+    <string name="intro_slide2_desc">لضمان أمان حساباتك، يستعمل <b>andOTP</b> التشفير في تخزين بيانات الحساب. يمكنك هنا اختيار أية طريقة تشفير ستستعمل.</string>
+    <string name="intro_slide2_desc_keystore">KeyStore هو مكون في نظام أندرويد يستعمل في حفظ مفاتيح التشفير بشكل آمن. ميزة استعمال KeyStore هي أن المفاتيح تحفظ بشكل منفصل عن بيانات <b>andOTP</b>، ويمكن دعمه بالتشفير المعتمد-على-العتاد (إن كان جهازك يدعمه).
+مع ذلك، لأن المفاتيح لن تحفظ ضمن بيانات <b>andOTP</b>، <b>هذه الطريقة تمنع حلول النسخ الاحتياطي الخارجي (مثل تطبيق Titanium Backup) من العمل</b>. 
+إذا تم اختيار هذه الطريقة، سيتوجب الاعتماد على وسائل النسخ الاحتياطي المتاحة في<b>andOTP</b>.
+\n\n<b>تحذير</b>، KeyStore يسبب مشاكل عديدة، يرجى استعماله فقط في حالة اللزوم. 
+إذا لا تمانع إدخال كلمة المرور/PIN كل مرة تدخل <b>andOTP</b>، <b>يُنصح بشدّة استعمال التشفير عبر-كلمة-المرور بدلًا من ذلك</b>.</string>
+    <string name="intro_slide2_desc_password">تلك الطريقة ستشفّر  بياناتك بمفتاح تم توليده من كلمة مرور أو PIN. الميزة الرئيسية لاستخدام هذه الطريقة هي أن حلول النسخ الاحتياطي الخارجية (مثل تطبيق Titanium Backup) ستعمل كما يجب، وهي أقل عرضة للفشل من KeyStore. ولكن سيوجب عليك إدخال بيانات الإعتماد الخاصة بك كل مرة تفتح <b>andOTP</b>.</string>
+    <string name="intro_slide3_desc_keystore">هنا من الممكن تعيين طريقة مصادقة لقَفل <b>andOTP</b>. لأنك اخترت <b>أندرويد KeyStore</b> 
+كطريقة التشفير, هذه الخطوة اختيارية.</string>
+    <string name="intro_slide3_desc_password">هنا من الممكن إقامة عملية المطابقة لإقفال التطبيق. 
+لأنك حددت كلمة المرور / PIN كنوع التشفير, عليك تحديد
+إما كلمة مرور أو PIN للمتابعة. </string>
+    <string name="intro_slide3_warn_no_password">الرجاء تعيين كلمة مرور للاستمرار!</string>
+    <string name="intro_slide3_warn_no_pin">الرجاء تسجيل رمز PIN للإستمرار!</string>
+    <string name="intro_slide3_warn_confirm_password">أكِّد كلمة المرور للمواصلة!</string>
+    <string name="intro_slide3_warn_confirm_pin">أكِّد رمز PIN للمواصلة!</string>
+    <string name="intro_slide4_title">إنتهى</string>
+    <string name="intro_slide4_desc">تم حفظ الإعدادات الخاصة بك، يمكنك إستعمال التطبيق الآن!</string>
+</resources>

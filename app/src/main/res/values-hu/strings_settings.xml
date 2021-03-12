@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_activity_title">Beállítások</string>
+    <!-- Categories -->
+    <string name="settings_category_title_security">Biztonság</string>
+    <string name="settings_category_title_ui">Felhasználói felület</string>
+    <string name="settings_category_title_backup">Biztonsági mentés</string>
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">Koppintás a felfedéshez</string>
+    <string name="settings_title_tap_to_reveal_timeout">A koppintással történő felfedés időtúllépése</string>
+    <string name="settings_title_auth">Hitelesítés</string>
+    <string name="settings_title_auth_password">Jelszó</string>
+    <string name="settings_title_auth_pin">PIN-kód</string>
+    <string name="settings_title_encryption">Adatbázis-titkosítás</string>
+    <string name="settings_title_panic">Pánik kioldás</string>
+    <string name="settings_title_relock_screen_off">Lezárás a kijelző kikapcsolásakor</string>
+    <string name="settings_title_relock_background">Lezárás, ha háttérbe kerül</string>
+    <string name="settings_title_auth_inactivity">Lezárás tétlenségkor</string>
+    <string name="settings_title_auth_inactivity_delay">A tétlenség miatt lezárás késleltetése</string>
+    <string name="settings_title_block_accessibility">Akadálymentesítési szolgáltatások blokkolása</string>
+    <string name="settings_title_block_autofill">Automatikus kitöltés blokkolása</string>
+    <string name="settings_title_lang">Nyelv</string>
+    <string name="settings_title_theme">Téma</string>
+    <string name="settings_title_card_layout">Kártyák elrendezése</string>
+    <string name="settings_title_label_size">Cím betűmérete</string>
+    <string name="settings_title_label_scroll">Cím görgetése</string>
+    <string name="settings_title_tap_single">Egy koppintás</string>
+    <string name="settings_title_tap_double">Dupla koppintás</string>
+    <string name="settings_title_thumbnail_size_ask">Bélyegképek mérete</string>
+    <string name="settings_title_split_group_size">Token elválasztása szóközzel</string>
+    <string name="settings_title_tag_functionality">Címkekiválasztás viselkedése</string>
+    <string name="settings_title_minimize_on_copy">Alkalmazás minimalizálása az OTP másolása után</string>
+    <string name="settings_title_search_includes">Keresés viselkedése</string>
+    <string name="settings_title_label_highlight_token">Lejáró tokenek kiemelése</string>
+    <string name="settings_title_hide_global_timeout">Globális időtúllépési sáv elrejtése</string>
+    <string name="settings_title_show_individual_timeouts">Időtúllépések egyenkénti megjelenítése</string>
+    <string name="settings_title_backup_append_date">Dátum hozzáfűzése a fájlnévhez</string>
+    <string name="settings_title_backup_ask">Fájlnév bekérése</string>
+    <string name="settings_title_backup_location">Biztonsági mentés alapértelmezett helye</string>
+    <string name="settings_title_backup_password">Biztonsági mentés jelszava</string>
+    <string name="settings_title_auto_backup_password_enc">Új bejegyzések automatikus biztonsági mentése</string>
+    <string name="settings_title_backup_broadcasts">Továbbított biztonsági mentés</string>
+    <string name="settings_title_openpgp_provider">OpenPGP szolgáltató</string>
+    <string name="settings_title_openpgp_key_encrypt">OpenPGP titkosítási kulcs</string>
+    <string name="settings_title_openpgp_key_sign">OpenPGP aláírókulcs (nem kötelező)</string>
+    <string name="settings_title_openpgp_verify">Titkosított biztonsági másolatok ellenőrzése</string>
+    <string name="settings_title_special_features">Speciális funkciók engedélyezése</string>
+    <string name="settings_title_enable_screenshot">Képernyőképek engedélyezése</string>
+    <string name="settings_title_enable_android_backup_service">Android sync engedélyezése</string>
+    <string name="settings_title_clear_keystore">KeyStore törlése</string>
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">Az OTP tokenek alapértelmezett elrejtése,
+        kézzel fedhetők fel</string>
+    <string name="settings_desc_tap_to_reveal_timeout">Válassza ki az időt (másodpercben), miután
+        a felfedett bejegyzések újra eltűnnek</string>
+    <string name="settings_desc_panic">Döntse el, hogy mit történjen a Pánik aktiválásakor</string>
+    <string name="settings_desc_relock_screen_off">Hitelesítés megkövetelése, ha az eszköz
+        kijelzője kikapcsol</string>
+    <string name="settings_desc_relock_background">Hitelesítés megkövetelése, ha az alkalmazás
+        háttérbe lett küldve (például a kezdőképernyő gombbal)</string>
+    <string name="settings_desc_auth_inactivity">Hitelesítés megkövetelése az eszköz
+        tétlensége után</string>
+    <string name="settings_desc_auth_inactivity_delay">Válassza ki az időt (másodpercben), ami
+        után hitelesítés szükséges</string>
+    <string name="settings_desc_block_accessibility">Érzékeny mezők elrejtése az akadálymentesítési
+        szolgáltatások elől. <b>NE kapcsolja be, ha használja ezeket!</b></string>
+    <string name="settings_desc_block_autofill">Az automatikus kitöltési szolgáltatások blokkolása,
+        hogy ne férjenek hozzá az alkalmazáson belüli
+        jelszómezőkhöz</string>
+    <string name="settings_desc_block_autofill_android">A funkcióhoz 8.0-s (Oreo) vagy újabb
+        Android verzió szükséges</string>
+    <string name="settings_desc_label_scroll">A hosszabb címek görgetése a levágásuk helyett</string>
+    <string name="settings_desc_minimize_on_copy">Az alkalmazás minimalizálva lesz, ha a vágólapra másolja az OTP-t</string>
+    <string name="settings_desc_search_includes">Adja meg, hogy mely értékek legyenek belevéve a keresésbe</string>
+    <string name="settings_desc_label_highlight_token">Tokenek kiemelése vörössel, ha 8 másodpercen belül lejár</string>
+    <string name="settings_desc_hide_global_timeout">A képernyő tetején található globális időtúllépési sáv elrejtése</string>
+    <string name="settings_desc_show_individual_timeouts">Külön időtúllépési sáv megjelenítése minden bejegyzéshez.
+        Ez lelassíthatja az alkalmazást, csak akkor engedélyezze, ha szükséges.</string>
+    <string name="settings_desc_backup_append_date">A jelenlegi dátum és idő hozzáfűzése a biztonsági
+        mentés javasolt nevéhez</string>
+    <string name="settings_desc_backup_ask">Fájl nevének kérése minden alkalommal amikor biztonsági mentés jön létre vagy állítódik vissza</string>
+    <string name="settings_desc_backup_location">Válassza ki a biztonsági mentés alapértelmezett helyét</string>
+    <string name="settings_desc_backup_location_set">A biztonsági mentés helye kiválasztva</string>
+    <string name="settings_desc_backup_password">Állítsa be a jelszót amit a biztonsági mentések titkosításához használ</string>
+    <string name="settings_desc_auto_backup_password_enc">Új titkosított biztonsági mentést hoz létre, ha új
+        bejegyzések kerülnek hozzáadásra, szerkesztésre, vagy ha a
+        beállításokban megadott feltételek teljesülnek</string>
+    <string name="settings_desc_auto_backup_requirements">A beállítás engedélyezéséhez állítsa be a
+        biztonsági mentés alapértelmezett
+        helyét és jelszavát</string>
+    <string name="settings_desc_backup_broadcasts">Jelölje ki, hogy melyik biztonsági másolat típusokat indíthatja el a harmadik féltől származó alkalmazás a Broadcasts segítségével</string>
+    <string name="settings_desc_openpgp_key_encrypt">A biztonsági mentések titkosításához használt OpenPGP-kulcs e-mail címe</string>
+    <string name="settings_desc_openpgp_verify">A titkosított biztonsági másolatokat csak akkor lehet importálni, ha érvényes kulccsal írnak alá</string>
+    <string name="settings_desc_special_features">Törölje a jelölést, hogy ismét kikapcsolja a speciális funkciókat</string>
+    <string name="settings_desc_enable_screenshot">Engedélyi a képernyőkép készítését a
+        kezdőképernyőről (alapértelmezetten biztonsági okokból tiltott)</string>
+    <string name="settings_desc_enable_android_backup_service">Engedélyezi az andOTP számára az Android beépített
+        biztonsági mentési szolgáltatásának használatát
+        a kulcsok és beállítások mentéséhez</string>
+    <string name="settings_desc_clear_keystore">Titkosítási kulcs törlése a KeyStore-ból</string>
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_not_secure">Ezen funkció használatához biztonságos képernyőzár
+        szükséges (Beállítások -&gt; Biztonság -&gt; Képernyőzár)</string>
+    <string name="settings_toast_password_empty">Az üres jelszó nem engedélyezett, a letiltáshoz
+        állítsa „Nincs” értékre a Hitelesítést!</string>
+    <string name="settings_toast_encryption_changing">Adatbázis-titkosítás módosítása,
+        kérjük várjon!</string>
+    <string name="settings_toast_encryption_change_success">Sikeresen megváltoztatta az adatbázis
+        titkosítását!</string>
+    <string name="settings_toast_encryption_change_failed">Nem sikerült megváltoztatni az adatbázis titkosítását,
+        visszaállítás az eredeti állapotba!</string>
+    <string name="settings_toast_encryption_backup_failed">Nem sikerült belső biztonsági mentést
+        létrehozni, megszakítás!</string>
+    <string name="settings_toast_encryption_no_key">A titkosítási kulcs elérése sikertelen, megszakítás!</string>
+    <string name="settings_toast_encryption_auth_failed">A hitelesítés sikertelen!</string>
+    <string name="settings_toast_auth_upgrade_failed">Nem sikerült a jelszó/PIN-kód néma frissítése az új titkosításra,
+        állítsa vissza kézzel a Beállításokban!</string>
+    <string name="settings_dialog_title_warning">Figyelmeztetés</string>
+    <string name="settings_dialog_title_error">Hiba</string>
+    <string name="settings_dialog_title_clear_keystore">Törli a KeyStore-t?</string>
+    <string name="settings_dialog_title_android_sync">Android sync</string>
+    <string name="settings_dialog_msg_encryption_change">Az andOTP most megpróbálja megváltoztatni az adatbázis
+        titkosítását. Hiba esetén esetén a belső biztonsági mentés lesz visszaállítva, és a titkosítás
+        változatlan marad.\n\n<b>Mindig jó ötlet, ha van egy biztonsági mentése arra az esetre,
+        ha valami váratlan történik!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">Csak akkor használhat jelszót vagy PIN-kódot, ha
+        az adatbázis-titkosítás beállítása „Jelszó/PIN-kód”!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">Először be kell állítania a hitelesítést
+        „Jelszó” vagy „PIN-kód” típusúra!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">A titkosítás megváltoztatása előtt először
+        be kell állítania egy jelszót vagy PIN-kódot!</string>
+    <string name="settings_dialog_msg_clear_keystore_password">Egyes esetekben a KeyStore törlése segíthet
+        megoldani a problémákat. Csak akkor folytassa, ha tudja, hogy mit csinál!\n\nMivel az
+        <b>Adatbázis-titkosítás</b> beállítása <b>Jelszó/PIN-kód</b>, így nem kellene, hogy
+        adatokat veszítsen (de sosem árt, ha van biztonsági mentése).\n\n<b>Biztos, hogy
+        törölni szeretné a KeyStore-t?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">Egyes esetekben a KeyStore törlése segíthet
+        megoldani a problémákat. Csak akkor folytassa, ha tudja, mit csinál!\n\n<b>Figyelmeztetés</b>:
+        Mivel az <b>Adatbázis-titkosítás</b> beállítása <b>Android KeyStore</b>, így elveszíti az
+        összes fiókját. Győződjön meg róla, hogy van biztonsági mentése!\n\n<b>Biztos, hogy
+        törölni szeretné a KeyStore-t?</b></string>
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">Az Android sync nem használható KeyStore
+        titkosítással, <b>kézileg kell biztonsági mentést készítenie!</b></string>
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>Nincs</item>
+        <item>Jelszó</item>
+        <item>PIN-kód</item>
+        <item>Eszköz hitelesítő adatai</item>
+    </string-array>
+    <string-array name="settings_entries_encryption">
+        <item>Android KeyStore</item>
+        <item>Jelszó/PIN-kód</item>
+    </string-array>
+    <string-array name="settings_entries_panic">
+        <item>Összes fiók törlése</item>
+        <item>Beállítások visszaállítása</item>
+    </string-array>
+    <string-array name="settings_entries_card_layout">
+        <item>Kompakt</item>
+        <item>Alapértelmezett</item>
+        <item>Teljes</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Semmi</item>
+        <item>Megjelenítés/elrejtés</item>
+        <item>Másolás</item>
+        <item>Másolás és háttérbe küldés</item>
+    </string-array>
+    <string-array name="settings_entries_search_includes">
+        <item>Cím</item>
+        <item>Kibocsátó</item>
+        <item>Címkék</item>
+    </string-array>
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Ki</item>
+        <item>Új bejegyzések</item>
+        <item>Bármilyen szerkesztés</item>
+    </string-array>
+    <string-array name="settings_entries_theme">
+        <item>Világos téma</item>
+        <item>Sötét téma</item>
+        <item>Fekete téma</item>
+    </string-array>
+    <string-array name="settings_entries_thumbnail_size">
+        <item>Rejtett</item>
+        <item>Apró</item>
+        <item>Kicsi</item>
+        <item>Alapértelmezett</item>
+        <item>Közepes</item>
+        <item>Nagy</item>
+    </string-array>
+    <string-array name="settings_entries_split_group_size">
+        <item>Ne válassza szét</item>
+        <item>Két karakter után</item>
+        <item>Három karakter után</item>
+    </string-array>
+    <string-array name="settings_entries_tag_functionality">
+        <item>A kiválasztott címkék <b>bármelyikének</b> megfelelő bejegyzések megjelenítése (vagy)</item>
+        <item>Csak a kiválasztott címkék <b>mindegyikének</b> megfelelő bejegyzések megjelenítése (és)</item>
+        <item>Váltás a címkék között (egyszerre csak egy címkét lehet kiválasztani)</item>
+    </string-array>
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Egyszerű szöveges biztonsági mentések</item>
+        <item>Titkosított biztonsági mentések</item>
+    </string-array>
+    <!-- Special -->
+    <string name="settings_lang_sys_default">Rendszer alapértelmezése</string>
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">Adja meg az új jelszót</string>
+    <string name="settings_hint_pin">Adja meg az új PIN-kódot</string>
+    <string name="settings_hint_password_confirm">Jelszó megerősítése</string>
+    <string name="settings_hint_pin_confirm">PIN-kód megerősítése</string>
+    <string name="settings_label_short_password">A jelszónak legalább %1$d karakter hosszúnak kell lennie!</string>
+    <string name="settings_label_short_pin">A PIN-kódnak legalább %1$d karakter hosszúnak kell lennie!</string>
+</resources>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_activity_title">Налаштування</string>
+    <!-- Categories -->
+    <string name="settings_category_title_security">Безпека</string>
+    <string name="settings_category_title_ui">Інтерфейс користувача</string>
+    <string name="settings_category_title_backup">Резервне копіювання</string>
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">Натисніть, щоб відобразити</string>
+    <string name="settings_title_tap_to_reveal_timeout">Тайм-аут приховання токену</string>
+    <string name="settings_title_auth">Автентифікація</string>
+    <string name="settings_title_auth_password">Пароль</string>
+    <string name="settings_title_auth_pin">PIN-код</string>
+    <string name="settings_title_encryption">Шифрування бази даних</string>
+    <string name="settings_title_panic">Panic Trigger</string>
+    <string name="settings_title_relock_screen_off">Заблокувати, якщо екран вимкнено</string>
+    <string name="settings_title_relock_background">Re-lock when going into the background</string>
+    <string name="settings_title_auth_inactivity">Re-lock on inactivity</string>
+    <string name="settings_title_auth_inactivity_delay">Delay for inactivity re-lock</string>
+    <string name="settings_title_block_accessibility">Block accessibility services</string>
+    <string name="settings_title_block_autofill">Block autofill</string>
+    <string name="settings_title_lang">Мова</string>
+    <string name="settings_title_theme">Тема</string>
+    <string name="settings_title_card_layout">Card layout</string>
+    <string name="settings_title_label_size">Розмір шрифту для ярлику</string>
+    <string name="settings_title_label_scroll">Мітка прокручування</string>
+    <string name="settings_title_tap_single">Single-tap</string>
+    <string name="settings_title_tap_double">Double-tap</string>
+    <string name="settings_title_thumbnail_size_ask">Розмір піктограми</string>
+    <string name="settings_title_split_group_size">Розділяти токен пробілами</string>
+    <string name="settings_title_tag_functionality">Поведінка вибраної мітки</string>
+    <string name="settings_title_minimize_on_copy">Minimize app after copying OTP</string>
+    <string name="settings_title_search_includes">Search behavior</string>
+    <string name="settings_title_label_highlight_token">Highlight expiring tokens</string>
+    <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
+    <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
+    <string name="settings_title_backup_append_date">Додати дату до назви файлу</string>
+    <string name="settings_title_backup_ask">Запитувати назву файлу</string>
+    <string name="settings_title_backup_location">Default backup location</string>
+    <string name="settings_title_backup_password">Пароль резервної копії</string>
+    <string name="settings_title_auto_backup_password_enc">Automatically backup on new entries</string>
+    <string name="settings_title_backup_broadcasts">Додатки для створення резервних копій</string>
+    <string name="settings_title_openpgp_provider">OpenPGP додатки</string>
+    <string name="settings_title_openpgp_key_encrypt">Ключ шифрування OpenPGP</string>
+    <string name="settings_title_openpgp_key_sign">Підпис ключа OpenPGP (необов\'язково)</string>
+    <string name="settings_title_openpgp_verify">Перевірити зашифровані резервні копії</string>
+    <string name="settings_title_special_features">Увімкнути спеціальні можливості</string>
+    <string name="settings_title_enable_screenshot">Увімкнути знімки екрану</string>
+    <string name="settings_title_enable_android_backup_service">Увімкнути синхронізацію Android</string>
+    <string name="settings_title_clear_keystore">Очистити KeyStore</string>
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">За змовчуванням приховати OTP-токени та вимагати
+        їх показ вручну</string>
+    <string name="settings_desc_tap_to_reveal_timeout">Виберіть час (в секундах), після якого показані токени
+        будуть знову приховані</string>
+    <string name="settings_desc_panic">Виберіть дію, яку необхідно виконати після того, як отримано сповіщення Panic Trigger</string>
+    <string name="settings_desc_relock_screen_off">Вимагати повторну автентифікацію після того, як екран пристрою
+        був заблокований</string>
+    <string name="settings_desc_relock_background">Require authentication after the app was sent to
+        the background (e.g. by pressing the home button)</string>
+    <string name="settings_desc_auth_inactivity">Require authentication after the device has been
+        inactive</string>
+    <string name="settings_desc_auth_inactivity_delay">Select the time (in sec) after which to
+        require reauthentication</string>
+    <string name="settings_desc_block_accessibility">Hide sensitive fields from the accessibility
+        services. <b>DO NOT enable this if you rely on the accessibility services!</b></string>
+    <string name="settings_desc_block_autofill">Block autofill services from accessing password
+        fields inside the app</string>
+    <string name="settings_desc_block_autofill_android">This feature requires an Android version
+        above 8.0 (Oreo)</string>
+    <string name="settings_desc_label_scroll">Прокручувати довгі позначки, замість їх обрізання</string>
+    <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
+    <string name="settings_desc_search_includes">Specify which values should be included when searching</string>
+    <string name="settings_desc_label_highlight_token">Highlights token in red if it\'s expiring in 8 seconds</string>
+    <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
+    <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
+        This can slow down the app, only enable if really necessary.</string>
+    <string name="settings_desc_backup_append_date">Додати поточну дату та час до назви запропонованого
+        файлу резервної копії</string>
+    <string name="settings_desc_backup_ask">Запитувати назву файлу при створенні або відновленні резервної копії</string>
+    <string name="settings_desc_backup_location">Choose a default backup location</string>
+    <string name="settings_desc_backup_location_set">Backup location has been chosen</string>
+    <string name="settings_desc_backup_password">Установити пароль, який буде використовуватись для шифрування
+        резервних копій</string>
+    <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
+        entries are added, or edited, if settings conditions are met</string>
+    <string name="settings_desc_auto_backup_requirements">Set a default backup location and a
+        backup password to enable this option</string>
+    <string name="settings_desc_backup_broadcasts">Виберіть типи резервних копій, які можуть бути збережені сторонніми додатками для створення резервних копій</string>
+    <string name="settings_desc_openpgp_key_encrypt">Адреса електронної пошти для ключа OpenPGP, який буде використовуватись для шифрування
+        резервних копій</string>
+    <string name="settings_desc_openpgp_verify">Зашифровані резервні копії можна імпортувати лише тоді, коли вони
+        підписані дійсним ключем</string>
+    <string name="settings_desc_special_features">Натисніть на позначку, щоб вимкнути спеціальні можливості</string>
+    <string name="settings_desc_enable_screenshot">Дозволити робити знімки екрану
+        (з міркувань безпеки - вимкнено, за змовчуванням)</string>
+    <string name="settings_desc_enable_android_backup_service">Дозволити andOTP використовувати вбудовану в Android
+        службу для створення резервних копій ключів та налаштувань</string>
+    <string name="settings_desc_clear_keystore">Видалити ключ шифрування з KeyStore</string>
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_not_secure">Ця функція вимагає налаштування безпеки блокування екрана
+        Щоб налаштувати безпеку блокування екрана (Налаштування -&gt; Безпека -&gt; Екран блокування)</string>
+    <string name="settings_toast_password_empty">Пустий пароль не дозволений, для того, щоб вимкнути пароль,
+        Вам необхідно вимкнути автентифікацію!</string>
+    <string name="settings_toast_encryption_changing">Зміна типу шифрування бази даних
+        будь ласка, зачекайте!</string>
+    <string name="settings_toast_encryption_change_success">Зміна типу шифрування бази даних
+        завершилася успішно!</string>
+    <string name="settings_toast_encryption_change_failed">Зміна типу шифрування бази даних завершилась невдало,
+        відкочування до попереднього стану!</string>
+    <string name="settings_toast_encryption_backup_failed">Створення внутрішньої резервної копії завершилося невдало,
+        скасування змін!</string>
+    <string name="settings_toast_encryption_no_key">Процес отримання ключа шифрування завершився невдало, скасування змін!</string>
+    <string name="settings_toast_encryption_auth_failed">Помилка автентифікації!</string>
+    <string name="settings_toast_auth_upgrade_failed">Автоматичне оновлення Вашого паролю / PIN-коду
+        до нового типу шифрування завершилося невдало. Будь ласка, скиньте його вручну у Налаштуваннях!</string>
+    <string name="settings_dialog_title_warning">Попередження</string>
+    <string name="settings_dialog_title_error">Помилка</string>
+    <string name="settings_dialog_title_clear_keystore">Очистити KeyStore?</string>
+    <string name="settings_dialog_title_android_sync">Синхронізація Android</string>
+    <string name="settings_dialog_msg_encryption_change">Зараз andOTP спробує змінити тип шифрування
+        бази даних. У випадку невдачі - внутрішня резервна копія бази даних з її типом шифрування буде         
+        відновлена.\n\n<b>Проте, завжди потрібно мати резервну копію, якщо станеться 
+        щось кепське!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">Ви можете використовувати пароль або PIN-код тільки тоді, коли
+        для шифрування бази даних встановлено значення \"Пароль / PIN-код\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">Спочатку необхідно встановити 
+        автентифікацію по \"Пароль\" або \"PIN-код\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">Щоб змінити тип шифрування,
+        спочатку необхідно встановити пароль або PIN-код!</string>
+    <string name="settings_dialog_msg_clear_keystore_password">У деяких випадках, очищення KeyStore
+        може бути розв\'язком проблеми. Переходьте до очищення KeyStore лише в тому випадку, якщо Ви розумієте, що робите!\n\nОскільки
+        <b>база даних зашифрована</b> за допомогою <b>паролю / PIN-коду</b>, то Ви не втратите дані Ваших облікових записів
+        (у будь-якому випадку, не буде лишнім мати резервну копію бази даних).\n\n<b>Ви впевнені в тому, що хочете
+        очистити KeyStore?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">У деяких випадках, очищення KeyStore
+        може бути розв\'язком проблеми. Переходьте до очищення KeyStore лише в тому випадку, якщо Ви розумієте, що робите!\n\n<b>Застереження</b>:
+        <b>база даних зашифрована</b> за допомогою <b>паролю / PIN-коду</b>, то Ви втратите дані усіх
+         Ваших облікових записів. Про всяк випадок, перевірте, чи є у Вас резервна копія бази даних!\n\n<b>Ви впевнені в тому, що хочете
+        очистити KeyStore?</b></string>
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">Синхронізація Android не може працювати з шифруванням
+        KeyStore, <b>Ви повинні вручну створити резервну копію даних!</b></string>
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>Відсутній</item>
+        <item>Пароль</item>
+        <item>PIN</item>
+        <item>Облікові дані пристрою</item>
+    </string-array>
+    <string-array name="settings_entries_encryption">
+        <item>Android KeyStore</item>
+        <item>Пароль / PIN</item>
+    </string-array>
+    <string-array name="settings_entries_panic">
+        <item>Видалити усі облікові записи</item>
+        <item>Скинути параметри додатку</item>
+    </string-array>
+    <string-array name="settings_entries_card_layout">
+        <item>Compact</item>
+        <item>Default</item>
+        <item>Full</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Nothing</item>
+        <item>Reveal/Hide</item>
+        <item>Copy</item>
+        <item>Copy and go to background</item>
+    </string-array>
+    <string-array name="settings_entries_search_includes">
+        <item>Label</item>
+        <item>Issuer</item>
+        <item>Tags</item>
+    </string-array>
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Off</item>
+        <item>New Entries</item>
+        <item>Any Edits</item>
+    </string-array>
+    <string-array name="settings_entries_theme">
+        <item>Світла тема</item>
+        <item>Темна тема</item>
+        <item>Чорна тема</item>
+    </string-array>
+    <string-array name="settings_entries_thumbnail_size">
+        <item>Сховати</item>
+        <item>Tiny</item>
+        <item>Small</item>
+        <item>Default</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+    <string-array name="settings_entries_split_group_size">
+        <item>Не розділяти</item>
+        <item>Після двох символів</item>
+        <item>Після трьох символів</item>
+    </string-array>
+    <string-array name="settings_entries_tag_functionality">
+        <item>Відобразити усі записи, які відповідають <b>будь-якій</b> вибраній мітці (або)</item>
+        <item>Відобразити тільки ті записи, які відповідають <b>усім</b> вибраним міткам (і)</item>
+        <item>Перемикання між мітками (одночасно дозволено вибирати тільки одну мітку)</item>
+    </string-array>
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Текстові резервні копії</item>
+        <item>Зашифровані резервні копії</item>
+    </string-array>
+    <!-- Special -->
+    <string name="settings_lang_sys_default">Налаштування за змовчуванням</string>
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">Ввести новий пароль</string>
+    <string name="settings_hint_pin">Ввести новий PIN</string>
+    <string name="settings_hint_password_confirm">Підтвердити пароль</string>
+    <string name="settings_hint_pin_confirm">Підтвердити PIN</string>
+    <string name="settings_label_short_password">Пароль повинен містити %1$d символів!</string>
+    <string name="settings_label_short_pin">ПІН-код повинен містити щонайменше %1$d цифр!</string>
+</resources>

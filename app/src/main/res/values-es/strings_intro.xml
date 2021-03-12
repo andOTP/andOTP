@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intro_slide1_title">Comencemos</string>
+    <string name="intro_slide1_desc">Bienvenido a <b>andOTP</b>, este asistente te guiará a través de
+        la configuración inicial. Por favor, presta atención y lee con detenimiento pues sino podrías perder información.
+        \n\nNo te preocupes, siempre podrás modificar la configuración en los <b>Ajustes</b>.</string>
+    <string name="intro_slide2_desc">Para asegurar la seguridad de tus cuentas <b>andOTP</b> solo las almacena
+        en ficheros cifrados. Aquí puedes elegir qué método de cifrado se usará.</string>
+    <string name="intro_slide2_desc_keystore">El almacén de claves es una herramienta de Android         que permite almacenar claves criptográficas con seguridad. La ventaja de este método es que las llaves         se almacenan apartadas de los archivos y pueden ser respaldadas con criptografía por hardware (si tienes un        dispositivo compatible). Sin embargo, ya que las claves no se almacenan en los archivos de la aplicación, &lt;b&gt;este método         no es compatible con copias de seguridad externas (como Titanium) &lt;/b&gt;. Si eliges este         método, te verás limitado a las copias de respaldo de &lt;b&gt;andOTP&lt;/b&gt;.         \n\n&lt;b&gt;Atención&lt;/b&gt;: El almacén de claves suele causar problemas, por favor, evita usarlo         a menos que realmente tengas que hacerlo. Si no te importa ingresar una contraseña / PIN cuando inicias         &lt;b&gt;andOTP&lt;/b&gt;, es &lt;b&gt;altamente recomendable que utilices la encriptación por contraseña&lt;b&gt;.</string>
+    <string name="intro_slide2_desc_password">Este método cifrará tus datos con una clave
+        generada desde una contraseña o PIN. La ventaja principal es que funcionará con
+        herramientas de copia de seguridad externas (como Titanium) y da menos problemas que el almacen de claves.
+        Aunque tendrás que introducir tus credenciales cada vez que inicies <b>andOTP</b>.</string>
+    <string name="intro_slide3_desc_keystore">Aquí configurarás un mecanismo de autenticación
+        para bloquear <b>andOTP</b>. Puesto que has elegido <b>Almacen de claves de Android</b> como método de cifrado
+        esto es opcional.</string>
+    <string name="intro_slide3_desc_password">Aquí configurarás un mecanismo de autenticación
+        para bloquear <b>andOTP</b>. Puesto que has elegido <b>Clave/PIN</b> como método de cifrado
+        necesitas establecer una clave o un PIN para continuar.</string>
+    <string name="intro_slide3_warn_no_password">Por favor, elija una contraseña para continuar.</string>
+    <string name="intro_slide3_warn_no_pin">Por favor, elija un PIN para continuar.</string>
+    <string name="intro_slide3_warn_confirm_password">Confirma tu contraseña para continuar.</string>
+    <string name="intro_slide3_warn_confirm_pin">Confirma tu PIN para continuar.</string>
+    <string name="intro_slide4_title">Finalizado</string>
+    <string name="intro_slide4_desc">Tu configuración ha sido almacenada, ¡Ya estás listo
+        para usar <b>andOTP</b>!</string>
+</resources>

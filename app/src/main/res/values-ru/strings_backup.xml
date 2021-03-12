@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="backup_activity_title">Резервные копии</string>
+    <string name="backup_category_plain">Текстовые резервные копии</string>
+    <string name="backup_category_crypt">Зашифрованные резервные копии</string>
+    <string name="backup_category_openpgp">Резервные копии с OpenPGP</string>
+    <string name="backup_title_export_plain">Резервная копия (текстовый документ)</string>
+    <string name="backup_title_export_crypt">Резервная копия (с шифрованием)</string>
+    <string name="backup_title_export_openpgp">Резервная копия (OpenPGP)</string>
+    <string name="backup_title_import_plain">Восстановление (из текстового файла)</string>
+    <string name="backup_title_import_crypt">Восстановление (зашифрованной копии)</string>
+    <string name="backup_title_import_crypt_old">Восстановление (зашифрованное, старое шифрование)</string>
+    <string name="backup_title_import_openpgp">Восстановление (OpenPGP)</string>
+    <string name="backup_title_replace">Заменить существующие записи</string>
+    <string name="backup_desc_export_plain">Резервное копирование всех учетных записей в текстовый файл JSON</string>
+    <string name="backup_desc_export_crypt">Резервное копирование всех учетных записей в защищённый паролем файл JSON</string>
+    <string name="backup_desc_export_openpgp">Резервное копирование всех учетных записей в зашифрованный OpenPGP файл JSON</string>
+    <string name="backup_desc_import_plain">Восстановление учетных записей из текстового файла JSON</string>
+    <string name="backup_desc_import_crypt">Восстановление учетных записей из защищённого паролем файла JSON</string>
+    <string name="backup_desc_import_crypt_old">Восстановление учетных записей из защищенного паролем JSON-файла,
+        созданного в версии <b>andOTP ниже 0.6.3</b></string>
+    <string name="backup_desc_import_openpgp">Восстановление учетных записей из зашифрованного OpenPGP файла JSON</string>
+    <string name="backup_desc_crypt_setup">Не удалось загрузить пароль для резервной копии из <b>Настроек</b>, 
+        это означает, что пароль не был установлен или что-то пошло не так. При создании или импорте 
+        резервной копии, Вам будет предложено ввести пароль вручную.
+    </string>
+    <string name="backup_desc_openpgp_provider">Вам нужно установить провайдера OpenPGP и включить 
+        его в <b>Настройках</b> для использования этой функции.
+    
+    </string>
+    <string name="backup_desc_openpgp_keyid">Вам нужно выбрать ключ OpenPGP в <b>Настройках</b>,
+        прежде чем создавать зашифрованные резервные копии.
+       </string>
+    <string name="backup_desc_replace">Если включено, все старые записи заменяются при импорте        резервной копии и остается только резервная копия. Если отключено, старые записи и содержимое резервной копии        объединяются.</string>
+    <!-- Dialogs -->
+    <string name="backup_dialog_title_security_warning">Предупреждение безопасности</string>
+    <string name="backup_dialog_msg_export_warning">Вы действительно хотите экспортировать базу данных как        текстовый JSON файл? Этот файл содержит все Ваши секретные ключи, пожалуйста, <b>надежно сохраните его</b>!    </string>
+    <string name="backup_receiver_title_backup_failed">Не удалось выполнить резервное копирование</string>
+    <string name="backup_receiver_title_backup_success">Резервная копия создана</string>
+    <string name="backup_receiver_plain_disabled">Текстовые резервные копии не разрешены,
+        пожалуйста, включите возможность их создания в Настройках</string>
+    <string name="backup_receiver_encrypted_disabled">Зашифрованные резервные копии не разрешены,
+        пожалуйста, включите возможность их создания в Настройках</string>
+    <string name="backup_receiver_read_permission_failed">Нет разрешения на чтение, пожалуйста, 
+        сделайте это перед началом резервного копирования</string>
+    <string name="backup_receiver_write_permission_failed">Нет разрешения на запись, пожалуйста, 
+        сделайте это перед началом резервного копирования</string>
+    <string name="backup_receiver_custom_encryption_failed">Пароль/PIN-код на основе шифрования не 
+        поддерживается со сторонними приложениями для создания резервных копий</string>
+    <!-- Notification channels -->
+    <string name="notification_channel_name_backup_failed">Автоматическое резервное копирование не удалось</string>
+    <string name="notification_channel_name_backup_success">Автоматическое резервное копирование успешно завершено</string>
+    <string name="notification_channel_desc_backup_failed">Эти уведомления отображаются, когда 
+        по какой-либо причине автоматическое резервное копирование не удалось</string>
+    <string name="notification_channel_desc_backup_success">Эти уведомления отображаются 
+        при успешном автоматическом резервном копировании</string>
+    <!-- Toast messages -->
+    <string name="backup_toast_no_location">Пожалуйста, установите в настройках место по умолчанию для резервного копирования!</string>
+    <string name="backup_toast_location_access_failed">Не удалось получить доступ к месту резервного копирования!</string>
+    <string name="backup_toast_file_creation_failed">Не удалось создать резервную копию!</string>
+    <string name="backup_toast_export_success">Экспорт на внешний носитель выполнен успешно</string>
+    <string name="backup_toast_export_failed">Экспорт на внешний носитель выполнить не удалось</string>
+    <string name="backup_toast_import_success">Импорт из внешнего носителя выполнен успешно</string>
+    <string name="backup_toast_import_save_failed">Не удалось сохранить восстановленные записи</string>
+    <string name="backup_toast_import_decryption_failed">Ошибка расшифровки резервной копии</string>
+    <string name="backup_toast_import_no_entries">Нет записей в импортированных данных</string>
+    <string name="backup_toast_storage_not_accessible">Внешний носитель в настоящее время недоступен</string>
+    <string name="backup_toast_openpgp_error">Ошибка OpenPGP: %s</string>
+    <string name="backup_toast_openpgp_not_verified">Обнаружена недействительная подпись</string>
+    <string name="backup_toast_crypt_password_not_set">Пароль не установлен, проверьте <b>Настройки</b></string>
+    <string name="backup_toast_file_selection_failed">Не удаётся открыть диалог выбора файла!</string>
+</resources>

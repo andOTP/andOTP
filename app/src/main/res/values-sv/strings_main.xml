@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Buttons -->
+    <string name="button_cancel">Avbryt</string>
+    <string name="button_enter_details">Ange detaljer</string>
+    <string name="button_scan_qr">Skanna QR-kod</string>
+    <string name="button_save">Spara</string>
+    <string name="button_new_tag">Ny tagg</string>
+    <string name="button_settings">Inställningar</string>
+    <string name="button_all_tags">Alla taggar</string>
+    <string name="button_no_tags">Inga taggar</string>
+    <string name="button_qr_from_image">QR-kod från bild</string>
+    <!-- Custom formatting -->
+    <string name="format_custom_period">%d s</string>
+    <!-- Hints -->
+    <string name="hint_label">Etikett</string>
+    <string name="hint_secret">Hemlig</string>
+    <!-- Labels -->
+    <string name="label_hidden">Dold</string>
+    <string name="label_type">Typ</string>
+    <string name="label_secret">Hemlig</string>
+    <string name="label_period">Period</string>
+    <string name="label_digits">Siffror</string>
+    <string name="label_counter">Räknare</string>
+    <string name="label_issuer">Utfärdare</string>
+    <string name="label_label">Etikett</string>
+    <string name="label_algorithm">Algoritm</string>
+    <string name="label_tags">Taggar</string>
+    <string name="label_advanced">Avancerade alternativ</string>
+    <!-- Drawer -->
+    <string name="drawer_open">Visa taggar</string>
+    <string name="drawer_close">Dölj taggar</string>
+    <!-- Menu -->
+    <string name="menu_main_about">Om</string>
+    <string name="menu_main_backup">Säkerhetskopiera</string>
+    <string name="menu_main_search">Sök</string>
+    <string name="menu_main_settings">Inställningar</string>
+    <string name="menu_main_sort">Sortera</string>
+    <string name="menu_sort_none">Osorterade</string>
+    <string name="menu_sort_issuer">Utfärdare</string>
+    <string name="menu_sort_label">Etikett</string>
+    <string name="menu_sort_last_used">Senast använda</string>
+    <string name="menu_sort_most_used">Mest använda</string>
+    <string name="menu_popup_edit">Redigera</string>
+    <string name="menu_popup_change_image">Ändra bild</string>
+    <string name="menu_popup_remove">Ta bort</string>
+    <string name="menu_popup_show_qr_code">Visa QR-kod</string>
+    <!-- Buttons -->
+    <string name="button_card_options">Fler alternativ</string>
+    <string name="button_card_options_format">Fler alternativ för %1$s</string>
+    <string name="button_card_copy">Kopiera token</string>
+    <string name="button_card_copy_format">Kopiera %1$s token</string>
+    <string name="button_add">Lägg till nytt konto</string>
+    <string name="button_close_menu">Stäng menyn</string>
+    <!-- Toast messages -->
+    <string name="toast_auth_failed">Autentisering misslyckades, vänligen försök igen!</string>
+    <string name="toast_auth_failed_fatal">Autentisering misslyckades, stänger andOTP!</string>
+    <string name="toast_copied_to_clipboard">Kopierat till urklipp</string>
+    <string name="toast_entry_exists">Denna post finns redan</string>
+    <string name="toast_invalid_qr_code">Ogiltig QR-kod</string>
+    <string name="toast_encryption_key_empty">Krypteringsnyckel lästes inte in</string>
+    <string name="toast_intent_creation_failed">Ogiltig avsiktstillhandahållen kod</string>
+    <string name="toast_intent_creation_succeeded">Avsiktstillhandahållen kod tillagd</string>
+    <string name="toast_file_load_error">Kunde inte öppna filen</string>
+    <string name="toast_qr_error">Kunde inte hitta/bekräfta QR-kod</string>
+    <string name="toast_qr_checksum_exception">Verifiering av kontrollsumma misslyckades vid avkodning av QR-kod</string>
+    <string name="toast_qr_format_error">Format fel i QR-kod</string>
+    <string name="toast_qr_unsuported">QR-kod stöds inte</string>
+    <string name="toast_qr_failed_to_generate">Misslyckades med att generera QR-kod</string>
+    <!-- Errors -->
+    <string name="error_invalid_secret">Ogiltig hemlighet</string>
+    <!-- Dialogs -->
+    <string name="dialog_title_auth">Autentisera</string>
+    <string name="dialog_title_manual_entry">Ange detaljer</string>
+    <string name="dialog_title_remove">Ta bort</string>
+    <string name="dialog_title_rename">Byt namn</string>
+    <string name="dialog_title_counter">Räknare</string>
+    <string name="dialog_title_used_tokens">Tokens användning</string>
+    <string name="dialog_title_keystore_error">KeyStore-fel</string>
+    <string name="dialog_title_qr_code">QR-kod</string>
+    <string name="dialog_title_enter_password">Ange lösenord</string>
+    <string name="dialog_label_enter_password">Ange lösenord</string>
+    <string name="dialog_label_confirm_password">Bekräfta lösenord</string>
+    <string name="dialog_msg_auth">Ange dina enhetsuppgifter för att starta andOTP.</string>
+    <string name="dialog_msg_confirm_delete">Är du säker på att du vill ta bort kontot \"%1$s\"?</string>
+    <string name="dialog_msg_used_tokens">andOTP kommer att spåra när du använder dina tokens (med hjälp av funktionen \"Tryck på
+        för att avslöja\" eller kopiera till urklipp) för att kunna sortera dem med \"Mest använda\" eller
+        \"Senast använda\".\n\nDetta meddelande kommer inte att visas igen.</string>
+    <string name="dialog_msg_keystore_error">Det gick inte att läsa in krypteringsnyckeln från KeyStore.
+        <b>Alla poster som läggs till kommer att gå förlorade.</b>\n\nFör att fortfarande kunna använda andOTP kan du gå
+        till <b>Inställningar</b> och byta <b>Databas-kryptering</b> till <b>Lösenord / PIN-kod</b>.</string>
+    <!-- Shortcuts -->
+    <string name="shortcut_name_scan_qr">Skanna QR-kod</string>
+    <string name="shortcut_name_import_qr">Importera QR kod</string>
+    <string name="shortcut_name_enter_details">Ange detaljer</string>
+</resources>

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,9 +25,16 @@ package org.shadowice.flocke.andotp.View;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.ColorFilter;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
@@ -38,6 +45,7 @@ import android.widget.TextView;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
@@ -52,24 +60,24 @@ import static org.shadowice.flocke.andotp.Activities.MainActivity.animatorDurati
 
 public class EntryViewHolder extends RecyclerView.ViewHolder
         implements ItemTouchHelperViewHolder {
-    private Context context;
+    private final Context context;
     private Callback callback;
     private boolean tapToReveal;
 
-    private CardView card;
-    private LinearLayout valueLayout;
-    private LinearLayout coverLayout;
-    private LinearLayout counterLayout;
-    private FrameLayout thumbnailFrame;
-    private ImageView visibleImg;
-    private ImageView thumbnailImg;
-    private TextView value;
-    private TextView issuer;
-    private TextView label;
-    private TextView separator;
-    private TextView counter;
-    private TextView tags;
-    private MaterialProgressBar progressBar;
+    private final CardView card;
+    private final LinearLayout valueLayout;
+    private final LinearLayout coverLayout;
+    private final LinearLayout counterLayout;
+    private final FrameLayout thumbnailFrame;
+    private final ImageView visibleImg;
+    private final ImageView thumbnailImg;
+    private final ImageButton menuButton;
+    private final ImageButton copyButton;
+    private final TextView value;
+    private final TextView label;
+    private final TextView counter;
+    private final TextView tags;
+    private final MaterialProgressBar progressBar;
 
     public EntryViewHolder(Context context, final View v, boolean tapToReveal) {
         super(v);
@@ -83,16 +91,14 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         thumbnailFrame = v.findViewById(R.id.thumbnailFrame);
         thumbnailImg = v.findViewById(R.id.thumbnailImg);
         coverLayout = v.findViewById(R.id.coverLayout);
-        issuer = v.findViewById(R.id.textViewIssuer);
         label = v.findViewById(R.id.textViewLabel);
-        separator = v.findViewById(R.id.textViewSeparator);
         tags = v.findViewById(R.id.textViewTags);
         counterLayout = v.findViewById(R.id.counterLayout);
         counter = v.findViewById(R.id.counter);
         progressBar = v.findViewById(R.id.cardProgressBar);
 
-        ImageButton menuButton = v.findViewById(R.id.menuButton);
-        ImageButton copyButton = v.findViewById(R.id.copyButton);
+        menuButton = v.findViewById(R.id.menuButton);
+        copyButton = v.findViewById(R.id.copyButton);
         ImageView invisibleImg = v.findViewById(R.id.coverImg);
 
         // Style the buttons in the current theme colors
@@ -103,42 +109,62 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         visibleImg.getDrawable().setColorFilter(colorFilter);
         invisibleImg.getDrawable().setColorFilter(colorFilter);
 
-        // Setup onClickListeners
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (callback != null)
-                    callback.onMenuButtonClicked(view, getAdapterPosition());
-            }
-        });
-
-        copyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (callback != null)
-                    callback.onCopyButtonClicked(value.getTag().toString(), getAdapterPosition());
-            }
-        });
-
-        counterLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (callback != null)
-                    callback.onCounterClicked(getAdapterPosition());
-            }
-        });
-
-        counterLayout.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                if (callback != null)
-                    callback.onCounterLongPressed(getAdapterPosition());
-
-                return false;
-            }
-        });
+        setupOnClickListeners(menuButton, copyButton);
 
         setTapToReveal(tapToReveal);
+    }
+
+    private void setupOnClickListeners(ImageButton menuButton, ImageButton copyButton) {
+        menuButton.setOnClickListener(view ->
+            adapterPositionSafeCallback((callback, adapterPosition) ->
+                callback.onMenuButtonClicked(view, adapterPosition)
+            )
+        );
+
+        copyButton.setOnClickListener(view ->
+            adapterPositionSafeCallback((callback, adapterPosition) ->
+                callback.onCopyButtonClicked(value.getTag().toString(), adapterPosition)
+            )
+        );
+
+        counterLayout.setOnClickListener(view ->
+            adapterPositionSafeCallback(Callback::onCounterClicked)
+        );
+
+        counterLayout.setOnLongClickListener(view -> {
+            adapterPositionSafeCallback(Callback::onCounterLongPressed);
+            return false;
+        });
+
+        card.setOnClickListener(new SimpleDoubleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                adapterPositionSafeCallback((callback, adapterPosition) ->
+                    callback.onCardSingleClicked(adapterPosition, value.getTag().toString())
+                );
+            }
+
+            @Override
+            public void onDoubleClick(View v) {
+                adapterPositionSafeCallback((callback, adapterPosition) ->
+                    callback.onCardDoubleClicked(adapterPosition, value.getTag().toString())
+                );
+            }
+        });
+    }
+
+    @FunctionalInterface
+    private interface AdapterPositionSafeCallbackConsumer {
+        /** The specified {@link Callback} is guaranteed to be non-null, and adapterPosition is
+         * guaranteed to be a valid position. */
+        void accept(@NonNull Callback callback, int adapterPosition);
+    }
+
+    private void adapterPositionSafeCallback(AdapterPositionSafeCallbackConsumer safeCallback) {
+        int clickedPosition = getAdapterPosition();
+        if (callback != null && clickedPosition != RecyclerView.NO_POSITION) {
+            safeCallback.accept(callback, clickedPosition);
+        }
     }
 
     public void updateValues(Entry entry) {
@@ -154,26 +180,42 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         final String tokenFormatted = Tools.formatToken(entry.getCurrentOTP(), settings.getTokenSplitGroupSize());
 
         String issuerText = entry.getIssuer();
-        if (!TextUtils.isEmpty(issuerText)) {
-            issuer.setText(entry.getIssuer());
-            issuer.setVisibility(View.VISIBLE);
-        } else {
-            issuer.setVisibility(View.GONE);
-        }
-
         String labelText = entry.getLabel();
-        if (!TextUtils.isEmpty(labelText)) {
-            label.setText(entry.getLabel());
-            label.setVisibility(View.VISIBLE);
-        } else {
-            label.setVisibility(View.GONE);
+
+        String contentHint = "";
+
+        SpannableStringBuilder labelBuilder = new SpannableStringBuilder();
+
+        if (!TextUtils.isEmpty(issuerText) && !settings.isHideIssuerEnabled()) {
+            labelBuilder.append(issuerText);
+
+            labelBuilder.setSpan(new StyleSpan(Typeface.BOLD), 0, issuerText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            contentHint = issuerText;
         }
 
-        if (! issuerText.isEmpty() && ! labelText.isEmpty()) {
-            separator.setVisibility(View.VISIBLE);
-        } else {
-            separator.setVisibility(View.GONE);
+        if (!TextUtils.isEmpty(issuerText) && !TextUtils.isEmpty(labelText) && !settings.isHideIssuerEnabled()) {
+            String separatorText = "\u00a0-\u00a0"; // \u00a0 = non-breaking space
+
+            if (settings.getCardLayout() == Constants.CardLayouts.FULL)
+                separatorText = "\n";
+
+            labelBuilder.append(separatorText);
+
+            contentHint = issuerText + " - " + labelText;
         }
+
+        if (!TextUtils.isEmpty(labelText)) {
+            labelBuilder.append(labelText);
+
+            if (TextUtils.isEmpty(issuerText) || settings.isHideIssuerEnabled())
+                contentHint = labelText;
+        }
+
+        label.setText(labelBuilder);
+
+        copyButton.setContentDescription(context.getString(R.string.button_card_copy_format, contentHint));
+        menuButton.setContentDescription(context.getString(R.string.button_card_options_format, contentHint));
 
         value.setText(tokenFormatted);
         // save the unformatted token to the tag of this TextView for copy/paste
@@ -198,9 +240,13 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             thumbnailImg.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, entry.getIssuer(), entry.getLabel(), thumbnailSize, entry.getThumbnail()));
         }
 
-        if (entry.isTimeBased() && entry.hasNonDefaultPeriod()) {
-            progressBar.setVisibility(View.VISIBLE);
-            updateProgress(entry);
+        if (entry.isTimeBased() && (entry.hasNonDefaultPeriod() || settings.isShowIndividualTimeoutsEnabled())) {
+            if (!this.tapToReveal || entry.isVisible()) {
+                progressBar.setVisibility(View.VISIBLE);
+                updateProgress(entry);
+            } else {
+                progressBar.setVisibility(View.INVISIBLE);
+            }
         } else {
             progressBar.setVisibility(View.GONE);
         }
@@ -241,15 +287,26 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         thumbnailImg.requestLayout();
     }
 
-    public void setLabelScroll(boolean active) {
-        if (active) {
-            label.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-            label.setHorizontallyScrolling(true);
-            label.setSelected(true);
-        } else {
-            label.setEllipsize(TextUtils.TruncateAt.END);
-            label.setHorizontallyScrolling(false);
-            label.setSelected(false);
+    public void setLabelScroll(Constants.LabelDisplay labelDisplay, Constants.CardLayouts cardLayout) {
+        switch (labelDisplay) {
+            case TRUNCATE:
+                label.setEllipsize(TextUtils.TruncateAt.END);
+                label.setHorizontallyScrolling(false);
+                label.setSelected(false);
+                label.setMaxLines(cardLayout == Constants.CardLayouts.FULL ? 2 : 1);
+                break;
+            case SCROLL:
+                label.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                label.setHorizontallyScrolling(true);
+                label.setSelected(true);
+                label.setMaxLines(cardLayout == Constants.CardLayouts.FULL ? 2 : 1);
+                break;
+            case MULTILINE:
+                label.setEllipsize(null);
+                label.setHorizontallyScrolling(false);
+                label.setSelected(false);
+                label.setMaxLines(10);
+                break;
         }
     }
 
@@ -260,19 +317,10 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             valueLayout.setVisibility(View.GONE);
             coverLayout.setVisibility(View.VISIBLE);
             visibleImg.setVisibility(View.VISIBLE);
-
-            card.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    callback.onCardClicked(getAdapterPosition());
-                }
-            });
         } else {
             valueLayout.setVisibility(View.VISIBLE);
             coverLayout.setVisibility(View.GONE);
             visibleImg.setVisibility(View.GONE);
-
-            card.setOnClickListener(null);
         }
     }
 
@@ -280,12 +328,14 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     public void onItemSelected() {
         if (callback != null)
             callback.onMoveEventStart();
+        card.setAlpha(0.5f);
     }
 
     @Override
     public void onItemClear() {
         if (callback != null)
             callback.onMoveEventStop();
+        card.setAlpha(1f);
     }
 
     public void setCallback(Callback cb) {
@@ -299,7 +349,8 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         void onMenuButtonClicked(View parentView, int position);
         void onCopyButtonClicked(String text, int position);
 
-        void onCardClicked(int position);
+        void onCardSingleClicked(int position, String text);
+        void onCardDoubleClicked(int position, String text);
 
         void onCounterClicked(int position);
         void onCounterLongPressed(int position);

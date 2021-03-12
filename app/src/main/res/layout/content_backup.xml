@@ -1,223 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:overScrollMode="never"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/activity_margin"
-            android:paddingEnd="@dimen/activity_margin"
-            android:paddingTop="@dimen/activity_margin"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            android:text="@string/backup_category_plain" />
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/activity_margin"
+        android:layout_marginTop="@dimen/activity_margin_large"
+        android:gravity="center_horizontal">
 
         <LinearLayout
-            android:id="@+id/button_backup_plain"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_margin"
-            android:background="?android:attr/selectableItemBackground" >
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceListItem"
-                android:text="@string/backup_title_export_plain" />
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.TextView.SpinnerItem"
+                android:text="@string/backup_label_type"/>
 
-            <TextView
+            <Spinner
+                android:id="@+id/backupType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/backup_desc_export_plain"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/button_restore_plain"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_margin"
-            android:background="?android:attr/selectableItemBackground" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceListItem"
-                android:text="@string/backup_title_import_plain" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/backup_desc_import_plain"/>
+                android:entries="@array/backup_list_type_names" />
 
         </LinearLayout>
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/backupLabel"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/activity_margin"
-            android:paddingEnd="@dimen/activity_margin"
-            android:paddingTop="@dimen/activity_margin"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            android:text="@string/backup_category_crypt" />
+            android:layout_marginTop="@dimen/activity_margin"
+            android:padding="@dimen/activity_margin"
+            android:text="@string/backup_label_warning_plain"/>
 
         <TextView
-            android:id="@+id/msg_crypt_setup"
-            android:layout_width="match_parent"
+            android:id="@+id/backupErrorLabel"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/activity_margin"
-            android:visibility="gone"
-            android:text="@string/backup_desc_crypt_setup"/>
+            android:textColor="?attr/colorExpiring"
+            android:text="@string/backup_desc_openpgp_provider"
+            android:visibility="gone"/>
 
-        <LinearLayout
-            android:id="@+id/button_backup_crypt"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/buttonBackup"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/activity_margin"
-            android:background="?android:attr/selectableItemBackground" >
+            android:text="@string/backup_button_backup"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceListItem"
-                android:text="@string/backup_title_export_crypt" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/backup_desc_export_crypt"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/button_restore_crypt"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/progressBarBackup"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/activity_margin"
-            android:background="?android:attr/selectableItemBackground" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceListItem"
-                android:text="@string/backup_title_import_crypt" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/backup_desc_import_crypt"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/button_restore_crypt_old"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_margin"
-            android:background="?android:attr/selectableItemBackground" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceListItem"
-                android:text="@string/backup_title_import_crypt_old" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/backup_desc_import_crypt_old"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/activity_margin"
-            android:paddingEnd="@dimen/activity_margin"
-            android:paddingTop="@dimen/activity_margin"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            android:text="@string/backup_category_openpgp" />
-
-        <TextView
-            android:id="@+id/msg_openpgp_setup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_margin"
-            android:visibility="gone"
-            android:text="@string/backup_desc_openpgp_provider"/>
-
-        <LinearLayout
-            android:id="@+id/button_backup_openpgp"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_margin"
-            android:background="?android:attr/selectableItemBackground" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceListItem"
-                android:text="@string/backup_title_export_openpgp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/backup_desc_export_openpgp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/button_restore_openpgp"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_margin"
-            android:background="?android:attr/selectableItemBackground" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceListItem"
-                android:text="@string/backup_title_import_openpgp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/backup_desc_import_openpgp"/>
-
-        </LinearLayout>
+            android:layout_marginTop="@dimen/activity_margin"
+            android:indeterminate="true"
+            style="?android:attr/progressBarStyle"
+            android:visibility="gone"/>
 
         <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin"
+            android:layout_marginTop="@dimen/activity_margin_large"
+            android:layout_marginBottom="@dimen/activity_margin"
             android:padding="@dimen/activity_margin"
             android:background="?android:attr/selectableItemBackground" >
 
@@ -242,7 +98,7 @@
 
             </LinearLayout>
 
-            <Switch
+            <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/backup_replace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -252,5 +108,30 @@
 
         </RelativeLayout>
 
+        <CheckBox
+            android:id="@+id/restoreOldCrypt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/activity_margin"
+            android:layout_marginBottom="@dimen/activity_margin"
+            android:text="@string/backup_check_restore_old"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/buttonRestore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/backup_button_restore" />
+
+        <ProgressBar
+            android:id="@+id/progressBarRestore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin"
+            android:indeterminate="true"
+            style="?android:attr/progressBarStyle"
+            android:visibility="gone"/>
+
     </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+
+</androidx.core.widget.NestedScrollView>

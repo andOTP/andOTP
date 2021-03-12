@@ -6,8 +6,7 @@
     android:installLocation="auto"
     package="org.shadowice.flocke.andotp">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" /> <!-- Needed to support SDK below 24, see build.gradle -->
 
     <application
         android:allowBackup="true"
@@ -36,6 +35,7 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="org.shadowice.flocke.andotp.intent.SCAN_QR" />
+                <action android:name="org.shadowice.flocke.andotp.intent.IMPORT_QR" />
                 <action android:name="org.shadowice.flocke.andotp.intent.ENTER_DETAILS" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

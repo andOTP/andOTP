@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_activity_title">Uwierzytelnianie</string>
+    <!-- Hints -->
+    <string name="auth_hint_password">Hasło</string>
+    <string name="auth_hint_pin">Kod PIN</string>
+    <!-- Messages -->
+    <string name="auth_msg_authenticate">Uwierzytelnij się, aby uruchomić andOTP.</string>
+    <string name="auth_msg_confirm_encryption">Potwierdź uwierzytelnienie, aby wygenerować
+        klucz szyfrujący!</string>
+    <!-- Buttons -->
+    <string name="auth_button_unlock">Odblokuj</string>
+    <!-- Toast messages -->
+    <string name="auth_toast_password_missing">Ustaw hasło w <b>Ustawieniach</b>!</string>
+    <string name="auth_toast_pin_missing">Ustaw kod PIN w <b>Ustawieniach</b>!</string>
+    <string name="auth_toast_password_again">Błędne hasło, spróbuj ponownie!</string>
+    <string name="auth_toast_pin_again">Zły kod PIN, spróbuj ponownie!</string>
+</resources>

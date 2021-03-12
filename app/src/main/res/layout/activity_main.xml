@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     tools:context="org.shadowice.flocke.andotp.Activities.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content">
 
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -43,7 +43,7 @@
 
         </RelativeLayout>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
         android:id="@+id/main_content"
@@ -51,12 +51,12 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
-        <android.support.v4.widget.DrawerLayout
+        <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cardList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -66,10 +66,22 @@
                 android:paddingTop="@dimen/activity_margin_xsmall"
                 android:paddingBottom="@dimen/fab_recyclerview_padding"
                 android:clipToPadding="false" />
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/activity_margin_large"
+                android:paddingEnd="@dimen/activity_margin_large"
+                android:clipToPadding="false"
+                android:text="@string/empty_list_view_text"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                tools:visibility="visible"
+                android:visibility="gone"
+                android:id="@+id/emptyListView"/>
             <include layout="@layout/component_tags" />
 
-        </android.support.v4.widget.DrawerLayout>
+        </androidx.drawerlayout.widget.DrawerLayout>
 
     </RelativeLayout>
 
@@ -86,4 +98,4 @@
         app:sdMainFabClosedSrc="@drawable/ic_add_white"
         app:sdOverlayLayout="@id/speedDialOverlay" />
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

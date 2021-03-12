@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Buttons -->
+    <string name="button_cancel">Zrušit</string>
+    <string name="button_enter_details">Zadat detaily</string>
+    <string name="button_scan_qr">Načíst QR kód</string>
+    <string name="button_save">Uložit</string>
+    <string name="button_new_tag">Nový štítek</string>
+    <string name="button_settings">Nastavení</string>
+    <string name="button_all_tags">Všechny štítky</string>
+    <string name="button_no_tags">Bez štítku</string>
+    <string name="button_qr_from_image">QR kód z obrázku</string>
+    <!-- Custom formatting -->
+    <string name="format_custom_period">%d s</string>
+    <!-- Hints -->
+    <string name="hint_label">Popis</string>
+    <string name="hint_secret">Klíč</string>
+    <!-- Labels -->
+    <string name="label_hidden">Skryté</string>
+    <string name="label_type">Druh</string>
+    <string name="label_secret">Klíč</string>
+    <string name="label_period">Interval</string>
+    <string name="label_digits">Číslice</string>
+    <string name="label_counter">Počítadlo</string>
+    <string name="label_issuer">Vydavatel</string>
+    <string name="label_label">Popis</string>
+    <string name="label_algorithm">Algoritmus</string>
+    <string name="label_tags">Štítky</string>
+    <string name="label_advanced">Pokročilé volby</string>
+    <!-- Drawer -->
+    <string name="drawer_open">Zobrazit štítky</string>
+    <string name="drawer_close">Skrýt štítky</string>
+    <!-- Menu -->
+    <string name="menu_main_about">O aplikaci</string>
+    <string name="menu_main_backup">Zálohování</string>
+    <string name="menu_main_search">Hledat</string>
+    <string name="menu_main_settings">Nastavení</string>
+    <string name="menu_main_sort">Řazení</string>
+    <string name="menu_sort_none">Neřadit</string>
+    <string name="menu_sort_issuer">Vydavatel</string>
+    <string name="menu_sort_label">Popis</string>
+    <string name="menu_sort_last_used">Naposledy použité</string>
+    <string name="menu_sort_most_used">Nejpoužívanější</string>
+    <string name="menu_popup_edit">Upravit</string>
+    <string name="menu_popup_change_image">Změnit obrázek</string>
+    <string name="menu_popup_remove">Smazat</string>
+    <string name="menu_popup_show_qr_code">Ukaž QR kód</string>
+    <!-- Buttons -->
+    <string name="button_card_options">Další volby</string>
+    <string name="button_card_options_format">Další volby pro %1$s</string>
+    <string name="button_card_copy">Kopírovat token</string>
+    <string name="button_card_copy_format">Kopírovat %1$s token</string>
+    <string name="button_add">Přidat nový účet</string>
+    <string name="button_close_menu">Zavřít nabídku</string>
+    <!-- Toast messages -->
+    <string name="toast_auth_failed">Chyba ověření, zkuste to prosím znovu!</string>
+    <string name="toast_auth_failed_fatal">Ověření se nezdařilo, zavírám andOTP!</string>
+    <string name="toast_copied_to_clipboard">Zkopírováno do schránky</string>
+    <string name="toast_entry_exists">Tento záznam již existuje</string>
+    <string name="toast_invalid_qr_code">Neplatný QR kód</string>
+    <string name="toast_encryption_key_empty">Šifrovací klíč nenačten</string>
+    <string name="toast_intent_creation_failed">Aplikace předala neplatný kód</string>
+    <string name="toast_intent_creation_succeeded">Aplikací předaný kód byl přidán</string>
+    <string name="toast_file_load_error">Nelze otevřít soubor</string>
+    <string name="toast_qr_error">Nelze najít/potvrdit QR kód</string>
+    <string name="toast_qr_checksum_exception">Ověření kontrolního součtu se nezdařilo při dekódování QR kódu</string>
+    <string name="toast_qr_format_error">Chyba formátu v QR kódu</string>
+    <string name="toast_qr_unsuported">QR kód není podporován</string>
+    <string name="toast_qr_failed_to_generate">Generování QR kódu se nezdařilo</string>
+    <!-- Errors -->
+    <string name="error_invalid_secret">Neplatný klíč</string>
+    <!-- Dialogs -->
+    <string name="dialog_title_auth">Ověřit</string>
+    <string name="dialog_title_manual_entry">Zadat detaily</string>
+    <string name="dialog_title_remove">Smazat</string>
+    <string name="dialog_title_rename">Přejmenování</string>
+    <string name="dialog_title_counter">Počítadlo</string>
+    <string name="dialog_title_used_tokens">Využití tokenů</string>
+    <string name="dialog_title_keystore_error">Chyba úložiště klíčů</string>
+    <string name="dialog_title_qr_code">QR kód</string>
+    <string name="dialog_title_enter_password">Zadejte heslo</string>
+    <string name="dialog_label_enter_password">Zadejte heslo</string>
+    <string name="dialog_label_confirm_password">Potvrďte heslo</string>
+    <string name="dialog_msg_auth">Prosím zadejte heslo zařízení ke spuštění andOTP.</string>
+    <string name="dialog_msg_confirm_delete">Jste si jistí, že chcete odebrat účet \"%1$s\"?</string>
+    <string name="dialog_msg_used_tokens">andOTP bude sledovat, když použijete své tokeny (pomocí funkce \"Klepněte
+        pro odhalení\" nebo je zkopírujete do schránky), abyste je mohli řadit podle \"Nejčastěji používaných\" nebo
+        \"Naposledy použito\".\n\nTato zpráva nebude znovu zobrazena.</string>
+    <string name="dialog_msg_keystore_error">Nepodařilo se načíst šifrovací klíč z KeyStore.
+         <b>Veškeré přidané položky budou ztraceny.</b> \n\nPro zajištění použitelnosti andOTP v <b>Nastavení</b> přepněte <b>Šifrování databáze</b> na <b>heslo / PIN</b>.</string>
+    <!-- Shortcuts -->
+    <string name="shortcut_name_scan_qr">Načíst QR kód</string>
+    <string name="shortcut_name_import_qr">Importovat QR kód</string>
+    <string name="shortcut_name_enter_details">Ruční zadání</string>
+</resources>

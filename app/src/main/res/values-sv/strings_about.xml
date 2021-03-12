@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">Om</string>
+    <string name="about_description">Tvåfaktorsautentisering för Android med öppen källkod</string>
+    <string name="about_tab_about">Om</string>
+    <string name="about_tab_libraries">Bibliotek</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">Uppdateringslog</string>
+    <string name="about_label_license">Licens</string>
+    <string name="about_label_MIT">MIT Licens</string>
+    <string name="about_label_source">Källkod</string>
+    <string name="about_label_version">Version</string>
+    <string name="about_label_faq">FAQ</string>
+    <string name="about_label_faq_long">Vanliga frågor</string>
+    <!-- Authors -->
+    <string name="about_title_authors">Upphovsmän</string>
+    <string name="about_label_main_developer">Huvudsaklig utvecklare</string>
+    <string name="about_label_developer">Utvecklare</string>
+    <string name="about_label_original_author">Upphovsman till den ursprungliga appen</string>
+    <string name="about_label_original_app">Ursprunglig App</string>
+    <string name="about_label_website">Webbplats</string>
+    <string name="about_label_donate">Donera</string>
+    <string name="about_label_contributors">Bidragsgivare</string>
+    <string name="about_label_translators">Översättare</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">Miniatyrbilds-ansvarsfriskrivning</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Alla miniatyrbilder är varumärken som tillhör deras
+        respektive ägare.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> Användningen av dessa varumärken indikerar
+        inte godkännande av varumärkesinnehavaren av andOTP, eller vice versa.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Miniatyrbilder bör endast användas för att
+        representera det företag eller den produkt som de hänvisar till.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Använd inte miniatyrbilder för något
+        ändamål förutom att representera det specifika varumärket eller tjänsten.</b></string>
+    <!-- Support -->
+    <string name="about_title_support">Stöd utvecklingen</string>
+    <string name="about_desc_support">Ta reda på hur du kan stödja utvecklingen av andOTP</string>
+    <string name="about_title_special_features">Specialfunktioner</string>
+    <string name="about_dialog_special_features">Är du säker på att du vill aktivera de speciella
+        funktionerna? De flesta av dem är icke-standardiserade OTP-algoritmer som implementerades på speciella
+        förfrågningar. De stöds <b>inte officiellt</b> och kan komma med <b>vissa
+        begränsningar</b>, var god och läs (och förstå) sidan \"Specialfunktioner\" i Github-
+        wiki för att lära dig mer innan du använder dem.</string>
+    <string name="about_toast_special_features">Speciella funktioner aktiverade</string>
+    <string name="about_toast_special_features_enabled">Specialfunktioner som redan aktiverats</string>
+    <string name="about_toast_copied_to_clipboard">Donationslänk kopierad till urklipp</string>
+</resources>

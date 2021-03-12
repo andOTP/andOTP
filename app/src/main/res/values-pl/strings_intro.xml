@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intro_slide1_title">Zaczynajmy</string>
+    <string name="intro_slide1_desc">Witaj w <b>andOTP</b>. Ten kreator przeprowadzi Cię przez wstępną konfigurację. Zapoznaj się dokładnie z informacjami zawartymi na następnych stronach, w przeciwnym razie istnieje ryzyko utraty danych!\n\nNie martw się, wszystkie opcje będzie można później zmienić w <b>Ustawieniach</b>.</string>
+    <string name="intro_slide2_desc">Aby zapewnić bezpieczeństwo Twoim danym andOTP przechowuje je tylko w zaszyfrowanych plikach. Tutaj możesz wybrać, która metoda szyfrowania będzie użyta.</string>
+    <string name="intro_slide2_desc_keystore">KeyStore jest systemowym komponentem Androida, który służy do bezpiecznego przechowywania kluczy kryptograficznych. Zaletą używania KeyStore jest to, że klucze przechowywane są oddzielnie od danych i mogą – jeśli twoje urządzenie jest kompatybilne – być zabezpieczone sprzętowo. Ponieważ klucze nie są przechowywane wraz z danymi aplikacji, <b>metoda ta uniemożliwia tworzenie kopii zapasowych przy pomocy zewnętrznych aplikacji (np. Titanium Backup)</b>. Jeśli wybierzesz tą metodę, będziesz musiał polegać na wbudowanym w andOTP narzędziu wykonywania kopii zapasowej.\n\n<b>Uwaga</b>: KeyStore może powodować wiele problemów. Używaj go tylko, jeśli musisz. Jeżeli nie masz nic przeciwko wpisywaniu hasła / kodu PIN przy każdym uruchomieniu andOTP, użyj <b>hasła</b> do zaszyfrowania danych.</string>
+    <string name="intro_slide2_desc_password">Ta metoda zaszyfruje twoje dane za pomocą klucza wygenerowanego na podstawie hasła lub kodu PIN. To rozwiązanie umożliwia tworzenie kopii zapasowych przy pomocy zewnętrznych aplikacji (np. Titanium Backup) i jest znacznie mniej podatne na usterki niż KeyStore. Przy każdym uruchomieniu andOTP będziesz musiał wprowadzić swoje poświadczenia.</string>
+    <string name="intro_slide3_desc_keystore">Tutaj możesz skonfigurować uwierzytelnianie w celu zablokowania andOTP. Ponieważ wybrano szyfrowanie za pomocą <b>Android KeyStore</b>, ta metoda jest opcjonalna.</string>
+    <string name="intro_slide3_desc_password">Tutaj możesz skonfigurować uwierzytelnianie w celu zablokowania andOTP. Ponieważ wybrano szyfrowanie za pomocą <b>hasła / kodu PIN</b>, musisz podać hasło lub kod PIN aby kontynuować.</string>
+    <string name="intro_slide3_warn_no_password">Ustaw hasło, aby kontynuować!</string>
+    <string name="intro_slide3_warn_no_pin">Ustaw kod PIN, aby kontynuować!</string>
+    <string name="intro_slide3_warn_confirm_password">Potwierdź hasło, aby kontynuować!</string>
+    <string name="intro_slide3_warn_confirm_pin">Potwierdź kod PIN, aby kontynuować!</string>
+    <string name="intro_slide4_title">Ukończono</string>
+    <string name="intro_slide4_desc">Twoje ustawienia zostały zapisane, możesz teraz 
+        korzystać z <b>andOTP</b>!</string>
+</resources>

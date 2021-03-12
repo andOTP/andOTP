@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ public class Constants {
     }
 
     public enum SortMode {
-        UNSORTED, LABEL, LAST_USED
+        UNSORTED, ISSUER, LABEL, LAST_USED, MOST_USED
     }
 
     public enum BackupType {
@@ -57,7 +57,19 @@ public class Constants {
     }
 
     public enum CardLayouts {
-        DEFAULT, FULL
+        COMPACT, DEFAULT, FULL
+    }
+
+    public enum AutoBackup {
+        OFF, NEW_ENTRIES, ALL_EDITS
+    }
+
+    public enum TapMode {
+        NOTHING, REVEAL, COPY, COPY_BACKGROUND
+    }
+
+    public enum LabelDisplay {
+        TRUNCATE, SCROLL, MULTILINE
     }
 
     // Intents (Format: A0x with A = parent Activity, x = number of the intent)
@@ -65,6 +77,7 @@ public class Constants {
     public final static int INTENT_MAIN_SETTINGS                = 101;
     public final static int INTENT_MAIN_BACKUP                  = 102;
     public final static int INTENT_MAIN_INTRO                   = 103;
+    public final static int INTENT_MAIN_QR_OPEN_IMAGE           = 104;
 
     public final static int INTENT_BACKUP_OPEN_DOCUMENT_PLAIN       = 200;
     public final static int INTENT_BACKUP_SAVE_DOCUMENT_PLAIN       = 201;
@@ -77,15 +90,7 @@ public class Constants {
     public final static int INTENT_BACKUP_OPEN_DOCUMENT_CRYPT_OLD   = 208;
 
     public static final int INTENT_SETTINGS_AUTHENTICATE        = 300;
-
-    // Permission requests (Format: A1x with A = parent Activity, x = number of the request)
-    public final static int PERMISSIONS_BACKUP_READ_IMPORT_PLAIN        = 210;
-    public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_PLAIN       = 211;
-    public final static int PERMISSIONS_BACKUP_READ_IMPORT_CRYPT        = 212;
-    public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_CRYPT       = 213;
-    public final static int PERMISSIONS_BACKUP_READ_IMPORT_PGP          = 214;
-    public final static int PERMISSIONS_BACKUP_WRITE_EXPORT_PGP         = 215;
-    public final static int PERMISSIONS_BACKUP_READ_IMPORT_CRYPT_OLD    = 216;
+    public static final int INTENT_SETTINGS_BACKUP_LOCATION     = 301;
 
     // Intent extras
     public final static String EXTRA_AUTH_PASSWORD_KEY              = "password_key";
@@ -93,6 +98,8 @@ public class Constants {
     public final static String EXTRA_AUTH_MESSAGE                   = "message";
 
     public final static String EXTRA_BACKUP_ENCRYPTION_KEY          = "encryption_key";
+
+    public final static String EXTRA_INTRO_FINISHED                 = "setup_finished";
 
     public final static String EXTRA_SETTINGS_ENCRYPTION_CHANGED    = "encryption_changed";
     public final static String EXTRA_SETTINGS_ENCRYPTION_KEY        = "encryption_key";
@@ -106,9 +113,9 @@ public class Constants {
 
     public final static int INT_LENGTH = 4;
 
-    final static int PBKDF2_MIN_ITERATIONS      = 1000;
-    final static int PBKDF2_MAX_ITERATIONS      = 5000;
-    final static int PBKDF2_DEFAULT_ITERATIONS  = 1000;
+    final static int PBKDF2_MIN_ITERATIONS      = 140000;
+    final static int PBKDF2_MAX_ITERATIONS      = 160000;
+    final static int PBKDF2_DEFAULT_ITERATIONS  = 150000;
     final static int PBKDF2_LENGTH              = 256;      // 128-bit encryption key (Password-mode)
     final static int PBKDF2_SALT_LENGTH         = 16;
 

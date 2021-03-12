@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,13 +43,7 @@ public abstract class BaseActivity extends ThemedActivity {
     @Override
     protected void onDestroy() {
         unregisterReceiver(screenOffReceiver);
-
         super.onDestroy();
-    }
-
-    private void destroyIfNotMain() {
-        if (getClass() != MainActivity.class)
-            finish();
     }
 
     public void setBroadcastCallback(BroadcastReceivedCallback cb) {
@@ -62,12 +56,18 @@ public abstract class BaseActivity extends ThemedActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
-                if (broadcastReceivedCallback != null)
+                if (broadcastReceivedCallback != null) {
                     broadcastReceivedCallback.onReceivedScreenOff();
-
-                destroyIfNotMain();
+                }
+                if (shouldDestroyOnScreenOff()) {
+                    finish();
+                }
             }
         }
+    }
+
+    protected boolean shouldDestroyOnScreenOff() {
+        return true;
     }
 
     interface BroadcastReceivedCallback {

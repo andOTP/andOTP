@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="backup_activity_title">Còpies de seguretat</string>
+    <string name="backup_category_plain">Còpies de seguretat en text net</string>
+    <string name="backup_category_crypt">Còpies de seguretat xifrades</string>
+    <string name="backup_category_openpgp">Còpies de seguretat xifrades amb OpenPGP</string>
+    <string name="backup_title_export_plain">Còpia de seguretat (text net)</string>
+    <string name="backup_title_export_crypt">Còpia de seguretat (xifrada)</string>
+    <string name="backup_title_export_openpgp">Còpia de seguretat (OpenPGP)</string>
+    <string name="backup_title_import_plain">Restaura (text net)</string>
+    <string name="backup_title_import_crypt">Restaura (xifrada)</string>
+    <string name="backup_title_import_crypt_old">Restaura (encriptat, encriptació vella)</string>
+    <string name="backup_title_import_openpgp">Restaura (OpenPGP)</string>
+    <string name="backup_title_replace">Substitueix els comptes existents</string>
+    <string name="backup_desc_export_plain">Fes una còpia de seguretat de tots els comptes en un fitxer de text net JSON</string>
+    <string name="backup_desc_export_crypt">Fes una còpia de seguretat de tots els comptes en un fitxer JSON protegit per contrasenya</string>
+    <string name="backup_desc_export_openpgp">Fes una còpia de seguretat tots els comptes en un fitxer JSON encriptat amb OpenPGP</string>
+    <string name="backup_desc_import_plain">Restaura els comptes d\'un fitxer de text net JSON</string>
+    <string name="backup_desc_import_crypt">Restaura els comptes d\'un fitxer JSON protegit amb contrasenya</string>
+    <string name="backup_desc_import_crypt_old">Restaura el conte desde un ficher JSON protegit amb contrasenya
+        creat amb <b>una versió de andOTP prévia a 0.6.3</b></string>
+    <string name="backup_desc_import_openpgp">Restaura els comptes d\'un fitxer JSON xifrat amb OpenPGP</string>
+    <string name="backup_desc_crypt_setup">No ha estat possible carregar la còpia de seguretat de la contrasenya de <b>Preferències</b>,
+        això pot ser perquè no hi ha cap contrasenya o perquè alguna cosa ha fallat. Haureu d\'escriure
+        la contrasenya manualment quan creeu o importeu una còpia de seguretat.    </string>
+    <string name="backup_desc_openpgp_provider">Cal instal·lar un programa OpenPGP i habilitar-lo
+        a <b>Preferències</b> per a fer servir aquesta característica.
+    </string>
+    <string name="backup_desc_openpgp_keyid">Cal triar una clau OpenPGP a <b>Preferències</b>
+        per a poder crear còpies xifrades.
+    </string>
+    <string name="backup_desc_replace">Si està activat les entrades antigues són substituïdes quan s\'importa una
+        còpia de seguretat i només hi queda la còpia. Si no, les entrades velles i les còpies de seguretat
+        es fusionen.</string>
+    <!-- Dialogs -->
+    <string name="backup_dialog_title_security_warning">Avís de seguretat</string>
+    <string name="backup_dialog_msg_export_warning">Realment voleu exportar la base de dades com a
+        fitxer de text net JSON? Aquest fitxer contindrà les vostres claus secretes; per favor, manteniu-lo <b>ben protegit</b>!
+    </string>
+    <string name="backup_receiver_title_backup_failed">La còpia de seguretat ha fallat</string>
+    <string name="backup_receiver_title_backup_success">S\'ha realitzat la còpia de seguretat</string>
+    <string name="backup_receiver_plain_disabled">Les còpies de seguretat en text pla no són permeses,
+        podeu activar-les a Preferències</string>
+    <string name="backup_receiver_encrypted_disabled">Les còpies de seguretat xifrades no són permeses,
+        podeu activar-les a Preferències</string>
+    <string name="backup_receiver_read_permission_failed">Read permission not granted, please do
+        this before attempting backup</string>
+    <string name="backup_receiver_write_permission_failed">Write permission not granted, please do
+        this before attempting backup</string>
+    <string name="backup_receiver_custom_encryption_failed">Password/PIN based encryption not
+        supported with broadcast backup</string>
+    <!-- Notification channels -->
+    <string name="notification_channel_name_backup_failed">La còpia de seguretat automàtica ha fallat</string>
+    <string name="notification_channel_name_backup_success">La còpia de seguretat automàtica s\'ha realitzat</string>
+    <string name="notification_channel_desc_backup_failed">Aquestes notificacions es mostres quan la
+        còpia de seguretat automàtica falla</string>
+    <string name="notification_channel_desc_backup_success">Aquests notificacions es mostren quan la
+        còpia de seguretat reïx</string>
+    <!-- Toast messages -->
+    <string name="backup_toast_no_location">Per favor, configureu la localització per defecte de les còpies de seguretat!</string>
+    <string name="backup_toast_location_access_failed">No ha estat possible accedir a la localització de les còpies de seguretat!</string>
+    <string name="backup_toast_file_creation_failed">No ha estat possible crear el fitxer de còpia de seguretat!</string>
+    <string name="backup_toast_export_success">Exportació a l\'emmagatzematge extern correcta</string>
+    <string name="backup_toast_export_failed">L\'exportació a emmagatzematge extern ha fallat</string>
+    <string name="backup_toast_import_success">Importació des de l\'emmagatzematge extern correcta</string>
+    <string name="backup_toast_import_save_failed">No s\'han pogut desar les entrades restaurades</string>
+    <string name="backup_toast_import_decryption_failed">El desxifratge de la còpia ha fallat</string>
+    <string name="backup_toast_import_no_entries">No s\'han trobat cap entrada en les dades importades</string>
+    <string name="backup_toast_storage_not_accessible">L\'emmagatzematge extern no és accessible actualment</string>
+    <string name="backup_toast_openpgp_error">Error OpenPGP: %s</string>
+    <string name="backup_toast_openpgp_not_verified">No s\'ha detectat cap signatura verificada</string>
+    <string name="backup_toast_crypt_password_not_set">No hi ha cap contrasenya establerta, comproveu les <b>Preferències</b></string>
+    <string name="backup_toast_file_selection_failed">No ha estat possible obrir el diàleg de seleccio de fitxers!</string>
+</resources>

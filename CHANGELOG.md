@@ -1,5 +1,85 @@
 # Changelog
 
+#### v0.8.0
+
+ * New feature: **Storage Access Framework** (remove all manual storage permissions and use the SAF everywhere)
+ * New feature: New setting to block autofill access to important fields (Issue #493)
+ * Improvement: Improve some English strings (Issue #149, PR #571 and #576 by @jsoberg)
+ * Improvement: Don't automatically backup when updating last used or when moving cards
+ * Improvement: Enable the "append date to backups" option by default
+ * Improvement: Strip issuer from the label when adding via URL/QR code (Issue #551, PR #560 by @shivasheeshyadav)
+ * Improvement: Remove the "new backup format warning" (has been there long enough)
+ * Improvement: Show requirements for auto backups in the settings (Issue #492)
+ * Improvement: Fix some accessibility issues (Issue #498)
+ * Improvement: Toggle show/hide of a password confirmation field together with the password field (Issue #638, PR #641 by @jsoberg)
+ * Improvement: Decoding of secrets with an invalid Base32 encoding (Issue #600)
+ * Bug fix: Make the automatic thumbnail selection case insensitive (Issue #564)
+ * Bug fix: Validate Integer input for counter, digits and period (Issue #569, PR #570 by @jsoberg)
+ * Bug fix: Visibility of the password confirmation field (Issue #580, PR #582 by @jsoberg)
+ * Bug fix: Crash when clicking on an entry multiple times (Issue #631, PR #634 by @jsoberg)
+ * Bug fix: Crash during settings changes (Issue #639, PR #640 by @jsoberg)
+ * Bug fix: Don't use regionalized language codes (Issue #567)
+ * Bug fix: Report backup failure correctly (Issue #671)
+ * Internal: Update Gradle, build tools and dependencies
+ * Internal: Min API Level set to 22 (Lollipop	5.1)
+ * Internal: Refactoring and reducing build warnings
+ * Thumbnails: Lots of new ones (thanks to all contributors)
+
+#### v0.7.1.1
+
+ * Bug fix: Fix migration of old tap-to-reveal setting
+ * Bug fix: Cache encryption key when recreating main activity
+
+#### v0.7.1
+
+ * Deprecation notice: This will be the last version to support Android versions below 5.1
+ * New feature: Show QR codes of stored accounts (PR #501 by @tilosp)
+ * New feature: Support Steam URIs (Issue #510)
+ * New feature: Move Steam out of the Special features
+ * New feature: Unify the edit dialog for entries (Issue #241)
+ * New feature: Add an option to hide the global timeout bar (Issue #166)
+ * New feature: Add an option to show individual timeout bars for all cards (Issue #166)
+ * New feature: Add options to configure single and double taps on entries (Issue #489)
+ * Improvement: Increase the iterations for the password generation to 150000
+ * Improvement: Show cards as transparent while dragging (Issue #487, PR #488 by @Ullas-Aithal)
+ * Improvement: Rewording of the last used dialog (Issue #485)
+ * Improvement: Handle the back key to close open drawers or the FAB overlay (Issue #499)
+ * Improvement: Validate secrets during manual entry (Issue #500)
+ * Bug fix: Fix some remaining issues with the intro dialog (Issue #486)
+ * Bug fix: Fix images containing gradients on API versions below 24 (Issue #539)
+ * Thumbnails: Lots of new ones (thanks to all contributors)
+ * Translations: Bulgarian (thanks to all the contributors on Crowdin)
+
+#### v0.7.0
+
+ * New feature: Generate a new HOTP token when revealing (Issue #334, PR #366 by @moritzgloeckl)
+ * New feature: Split issuer and label (Issue #258, PR #372 by @lucavallerini)
+ * New feature: Automatic thumbnail selection based on the issuer (Issue #388, PR #389 by @schwedenmut)
+ * New feature: Allow searching the tags and issuers in addition to the label (Issue #327)
+ * New feature: Turn tokens red if they are about to expire (Issue #311, PR #410 by @Ullas-Aithal)
+ * New feature: Handle otpauth:// intents from other apps (Issue #324, PR #393 by @schwedenmut)
+ * New feature: Create an encrypted backup every time the entries are changed (PR #397 and PR #421 by @RichyHBM)
+ * New feature: Different layouts for the entry cards (compact, default and full)
+ * New feature: New thumbnail size "Tiny"
+ * New feature: Block accessibility services from seeing sensitive input fields via a new settings item
+ * New feature: Import QR codes from image files (Issue #377, PR #425 by @Ullas-Aithal)
+ * New feature: Move the app to the background after copying a token (Issue #373, PR #392 by @Ullas-Aithal)
+ * New feature: Re-lock the app after a certain time of inactivity (Issue #28, PR #390 by @LizardWithHat)
+ * New feature: Re-lock when being send to the background (Issue #216)
+ * New feature: Sort tokens by "most used" (Issue #443, PR #467 by @Ullas-Aithal)
+ * Improvement: Hide the token list on screen off (Issue #264, PR #390 by @LizardWithHat)
+ * Improvement: Scale the font of the default thumbnail with its size
+ * Improvement: Do not use auto-completion for the account secret (PR #430 by @duchampdev)
+ * Improvement: Enable Android backup by default (Issue #341, PR #342 by @RichyHBM)
+ * Improvement: Remove whitespaces from manually entered secrets (Issue #253, PR #426 by @Ullas-Aithal)
+ * Improvement: Fallback method for opening backup files (based on PR #358 by @theobch)
+ * Improvement: Allow the backup directory to be set independent of the "ask for filename" setting
+ * Bug fix: Fix black navigation bar on OxygenOS devices (PR #417 by @Ullas-Aithal)
+ * Internal: Migrate to AndroidX
+ * Internal: Update Gradle and a lot of dependencies
+ * Thumbnails: Lots of new ones (thanks to all contributors)
+ * Translations: Greek, Hindi (thanks to all the contributors on Crowdin)
+
 #### v0.6.3.1
 
  * Introduce build flavors:

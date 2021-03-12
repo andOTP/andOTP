@@ -1,14 +1,14 @@
 #  andOTP -  Android OTP Authenticator
 
 [![Build Status](https://travis-ci.org/andOTP/andOTP.svg?branch=master)](https://travis-ci.org/andOTP/andOTP)
-[![Current release](https://img.shields.io/github/release/andOTP/andOTP/all.svg)](https://github.com/andOTP/andOTP/releases/download/v0.6.3.1/andOTP_v0.6.3.1.apk)
+[![Current release](https://img.shields.io/github/release/andOTP/andOTP/all.svg)](https://github.com/andOTP/andOTP/releases/download/v0.8.0/andOTP_v0.8.0.apk)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/andotp/localized.svg)](https://crowdin.com/project/andotp)
 [![Chat - Telegram](https://img.shields.io/badge/chat-Telegram-blue.svg)](https://t.me/andOTP)
 [![Chat - Matrix](https://img.shields.io/badge/chat-Matrix-blue.svg)](https://matrix.to/#/#andOTP:privacytools.io)
 
 ![andOTP](./assets/logo.png)
 
-andOTP is a two-factor authentication App for Android 4.4+.
+andOTP is a two-factor authentication App for Android 5.1+.
 
 It implements Time-based One-time Passwords (TOTP) and HMAC-Based One-Time Passwords (HOTP).
 Simply scan the QR code and login with the generated 6-digit code.
@@ -63,7 +63,7 @@ key, which renders them useless.
 
  * [OpenPGP](https://openpgp.org/): OpenPGP can be used to easily decrypt the **OpenPGP-encrypted backups** on your PC.
  * [WebDecrypt](https://flocke.shadowice.org/andOTP/decrypt/): JavaScript-based decryption of the **new password-protected backup format** in the browser ([source code](https://github.com/andOTP/WebDecrypt)).
- * [andOTP-decrypt](https://github.com/asmw/andOTP-decrypt): Python script written by @asmw to decrypt the **old password-protected backup format** on your PC.
+ * [andOTP-decrypt](https://github.com/asmw/andOTP-decrypt): Python script written by @asmw to decrypt the **old and new password-protected backup format** on your PC.
 
 ### Automatic backups:
 
@@ -78,7 +78,7 @@ Check out [this](https://github.com/andOTP/andOTP/wiki/Migration) wiki page to l
 ## Downloads:
 
 [<img height=80 alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" />](https://play.google.com/store/apps/details?id=org.shadowice.flocke.andotp)
-[<img height=80 alt="Get it on F-Droid" src="https://f-droid.org/badge/get-it-on.png" />](https://f-droid.org/packages/org.shadowice.flocke.andotp/)
+[<img height=80 alt="Get it on F-Droid" src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" />](https://f-droid.org/packages/org.shadowice.flocke.andotp/)
 [<img height=80 alt="Get it on GitHub" src="https://raw.githubusercontent.com/flocke/andOTP/master/assets/badges/get-it-on-github.png" />](https://github.com/andOTP/andOTP/releases)
 
 **Warning**: All three versions (Google Play, F-Droid and the APKs) are not compatible (not signed by the same key)!
@@ -89,7 +89,7 @@ So make sure you have a **current backup** before switching!
 
  * **Translation**: If you want to help translate andOTP into your language head over to the [Crowdin project](https://crowdin.com/project/andotp).
  * **Bug reports and feature requests**: You can report bugs and request features in the [Issue tracker](https://github.com/andOTP/andOTP/issues) on GitHub.
- * **Requesting thumbnails**: If you are missing a thumbnail you can request it by [opening an issue](https://github.com/andOTP/andOTP/issues/new).
+ * **Requesting thumbnails**: If you are missing a thumbnail you can request it by [opening a thumbnail request](https://github.com/andOTP/andOTP/issues/new/choose).
  * **Discussion and support**: 
    - [XDA thread](https://forum.xda-developers.com/android/apps-games/app-andotp-android-otp-authenticator-t3636993) (please keep off-topic to a minimum)
    - Telegram group [@andOTP](https://t.me/andOTP) (if you just want important updates you can mute the group so you only get notified about pinned messages)
@@ -133,6 +133,7 @@ If you want to show your appreciation for our work with a small donation you can
  * [OpenPGP API library](https://github.com/open-keychain/openpgp-api)
  * [VNTNumberPickerPreference](https://github.com/vanniktech/VNTNumberPickerPreference)
  * [ZXing Android Embedded](https://github.com/journeyapps/zxing-android-embedded)
+ * [Droid Sans Mono Zeromod](https://github.com/AlbertoDorado/droid-sans-mono-zeromod)
 
 #### Code examples used:
 
@@ -152,7 +153,7 @@ If you want to show your appreciation for our work with a small donation you can
 
 ## License:
 ```
-Copyright (C) 2017-2018 Jakob Nixdorf <andotp@shadowice.org>
+Copyright (C) 2017-2020 Jakob Nixdorf <andotp@shadowice.org>
 Copyright (C) 2015 Bruno Bierbaumer
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of

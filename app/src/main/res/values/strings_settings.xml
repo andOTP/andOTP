@@ -16,22 +16,35 @@
     <string name="settings_title_encryption">Database encryption</string>
     <string name="settings_title_panic">Panic Trigger</string>
     <string name="settings_title_relock_screen_off">Re-lock on screen off</string>
+    <string name="settings_title_relock_background">Re-lock when going into the background</string>
+    <string name="settings_title_auth_inactivity">Re-lock on inactivity</string>
+    <string name="settings_title_auth_inactivity_delay">Delay for inactivity re-lock</string>
+    <string name="settings_title_block_accessibility">Block accessibility services</string>
+    <string name="settings_title_block_autofill">Block autofill</string>
+    <string name="settings_title_auto_unlock_after_autofill">Unlock automatically after autofill</string>
 
     <string name="settings_title_lang">Language</string>
     <string name="settings_title_theme_mode">Theme Mode</string>
     <string name="settings_title_theme">Theme</string>
     <string name="settings_title_card_layout">Card layout</string>
     <string name="settings_title_label_size">Label font size</string>
-    <string name="settings_title_label_scroll">Scroll label</string>
+    <string name="settings_title_label_display">Label display</string>
+    <string name="settings_title_tap_single">Single-tap</string>
+    <string name="settings_title_tap_double">Double-tap</string>
     <string name="settings_title_thumbnail_size_ask">Thumbnail size</string>
     <string name="settings_title_split_group_size">Split Token with space</string>
     <string name="settings_title_tag_functionality">Tag selection behavior</string>
+    <string name="settings_title_minimize_on_copy">Minimize app after copying OTP</string>
     <string name="settings_title_search_includes">Search behavior</string>
     <string name="settings_title_label_highlight_token">Highlight expiring tokens</string>
+    <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
+    <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
+    <string name="settings_title_focus_search_on_start">Focus search on app start</string>
+    <string name="settings_title_hide_issuer">Hide Issuer</string>
 
     <string name="settings_title_backup_append_date">Append date to filename</string>
     <string name="settings_title_backup_ask">Ask for filename</string>
-    <string name="settings_title_backup_directory">Backup directory</string>
+    <string name="settings_title_backup_location">Default backup location</string>
     <string name="settings_title_backup_password">Backup password</string>
     <string name="settings_title_auto_backup_password_enc">Automatically backup on new entries</string>
 
@@ -54,22 +67,43 @@
     <string name="settings_desc_panic">Decide what happens when a Panic Trigger is received</string>
     <string name="settings_desc_relock_screen_off">Require authentication after the devices screen
         has been turned off</string>
+    <string name="settings_desc_relock_background">Require authentication after the app was sent to
+        the background (e.g. by pressing the home button)</string>
+    <string name="settings_desc_auth_inactivity">Require authentication after the device has been
+        inactive</string>
+    <string name="settings_desc_auth_inactivity_delay">Select the time (in sec) after which to
+        require reauthentication</string>
+    <string name="settings_desc_block_accessibility">Hide sensitive fields from the accessibility
+        services. <b>DO NOT enable this if you rely on the accessibility services!</b></string>
+    <string name="settings_desc_block_autofill">Block autofill services from accessing password
+        fields inside the app</string>
+    <string name="settings_desc_auto_unlock_after_autofill">Unlock if the password has been filled
+        in by autofill</string>
+    <string name="settings_desc_autofill_requires_android_o">This feature requires an Android version
+        above 8.0 (Oreo)</string>
 
-    <string name="settings_desc_label_scroll">Scroll overlong labels instead of truncating them</string>
+    <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
     <string name="settings_desc_search_includes">Specify which values should be included when searching</string>
     <string name="settings_desc_label_highlight_token">Highlights token in red if it\'s expiring in 8 seconds</string>
+    <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
+    <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
+        This can slow down the app, only enable if really necessary.</string>
+    <string name="settings_desc_focus_search_on_start">Focus the search immediately after opening the app.</string>
+    <string name="settings_desc_hide_issuer">Hides issuer label on each card</string>
 
     <string name="settings_desc_backup_append_date">Append the current date and time to the suggested
         backup filename</string>
     <string name="settings_desc_backup_ask">Ask for the filename every time a backup is created or
         restored</string>
-    <string name="settings_desc_backup_directory">Directory for the backups (filenames will depend
-        on the backup type)</string>
+    <string name="settings_desc_backup_location">Choose a default backup location</string>
+    <string name="settings_desc_backup_location_set">Backup location has been chosen</string>
     <string name="settings_desc_backup_password">Set the password that is used to encrypt the
         backups</string>
 
     <string name="settings_desc_auto_backup_password_enc">Creates a new encrypted backup when new
-        entries are added if settings conditions are met</string>
+        entries are added, or edited, if settings conditions are met</string>
+    <string name="settings_desc_auto_backup_requirements">Set a default backup location and a
+        backup password to enable this option</string>
 
     <string name="settings_desc_backup_broadcasts">Select which backup types can be triggered by
         3rd-party apps using Broadcasts</string>
@@ -87,8 +121,6 @@
     <string name="settings_desc_clear_keystore">Delete the encryption key from the KeyStore</string>
 
     <!-- Toasts -->
-    <string name="settings_toast_auth_device_pre_lollipop">This feature requires at least Android 5.0
-        (Lollipop) to work</string>
     <string name="settings_toast_auth_device_not_secure">This feature requires a secure lock screen
         to be set up (Settings -> Security -> Screenlock)</string>
 
@@ -108,6 +140,9 @@
 
     <string name="settings_toast_auth_upgrade_failed">Failed to silently upgrade your password / PIN
         to the new encryption, please manually reset it in the Settings!</string>
+
+    <string name="settings_toast_android_sync_enabled">Android sync enabled</string>
+    <string name="settings_toast_android_sync_disabled">Android sync disabled</string>
 
     <string name="settings_dialog_title_warning">Warning</string>
     <string name="settings_dialog_title_error">Error</string>
@@ -158,8 +193,16 @@
     </string-array>
 
     <string-array name="settings_entries_card_layout">
+        <item>Compact</item>
         <item>Default</item>
         <item>Full</item>
+    </string-array>
+
+    <string-array name="settings_entries_tap">
+        <item>Nothing</item>
+        <item>Reveal/Hide</item>
+        <item>Copy</item>
+        <item>Copy and go to background</item>
     </string-array>
 
     <string-array name="settings_entries_search_includes">
@@ -167,10 +210,16 @@
         <item>Issuer</item>
         <item>Tags</item>
     </string-array>
-
+  
     <string-array name="settings_entries_theme_mode">
         <item>Auto</item>
         <item>Manual</item>
+    </string-array>
+
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Off</item>
+        <item>New Entries</item>
+        <item>Any Edits</item>
     </string-array>
 
     <string-array name="settings_entries_theme">
@@ -179,8 +228,15 @@
         <item>Black theme</item>
     </string-array>
 
+    <string-array name="settings_entries_label_display">
+        <item>Truncate</item>
+        <item>Scroll</item>
+        <item>Multiple lines</item>
+    </string-array>
+
     <string-array name="settings_entries_thumbnail_size">
         <item>Hidden</item>
+        <item>Tiny</item>
         <item>Small</item>
         <item>Default</item>
         <item>Medium</item>

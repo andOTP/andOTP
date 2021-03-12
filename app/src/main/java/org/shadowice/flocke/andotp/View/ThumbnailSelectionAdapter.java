@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
- * Copyright (C) 2017-2018 Richy HBM
+ * Copyright (C) 2017-2020 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Richy HBM
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 package org.shadowice.flocke.andotp.View;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -101,6 +101,8 @@ public class ThumbnailSelectionAdapter extends BaseAdapter {
         EntryThumbnail.EntryThumbnails thumb = (EntryThumbnail.EntryThumbnails)getItem(i);
 
         imageView.setImageBitmap(EntryThumbnail.getThumbnailGraphic(context, issuer, label, thumbnailSize, thumb));
+        imageView.setContentDescription(thumb.name());
+
         return imageView;
     }
 }

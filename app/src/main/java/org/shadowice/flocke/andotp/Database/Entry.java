@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  * Copyright (C) 2015 Bruno Bierbaumer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -35,16 +35,13 @@ import org.shadowice.flocke.andotp.Utilities.TokenCalculator;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class Entry {
     public enum OTPType {
         TOTP, HOTP, STEAM
     }
-    public static Set<OTPType> PublicTypes = EnumSet.of(OTPType.TOTP, OTPType.HOTP);
 
     private static final OTPType DEFAULT_TYPE = OTPType.TOTP;
     private static final int DEFAULT_PERIOD = 30;
@@ -60,6 +57,7 @@ public class Entry {
     private static final String JSON_TAGS = "tags";
     private static final String JSON_THUMBNAIL = "thumbnail";
     private static final String JSON_LAST_USED = "last_used";
+    private static final String JSON_USED_FREQUENCY = "used_frequency";
 
     private OTPType type = OTPType.TOTP;
     private int period = TokenCalculator.TOTP_DEFAULT_PERIOD;
@@ -74,12 +72,14 @@ public class Entry {
     private Runnable hideTask = null;
     private long last_update = 0;
     private long last_used = 0;
+    private long used_frequency = 0;
     public List<String> tags = new ArrayList<>();
     private EntryThumbnail.EntryThumbnails thumbnail = EntryThumbnail.EntryThumbnails.Default;
     private static final int COLOR_DEFAULT = 0;
     public static final int COLOR_RED = 1;
     private static final int EXPIRY_TIME = 8;
     private int color = COLOR_DEFAULT;
+    private long listId = 0;
 
     public Entry(){}
 
@@ -116,19 +116,25 @@ public class Entry {
             throw new Exception("Invalid Protocol");
         }
 
-        if(url.getHost().equals("totp")){
-            type = OTPType.TOTP;
-        } else if (url.getHost().equals("hotp")) {
-            type = OTPType.HOTP;
-        } else {
-            throw new Exception("unknown otp type");
+        switch (url.getHost()) {
+            case "totp":
+                type = OTPType.TOTP;
+                break;
+            case "hotp":
+                type = OTPType.HOTP;
+                break;
+            case "steam":
+                type = OTPType.STEAM;
+                break;
+            default:
+                throw new Exception("unknown otp type");
         }
 
         String secret = uri.getQueryParameter("secret");
-        String label = uri.getPath().substring(1);
 
         String counter = uri.getQueryParameter("counter");
         String issuer = uri.getQueryParameter("issuer");
+        String label = getStrippedLabel(issuer, uri.getPath().substring(1));
         String period = uri.getQueryParameter("period");
         String digits = uri.getQueryParameter("digits");
         String algorithm = uri.getQueryParameter("algorithm");
@@ -140,7 +146,7 @@ public class Entry {
             } else {
                 throw new Exception("missing counter for HOTP");
             }
-        } else if (type == OTPType.TOTP) {
+        } else if (type == OTPType.TOTP || type == OTPType.STEAM) {
             if (period != null) {
                 this.period = Integer.parseInt(period);
             } else {
@@ -155,7 +161,7 @@ public class Entry {
         if (digits != null) {
             this.digits = Integer.parseInt(digits);
         } else {
-            this.digits = TokenCalculator.TOTP_DEFAULT_DIGITS;
+            this.digits = this.type == OTPType.STEAM ? TokenCalculator.STEAM_DEFAULT_DIGITS : TokenCalculator.TOTP_DEFAULT_DIGITS;
         }
 
         if (algorithm != null) {
@@ -230,7 +236,7 @@ public class Entry {
         }
 
         try {
-            this.thumbnail = EntryThumbnail.EntryThumbnails.valueOf(jsonObj.getString(JSON_THUMBNAIL));
+            this.thumbnail = EntryThumbnail.EntryThumbnails.valueOfIgnoreCase(jsonObj.getString(JSON_THUMBNAIL));
         } catch(Exception e) {
             this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
         }
@@ -239,6 +245,12 @@ public class Entry {
             this.last_used = jsonObj.getLong(JSON_LAST_USED);
         } catch (Exception e) {
             this.last_used = 0;
+        }
+
+        try {
+            this.used_frequency = jsonObj.getLong(JSON_USED_FREQUENCY);
+        } catch (Exception e) {
+            this.used_frequency = 0;
         }
     }
 
@@ -252,6 +264,7 @@ public class Entry {
         jsonObj.put(JSON_ALGORITHM, algorithm.toString());
         jsonObj.put(JSON_THUMBNAIL, getThumbnail().name());
         jsonObj.put(JSON_LAST_USED, getLastUsed());
+        jsonObj.put(JSON_USED_FREQUENCY, getUsedFrequency() );
 
         if (type == OTPType.TOTP)
             jsonObj.put(JSON_PERIOD, getPeriod());
@@ -265,6 +278,49 @@ public class Entry {
         jsonObj.put(JSON_TAGS, tagsArray);
 
         return jsonObj;
+    }
+
+    public Uri toUri() {
+        String type;
+        switch (this.type) {
+            case TOTP:
+                type = "totp";
+                break;
+            case HOTP:
+                type = "hotp";
+                break;
+            case STEAM:
+                type = "steam";
+                break;
+            default:
+                return null;
+        }
+        Uri.Builder builder = new Uri.Builder()
+                .scheme("otpauth")
+                .authority(type)
+                .appendPath(this.label)
+                .appendQueryParameter("secret", new Base32().encodeAsString(this.secret));
+        if (this.issuer != null) {
+            builder.appendQueryParameter("issuer", this.issuer);
+        }
+        switch (this.type) {
+            case HOTP:
+                builder.appendQueryParameter("counter", Long.toString(this.counter));
+            case TOTP:
+                if (this.period != TokenCalculator.TOTP_DEFAULT_PERIOD)
+                    builder.appendQueryParameter("period", Integer.toString(this.period));
+                break;
+        }
+        if (this.digits != TokenCalculator.TOTP_DEFAULT_DIGITS) {
+            builder.appendQueryParameter("digits", Integer.toString(this.digits));
+        }
+        if (this.algorithm != TokenCalculator.DEFAULT_ALGORITHM) {
+            builder.appendQueryParameter("algorithm", this.algorithm.name());
+        }
+        for (String tag : this.tags) {
+            builder.appendQueryParameter("tags", tag);
+        }
+        return builder.build();
     }
 
     public boolean isTimeBased() {
@@ -285,6 +341,10 @@ public class Entry {
         return secret;
     }
 
+    public String getSecretEncoded() {
+        return new String(new Base32().encode(secret));
+    }
+
     public void setSecret(byte[] secret) {
         this.secret = secret;
     }
@@ -293,8 +353,11 @@ public class Entry {
         return issuer;
     }
 
-    public void setIssuer(String issuer) {
+    public void setIssuer(String issuer, boolean updateThumbnail) {
         this.issuer = issuer;
+
+        if (updateThumbnail && issuer != null)
+            setThumbnailFromIssuer(issuer);
     }
 
     public String getLabel() {
@@ -309,10 +372,6 @@ public class Entry {
         return period;
     }
 
-    public void setPeriod(int period) {
-        this.period = period;
-    }
-
     public long getCounter() {
         return counter;
     }
@@ -325,10 +384,6 @@ public class Entry {
         return digits;
     }
 
-    public void setDigits(int digits) {
-        this.digits = digits;
-    }
-
     public List<String> getTags() { return tags; }
 
     public void setTags(List<String> tags) { this.tags = tags; }
@@ -339,10 +394,6 @@ public class Entry {
 
     public TokenCalculator.HashAlgorithm getAlgorithm() {
         return this.algorithm;
-    }
-
-    public void setAlgorithm(TokenCalculator.HashAlgorithm algorithm) {
-        this.algorithm = algorithm;
     }
 
     public boolean hasNonDefaultPeriod() {
@@ -373,8 +424,24 @@ public class Entry {
         this.last_used = value;
     }
 
+    public long getUsedFrequency() {
+        return used_frequency;
+    }
+
+    public void setUsedFrequency(long value) {
+        this.used_frequency = value;
+    }
+
     public String getCurrentOTP() {
         return currentOTP;
+    }
+
+    public long getListId() {
+        return listId;
+    }
+
+    public void setListId(long newId) {
+        listId = newId;
     }
 
     public boolean updateOTP() {
@@ -426,27 +493,37 @@ public class Entry {
         try {
             this.thumbnail = EntryThumbnail.EntryThumbnails.valueOfIgnoreCase(issuer);
         } catch(Exception e) {
-            this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
+            try {
+                this.thumbnail = EntryThumbnail.EntryThumbnails.valueOfFuzzy(issuer);
+            } catch(Exception e2) {
+                this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
+            }
         }
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
+
         Entry entry = (Entry) o;
-        return period == entry.period &&
-                digits == entry.digits &&
-                type == entry.type &&
+
+        return type == entry.type &&
+                period == entry.period &&
                 counter == entry.counter &&
+                digits == entry.digits &&
                 algorithm == entry.algorithm &&
                 Arrays.equals(secret, entry.secret) &&
-                Objects.equals(label, entry.label);
+                Objects.equals(label, entry.label) &&
+                Objects.equals(issuer, entry.issuer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, period, counter, digits, algorithm, secret, label);
+        return Objects.hash(type, period, counter, digits, algorithm, secret, label, issuer);
     }
 
     public void setColor(int color) {
@@ -455,5 +532,29 @@ public class Entry {
 
     public int getColor() {
         return color;
+    }
+
+    public static boolean validateSecret(String secret) {
+        try {
+            new Base32().decode(secret.toUpperCase());
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Returns the label with issuer prefix removed (if present)
+     * @param issuer - Name of the issuer to remove from the label
+     * @param label - Full label from which the issuer should be removed
+     * @return - label with the issuer removed
+     */
+    private String getStrippedLabel(String issuer, String label) {
+        if (issuer == null || issuer.isEmpty() || !label.startsWith(issuer + ":")) {
+            return label.trim();
+        } else {
+            return label.substring(issuer.length() + 1).trim();
+        }
     }
 }

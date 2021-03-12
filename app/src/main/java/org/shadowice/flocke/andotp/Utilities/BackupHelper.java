@@ -1,12 +1,9 @@
 package org.shadowice.flocke.andotp.Utilities;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
-import android.widget.Toast;
+
+import androidx.documentfile.provider.DocumentFile;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
@@ -18,6 +15,52 @@ import java.util.ArrayList;
 import javax.crypto.SecretKey;
 
 public class BackupHelper {
+    public static class BackupFile {
+        public DocumentFile file = null;
+        public int errorMessage;
+    }
+
+    private static String backupMimeType(Constants.BackupType type) {
+        String mimeType = Constants.BACKUP_MIMETYPE_PLAIN;
+
+        switch(type) {
+            case PLAIN_TEXT:
+                mimeType = Constants.BACKUP_MIMETYPE_PLAIN;
+                break;
+            case ENCRYPTED:
+                mimeType = Constants.BACKUP_MIMETYPE_CRYPT;
+                break;
+            case OPEN_PGP:
+                mimeType = Constants.BACKUP_MIMETYPE_PGP;
+                break;
+        }
+
+        return mimeType;
+    }
+
+    public static BackupFile backupFile(Context context, Uri backupLocationUri, Constants.BackupType type) {
+        BackupFile backupFile = new BackupFile();
+        DocumentFile backupLocation = DocumentFile.fromTreeUri(context, backupLocationUri);
+
+        if (backupLocation != null) {
+            // Try to find an existing file to overwrite
+            backupFile.file = backupLocation.findFile(BackupHelper.backupFilename(context, type));
+
+            // Try to create a new file
+            if (backupFile.file == null) {
+                backupFile.file = backupLocation.createFile(backupMimeType(type), BackupHelper.backupFilename(context, type));
+            }
+
+            // Both failed
+            if (backupFile.file == null)
+                backupFile.errorMessage = R.string.backup_toast_file_creation_failed;
+        } else {
+            backupFile.errorMessage = R.string.backup_toast_location_access_failed;
+        }
+
+        return backupFile;
+    }
+
     public static String backupFilename(Context context, Constants.BackupType type) {
         Settings settings = new Settings(context);
         switch (type) {
@@ -46,15 +89,8 @@ public class BackupHelper {
 
     public static Constants.BackupType autoBackupType(Context context) {
         Settings settings = new Settings(context);
-        if(ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            return Constants.BackupType.UNAVAILABLE;
-        }
 
-        if(!settings.getIsAppendingDateTimeToBackups() || settings.getBackupAsk()) {
-            return Constants.BackupType.UNAVAILABLE;
-        }
-
-        if(!Tools.mkdir(settings.getBackupDir())) {
+        if(!settings.isBackupLocationSet()) {
             return Constants.BackupType.UNAVAILABLE;
         }
 
@@ -65,10 +101,16 @@ public class BackupHelper {
         return Constants.BackupType.UNAVAILABLE;
     }
 
-    public static boolean backupToFile(Context context, Uri uri, String password, SecretKey encryptionKey)
-    {
+    public static boolean backupToFile(Context context, Uri uri, String password, SecretKey encryptionKey) {
         ArrayList<Entry> entries = DatabaseHelper.loadDatabase(context, encryptionKey);
         String plain = DatabaseHelper.entriesToString(entries);
+
+        return backupToFile(context, uri, password, plain);
+    }
+
+    public static boolean backupToFile(Context context, Uri uri, String password, String plain)
+    {
+        boolean success = true;
 
         try {
             int iter = EncryptionHelper.generateRandomIterations();
@@ -84,12 +126,12 @@ public class BackupHelper {
             System.arraycopy(salt, 0, data, Constants.INT_LENGTH, Constants.ENCRYPTION_IV_LENGTH);
             System.arraycopy(encrypted, 0, data, Constants.INT_LENGTH + Constants.ENCRYPTION_IV_LENGTH, encrypted.length);
 
-            StorageAccessHelper.saveFile(context, uri, data);
+            success = StorageAccessHelper.saveFile(context, uri, data);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            success = false;
         }
 
-        return true;
+        return success;
     }
 }

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_activity_title">Axustes</string>
+    <!-- Categories -->
+    <string name="settings_category_title_security">Seguranza</string>
+    <string name="settings_category_title_ui">Interfaz d\'usuariu</string>
+    <string name="settings_category_title_backup">Copies de seguranza</string>
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">Tocar pa descubrir</string>
+    <string name="settings_title_tap_to_reveal_timeout">Escosa del tiempu d\'espera del toque pa descubrir</string>
+    <string name="settings_title_auth">Autenticación</string>
+    <string name="settings_title_auth_password">Contraseña</string>
+    <string name="settings_title_auth_pin">PIN</string>
+    <string name="settings_title_encryption">Cifráu de la base de datos</string>
+    <string name="settings_title_panic">Botón de pánicu</string>
+    <string name="settings_title_relock_screen_off">Volver bloquiar al apagar la pantalla</string>
+    <string name="settings_title_relock_background">Volver a bloquiar al tar en segundu planu</string>
+    <string name="settings_title_auth_inactivity">Volver bloquiar na inactividá</string>
+    <string name="settings_title_auth_inactivity_delay">Retrasu pal bloquéu por inactividá</string>
+    <string name="settings_title_block_accessibility">Bloquiar tolos servicios d\'accesibilidá</string>
+    <string name="settings_title_block_autofill">Bloquiar el rellenu automáticu</string>
+    <string name="settings_title_lang">Llingua</string>
+    <string name="settings_title_theme">Estilu</string>
+    <string name="settings_title_card_layout">Diseñu de les tarxetes</string>
+    <string name="settings_title_label_size">Tamañu de la fonte de les etiquetes</string>
+    <string name="settings_title_label_scroll">Desplazar nes etiquetes</string>
+    <string name="settings_title_tap_single">Un toque</string>
+    <string name="settings_title_tap_double">Dos toques</string>
+    <string name="settings_title_thumbnail_size_ask">Tamañu de miniatures</string>
+    <string name="settings_title_split_group_size">Dixebra de los códigos</string>
+    <string name="settings_title_tag_functionality">Comportamientu de la esbilla d\'etiquetes</string>
+    <string name="settings_title_minimize_on_copy">Minimizar l\'aplicación dempués de compiar el códigu OTP</string>
+    <string name="settings_title_search_includes">Comportamientu de la gueta</string>
+    <string name="settings_title_label_highlight_token">Rescamplar los pases que caduquen</string>
+    <string name="settings_title_hide_global_timeout">Anubrir la barra d\'escosa de tiempu</string>
+    <string name="settings_title_show_individual_timeouts">Amosar les escoses de tiempu individuales</string>
+    <string name="settings_title_backup_append_date">Amestar la data al nome del ficheru</string>
+    <string name="settings_title_backup_ask">Pidir un nome de ficheru</string>
+    <string name="settings_title_backup_location">Allugamientu predetermináu de les copies</string>
+    <string name="settings_title_backup_password">Contraseña pa les copies de seguranza</string>
+    <string name="settings_title_auto_backup_password_enc">Facer copies de seguranza al amestar entraes</string>
+    <string name="settings_title_backup_broadcasts">Espardimientu de copies de seguranza</string>
+    <string name="settings_title_openpgp_provider">Fornidor OpenPGP</string>
+    <string name="settings_title_openpgp_key_encrypt">Clave de cifráu OpenPGP</string>
+    <string name="settings_title_openpgp_key_sign">Clave de cifráu OpenPGP (opcional)</string>
+    <string name="settings_title_openpgp_verify">Verificar les copies de seguranza cifraes</string>
+    <string name="settings_title_special_features">Activar les carauterístiques especiales</string>
+    <string name="settings_title_enable_screenshot">Activar captures de pantalla</string>
+    <string name="settings_title_enable_android_backup_service">Activar la sincronización d\'Android</string>
+    <string name="settings_title_clear_keystore">Llimpiar l\'almacén de claves</string>
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">Anubre por defeutu los pases OTP riquiendo que se
+        descubran a mano</string>
+    <string name="settings_desc_tap_to_reveal_timeout">Esbilla\'l tiempu (en segundos) tres el que
+        van volver anubrise les entraes
+        revelaes</string>
+    <string name="settings_desc_panic">Decidi lo qu\'asocede cuando s\'activa\'l botón de pánicu</string>
+    <string name="settings_desc_relock_screen_off">Rique l\'autenticación dempués de que la
+        pantalla del preséu s\'apague</string>
+    <string name="settings_desc_relock_background">Rique l\'autenticación dempués de que l\'aplicación se
+        mandare al segundu planu (por exemplu, primiendo\'l
+        botón d\'Aniciu)</string>
+    <string name="settings_desc_auth_inactivity">Rique l\'autenticación dempués de que\'l preséu tea
+        inactivu</string>
+    <string name="settings_desc_auth_inactivity_delay">Esbilla\'l tiempu (en segundos) tres el
+        que va volver riquise l\'autenticación</string>
+    <string name="settings_desc_block_accessibility">Anubre los campos sensibles a los
+        servicios d\'accesibilidá. <b>¡NUN actives esto si uses los servicios
+d\'accesibilidá!</b></string>
+    <string name="settings_desc_block_autofill">Bloquia que los servicios de rellenu automáticu
+        accedan a los campos de contraseña de
+        dientro de l\'aplicación</string>
+    <string name="settings_desc_block_autofill_android">Esta carauterística rique Android
+        8.0 (Oreo) o mayor</string>
+    <string name="settings_desc_label_scroll">Desplazar les etiquetes llargues en cuentes de truncales</string>
+    <string name="settings_desc_minimize_on_copy">L\'aplicación va minimizase cuando copies el códigu OTP nel cartafueyu</string>
+    <string name="settings_desc_search_includes">Especifica los valores que deberíen incluyise al guetar</string>
+    <string name="settings_desc_label_highlight_token">Rescampla los pases si caduquen en 8 segundos</string>
+    <string name="settings_desc_hide_global_timeout">Anubre la barra d\'escosa de tiempu global de lo cimero de la pantalla</string>
+    <string name="settings_desc_show_individual_timeouts">Amuesa la barra d\'escosa de tiempu en cada entrada.
+        Esto pue facer que l\'aplicación vaiga lenta, activa esta opción
+        namás si ye preciso.</string>
+    <string name="settings_desc_backup_append_date">Amiesta la data actual al nome suxeríu de la copia
+        de seguranza</string>
+    <string name="settings_desc_backup_ask">Pide\'l nome de ficheru cada vegada que se crea o
+        restaura una copia de seguranza</string>
+    <string name="settings_desc_backup_location">Escueyi un allugamientu predetermináu pa copies de seguranza</string>
+    <string name="settings_desc_backup_location_set">Escoyóse l\'allugamientu de les copies de seguranza</string>
+    <string name="settings_desc_backup_password">Afita la contraseña que s\'usa pa cifrar les
+        copies de seguranza</string>
+    <string name="settings_desc_auto_backup_password_enc">Crea una copia de seguranza cifrada cuando
+        s\'amiesten o editen entraes, si se cumplen les condiciones</string>
+    <string name="settings_desc_auto_backup_requirements">Afita un allugamientu y una contraseña
+        predeterminaos pa les copies de
+        seguranza p\'activar esta opción</string>
+    <string name="settings_desc_backup_broadcasts">Esbilla les tribes de copies de seguranza que
+        puen aicionase pente aplicaciones de
+        terceros col usu d\'Espardimientu</string>
+    <string name="settings_desc_openpgp_key_encrypt">La direición de corréu de la clave OpenPGP usada
+        pa cifrar les copies de seguranza</string>
+    <string name="settings_desc_openpgp_verify">Les copies de seguranza cifraes namás s\'importen
+        si tán roblaes con una clave válida</string>
+    <string name="settings_desc_special_features">Toca pa volver desactivar les carauterístiques especiales</string>
+    <string name="settings_desc_enable_screenshot">Permite la fechura de captures de pantalla de
+        la pantalla principal (desactívase por
+        defeutu por razones de seguranza)</string>
+    <string name="settings_desc_enable_android_backup_service">Permite qu\'andOTP use\'l serviciu
+        integráu de copies de seguranza d\'Android pa facer
+        copies de seguranza de claves y preferencies</string>
+    <string name="settings_desc_clear_keystore">Desanicia la clave de cifráu del almacén de claves</string>
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_not_secure">Esta carauterística rique una pantalla de
+        desbloquéu configurada (Axustes -&gt; Seguranza -&gt; Pantalla de bloquéu)</string>
+    <string name="settings_toast_password_empty">Nun se permite una contraseña balera,
+        afita l\'autenticación a Nenguna pa desactivala.</string>
+    <string name="settings_toast_encryption_changing">Tentando de camudar el cifráu de la base
+        de datos, espera</string>
+    <string name="settings_toast_encryption_change_success">¡El cifráu de la base de datos camudó
+        con ésitu!</string>
+    <string name="settings_toast_encryption_change_failed">Fallu al camudar el cifráu de la base
+        de datos, volviendo al estáu orixinal</string>
+    <string name="settings_toast_encryption_backup_failed">Fallu al crear una copia de
+        seguranza interna, ¡albortando!</string>
+    <string name="settings_toast_encryption_no_key">Fallu al consiguir la clave de cifráu, ¡albortando!</string>
+    <string name="settings_toast_encryption_auth_failed">¡Falló l\'autenticación!</string>
+    <string name="settings_toast_auth_upgrade_failed">Fallu al anovar dafurto la contraseña / PIN
+        al cifráu nuevu, volvi afitala manualmente n\'axustes.</string>
+    <string name="settings_dialog_title_warning">Alvertencia</string>
+    <string name="settings_dialog_title_error">Fallu</string>
+    <string name="settings_dialog_title_clear_keystore">¿Llimpiar l\'almacén de claves?</string>
+    <string name="settings_dialog_title_android_sync">Sincronización d\'Android</string>
+    <string name="settings_dialog_msg_encryption_change">Agora andOTP va tentar de camudar el cifráu
+        de la base de datos. En casu de fallu, una copia de seguranza va restaurase y
+        el cifráu nun va camudar.\n\n<b>Por embargu, siempres ye una bona idea tener una
+        copia en casu de qu\'asoceda daqué inesperao.</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">¡Namás pues usar una contraseña o un PIN
+        mentanto\'l cifráu de la base de datos tea afitáu a «Contraseña/PIN»!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">¡Primero precises afitar
+        l\'autenticación a «Contraseña» o «PIN»!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">¡Primero precises afitar
+        una contraseña o un PIN enantes de camudar el
+        cifráu!</string>
+    <string name="settings_dialog_msg_clear_keystore_password">En dalgunos casos, llimpiar l\'almacén
+        de claves pue ayudar a iguar problemes. ¡Namás deberíes siguir si sabes lo que tas faciendo!\n\nDarréu
+        que\'l <b>cifráu de la base de datos</b> s\'afitó a <b>Contraseña/PIN</b>, nun deberíes
+        nengún datu (pero nun ta demás tener una copia de seguranza).\n\n<b>¿De xuru que quies
+        llimpiar l\'almacén de claves?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">En dalgunos casos, llimpiar l\'almacén
+        de claves pue ayudar a iguar problemes. ¡Namás deberíes siguir si sabes lo que tas faciendo!\n\n<b>Alvertencia</b>:
+        Darréu que\'l <b>cifráu de la base de datos</b> s\'afitó a <b>Almacén de claves d\'Android</b>,
+        vas perder toles cuentes. ¡Asegúrate de que tienes una copia de seguranza!\n\n<b>¿De xuru que
+        quies llimpiar l\'almacén de claves?</b></string>
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">La sincronización d\'Android nun pue usase col
+        cifráu del almacén de claves, <b>deberíes facer una
+        copia de seguranza manual!</b></string>
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>Nenguna</item>
+        <item>Contraseña</item>
+        <item>PIN</item>
+        <item>Credenciales del preséu</item>
+    </string-array>
+    <string-array name="settings_entries_encryption">
+        <item>Almacén de claves d\'Android</item>
+        <item>Contraseña / PIN</item>
+    </string-array>
+    <string-array name="settings_entries_panic">
+        <item>Llimpiar toles cuentes</item>
+        <item>Reafitar los axustes de l\'aplicación</item>
+    </string-array>
+    <string-array name="settings_entries_card_layout">
+        <item>Compautu</item>
+        <item>Por defeutu</item>
+        <item>Completu</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Nada</item>
+        <item>Amosar/anubrir</item>
+        <item>Copiar</item>
+        <item>Copiar y dir al segundu planu</item>
+    </string-array>
+    <string-array name="settings_entries_search_includes">
+        <item>Nomes</item>
+        <item>Emisor</item>
+        <item>Etiquetes</item>
+    </string-array>
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Non</item>
+        <item>Entraes nueves</item>
+        <item>Cualesquier edición</item>
+    </string-array>
+    <string-array name="settings_entries_theme">
+        <item>Claridá</item>
+        <item>Escuridá</item>
+        <item>Prietu</item>
+    </string-array>
+    <string-array name="settings_entries_thumbnail_size">
+        <item>Anúbrense</item>
+        <item>Nanu</item>
+        <item>Pequeñu</item>
+        <item>Por defeutu</item>
+        <item>Mediu</item>
+        <item>Grande</item>
+    </string-array>
+    <string-array name="settings_entries_split_group_size">
+        <item>Nun dixebrar</item>
+        <item>Tres dos caráuteres</item>
+        <item>Tres trés caráuteres</item>
+    </string-array>
+    <string-array name="settings_entries_tag_functionality">
+        <item>Amuésense toles entraes que concasen con <b>cualesquiera</b> d\'estes etiquetes esbillaes (o)</item>
+        <item>Namás s\'amuesen les entraes que concasen con <b>toles</b> etiquetes esbillaes (y)</item>
+        <item>Cambéu ente etiquetes (namás se permite una etiqueta esbillada al empar)</item>
+    </string-array>
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Copies de seguranza en testu planu</item>
+        <item>Copies de seguranza cifraes</item>
+    </string-array>
+    <!-- Special -->
+    <string name="settings_lang_sys_default">Lo predeterminao del sistema</string>
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">Introduz una contraseña nueva</string>
+    <string name="settings_hint_pin">Introduz un PIN nuevu</string>
+    <string name="settings_hint_password_confirm">Confirma la contraseña</string>
+    <string name="settings_hint_pin_confirm">Confirma\'l PIN</string>
+    <string name="settings_label_short_password">¡La contraseña precisa ser de polo menos %1$d de llargor!</string>
+    <string name="settings_label_short_pin">¡El PIN precisar ser de polo menos %1$d díxitos de llargor!</string>
+</resources>

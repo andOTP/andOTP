@@ -13,6 +13,8 @@
     <string name="about_label_MIT">MIT License</string>
     <string name="about_label_source">Source code</string>
     <string name="about_label_version">Version</string>
+    <string name="about_label_faq">FAQ</string>
+    <string name="about_label_faq_long">Frequently asked questions</string>
 
     <!-- Authors -->
     <string name="about_title_authors">Authors</string>

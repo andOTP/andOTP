@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intro_slide1_title">Comecemos</string>
+    <string name="intro_slide1_desc">Ben vido a <b>andOTP</b>, este asistente guiarate a través da configuración
+        inicial. Pon atención e le coidadosamente xa que podes perder datos importantes!
+        \n\nNon te preocupes, podes mudar as opcións máis tarde nos <b>Axustes</b>.</string>
+    <string name="intro_slide2_desc">Para asegurar a seguridade das túas contas <b>andOTP</b> só
+        garda información en ficheiros cifrados. Aquí podes escoller o método de cifrado que se
+        utilizará.</string>
+    <string name="intro_slide2_desc_keystore">A KeyStore é un compoñente do sistema Android para
+        gardar de xeito seguro chaves de cifrado. A vantaxe deste método é que as chaves gárdanse
+        de xeito separado dos ficheiros de datos e poden ser copiadas por cifrado de hardware (se o teu dispositivo
+         o admite). Debido a esto, as chaves non se gardan cos datos da aplicación, <b>este método
+        non deixa utilizar solucións de copia externa (como Titanium)</b>. Se escolles este método
+        deberás confiar nas funcións internas de copia proporcionadas por <b>andOTP</b>.
+        \n\n<b>Aviso:</b>: A KeyStore sábese que da problemas, utilízaa só se non che queda alternativa.
+        Se non che importa introducir un contrasinal/PIN cada vez que inicia <b>andOTP</b> é moito <b>máis recomendable utilizar o cifrado baseado en contrasinal</b>.</string>
+    <string name="intro_slide2_desc_password">Este método cifrará os seus datos cunha chave
+        creada por un contrasinal ou PIN. A principal vantaxe é que esto é compatible con
+        solucións externas de respaldo (como Titanium) e é moito menos proclive ao fallo que a KeyStore.
+        Porén, deberá introducir as súas credenciais cada vez que inicia <b>andOTP</b>.</string>
+    <string name="intro_slide3_desc_keystore">Aquí podes configurar a autenticación para asegurar
+        <b>andOTP</b>. Esto é opcional xa que escolleches <b>Android KeyStore</b> como método de cifrado.</string>
+    <string name="intro_slide3_desc_password">Aquí podes configurar a autenticación da seguranza
+        de <b>andOTP</b>. Debes establecer un Contrasinal ou PIN xa que escolleches <b>Contrasinal/PIN</b> como método de cifrado.</string>
+    <string name="intro_slide3_warn_no_password">Escribe un contrasinal para continuar!</string>
+    <string name="intro_slide3_warn_no_pin">Escolle un PIN para continuar!</string>
+    <string name="intro_slide3_warn_confirm_password">Confirma o contrasinal para continuar!</string>
+    <string name="intro_slide3_warn_confirm_pin">Confirma o PIN para continuar!</string>
+    <string name="intro_slide4_title">Remataches</string>
+    <string name="intro_slide4_desc">Gardáronse os teus axustes, agora xa podes utilizar
+        <b>andOTP</b>!</string>
+</resources>

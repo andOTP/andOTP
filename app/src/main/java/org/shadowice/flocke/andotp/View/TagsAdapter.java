@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
- * Copyright (C) 2017-2018 RichyHBM
+ * Copyright (C) 2017-2020 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Richy HBM
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,12 +24,15 @@
 package org.shadowice.flocke.andotp.View;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
+
+import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.Utilities.Settings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -113,5 +116,16 @@ public class TagsAdapter extends ArrayAdapter<String> {
         this.clear();
         this.addAll(getTags());
         notifyDataSetChanged();
+    }
+
+    public static HashMap<String, Boolean> createTagsMap(ArrayList<Entry> entries, Settings settings) {
+        HashMap<String, Boolean> tagsHashMap = new HashMap<>();
+
+        for(Entry entry : entries) {
+            for(String tag : entry.getTags())
+                tagsHashMap.put(tag, settings.getTagToggle(tag));
+        }
+
+        return tagsHashMap;
     }
 }

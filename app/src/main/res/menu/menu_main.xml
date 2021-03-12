@@ -15,12 +15,20 @@
                     android:checked="true" />
 
                 <item
+                    android:id="@+id/menu_sort_issuer"
+                    android:title="@string/menu_sort_issuer" />
+
+                <item
                     android:id="@+id/menu_sort_label"
                     android:title="@string/menu_sort_label" />
 
                 <item
                     android:id="@+id/menu_sort_last_used"
                     android:title="@string/menu_sort_last_used" />
+
+                <item
+                    android:id="@+id/menu_sort_most_used"
+                    android:title="@string/menu_sort_most_used" />
             </group>
         </menu>
 
@@ -31,7 +39,7 @@
         android:title="@string/menu_main_search"
         android:icon="@drawable/ic_search_white"
         app:showAsAction="always|collapseActionView"
-        app:actionViewClass="android.support.v7.widget.SearchView" />
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
     <item
         android:id="@+id/action_backup"

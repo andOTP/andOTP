@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">O aplikacji</string>
+    <string name="about_description">Dwuskładnikowe uwierzytelnianie dla systemu Android o otwartych źródłach</string>
+    <string name="about_tab_about">O aplikacji</string>
+    <string name="about_tab_libraries">Biblioteki</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">Dziennik zmian</string>
+    <string name="about_label_license">Licencja</string>
+    <string name="about_label_MIT">Licencja MIT</string>
+    <string name="about_label_source">Kod źródłowy</string>
+    <string name="about_label_version">Wersja</string>
+    <string name="about_label_faq">FAQ</string>
+    <string name="about_label_faq_long">Często zadawane pytania</string>
+    <!-- Authors -->
+    <string name="about_title_authors">Autorzy</string>
+    <string name="about_label_main_developer">Główny programista</string>
+    <string name="about_label_developer">Programista</string>
+    <string name="about_label_original_author">Autor oryginalnej aplikacji</string>
+    <string name="about_label_original_app">Oryginalna aplikacja</string>
+    <string name="about_label_website">Strona WWW</string>
+    <string name="about_label_donate">Wspomóż</string>
+    <string name="about_label_contributors">Współtwórcy</string>
+    <string name="about_label_translators">Tłumacze</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">Zrzeczenie</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Wszystkie miniaturki są znakami towarowymi ich odpowiednich właścicieli.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> Użycie tych znaków towarowych nie oznacza wzajemnego poparcia właścicieli tychże znaków i andOTP.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Miniaturki powinny być używane wyłącznie w celu reprezentacji firmy lub produktu, którego dotyczą.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Proszę nie używaj tych miniaturek w innym celu, niż reprezentacja określonej marki czy usługi.</b></string>
+    <!-- Support -->
+    <string name="about_title_support">Wesprzyj rozwój</string>
+    <string name="about_desc_support">Dowiedz się, jak możesz wesprzeć rozwój andOTP</string>
+    <string name="about_title_special_features">Specjalne funkcje</string>
+    <string name="about_dialog_special_features">Czy na pewno chcesz włączyć specjalne funkcje? Większość z nich to niestandardowe algorytmy OTP zaimplementowane na życzenie użytkowników. Algorytmy te <b>nie są oficjalnie wspierane</b> i mogą posiadać <b>pewne ograniczenia</b>. Aby dowiedzieć się więcej, odwiedź stronę projektu pt. „Specjalne funkcje” w serwisie GitHub.</string>
+    <string name="about_toast_special_features">Specjalne funkcje włączone</string>
+    <string name="about_toast_special_features_enabled">Specjalne funkcje są już włączone</string>
+    <string name="about_toast_copied_to_clipboard">Link darowizny skopiowano do schowka</string>
+</resources>

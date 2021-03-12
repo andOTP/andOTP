@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@ package org.shadowice.flocke.andotp.Utilities;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Base64;
@@ -49,8 +50,8 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class Settings {
-    private static final List<String> oldLangs = Arrays.asList("system", "en", "cs", "de", "es", "fr", "gl", "nl", "pl", "ru", "zh");
-    private static final List<String> newLangs = Arrays.asList("system", "en_US", "cs_CZ", "de_DE", "es_ES", "fr_FR", "gl_ES", "nl_NL", "pl_PL", "ru_RU", "zh_CN");
+    private static final List<String> newLangs = Arrays.asList("ar",    "bg",    "ca",    "cs",    "de",    "el",    "en",    "es",    "fa",    "fr",    "gl",    "hi",    "hu",    "it",    "ja",    "nl",    "pl",    "pt_BR", "ru",    "sl",    "sv",    "tr",    "uk",    "zh_CN", "zh_TW");
+    private static final List<String> oldLangs = Arrays.asList("ar_SA", "bg_BG", "ca_ES", "cs_CZ", "de_DE", "el_GR", "en_US", "es_ES", "fa_IR", "fr_FR", "gl_ES", "hi_IN", "hu_HU", "it_IT", "ja_JP", "nl_NL", "pl_PL", "pt_BR", "ru_RU", "sl_SI", "sv_SE", "tr_TR", "uk_UA", "zh_CN", "zh_TW");
 
     private Context context;
     private SharedPreferences settings;
@@ -59,15 +60,7 @@ public class Settings {
         this.context = context;
         this.settings = PreferenceManager.getDefaultSharedPreferences(context);
 
-        setupDeviceDependedDefaults();
         migrateDeprecatedSettings();
-    }
-
-    private void setupDeviceDependedDefaults() {
-        if (! settings.contains(getResString(R.string.settings_key_backup_directory))
-                || settings.getString(getResString(R.string.settings_key_backup_directory), "").isEmpty()) {
-            setString(R.string.settings_key_backup_directory, Constants.BACKUP_FOLDER);
-        }
     }
 
     private void migrateDeprecatedSettings() {
@@ -81,13 +74,27 @@ public class Settings {
             remove(R.string.settings_key_auth_pin);
         }
 
-        if (settings.contains(getResString(R.string.settings_key_lang))) {
-            String lang = getString(R.string.settings_key_lang, R.string.settings_default_locale);
+        if (settings.contains(getResString(R.string.settings_key_locale))) {
+            String lang = getString(R.string.settings_key_locale, R.string.settings_default_lang);
 
             if (oldLangs.contains(lang))
                 setLocale(newLangs.get(oldLangs.indexOf(lang)));
 
-            remove(R.string.settings_key_lang);
+            remove(R.string.settings_key_locale);
+        }
+
+        if (settings.contains(getResString(R.string.settings_key_tap_to_reveal))) {
+            if (getBoolean(R.string.settings_key_tap_to_reveal, false)) {
+                setString(R.string.settings_key_tap_single, Constants.TapMode.REVEAL.toString().toLowerCase(Locale.ENGLISH));
+            }
+            remove(R.string.settings_key_tap_to_reveal);
+        }
+
+        if (settings.contains(getResString(R.string.settings_key_label_scroll))) {
+            if (getBoolean(R.string.settings_key_label_scroll, false)) {
+                setString(R.string.settings_key_label_display, Constants.LabelDisplay.SCROLL.toString().toLowerCase(Locale.ENGLISH));
+            }
+            remove(R.string.settings_key_label_scroll);
         }
 
         if (settings.contains(getResString(R.string.settings_key_backup_password))) {
@@ -202,16 +209,16 @@ public class Settings {
         PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
     }
 
-
-
     public void registerPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
         settings.registerOnSharedPreferenceChangeListener(listener);
     }
 
-
+    public void unregisterPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        settings.unregisterOnSharedPreferenceChangeListener(listener);
+    }
 
     public boolean getTapToReveal() {
-        return getBoolean(R.string.settings_key_tap_to_reveal, false);
+        return getTapSingle() == Constants.TapMode.REVEAL || getTapDouble() == Constants.TapMode.REVEAL;
     }
 
     public int getTapToRevealTimeout() {
@@ -313,12 +320,20 @@ public class Settings {
         return getBoolean(R.string.settings_key_relock_screen_off, true);
     }
 
+    public boolean getRelockOnBackground() {
+        return getBoolean(R.string.settings_key_relock_background, false);
+    }
+
+    public boolean getBlockAccessibility() {
+        return getBoolean(R.string.settings_key_block_accessibility, false);
+    }
+
     public void setLocale(String locale) {
-        setString(R.string.settings_key_locale, locale);
+        setString(R.string.settings_key_lang, locale);
     }
 
     public Locale getLocale() {
-        String lang = getString(R.string.settings_key_locale, R.string.settings_default_locale);
+        String lang = getString(R.string.settings_key_lang, R.string.settings_default_lang);
 
         if (lang.equals("system")) {
             return Tools.getSystemLocale();
@@ -371,10 +386,6 @@ public class Settings {
         return getInt(R.string.settings_key_label_size, R.integer.settings_default_label_size);
     }
 
-    public boolean getScrollLabel() {
-        return getBoolean(R.string.settings_key_label_scroll, false);
-    }
-
     public boolean getFirstTimeWarningShown() {
         return getBoolean(R.string.settings_key_security_backup_warning, false);
     }
@@ -419,10 +430,6 @@ public class Settings {
 
     public boolean getBackupAsk() {
         return getBoolean(R.string.settings_key_backup_ask, true);
-    }
-
-    public String getBackupDir() {
-        return getString(R.string.settings_key_backup_directory, Constants.BACKUP_FOLDER);
     }
 
     public String getBackupPassword() {
@@ -535,20 +542,12 @@ public class Settings {
         return getBoolean(R.string.settings_key_enable_screenshot, false);
     }
 
-    public boolean getLastUsedDialogShown() {
+    public boolean getUsedTokensDialogShown() {
         return getBoolean(R.string.settings_key_last_used_dialog_shown, false);
     }
 
-    public void setLastUsedDialogShown(boolean value) {
+    public void setUsedTokensDialogShown(boolean value) {
         setBoolean(R.string.settings_key_last_used_dialog_shown, value);
-    }
-
-    public boolean getNewBackupFormatDialogShown() {
-        return getBoolean(R.string.settings_key_new_backup_format_dialog_shown, false);
-    }
-
-    public void setNewBackupFormatDialogShown(boolean value) {
-        setBoolean(R.string.settings_key_new_backup_format_dialog_shown, value);
     }
 
     public boolean getAndroidBackupServiceEnabled() {
@@ -560,14 +559,95 @@ public class Settings {
 	}
 
     public boolean getIsAppendingDateTimeToBackups() {
-        return getBoolean(R.string.settings_key_backup_append_date_time, false);
+        return getBoolean(R.string.settings_key_backup_append_date_time, true);
+    }
+
+    public int getAuthInactivityDelay() {
+        return getIntValue(R.string.settings_key_auth_inactivity_delay, 0);
+    }
+
+    public boolean getAuthInactivity() {
+        return getBoolean(R.string.settings_key_auth_inactivity, false);
+    }
+  
+    public boolean isMinimizeAppOnCopyEnabled() {
+        return  getBoolean(R.string.settings_key_minimize_on_copy, false);
+    }
+  
+    private Constants.AutoBackup getAutoBackupEncryptedSetting() {
+        String stringValue = getString(R.string.settings_key_auto_backup_password_enc, R.string.settings_default_auto_backup_password_enc);
+        return Constants.AutoBackup.valueOf(stringValue.toUpperCase(Locale.ENGLISH));
     }
 
     public boolean getAutoBackupEncryptedPasswordsEnabled() {
-        return getBoolean(R.string.settings_key_auto_backup_password_enc, false);
+        return getAutoBackupEncryptedSetting() != Constants.AutoBackup.OFF;
+    }
+
+    public boolean getAutoBackupEncryptedFullEnabled() {
+        return getAutoBackupEncryptedSetting() == Constants.AutoBackup.ALL_EDITS;
     }
 
     public boolean isHighlightTokenOptionEnabled() {
         return getBoolean(R.string.settings_key_label_highlight_token,true);
+    }
+
+    public boolean isHideGlobalTimeoutEnabled() {
+        return getBoolean(R.string.settings_key_hide_global_timeout, false);
+    }
+
+    public boolean isShowIndividualTimeoutsEnabled() {
+        return getBoolean(R.string.settings_key_show_individual_timeouts, false);
+    }
+
+    public boolean isFocusSearchOnStartEnabled() {
+        return getBoolean(R.string.settings_key_focus_search_on_start, false);
+    }
+
+    public boolean isHideIssuerEnabled() {
+        return getBoolean(R.string.settings_key_hide_issuer, false);
+    }
+
+    public Constants.TapMode getTapSingle() {
+        String singleTap = getString(R.string.settings_key_tap_single, R.string.settings_default_tap_single);
+        return Constants.TapMode.valueOf(singleTap.toUpperCase(Locale.ENGLISH));
+    }
+
+    public Constants.TapMode getTapDouble() {
+        String doubleTap = getString(R.string.settings_key_tap_double, R.string.settings_default_tap_double);
+        return Constants.TapMode.valueOf(doubleTap.toUpperCase(Locale.ENGLISH));
+    }
+
+    public void setBackupLocation(Uri uri) {
+        setString(R.string.settings_key_backup_location, uri.toString());
+    }
+
+    public Uri getBackupLocation() {
+        return Uri.parse(getString(R.string.settings_key_backup_location, ""));
+    }
+
+    public boolean isBackupLocationSet() {
+        return !getString(R.string.settings_key_backup_location, "").isEmpty();
+    }
+
+    public boolean getBlockAutofill() {
+        return getBoolean(R.string.settings_key_block_autofill, false);
+    }
+
+    public boolean getAutoUnlockAfterAutofill() {
+        return getBoolean(R.string.settings_key_auto_unlock_after_autofill, false);
+    }
+      
+    public void setDefaultBackupType(Constants.BackupType type) {
+        setString(R.string.settings_key_backup_default_type, type.name().toLowerCase(Locale.ENGLISH));
+    }
+
+    public Constants.BackupType getDefaultBackupType() {
+        String defaultType = getString(R.string.settings_key_backup_default_type, Constants.BackupType.ENCRYPTED.name());
+        return Constants.BackupType.valueOf(defaultType.toUpperCase(Locale.ENGLISH));
+    }
+
+    public Constants.LabelDisplay getLabelDisplay() {
+        String labelDisplay = getString(R.string.settings_key_label_display, R.string.settings_default_label_display);
+        return Constants.LabelDisplay.valueOf(labelDisplay.toUpperCase(Locale.ENGLISH));
     }
 }

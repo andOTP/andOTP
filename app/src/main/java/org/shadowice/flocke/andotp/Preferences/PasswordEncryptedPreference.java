@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Jakob Nixdorf
+ * Copyright (C) 2017-2020 Jakob Nixdorf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,9 +25,10 @@ package org.shadowice.flocke.andotp.Preferences;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.preference.DialogPreference;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -39,9 +40,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.ConfirmedPasswordTransformationHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
+import org.shadowice.flocke.andotp.Utilities.Settings;
 
 import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
@@ -92,9 +95,21 @@ public class PasswordEncryptedPreference extends DialogPreference
 
     @Override
     protected void onBindDialogView(View view) {
+        Settings settings = new Settings(getContext());
+
         TextInputLayout passwordLayout = view.findViewById(R.id.passwordLayout);
         passwordInput = view.findViewById(R.id.passwordEdit);
         passwordConfirm = view.findViewById(R.id.passwordConfirm);
+
+        if (settings.getBlockAccessibility()) {
+            passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
+            passwordConfirm.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && settings.getBlockAutofill()) {
+            passwordLayout.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
+            passwordConfirm.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO);
+        }
 
         Button btnCancel = view.findViewById(R.id.btnCancel);
         btnSave = view.findViewById(R.id.btnSave);
@@ -121,8 +136,7 @@ public class PasswordEncryptedPreference extends DialogPreference
             passwordConfirm.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
         }
 
-        passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-        passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
+        ConfirmedPasswordTransformationHelper.setup(passwordLayout, passwordInput, passwordConfirm);
 
         passwordConfirm.addTextChangedListener(this);
         passwordInput.addTextChangedListener(this);

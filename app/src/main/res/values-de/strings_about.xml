@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">Über</string>
+    <string name="about_description">Quelloffene zwei-Faktor-Authentifizierung für Android</string>
+    <string name="about_tab_about">Über</string>
+    <string name="about_tab_libraries">Bibliotheken</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">Änderungsprotokoll</string>
+    <string name="about_label_license">Lizenz</string>
+    <string name="about_label_MIT">MIT-Lizenz</string>
+    <string name="about_label_source">Quelltext</string>
+    <string name="about_label_version">Version</string>
+    <string name="about_label_faq">FAQ</string>
+    <string name="about_label_faq_long">Häufig gestellte Fragen</string>
+    <!-- Authors -->
+    <string name="about_title_authors">Autoren</string>
+    <string name="about_label_main_developer">Hauptentwickler</string>
+    <string name="about_label_developer">Entwickler</string>
+    <string name="about_label_original_author">Autor der ursprünglichen App</string>
+    <string name="about_label_original_app">Ursprüngliche App</string>
+    <string name="about_label_website">Webseite</string>
+    <string name="about_label_donate">Spenden</string>
+    <string name="about_label_contributors">Mitwirkende</string>
+    <string name="about_label_translators">Übersetzer</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">Richtlinien für Vorschaubilder</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Alle Vorschaubilder sind Markenzeichen der
+        jeweiligen Eigentümer.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> Die Verwendung dieser Markenzeichen zeigt in keinster Weise
+        Befürwortung der Markenzeicheneigentümer durch andOTP, auch nicht umgekehrt.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Die Vorschaubilder sollten nur verwendet werden,
+        um die Firma oder das Produkt zu repräsentieren, auf das sie sich beziehen.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Bitte verwende die Vorschaubilder nicht für irgendwelche
+        sonstigen Absichten, außer das Repräsentieren dieser bestimmten Marke oder Dienstleistung</b></string>
+    <!-- Support -->
+    <string name="about_title_support">Entwicklung unterstützen</string>
+    <string name="about_desc_support">Erfahre, wie du die Entwicklung von andOTP unterstützen kannst</string>
+    <string name="about_title_special_features">Sonderfunktionen</string>
+    <string name="about_dialog_special_features">Bist du sicher, dass du die Sonderfunktionen aktivieren möchtest? Die meisten davon sind nicht standardmäßige OTP-Algorithmen, die hier auf besonderen Wunsch umgesetzt wurden. Diese sind <b>nicht offiziell unterstützt</b> und mit <b>gewissen Einschränkungen</b> versehen. Bitte lies (und verstehe) die Seite \"Special Features\" im Github Wiki, um mehr darüber zu lernen, bevor du sie verwendest.</string>
+    <string name="about_toast_special_features">Sonderfunktionen aktiviert</string>
+    <string name="about_toast_special_features_enabled">Sonderfunktionen bereits aktiviert</string>
+    <string name="about_toast_copied_to_clipboard">Spenden-Link wurde in die Zwischenablage kopiert</string>
+</resources>
