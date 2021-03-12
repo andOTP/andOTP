@@ -268,6 +268,7 @@ public class EntryThumbnail {
         NOYB(R.drawable.thumb_noyb),
         NPM(R.drawable.thumb_npm),
         NTPPoolProject(R.drawable.thumb_ntppoolproject),
+        Nvidia(R.drawable.thumb_nvidia),
         Oculus(R.drawable.thumb_oculus),
         Office(R.drawable.thumb_office),
         Okta(R.drawable.thumb_okta),
