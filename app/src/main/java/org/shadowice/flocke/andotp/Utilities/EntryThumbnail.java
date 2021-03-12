@@ -120,6 +120,7 @@ public class EntryThumbnail {
         Bugcrowd(R.drawable.thumb_bugcrowd),
         CEXio(R.drawable.thumb_cexio),
         ChurchTools(R.drawable.thumb_church_tools),
+        CircleCi(R.drawable.thumb_circleci),
         Cisco(R.drawable.thumb_cisco),
         Citrix(R.drawable.thumb_citrix),
         CloudDownload(R.drawable.thumb_cloud_download),
