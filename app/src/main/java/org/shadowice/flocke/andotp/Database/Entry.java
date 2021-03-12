@@ -372,6 +372,10 @@ public class Entry {
         return period;
     }
 
+    public void setPeriod(int period) {
+        this.period = period;
+    }
+
     public long getCounter() {
         return counter;
     }
@@ -382,6 +386,10 @@ public class Entry {
 
     public int getDigits() {
         return digits;
+    }
+
+    public void setDigits(int digits) {
+        this.digits = digits;
     }
 
     public List<String> getTags() { return tags; }
@@ -444,12 +452,12 @@ public class Entry {
         listId = newId;
     }
 
-    public boolean updateOTP() {
+    public boolean updateOTP(boolean force) {
         if (type == OTPType.TOTP || type == OTPType.STEAM) {
             long time = System.currentTimeMillis() / 1000;
             long counter = time / this.getPeriod();
 
-            if (counter > last_update) {
+            if (force || counter > last_update) {
                 if (type == OTPType.TOTP)
                     currentOTP = TokenCalculator.TOTP_RFC6238(secret, period, digits, algorithm);
                 else if (type == OTPType.STEAM)
@@ -474,7 +482,7 @@ public class Entry {
      * Checks if the OTP is expiring. The color for the entry will be changed to red if the expiry time is less than or equal to 8 seconds
      * COLOR_DEFAULT indicates that the OTP has not expired. In this case check if the OTP is about to expire. Update color to COLOR_RED if it's about to expire
      * COLOR_RED indicates that the OTP is already about to expire. Don't check again.
-     * The color will be reset to COLOR_DEFAULT in {@link #updateOTP()} method
+     * The color will be reset to COLOR_DEFAULT in {@link #updateOTP(boolean force)} method
      *
      * @return Return true only if the color has changed to red to save from unnecessary notifying dataset
      * */

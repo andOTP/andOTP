@@ -378,7 +378,7 @@ public class MainActivity extends BaseActivity
             } else if (intentAction.equals(Intent.ACTION_VIEW)) {
                 try {
                     Entry entry = new Entry(callingIntent.getDataString());
-                    entry.updateOTP();
+                    entry.updateOTP(false);
                     entry.setLastUsed(System.currentTimeMillis());
                     adapter.addEntry(entry);
                     Toast.makeText(this, R.string.toast_intent_creation_succeeded, Toast.LENGTH_LONG).show();
@@ -909,7 +909,7 @@ public class MainActivity extends BaseActivity
         if(!TextUtils.isEmpty(result)) {
             try {
                 Entry e = new Entry(result);
-                e.updateOTP();
+                e.updateOTP(false);
                 e.setLastUsed(System.currentTimeMillis());
                 adapter.addEntry(e);
                 refreshTags();

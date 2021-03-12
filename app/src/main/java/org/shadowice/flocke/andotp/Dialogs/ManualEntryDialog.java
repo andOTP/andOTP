@@ -23,8 +23,9 @@
 package org.shadowice.flocke.andotp.Dialogs;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.res.ResourcesCompat;
+
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -56,10 +57,10 @@ import java.util.concurrent.Callable;
 
 public class ManualEntryDialog {
     public static void show(final MainActivity callingActivity, Settings settings, final EntriesCardAdapter adapter) {
-        show(callingActivity, settings, adapter, null);
+        show(callingActivity, settings, adapter, null, null);
     }
 
-    public static void show(final MainActivity callingActivity, Settings settings, final EntriesCardAdapter adapter, Entry oldEntry) {
+    public static void show(final MainActivity callingActivity, Settings settings, final EntriesCardAdapter adapter, Entry oldEntry, UpdateCallback updateCallback) {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         boolean isNewEntry = oldEntry == null;
 
@@ -112,17 +113,17 @@ public class ManualEntryDialog {
                     counterLayout.setVisibility(View.GONE);
                     periodLayout.setVisibility(View.VISIBLE);
 
-                    digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
-                    digitsInput.setEnabled(isNewEntry);
-                    periodInput.setEnabled(isNewEntry);
+                    if (isNewEntry)
+                        digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
+
                     algorithmInput.setEnabled(isNewEntry);
                 } else if (type == Entry.OTPType.HOTP) {
                     counterLayout.setVisibility(View.VISIBLE);
                     periodLayout.setVisibility(View.GONE);
 
-                    digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
-                    digitsInput.setEnabled(isNewEntry);
-                    periodInput.setEnabled(isNewEntry);
+                    if (isNewEntry)
+                        digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
+
                     algorithmInput.setEnabled(isNewEntry);
                 }
             }
@@ -140,42 +141,29 @@ public class ManualEntryDialog {
         }
         final TagsAdapter tagsAdapter = new TagsAdapter(callingActivity, tagsHashMap);
 
-        final Callable tagsCallable = new Callable() {
-            @Override
-            public Object call() throws Exception {
-                List<String> selectedTags = tagsAdapter.getActiveTags();
-                StringBuilder stringBuilder = new StringBuilder();
-                for(int j = 0; j < selectedTags.size(); j++) {
-                    stringBuilder.append(selectedTags.get(j));
-                    if(j < selectedTags.size() - 1) {
-                        stringBuilder.append(", ");
-                    }
+        final Callable<?> tagsCallable = () -> {
+            List<String> selectedTags = tagsAdapter.getActiveTags();
+            StringBuilder stringBuilder = new StringBuilder();
+            for(int j = 0; j < selectedTags.size(); j++) {
+                stringBuilder.append(selectedTags.get(j));
+                if(j < selectedTags.size() - 1) {
+                    stringBuilder.append(", ");
                 }
-                tagsInput.setText(stringBuilder.toString());
-                return null;
             }
+            tagsInput.setText(stringBuilder.toString());
+            return null;
         };
 
-        tagsInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TagsDialog.show(callingActivity, tagsAdapter, tagsCallable, tagsCallable);
-            }
-        });
+        tagsInput.setOnClickListener(view -> TagsDialog.show(callingActivity, tagsAdapter, tagsCallable, tagsCallable));
 
         final Button expandButton = inputView.findViewById(R.id.dialog_expand_button);
 
         // Dirty fix for the compound drawable to avoid crashes on KitKat
-        expandButton.setCompoundDrawablesWithIntrinsicBounds(null, null, callingActivity.getResources().getDrawable(R.drawable.ic_arrow_down_accent), null);
+        expandButton.setCompoundDrawablesWithIntrinsicBounds(null, null, ResourcesCompat.getDrawable(callingActivity.getResources(), R.drawable.ic_arrow_down_accent, null), null);
 
         final ExpandableLinearLayout expandLayout = inputView.findViewById(R.id.dialog_expand_layout);
 
-        expandButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                expandLayout.toggle();
-            }
-        });
+        expandButton.setOnClickListener(view -> expandLayout.toggle());
 
         expandLayout.setListener(new ExpandableLayoutListenerAdapter() {
             @Override
@@ -195,72 +183,76 @@ public class ManualEntryDialog {
         builder.setTitle(R.string.dialog_title_manual_entry)
                 .setView(inputView)
                 .setPositiveButton(R.string.button_save, null)
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                });
+                .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> {});
 
         AlertDialog dialog = builder.create();
         dialog.show();
 
         final Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
 
-        positiveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Replace spaces with empty characters
-                String secret = secretInput.getText().toString().replaceAll("\\s+","");
+        positiveButton.setOnClickListener(view -> {
+            //Replace spaces with empty characters
+            String secret = secretInput.getText().toString().replaceAll("\\s+","");
 
-                if (!Entry.validateSecret(secret)) {
-                    secretInput.setError(callingActivity.getString(R.string.error_invalid_secret));
-                    return;
-                }
-
-                Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
-                TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
-                int digits = Integer.parseInt(digitsInput.getText().toString());
-
-                String issuer = issuerInput.getText().toString();
-                String label = labelInput.getText().toString();
-
-                if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
-                    int period = Integer.parseInt(periodInput.getText().toString());
-
-                    if (oldEntry == null) {
-                        Entry e = new Entry(type, secret, period, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
-                        e.updateOTP();
-                        e.setLastUsed(System.currentTimeMillis());
-
-                        adapter.addEntry(e);
-                    } else {
-                        oldEntry.setIssuer(issuer, true);
-                        oldEntry.setLabel(label);
-                        oldEntry.setTags(tagsAdapter.getActiveTags());
-
-                        adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
-                    }
-
-                    callingActivity.refreshTags();
-                } else if (type == Entry.OTPType.HOTP) {
-                    long counter = Long.parseLong(counterInput.getText().toString());
-
-                    if (oldEntry == null) {
-                        Entry e = new Entry(type, secret, counter, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
-                        e.updateOTP();
-                        e.setLastUsed(System.currentTimeMillis());
-
-                        adapter.addEntry(e);
-                    } else {
-                        oldEntry.setIssuer(issuer, true);
-                        oldEntry.setLabel(label);
-                        oldEntry.setTags(tagsAdapter.getActiveTags());
-
-                        adapter.saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled());
-                    }
-                }
-
-                dialog.dismiss();
+            if (!Entry.validateSecret(secret)) {
+                secretInput.setError(callingActivity.getString(R.string.error_invalid_secret));
+                return;
             }
+
+            Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
+            TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
+            int digits = Integer.parseInt(digitsInput.getText().toString());
+
+            String issuer = issuerInput.getText().toString();
+            String label = labelInput.getText().toString();
+
+            if (type == Entry.OTPType.TOTP || type == Entry.OTPType.STEAM) {
+                int period = Integer.parseInt(periodInput.getText().toString());
+
+                if (isNewEntry) {
+                    Entry e = new Entry(type, secret, period, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
+                    e.updateOTP(false);
+                    e.setLastUsed(System.currentTimeMillis());
+
+                    adapter.addEntry(e);
+                } else {
+                    oldEntry.setIssuer(issuer, true);
+                    oldEntry.setLabel(label);
+                    oldEntry.setDigits(digits);
+                    oldEntry.setPeriod(period);
+                    oldEntry.setTags(tagsAdapter.getActiveTags());
+
+                    oldEntry.updateOTP(true);
+
+                    if (updateCallback != null)
+                        updateCallback.onUpdate();
+                }
+
+                callingActivity.refreshTags();
+            } else if (type == Entry.OTPType.HOTP) {
+                long counter = Long.parseLong(counterInput.getText().toString());
+
+                if (isNewEntry) {
+                    Entry e = new Entry(type, secret, counter, digits, issuer, label, algorithm, tagsAdapter.getActiveTags());
+                    e.updateOTP(false);
+                    e.setLastUsed(System.currentTimeMillis());
+
+                    adapter.addEntry(e);
+                } else {
+                    oldEntry.setIssuer(issuer, true);
+                    oldEntry.setLabel(label);
+                    oldEntry.setDigits(digits);
+                    oldEntry.setCounter(counter);
+                    oldEntry.setTags(tagsAdapter.getActiveTags());
+
+                    oldEntry.updateOTP(true);
+
+                    if (updateCallback != null)
+                        updateCallback.onUpdate();
+                }
+            }
+
+            dialog.dismiss();
         });
 
         positiveButton.setEnabled(false);
@@ -325,13 +317,13 @@ public class ManualEntryDialog {
             issuerInput.setText(oldEntry.getIssuer());
             labelInput.setText(oldEntry.getLabel());
             secretView.setText(oldEntry.getSecretEncoded());
-            digitsInput.setText(Integer.toString(oldEntry.getDigits()));
+            digitsInput.setText(String.format(Locale.ENGLISH ,"%d", oldEntry.getDigits()));
             algorithmInput.setSelection(algorithmAdapter.getPosition(oldEntry.getAlgorithm()));
 
             if (oldType == Entry.OTPType.TOTP || oldType == Entry.OTPType.STEAM) {
-                periodInput.setText(Integer.toString(oldEntry.getPeriod()));
+                periodInput.setText(String.format(Locale.ENGLISH, "%d", oldEntry.getPeriod()));
             } else if (oldType == Entry.OTPType.HOTP) {
-                counterInput.setText(Long.toString(oldEntry.getCounter()));
+                counterInput.setText(String.format(Locale.ENGLISH, "%d", oldEntry.getCounter()));
             }
 
             for(String tag: oldEntry.getTags()) {
@@ -352,10 +344,13 @@ public class ManualEntryDialog {
             secretView.setTextColor(secretInput.getTextColors().getColorForState(secretInput.getDrawableState(), R.color.colorPrimary));
 
             typeInput.setEnabled(false);
-            digitsInput.setEnabled(false);
             algorithmInput.setEnabled(false);
-            periodInput.setEnabled(false);
-            counterInput.setEnabled(false);
+            digitsInput.setEnabled(oldType != Entry.OTPType.STEAM);
+            periodInput.setEnabled(oldType != Entry.OTPType.STEAM);
         }
+    }
+
+    public interface UpdateCallback {
+        void onUpdate();
     }
 }

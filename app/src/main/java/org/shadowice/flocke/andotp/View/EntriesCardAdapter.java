@@ -126,8 +126,12 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     }
 
     public void saveAndRefresh(boolean auto_backup) {
+        saveAndRefresh(auto_backup, RecyclerView.NO_POSITION);
+    }
+
+    public void saveAndRefresh(boolean auto_backup, int itemPos) {
         updateTagsFilter();
-        entriesChanged();
+        entriesChanged(itemPos);
         saveEntries(auto_backup);
     }
 
@@ -143,10 +147,14 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         return entries.indexOf(displayedEntries.get(displayPosition));
     }
 
-    private void entriesChanged() {
+    private void entriesChanged(int itemPos) {
         displayedEntries = entries.getEntriesSorted(sortMode);
         filterByTags(tagsFilter);
-        notifyDataSetChanged();
+
+        if (itemPos == RecyclerView.NO_POSITION)
+            notifyDataSetChanged();
+        else
+            notifyItemChanged(itemPos);
     }
 
     public void updateTagsFilter() {
@@ -201,7 +209,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             ArrayList<Entry> newEntries = DatabaseHelper.loadDatabase(context, encryptionKey);
 
             entries.updateEntries(newEntries, true);
-            entriesChanged();
+            entriesChanged(RecyclerView.NO_POSITION);
         }
     }
 
@@ -219,7 +227,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             if (e.isTimeBased()) {
                 boolean cardVisible = !settings.getTapToReveal() || e.isVisible();
 
-                boolean item_changed = e.updateOTP();
+                boolean item_changed = e.updateOTP(false);
                 boolean color_changed = false;
 
                 // Check color change only if highlighting token feature is enabled and the entry is visible
@@ -240,7 +248,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         Entry entry = displayedEntries.get(i);
 
         if (!entry.isTimeBased())
-            entry.updateOTP();
+            entry.updateOTP(false);
 
         if(settings.isHighlightTokenOptionEnabled())
             entryViewHolder.updateColor(entry.getColor());
@@ -372,11 +380,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         long counter = entry.getCounter() + 1;
 
         entry.setCounter(counter);
-        entry.updateOTP();
+        entry.updateOTP(false);
         notifyItemChanged(position);
 
         realEntry.setCounter(counter);
-        realEntry.updateOTP();
+        realEntry.updateOTP(false);
         
         saveEntries(settings.getAutoBackupEncryptedFullEnabled());
     }
@@ -646,7 +654,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             int id = item.getItemId();
 
             if (id == R.id.menu_popup_edit) {
-                ManualEntryDialog.show((MainActivity) context, settings, EntriesCardAdapter.this, entries.getEntry(getRealIndex(pos)));
+                ManualEntryDialog.show((MainActivity) context, settings, EntriesCardAdapter.this, entries.getEntry(getRealIndex(pos)), () -> saveAndRefresh(settings.getAutoBackupEncryptedFullEnabled(), pos));
                 return true;
             } else if(id == R.id.menu_popup_changeImage) {
                 changeThumbnail(pos);
@@ -666,7 +674,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
     public void setSortMode(SortMode mode) {
         this.sortMode = mode;
-        entriesChanged();
+        entriesChanged(RecyclerView.NO_POSITION);
     }
 
     public SortMode getSortMode() {
