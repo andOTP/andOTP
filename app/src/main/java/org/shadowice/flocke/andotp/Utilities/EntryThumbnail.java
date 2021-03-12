@@ -276,6 +276,7 @@ public class EntryThumbnail {
         Onshape(R.drawable.thumb_onshape),
         OpenVPN(R.drawable.thumb_openvpn),
         OpenVZ(R.drawable.thumb_openvz),
+        Opera(R.drawable.thumb_opera),
         OPNsense(R.drawable.thumb_opnsense),
         ORCiD(R.drawable.thumb_orcid),
         Origin(R.drawable.thumb_origin),
