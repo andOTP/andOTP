@@ -24,7 +24,9 @@ package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Base64;
 
@@ -347,16 +349,34 @@ public class Settings {
     }
 
     public int getTheme() {
-        String themeName = getString(R.string.settings_key_theme, R.string.settings_default_theme);
-
         int theme = R.style.AppTheme_NoActionBar;
+        String themeMode = getString(R.string.settings_key_theme_mode, R.string.settings_default_theme_mode);
 
-        if (themeName.equals("light")) {
-            theme = R.style.AppTheme_NoActionBar;
-        } else if (themeName.equals("dark")) {
-            theme = R.style.AppTheme_Dark_NoActionBar;
-        } else if (themeName.equals("black")) {
-            theme = R.style.AppTheme_Black_NoActionBar;
+        //TODO: 29 needs to be replaced with VERSION_CODE.Q when compileSdk and targetSdk is updated to 29
+        if(Build.VERSION.SDK_INT >= 29 && themeMode.equals("auto")){
+            switch (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
+                //Dark Mode
+                case Configuration.UI_MODE_NIGHT_YES:
+                    theme = R.style.AppTheme_Dark_NoActionBar;
+                    break;
+                //Light Mode / Undefined mode / Default mode
+                case Configuration.UI_MODE_NIGHT_NO:
+                case Configuration.UI_MODE_NIGHT_UNDEFINED:
+                default:
+                    theme = R.style.AppTheme_NoActionBar;
+                    break;
+            }
+        } else {
+
+            String themeName = getString(R.string.settings_key_theme, R.string.settings_default_theme);
+
+            if (themeName.equals("light")) {
+                theme = R.style.AppTheme_NoActionBar;
+            } else if (themeName.equals("dark")) {
+                theme = R.style.AppTheme_Dark_NoActionBar;
+            } else if (themeName.equals("black")) {
+                theme = R.style.AppTheme_Black_NoActionBar;
+            }
         }
 
         return theme;

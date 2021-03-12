@@ -23,8 +23,10 @@
     <string name="settings_key_block_autofill" translatable="false">pref_block_autofill</string>
     <string name="settings_key_auto_unlock_after_autofill" translatable="false">pref_auto_unlock_after_autofill</string>
 
+    <string name="settings_key_cat_ui" translatable="false">perf_cat_ui</string>
     <string name="settings_key_lang" translatable="false">pref_lang</string>
     <string name="settings_key_locale" translatable="false">pref_locale</string>                        <!-- Deprecated -->
+    <string name="settings_key_theme_mode" translatable="false">perf_theme_mode</string>
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size_sp</string>
     <string name="settings_key_card_layout" translatable="false">pref_card_layout</string>
@@ -77,6 +79,7 @@
     <integer name="settings_default_auth_inactivity_delay">30</integer>
     <string name="settings_default_encryption" translatable="false">keystore</string>
     <string name="settings_default_lang" translatable="false">system</string>
+    <string name="settings_default_theme_mode" translatable="false">auto</string>
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">18</integer>
     <string name="settings_default_label_display" translatable="false">truncate</string>
@@ -171,6 +174,11 @@
         <item>ja</item>
         <item>zh_CN</item>
         <item>zh_TW</item>
+    </string-array>
+
+    <string-array name="settings_values_theme_mode" translatable="false">
+        <item>auto</item>
+        <item>manual</item>
     </string-array>
 
     <string-array name="settings_values_theme" translatable="false">
