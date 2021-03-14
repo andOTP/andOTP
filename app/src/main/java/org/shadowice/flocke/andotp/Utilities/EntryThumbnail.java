@@ -270,6 +270,7 @@ public class EntryThumbnail {
         netlify(R.drawable.thumb_netlify),
         NextCloud(R.drawable.thumb_nextcloud),
         NextDNS(R.drawable.thumb_nextdns),
+        NexusMods(R.drawable.thumb_nexusmods),
         Nintendo(R.drawable.thumb_nintendo),
         NoStarchPress(R.drawable.thumb_no_starch_press),
         NOYB(R.drawable.thumb_noyb),
