@@ -117,4 +117,7 @@
     <string name="shortcut_name_scan_qr">Scan QR code</string>
     <string name="shortcut_name_import_qr">Import QR code</string>
     <string name="shortcut_name_enter_details">Enter details</string>
+
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">Start adding your tokens by pressing \"+\" at the bottom</string>
 </resources>

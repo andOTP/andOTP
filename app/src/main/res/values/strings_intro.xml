@@ -33,9 +33,16 @@
     <string name="intro_slide3_warn_no_password">Please set a password to continue!</string>
     <string name="intro_slide3_warn_no_pin">Please set a PIN to continue!</string>
     <string name="intro_slide3_warn_confirm_password">Please confirm your password to continue!</string>
+    <string name="intro_slide3_warn_password_mismatch">Passwords must match!</string>
     <string name="intro_slide3_warn_confirm_pin">Please confirm your PIN to continue!</string>
+    <string name="intro_slide3_warn_pin_mismatch">Pins must match!</string>
 
     <string name="intro_slide4_title">Finished</string>
+    <string name="intro_slide4_title_failed">Setup failed</string>
+    <string name="intro_slide4_desc_failed">Failed to set a password, this intro will be shown again
+        the next time!</string>
     <string name="intro_slide4_desc">Your settings have been saved, you are now all set to use
         <b>andOTP</b>!</string>
+
+    <string name="intro_slide_android_backup_desc">Android sync is a feature built in to android used to back up app data to a 3rd party service (usually Google). Backups are always encrypted and unaccessible to 3rd parties without your master password. Requires use of Password encryption method.</string>
 </resources>

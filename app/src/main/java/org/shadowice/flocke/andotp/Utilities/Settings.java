@@ -24,7 +24,9 @@ package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Base64;
 
@@ -48,11 +50,11 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 import static org.shadowice.flocke.andotp.Utilities.Constants.SortMode;
 
 public class Settings {
-    private static final List<String> oldLangs = Arrays.asList("system", "en", "cs", "de", "es", "fr", "gl", "nl", "pl", "ru", "zh");
-    private static final List<String> newLangs = Arrays.asList("system", "en_US", "cs_CZ", "de_DE", "es_ES", "fr_FR", "gl_ES", "nl_NL", "pl_PL", "ru_RU", "zh_CN");
+    private static final List<String> newLangs = Arrays.asList("ar",    "bg",    "ca",    "cs",    "de",    "el",    "en",    "es",    "fa",    "fr",    "gl",    "hi",    "hu",    "it",    "ja",    "nl",    "pl",    "pt_BR", "ru",    "sl",    "sv",    "tr",    "uk",    "zh_CN", "zh_TW");
+    private static final List<String> oldLangs = Arrays.asList("ar_SA", "bg_BG", "ca_ES", "cs_CZ", "de_DE", "el_GR", "en_US", "es_ES", "fa_IR", "fr_FR", "gl_ES", "hi_IN", "hu_HU", "it_IT", "ja_JP", "nl_NL", "pl_PL", "pt_BR", "ru_RU", "sl_SI", "sv_SE", "tr_TR", "uk_UA", "zh_CN", "zh_TW");
 
-    private Context context;
-    private SharedPreferences settings;
+    private final Context context;
+    private final SharedPreferences settings;
 
     public Settings(Context context) {
         this.context = context;
@@ -72,13 +74,13 @@ public class Settings {
             remove(R.string.settings_key_auth_pin);
         }
 
-        if (settings.contains(getResString(R.string.settings_key_lang))) {
-            String lang = getString(R.string.settings_key_lang, R.string.settings_default_locale);
+        if (settings.contains(getResString(R.string.settings_key_locale))) {
+            String lang = getString(R.string.settings_key_locale, R.string.settings_default_lang);
 
             if (oldLangs.contains(lang))
                 setLocale(newLangs.get(oldLangs.indexOf(lang)));
 
-            remove(R.string.settings_key_lang);
+            remove(R.string.settings_key_locale);
         }
 
         if (settings.contains(getResString(R.string.settings_key_tap_to_reveal))) {
@@ -86,6 +88,13 @@ public class Settings {
                 setString(R.string.settings_key_tap_single, Constants.TapMode.REVEAL.toString().toLowerCase(Locale.ENGLISH));
             }
             remove(R.string.settings_key_tap_to_reveal);
+        }
+
+        if (settings.contains(getResString(R.string.settings_key_label_scroll))) {
+            if (getBoolean(R.string.settings_key_label_scroll, false)) {
+                setString(R.string.settings_key_label_display, Constants.LabelDisplay.SCROLL.toString().toLowerCase(Locale.ENGLISH));
+            }
+            remove(R.string.settings_key_label_scroll);
         }
 
         if (settings.contains(getResString(R.string.settings_key_backup_password))) {
@@ -132,12 +141,14 @@ public class Settings {
         return settings.getInt(getResString(keyId), defaultValue);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private long getLong(int keyId, long defaultValue) {
         return settings.getLong(getResString(keyId), defaultValue);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private Set<String> getStringSet(int keyId, Set<String> defaultValue) {
-        return new HashSet<String>(settings.getStringSet(getResString(keyId), defaultValue));
+        return new HashSet<>(settings.getStringSet(getResString(keyId), defaultValue));
     }
 
     private void setBoolean(int keyId, boolean value) {
@@ -146,6 +157,7 @@ public class Settings {
                 .apply();
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void setInt(int keyId, int value) {
         settings.edit()
                 .putInt(getResString(keyId), value)
@@ -158,6 +170,7 @@ public class Settings {
                 .apply();
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void setStringSet(int keyId, Set<String> value) {
         settings.edit()
                 .putStringSet(getResString(keyId), value)
@@ -170,6 +183,7 @@ public class Settings {
                 .apply();
     }
 
+    @SuppressWarnings("ApplySharedPref")
     public void clear(boolean keep_auth) {
         AuthMethod authMethod = getAuthMethod();
         String authCredentials = getAuthCredentials();
@@ -200,13 +214,13 @@ public class Settings {
         PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
     }
 
-
-
     public void registerPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
         settings.registerOnSharedPreferenceChangeListener(listener);
     }
 
-
+    public void unregisterPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        settings.unregisterOnSharedPreferenceChangeListener(listener);
+    }
 
     public boolean getTapToReveal() {
         return getTapSingle() == Constants.TapMode.REVEAL || getTapDouble() == Constants.TapMode.REVEAL;
@@ -304,7 +318,7 @@ public class Settings {
     }
 
     public Set<String> getPanicResponse() {
-        return settings.getStringSet(getResString(R.string.settings_key_panic), Collections.<String>emptySet());
+        return settings.getStringSet(getResString(R.string.settings_key_panic), Collections.emptySet());
     }
 
     public boolean getRelockOnScreenOff() {
@@ -320,11 +334,11 @@ public class Settings {
     }
 
     public void setLocale(String locale) {
-        setString(R.string.settings_key_locale, locale);
+        setString(R.string.settings_key_lang, locale);
     }
 
     public Locale getLocale() {
-        String lang = getString(R.string.settings_key_locale, R.string.settings_default_locale);
+        String lang = getString(R.string.settings_key_lang, R.string.settings_default_lang);
 
         if (lang.equals("system")) {
             return Tools.getSystemLocale();
@@ -340,16 +354,41 @@ public class Settings {
     }
 
     public int getTheme() {
-        String themeName = getString(R.string.settings_key_theme, R.string.settings_default_theme);
-
         int theme = R.style.AppTheme_NoActionBar;
+        String themeMode = getString(R.string.settings_key_theme_mode, R.string.settings_default_theme_mode);
 
-        if (themeName.equals("light")) {
-            theme = R.style.AppTheme_NoActionBar;
-        } else if (themeName.equals("dark")) {
-            theme = R.style.AppTheme_Dark_NoActionBar;
-        } else if (themeName.equals("black")) {
-            theme = R.style.AppTheme_Black_NoActionBar;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && themeMode.equals("auto")){
+            boolean blackTheme = getBoolean(R.string.settings_key_theme_black_auto, false);
+
+            switch (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
+                //Dark Mode
+                case Configuration.UI_MODE_NIGHT_YES:
+                    if (blackTheme)
+                        theme = R.style.AppTheme_Black_NoActionBar;
+                    else
+                        theme = R.style.AppTheme_Dark_NoActionBar;
+                    break;
+                //Light Mode / Undefined mode / Default mode
+                case Configuration.UI_MODE_NIGHT_NO:
+                case Configuration.UI_MODE_NIGHT_UNDEFINED:
+                default:
+                    theme = R.style.AppTheme_NoActionBar;
+                    break;
+            }
+        } else {
+            String themeName = getString(R.string.settings_key_theme, R.string.settings_default_theme);
+
+            switch (themeName) {
+                case "light":
+                    theme = R.style.AppTheme_NoActionBar;
+                    break;
+                case "dark":
+                    theme = R.style.AppTheme_Dark_NoActionBar;
+                    break;
+                case "black":
+                    theme = R.style.AppTheme_Black_NoActionBar;
+                    break;
+            }
         }
 
         return theme;
@@ -357,10 +396,6 @@ public class Settings {
 
     public int getLabelSize() {
         return getInt(R.string.settings_key_label_size, R.integer.settings_default_label_size);
-    }
-
-    public boolean getScrollLabel() {
-        return getBoolean(R.string.settings_key_label_scroll, false);
     }
 
     public boolean getFirstTimeWarningShown() {
@@ -430,7 +465,7 @@ public class Settings {
     }
 
     public Set<String> getBackupBroadcasts() {
-        return settings.getStringSet(getResString(R.string.settings_key_backup_broadcasts), Collections.<String>emptySet());
+        return settings.getStringSet(getResString(R.string.settings_key_backup_broadcasts), Collections.emptySet());
     }
 
     public boolean isPlainTextBackupBroadcastEnabled() {
@@ -475,12 +510,12 @@ public class Settings {
 
     public boolean getTagToggle(String tag) {
         //The tag toggle holds tags that are unchecked in order to default to checked.
-        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<String>());
+        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<>());
         return !toggledTags.contains(tag);
     }
 
     public void setTagToggle(String tag, Boolean value) {
-        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<String>());
+        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<>());
         if(value)
             toggledTags.remove(tag);
         else
@@ -504,7 +539,7 @@ public class Settings {
 
     public int getTokenSplitGroupSize() {
         // the setting is of type "String", because ListPreference does not support integer arrays for its entryValues
-        return  Integer.valueOf(
+        return  Integer.parseInt(
                 getString(R.string.settings_key_split_group_size, R.string.settings_default_split_group_size)
         );
     }
@@ -515,10 +550,12 @@ public class Settings {
     }
 
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean getScreenshotsEnabled() {
         return getBoolean(R.string.settings_key_enable_screenshot, false);
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean getUsedTokensDialogShown() {
         return getBoolean(R.string.settings_key_last_used_dialog_shown, false);
     }
@@ -576,6 +613,14 @@ public class Settings {
         return getBoolean(R.string.settings_key_show_individual_timeouts, false);
     }
 
+    public boolean isFocusSearchOnStartEnabled() {
+        return getBoolean(R.string.settings_key_focus_search_on_start, false);
+    }
+
+    public boolean isHideIssuerEnabled() {
+        return getBoolean(R.string.settings_key_hide_issuer, false);
+    }
+
     public Constants.TapMode getTapSingle() {
         String singleTap = getString(R.string.settings_key_tap_single, R.string.settings_default_tap_single);
         return Constants.TapMode.valueOf(singleTap.toUpperCase(Locale.ENGLISH));
@@ -600,5 +645,23 @@ public class Settings {
 
     public boolean getBlockAutofill() {
         return getBoolean(R.string.settings_key_block_autofill, false);
+    }
+
+    public boolean getAutoUnlockAfterAutofill() {
+        return getBoolean(R.string.settings_key_auto_unlock_after_autofill, false);
+    }
+      
+    public void setDefaultBackupType(Constants.BackupType type) {
+        setString(R.string.settings_key_backup_default_type, type.name().toLowerCase(Locale.ENGLISH));
+    }
+
+    public Constants.BackupType getDefaultBackupType() {
+        String defaultType = getString(R.string.settings_key_backup_default_type, Constants.BackupType.ENCRYPTED.name());
+        return Constants.BackupType.valueOf(defaultType.toUpperCase(Locale.ENGLISH));
+    }
+
+    public Constants.LabelDisplay getLabelDisplay() {
+        String labelDisplay = getString(R.string.settings_key_label_display, R.string.settings_default_label_display);
+        return Constants.LabelDisplay.valueOf(labelDisplay.toUpperCase(Locale.ENGLISH));
     }
 }

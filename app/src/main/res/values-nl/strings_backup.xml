@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="backup_activity_title">Reservekopieën</string>
+    <string name="backup_category_plain">Reservekopieën zonder tekstopmaak</string>
+    <string name="backup_category_crypt">Versleutelde reservekopieën</string>
+    <string name="backup_category_openpgp">OpenPGP reservekopieën</string>
+    <string name="backup_title_export_plain">Reservekopie (tekst zonder opmaak)</string>
+    <string name="backup_title_export_crypt">Reservekopie (versleuteld)</string>
+    <string name="backup_title_export_openpgp">Reservekopie (OpenPGP)</string>
+    <string name="backup_title_import_plain">Herstellen (tekst zonder opmaak)</string>
+    <string name="backup_title_import_crypt">Herstellen (versleuteld)</string>
+    <string name="backup_title_import_crypt_old">Herstellen (versleuteld, oude versleuteling)</string>
+    <string name="backup_title_import_openpgp">Herstellen (OpenPGP)</string>
+    <string name="backup_title_replace">Bestaande accounts vervangen</string>
+    <string name="backup_desc_export_plain">Maak een reservekopie van alle accounts in een niet-versleuteld JSON-bestand</string>
+    <string name="backup_desc_export_crypt">Maak een reservekopie van alle accounts in een JSON-bestand met wachtwoordbeveiliging</string>
+    <string name="backup_desc_export_openpgp">Maak een reservekopie van alle accounts in een JSON-bestand met OpenPGP versleuteling</string>
+    <string name="backup_desc_import_plain">Herstel accounts vanuit een JSON tekstbestand</string>
+    <string name="backup_desc_import_crypt">Herstel alle accounts vanuit een JSON-bestand met wachtwoordbeveiliging</string>
+    <string name="backup_desc_import_crypt_old">Herstel accounts vanuit een met een wachtwoord beveiligd JSON-bestand
+        gemaakt met een <b>andOTP versie lager dan 0.6.3</b></string>
+    <string name="backup_desc_import_openpgp">Herstel accounts vanuit een OpenPGP versleuteld JSON-bestand</string>
+    <string name="backup_desc_crypt_setup">Fout bij het laden van het reservekopiewachtwoord via <b>Instellingen</b>,
+        Dit betekent ofwel dat er geen wachtwoord is ingesteld of er is iets misgegaan. U wordt gevraagd om
+        het wachtwoord handmatig in te voeren bij het maken of importeren van een reservekopie.
+    </string>
+    <string name="backup_desc_openpgp_provider">Je dient een OpenPGP provider te installeren en in de <b>Instellingen</b> in te schakelen om deze functie te gebruiken.    </string>
+    <string name="backup_desc_openpgp_keyid">Je dient een OpenPGP-sleutel in de <b>Instellingen</b> te selecteren voor je versleutelde reservekopieën kunt maken.    </string>
+    <string name="backup_desc_replace">Indien ingeschakeld worden alle oude vermeldingen vervangen wanneer een reservekopie geïmporteerd wordt en alleen de reservekopie is aanwezig. Indien uitgeschakeld worden de oude vermeldingen en reservekopieën samengevoegd.</string>
+    <!-- Dialogs -->
+    <string name="backup_dialog_title_security_warning">Veiligheidswaarschuwing</string>
+    <string name="backup_dialog_msg_export_warning">Wilt u echt de database exporteren als JSON-bestand zonder opmaak? Dit bestand bevat al uw geheime sleutels. <b>Houdt het veilig</b>!    </string>
+    <string name="backup_receiver_title_backup_failed">Reservekopie mislukt</string>
+    <string name="backup_receiver_title_backup_success">Reservekopie geslaagd</string>
+    <string name="backup_receiver_plain_disabled">Niet-versleutelde reservekopieën zijn op dit moment uitgeschakeld, ga naar de Instellingen om deze in te schakelen</string>
+    <string name="backup_receiver_encrypted_disabled">Versleutelde reservekopieën zijn op dit moment uitgeschakeld, ga naar de Instellingen om deze in te schakelen</string>
+    <string name="backup_receiver_read_permission_failed">Verleen eerst toestemming om te lezen voordat je een reservekopie gaat maken</string>
+    <string name="backup_receiver_write_permission_failed">Geen machtiging tot schrijven verleend, gelieve dit te doen voordat je een reservekopie maakt</string>
+    <string name="backup_receiver_custom_encryption_failed">Versleuteling op basis van wachtwoord/pincode wordt niet ondersteund bij reservekopieën gemaakt op afstand</string>
+    <!-- Notification channels -->
+    <string name="notification_channel_name_backup_failed">Automatische reservekopie mislukt</string>
+    <string name="notification_channel_name_backup_success">Automatische reservekopie geslaagd</string>
+    <string name="notification_channel_desc_backup_failed">Deze meldingen worden getoond wanneer een automatische reservekopie niet geslaagd is</string>
+    <string name="notification_channel_desc_backup_success">Deze meldingen worden getoond wanneer een automatische reservekopie geslaagd is</string>
+    <!-- Toast messages -->
+    <string name="backup_toast_no_location">Stel een reservekopie locatie bij de instellingen!</string>
+    <string name="backup_toast_location_access_failed">Toegang tot de resrverkopie locatie mislukte!</string>
+    <string name="backup_toast_file_creation_failed">Het aanmaken van de reservekopie mislukte!</string>
+    <string name="backup_toast_export_success">Exporteren naar een extern opslagmedium was succesvol</string>
+    <string name="backup_toast_export_failed">Exporteren naar een extern opslagmedium is mislukt</string>
+    <string name="backup_toast_import_success">Importeren uit externe opslag was succesvol</string>
+    <string name="backup_toast_import_save_failed">Opslaan van herstelde vermeldingen mislukt</string>
+    <string name="backup_toast_import_decryption_failed">Ontsleutelen van de reservekopie is mislukt</string>
+    <string name="backup_toast_import_no_entries">Geen vermeldingen gevonden in geïmporteerde gegevens</string>
+    <string name="backup_toast_storage_not_accessible">Externe opslag is momenteel niet toegankelijk</string>
+    <string name="backup_toast_openpgp_error">OpenPGP fout: %s</string>
+    <string name="backup_toast_openpgp_not_verified">Geen geverifieerde handtekening gevonden</string>
+    <string name="backup_toast_crypt_password_not_set">Wachtwoord niet ingesteld, controleer de <b>Instellingen</b></string>
+    <string name="backup_toast_file_selection_failed">Kan bestand selectie niet openen!</string>
+</resources>

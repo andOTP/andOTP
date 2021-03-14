@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Buttons -->
+    <string name="button_cancel">Annuler</string>
+    <string name="button_enter_details">Ajouter les détails</string>
+    <string name="button_scan_qr">Scanner un QR-Code</string>
+    <string name="button_save">Enregistrer</string>
+    <string name="button_new_tag">Nouvelle étiquette</string>
+    <string name="button_settings">Paramètres</string>
+    <string name="button_all_tags">Toutes les étiquettes</string>
+    <string name="button_no_tags">Aucune étiquette</string>
+    <string name="button_qr_from_image">QR-code à partir d\'une image</string>
+    <!-- Custom formatting -->
+    <string name="format_custom_period">%d s</string>
+    <!-- Hints -->
+    <string name="hint_label">Titre</string>
+    <string name="hint_secret">Secret</string>
+    <!-- Labels -->
+    <string name="label_hidden">Cachés</string>
+    <string name="label_type">Type</string>
+    <string name="label_secret">Secret</string>
+    <string name="label_period">Période</string>
+    <string name="label_digits">Nombre de chiffres</string>
+    <string name="label_counter">Compteur</string>
+    <string name="label_issuer">Émetteur</string>
+    <string name="label_label">Titre</string>
+    <string name="label_algorithm">Algorithme</string>
+    <string name="label_tags">Étiquettes</string>
+    <string name="label_advanced">Options avancées</string>
+    <!-- Drawer -->
+    <string name="drawer_open">Afficher les étiquettes</string>
+    <string name="drawer_close">Cacher les étiquettes</string>
+    <!-- Menu -->
+    <string name="menu_main_about">À propos</string>
+    <string name="menu_main_backup">Sauvegarde</string>
+    <string name="menu_main_search">Recherche</string>
+    <string name="menu_main_settings">Paramètres</string>
+    <string name="menu_main_sort">Trier</string>
+    <string name="menu_sort_none">Non trié</string>
+    <string name="menu_sort_issuer">Émetteur</string>
+    <string name="menu_sort_label">Titre</string>
+    <string name="menu_sort_last_used">Dernier utilisé</string>
+    <string name="menu_sort_most_used">Les plus utilisés</string>
+    <string name="menu_popup_edit">Édition</string>
+    <string name="menu_popup_change_image">Modifier l\'image</string>
+    <string name="menu_popup_remove">Supprimer</string>
+    <string name="menu_popup_show_qr_code">Montrer le QR Code</string>
+    <!-- Buttons -->
+    <string name="button_card_options">Plus d\'options</string>
+    <string name="button_card_options_format">Plus d\'options pour %1$s</string>
+    <string name="button_card_copy">Copier le jeton</string>
+    <string name="button_card_copy_format">Copier le jeton %1$s</string>
+    <string name="button_add">Ajouter un nouveau compte</string>
+    <string name="button_close_menu">Fermer le menu</string>
+    <!-- Toast messages -->
+    <string name="toast_auth_failed">Échec d\'authentification, veuillez réessayer !</string>
+    <string name="toast_auth_failed_fatal">Échec d\'authentification, fermeture d\'andOTP !</string>
+    <string name="toast_copied_to_clipboard">Copié dans le presse-papier</string>
+    <string name="toast_entry_exists">Cette entrée existe déjà</string>
+    <string name="toast_invalid_qr_code">QR-Code invalide</string>
+    <string name="toast_encryption_key_empty">Clé de chiffrement non chargée</string>
+    <string name="toast_intent_creation_failed">Code fourni par l’intent invalide</string>
+    <string name="toast_intent_creation_succeeded">Code fourni par lintent ajouté</string>
+    <string name="toast_file_load_error">Impossible d\'ouvrir le fichier</string>
+    <string name="toast_qr_error">Impossible de trouver ou confirmer le QR-code</string>
+    <string name="toast_qr_checksum_exception">Échec de la vérification de la somme de contrôle lors du décodage du QR-code</string>
+    <string name="toast_qr_format_error">Erreur de format dans le QR-code</string>
+    <string name="toast_qr_unsuported">QR Code non pris en charge</string>
+    <string name="toast_qr_failed_to_generate">Échec de la création du QR Code</string>
+    <!-- Errors -->
+    <string name="error_invalid_secret">Secret invalide</string>
+    <!-- Dialogs -->
+    <string name="dialog_title_auth">Identifiez-vous</string>
+    <string name="dialog_title_manual_entry">Ajouter les détails</string>
+    <string name="dialog_title_remove">Supprimer</string>
+    <string name="dialog_title_rename">Renommer</string>
+    <string name="dialog_title_counter">Compteur</string>
+    <string name="dialog_title_used_tokens">Utilisation des jetons</string>
+    <string name="dialog_title_keystore_error">Erreur KeyStore</string>
+    <string name="dialog_title_qr_code">QR Code</string>
+    <string name="dialog_title_enter_password">Saisir le mot de passe</string>
+    <string name="dialog_label_enter_password">Saisir le mot de passe</string>
+    <string name="dialog_label_confirm_password">Confirmer le mot de passe</string>
+    <string name="dialog_msg_auth">Veuillez entrer les informations d\'identification du périphérique pour démarrer andOTP.</string>
+    <string name="dialog_msg_confirm_delete">Êtes-vous sûr(e) de vouloir supprimer le compte \"%1$s\" ?</string>
+    <string name="dialog_msg_used_tokens">andOTP suivra votre usage de vos jetons (via la fonction
+        \"appuyer pour révéler\" ou copie dans le presse-papier) pour être capable de les trier
+        par \"Utilisé le plus\" ou \"Dernier utilisé\".\n\nCe message ne sera pas afficher à nouveau.</string>
+    <string name="dialog_msg_keystore_error">Échec du chargement de la clé de chiffrement à partir de l\'armoire à clés.
+<b>Toute entrée ajoutée sera perdue.</b>\n\nPour continuer à utiliser andOTP, vous pouvez aller dans les <b>paramètres</b> pour passer de <b>Chiffrement de la base de données</b> à <b>Mot de passe / Code PIN</b>.</string>
+    <!-- Shortcuts -->
+    <string name="shortcut_name_scan_qr">Scanner le QR-code</string>
+    <string name="shortcut_name_import_qr">Importer un QR-code</string>
+    <string name="shortcut_name_enter_details">Ajouter les détails</string>
+</resources>

@@ -11,10 +11,16 @@
  * Improvement: Remove the "new backup format warning" (has been there long enough)
  * Improvement: Show requirements for auto backups in the settings (Issue #492)
  * Improvement: Fix some accessibility issues (Issue #498)
+ * Improvement: Toggle show/hide of a password confirmation field together with the password field (Issue #638, PR #641 by @jsoberg)
+ * Improvement: Decoding of secrets with an invalid Base32 encoding (Issue #600)
  * Bug fix: Make the automatic thumbnail selection case insensitive (Issue #564)
  * Bug fix: Validate Integer input for counter, digits and period (Issue #569, PR #570 by @jsoberg)
  * Bug fix: Visibility of the password confirmation field (Issue #580, PR #582 by @jsoberg)
- * Internal: Update Gradle and build tools
+ * Bug fix: Crash when clicking on an entry multiple times (Issue #631, PR #634 by @jsoberg)
+ * Bug fix: Crash during settings changes (Issue #639, PR #640 by @jsoberg)
+ * Bug fix: Don't use regionalized language codes (Issue #567)
+ * Bug fix: Report backup failure correctly (Issue #671)
+ * Internal: Update Gradle, build tools and dependencies
  * Internal: Min API Level set to 22 (Lollipop	5.1)
  * Internal: Refactoring and reducing build warnings
  * Thumbnails: Lots of new ones (thanks to all contributors)

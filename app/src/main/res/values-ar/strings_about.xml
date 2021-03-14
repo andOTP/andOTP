@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">عن التطبيق</string>
+    <string name="about_description">تطبيق مفتوح المصدر للمصادقة بخطوتين لنظام الأندرويد</string>
+    <string name="about_tab_about">عن التطبيق</string>
+    <string name="about_tab_libraries">المكتبات</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">سِجل التغييرات</string>
+    <string name="about_label_license">الرخصة</string>
+    <string name="about_label_MIT">رخصة MIT</string>
+    <string name="about_label_source">الكود المصدري</string>
+    <string name="about_label_version">الإصدار</string>
+    <string name="about_label_faq">الأسئلة الشائعة</string>
+    <string name="about_label_faq_long">الأسئلة الشائعة</string>
+    <!-- Authors -->
+    <string name="about_title_authors">المؤلفون</string>
+    <string name="about_label_main_developer">المطور الرئيسي</string>
+    <string name="about_label_developer">المطور</string>
+    <string name="about_label_original_author">مؤلف التطبيق الأصلي</string>
+    <string name="about_label_original_app">التطبيق الأصلي</string>
+    <string name="about_label_website">موقع الويب</string>
+    <string name="about_label_donate">التبرع</string>
+    <string name="about_label_contributors">المساهمون</string>
+    <string name="about_label_translators">المترجمون</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">تحذير على الصور المصغرة</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>١.</b> جميع الصور المصغرة علامات تجارية تعود لمالكيها الشرعيين.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>٢.</b> إستخدام هذه العلامات التجارية لا تشير
+إلى تسويق andOTP لمالكين هذه العلامات التجارية، أو العكس.</string>
+    <string name="about_thumbnails_disclaimer_no3">&lt;b/&gt;٣.&lt;b&gt; الصور المصغرة يجب أن تستعمل فقط 
+        لتمثيل الشركة أو المنتج التي تشير إليها.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>٤. الرجاء عدم استخدام الصور المصغرة لأي سبب عدا تمثيل علامات تجارية معينة.</b></string>
+    <!-- Support -->
+    <string name="about_title_support">للمساهمة في تطوير التطبيق</string>
+    <string name="about_desc_support">اعرف كيف يمكنك دعم تطوير andOTP</string>
+    <string name="about_title_special_features">الميزات الخاصة</string>
+    <string name="about_dialog_special_features">هل أنت متأكد إنك تريد تفعيل الميزات الخاصة؟
+معظمهم خوارزميات OTP غير معتمدة طُبّقوا بناء على طلب خاص.
+إنهم <b>ليسوا معتمدين رسميا</b> ويمكن أن يأتوا مع <b>قيود معينة</b>.
+الرجاء قراءة (وفهم) صفحة \"Special features\" في GitHub لمزيد من المعلومات قبل استخدامهم.</string>
+    <string name="about_toast_special_features">تم تفعيل الميزات الخاصة</string>
+    <string name="about_toast_special_features_enabled">تم تفعيل الميزات الخاصة من قبل</string>
+    <string name="about_toast_copied_to_clipboard">تم نسخ رابط التبرع إلى الحافظة</string>
+</resources>

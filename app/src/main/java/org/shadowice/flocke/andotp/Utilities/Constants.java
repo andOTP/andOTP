@@ -68,6 +68,10 @@ public class Constants {
         NOTHING, REVEAL, COPY, COPY_BACKGROUND
     }
 
+    public enum LabelDisplay {
+        TRUNCATE, SCROLL, MULTILINE
+    }
+
     // Intents (Format: A0x with A = parent Activity, x = number of the intent)
     public final static int INTENT_MAIN_AUTHENTICATE            = 100;
     public final static int INTENT_MAIN_SETTINGS                = 101;
@@ -94,6 +98,8 @@ public class Constants {
     public final static String EXTRA_AUTH_MESSAGE                   = "message";
 
     public final static String EXTRA_BACKUP_ENCRYPTION_KEY          = "encryption_key";
+
+    public final static String EXTRA_INTRO_FINISHED                 = "setup_finished";
 
     public final static String EXTRA_SETTINGS_ENCRYPTION_CHANGED    = "encryption_changed";
     public final static String EXTRA_SETTINGS_ENCRYPTION_KEY        = "encryption_key";

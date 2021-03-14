@@ -10,15 +10,20 @@ import android.os.Build;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.ConfirmedPasswordTransformationHelper;
+import org.shadowice.flocke.andotp.Utilities.Constants;
+import org.shadowice.flocke.andotp.Utilities.EditorActionHelper;
 import org.shadowice.flocke.andotp.Utilities.Tools;
 
 public class PasswordEntryDialog extends AppCompatDialog
-    implements View.OnClickListener, TextWatcher {
+    implements View.OnClickListener, TextWatcher, TextView.OnEditorActionListener {
 
     public enum Mode { ENTER, UPDATE }
 
@@ -26,12 +31,13 @@ public class PasswordEntryDialog extends AppCompatDialog
         void onPasswordEntered(String newPassword);
     }
 
-    private Mode dialogMode;
-    private PasswordEnteredCallback callback;
+    private final Mode dialogMode;
+    private final PasswordEnteredCallback callback;
 
-    private TextInputEditText passwordInput;
-    private EditText passwordConfirm;
-    private Button okButton;
+    private final TextInputEditText passwordInput;
+    private final EditText passwordConfirm;
+    private final Button okButton;
+    private final TextView tooShortWarning;
 
     public PasswordEntryDialog(Context context, Mode newMode, boolean blockAccessibility, boolean blockAutofill, PasswordEnteredCallback newCallback) {
         super(context, Tools.getThemeResource(context, R.attr.dialogTheme));
@@ -42,6 +48,9 @@ public class PasswordEntryDialog extends AppCompatDialog
         TextInputLayout passwordLayout = findViewById(R.id.passwordInputLayout);
         passwordInput = findViewById(R.id.passwordInput);
         passwordConfirm = findViewById(R.id.passwordConfirm);
+        tooShortWarning = findViewById(R.id.tooShortWarning);
+        tooShortWarning.setText(getContext().getString(R.string.settings_label_short_password, Constants.AUTH_MIN_PASSWORD_LENGTH));
+        ConfirmedPasswordTransformationHelper.setup(passwordLayout, passwordInput, passwordConfirm);
 
         if (blockAccessibility) {
             passwordLayout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
@@ -54,9 +63,10 @@ public class PasswordEntryDialog extends AppCompatDialog
         }
 
         okButton = findViewById(R.id.buttonOk);
-        Button cancelButton = findViewById(R.id.buttonCancel);
-
         okButton.setOnClickListener(this);
+        okButton.setEnabled(false);
+
+        Button cancelButton = findViewById(R.id.buttonCancel);
         cancelButton.setOnClickListener(this);
 
         this.callback = newCallback;
@@ -65,23 +75,49 @@ public class PasswordEntryDialog extends AppCompatDialog
 
         if (this.dialogMode == Mode.UPDATE) {
             passwordConfirm.setVisibility(View.VISIBLE);
+
             passwordInput.addTextChangedListener(this);
             passwordConfirm.addTextChangedListener(this);
+
+            passwordConfirm.setOnEditorActionListener(this);
         } else if (this.dialogMode == Mode.ENTER) {
             passwordConfirm.setVisibility(View.GONE);
+
+            passwordInput.addTextChangedListener(this);
+
+            passwordInput.setOnEditorActionListener(this);
         }
     }
 
     // TextWatcher
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (TextUtils.equals(passwordInput.getEditableText(), passwordConfirm.getEditableText()))
-            okButton.setEnabled(true);
-        else
+        if (passwordInput.getEditableText().length() >= Constants.AUTH_MIN_PASSWORD_LENGTH) {
+            tooShortWarning.setVisibility(View.GONE);
+
+            okButton.setEnabled(dialogMode == Mode.ENTER || TextUtils.equals(passwordInput.getEditableText(), passwordConfirm.getEditableText()));
+        }
+        else {
+            tooShortWarning.setVisibility(View.VISIBLE);
             okButton.setEnabled(false);
+        }
     }
 
     public void afterTextChanged(Editable s) {}
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (EditorActionHelper.isActionDoneOrKeyboardEnter(actionId, event)) {
+            if (okButton.isEnabled()) okButton.performClick();
+            return true;
+        } else if (EditorActionHelper.isActionUpKeyboardEnter(event)) {
+            // Ignore action up after keyboard enter. Otherwise the cancel button would be selected
+            // after pressing enter with an invalid password.
+            return true;
+        }
+
+        return false;
+    }
 
     // View.OnClickListener
     public void onClick(View view)  {

@@ -38,18 +38,15 @@ insira
     <string name="backup_receiver_read_permission_failed">A permissão de leitura não foi concedida. Por favor, conceda-a        antes de iniciar um backup</string>
     <string name="backup_receiver_write_permission_failed">A permissão de escrita não foi concedida. Por favor, conceda-a        antes de iniciar um backup</string>
     <string name="backup_receiver_custom_encryption_failed">A criptografia de senha ou PIN não         pode ser usada com o backup de ativação remota</string>
-    <string name="backup_new_format_dialog_title">Novo método de criptografia</string>
-    <string name="backup_new_format_dialog_msg">Desde a versão 0.6.3 do andOTP, um <b>método novo e aprimorado
-        de criptografia</b> é usado para backups protegidos por senha. Os backups antigos ainda podem ser
-        importados, mas é <b>altamente recomendado criar novos backups com o método aprimorado de
-        criptografia</b>.\n\nEsta mensagem não será exibida novamente.</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Falha ao realizar o backup automático</string>
     <string name="notification_channel_name_backup_success">Backup automático concluído</string>
     <string name="notification_channel_desc_backup_failed">Estas notificações são exibidas quando um        backup automático falhou por algum motivo</string>
     <string name="notification_channel_desc_backup_success">Estas notificações são exibidas quando um        backup automático foi bem sucedido</string>
     <!-- Toast messages -->
-    <string name="backup_toast_mkdir_failed">Não foi possível criar a pasta de backup</string>
+    <string name="backup_toast_no_location">Por favor, defina um local padrão de backup nas configurações!</string>
+    <string name="backup_toast_location_access_failed">Falha ao acessar o local de backup!</string>
+    <string name="backup_toast_file_creation_failed">Falha ao criar arquivo de backup!</string>
     <string name="backup_toast_export_success">Exportação para o armazenamento externo realizada com sucesso</string>
     <string name="backup_toast_export_failed">Erro ao exportar para o armazenamento externo</string>
     <string name="backup_toast_import_success">Importação do armazenamento externo realizada com sucesso</string>
@@ -57,9 +54,8 @@ insira
     <string name="backup_toast_import_decryption_failed">Falha ao desencriptar o arquivo de backup</string>
     <string name="backup_toast_import_no_entries">Nenhuma conta foi encontrada nos dados importados</string>
     <string name="backup_toast_storage_not_accessible">O armazenamento externo está inacessível no momento</string>
-    <string name="backup_toast_storage_permissions">Permissão de armazenamento não concedida</string>
     <string name="backup_toast_openpgp_error">Erro do OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">Nenhuma assinatura verificada foi detectada</string>
     <string name="backup_toast_crypt_password_not_set">A senha não foi definida. Verifique as <b>Configurações</b></string>
-    <string name="backup_toast_file_selection_failed">Can\'t open file selection dialog!</string>
+    <string name="backup_toast_file_selection_failed">Erro ao abrir diálogo de seleção de arquivo!</string>
 </resources>

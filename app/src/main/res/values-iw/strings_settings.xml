@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_activity_title">הגדרות</string>
+    <!-- Categories -->
+    <string name="settings_category_title_security">אבטחה</string>
+    <string name="settings_category_title_ui">ממשק משתמש</string>
+    <string name="settings_category_title_backup">גיבוי</string>
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">הקש כדי לחשוף</string>
+    <string name="settings_title_tap_to_reveal_timeout">פסק זמן להקש כדי לחשוף</string>
+    <string name="settings_title_auth">אימות</string>
+    <string name="settings_title_auth_password">סיסמא</string>
+    <string name="settings_title_auth_pin">קוד PIN</string>
+    <string name="settings_title_encryption">הצפנת נתונים</string>
+    <string name="settings_title_panic">טריגר מצוקה</string>
+    <string name="settings_title_relock_screen_off">נעל מחדש בכיבוי המסך</string>
+    <string name="settings_title_relock_background">נעל מחדש במעבר לאפליקציה אחרת</string>
+    <string name="settings_title_auth_inactivity">נעל מחדש לאחר חוסר פעילות</string>
+    <string name="settings_title_auth_inactivity_delay">עיכוב נעילה מחדש לאחר חוסר פעילות</string>
+    <string name="settings_title_block_accessibility">חסום שירותי נגישות</string>
+    <string name="settings_title_block_autofill">חסום מילוי אוטומטי</string>
+    <string name="settings_title_lang">שפה</string>
+    <string name="settings_title_theme">ערכת נושא</string>
+    <string name="settings_title_card_layout">פריסת כרטיס</string>
+    <string name="settings_title_label_size">גודל גופן של תווית</string>
+    <string name="settings_title_label_scroll">גלול תווית</string>
+    <string name="settings_title_tap_single">לחיצה-אחת</string>
+    <string name="settings_title_tap_double">לחיצה-כפולה</string>
+    <string name="settings_title_thumbnail_size_ask">גודל תמונה ממוזערת</string>
+    <string name="settings_title_split_group_size">פצל אסימון עם רווח</string>
+    <string name="settings_title_tag_functionality">התנהגות בבחירת תגים</string>
+    <string name="settings_title_minimize_on_copy">מזער את האפליקציה לאחר העתקת OTP</string>
+    <string name="settings_title_search_includes">התנהגות חיפוש</string>
+    <string name="settings_title_label_highlight_token">הדגש אסימונים שפג תוקפם</string>
+    <string name="settings_title_hide_global_timeout">הסתר את סרגל פסק הזמן הראשי</string>
+    <string name="settings_title_show_individual_timeouts">הראה פסק זמן אישי</string>
+    <string name="settings_title_backup_append_date">הוסף תאריך לשם הקובץ</string>
+    <string name="settings_title_backup_ask">בקש שם קובץ</string>
+    <string name="settings_title_backup_location">מיקום ברירת מחדל לגיבוי</string>
+    <string name="settings_title_backup_password">סיסמת גיבוי</string>
+    <string name="settings_title_auto_backup_password_enc">גיבוי אוטומטי בעת הוספת ערכים חדשים</string>
+    <string name="settings_title_backup_broadcasts">שידורי גיבוי</string>
+    <string name="settings_title_openpgp_provider">ספק OpenPGP</string>
+    <string name="settings_title_openpgp_key_encrypt">מפתח הצפנה OpenPGP</string>
+    <string name="settings_title_openpgp_key_sign">מפתח חתימת OpenPGP (אופציונלי)</string>
+    <string name="settings_title_openpgp_verify">אמת גיבויים מוצפנים</string>
+    <string name="settings_title_special_features">אפשר תכונות מיוחדות</string>
+    <string name="settings_title_enable_screenshot">אפשר צילומי מסך</string>
+    <string name="settings_title_enable_android_backup_service">אפשר סינכרון אנדרואיד</string>
+    <string name="settings_title_clear_keystore">נקה KeyStore</string>
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">הסתר את אסימוני ה- OTP כברירת מחדל, כאשר נדרש מהם להיות
+        נחשפים ידנית</string>
+    <string name="settings_desc_tap_to_reveal_timeout">בחר את הזמן (בשניות) שאחריו להסתיר
+        שוב ערכים שנחשפו</string>
+    <string name="settings_desc_panic">החלט מה קורה כאשר מתקבל טריגר בהלה</string>
+    <string name="settings_desc_relock_screen_off">דרוש אימות לאחר שמסך המכשיר
+        כובה</string>
+    <string name="settings_desc_relock_background">דרוש אימות לאחר שליחת האפליקציה
+        לרקע (למשל על ידי לחיצה על כפתור הבית)</string>
+    <string name="settings_desc_auth_inactivity">דרוש אימות לאחר שהמכשיר
+         לא היה פעיל</string>
+    <string name="settings_desc_auth_inactivity_delay">בחר את הזמן (בשניות) שאחריו
+        יהיה צורך באימות מחדש</string>
+    <string name="settings_desc_block_accessibility">הסתר שדות רגישים משירותי
+        הנגישות. <b>אל תאפשר זאת אם אתה מסתמך על שירותי הנגישות!</b></string>
+    <string name="settings_desc_block_autofill">חסום משירותי מילוי אוטומטי גישה לשדות סיסמאות
+        בתוך האפליקציה</string>
+    <string name="settings_desc_block_autofill_android">תכונה זו דורשת גרסת Android
+        מעל 8.0 (Oreo)</string>
+    <string name="settings_desc_label_scroll">גלול בתוויות ארוכות במקום לקטוע אותן</string>
+    <string name="settings_desc_minimize_on_copy">האפליקציה תמוזער כאשר תעתיק את ה- OTP ללוח</string>
+    <string name="settings_desc_search_includes">ציין אילו ערכים צריכים להיכלל בעת חיפוש</string>
+    <string name="settings_desc_label_highlight_token">הדגשות האסימון באדום אם הוא יפוג בעוד 8 שניות</string>
+    <string name="settings_desc_hide_global_timeout">הסתר את סרגל פסק הזמן הגלובלי המוצג בראש המסך</string>
+    <string name="settings_desc_show_individual_timeouts">הראה סרגל פסק זמן יחודי לכל ערך.
+        זה יכול להאט את האפליקציה, להפעיל אם באמת צריך.</string>
+    <string name="settings_desc_backup_append_date">הוסף את התאריך והשעה הנוכחיים לשם קובץ הגיבוי
+         המוצע</string>
+    <string name="settings_desc_backup_ask">בקש את שם הקובץ בכל פעם שגיבוי נוצר או
+        משוחזר</string>
+    <string name="settings_desc_backup_location">בחר מיקום ברירת מחדל לגיבוי</string>
+    <string name="settings_desc_backup_location_set">נבחר מיקום גיבוי</string>
+    <string name="settings_desc_backup_password">הגדר את הסיסמה המשמשת להצפנת
+        הגיבויים</string>
+    <string name="settings_desc_auto_backup_password_enc">יוצר גיבוי מוצפן חדש כאשר
+        ערכים חדשים נוספים, או נערכים, אם מתקיימים תנאי ההגדרות</string>
+    <string name="settings_desc_auto_backup_requirements">הגדר מיקום ברירת מחדל לגיבוי
+        וסיסמת גיבוי כדי להפעיל אפשרות זו</string>
+    <string name="settings_desc_backup_broadcasts">בחר אילו סוגי גיבוי יכולים להיות מופעלים על ידי
+        אפליקציות צד שלישי באמצעות שידורים</string>
+    <string name="settings_desc_openpgp_key_encrypt">כתובת דואר של מפתח OpenPGP המשמש להצפנת
+        הגיבויים</string>
+    <string name="settings_desc_openpgp_verify">גיבויים מוצפנים מיובאים רק אם הם
+        חתומים באמצעות מפתח חוקי</string>
+    <string name="settings_desc_special_features">בטל את הסימון כדי להשבית את התכונות המיוחדות בשנית</string>
+    <string name="settings_desc_enable_screenshot">אפשר לצלם צילומי מסך של המסך הראשי
+        (מושבת כברירת מחדל מטעמי אבטחה)</string>
+    <string name="settings_desc_enable_android_backup_service">אפשר ל- andOTP להשתמש בשירות הגיבוי המובנה של Android
+        כדי לגבות את המפתחות וההעדפות</string>
+    <string name="settings_desc_clear_keystore">מחק את מפתח ההצפנה מ- KeyStore</string>
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_not_secure">תכונה זו דורשת מסך נעילה מאובטח
+        שיהיה מוגדר (הגדרות -&gt; אבטחה -&gt; נעילת מסך)</string>
+    <string name="settings_toast_password_empty">סיסמה ריקה אינה מורשית, הגדר את
+        האימות ל\"אף אחד\" כדי להשבית אותו!</string>
+    <string name="settings_toast_encryption_changing">מנסה לשנות את הצפנת מסד הנתונים,
+        אנא המתן!</string>
+    <string name="settings_toast_encryption_change_success">שינוי הצפנת מסד הנתונים         הוצלח!</string>
+    <string name="settings_toast_encryption_change_failed">שינוי הצפנת מסד הנתונים נכשל,
+        חוזר למצב המקורי!</string>
+    <string name="settings_toast_encryption_backup_failed">יצירת גיבוי פנימי          נכשלה, מבטל!</string>
+    <string name="settings_toast_encryption_no_key">השגת מפתח ההצפנה נכשלה, מבטל!</string>
+    <string name="settings_toast_encryption_auth_failed">אימות נכשל!</string>
+    <string name="settings_toast_auth_upgrade_failed">נכשל השדרוג השקט של הסיסמה / PIN
+        להצפנה החדשה, אנא אפס אותה ידנית בהגדרות!</string>
+    <string name="settings_dialog_title_warning">אזהרה</string>
+    <string name="settings_dialog_title_error">שגיאה</string>
+    <string name="settings_dialog_title_clear_keystore">לנקות את ה- KeyStore?</string>
+    <string name="settings_dialog_title_android_sync">סנכרון אנדרואיד</string>
+    <string name="settings_dialog_msg_encryption_change">andOTP תנסה כעת לשנות את
+        הצפנת מסד הנתונים. במקרה של תקלה ישוחזר גיבוי פנימי וההצפנה
+        תשאר ללא שינוי.\n\n<b> עם זאת, זה תמיד רעיון טוב שיהיה לך גיבוי למקרה
+        שקורה משהו לא צפוי!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">אתה יכול להשתמש רק בסיסמה או PIN
+        כל עוד הצפנת מסד הנתונים מוגדרת כ\"סיסמה / PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">ראשית עליך להגדיר את
+        האימות ל- \"סיסמה\" או \"PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">ראשית עליך להגדיר
+        סיסמה או PIN לפני שינוי ההצפנה!</string>
+    <string name="settings_dialog_msg_clear_keystore_password">בחלק מהמקרים ניקוי ה- KeyStore
+        יכול לעזור בפתרון בעיות. עליך להמשיך רק אם אתה יודע מה אתה עושה!\n\n מכיוון
+        <b>שהצפנת מסד הנתונים</b> מוגדרת ל- <b>סיסמה / PIN</b> אתה לא צריך לאבד שום נתונים
+        כשאתה עושה זאת (אך זה לא כואב שיהיה לך גיבוי בכל מקרה).\n\n<b> האם אתה באמת בטוח שאתה רוצה
+        לנקות את ה- KeyStore?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">בחלק מהמקרים ניקוי ה- KeyStore
+        יכול לעזור בפתרון בעיות. עליך להמשיך רק אם אתה יודע מה אתה עושה!\n\n <b>אזהרה</b>:
+        מכיוון <b>שהצפנת מסד הנתונים</b> מוגדרת ל-  <b>Android KeyStore</b> אתה תאבד את
+        כל החשבונות שלך. וודא שיש לך גיבוי.\n\n<b> האם אתה באמת בטוח שאתה רוצה לנקות את ה-
+        KeyStore?</b></string>
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">לא ניתן להשתמש בסנכרון Android עם הצפנת          keystore,
+<b> עליך לבצע גיבוי ידני!</b></string>
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>אף אחד</item>
+        <item>סיסמה</item>
+        <item>קוד PIN</item>
+        <item>אישורי מכשיר</item>
+    </string-array>
+    <string-array name="settings_entries_encryption">
+        <item>KeyStore אנדרואיד</item>
+        <item>סיסמה / PIN</item>
+    </string-array>
+    <string-array name="settings_entries_panic">
+        <item>מחק את כל החשבונות</item>
+        <item>איפוס הגדרות אפליקציה</item>
+    </string-array>
+    <string-array name="settings_entries_card_layout">
+        <item>קומפקטי</item>
+        <item>ברירת מחדל</item>
+        <item>מלא</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>כלום</item>
+        <item>חשוף/הסתר</item>
+        <item>העתק</item>
+        <item>העתק ולך לרקע</item>
+    </string-array>
+    <string-array name="settings_entries_search_includes">
+        <item>תווית</item>
+        <item>מנפיק</item>
+        <item>תגים</item>
+    </string-array>
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>כבוי</item>
+        <item>ערכים חדשים</item>
+        <item>כל העריכות</item>
+    </string-array>
+    <string-array name="settings_entries_theme">
+        <item>ערכת נושא בהירה</item>
+        <item>ערכת נושא כהה</item>
+        <item>ערכת נושא שחורה</item>
+    </string-array>
+    <string-array name="settings_entries_thumbnail_size">
+        <item>מוסתר</item>
+        <item>זעיר</item>
+        <item>קטן</item>
+        <item>ברירת מחדל</item>
+        <item>בינוני</item>
+        <item>גדול</item>
+    </string-array>
+    <string-array name="settings_entries_split_group_size">
+        <item>אל תפצל</item>
+        <item>לאחר שני תווים</item>
+        <item>לאחר שלושה תווים</item>
+    </string-array>
+    <string-array name="settings_entries_tag_functionality">
+        <item>הצג את כל הערכים התואמים <b>לאיזושהי תגית</b> מהתגיות שנבחרו (או)</item>
+        <item>הצג רק ערכים התואמים <b>לכל התגיות</b> מהתגיות שנבחרו (ו-)</item>
+        <item>עבור בין תגים (אפשר לבחור רק תווית אחת בכל פעם)</item>
+    </string-array>
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>גיבויים בטקסט פשוט</item>
+        <item>גיבויים מוצפנים</item>
+    </string-array>
+    <!-- Special -->
+    <string name="settings_lang_sys_default">ברירת המחדל של המערכת</string>
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">הקלד סיסמה חדשה</string>
+    <string name="settings_hint_pin">הכנס קוד PIN חדש</string>
+    <string name="settings_hint_password_confirm">אשר סיסמה</string>
+    <string name="settings_hint_pin_confirm">אשר PIN</string>
+    <string name="settings_label_short_password">הסיסמה חייבת להיות באורך של %1$d תווים לפחות!</string>
+    <string name="settings_label_short_pin">ה- PIN חייב להיות באורך של %1$d ספרות לפחות!</string>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_activity_title">Autenticación</string>
+    <!-- Hints -->
+    <string name="auth_hint_password">Contrasinal</string>
+    <string name="auth_hint_pin">PIN</string>
+    <!-- Messages -->
+    <string name="auth_msg_authenticate">Identifícate para iniciar andOTP!</string>
+    <string name="auth_msg_confirm_encryption">Confirma a autenticación para xerar a 
+túa chave de cifrado!</string>
+    <!-- Buttons -->
+    <string name="auth_button_unlock">Desbloquear</string>
+    <!-- Toast messages -->
+    <string name="auth_toast_password_missing">Establece un contrasinal nos <b>axustes</b>!</string>
+    <string name="auth_toast_pin_missing">Establece un PIN nos <b>axustes</b>!</string>
+    <string name="auth_toast_password_again">Contrasinal incorrecto, téntao de novo!</string>
+    <string name="auth_toast_pin_again">PIN incorrecto, téntao de novo!</string>
+</resources>

@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/settings_hint_password"
-            app:passwordToggleEnabled="true" >
+            app:endIconMode="password_toggle" >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordEdit"
@@ -49,7 +49,7 @@
             android:autofillHints="password" />
 
         <TextView
-            android:id="@+id/toShortWarning"
+            android:id="@+id/tooShortWarning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/activity_margin"

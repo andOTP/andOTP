@@ -81,6 +81,7 @@ public class Entry {
     private static final int EXPIRY_TIME = 8;
     private int color = COLOR_DEFAULT;
     private String pin = "";
+    private long listId = 0;
 
     public Entry(){}
 
@@ -371,8 +372,11 @@ public class Entry {
         return issuer;
     }
 
-    public void setIssuer(String issuer) {
+    public void setIssuer(String issuer, boolean updateThumbnail) {
         this.issuer = issuer;
+
+        if (updateThumbnail && issuer != null)
+            setThumbnailFromIssuer(issuer);
     }
 
     public String getLabel() {
@@ -417,10 +421,6 @@ public class Entry {
 
     public TokenCalculator.HashAlgorithm getAlgorithm() {
         return this.algorithm;
-    }
-
-    public void setAlgorithm(TokenCalculator.HashAlgorithm algorithm) {
-        this.algorithm = algorithm;
     }
 
     public boolean hasNonDefaultPeriod() {
@@ -471,6 +471,14 @@ public class Entry {
         this.pin = pin;
     }
 
+    public long getListId() {
+        return listId;
+    }
+
+    public void setListId(long newId) {
+        listId = newId;
+    }
+  
     public boolean updateOTP() {
         return updateOTP(false);
     }
@@ -480,7 +488,7 @@ public class Entry {
             long time = System.currentTimeMillis() / 1000;
             long counter = time / this.getPeriod();
 
-            if (counter > last_update) {
+            if (updateNow || counter > last_update) {
                 if (type == OTPType.TOTP)
                     currentOTP = TokenCalculator.TOTP_RFC6238(secret, period, digits, algorithm);
                 else if (type == OTPType.STEAM)
@@ -521,7 +529,7 @@ public class Entry {
      * Checks if the OTP is expiring. The color for the entry will be changed to red if the expiry time is less than or equal to 8 seconds
      * COLOR_DEFAULT indicates that the OTP has not expired. In this case check if the OTP is about to expire. Update color to COLOR_RED if it's about to expire
      * COLOR_RED indicates that the OTP is already about to expire. Don't check again.
-     * The color will be reset to COLOR_DEFAULT in {@link #updateOTP()} method
+     * The color will be reset to COLOR_DEFAULT in {@link #updateOTP(boolean updateNow)} method
      *
      * @return Return true only if the color has changed to red to save from unnecessary notifying dataset
      * */
@@ -540,27 +548,37 @@ public class Entry {
         try {
             this.thumbnail = EntryThumbnail.EntryThumbnails.valueOfIgnoreCase(issuer);
         } catch(Exception e) {
-            this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
+            try {
+                this.thumbnail = EntryThumbnail.EntryThumbnails.valueOfFuzzy(issuer);
+            } catch(Exception e2) {
+                this.thumbnail = EntryThumbnail.EntryThumbnails.Default;
+            }
         }
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
+
         Entry entry = (Entry) o;
-        return period == entry.period &&
-                digits == entry.digits &&
-                type == entry.type &&
+
+        return type == entry.type &&
+                period == entry.period &&
                 counter == entry.counter &&
+                digits == entry.digits &&
                 algorithm == entry.algorithm &&
                 Arrays.equals(secret, entry.secret) &&
-                Objects.equals(label, entry.label);
+                Objects.equals(label, entry.label) &&
+                Objects.equals(issuer, entry.issuer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, period, counter, digits, algorithm, secret, label);
+        return Objects.hash(type, period, counter, digits, algorithm, secret, label, issuer);
     }
 
     public void setColor(int color) {
@@ -583,9 +601,9 @@ public class Entry {
 
     /**
      * Returns the label with issuer prefix removed (if present)
-     * @param issuer
-     * @param label
-     * @return
+     * @param issuer - Name of the issuer to remove from the label
+     * @param label - Full label from which the issuer should be removed
+     * @return - label with the issuer removed
      */
     private String getStrippedLabel(String issuer, String label) {
         if (issuer == null || issuer.isEmpty() || !label.startsWith(issuer + ":")) {

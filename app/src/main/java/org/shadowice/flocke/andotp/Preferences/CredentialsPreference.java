@@ -30,8 +30,8 @@ import android.preference.DialogPreference;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -46,7 +46,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.ConfirmedPasswordTransformationHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
+import org.shadowice.flocke.andotp.Utilities.EditorActionHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
@@ -59,14 +61,14 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 
 public class CredentialsPreference extends DialogPreference
-    implements AdapterView.OnItemClickListener, View.OnClickListener, TextWatcher {
+    implements AdapterView.OnItemClickListener, View.OnClickListener, TextWatcher, TextView.OnEditorActionListener {
     public static final AuthMethod DEFAULT_VALUE = AuthMethod.NONE;
 
     public interface EncryptionChangeCallback {
         boolean testEncryptionChange(byte[] newKey);
     }
 
-    private List<String> entries;
+    private final List<String> entries;
     private static final List<AuthMethod> entryValues = Arrays.asList(
             AuthMethod.NONE,
             AuthMethod.PASSWORD,
@@ -76,7 +78,7 @@ public class CredentialsPreference extends DialogPreference
 
     private int minLength = 0;
 
-    private Settings settings;
+    private final Settings settings;
     private AuthMethod value = AuthMethod.NONE;
     private EncryptionChangeCallback encryptionChangeCallback = null;
 
@@ -84,7 +86,7 @@ public class CredentialsPreference extends DialogPreference
     private TextInputLayout passwordLayout;
     private TextInputEditText passwordInput;
     private EditText passwordConfirm;
-    private TextView toShortWarning;
+    private TextView tooShortWarning;
 
     private Button btnSave;
 
@@ -139,10 +141,11 @@ public class CredentialsPreference extends DialogPreference
             passwordConfirm.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO);
         }
 
-        toShortWarning = view.findViewById(R.id.toShortWarning);
+        tooShortWarning = view.findViewById(R.id.tooShortWarning);
 
         passwordInput.addTextChangedListener(this);
         passwordConfirm.addTextChangedListener(this);
+        passwordConfirm.setOnEditorActionListener(this);
 
         Button btnCancel = view.findViewById(R.id.btnCancel);
         btnSave = view.findViewById(R.id.btnSave);
@@ -228,80 +231,80 @@ public class CredentialsPreference extends DialogPreference
         String password = passwordInput.getEditableText().toString();
 
         if (password.length() >= minLength) {
-            toShortWarning.setVisibility(View.GONE);
-
+            tooShortWarning.setVisibility(View.GONE);
             String confirm = passwordConfirm.getEditableText().toString();
 
-            if (!password.isEmpty() && !confirm.isEmpty() && password.equals(confirm)) {
-                btnSave.setEnabled(true);
-            } else {
-                btnSave.setEnabled(false);
-            }
+            boolean canSave = !password.isEmpty() && !confirm.isEmpty() && password.equals(confirm);
+            btnSave.setEnabled(canSave);
         } else {
-            toShortWarning.setVisibility(View.VISIBLE);
+            tooShortWarning.setVisibility(View.VISIBLE);
         }
     }
 
     private void updateLayout() {
-        if (value == AuthMethod.NONE) {
+        if (value == AuthMethod.NONE || value == AuthMethod.DEVICE) {
             credentialsLayout.setVisibility(View.GONE);
-
-            if (getDialog() != null)
-                UIHelper.hideKeyboard(getContext(), getDialog().getCurrentFocus());
-
+            if (getDialog() != null) {
+                UIHelper.hideKeyboard(getContext(), passwordInput);
+            }
             btnSave.setEnabled(true);
-        } else if (value == AuthMethod.PASSWORD) {
-            credentialsLayout.setVisibility(View.VISIBLE);
-
-            passwordLayout.setHint(getContext().getString(R.string.settings_hint_password));
-            passwordConfirm.setHint(R.string.settings_hint_password_confirm);
-
-            passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            passwordConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-
-            passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-            passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
-
-            minLength = Constants.AUTH_MIN_PASSWORD_LENGTH;
-            toShortWarning.setText(getContext().getString(R.string.settings_label_short_password, minLength));
-
-            passwordInput.requestFocus();
-            UIHelper.showKeyboard(getContext(), passwordInput);
-
-            btnSave.setEnabled(false);
-        } else if (value == AuthMethod.PIN) {
-            credentialsLayout.setVisibility(View.VISIBLE);
-
-            passwordLayout.setHint(getContext().getString(R.string.settings_hint_pin));
-            passwordConfirm.setHint(R.string.settings_hint_pin_confirm);
-
-            passwordInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-            passwordConfirm.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-
-            passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-            passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
-
-            minLength = Constants.AUTH_MIN_PIN_LENGTH;
-            toShortWarning.setText(getContext().getString(R.string.settings_label_short_pin, minLength));
-
-            passwordInput.requestFocus();
-            UIHelper.showKeyboard(getContext(), passwordInput);
-
-            btnSave.setEnabled(false);
-        } else if (value == AuthMethod.DEVICE) {
-            credentialsLayout.setVisibility(View.GONE);
-
-            if (getDialog() != null)
-                UIHelper.hideKeyboard(getContext(), getDialog().getCurrentFocus());
-
-            btnSave.setEnabled(true);
+        } else if (value == AuthMethod.PASSWORD || value == AuthMethod.PIN) {
+            prepareAuthMethodInputFields();
         }
+    }
+
+    private void prepareAuthMethodInputFields() {
+        if (value != AuthMethod.PIN && value != AuthMethod.PASSWORD) {
+            return;
+        }
+        boolean isPassword = value == AuthMethod.PASSWORD;
+
+        credentialsLayout.setVisibility(View.VISIBLE);
+        int layoutHintRes = isPassword ? R.string.settings_hint_password : R.string.settings_hint_pin;
+        passwordLayout.setHint(getContext().getString(layoutHintRes));
+        int confirmHintRes = isPassword ? R.string.settings_hint_password_confirm : R.string.settings_hint_pin_confirm;
+        passwordConfirm.setHint(confirmHintRes);
+
+        int inputType = isPassword ?
+                (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD) :
+                (InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        passwordInput.setInputType(inputType);
+        passwordConfirm.setInputType(inputType);
+        ConfirmedPasswordTransformationHelper.setup(passwordLayout, passwordInput, passwordConfirm);
+
+        minLength = isPassword ? Constants.AUTH_MIN_PASSWORD_LENGTH : Constants.AUTH_MIN_PIN_LENGTH;
+        int shortWarningRes = isPassword ? R.string.settings_label_short_password : R.string.settings_label_short_pin;
+        tooShortWarning.setText(getContext().getString(shortWarningRes, minLength));
+
+        passwordInput.requestFocus();
+        UIHelper.showKeyboard(getContext(), passwordInput);
+        btnSave.setEnabled(false);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         value = entryValues.get(position);
         updateLayout();
+        clearInputFields();
+    }
+
+    private void clearInputFields() {
+        passwordInput.setText(null);
+        passwordConfirm.setText(null);
+    }
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (EditorActionHelper.isActionDoneOrKeyboardEnter(actionId, event)) {
+            if (btnSave.isEnabled()) btnSave.performClick();
+            return true;
+        } else if (EditorActionHelper.isActionUpKeyboardEnter(event)) {
+            // Ignore action up after keyboard enter. Otherwise the cancel button would be selected
+            // after pressing enter with an invalid password.
+            return true;
+        }
+
+        return false;
     }
 
     // Needed stub functions

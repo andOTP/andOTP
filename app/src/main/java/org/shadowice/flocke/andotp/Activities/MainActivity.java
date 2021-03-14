@@ -34,6 +34,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+
+import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -56,6 +58,7 @@ import android.widget.AdapterView;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -114,6 +117,8 @@ public class MainActivity extends BaseActivity
     private String filterString;
 
     private CountDownTimer countDownTimer;
+    private ProgressBar progressBar;
+    private TextView emptyListView;
 
     // QR code scanning
     private void scanQRCode(){
@@ -245,8 +250,8 @@ public class MainActivity extends BaseActivity
             }
         });
 
-        final ProgressBar progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(settings.isHideGlobalTimeoutEnabled() ? View.GONE : View.VISIBLE);
+        progressBar = findViewById(R.id.progressBar);
+        emptyListView = findViewById(R.id.emptyListView);
 
         RecyclerView recList = findViewById(R.id.cardList);
         recList.setHasFixedSize(true);
@@ -256,6 +261,43 @@ public class MainActivity extends BaseActivity
 
         tagsDrawerAdapter = new TagsAdapter(this, new HashMap<String, Boolean>());
         adapter = new EntriesCardAdapter(this, tagsDrawerAdapter);
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                hideProgressBar();
+            }
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount) {
+                super.onItemRangeChanged(positionStart, itemCount);
+                hideProgressBar();
+            }
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount, @Nullable Object payload) {
+                super.onItemRangeChanged(positionStart, itemCount, payload);
+                hideProgressBar();
+            }
+
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                hideProgressBar();
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+                hideProgressBar();
+            }
+
+            @Override
+            public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
+                super.onItemRangeMoved(fromPosition, toPosition, itemCount);
+                hideProgressBar();
+            }
+        });
 
         if (savedInstanceState != null) {
             byte[] encKey = savedInstanceState.getByteArray("encKey");
@@ -336,7 +378,7 @@ public class MainActivity extends BaseActivity
             } else if (intentAction.equals(Intent.ACTION_VIEW)) {
                 try {
                     Entry entry = new Entry(callingIntent.getDataString());
-                    entry.updateOTP();
+                    entry.updateOTP(false);
                     entry.setLastUsed(System.currentTimeMillis());
                     adapter.addEntry(entry);
                     Toast.makeText(this, R.string.toast_intent_creation_succeeded, Toast.LENGTH_LONG).show();
@@ -426,7 +468,7 @@ public class MainActivity extends BaseActivity
 
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
         if (key.equals(getString(R.string.settings_key_label_size)) ||
-                key.equals(getString(R.string.settings_key_label_scroll)) ||
+                key.equals(getString(R.string.settings_key_label_display)) ||
                 key.equals(getString(R.string.settings_key_split_group_size)) ||
                 key.equals(getString(R.string.settings_key_thumbnail_size))) {
             adapter.notifyDataSetChanged();
@@ -435,12 +477,15 @@ public class MainActivity extends BaseActivity
         } else if (key.equals(getString(R.string.settings_key_tap_single)) ||
                 key.equals(getString(R.string.settings_key_tap_double)) ||
                 key.equals(getString(R.string.settings_key_theme)) ||
-                key.equals(getString(R.string.settings_key_locale)) ||
+                key.equals(getString(R.string.settings_key_lang)) ||
                 key.equals(getString(R.string.settings_key_enable_screenshot)) ||
                 key.equals(getString(R.string.settings_key_tag_functionality)) ||
                 key.equals(getString(R.string.settings_key_label_highlight_token)) ||
                 key.equals(getString(R.string.settings_key_card_layout)) ||
-                key.equals(getString(R.string.settings_key_hide_global_timeout))) {
+                key.equals(getString(R.string.settings_key_theme_mode)) ||
+                key.equals(getString(R.string.settings_key_theme_black_auto)) ||
+                key.equals(getString(R.string.settings_key_hide_global_timeout)) ||
+                key.equals(getString(R.string.settings_key_hide_issuer))) {
             recreateActivity = true;
         }
     }
@@ -495,6 +540,14 @@ public class MainActivity extends BaseActivity
             if (intent != null) {
                 addQRCode(ScanQRCodeFromFile.scanQRImage(this, intent.getData()));
             }
+        } else if (requestCode == Constants.INTENT_MAIN_INTRO) {
+            boolean setupFinished = false;
+
+            if (resultCode == RESULT_OK && intent != null)
+                setupFinished = intent.getBooleanExtra(Constants.EXTRA_INTRO_FINISHED, false);
+
+            if (!setupFinished)
+                finishAndRemoveTask();
         }
     }
 
@@ -585,6 +638,10 @@ public class MainActivity extends BaseActivity
                 return true;
             }
         });
+
+        if (settings.isFocusSearchOnStartEnabled()) {
+            searchItem.expandActionView();
+        }
 
         return true;
     }
@@ -852,7 +909,7 @@ public class MainActivity extends BaseActivity
         if(!TextUtils.isEmpty(result)) {
             try {
                 Entry e = new Entry(result);
-                e.updateOTP();
+                e.updateOTP(false);
                 e.setLastUsed(System.currentTimeMillis());
                 adapter.addEntry(e);
                 refreshTags();
@@ -887,5 +944,27 @@ public class MainActivity extends BaseActivity
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        settings.unregisterPreferenceChangeListener(this);
+        super.onDestroy();
+    }
+
+    /**
+     * This function will hide the progress bar if the token list is empty along with
+     * showing a view which has instruction on how to add the tokens
+     * */
+    private void hideProgressBar(){
+        int itemCount = adapter.getItemCount();
+        progressBar.setVisibility((settings.isHideGlobalTimeoutEnabled() || itemCount <= 0) ? View.GONE : View.VISIBLE);
+        emptyListView.setVisibility(itemCount > 0 ? View.GONE : View.VISIBLE);
+
+    }
+
+    @Override
+    protected boolean shouldDestroyOnScreenOff() {
+        return false;
     }
 }

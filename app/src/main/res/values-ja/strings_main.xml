@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Buttons -->
+    <string name="button_cancel">キャンセル</string>
+    <string name="button_enter_details">詳細を入力</string>
+    <string name="button_scan_qr">QR コードをスキャン</string>
+    <string name="button_save">保存</string>
+    <string name="button_new_tag">新しいタグ</string>
+    <string name="button_settings">設定</string>
+    <string name="button_all_tags">すべてのタグ</string>
+    <string name="button_no_tags">タグなし</string>
+    <string name="button_qr_from_image">QR コードを画像からスキャン</string>
+    <!-- Custom formatting -->
+    <string name="format_custom_period">%d 秒</string>
+    <!-- Hints -->
+    <string name="hint_label">ラベル</string>
+    <string name="hint_secret">秘密鍵</string>
+    <!-- Labels -->
+    <string name="label_hidden">非表示</string>
+    <string name="label_type">種類</string>
+    <string name="label_secret">秘密鍵</string>
+    <string name="label_period">周期</string>
+    <string name="label_digits">桁数</string>
+    <string name="label_counter">カウンター</string>
+    <string name="label_issuer">発行者</string>
+    <string name="label_label">ラベル</string>
+    <string name="label_algorithm">アルゴリズム</string>
+    <string name="label_tags">タグ</string>
+    <string name="label_advanced">詳細設定</string>
+    <!-- Drawer -->
+    <string name="drawer_open">タグを表示</string>
+    <string name="drawer_close">タグを隠す</string>
+    <!-- Menu -->
+    <string name="menu_main_about">アプリの概要</string>
+    <string name="menu_main_backup">バックアップ</string>
+    <string name="menu_main_search">検索</string>
+    <string name="menu_main_settings">設定</string>
+    <string name="menu_main_sort">並べ替え</string>
+    <string name="menu_sort_none">並び替えない</string>
+    <string name="menu_sort_issuer">発行者順</string>
+    <string name="menu_sort_label">ラベル順</string>
+    <string name="menu_sort_last_used">使用した順</string>
+    <string name="menu_sort_most_used">使用回数順</string>
+    <string name="menu_popup_edit">編集</string>
+    <string name="menu_popup_change_image">画像を変更</string>
+    <string name="menu_popup_remove">削除</string>
+    <string name="menu_popup_show_qr_code">QR コードを表示</string>
+    <!-- Buttons -->
+    <string name="button_card_options">その他設定</string>
+    <string name="button_card_options_format">%1$s のその他設定</string>
+    <string name="button_card_copy">トークンをコピー</string>
+    <string name="button_card_copy_format">%1$s のトークンをコピー</string>
+    <string name="button_add">新しいアカウントを追加</string>
+    <string name="button_close_menu">メニューを閉じる</string>
+    <!-- Toast messages -->
+    <string name="toast_auth_failed">認証に失敗しました、もう一度やり直してください！</string>
+    <string name="toast_auth_failed_fatal">認証に失敗しました、 andOTP を終了します！</string>
+    <string name="toast_copied_to_clipboard">クリップボードにコピーしました</string>
+    <string name="toast_entry_exists">そのエントリは既に存在します</string>
+    <string name="toast_invalid_qr_code">QR コードが無効です</string>
+    <string name="toast_encryption_key_empty">暗号化キーが読み込まれていません</string>
+    <string name="toast_intent_creation_failed">インテントから提供されたコードが無効です</string>
+    <string name="toast_intent_creation_succeeded">インテントから提供されたコードを追加しました</string>
+    <string name="toast_file_load_error">ファイルを開けませんでした</string>
+    <string name="toast_qr_error">QR コードを発見・確認できませんでした</string>
+    <string name="toast_qr_checksum_exception">QR コードのデコード中にチェックサムの検証に失敗しました</string>
+    <string name="toast_qr_format_error">QR コードの形式エラー</string>
+    <string name="toast_qr_unsuported">この QR コードはサポートされていません</string>
+    <string name="toast_qr_failed_to_generate">QR コードの生成に失敗しました</string>
+    <!-- Errors -->
+    <string name="error_invalid_secret">無効な秘密鍵です</string>
+    <!-- Dialogs -->
+    <string name="dialog_title_auth">認証</string>
+    <string name="dialog_title_manual_entry">詳細を入力</string>
+    <string name="dialog_title_remove">削除</string>
+    <string name="dialog_title_rename">ラベルを変更</string>
+    <string name="dialog_title_counter">カウンター</string>
+    <string name="dialog_title_used_tokens">トークンの使用</string>
+    <string name="dialog_title_keystore_error">キーストアエラー</string>
+    <string name="dialog_title_qr_code">QR コード</string>
+    <string name="dialog_title_enter_password">パスワードを入力</string>
+    <string name="dialog_label_enter_password">パスワードを入力</string>
+    <string name="dialog_label_confirm_password">パスワードの確認</string>
+    <string name="dialog_msg_auth">andOTP を起動するためにデバイス認証情報を入力してください。</string>
+    <string name="dialog_msg_confirm_delete">アカウント \"%1$s\" を削除してもよろしいですか？</string>
+    <string name="dialog_msg_used_tokens">andOTP はあなたがトークンを使用したタイミングを追跡します(「タップして表示」を使用するかクリップボードにコピーした場合)。これにより、トークンを「使用回数順」または「使用した順」で並び替えることができます。\n\nこのメッセージは再度表示されることはありません。</string>
+    <string name="dialog_msg_keystore_error">キーストアから暗号化キーを読み込めませんでした。 <b>追加されたエントリはすべて失われます。</b>
+\n\n andOTP を引き続き使用できるようにするには <b>設定</b> に行き <b>データベース暗号化</b> を <b>パスワード / PIN</b> に切り替えます。</string>
+    <!-- Shortcuts -->
+    <string name="shortcut_name_scan_qr">QR コードをスキャン</string>
+    <string name="shortcut_name_import_qr">QR コードをインポート</string>
+    <string name="shortcut_name_enter_details">詳細を入力</string>
+</resources>

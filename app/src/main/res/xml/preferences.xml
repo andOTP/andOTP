@@ -74,18 +74,39 @@
             android:summary="@string/settings_desc_block_autofill"
             android:defaultValue="false" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_auto_unlock_after_autofill"
+            android:title="@string/settings_title_auto_unlock_after_autofill"
+            android:summary="@string/settings_desc_auto_unlock_after_autofill"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/settings_category_title_ui">
+        android:title="@string/settings_category_title_ui"
+        android:key="@string/settings_key_cat_ui">
 
         <ListPreference
-            android:key="@string/settings_key_locale"
+            android:key="@string/settings_key_lang"
             android:title="@string/settings_title_lang"
             android:summary="%s"
             android:entries="@array/settings_entries_lang"
-            android:entryValues="@array/settings_values_locale"
-            android:defaultValue="@string/settings_default_locale" />
+            android:entryValues="@array/settings_values_lang"
+            android:defaultValue="@string/settings_default_lang" />
+
+        <ListPreference
+            android:key="@string/settings_key_theme_mode"
+            android:title="@string/settings_title_theme_mode"
+            android:summary="%s"
+            android:entries="@array/settings_entries_theme_mode"
+            android:entryValues="@array/settings_values_theme_mode"
+            android:defaultValue="@string/settings_default_theme_mode" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_theme_black_auto"
+            android:title="@string/settings_title_theme_black_auto"
+            android:summary="@string/settings_desc_theme_black_auto"
+            android:defaultValue="false" />
 
         <ListPreference
             android:key="@string/settings_key_theme"
@@ -126,11 +147,13 @@
             app:vnt_maxValue="@integer/settings_max_label_size"
             app:vnt_minValue="@integer/settings_min_label_size" />
 
-        <CheckBoxPreference
-            android:key="@string/settings_key_label_scroll"
-            android:title="@string/settings_title_label_scroll"
-            android:summary="@string/settings_desc_label_scroll"
-            android:defaultValue="false" />
+        <ListPreference
+            android:key="@string/settings_key_label_display"
+            android:title="@string/settings_title_label_display"
+            android:summary="%s"
+            android:entries="@array/settings_entries_label_display"
+            android:entryValues="@array/settings_values_label_display"
+            android:defaultValue="@string/settings_default_label_display" />
 
         <ListPreference
             android:key="@string/settings_key_thumbnail_size"
@@ -183,9 +206,21 @@
             android:defaultValue="false" />
 
         <CheckBoxPreference
+            android:key="@string/settings_key_hide_issuer"
+            android:title="@string/settings_title_hide_issuer"
+            android:summary="@string/settings_desc_hide_issuer"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
             android:key="@string/settings_key_show_individual_timeouts"
             android:title="@string/settings_title_show_individual_timeouts"
             android:summary="@string/settings_desc_show_individual_timeouts"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_key_focus_search_on_start"
+            android:title="@string/settings_title_focus_search_on_start"
+            android:summary="@string/settings_desc_focus_search_on_start"
             android:defaultValue="false" />
 
     </PreferenceCategory>

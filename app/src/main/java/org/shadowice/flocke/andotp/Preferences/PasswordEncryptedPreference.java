@@ -40,6 +40,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Utilities.ConfirmedPasswordTransformationHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
@@ -135,8 +136,7 @@ public class PasswordEncryptedPreference extends DialogPreference
             passwordConfirm.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
         }
 
-        passwordInput.setTransformationMethod(new PasswordTransformationMethod());
-        passwordConfirm.setTransformationMethod(new PasswordTransformationMethod());
+        ConfirmedPasswordTransformationHelper.setup(passwordLayout, passwordInput, passwordConfirm);
 
         passwordConfirm.addTextChangedListener(this);
         passwordInput.addTextChangedListener(this);

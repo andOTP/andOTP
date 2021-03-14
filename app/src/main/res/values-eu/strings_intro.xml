@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intro_slide1_title">Has gaitezen</string>
+    <string name="intro_slide1_desc">Ongi etorri <b>andOTP</b>ra! Hasierako konfigurazioa egiten lagunduko dizugu
+        Jarri arreta eta ondo irakurri daturik galdu nahi ez baduzu.
+        \n\nLasai, ezarpen hauek edonoiz aldatu ditzakezu <b>Ezarpenak</b> atalean.</string>
+    <string name="intro_slide2_desc">Zure kontuen segurtasuna bermatzeko <b>andOTP</b>k
+        zifratzea erabiliko du kontuen datuak gordetzeko. Hemen zein zifratze metodo erabili
+        aukeratu dezakezu.</string>
+    <string name="intro_slide2_desc_keystore">KeyStorea Android sistemaren osagarri bat da
+        zifratze-gakoak eran seguruan gordetzeko erabiltzen dena. KeyStorea erabiltzearen abantaila
+        gakoak eta <b>andOTP</b> era bereizian gordetzen direla da, eta beraz hardwarean oinarrituta
+        zifratzearekin gorde daitekeela (zure gailuak jasaten badu). Hala ere, gakoak ez daudenez <b>andOTP</b>ren
+        datuek batera gordeta, <b>aukera hau erabiliz gero ezingo duzu segurtasun-kopiak egiteko kanpo tresnarik
+        (adibidez Titanium) erabili</b>. Modu hau aukeratzen baduzu, <b>andOTP</b>k eskaintzen dituen segurtasun
+        kopiak egiteko tresnak erabili beharko dituzu. \n\n<b>Oharra</b>: KeyStoreak hainbat arazo sortzen ditu, beraz
+        guztiz beharrezkoa bada bakarrak erabili. <b>andOTP</b> hasten duzun bakoitzean pasahitza/PINa idazteko
+        arazorik ez baduzu, <b>pasahitz bidezko zifratzea erabiltzea gomendatzen dizugu</b>.</string>
+    <string name="intro_slide2_desc_password">Modu honek zure datuak pasahitz edo PIN
+        bat erabiliz sortutako gako bat erabiliz zifratuko ditu. Modu honen abantaila nagusia
+        kanpoko segurtasun-kopiak egiteko tresnek (adibidez Titanium) espero bezala funtzionatuko dutela da,
+        eta baita KeyStorerekin baino errore gutxiago izango duzula. Hala ere,  <b>andOTP</b> martxan jartzen
+        duzun bakoitzean pasahitza edo PINa idatzi beharko duzu.</string>
+    <string name="intro_slide3_desc_keystore"><b>andOTP</b> blokeatzeko modua ezarri dezakezu
+        hemen. Zifratze-modu gisa <b>Android KeyStore</b> aukeratu duzunez, pauso hau hautazkoa da.</string>
+    <string name="intro_slide3_desc_password"><b>andOTP</b> blokeatzeko modua ezarri dezakezu
+        hemen. Zifratze-modu gisa <b>pasahitza/PINa</b> aukeratu duzunez, pasahitz edo PIN bat
+        ezarri behar duzu aurrera jarraitzeko.</string>
+    <string name="intro_slide3_warn_no_password">Ezarri pasahitza jarraitzeko!</string>
+    <string name="intro_slide3_warn_no_pin">Ezarri PINa jarraitzeko!</string>
+    <string name="intro_slide3_warn_confirm_password">Jarraitzeko baieztatu zure pasahitza!</string>
+    <string name="intro_slide3_warn_confirm_pin">Jarraitzeko baieztatu zure PINa!</string>
+    <string name="intro_slide4_title">Amaitu duzu</string>
+    <string name="intro_slide4_desc">Zure ezarpenak ondo gorde dira, <b>andOTP</b> erabiltzeko
+        prest zaude!</string>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_activity_title">प्रमाणित</string>
+    <!-- Hints -->
+    <string name="auth_hint_password">पासवर्ड</string>
+    <string name="auth_hint_pin">पिन</string>
+    <!-- Messages -->
+    <string name="auth_msg_authenticate">कृपया andOTP शुरू करने के लिए प्रमाणित करें!</string>
+    <string name="auth_msg_confirm_encryption">Please confirm authentication to generate your
+        encryption key!</string>
+    <!-- Buttons -->
+    <string name="auth_button_unlock">अनलॉक करें</string>
+    <!-- Toast messages -->
+    <string name="auth_toast_password_missing">कृपया <b>सेटिंग</b> में एक पासवर्ड सेट करें!</string>
+    <string name="auth_toast_pin_missing">कृपया <b>सेटिंग</b> में एक पिन सेट करें!</string>
+    <string name="auth_toast_password_again">गलत पासवर्ड! कृपया पुन: प्रयास करें</string>
+    <string name="auth_toast_pin_again">गलत पिन, पुनः प्रयास करें!</string>
+</resources>

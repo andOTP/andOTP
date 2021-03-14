@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion '29.0.3'
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "org.shadowice.flocke.andotp"
         minSdkVersion 22
-        targetSdkVersion 29
-        versionCode 33
-        versionName "0.8.0-beta1"
+        targetSdkVersion 30
+        versionCode 35
+        versionName "0.8.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,9 +29,9 @@ android {
         }
     }
     lintOptions {
-          abortOnError false
+        abortOnError false
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
     }
     flavorDimensions 'market'
@@ -55,30 +55,35 @@ android {
 }
 
 dependencies {
-    def lifecycle_version = "2.2.0"
+    def lifecycle_version = "2.3.0"
 
-    implementation 'androidx.media:media:1.1.0'
+    implementation 'androidx.media:media:1.2.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation "androidx.lifecycle:lifecycle-process:${lifecycle_version}"
     implementation "androidx.lifecycle:lifecycle-common-java8:${lifecycle_version}"
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.android.material:material:1.3.0'
 
     //noinspection GradleDependency - because they messed up their version numbering
-    implementation "commons-codec:commons-codec:1.14"
+    implementation "commons-codec:commons-codec:1.15"
     implementation "com.github.aakira:expandable-layout:1.6.0"
     implementation "com.heinrichreimersoftware:material-intro:2.0.0"
-    implementation "com.journeyapps:zxing-android-embedded:3.6.0"
+    implementation("com.journeyapps:zxing-android-embedded:4.1.0") { transitive = false }
+    implementation('com.google.zxing:core') {
+        version {
+            strictly '[3.3, 3.4[' // Keep pinned below 3.4 to support SDK versions below 24
+            prefer '3.3.0'
+        }
+    }
     implementation "com.vanniktech:vntnumberpickerpreference:1.0.0"
     implementation "me.zhanghai.android.materialprogressbar:library:1.6.1"
     implementation "org.sufficientlysecure:openpgp-api:12.0"
     implementation "com.leinardi.android:speed-dial:3.1.1"
-    implementation "com.mikepenz:aboutlibraries:6.2.3"
+    implementation "com.mikepenz:aboutlibraries:6.2.3" // Supporting a newer version will need some work
 
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
-
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.5'
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 }

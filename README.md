@@ -1,7 +1,7 @@
 #  andOTP -  Android OTP Authenticator
 
 [![Build Status](https://travis-ci.org/andOTP/andOTP.svg?branch=master)](https://travis-ci.org/andOTP/andOTP)
-[![Current release](https://img.shields.io/github/release/andOTP/andOTP/all.svg)](https://github.com/andOTP/andOTP/releases/download/v0.8.0-beta1/andOTP_v0.8.0-beta1.apk)
+[![Current release](https://img.shields.io/github/release/andOTP/andOTP/all.svg)](https://github.com/andOTP/andOTP/releases/download/v0.8.0/andOTP_v0.8.0.apk)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/andotp/localized.svg)](https://crowdin.com/project/andotp)
 [![Chat - Telegram](https://img.shields.io/badge/chat-Telegram-blue.svg)](https://t.me/andOTP)
 [![Chat - Matrix](https://img.shields.io/badge/chat-Matrix-blue.svg)](https://matrix.to/#/#andOTP:privacytools.io)
@@ -133,6 +133,7 @@ If you want to show your appreciation for our work with a small donation you can
  * [OpenPGP API library](https://github.com/open-keychain/openpgp-api)
  * [VNTNumberPickerPreference](https://github.com/vanniktech/VNTNumberPickerPreference)
  * [ZXing Android Embedded](https://github.com/journeyapps/zxing-android-embedded)
+ * [Droid Sans Mono Zeromod](https://github.com/AlbertoDorado/droid-sans-mono-zeromod)
 
 #### Code examples used:
 

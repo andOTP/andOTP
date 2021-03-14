@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_activity_title">Impostazioni</string>
+    <!-- Categories -->
+    <string name="settings_category_title_security">Sicurezza</string>
+    <string name="settings_category_title_ui">Interfaccia utente</string>
+    <string name="settings_category_title_backup">Backup</string>
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">Tocca per mostrare</string>
+    <string name="settings_title_tap_to_reveal_timeout">Timeout (in secondi) di visualizzazione codice OTP</string>
+    <string name="settings_title_auth">Autenticazione</string>
+    <string name="settings_title_auth_password">Password</string>
+    <string name="settings_title_auth_pin">PIN</string>
+    <string name="settings_title_encryption">Crittografia del database</string>
+    <string name="settings_title_panic">Panic Trigger</string>
+    <string name="settings_title_relock_screen_off">Blocca quando lo schermo è spento</string>
+    <string name="settings_title_relock_background">Blocca di nuovo quando messo in secondo piano</string>
+    <string name="settings_title_auth_inactivity">Blocca nuovamente quando inattivo</string>
+    <string name="settings_title_auth_inactivity_delay">Ritarda il blocco quando inattivo</string>
+    <string name="settings_title_block_accessibility">Blocca servizi di accessibilità</string>
+    <string name="settings_title_block_autofill">Blocca autocompletamento</string>
+    <string name="settings_title_lang">Lingua</string>
+    <string name="settings_title_theme">Tema</string>
+    <string name="settings_title_card_layout">Layout scheda</string>
+    <string name="settings_title_label_size">Dimensione carattere dell\'etichetta</string>
+    <string name="settings_title_label_scroll">Etichette che scorrono</string>
+    <string name="settings_title_tap_single">Tocco singolo</string>
+    <string name="settings_title_tap_double">Doppio tocco</string>
+    <string name="settings_title_thumbnail_size_ask">Dimensioni dell\'anteprima</string>
+    <string name="settings_title_split_group_size">Dividi i Token con uno spazio</string>
+    <string name="settings_title_tag_functionality">Comportamento selezione tag</string>
+    <string name="settings_title_minimize_on_copy">Minimizza l\'app dopo aver copiato un codice OTP</string>
+    <string name="settings_title_search_includes">Comportamento della ricerca</string>
+    <string name="settings_title_label_highlight_token">Evidenzia token in scadenza</string>
+    <string name="settings_title_hide_global_timeout">Nascondi la barra di timeout globale</string>
+    <string name="settings_title_show_individual_timeouts">Mostra i singoli timeout</string>
+    <string name="settings_title_backup_append_date">Aggiungi la data al nome del file</string>
+    <string name="settings_title_backup_ask">Chiedi un nome di file</string>
+    <string name="settings_title_backup_location">Posizione di backup predefinita</string>
+    <string name="settings_title_backup_password">Imposta password di backup</string>
+    <string name="settings_title_auto_backup_password_enc">Backup automatico delle nuove voci</string>
+    <string name="settings_title_backup_broadcasts">Backup Broadcast</string>
+    <string name="settings_title_openpgp_provider">Provider OpenPGP</string>
+    <string name="settings_title_openpgp_key_encrypt">Chiave di crittografia OpenPGP</string>
+    <string name="settings_title_openpgp_key_sign">Chiave di firma OpenPGP (opzionale)</string>
+    <string name="settings_title_openpgp_verify">Verifica i backup crittografati</string>
+    <string name="settings_title_special_features">Abilita funzionalità speciali</string>
+    <string name="settings_title_enable_screenshot">Abilita screenshot</string>
+    <string name="settings_title_enable_android_backup_service">Abilita la sincronizzazione di Android</string>
+    <string name="settings_title_clear_keystore">Pulisci il KeyStore</string>
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">Nascondi i codici OTP di default, richiedendo che
+        vengano rivelati manualmente</string>
+    <string name="settings_desc_tap_to_reveal_timeout">Selezionare il tempo (in sec) dopo il quale
+        le voci rivelate verranno nascoste</string>
+    <string name="settings_desc_panic">Decidi cosa succede quando viene ricevuto un Panic Trigger</string>
+    <string name="settings_desc_relock_screen_off">Richiedi l\'autenticazione dopo lo spegnimento
+        dello schermo del dispositivo</string>
+    <string name="settings_desc_relock_background">Richiedi l\'autenticazione dopo che l\'applicazione
+    è passata in background (ad es. dopo aver premuto il tasto home)</string>
+    <string name="settings_desc_auth_inactivity">Richiedi l\'autenticazione dopo che il dispositivo è stato
+        inattivo</string>
+    <string name="settings_desc_auth_inactivity_delay">Seleziona il tempo (in sec) dopo la quale
+sarà richiesta nuovamente l\'autenticazione</string>
+    <string name="settings_desc_block_accessibility">Nascondi i campi sensibili dai servizi di accessibilità.
+<b> NON abilitarlo se fai affidamento sui servizi di accessibilità!</b></string>
+    <string name="settings_desc_block_autofill">Impedisci ai servizi di autocompletamento di accedere ai campi
+        delle password nell\'app</string>
+    <string name="settings_desc_block_autofill_android">Questa funzione richiede una versione di Android
+        superiore alla 8.0 (Oreo)</string>
+    <string name="settings_desc_label_scroll">Etichette che scorrono invece che venire troncate</string>
+    <string name="settings_desc_minimize_on_copy">L\'app verrà minimizzata quando si copia un codice OTP negli appunti</string>
+    <string name="settings_desc_search_includes">Specifica quali valori devono essere inclusi durante la ricerca</string>
+    <string name="settings_desc_label_highlight_token">Evidenzia in rosso i token se scadono in 8 secondi</string>
+    <string name="settings_desc_hide_global_timeout">Nascondi la barra del conto alla rovescia globale mostrata nella parte superiore dello schermo</string>
+    <string name="settings_desc_show_individual_timeouts">Mostra una barra di conto alla rovescia individuale per ogni voce.
+        Ciò può rallentare l\'app, attivarlo solo se davvero necessario.</string>
+    <string name="settings_desc_backup_append_date">Aggiungi la data e l\'ora correnti al nome del
+        file di backup suggerito</string>
+    <string name="settings_desc_backup_ask">Chiedere il nome del file ogni volta che un backup
+        viene creato o ripristinato</string>
+    <string name="settings_desc_backup_location">Scegli una posizione di backup predefinita</string>
+    <string name="settings_desc_backup_location_set">La posizione di backup è stata scelta</string>
+    <string name="settings_desc_backup_password">Impostare la password utilizzata per crittografare i
+        backup</string>
+    <string name="settings_desc_auto_backup_password_enc">Crea un nuovo backup cifrato quando vengono create nuove
+voci o editate, se le condizioni delle impostazioni sono configurate</string>
+    <string name="settings_desc_auto_backup_requirements">Imposta una posizione di backup predefinita ed una
+        password di backup per attivare questa opzione</string>
+    <string name="settings_desc_backup_broadcasts">Seleziona quali tipi di backup possono essere
+        attivati da app di terze parti tramite Broadcast</string>
+    <string name="settings_desc_openpgp_key_encrypt">Indirizzo di posta della chiave OpenPGP utilizzata per
+        crittografare i backup</string>
+    <string name="settings_desc_openpgp_verify">I backup crittografati verranno importati solo se
+        firmati con una chiave valida</string>
+    <string name="settings_desc_special_features">Deselezionare per disattivare nuovamente le funzionalità speciali</string>
+    <string name="settings_desc_enable_screenshot">Permetti di eseguire screenshots della schermata principale
+        (disabilitato di default per motivi di sicurezza)</string>
+    <string name="settings_desc_enable_android_backup_service">Consenti a andOTP di utilizzare il servizio
+        di backup integrato di Android per le chiavi di backup e le preferenze</string>
+    <string name="settings_desc_clear_keystore">Eliminare la chiave di crittografia dal KeyStore</string>
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_not_secure">Questa funzionalità richiede la configurazione di una
+        schermata di blocco sicuro (Impostazioni -&gt; Sicurezza -&gt; Blocco schermo)</string>
+    <string name="settings_toast_password_empty">Non è consentita una password vuota, imposta
+        l\'Autenticazione su \"Off\" per disattivarla!</string>
+    <string name="settings_toast_encryption_changing">Provando a cambiare la crittografia del database,
+        si prega di attendere!</string>
+    <string name="settings_toast_encryption_change_success">Crittografia del database cambiata
+        con successo!</string>
+    <string name="settings_toast_encryption_change_failed">Impossibile cambiare la crittografia del database,
+        ripristinato allo stato originale!</string>
+    <string name="settings_toast_encryption_backup_failed">Creazione di backup interno
+  fallita!</string>
+    <string name="settings_toast_encryption_no_key">Impossibile ottenere la chiave di crittografia, interrompendo!</string>
+    <string name="settings_toast_encryption_auth_failed">Autenticazione fallita!</string>
+    <string name="settings_toast_auth_upgrade_failed">Impossibile aggiornare automaticamente la password / PIN per la
+        nuova crittografia, si prega di reimpostarla manualmente nelle Impostazioni!</string>
+    <string name="settings_dialog_title_warning">Attenzione</string>
+    <string name="settings_dialog_title_error">Errore</string>
+    <string name="settings_dialog_title_clear_keystore">Pulire il KeyStore?</string>
+    <string name="settings_dialog_title_android_sync">Sincronizzazione Android</string>
+    <string name="settings_dialog_msg_encryption_change">andOTP ora tenterà di modificare la crittografia
+        del database. In caso di errore verrà ripristinato un backup interno e la crittografia
+        rimarrà invariata.\n\n<b>Tuttavia, è sempre una buona idea avere un backup nel
+        caso in cui accada qualcosa di inaspettato!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">È possibile utilizzare solo Password o PIN,
+        finché  la crittografia del database è impostata su \"Password / PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">È necessario impostare 
+        l\'Autenticazione su \"Password\" o \"PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">È necessario impostare
+        una Password o un PIN prima di cambiare la crittografia!</string>
+    <string name="settings_dialog_msg_clear_keystore_password">In alcuni casi pulire il KeyStore
+        può aiutare a risolvere problemi. Dovresti procedere solo se sai ciò che stai facendo!\n\nPoiché
+        la <b>crittografia del Database</b> è impostata su <b>Password / PIN</b> non dovresti perdere
+        alcun dato (ma non fa mai male avere un backup).\n\n<b>Sei davvero sicuro di voler
+        pulire il KeyStore?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">In alcuni casi pulire il KeyStore
+        può aiutare a risolvere problemi. Dovresti procedere solo se sai ciò che stai facendo!\n\n<b>Attenzione</b>:
+        Poiché la <b>crittografia del Database</b> è impostata su <b>Android KeyStore</b> perderai tutti i
+        tuoi account. Assicurati di avere un backup!\n\n<b>Sei davvero sicuro di voler pulire
+        il KeyStore?</b></string>
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">La sincronizzazione di Android non può essere utilizzata
+        con la crittografia KeyStore, <b>devi eseguire un backup manuale!</b></string>
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>Nessuno</item>
+        <item>Password</item>
+        <item>PIN</item>
+        <item>Credenziali del dispositivo</item>
+    </string-array>
+    <string-array name="settings_entries_encryption">
+        <item>KeyStore Android</item>
+        <item>Password / PIN</item>
+    </string-array>
+    <string-array name="settings_entries_panic">
+        <item>Elimina tutti gli account</item>
+        <item>Ripristina le impostazioni dell\'app</item>
+    </string-array>
+    <string-array name="settings_entries_card_layout">
+        <item>Compatto</item>
+        <item>Predefinito</item>
+        <item>Pieno</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Niente</item>
+        <item>Mostra/Nascondi</item>
+        <item>Copia</item>
+        <item>Copia e vai in secondo piano</item>
+    </string-array>
+    <string-array name="settings_entries_search_includes">
+        <item>Etichetta</item>
+        <item>Emittente</item>
+        <item>Tags</item>
+    </string-array>
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Disattivo</item>
+        <item>Nuove voci</item>
+        <item>Qualsiasi modifica</item>
+    </string-array>
+    <string-array name="settings_entries_theme">
+        <item>Tema chiaro</item>
+        <item>Tema scuro</item>
+        <item>Tema nero</item>
+    </string-array>
+    <string-array name="settings_entries_thumbnail_size">
+        <item>Nascosto</item>
+        <item>Minuscolo</item>
+        <item>Piccolo</item>
+        <item>Predefinito</item>
+        <item>Medio</item>
+        <item>Grande</item>
+    </string-array>
+    <string-array name="settings_entries_split_group_size">
+        <item>Non dividere</item>
+        <item>Dopo due caratteri</item>
+        <item>Dopo tre caratteri</item>
+    </string-array>
+    <string-array name="settings_entries_tag_functionality">
+        <item>Mostra tutte le voci corrispondenti a <b>qualsiasi</b> tag selezionato (or)</item>
+        <item>Mostra solo le voci corrispondenti a <b>tutti</b> i tag selezionati (and)</item>
+        <item>Passa da un tag all\'altro (consente solo di selezionare un tag alla volta)</item>
+    </string-array>
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Backup non crittografati</item>
+        <item>Backup crittografati</item>
+    </string-array>
+    <!-- Special -->
+    <string name="settings_lang_sys_default">Impostazioni predefinite di sistema</string>
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">Inserisci la nuova password</string>
+    <string name="settings_hint_pin">Inserisci il nuovo PIN</string>
+    <string name="settings_hint_password_confirm">Conferma password</string>
+    <string name="settings_hint_pin_confirm">Conferma PIN</string>
+    <string name="settings_label_short_password">La password deve essere almeno di %1$d caratteri!</string>
+    <string name="settings_label_short_pin">Il PIN deve essere almeno di %1$d cifre!</string>
+</resources>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_activity_title">Настройки</string>
+    <!-- Categories -->
+    <string name="settings_category_title_security">Сигурност</string>
+    <string name="settings_category_title_ui">Потребителски интерфейс</string>
+    <string name="settings_category_title_backup">Резервно копие</string>
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">Докоснете, за да разкриете</string>
+    <string name="settings_title_tap_to_reveal_timeout">Време за изчакване, за да се разкрие</string>
+    <string name="settings_title_auth">Удостоверяване</string>
+    <string name="settings_title_auth_password">Парола</string>
+    <string name="settings_title_auth_pin">ПИН код</string>
+    <string name="settings_title_encryption">Криптиране на база данни</string>
+    <string name="settings_title_panic">Тригер за спешен случай</string>
+    <string name="settings_title_relock_screen_off">Повторно заключване при изключване на екрана</string>
+    <string name="settings_title_relock_background">Повторно заключване при преминаване на заден план</string>
+    <string name="settings_title_auth_inactivity">Повторно заключване при бездействие</string>
+    <string name="settings_title_auth_inactivity_delay">Забавяне за повторно заключване при неактивност</string>
+    <string name="settings_title_block_accessibility">Блокиране на услугите за достъпност</string>
+    <string name="settings_title_block_autofill">Block autofill</string>
+    <string name="settings_title_lang">Език</string>
+    <string name="settings_title_theme">Тема</string>
+    <string name="settings_title_card_layout">Вид оформление</string>
+    <string name="settings_title_label_size">Размер на шрифта на етикета</string>
+    <string name="settings_title_label_scroll">Превъртане на етикетите</string>
+    <string name="settings_title_tap_single">Еднократно натискане</string>
+    <string name="settings_title_tap_double">Двойно натискане</string>
+    <string name="settings_title_thumbnail_size_ask">Размера на миниатюрите</string>
+    <string name="settings_title_split_group_size">Разделяне на токена с интервал</string>
+    <string name="settings_title_tag_functionality">Начин на избор на маркери</string>
+    <string name="settings_title_minimize_on_copy">Минимизиране на приложението след копиране на OTP</string>
+    <string name="settings_title_search_includes">Начин на търсене</string>
+    <string name="settings_title_label_highlight_token">Маркиране на изтичащите токени</string>
+    <string name="settings_title_hide_global_timeout">Скриване на глобалната лента за изчакване</string>
+    <string name="settings_title_show_individual_timeouts">Показване на индивидуални времена за изчакване</string>
+    <string name="settings_title_backup_append_date">Добавяне на датата към името на файла</string>
+    <string name="settings_title_backup_ask">Попитай за името на файла</string>
+    <string name="settings_title_backup_location">Default backup location</string>
+    <string name="settings_title_backup_password">Парола за резервни копия</string>
+    <string name="settings_title_auto_backup_password_enc">Автоматично архивиране на нови записи</string>
+    <string name="settings_title_backup_broadcasts">Резервная копия с помощта на външни приложения</string>
+    <string name="settings_title_openpgp_provider">OpenPGP доставчик</string>
+    <string name="settings_title_openpgp_key_encrypt">OpenPGP криптиращ ключ</string>
+    <string name="settings_title_openpgp_key_sign">OpenPGP ключ за подписване (незадължително)</string>
+    <string name="settings_title_openpgp_verify">Проверяване на криптираните резервни копия</string>
+    <string name="settings_title_special_features">Включване на специалните възможности</string>
+    <string name="settings_title_enable_screenshot">Включване на екранни снимки</string>
+    <string name="settings_title_enable_android_backup_service">Включване на Android синхронизация</string>
+    <string name="settings_title_clear_keystore">Изчисване на Хранилището за ключове на Android</string>
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">Скриване на OTP токените по подразбиране, необходимо е да се 
+        показват ръчно</string>
+    <string name="settings_desc_tap_to_reveal_timeout">Изберете времето (в секунди), след което показаните токените
+       да се скрият автоматично отново</string>
+    <string name="settings_desc_panic">Изберете какво ще се случи, когато се натисне паник бутона</string>
+    <string name="settings_desc_relock_screen_off">Изисквайте удостоверяване, след като екрана на устройството
+         се изключи</string>
+    <string name="settings_desc_relock_background">Изисквайте удостоверяване, след като приложението
+         се изпрати на заден план (например, при натискане на бутона \"Начало\")</string>
+    <string name="settings_desc_auth_inactivity">Изисквайте удостоверяване, след като
+       устройството е неактивно</string>
+    <string name="settings_desc_auth_inactivity_delay">Изберете времето (в секунди), след което да
+         изисква повторно удостоверяване</string>
+    <string name="settings_desc_block_accessibility">Скриване на чувствителни полета от услугите
+     за достъпност. <b>НЕ активирайте това, ако използвате услугите за достъпност!</b></string>
+    <string name="settings_desc_block_autofill">Block autofill services from accessing password
+        fields inside the app</string>
+    <string name="settings_desc_block_autofill_android">This feature requires an Android version
+        above 8.0 (Oreo)</string>
+    <string name="settings_desc_label_scroll">Превъртане на дългите етикети, вместо да бъдат съкращавани</string>
+    <string name="settings_desc_minimize_on_copy">Приложението ще бъде минимизирано, когато копирате OTP токенът в клипборда</string>
+    <string name="settings_desc_search_includes">Посочете кои стойности трябва да бъдат включени при търсенето</string>
+    <string name="settings_desc_label_highlight_token">Маркиране на токените в червено, ако изтичат след 8 секунди</string>
+    <string name="settings_desc_hide_global_timeout">Скриване на глобалната лента за изчакване в горната част на екрана</string>
+    <string name="settings_desc_show_individual_timeouts">Показване на индивидуална лента за изчакване за всеки запис.
+       Това може да забави приложението,  да се активира само ако наистина е необходимо.</string>
+    <string name="settings_desc_backup_append_date">Добавете текущата дата и час към предложеното
+         име на архивното копие</string>
+    <string name="settings_desc_backup_ask">Попитайте за името на файла всеки път, когато се създаде или възстановява 
+       резервно копие
+       </string>
+    <string name="settings_desc_backup_location">Choose a default backup location</string>
+    <string name="settings_desc_backup_location_set">Backup location has been chosen</string>
+    <string name="settings_desc_backup_password">Задайте паролата, която да се използва за криптиране на
+         резервните копия</string>
+    <string name="settings_desc_auto_backup_password_enc">Създаване на ново криптирано резервно копие, когато новите
+         записи се добавят или редактират, ако са изпълнени условията за настройките</string>
+    <string name="settings_desc_auto_backup_requirements">Set a default backup location and a
+        backup password to enable this option</string>
+    <string name="settings_desc_backup_broadcasts">Изберете какви типове резервни копия могат да бъдат запазени от
+         приложения на трети страни за създаване на резервно копие</string>
+    <string name="settings_desc_openpgp_key_encrypt">Пощенски адрес на OpenPGP ключа, използван за криптиране на
+         резервните копия</string>
+    <string name="settings_desc_openpgp_verify">Криптираните архиви може да се импортират само тогава, когато са
+         подписан с валиден ключ</string>
+    <string name="settings_desc_special_features">Премахнете отметката, за да деактивирате отново специалните функции</string>
+    <string name="settings_desc_enable_screenshot">Позволяване създаването на екранни снимки на началния екран
+         (деактивирано по подразбиране от съображения за сигурност)</string>
+    <string name="settings_desc_enable_android_backup_service">Позволява на andOTP да използва
+         вградената услуга на Android, за архивиране на ключове и предпочитания</string>
+    <string name="settings_desc_clear_keystore">Изтриване на ключа за шифроване от Хранилището за ключове на Android</string>
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_not_secure">За тази функция се изисква защитата
+        за заключване на екрана да се настрои (Настройки -&gt; Сигурност -&gt; Заключване на екрана)
+     </string>
+    <string name="settings_toast_password_empty">Използването на празна парола не е разрешено, за да
+      премахнете паролата, изключете Удостоверяването!</string>
+    <string name="settings_toast_encryption_changing">Опит за промяна на криптирането на базата данни.
+         Моля Изчакайте!</string>
+    <string name="settings_toast_encryption_change_success">Успешно променихте криптирането на 
+       базата данни!</string>
+    <string name="settings_toast_encryption_change_failed">Промяната на криптирането на базата данни не бе успешно,
+         връщане в първоначално състояние!</string>
+    <string name="settings_toast_encryption_backup_failed">Неуспешно създаване на вътрешно
+         резервно копие, прекъсване!</string>
+    <string name="settings_toast_encryption_no_key">Неуспешно получаване на ключа за шифроване, прекъсване!</string>
+    <string name="settings_toast_encryption_auth_failed">Удостоверяването е неуспешно!</string>
+    <string name="settings_toast_auth_upgrade_failed">Неуспешно автоматично обновяване на вашата парола/ПИН код към
+         новото криптиране, моля, нулирайте го ръчно в Настройките!</string>
+    <string name="settings_dialog_title_warning">Предупреждение</string>
+    <string name="settings_dialog_title_error">Грешка</string>
+    <string name="settings_dialog_title_clear_keystore">Да се изчисти ли Хранилището за ключове на Android?</string>
+    <string name="settings_dialog_title_android_sync">Android синхронизация</string>
+    <string name="settings_dialog_msg_encryption_change">andOTP сега ще се опита да промени криптирането на базата данни
+         В случай на неуспех,  ще се възстанови вътрешното резервно копие и криптирането
+         ще остане непроменено.\n\n<b>Въпреки това, винаги е добра идея да имате резервно копие в случай, че се
+         случи нещо неочаквано!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">Можете да използвате само Парола или ПИН код, ако за
+       криптирането на базата данни е зададена опцията \"Парола / ПИН код\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">Първо трябва да настроите
+         Удостоверяване на „Парола“ или „ПИН код“!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">Първо трябва да зададете
+         Парола или ПИН код преди да промените криптирането!</string>
+    <string name="settings_dialog_msg_clear_keystore_password">В някои случаи, изчистване на Хранилището за ключове на Android
+         може да помогне за разрешаване на проблеми. Трябва да продължите само ако знаете какво правите!\n\nКогато
+         <b>криптирането на базата данни</b> е зададено на <b>Парола / ПИН код</b>, не бива да губите никакви данни, когато
+         правите това (но никога не е лошо да имате резервно копие).\n\n<b>Наистина ли сте сигурни, че искате
+         да изчистите Хранилището за ключове на Android?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">В някои случаи, изчистване на Хранилището за ключове на Android
+         може да помогне за разрешаване на проблеми. Трябва да продължите само ако знаете какво правите!\n\n<b>
+         Предупреждение</b>: Тъй като <b>криптирането на базата данни</b> е зададено на
+        <b>Хранилище за ключове на Android</b>, ще загубите всички вашите акаунти. Уверете се, че
+         имате резервно копие!\n\n<b>Наистина ли сте сигурни, че искате да изчистите
+         Хранилището за ключове на Android?</b></string>
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">Синхронизацията на Android не може да се използва с Хранилището за ключове на Android
+        <b>трябва да извършите ръчно архивиране!</b></string>
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>Няма</item>
+        <item>Парола</item>
+        <item>ПИН код</item>
+        <item>Удостоверения на устройството</item>
+    </string-array>
+    <string-array name="settings_entries_encryption">
+        <item>Хранилище за ключове на Android</item>
+        <item>Парола / ПИН код</item>
+    </string-array>
+    <string-array name="settings_entries_panic">
+        <item>Изтриване на всички акаунти</item>
+        <item>Нулиране настройките на приложението</item>
+    </string-array>
+    <string-array name="settings_entries_card_layout">
+        <item>Компактно</item>
+        <item>По подразбиране</item>
+        <item>Пълно</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Нищо</item>
+        <item>Разкриване/Скриване</item>
+        <item>Копиране</item>
+        <item>Копирайте и отидете на заден план</item>
+    </string-array>
+    <string-array name="settings_entries_search_includes">
+        <item>Етикет</item>
+        <item>Издател</item>
+        <item>Маркери</item>
+    </string-array>
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Изключено</item>
+        <item>Нови записи</item>
+        <item>Всякакви редакции</item>
+    </string-array>
+    <string-array name="settings_entries_theme">
+        <item>Светла тема</item>
+        <item>Тъмна тема</item>
+        <item>Черна тема</item>
+    </string-array>
+    <string-array name="settings_entries_thumbnail_size">
+        <item>Скрит</item>
+        <item>Мъничък</item>
+        <item>Малък</item>
+        <item>По подразбиране</item>
+        <item>Среден</item>
+        <item>Голям</item>
+    </string-array>
+    <string-array name="settings_entries_split_group_size">
+        <item>Не разделяй</item>
+        <item>След два знака</item>
+        <item>След три знака</item>
+    </string-array>
+    <string-array name="settings_entries_tag_functionality">
+        <item>Показване на всички записи, които съвпадат <b>с всеки</b> от избраните маркери (или)</item>
+        <item>Показване само на тези записите, които съвпадат <b>с всички</b> от избраните маркери (и)</item>
+        <item>Превключване между маркерите (позволява се само един маркер да бъде избран едновременно)</item>
+    </string-array>
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Некриптирани резервни копия</item>
+        <item>Криптирани резервни копия</item>
+    </string-array>
+    <!-- Special -->
+    <string name="settings_lang_sys_default">По подразбиране за системата</string>
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">Въведи нова парола</string>
+    <string name="settings_hint_pin">Въведете нов ПИН код</string>
+    <string name="settings_hint_password_confirm">Потвърдете паролата</string>
+    <string name="settings_hint_pin_confirm">Потвърдете ПИН кода</string>
+    <string name="settings_label_short_password">Паролата трябва да съдържа не по-малко от %1$d символа!</string>
+    <string name="settings_label_short_pin">ПИН кодът трябва да съдържа не по-малко от %1$d цифри!</string>
+</resources>

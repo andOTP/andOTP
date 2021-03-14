@@ -21,13 +21,18 @@
     <string name="settings_key_auth_inactivity_delay" translatable="false">pref_auth_inactivity_timeout</string>
     <string name="settings_key_block_accessibility" translatable="false">pref_block_accessibility</string>
     <string name="settings_key_block_autofill" translatable="false">pref_block_autofill</string>
+    <string name="settings_key_auto_unlock_after_autofill" translatable="false">pref_auto_unlock_after_autofill</string>
 
-    <string name="settings_key_lang" translatable="false">pref_lang</string>    <!-- Deprecated -->
-    <string name="settings_key_locale" translatable="false">pref_locale</string>
+    <string name="settings_key_cat_ui" translatable="false">perf_cat_ui</string>
+    <string name="settings_key_lang" translatable="false">pref_lang</string>
+    <string name="settings_key_locale" translatable="false">pref_locale</string>                        <!-- Deprecated -->
+    <string name="settings_key_theme_mode" translatable="false">perf_theme_mode</string>
+    <string name="settings_key_theme_black_auto" translatable="false">pref_theme_black_auto</string>
     <string name="settings_key_theme" translatable="false">pref_theme</string>
     <string name="settings_key_label_size" translatable="false">pref_label_size_sp</string>
     <string name="settings_key_card_layout" translatable="false">pref_card_layout</string>
-    <string name="settings_key_label_scroll" translatable="false">pref_label_scroll</string>
+    <string name="settings_key_label_scroll" translatable="false">pref_label_scroll</string>            <!-- Deprecated -->
+    <string name="settings_key_label_display" translatable="false">pref_label_display</string>
     <string name="settings_key_tap_single" translatable="false">pref_tap_single</string>
     <string name="settings_key_tap_double" translatable="false">pref_tap_double</string>
     <string name="settings_key_minimize_on_copy" translatable="false">pref_minimize_on_copy</string>
@@ -38,6 +43,8 @@
     <string name="settings_key_label_highlight_token" translatable="false">pref_label_highlight_token</string>
     <string name="settings_key_hide_global_timeout" translatable="false">pref_hide_global_timeout</string>
     <string name="settings_key_show_individual_timeouts" translatable="false">pref_show_individual_timeouts</string>
+    <string name="settings_key_focus_search_on_start" translatable="false">pref_focus_search_on_start</string>
+    <string name="settings_key_hide_issuer" translatable="false">pref_hide_issuer</string>
 
     <string name="settings_key_backup_append_date_time" translatable="false">pref_backup_append_date_time</string>
     <string name="settings_key_backup_ask" translatable="false">pref_backup_ask</string>
@@ -52,6 +59,7 @@
     <string name="settings_key_openpgp_key_sign" translatable="false">pref_openpgp_key_sign</string>
     <string name="settings_key_openpgp_verify" translatable="false">pref_openpgp_verify</string>
     <string name="settings_key_new_backup_format_dialog_shown" translatable="false">pref_new_backup_dialog_shown</string>   <!--Deprecated -->
+    <string name="settings_key_backup_default_type" translatable="false">pref_backup_default_type</string>
 
     <string name="settings_key_security_backup_warning" translatable="false">pref_security_backup_warning_shown</string>
     <string name="settings_key_sort_mode" translatable="false">pref_sort_mode</string>
@@ -71,9 +79,11 @@
     <integer name="settings_default_tap_to_reveal_timeout">30</integer>
     <integer name="settings_default_auth_inactivity_delay">30</integer>
     <string name="settings_default_encryption" translatable="false">keystore</string>
-    <string name="settings_default_locale" translatable="false">system</string>
+    <string name="settings_default_lang" translatable="false">system</string>
+    <string name="settings_default_theme_mode" translatable="false">auto</string>
     <string name="settings_default_theme" translatable="false">light</string>
     <integer name="settings_default_label_size">18</integer>
+    <string name="settings_default_label_display" translatable="false">truncate</string>
     <string name="settings_default_card_layout" translatable="false">default</string>
     <string name="settings_default_tap_single" translatable="false">nothing</string>
     <string name="settings_default_tap_double" translatable="false">nothing</string>
@@ -135,41 +145,53 @@
         <item>all_edits</item>
     </string-array>
 
-
-
-    <string-array name="settings_values_locale" translatable="false">
+    <string-array name="settings_values_lang" translatable="false">
         <item>system</item>
-        <item>ca_ES</item>
-        <item>de_DE</item>
-        <item>en_US</item>
-        <item>es_ES</item>
-        <item>fr_FR</item>
-        <item>gl_ES</item>
-        <item>it_IT</item>
-        <item>hu_HU</item>
-        <item>nl_NL</item>
-        <item>pl_PL</item>
+        <item>ast</item>
+        <item>ca</item>
+        <item>de</item>
+        <item>en</item>
+        <item>es</item>
+        <item>eu</item>
+        <item>fr</item>
+        <item>gl</item>
+        <item>it</item>
+        <item>hu</item>
+        <item>nl</item>
+        <item>pl</item>
         <item>pt_BR</item>
-        <item>sl_SI</item>
-        <item>sv_SE</item>
-        <item>tr_TR</item>
-        <item>cs_CZ</item>
-        <item>el_GR</item>
-        <item>ru_RU</item>
-        <item>uk_UA</item>
-        <item>bg_BG</item>
-        <item>ar_SA</item>
-        <item>fa_IR</item>
-        <item>hi_IN</item>
-        <item>ja_JP</item>
+        <item>sl</item>
+        <item>sv</item>
+        <item>tr</item>
+        <item>cs</item>
+        <item>el</item>
+        <item>ru</item>
+        <item>uk</item>
+        <item>bg</item>
+        <item>iw</item>
+        <item>ar</item>
+        <item>fa</item>
+        <item>hi</item>
+        <item>ja</item>
         <item>zh_CN</item>
         <item>zh_TW</item>
+    </string-array>
+
+    <string-array name="settings_values_theme_mode" translatable="false">
+        <item>auto</item>
+        <item>manual</item>
     </string-array>
 
     <string-array name="settings_values_theme" translatable="false">
         <item>light</item>
         <item>dark</item>
         <item>black</item>
+    </string-array>
+
+    <string-array name="settings_values_label_display" translatable="false">
+        <item>truncate</item>
+        <item>scroll</item>
+        <item>multiline</item>
     </string-array>
 
     <string-array name="settings_values_thumbnail_size" translatable="false">
@@ -200,10 +222,12 @@
 
     <string-array name="settings_entries_lang" translatable="false">
         <item>@string/settings_lang_sys_default</item>
+        <item>Asturianu</item>
         <item>Català</item>
         <item>Deutsch</item>
         <item>English</item>
         <item>Español</item>
+        <item>Euskara</item>
         <item>Français</item>
         <item>Galego</item>
         <item>Italiano</item>
@@ -219,6 +243,7 @@
         <item>Русский</item>
         <item>Українська</item>
         <item>български</item>
+        <item>עִברִית</item>
         <item>العربية</item>
         <item>فارسی</item>
         <item>हिन्दी</item>

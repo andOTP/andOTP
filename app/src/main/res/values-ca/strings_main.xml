@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Buttons -->
+    <string name="button_cancel">Cancel·la</string>
+    <string name="button_enter_details">Introduïu-ne els detalls</string>
+    <string name="button_scan_qr">Escaneja un codi QR</string>
+    <string name="button_save">Desa</string>
+    <string name="button_new_tag">Etiqueta nova</string>
+    <string name="button_settings">Configuració</string>
+    <string name="button_all_tags">Totes les etiquetes</string>
+    <string name="button_no_tags">Sense etiquetes</string>
+    <string name="button_qr_from_image">codi QR de la imatge</string>
+    <!-- Custom formatting -->
+    <string name="format_custom_period">%d s</string>
+    <!-- Hints -->
+    <string name="hint_label">Etiqueta</string>
+    <string name="hint_secret">Secret</string>
+    <!-- Labels -->
+    <string name="label_hidden">Ocult</string>
+    <string name="label_type">Tipus</string>
+    <string name="label_secret">Secret</string>
+    <string name="label_period">Període</string>
+    <string name="label_digits">Dígits</string>
+    <string name="label_counter">Comptador</string>
+    <string name="label_issuer">Emissor</string>
+    <string name="label_label">Etiqueta</string>
+    <string name="label_algorithm">Algorisme</string>
+    <string name="label_tags">Etiquetes</string>
+    <string name="label_advanced">Opcions avançades</string>
+    <!-- Drawer -->
+    <string name="drawer_open">Mostra les etiquetes</string>
+    <string name="drawer_close">Amaga les etiquetes</string>
+    <!-- Menu -->
+    <string name="menu_main_about">Quant a</string>
+    <string name="menu_main_backup">Còpia de seguretat</string>
+    <string name="menu_main_search">Cerca</string>
+    <string name="menu_main_settings">Configuració</string>
+    <string name="menu_main_sort">Ordena</string>
+    <string name="menu_sort_none">Sense ordenar</string>
+    <string name="menu_sort_issuer">Emissor</string>
+    <string name="menu_sort_label">Etiqueta</string>
+    <string name="menu_sort_last_used">Últimes utilitzades</string>
+    <string name="menu_sort_most_used">Més utilitzades</string>
+    <string name="menu_popup_edit">Edita</string>
+    <string name="menu_popup_change_image">Canvia la imatge</string>
+    <string name="menu_popup_remove">Suprimeix</string>
+    <string name="menu_popup_show_qr_code">Mostra el codi QR</string>
+    <!-- Buttons -->
+    <string name="button_card_options">Més opcions</string>
+    <string name="button_card_options_format">Més opcions per a %1$s</string>
+    <string name="button_card_copy">Copia el testimoni</string>
+    <string name="button_card_copy_format">Copia el testimoni de %1$s</string>
+    <string name="button_add">Afegeix un compte nou</string>
+    <string name="button_close_menu">Tanca el menú</string>
+    <!-- Toast messages -->
+    <string name="toast_auth_failed">Error d\'autenticació. Torneu-ho a intentar!</string>
+    <string name="toast_auth_failed_fatal">L\'autenticació ha fallat, andOTP es tancarà!</string>
+    <string name="toast_copied_to_clipboard">Copiat al porta-retalls</string>
+    <string name="toast_entry_exists">Aquest element ja existeix</string>
+    <string name="toast_invalid_qr_code">Codi QR no vàlid</string>
+    <string name="toast_encryption_key_empty">No s\'ha carregat la clau de xifratge</string>
+    <string name="toast_intent_creation_failed">El codi passat per l\'aplicació no és vàlid</string>
+    <string name="toast_intent_creation_succeeded">S\'ha afegit un codi proporcionat per una aplicació</string>
+    <string name="toast_file_load_error">No ha estat possible obrir el fitxer</string>
+    <string name="toast_qr_error">No ha estat possible trobar/confirmar el codi QR</string>
+    <string name="toast_qr_checksum_exception">La suma de verificació ha fallat mentre descodificava el QR</string>
+    <string name="toast_qr_format_error">Error de format en el codi QR</string>
+    <string name="toast_qr_unsuported">Codi QR no suportat</string>
+    <string name="toast_qr_failed_to_generate">La generació del codi QR ha fallat</string>
+    <!-- Errors -->
+    <string name="error_invalid_secret">Clau invàlida</string>
+    <!-- Dialogs -->
+    <string name="dialog_title_auth">Autentica</string>
+    <string name="dialog_title_manual_entry">Introduïu-ne els detalls</string>
+    <string name="dialog_title_remove">Suprimeix</string>
+    <string name="dialog_title_rename">Canvia el nom</string>
+    <string name="dialog_title_counter">Comptador</string>
+    <string name="dialog_title_used_tokens">Ús de testimonis</string>
+    <string name="dialog_title_keystore_error">Error al magatzem de claus</string>
+    <string name="dialog_title_qr_code">Codi QR</string>
+    <string name="dialog_title_enter_password">Introduïu la contrasenya</string>
+    <string name="dialog_label_enter_password">Introduïu la contrasenya</string>
+    <string name="dialog_label_confirm_password">Confirmeu la contrasenya</string>
+    <string name="dialog_msg_auth">Per favor, introduïu les vostres credencials per a iniciar andOTP.</string>
+    <string name="dialog_msg_confirm_delete">Segur que voleu suprimir el compte \"%1$s\"?</string>
+    <string name="dialog_msg_used_tokens">andOTP registrarà quan feu servir els testimonis (quan feu servir
+        «Toqueu per a mostrar» o copieu al portaretalls) per tal d\'ordenar-los per nombre d\'usos o
+        últim ús.\n\nAquest missatge no tornarà a aparèixer.</string>
+    <string name="dialog_msg_keystore_error">No s\'ha pogut carregar la clau de xifratge del KeyStore.
+        <b>Qualsevol entrada que s\'hi hagin afegit es perdrà.</b>\n\nPer a continuar usant andOTP, podeu
+        anar a la <b>Configuració</b> i canviar el <b>xifratge de la base de dades</b> a <b>Contrasenyes / PIN</b>.</string>
+    <!-- Shortcuts -->
+    <string name="shortcut_name_scan_qr">Escaneja un codi QR</string>
+    <string name="shortcut_name_import_qr">Importa un codi QR</string>
+    <string name="shortcut_name_enter_details">Introduïu-ne els detalls</string>
+</resources>

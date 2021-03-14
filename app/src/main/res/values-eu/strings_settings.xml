@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_activity_title">Ezarpenak</string>
+    <!-- Categories -->
+    <string name="settings_category_title_security">Segurtasuna</string>
+    <string name="settings_category_title_ui">Erabiltzaile interfazea</string>
+    <string name="settings_category_title_backup">Segurtasun kopia</string>
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">Sakatu erakusteko</string>
+    <string name="settings_title_tap_to_reveal_timeout">Sakatu ikusteko erabiltzeko denbora</string>
+    <string name="settings_title_auth">Autentifikazioa</string>
+    <string name="settings_title_auth_password">Pasahitza</string>
+    <string name="settings_title_auth_pin">PINa</string>
+    <string name="settings_title_encryption">Datubasea zifratzea</string>
+    <string name="settings_title_panic">Larrialdi abisua</string>
+    <string name="settings_title_relock_screen_off">Blokeatu pantaila itzaltzean</string>
+    <string name="settings_title_relock_background">Blokeatu atzeko planora joatean</string>
+    <string name="settings_title_auth_inactivity">Blokeatu erabiltzen ez denean</string>
+    <string name="settings_title_auth_inactivity_delay">Erabiltzen ez dela erabakitzeko denbora-muga</string>
+    <string name="settings_title_block_accessibility">Irisgarritasun zerbitzuak blokeatu</string>
+    <string name="settings_title_block_autofill">Automatikoki betetzea blokeatu</string>
+    <string name="settings_title_lang">Hizkuntza</string>
+    <string name="settings_title_theme">Itxura</string>
+    <string name="settings_title_card_layout">Txartel erako ikuspena</string>
+    <string name="settings_title_label_size">Etiketaren tamaina</string>
+    <string name="settings_title_label_scroll">Etiketa automatikoki mugitu</string>
+    <string name="settings_title_tap_single">Behin sakatu</string>
+    <string name="settings_title_tap_double">Birritan sakatu</string>
+    <string name="settings_title_thumbnail_size_ask">Irudi txikiaren tamaina</string>
+    <string name="settings_title_split_group_size">Tokena espazioarekin banatu</string>
+    <string name="settings_title_tag_functionality">Etiketa aukeratzearen portaera</string>
+    <string name="settings_title_minimize_on_copy">Aplikazioa txikitu OTPa kopiatutakoan</string>
+    <string name="settings_title_search_includes">Bilaketaren portaera</string>
+    <string name="settings_title_label_highlight_token">Iraungitzera doazen tokenak markatu</string>
+    <string name="settings_title_hide_global_timeout">Ezkutatu denbora-mugaren barra</string>
+    <string name="settings_title_show_individual_timeouts">Erakutsi bakoitzaren denbora-mugak</string>
+    <string name="settings_title_backup_append_date">Fitxategiaren izenari data erantsi</string>
+    <string name="settings_title_backup_ask">Fitxategi-izena galdetu</string>
+    <string name="settings_title_backup_location">Segurtasun-kopien defektuzko kokalekua</string>
+    <string name="settings_title_backup_password">Segurtasun-kopien pasahitza</string>
+    <string name="settings_title_auto_backup_password_enc">Sarrera berriak daudenean automatikoki segurtasun-kopia egin</string>
+    <string name="settings_title_backup_broadcasts">Kanpotik eskatutako segurtasun-kopiak</string>
+    <string name="settings_title_openpgp_provider">OpenPGP hornitzailea</string>
+    <string name="settings_title_openpgp_key_encrypt">OpenPGP zifratze-gakoa</string>
+    <string name="settings_title_openpgp_key_sign">OpenPGP sinadura-gakoa (hautazkoa)</string>
+    <string name="settings_title_openpgp_verify">Egiaztatu zifratutako segurtasun-kopiak</string>
+    <string name="settings_title_special_features">Ezarpen bereziak aktibatu</string>
+    <string name="settings_title_enable_screenshot">Pantaila-irudiak ateratzea baimendu</string>
+    <string name="settings_title_enable_android_backup_service">Android sinkronizazioa aktibatu</string>
+    <string name="settings_title_clear_keystore">KeyStorea hustu</string>
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">OTP tokenak ezkutatu, ikusteko eskuz
+        agertarazi beharko dituzu</string>
+    <string name="settings_desc_tap_to_reveal_timeout">Aukeratu zenbat denboraren ondoren (segundotan)
+        ezkutatuko diren erakutsitako sarrerak</string>
+    <string name="settings_desc_panic">Aukeratu zer egin Larrialdi abisua jasotzean</string>
+    <string name="settings_desc_relock_screen_off">Autentifikazioa eskatu gailuen pantaila
+        itzali ostean</string>
+    <string name="settings_desc_relock_background">Autentifikazioa eskatu aplikazioa atzeko planora
+        bidali ostean (adibidez \"home\" botoia sakatzean)</string>
+    <string name="settings_desc_auth_inactivity">Autentifikazioa eskatu gailua inaktibo
+        egon ostean</string>
+    <string name="settings_desc_auth_inactivity_delay">Aukeratu zenbat denboraren ostean (segundotan)
+        eskatu berriz autentifikatzea</string>
+    <string name="settings_desc_block_accessibility">Irisgarritasun zerbitzuei eremu arriskutsuak
+        ezkutatu. <b>Ez aktibatu hau irisgarritasun zerbitzuak erabili behar badituzu!</b></string>
+    <string name="settings_desc_block_autofill">Blokeatu balioak automatikoki betetzen dituzten
+        zerbitzuek aplikazioko pasahitzen eremuak irakurtzea</string>
+    <string name="settings_desc_block_autofill_android">Aukera honek Android 8.0 (Oreo) baino
+        handiagoa den bertsioa behar du</string>
+    <string name="settings_desc_label_scroll">Izen luzeak horizontalean scrolla eginez erakutsi, izenak moztu beharrean</string>
+    <string name="settings_desc_minimize_on_copy">Aplikazioa minimizatu egingo da OTP gakoa arbelera kopiatzean</string>
+    <string name="settings_desc_search_includes">Adierazi bilaketa egitean zein balio kontuan hartu behar diren</string>
+    <string name="settings_desc_label_highlight_token">Tokena gorriz markatuko du 8 segundoak iraungitzen bada</string>
+    <string name="settings_desc_hide_global_timeout">Pantailaren goialdean agertzen den denbora agortzeko barra globala ezkutatu</string>
+    <string name="settings_desc_show_individual_timeouts">Sarrera bakoitzari dagokion denbora agortzeko barra erakutsi.
+        Honek aplikazioa moteldu dezake, guztiz beharrezkoa bada bakarrik aktibatu.</string>
+    <string name="settings_desc_backup_append_date">Aholkatutako segurtasun kopiaren fitxategi izenari
+        uneko data eta ordua gehitu</string>
+    <string name="settings_desc_backup_ask">Segurtasun kopia bat sortu edo berrezartzen den bakoitzean
+        fitxategi izena eskatu</string>
+    <string name="settings_desc_backup_location">Aukeratu seguratsun kopien defektuzko kokalekua</string>
+    <string name="settings_desc_backup_location_set">Segurtasun kopien kokalekua ondo aukeratu da</string>
+    <string name="settings_desc_backup_password">Segurtasun kopiak zifratzeko erabiliko den pasahitza
+        ezarri</string>
+    <string name="settings_desc_auto_backup_password_enc">Ezarpenaren baldintzak betetzen badira,
+        zifratutako segurtasun kopia bat sortuko da sarrerak sortu edo editatzean</string>
+    <string name="settings_desc_auto_backup_requirements">Ezarri segurtasun-kopiak gordetzeko defektuzko
+        kokalekua eta aukera hau aktibatzeko pasahitza</string>
+    <string name="settings_desc_backup_broadcasts">Aukeratu zein segurtasun kopia mota jarri daitezkeen
+        martxan hirugarrenen aplikazioetatik abiatuz</string>
+    <string name="settings_desc_openpgp_key_encrypt">Segurtasun kopiak zifratzeko erabiltzen den OpenPGP
+        gakoaren eposta helbidea</string>
+    <string name="settings_desc_openpgp_verify">Zifratutako segurtasun kopiak baliozkoa den gako
+        batekin sinatuta badaude barrik inportatuko dira</string>
+    <string name="settings_desc_special_features">Desaktibatu aukera bereziak berriz desaktibatzeko</string>
+    <string name="settings_desc_enable_screenshot">Pantaila nagusiaren pantaila argazkiak ateratzea
+        baimendu (defektuz desaktibatuta dago segurtasun arrazoiengatik)</string>
+    <string name="settings_desc_enable_android_backup_service">Baimendu andOTPk gakoak eta ezarpenen segurtasun kopiak egiteko
+Androiden horretarako zerbitzua erabiltzea</string>
+    <string name="settings_desc_clear_keystore">Ezabatu zifratze-gakoa KeyStoretik</string>
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_not_secure">Aukera hau aktibatzeko pantailaren blokeo segurua
+        aktibatu behar duzu (Ezarpenak -&gt; Segurtasuna -&gt; Pantaila blokeoa)</string>
+    <string name="settings_toast_password_empty">Ezin duzu pasahitza hutsik utzi, ezarri
+        Autentifikazioa \"Bat ere ez\" baliora desaktibatu nahi baduzu!</string>
+    <string name="settings_toast_encryption_changing">Datu basearen zifratzea aldatzen,
+        itxaron mesedez!</string>
+    <string name="settings_toast_encryption_change_success">Datu basearen zifratzea ondo
+        aldatu da!</string>
+    <string name="settings_toast_encryption_change_failed">Huts egin du datu basearen zifratzea aldatzean,
+        aurreko egoerara itzuliko gara!</string>
+    <string name="settings_toast_encryption_backup_failed">Huts egin du segurtasun kopia egiteak
+        bertan behera utzi da prozesua!</string>
+    <string name="settings_toast_encryption_no_key">Huts egin du zifratze-gakoa lortzean, bertan behera utzi da prozesua!</string>
+    <string name="settings_toast_encryption_auth_failed">Autentifikazio errorea!</string>
+    <string name="settings_toast_auth_upgrade_failed">Huts egin du zure pasahitza / PINa zifratze berria erabiltzera
+migratzean, berrezarri eskuz Ezarpenetan!</string>
+    <string name="settings_dialog_title_warning">Oharra</string>
+    <string name="settings_dialog_title_error">Errorea</string>
+    <string name="settings_dialog_title_clear_keystore">KeyStorea garbitu?</string>
+    <string name="settings_dialog_title_android_sync">Android sinkronizazioa</string>
+    <string name="settings_dialog_msg_encryption_change">andOTP datu baearen zifratzea aldatzen saiatuko
+        da orain. Honek huts egiten badu barneko segurtasun kopia bat berrezarriko da eta
+        zifratzea lehen bezala geratuko da.\n\n<b>Hala ere beti da ideia ona segurtasun kopia bat
+        izatea zer edo zer gaizki badoa-ere!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">Pasahitza edo PINa bakarrik erabili ditzakezu
+        datu basearen zifratzea \"Pasahitza / PINa\" bezala konfiguratuta baitago!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">Autentifikazioa \"Pasahitza\" edo \"PINa\"
+        izateko ezarri behar duzu!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">Pasahitza edo PINa ezarri behar dituzu
+        zifratzea aldatu aurretik!</string>
+    <string name="settings_dialog_msg_clear_keystore_password">Kasu batzuetan KeyStorea garbitzeak
+        arazoak konpontzen lagundu dezake. Zer egiten ari zaren baldin badakizu bakarrik jarraitu!\n\n
+        <b>Datu basearen zifratzea</b> <b>Pasahitza / PINa</b> baliora ezarrita duzunez ez zenuke daturik
+        galdu behar hau egitean (baina inoiz ez du kalterik egiten segurtasun kopia bat izateak).\n\n<b>Benetan
+        KeyStorea garbitu nahi duzu?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">Kasu batzuetan KeyStorea garbitzeak
+        arazoak konpontzen lagundu dezake. Zer egiten ari zaren baldin badakizu bakarrik jarraitu!\n\n<b>Oharra</b>:
+        <b>Datu basearen zifratzea</b> <b>Android KeStore</b> baliora ezarrita duzunez zure kontu guztien
+        informazioa galdu egingo duzu. Egin segurtasun kopia bat lehenengo!\n\n<b>Benetan
+        KeyStorea garbitu nahi duzu?</b></string>
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">Android sinkronizazioa ezin da KeyStore bidezko
+        zifratzearekin erabili, <b>segurtasun kopia eskuz egin beharko zenuke!</b></string>
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>Bat ere ez</item>
+        <item>Pasahitza</item>
+        <item>PINa</item>
+        <item>Gailuaren kredentzialak</item>
+    </string-array>
+    <string-array name="settings_entries_encryption">
+        <item>Android KeyStorea</item>
+        <item>Pasahitza / PINa</item>
+    </string-array>
+    <string-array name="settings_entries_panic">
+        <item>Kontu guztiak ezabatu</item>
+        <item>Aplikazioaren ezarpenak berrezarri</item>
+    </string-array>
+    <string-array name="settings_entries_card_layout">
+        <item>Trinkoa</item>
+        <item>Defektuzkoa</item>
+        <item>Osoa</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Bat ere ez</item>
+        <item>Erakutsi/Ezkutatu</item>
+        <item>Kopiatu</item>
+        <item>Kopiatu eta atzeko planora joan</item>
+    </string-array>
+    <string-array name="settings_entries_search_includes">
+        <item>Etiketa</item>
+        <item>Jaulkitzailea</item>
+        <item>Etiketak</item>
+    </string-array>
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Itzalita</item>
+        <item>Sarrera berriak</item>
+        <item>Edizio guztiak</item>
+    </string-array>
+    <string-array name="settings_entries_theme">
+        <item>Itxura argia</item>
+        <item>Itxura iluna</item>
+        <item>Itxura beltza</item>
+    </string-array>
+    <string-array name="settings_entries_thumbnail_size">
+        <item>Ezkutuan</item>
+        <item>Oso txikia</item>
+        <item>Txikia</item>
+        <item>Defektuzkoa</item>
+        <item>Ertaina</item>
+        <item>Handia</item>
+    </string-array>
+    <string-array name="settings_entries_split_group_size">
+        <item>Ez banatu</item>
+        <item>Bi karaktereren ostean</item>
+        <item>Hiru karaktereren ostean</item>
+    </string-array>
+    <string-array name="settings_entries_tag_functionality">
+        <item>Aukeratutako <b>edozein</b> etiketa duten sarrera guztiak erakutsi (edo)</item>
+        <item>Aukeratutako etiketa <b>guztiak</b> dituzten sarrerak bakarrik erakutsi (eta)</item>
+        <item>Etiketetan zehar aldatu (etiketa bat bakarra aukeratzea baimendu)</item>
+    </string-array>
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Segurtasun-kopia arruntak</item>
+        <item>Zifratutako segurtasun-kopiak</item>
+    </string-array>
+    <!-- Special -->
+    <string name="settings_lang_sys_default">Sistemaren defektuzkoa</string>
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">Pasahitz berria idatzi</string>
+    <string name="settings_hint_pin">PIN berria idatzi</string>
+    <string name="settings_hint_password_confirm">Pasahitza berretsi</string>
+    <string name="settings_hint_pin_confirm">PINa berretsi</string>
+    <string name="settings_label_short_password">Pasahitzak gutxienez %1$d karaktere izan behar ditu!</string>
+    <string name="settings_label_short_pin">PINak gutxienez %1$d karaktere izan behar ditu!</string>
+</resources>
