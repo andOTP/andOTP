@@ -122,6 +122,7 @@ public class EntryThumbnail {
         BraveRewards(R.drawable.thumb_braverewards),
         Bugcrowd(R.drawable.thumb_bugcrowd),
         CEXio(R.drawable.thumb_cexio),
+        Charles_Schwab(R.drawable.thumb_charles_schwab),
         ChurchTools(R.drawable.thumb_church_tools),
         CircleCi(R.drawable.thumb_circleci),
         Cisco(R.drawable.thumb_cisco),
