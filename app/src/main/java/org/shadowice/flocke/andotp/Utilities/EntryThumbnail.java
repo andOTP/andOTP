@@ -141,6 +141,7 @@ public class EntryThumbnail {
         CozyCloud(R.drawable.thumb_cozycloud),
         CrowdSupply(R.drawable.thumb_crowd_supply),
         Crowdin(R.drawable.thumb_crowdin),
+        CTemplar(R.drawable.thumb_ctemplar),
         Cyon(R.drawable.thumb_cyon),
         Dashlane(R.drawable.thumb_dashlane),
         Debian(R.drawable.thumb_debian),
