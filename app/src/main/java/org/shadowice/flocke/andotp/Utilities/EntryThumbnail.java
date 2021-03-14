@@ -343,6 +343,7 @@ public class EntryThumbnail {
         Sophos(R.drawable.thumb_sophos),
         SourceForge(R.drawable.thumb_sourceforge),
         Squarespace(R.drawable.thumb_squarespace),
+        Stack(R.drawable.thumb_stack),
         StandardNotes(R.drawable.thumb_standardnotes),
         StarCitizen(R.drawable.thumb_starcitizen),
         Steam(R.drawable.thumb_steam),
