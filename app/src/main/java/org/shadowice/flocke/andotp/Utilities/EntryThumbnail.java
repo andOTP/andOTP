@@ -268,6 +268,7 @@ public class EntryThumbnail {
         MyGovAU(R.drawable.thumb_my_gov_au),
         NameCheap(R.drawable.thumb_namecheap),
         NameCom(R.drawable.thumb_namecom),
+        NameSilo(R.drawable.thumb_namesilo),
         NAS(R.drawable.thumb_nas),
         netcup(R.drawable.thumb_netcup),
         netlify(R.drawable.thumb_netlify),
