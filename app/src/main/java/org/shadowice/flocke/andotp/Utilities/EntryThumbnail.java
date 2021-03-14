@@ -128,6 +128,7 @@ public class EntryThumbnail {
         Citrix(R.drawable.thumb_citrix),
         CloudDownload(R.drawable.thumb_cloud_download),
         Cloudflare(R.drawable.thumb_cloudflare),
+        Cloudinary(R.drawable.thumb_cloudinary),
         Clubhouse(R.drawable.thumb_clubhouse),
         Cobranded(R.drawable.thumb_cobranded),
         Codeberg(R.drawable.thumb_codeberg),
