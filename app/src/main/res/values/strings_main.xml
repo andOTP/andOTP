@@ -11,6 +11,7 @@
     <string name="button_all_tags">All tags</string>
     <string name="button_no_tags">No tags</string>
     <string name="button_qr_from_image">QR code from image</string>
+    <string name="button_accept">Accept</string>
 
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
@@ -56,6 +57,7 @@
     <string name="menu_popup_change_image">Change image</string>
     <string name="menu_popup_remove">Remove</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
+    <string name="menu_popup_establish_pin">Enter pin</string>
 
     <!-- Buttons -->
     <string name="button_card_options">More options</string>
@@ -93,6 +95,7 @@
     <string name="dialog_title_used_tokens">Tokens usage</string>
     <string name="dialog_title_keystore_error">KeyStore error</string>
     <string name="dialog_title_qr_code">QR Code</string>
+    <string name="dialog_title_pin">PIN</string>
 
     <string name="dialog_title_enter_password">Enter password</string>
 

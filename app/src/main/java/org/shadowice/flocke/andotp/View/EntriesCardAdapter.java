@@ -37,8 +37,10 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -66,6 +68,7 @@ import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
+import org.shadowice.flocke.andotp.Utilities.UIHelper;
 import org.shadowice.flocke.andotp.View.ItemTouchHelper.ItemTouchHelperAdapter;
 
 import java.util.ArrayList;
@@ -92,6 +95,8 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     private SortMode sortMode = SortMode.UNSORTED;
     private final TagsAdapter tagsFilterAdapter;
     private final Settings settings;
+
+    private static final int ESTABLISH_PIN_MENU_INDEX = 4;
 
     public EntriesCardAdapter(Context context, TagsAdapter tagsFilterAdapter) {
         this.context = context;
@@ -306,15 +311,21 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             public void onCardSingleClicked(final int position, final String text) {
                 switch (settings.getTapSingle()) {
                     case REVEAL:
+                        establishPinIfNeeded(position);
                         cardTapToRevealHandler(position);
                         break;
                     case COPY:
+                        establishPinIfNeeded(position);
                         copyHandler(position, text, false);
                         break;
                     case COPY_BACKGROUND:
+                        establishPinIfNeeded(position);
                         copyHandler(position, text, true);
                         break;
                     default:
+                        // If tap-to-reveal is disabled a single tab still needs to establish the PIN
+                        if (!settings.getTapToReveal())
+                            establishPinIfNeeded(position);
                         break;
                 }
             }
@@ -323,12 +334,15 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             public void onCardDoubleClicked(final int position, final String text) {
                 switch (settings.getTapDouble()) {
                     case REVEAL:
+                        establishPinIfNeeded(position);
                         cardTapToRevealHandler(position);
                         break;
                     case COPY:
+                        establishPinIfNeeded(position);
                         copyHandler(position, text, false);
                         break;
                     case COPY_BACKGROUND:
+                        establishPinIfNeeded(position);
                         copyHandler(position, text, true);
                         break;
                     default:
@@ -348,6 +362,13 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         });
 
         return viewHolder;
+    }
+
+    private void establishPinIfNeeded(int position) {
+        final Entry entry = displayedEntries.get(position);
+
+        if (entry.getType() == Entry.OTPType.MOTP && entry.getPin().isEmpty())
+            establishPIN(position);
     }
 
     private void copyHandler(final int position, final String text, final boolean dropToBackground) {
@@ -593,6 +614,44 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         alert.show();
     }
 
+    public void establishPIN(final int pos) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        int marginSmall = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_small);
+        int marginMedium = context.getResources().getDimensionPixelSize(R.dimen.activity_margin_medium);
+
+        final EditText input = new EditText(context);
+        input.setLayoutParams(new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        input.setRawInputType(InputType.TYPE_NUMBER_VARIATION_PASSWORD  | InputType.TYPE_CLASS_NUMBER);
+        input.setText(displayedEntries.get(pos).getPin());
+        input.setSingleLine();
+        input.requestFocus();
+        input.setTransformationMethod(new PasswordTransformationMethod());
+        UIHelper.showKeyboard(context, input, true);
+
+        FrameLayout container = new FrameLayout(context);
+        container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
+        container.addView(input);
+
+        builder.setTitle(R.string.dialog_title_pin)
+                .setCancelable(false)
+                .setView(container)
+                .setPositiveButton(R.string.button_accept, (dialogInterface, i) -> {
+                    int realIndex = getRealIndex(pos);
+                    String newPin = input.getEditableText().toString();
+
+                    displayedEntries.get(pos).setPin(newPin);
+                    Entry e = entries.getEntry(realIndex);
+                    e.setPin(newPin);
+                    e.updateOTP(true);
+                    notifyItemChanged(pos);
+                    UIHelper.hideKeyboard(context, input);
+                })
+                .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> UIHelper.hideKeyboard(context, input))
+                .create()
+                .show();
+    }
+
     @SuppressLint("StringFormatInvalid")
     public void removeItem(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -650,6 +709,11 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         MenuInflater inflate = popup.getMenuInflater();
         inflate.inflate(R.menu.menu_popup, popup.getMenu());
 
+        if (displayedEntries.get(pos).getType() == Entry.OTPType.MOTP){
+             MenuItem item = popup.getMenu().getItem(ESTABLISH_PIN_MENU_INDEX);
+             item.setVisible(true);
+        }
+
         popup.setOnMenuItemClickListener(item -> {
             int id = item.getItemId();
 
@@ -658,6 +722,9 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                 return true;
             } else if(id == R.id.menu_popup_changeImage) {
                 changeThumbnail(pos);
+                return true;
+            } else if (id == R.id.menu_popup_establishPin) {
+                establishPIN(pos);
                 return true;
             } else if (id == R.id.menu_popup_remove) {
                 removeItem(pos);

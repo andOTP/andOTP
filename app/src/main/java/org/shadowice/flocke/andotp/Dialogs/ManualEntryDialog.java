@@ -82,6 +82,7 @@ public class ManualEntryDialog {
         final LinearLayout periodLayout = inputView.findViewById(R.id.manual_layout_period);
         final Spinner algorithmInput = inputView.findViewById(R.id.manual_algorithm);
         final Button tagsInput = inputView.findViewById(R.id.manual_tags);
+        final Button expandButton = inputView.findViewById(R.id.dialog_expand_button);
 
         final ArrayAdapter<TokenCalculator.HashAlgorithm> algorithmAdapter = new ArrayAdapter<>(callingActivity, android.R.layout.simple_expandable_list_item_1, TokenCalculator.HashAlgorithm.values());
         final ArrayAdapter<Entry.OTPType> typeAdapter = new ArrayAdapter<>(callingActivity, android.R.layout.simple_expandable_list_item_1, Entry.OTPType.values());
@@ -101,6 +102,7 @@ public class ManualEntryDialog {
                 if (type == Entry.OTPType.STEAM) {
                     counterLayout.setVisibility(View.GONE);
                     periodLayout.setVisibility(View.VISIBLE);
+                    expandButton.setVisibility(View.VISIBLE);
 
                     digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.STEAM_DEFAULT_DIGITS));
                     periodInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_PERIOD));
@@ -112,6 +114,7 @@ public class ManualEntryDialog {
                 } else if (type == Entry.OTPType.TOTP) {
                     counterLayout.setVisibility(View.GONE);
                     periodLayout.setVisibility(View.VISIBLE);
+                    expandButton.setVisibility(View.VISIBLE);
 
                     if (isNewEntry)
                         digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
@@ -120,10 +123,18 @@ public class ManualEntryDialog {
                 } else if (type == Entry.OTPType.HOTP) {
                     counterLayout.setVisibility(View.VISIBLE);
                     periodLayout.setVisibility(View.GONE);
+                    expandButton.setVisibility(View.VISIBLE);
 
                     if (isNewEntry)
                         digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
 
+                    algorithmInput.setEnabled(isNewEntry);
+                }else if (type == Entry.OTPType.MOTP) {
+                    counterLayout.setVisibility(View.GONE);
+                    periodLayout.setVisibility(View.VISIBLE);
+
+                    digitsInput.setText(String.format(Locale.US, "%d", TokenCalculator.TOTP_DEFAULT_DIGITS));
+                    expandButton.setVisibility(View.GONE);
                     algorithmInput.setEnabled(isNewEntry);
                 }
             }
@@ -155,8 +166,6 @@ public class ManualEntryDialog {
         };
 
         tagsInput.setOnClickListener(view -> TagsDialog.show(callingActivity, tagsAdapter, tagsCallable, tagsCallable));
-
-        final Button expandButton = inputView.findViewById(R.id.dialog_expand_button);
 
         // Dirty fix for the compound drawable to avoid crashes on KitKat
         expandButton.setCompoundDrawablesWithIntrinsicBounds(null, null, ResourcesCompat.getDrawable(callingActivity.getResources(), R.drawable.ic_arrow_down_accent, null), null);
@@ -193,13 +202,13 @@ public class ManualEntryDialog {
         positiveButton.setOnClickListener(view -> {
             //Replace spaces with empty characters
             String secret = secretInput.getText().toString().replaceAll("\\s+","");
+            Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
 
-            if (!Entry.validateSecret(secret)) {
+            if (!Entry.validateSecret(secret, type)) {
                 secretInput.setError(callingActivity.getString(R.string.error_invalid_secret));
                 return;
             }
 
-            Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
             TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
             int digits = Integer.parseInt(digitsInput.getText().toString());
 
@@ -250,6 +259,27 @@ public class ManualEntryDialog {
                     if (updateCallback != null)
                         updateCallback.onUpdate();
                 }
+            } else if (type == Entry.OTPType.MOTP) {
+                if (isNewEntry) {
+                    Entry newEntry;
+
+                    newEntry = new Entry(type, secret, issuer, label, tagsAdapter.getActiveTags());
+                    newEntry.updateOTP(false);
+                    newEntry.setLastUsed(System.currentTimeMillis());
+
+                    adapter.addEntry(newEntry);
+                } else {
+                    oldEntry.setIssuer(issuer, true);
+                    oldEntry.setLabel(label);
+                    oldEntry.setTags(tagsAdapter.getActiveTags());
+
+                    oldEntry.updateOTP(false);
+
+                    if (updateCallback != null)
+                        updateCallback.onUpdate();
+                }
+
+                callingActivity.refreshTags();
             }
 
             dialog.dismiss();

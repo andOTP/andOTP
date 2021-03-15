@@ -14,6 +14,11 @@
         android:title="@string/menu_popup_show_qr_code" />
 
     <item
+        android:id="@+id/menu_popup_establishPin"
+        android:title="@string/menu_popup_establish_pin"
+        android:visible="false"/>
+
+    <item
         android:id="@+id/menu_popup_remove"
         android:title="@string/menu_popup_remove" />
 

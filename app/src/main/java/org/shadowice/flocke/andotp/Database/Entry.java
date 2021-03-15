@@ -26,6 +26,7 @@ package org.shadowice.flocke.andotp.Database;
 import android.net.Uri;
 
 import org.apache.commons.codec.binary.Base32;
+import org.apache.commons.codec.binary.Hex;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,11 +41,12 @@ import java.util.Objects;
 
 public class Entry {
     public enum OTPType {
-        TOTP, HOTP, STEAM
+        TOTP, HOTP, MOTP, STEAM
     }
 
     private static final OTPType DEFAULT_TYPE = OTPType.TOTP;
     private static final int DEFAULT_PERIOD = 30;
+    private static final String MOTP_NO_PIN_CODE = "PINREQ";
 
     private static final String JSON_SECRET = "secret";
     private static final String JSON_ISSUER = "issuer";
@@ -79,6 +81,7 @@ public class Entry {
     public static final int COLOR_RED = 1;
     private static final int EXPIRY_TIME = 8;
     private int color = COLOR_DEFAULT;
+    private String pin = "";
     private long listId = 0;
 
     public Entry(){}
@@ -107,6 +110,16 @@ public class Entry {
         setThumbnailFromIssuer(issuer);
     }
 
+    public Entry(OTPType type, String secret, String issuer, String label, List<String> tags) {
+        this.type = type;
+        this.secret = secret.getBytes();
+        this.issuer = issuer;
+        this.label = label;
+        this.tags = tags;
+        this.period = TokenCalculator.TOTP_DEFAULT_PERIOD;
+        setThumbnailFromIssuer(issuer);
+    }
+
     public Entry(String contents) throws Exception {
         contents = contents.replaceFirst("otpauth", "http");
         Uri uri = Uri.parse(contents);
@@ -122,6 +135,9 @@ public class Entry {
                 break;
             case "hotp":
                 type = OTPType.HOTP;
+                break;
+            case "motp":
+                type = OTPType.MOTP;
                 break;
             case "steam":
                 type = OTPType.STEAM;
@@ -156,7 +172,11 @@ public class Entry {
 
         this.issuer = issuer;
         this.label = label;
-        this.secret = new Base32().decode(secret.toUpperCase());
+        if(type == OTPType.MOTP) {
+            this.secret = secret.getBytes();
+        } else {
+            this.secret = new Base32().decode(secret.toUpperCase());
+        }
 
         if (digits != null) {
             this.digits = Integer.parseInt(digits);
@@ -292,14 +312,22 @@ public class Entry {
             case STEAM:
                 type = "steam";
                 break;
+            case MOTP:
+                type = "motp";
+                break;
             default:
                 return null;
         }
         Uri.Builder builder = new Uri.Builder()
                 .scheme("otpauth")
                 .authority(type)
-                .appendPath(this.label)
-                .appendQueryParameter("secret", new Base32().encodeAsString(this.secret));
+                .appendPath(this.label);
+
+        if (this.type == OTPType.MOTP)
+            builder.appendQueryParameter("secret", new String(this.secret));
+        else
+             builder.appendQueryParameter("secret", new Base32().encodeAsString(this.secret));
+
         if (this.issuer != null) {
             builder.appendQueryParameter("issuer", this.issuer);
         }
@@ -324,7 +352,7 @@ public class Entry {
     }
 
     public boolean isTimeBased() {
-        return type == OTPType.TOTP || type == OTPType.STEAM;
+        return type == OTPType.TOTP || type == OTPType.STEAM || type == OTPType.MOTP;
     }
 
     public boolean isCounterBased() { return type == OTPType.HOTP; }
@@ -342,7 +370,10 @@ public class Entry {
     }
 
     public String getSecretEncoded() {
-        return new String(new Base32().encode(secret));
+        if (type == OTPType.MOTP)
+            return new String(secret);
+        else
+            return new String(new Base32().encode(secret));
     }
 
     public void setSecret(byte[] secret) {
@@ -444,6 +475,14 @@ public class Entry {
         return currentOTP;
     }
 
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+
     public long getListId() {
         return listId;
     }
@@ -452,12 +491,12 @@ public class Entry {
         listId = newId;
     }
 
-    public boolean updateOTP(boolean force) {
+    public boolean updateOTP(boolean updateNow) {
         if (type == OTPType.TOTP || type == OTPType.STEAM) {
             long time = System.currentTimeMillis() / 1000;
             long counter = time / this.getPeriod();
 
-            if (force || counter > last_update) {
+            if (updateNow || counter > last_update) {
                 if (type == OTPType.TOTP)
                     currentOTP = TokenCalculator.TOTP_RFC6238(secret, period, digits, algorithm);
                 else if (type == OTPType.STEAM)
@@ -473,6 +512,22 @@ public class Entry {
         } else if (type == OTPType.HOTP) {
             currentOTP = TokenCalculator.HOTP(secret, counter, digits, algorithm);
             return true;
+        } else if (type == OTPType.MOTP) {
+            long time = System.currentTimeMillis() / 1000;
+            long counter = time / this.getPeriod();
+            if (counter > last_update || updateNow) {
+                String currentPin = this.getPin();
+                if (currentPin.isEmpty()) {
+                    currentOTP = MOTP_NO_PIN_CODE;
+                } else {
+                    currentOTP = TokenCalculator.MOTP(currentPin, new String(this.secret), time);
+                }
+                last_update = counter;
+                setColor(COLOR_DEFAULT);
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
@@ -482,7 +537,7 @@ public class Entry {
      * Checks if the OTP is expiring. The color for the entry will be changed to red if the expiry time is less than or equal to 8 seconds
      * COLOR_DEFAULT indicates that the OTP has not expired. In this case check if the OTP is about to expire. Update color to COLOR_RED if it's about to expire
      * COLOR_RED indicates that the OTP is already about to expire. Don't check again.
-     * The color will be reset to COLOR_DEFAULT in {@link #updateOTP(boolean force)} method
+     * The color will be reset to COLOR_DEFAULT in {@link #updateOTP(boolean updateNow)} method
      *
      * @return Return true only if the color has changed to red to save from unnecessary notifying dataset
      * */
@@ -542,9 +597,12 @@ public class Entry {
         return color;
     }
 
-    public static boolean validateSecret(String secret) {
+    public static boolean validateSecret(String secret, OTPType type) {
         try {
-            new Base32().decode(secret.toUpperCase());
+            if (type == OTPType.MOTP)
+                Hex.decodeHex(secret);
+            else
+                new Base32().decode(secret.toUpperCase());
         } catch (Exception e) {
             return false;
         }

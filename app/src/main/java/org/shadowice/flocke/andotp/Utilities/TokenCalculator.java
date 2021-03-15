@@ -23,8 +23,11 @@
 
 package org.shadowice.flocke.andotp.Utilities;
 
+import org.apache.commons.codec.binary.Hex;
+
 import java.nio.ByteBuffer;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Mac;
@@ -114,5 +117,27 @@ public class TokenCalculator {
         }
 
         return r;
+    }
+
+    public static String MOTP(String PIN, String secret, long epoch)
+    {
+        String epochText = String.valueOf(epoch / 10);
+        String hashText = epochText + secret + PIN;
+        String otp = "";
+
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            digest.update(hashText.getBytes());
+            byte[] messageDigest = digest.digest();
+
+            // Create Hex String
+            String hexString = Hex.encodeHexString(messageDigest);
+            otp = hexString.substring(0, 6);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return otp;
     }
 }
