@@ -23,11 +23,12 @@
 
 package org.shadowice.flocke.andotp.Utilities;
 
+import org.apache.commons.codec.binary.Hex;
+
 import java.nio.ByteBuffer;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -118,28 +119,25 @@ public class TokenCalculator {
         return r;
     }
 
-    public static String MOTP(String PIN, String secret)
+    public static String MOTP(String PIN, String secret, long epoch)
     {
-        Date dateNow = new Date();
-        String epoch = "" + (dateNow.getTime());
-        epoch = epoch.substring(0, epoch.length() - 4);
-        String otp = epoch + secret + PIN;
+        String epochText = String.valueOf(epoch / 10);
+        String hashText = epochText + secret + PIN;
+        String otp = "";
+
         try {
             // Create MD5 Hash
             MessageDigest digest = MessageDigest.getInstance("MD5");
-            digest.update(otp.getBytes());
-            byte messageDigest[] = digest.digest();
+            digest.update(hashText.getBytes());
+            byte[] messageDigest = digest.digest();
 
             // Create Hex String
-            StringBuffer hexString = new StringBuffer();
-            for (int i = 0; i < messageDigest.length; i++)
-                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
-
+            String hexString = Hex.encodeHexString(messageDigest);
             otp = hexString.substring(0, 6);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            otp="";
         }
+
         return otp;
     }
 }

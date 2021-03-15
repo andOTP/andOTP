@@ -39,11 +39,10 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
@@ -312,15 +311,21 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             public void onCardSingleClicked(final int position, final String text) {
                 switch (settings.getTapSingle()) {
                     case REVEAL:
+                        establishPinIfNeeded(position);
                         cardTapToRevealHandler(position);
                         break;
                     case COPY:
+                        establishPinIfNeeded(position);
                         copyHandler(position, text, false);
                         break;
                     case COPY_BACKGROUND:
+                        establishPinIfNeeded(position);
                         copyHandler(position, text, true);
                         break;
                     default:
+                        // If tap-to-reveal is disabled a single tab still needs to establish the PIN
+                        if (!settings.getTapToReveal())
+                            establishPinIfNeeded(position);
                         break;
                 }
             }
@@ -329,12 +334,15 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             public void onCardDoubleClicked(final int position, final String text) {
                 switch (settings.getTapDouble()) {
                     case REVEAL:
+                        establishPinIfNeeded(position);
                         cardTapToRevealHandler(position);
                         break;
                     case COPY:
+                        establishPinIfNeeded(position);
                         copyHandler(position, text, false);
                         break;
                     case COPY_BACKGROUND:
+                        establishPinIfNeeded(position);
                         copyHandler(position, text, true);
                         break;
                     default:
@@ -351,17 +359,16 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
             public void onCounterLongPressed(int position) {
                 setCounter(position);
             }
-
-            @Override
-            public void onItemClickListener(int position) {
-                final Entry entry = displayedEntries.get(position);
-                if(entry.getType() == Entry.OTPType.MOTP && entry.getPin().isEmpty()){
-                    establishPIN(position);
-                }
-            }
         });
 
         return viewHolder;
+    }
+
+    private void establishPinIfNeeded(int position) {
+        final Entry entry = displayedEntries.get(position);
+
+        if (entry.getType() == Entry.OTPType.MOTP && entry.getPin().isEmpty())
+            establishPIN(position);
     }
 
     private void copyHandler(final int position, final String text, final boolean dropToBackground) {
@@ -620,7 +627,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         input.setSingleLine();
         input.requestFocus();
         input.setTransformationMethod(new PasswordTransformationMethod());
-        UIHelper.showKeyboard(context,input,true);
+        UIHelper.showKeyboard(context, input, true);
 
         FrameLayout container = new FrameLayout(context);
         container.setPaddingRelative(marginMedium, marginSmall, marginMedium, 0);
@@ -629,26 +636,18 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         builder.setTitle(R.string.dialog_title_pin)
                 .setCancelable(false)
                 .setView(container)
-                .setPositiveButton(R.string.button_accept, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        int realIndex = getRealIndex(pos);
-                        String newPin = input.getEditableText().toString();
+                .setPositiveButton(R.string.button_accept, (dialogInterface, i) -> {
+                    int realIndex = getRealIndex(pos);
+                    String newPin = input.getEditableText().toString();
 
-                        displayedEntries.get(pos).setPin(newPin);
-                        Entry e = entries.get(realIndex);
-                        e.setPin(newPin);
-                        e.updateOTP(true);
-                        notifyDataSetChanged();
-                        UIHelper.hideKeyboard(context,input);
-                    }
+                    displayedEntries.get(pos).setPin(newPin);
+                    Entry e = entries.getEntry(realIndex);
+                    e.setPin(newPin);
+                    e.updateOTP(true);
+                    notifyItemChanged(pos);
+                    UIHelper.hideKeyboard(context, input);
                 })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        UIHelper.hideKeyboard(context,input);
-                    }
-                })
+                .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> UIHelper.hideKeyboard(context, input))
                 .create()
                 .show();
     }

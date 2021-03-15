@@ -202,13 +202,13 @@ public class ManualEntryDialog {
         positiveButton.setOnClickListener(view -> {
             //Replace spaces with empty characters
             String secret = secretInput.getText().toString().replaceAll("\\s+","");
+            Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
 
-            if (!Entry.validateSecret(secret)) {
+            if (!Entry.validateSecret(secret, type)) {
                 secretInput.setError(callingActivity.getString(R.string.error_invalid_secret));
                 return;
             }
 
-            Entry.OTPType type = (Entry.OTPType) typeInput.getSelectedItem();
             TokenCalculator.HashAlgorithm algorithm = (TokenCalculator.HashAlgorithm) algorithmInput.getSelectedItem();
             int digits = Integer.parseInt(digitsInput.getText().toString());
 
@@ -259,6 +259,27 @@ public class ManualEntryDialog {
                     if (updateCallback != null)
                         updateCallback.onUpdate();
                 }
+            } else if (type == Entry.OTPType.MOTP) {
+                if (isNewEntry) {
+                    Entry newEntry;
+
+                    newEntry = new Entry(type, secret, issuer, label, tagsAdapter.getActiveTags());
+                    newEntry.updateOTP(false);
+                    newEntry.setLastUsed(System.currentTimeMillis());
+
+                    adapter.addEntry(newEntry);
+                } else {
+                    oldEntry.setIssuer(issuer, true);
+                    oldEntry.setLabel(label);
+                    oldEntry.setTags(tagsAdapter.getActiveTags());
+
+                    oldEntry.updateOTP(false);
+
+                    if (updateCallback != null)
+                        updateCallback.onUpdate();
+                }
+
+                callingActivity.refreshTags();
             }
 
             dialog.dismiss();

@@ -26,6 +26,7 @@ package org.shadowice.flocke.andotp.Database;
 import android.net.Uri;
 
 import org.apache.commons.codec.binary.Base32;
+import org.apache.commons.codec.binary.Hex;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -173,7 +174,7 @@ public class Entry {
         this.label = label;
         if(type == OTPType.MOTP) {
             this.secret = secret.getBytes();
-        }else{
+        } else {
             this.secret = new Base32().decode(secret.toUpperCase());
         }
 
@@ -311,14 +312,22 @@ public class Entry {
             case STEAM:
                 type = "steam";
                 break;
+            case MOTP:
+                type = "motp";
+                break;
             default:
                 return null;
         }
         Uri.Builder builder = new Uri.Builder()
                 .scheme("otpauth")
                 .authority(type)
-                .appendPath(this.label)
-                .appendQueryParameter("secret", new Base32().encodeAsString(this.secret));
+                .appendPath(this.label);
+
+        if (this.type == OTPType.MOTP)
+            builder.appendQueryParameter("secret", new String(this.secret));
+        else
+             builder.appendQueryParameter("secret", new Base32().encodeAsString(this.secret));
+
         if (this.issuer != null) {
             builder.appendQueryParameter("issuer", this.issuer);
         }
@@ -361,7 +370,10 @@ public class Entry {
     }
 
     public String getSecretEncoded() {
-        return new String(new Base32().encode(secret));
+        if (type == OTPType.MOTP)
+            return new String(secret);
+        else
+            return new String(new Base32().encode(secret));
     }
 
     public void setSecret(byte[] secret) {
@@ -478,10 +490,6 @@ public class Entry {
     public void setListId(long newId) {
         listId = newId;
     }
-  
-    public boolean updateOTP() {
-        return updateOTP(false);
-    }
 
     public boolean updateOTP(boolean updateNow) {
         if (type == OTPType.TOTP || type == OTPType.STEAM) {
@@ -512,7 +520,7 @@ public class Entry {
                 if (currentPin.isEmpty()) {
                     currentOTP = MOTP_NO_PIN_CODE;
                 } else {
-                    currentOTP = TokenCalculator.MOTP(currentPin, new String(this.secret));
+                    currentOTP = TokenCalculator.MOTP(currentPin, new String(this.secret), time);
                 }
                 last_update = counter;
                 setColor(COLOR_DEFAULT);
@@ -589,9 +597,12 @@ public class Entry {
         return color;
     }
 
-    public static boolean validateSecret(String secret) {
+    public static boolean validateSecret(String secret, OTPType type) {
         try {
-            new Base32().decode(secret.toUpperCase());
+            if (type == OTPType.MOTP)
+                Hex.decodeHex(secret);
+            else
+                new Base32().decode(secret.toUpperCase());
         } catch (Exception e) {
             return false;
         }

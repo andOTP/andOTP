@@ -151,14 +151,6 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
                 );
             }
         });
-        
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callback != null)
-                    callback.onItemClickListener(getAdapterPosition());
-            }
-        });
     }
 
     @FunctionalInterface
@@ -362,7 +354,6 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         void onCounterClicked(int position);
         void onCounterLongPressed(int position);
-        void onItemClickListener(int position);
     }
     /**
      * Updates the color of OTP to red (if expiring) or default color (if new OTP)
