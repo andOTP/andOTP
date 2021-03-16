@@ -72,12 +72,7 @@ dependencies {
     implementation "com.github.aakira:expandable-layout:1.6.0"
     implementation "com.heinrichreimersoftware:material-intro:2.0.0"
     implementation("com.journeyapps:zxing-android-embedded:4.1.0") { transitive = false }
-    implementation('com.google.zxing:core') {
-        version {
-            strictly '[3.3, 3.4[' // Keep pinned below 3.4 to support SDK versions below 24
-            prefer '3.3.0'
-        }
-    }
+    implementation('com.google.zxing:core:3.4.1')
     implementation "com.vanniktech:vntnumberpickerpreference:1.0.0"
     implementation "me.zhanghai.android.materialprogressbar:library:1.6.1"
     implementation "org.sufficientlysecure:openpgp-api:12.0"
