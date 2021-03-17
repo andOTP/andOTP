@@ -47,6 +47,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
+
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -67,6 +69,7 @@ import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
 
 import org.shadowice.flocke.andotp.Database.Entry;
+import org.shadowice.flocke.andotp.Dialogs.HideableDialog;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
@@ -173,6 +176,13 @@ public class MainActivity extends BaseActivity
         adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
     }
 
+    private void checkAutomaticTime() {
+        int autoTime = Settings.Global.getInt(getContentResolver(), Settings.Global.AUTO_TIME, 0);
+
+        if (autoTime == 0)
+            HideableDialog.ShowHidableDialog(this, R.string.dialog_title_auto_time, R.string.dialog_msg_auto_time, R.string.settings_key_dialog_hide_auto_time);
+    }
+
     // Initialize the main application
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,6 +219,8 @@ public class MainActivity extends BaseActivity
         if (! settings.getFirstTimeWarningShown()) {
            showFirstTimeWarning();
         }
+
+        checkAutomaticTime();
 
         speedDial = findViewById(R.id.speedDial);
         speedDial.inflate(R.menu.menu_fab);

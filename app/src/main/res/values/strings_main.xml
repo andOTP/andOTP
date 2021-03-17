@@ -98,6 +98,7 @@
     <string name="dialog_title_pin">PIN</string>
 
     <string name="dialog_title_enter_password">Enter password</string>
+    <string name="dialog_title_auto_time">Automatic time</string>
 
     <string name="dialog_label_enter_password">Enter password</string>
     <string name="dialog_label_confirm_password">Confirm password</string>
@@ -112,6 +113,12 @@
     <string name="dialog_msg_keystore_error">Failed to load the encryption key from the KeyStore.
         <b>Any entries that are added will be lost.</b>\n\nTo continue using andOTP, you can go
         to the <b>Settings</b> and switch the <b>Database encryption</b> to <b>Password / PIN</b>.</string>
+
+    <string name="dialog_msg_auto_time">Please enable the <b>Automatic date &amp; time</b> option in
+        your phones <b>Settings</b> to ensure the correct generation of time-based
+        one-time-passwords (TOTP).</string>
+
+    <string name="dialog_hint_dont_show_again">Don\'t show this message again.</string>
 
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Scan QR code</string>
