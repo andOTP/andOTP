@@ -25,7 +25,6 @@ package org.shadowice.flocke.andotp.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
@@ -56,10 +55,6 @@ public class PanicResponderActivity extends Activity {
                 settings.clear(true);
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            finishAndRemoveTask();
-        } else {
-            finish();
-        }
+        finishAndRemoveTask();
     }
 }

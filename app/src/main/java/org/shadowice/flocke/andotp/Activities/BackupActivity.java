@@ -26,7 +26,6 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.net.Uri;
@@ -491,16 +490,8 @@ public class BackupActivity extends BaseActivity {
 
         builder.setTitle(R.string.backup_dialog_title_security_warning)
                 .setMessage(R.string.backup_dialog_msg_export_warning)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        showSaveFileSelector(Constants.BACKUP_MIMETYPE_PLAIN, Constants.BackupType.PLAIN_TEXT, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN);
-                    }
-                })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                })
+                .setPositiveButton(R.string.yes, (dialogInterface, i) -> showSaveFileSelector(Constants.BACKUP_MIMETYPE_PLAIN, Constants.BackupType.PLAIN_TEXT, Constants.INTENT_BACKUP_SAVE_DOCUMENT_PLAIN))
+                .setNegativeButton(R.string.no, (dialogInterface, i) -> {})
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .create()
                 .show();
@@ -512,12 +503,7 @@ public class BackupActivity extends BaseActivity {
         String password = settings.getBackupPasswordEnc();
 
         if (password.isEmpty()) {
-            PasswordEntryDialog pwDialog = new PasswordEntryDialog(this, PasswordEntryDialog.Mode.ENTER, settings.getBlockAccessibility(), settings.getBlockAutofill(), new PasswordEntryDialog.PasswordEnteredCallback() {
-                @Override
-                public void onPasswordEntered(String newPassword) {
-                    doRestoreCryptWithPassword(uri, newPassword, old_format);
-                }
-            });
+            PasswordEntryDialog pwDialog = new PasswordEntryDialog(this, PasswordEntryDialog.Mode.ENTER, settings.getBlockAccessibility(), settings.getBlockAutofill(), newPassword -> doRestoreCryptWithPassword(uri, newPassword, old_format));
             pwDialog.show();
         } else {
             doRestoreCryptWithPassword(uri, password, old_format);
@@ -539,12 +525,7 @@ public class BackupActivity extends BaseActivity {
         String password = settings.getBackupPasswordEnc();
 
         if (password.isEmpty()) {
-            PasswordEntryDialog pwDialog = new PasswordEntryDialog(this, PasswordEntryDialog.Mode.UPDATE, settings.getBlockAccessibility(), settings.getBlockAutofill(), new PasswordEntryDialog.PasswordEnteredCallback() {
-                @Override
-                public void onPasswordEntered(String newPassword) {
-                    doBackupCryptWithPassword(uri, newPassword);
-                }
-            });
+            PasswordEntryDialog pwDialog = new PasswordEntryDialog(this, PasswordEntryDialog.Mode.UPDATE, settings.getBlockAccessibility(), settings.getBlockAutofill(), newPassword -> doBackupCryptWithPassword(uri, newPassword));
             pwDialog.show();
         } else {
             doBackupCryptWithPassword(uri, password);

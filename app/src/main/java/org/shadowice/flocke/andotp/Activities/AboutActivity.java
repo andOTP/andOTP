@@ -24,6 +24,8 @@ package org.shadowice.flocke.andotp.Activities;
 
 import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -76,9 +78,10 @@ public class AboutActivity extends BaseActivity {
 
     private class AboutPageAdapter extends FragmentPagerAdapter {
         AboutPageAdapter(FragmentManager fm) {
-            super(fm);
+            super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         }
 
+        @NonNull
         @Override
         public Fragment getItem(int pos) {
             switch(pos) {
