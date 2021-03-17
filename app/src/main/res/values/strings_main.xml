@@ -1,4 +1,7 @@
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
     <string name="app_name" translatable="false">andOTP</string>
 
     <!-- Buttons -->
@@ -119,6 +122,9 @@
         one-time-passwords (TOTP).</string>
 
     <string name="dialog_hint_dont_show_again">Don\'t show this message again.</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Scan QR code</string>

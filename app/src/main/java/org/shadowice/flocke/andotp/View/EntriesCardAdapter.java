@@ -33,6 +33,8 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Looper;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -102,7 +104,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         this.context = context;
         this.tagsFilterAdapter = tagsFilterAdapter;
         this.settings = new Settings(context);
-        this.taskHandler = new Handler();
+        this.taskHandler = new Handler(Looper.getMainLooper());
         this.entries = new EntryList();
 
         setHasStableIds(true);
@@ -661,7 +663,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         builder.setTitle(R.string.dialog_title_remove)
                 .setMessage(message)
-                .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
+                .setPositiveButton(R.string.yes, (dialogInterface, i) -> {
                     int realIndex = getRealIndex(pos);
 
                     displayedEntries.remove(pos);
@@ -670,7 +672,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
                     entries.removeEntry(realIndex);
                     saveEntries(settings.getAutoBackupEncryptedFullEnabled());
                 })
-                .setNegativeButton(android.R.string.no, (dialogInterface, i) -> {})
+                .setNegativeButton(R.string.no, (dialogInterface, i) -> {})
                 .show();
     }
 

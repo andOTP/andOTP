@@ -33,8 +33,10 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -56,7 +58,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
-import android.widget.AdapterView;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -65,7 +66,6 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
 
 import org.shadowice.flocke.andotp.Database.Entry;
@@ -158,10 +158,7 @@ public class MainActivity extends BaseActivity
             SortMode mode = settings.getSortMode();
             adapter.setSortMode(mode);
 
-            if (mode == SortMode.UNSORTED)
-                touchHelperCallback.setDragEnabled(true);
-            else
-                touchHelperCallback.setDragEnabled(false);
+            touchHelperCallback.setDragEnabled(mode == SortMode.UNSORTED);
         }
     }
 
@@ -206,12 +203,9 @@ public class MainActivity extends BaseActivity
         if (settings.getAuthMethod() != AuthMethod.NONE && savedInstanceState == null)
             requireAuthentication = true;
 
-        setBroadcastCallback(new BroadcastReceivedCallback() {
-            @Override
-            public void onReceivedScreenOff() {
-                if (settings.getRelockOnScreenOff() && settings.getAuthMethod() != AuthMethod.NONE)
-                    requireAuthentication = true;
-            }
+        setBroadcastCallback(() -> {
+            if (settings.getRelockOnScreenOff() && settings.getAuthMethod() != AuthMethod.NONE)
+                requireAuthentication = true;
         });
 
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new ProcessLifecycleObserver());
@@ -227,23 +221,17 @@ public class MainActivity extends BaseActivity
 
         speedDial.getMainFab().setContentDescription(getString(R.string.button_add));
 
-        speedDial.setOnActionSelectedListener(new SpeedDialView.OnActionSelectedListener() {
-            @Override
-            public boolean onActionSelected(SpeedDialActionItem speedDialActionItem) {
-                switch (speedDialActionItem.getId()) {
-                    case R.id.fabScanQR:
-                        scanQRCode();
-                        return false;
-                    case R.id.fabEnterDetails:
-                        ManualEntryDialog.show(MainActivity.this, settings, adapter);
-                        return false;
-                    case R.id.fabScanQRFromImage:
-                        showOpenFileSelector(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
-                        return false;
-                    default:
-                        return false;
-                }
-            }
+        speedDial.setOnActionSelectedListener(speedDialActionItem -> {
+            int actionId = speedDialActionItem.getId();
+
+            if (actionId == R.id.fabScanQR)
+                scanQRCode();
+            else if (actionId == R.id.fabEnterDetails)
+                ManualEntryDialog.show(MainActivity.this, settings, adapter);
+            else if (actionId == R.id.fabScanQRFromImage)
+                showOpenFileSelector(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
+
+            return false;
         });
 
         speedDial.setOnChangeListener(new SpeedDialView.OnChangeListener() {
@@ -271,7 +259,7 @@ public class MainActivity extends BaseActivity
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
 
-        tagsDrawerAdapter = new TagsAdapter(this, new HashMap<String, Boolean>());
+        tagsDrawerAdapter = new TagsAdapter(this, new HashMap<>());
         adapter = new EntriesCardAdapter(this, tagsDrawerAdapter);
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -346,7 +334,7 @@ public class MainActivity extends BaseActivity
             }
         });
 
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
         handlerTask = new Runnable()
         {
             @Override
@@ -381,22 +369,27 @@ public class MainActivity extends BaseActivity
             String intentAction = callingIntent.getAction();
             callingIntent.setAction(null);
 
-            if (intentAction.equals(INTENT_SCAN_QR)) {
-                scanQRCode();
-            } else if (intentAction.equals(INTENT_IMPORT_QR)) {
-                showOpenFileSelector(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
-            } else if (intentAction.equals(INTENT_ENTER_DETAILS)) {
-                ManualEntryDialog.show(MainActivity.this, settings, adapter);
-            } else if (intentAction.equals(Intent.ACTION_VIEW)) {
-                try {
-                    Entry entry = new Entry(callingIntent.getDataString());
-                    entry.updateOTP(false);
-                    entry.setLastUsed(System.currentTimeMillis());
-                    adapter.addEntry(entry);
-                    Toast.makeText(this, R.string.toast_intent_creation_succeeded, Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
-                    Toast.makeText(this, R.string.toast_intent_creation_failed, Toast.LENGTH_LONG).show();
-                }
+            switch (intentAction) {
+                case INTENT_SCAN_QR:
+                    scanQRCode();
+                    break;
+                case INTENT_IMPORT_QR:
+                    showOpenFileSelector(Constants.INTENT_MAIN_QR_OPEN_IMAGE);
+                    break;
+                case INTENT_ENTER_DETAILS:
+                    ManualEntryDialog.show(MainActivity.this, settings, adapter);
+                    break;
+                case Intent.ACTION_VIEW:
+                    try {
+                        Entry entry = new Entry(callingIntent.getDataString());
+                        entry.updateOTP(false);
+                        entry.setLastUsed(System.currentTimeMillis());
+                        adapter.addEntry(entry);
+                        Toast.makeText(this, R.string.toast_intent_creation_succeeded, Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText(this, R.string.toast_intent_creation_failed, Toast.LENGTH_LONG).show();
+                    }
+                    break;
             }
         }
     }
@@ -454,12 +447,7 @@ public class MainActivity extends BaseActivity
     @Override
     public void onPause() {
         if(settings.getAuthMethod() == AuthMethod.DEVICE)
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    findViewById(R.id.cardList).setVisibility(View.INVISIBLE);
-                }
-            });
+            runOnUiThread(() -> findViewById(R.id.cardList).setVisibility(View.INVISIBLE));
         super.onPause();
         stopUpdater();
 
@@ -468,7 +456,7 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("filterString", filterString);
 
@@ -503,7 +491,7 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         tagsToggle.onConfigurationChanged(newConfig);
     }
@@ -770,92 +758,83 @@ public class MainActivity extends BaseActivity
         final CheckedTextView noTagsButton = findViewById(R.id.no_tags_entries);
         final CheckedTextView allTagsButton = findViewById(R.id.all_tags_in_drawer);
 
-        allTagsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CheckedTextView checkedTextView = ((CheckedTextView)view);
-                checkedTextView.setChecked(!checkedTextView.isChecked());
+        allTagsButton.setOnClickListener(view -> {
+            CheckedTextView checkedTextView = ((CheckedTextView)view);
+            checkedTextView.setChecked(!checkedTextView.isChecked());
 
-                settings.setAllTagsToggle(checkedTextView.isChecked());
+            settings.setAllTagsToggle(checkedTextView.isChecked());
 
-                for(int i = 0; i < tagsDrawerListView.getChildCount(); i++) {
-                    CheckedTextView childCheckBox = (CheckedTextView) tagsDrawerListView.getChildAt(i);
-                    childCheckBox.setChecked(checkedTextView.isChecked());
-                }
+            for(int i = 0; i < tagsDrawerListView.getChildCount(); i++) {
+                CheckedTextView childCheckBox = (CheckedTextView) tagsDrawerListView.getChildAt(i);
+                childCheckBox.setChecked(checkedTextView.isChecked());
+            }
 
-                for (String tag: tagsDrawerAdapter.getTags()) {
-                    tagsDrawerAdapter.setTagState(tag, checkedTextView.isChecked());
-                    settings.setTagToggle(tag, checkedTextView.isChecked());
-                }
+            for (String tag: tagsDrawerAdapter.getTags()) {
+                tagsDrawerAdapter.setTagState(tag, checkedTextView.isChecked());
+                settings.setTagToggle(tag, checkedTextView.isChecked());
+            }
 
-                if(checkedTextView.isChecked()) {
-                    adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
-                } else {
-                    adapter.filterByTags(new ArrayList<String>());
-                }
+            if(checkedTextView.isChecked()) {
+                adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+            } else {
+                adapter.filterByTags(new ArrayList<>());
             }
         });
         allTagsButton.setChecked(settings.getAllTagsToggle());
 
-        noTagsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CheckedTextView checkedTextView = ((CheckedTextView)view);
-                checkedTextView.setChecked(!checkedTextView.isChecked());
+        noTagsButton.setOnClickListener(view -> {
+            CheckedTextView checkedTextView = ((CheckedTextView)view);
+            checkedTextView.setChecked(!checkedTextView.isChecked());
 
-                if(settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
-                    checkedTextView.setChecked(true);
-                    allTagsButton.setChecked(false);
-                    settings.setAllTagsToggle(false);
+            if(settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
+                checkedTextView.setChecked(true);
+                allTagsButton.setChecked(false);
+                settings.setAllTagsToggle(false);
 
-                    for (String tag: tagsDrawerAdapter.getTags()) {
-                        settings.setTagToggle(tag, false);
-                        tagsDrawerAdapter.setTagState(tag, false);
-                    }
+                for (String tag: tagsDrawerAdapter.getTags()) {
+                    settings.setTagToggle(tag, false);
+                    tagsDrawerAdapter.setTagState(tag, false);
                 }
-
-                settings.setNoTagsToggle(checkedTextView.isChecked());
-                adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
             }
+
+            settings.setNoTagsToggle(checkedTextView.isChecked());
+            adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
         });
         noTagsButton.setChecked(settings.getNoTagsToggle());
 
         tagsDrawerListView.setAdapter(tagsDrawerAdapter);
-        tagsDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CheckedTextView checkedTextView = ((CheckedTextView)view);
+        tagsDrawerListView.setOnItemClickListener((parent, view, position, id) -> {
+            CheckedTextView checkedTextView = ((CheckedTextView)view);
 
-                if(settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
-                    allTagsButton.setChecked(false);
-                    settings.setAllTagsToggle(false);
-                    noTagsButton.setChecked(false);
-                    settings.setNoTagsToggle(false);
+            if(settings.getTagFunctionality() == Constants.TagFunctionality.SINGLE) {
+                allTagsButton.setChecked(false);
+                settings.setAllTagsToggle(false);
+                noTagsButton.setChecked(false);
+                settings.setNoTagsToggle(false);
 
-                    for (String tag: tagsDrawerAdapter.getTags()) {
-                        settings.setTagToggle(tag, false);
-                        tagsDrawerAdapter.setTagState(tag, false);
-                    }
-                    checkedTextView.setChecked(true);
-                }else {
-                    checkedTextView.setChecked(!checkedTextView.isChecked());
+                for (String tag: tagsDrawerAdapter.getTags()) {
+                    settings.setTagToggle(tag, false);
+                    tagsDrawerAdapter.setTagState(tag, false);
                 }
-
-                settings.setTagToggle(checkedTextView.getText().toString(), checkedTextView.isChecked());
-                tagsDrawerAdapter.setTagState(checkedTextView.getText().toString(), checkedTextView.isChecked());
-
-                if (! checkedTextView.isChecked()) {
-                    allTagsButton.setChecked(false);
-                    settings.setAllTagsToggle(false);
-                }
-
-                if (tagsDrawerAdapter.allTagsActive()) {
-                    allTagsButton.setChecked(true);
-                    settings.setAllTagsToggle(true);
-                }
-
-                adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
+                checkedTextView.setChecked(true);
+            }else {
+                checkedTextView.setChecked(!checkedTextView.isChecked());
             }
+
+            settings.setTagToggle(checkedTextView.getText().toString(), checkedTextView.isChecked());
+            tagsDrawerAdapter.setTagState(checkedTextView.getText().toString(), checkedTextView.isChecked());
+
+            if (! checkedTextView.isChecked()) {
+                allTagsButton.setChecked(false);
+                settings.setAllTagsToggle(false);
+            }
+
+            if (tagsDrawerAdapter.allTagsActive()) {
+                allTagsButton.setChecked(true);
+                settings.setAllTagsToggle(true);
+            }
+
+            adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
         });
 
         adapter.filterByTags(tagsDrawerAdapter.getActiveTags());
@@ -910,6 +889,7 @@ public class MainActivity extends BaseActivity
         return true;
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void showOpenFileSelector(int intentId){
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -933,7 +913,7 @@ public class MainActivity extends BaseActivity
 
     private class ProcessLifecycleObserver implements DefaultLifecycleObserver {
         @Override
-        public void onStop(LifecycleOwner owner) {
+        public void onStop(@NonNull LifecycleOwner owner) {
             if (MainActivity.this.settings.getRelockOnBackground())
                 MainActivity.this.requireAuthentication = true;
         }
