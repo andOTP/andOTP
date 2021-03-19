@@ -22,10 +22,6 @@
 
 package org.shadowice.flocke.andotp.Utilities;
 
-import android.os.Environment;
-
-import java.io.File;
-
 public class Constants {
     // Enums
     public enum AuthMethod {
@@ -113,11 +109,20 @@ public class Constants {
 
     public final static int INT_LENGTH = 4;
 
-    final static int PBKDF2_MIN_ITERATIONS      = 140000;
-    final static int PBKDF2_MAX_ITERATIONS      = 160000;
-    final static int PBKDF2_DEFAULT_ITERATIONS  = 150000;
-    final static int PBKDF2_LENGTH              = 256;      // 128-bit encryption key (Password-mode)
-    final static int PBKDF2_SALT_LENGTH         = 16;
+    // Global PBKDF2 settings
+    final static String PBKDF2_ALGORITHM            = "PBKDF2WithHmacSHA1";
+    final static int PBKDF2_LENGTH                  = 256;      // 128-bit encryption key (Password-mode)
+    final static int PBKDF2_SALT_LENGTH             = 16;
+
+    // PBKDF2 settings for authentication
+    final static int PBKDF2_TARGET_AUTH_TIME        = 500;      // ms
+    final static int PBKDF2_MIN_AUTH_ITERATIONS     = 20000;
+    final static int PBKDF2_BENCHMARK_ITERATIONS    = 50000;
+    final static int PBKDF2_OLD_DEFAULT_ITERATIONS  = 150000;
+
+    // PBKDF2 settings for backups
+    final static int PBKDF2_MIN_BACKUP_ITERATIONS   = 140000;
+    final static int PBKDF2_MAX_BACKUP_ITERATIONS   = 160000;
 
     // Authentication
     public final static int AUTH_MIN_PIN_LENGTH        = 4;
@@ -133,8 +138,6 @@ public class Constants {
     public final static String FILENAME_DATABASE_BACKUP = "secrets.dat.bck";
 
     // Backup files
-    public final static String BACKUP_FOLDER            = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "andOTP";
-
     public final static String BACKUP_FILENAME_PLAIN    = "otp_accounts.json";
     public final static String BACKUP_FILENAME_CRYPT    = "otp_accounts.json.aes";
     public final static String BACKUP_FILENAME_PGP      = "otp_accounts.json.gpg";

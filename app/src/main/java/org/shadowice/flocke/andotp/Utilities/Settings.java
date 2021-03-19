@@ -102,11 +102,14 @@ public class Settings {
 
             try {
                 KeyPair key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, Constants.KEYSTORE_ALIAS_PASSWORD);
-                byte[] encPassword = EncryptionHelper.encrypt(key.getPublic(), plainPassword.getBytes(StandardCharsets.UTF_8));
 
-                setString(R.string.settings_key_backup_password_enc, Base64.encodeToString(encPassword, Base64.URL_SAFE));
+                if (key != null) {
+                    byte[] encPassword = EncryptionHelper.encrypt(key.getPublic(), plainPassword.getBytes(StandardCharsets.UTF_8));
 
-                remove(R.string.settings_key_backup_password);
+                    setString(R.string.settings_key_backup_password_enc, Base64.encodeToString(encPassword, Base64.URL_SAFE));
+
+                    remove(R.string.settings_key_backup_password);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -144,11 +147,6 @@ public class Settings {
     @SuppressWarnings("SameParameterValue")
     private long getLong(int keyId, long defaultValue) {
         return settings.getLong(getResString(keyId), defaultValue);
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private Set<String> getStringSet(int keyId, Set<String> defaultValue) {
-        return new HashSet<>(settings.getStringSet(getResString(keyId), defaultValue));
     }
 
     public void setBoolean(int keyId, boolean value) {
@@ -263,8 +261,10 @@ public class Settings {
         byte[] key = null;
 
         try {
-            int iterations = EncryptionHelper.generateRandomIterations();
-            EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, getSalt(), iterations);
+            byte[] salt = getSalt();
+            int iterations = EncryptionHelper.benchmarkIterations(plainPassword, salt);
+
+            EncryptionHelper.PBKDF2Credentials credentials = EncryptionHelper.generatePBKDF2Credentials(plainPassword, salt, iterations);
             String password = Base64.encodeToString(credentials.password, Base64.URL_SAFE);
 
             setIterations(iterations);
@@ -297,7 +297,7 @@ public class Settings {
     }
 
     public int getIterations() {
-        return getIntValue(R.string.settings_key_auth_iterations, Constants.PBKDF2_DEFAULT_ITERATIONS);
+        return getIntValue(R.string.settings_key_auth_iterations, Constants.PBKDF2_MIN_AUTH_ITERATIONS);
     }
 
     public void setIterations(int value) {
@@ -428,6 +428,8 @@ public class Settings {
 
         List<Constants.SearchIncludes> values = new ArrayList<>();
 
+        assert stringValues != null;     // At least an empty set should always be present
+
         for (String value : stringValues) {
             values.add(Constants.SearchIncludes.valueOf(value.toUpperCase(Locale.ENGLISH)));
         }
@@ -456,7 +458,9 @@ public class Settings {
 
         try {
             KeyPair key = KeyStoreHelper.loadOrGenerateAsymmetricKeyPair(context, Constants.KEYSTORE_ALIAS_PASSWORD);
-            password = new String(EncryptionHelper.decrypt(key.getPrivate(), encPassword), StandardCharsets.UTF_8);
+
+            if (key != null)
+                password = new String(EncryptionHelper.decrypt(key.getPrivate(), encPassword), StandardCharsets.UTF_8);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -509,17 +513,24 @@ public class Settings {
     }
 
     public boolean getTagToggle(String tag) {
-        //The tag toggle holds tags that are unchecked in order to default to checked.
-        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<>());
+        // The tag toggle holds tags that are unchecked in order to default to checked.
+        Set<String> toggledTags = settings.getStringSet(getResString(R.string.settings_key_tags_toggles), Collections.emptySet());
+
+        assert toggledTags != null;     // At least an empty set should always be present
+
         return !toggledTags.contains(tag);
     }
 
     public void setTagToggle(String tag, Boolean value) {
-        Set<String> toggledTags = getStringSet(R.string.settings_key_tags_toggles, new HashSet<>());
-        if(value)
+        Set<String> toggledTags = settings.getStringSet(getResString(R.string.settings_key_tags_toggles), Collections.emptySet());
+
+        assert toggledTags != null;     // At least an empty set should always be present
+
+        if (value)
             toggledTags.remove(tag);
         else
             toggledTags.add(tag);
+
         setStringSet(R.string.settings_key_tags_toggles, toggledTags);
     }
 

@@ -25,7 +25,6 @@ package org.shadowice.flocke.andotp.Utilities;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.security.InvalidAlgorithmParameterException;
@@ -57,9 +56,28 @@ public class EncryptionHelper {
         public byte[] key;
     }
 
+    public static int benchmarkIterations(String password, byte[] salt) {
+        try {
+            SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(Constants.PBKDF2_ALGORITHM);
+            KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, Constants.PBKDF2_BENCHMARK_ITERATIONS, Constants.PBKDF2_LENGTH);
+
+            long startTime = System.currentTimeMillis();
+            secretKeyFactory.generateSecret(keySpec);
+            long finishTime = System.currentTimeMillis();
+
+            long timeDiff = finishTime - startTime;
+            int scaledIterationTarget = (int) (((double) Constants.PBKDF2_BENCHMARK_ITERATIONS / (double) timeDiff) * Constants.PBKDF2_TARGET_AUTH_TIME);
+
+            return Math.max(scaledIterationTarget, Constants.PBKDF2_MIN_AUTH_ITERATIONS);
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            e.printStackTrace();
+            return Constants.PBKDF2_MIN_AUTH_ITERATIONS;
+        }
+    }
+
     public static int generateRandomIterations() {
         Random rand = new Random();
-        return rand.nextInt((Constants.PBKDF2_MAX_ITERATIONS - Constants.PBKDF2_MIN_ITERATIONS) + 1) + Constants.PBKDF2_MIN_ITERATIONS;
+        return rand.nextInt((Constants.PBKDF2_MAX_BACKUP_ITERATIONS - Constants.PBKDF2_MIN_BACKUP_ITERATIONS) + 1) + Constants.PBKDF2_MIN_BACKUP_ITERATIONS;
     }
 
     public static byte[] generateRandom(int length) {
@@ -71,7 +89,7 @@ public class EncryptionHelper {
 
     public static PBKDF2Credentials generatePBKDF2Credentials(String password, byte[] salt, int iter)
         throws NoSuchAlgorithmException, InvalidKeySpecException {
-        SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+        SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(Constants.PBKDF2_ALGORITHM);
         KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, iter, Constants.PBKDF2_LENGTH);
 
         byte[] array = secretKeyFactory.generateSecret(keySpec).getEncoded();
@@ -91,7 +109,7 @@ public class EncryptionHelper {
 
     public static SecretKey generateSymmetricKeyPBKDF2(String password, int iter, byte[] salt)
         throws NoSuchAlgorithmException, InvalidKeySpecException {
-        SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+        SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(Constants.PBKDF2_ALGORITHM);
         KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, iter, Constants.PBKDF2_LENGTH);
 
         return secretKeyFactory.generateSecret(keySpec);
@@ -105,7 +123,7 @@ public class EncryptionHelper {
     }
 
     public static byte[] encrypt(SecretKey secretKey, IvParameterSpec iv, byte[] plainText)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException {
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(Constants.ALGORITHM_SYMMETRIC);
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
 
@@ -113,7 +131,7 @@ public class EncryptionHelper {
     }
 
     public static byte[] encrypt(SecretKey secretKey, byte[] plaintext)
-            throws NoSuchPaddingException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, InvalidAlgorithmParameterException {
+            throws NoSuchPaddingException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
         final byte[] iv = new byte[Constants.ENCRYPTION_IV_LENGTH];
         new SecureRandom().nextBytes(iv);
 
@@ -127,7 +145,7 @@ public class EncryptionHelper {
     }
 
     public static byte[] encrypt(PublicKey publicKey, byte[] plaintext)
-            throws NoSuchPaddingException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, InvalidAlgorithmParameterException {
+            throws NoSuchPaddingException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(Constants.ALGORITHM_ASYMMETRIC);
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
@@ -151,7 +169,7 @@ public class EncryptionHelper {
     }
 
     public static byte[] decrypt(PrivateKey privateKey, byte[] cipherText)
-            throws NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
+            throws NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException {
         Cipher cipher = Cipher.getInstance(Constants.ALGORITHM_ASYMMETRIC);
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
 
