@@ -42,12 +42,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -58,73 +59,32 @@ import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Tasks.FinishIntroTask;
 import org.shadowice.flocke.andotp.Utilities.ConfirmedPasswordTransformationHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EditorActionHelper;
-import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
 public class IntroScreenActivity extends IntroActivity {
-    private Settings settings;
-
     private EncryptionFragment encryptionFragment;
     private AuthenticationFragment authenticationFragment;
     private AndroidSyncFragment androidSyncFragment;
+    private IntroFinishedFragment introFinishedFragment;
 
     private boolean setupFinished = false;
-
-    private void saveSettings() {
-        Constants.EncryptionType encryptionType = encryptionFragment.getEncryptionType();
-        Constants.AuthMethod authMethod = authenticationFragment.getAuthMethod();
-
-        String password = null;
-
-        if (authMethod == Constants.AuthMethod.PASSWORD || authMethod == Constants.AuthMethod.PIN) {
-            password = authenticationFragment.getPassword();
-
-            if (password == null || password.isEmpty()) {
-                SimpleSlide finalSlide = (SimpleSlide) getSlide(getCount() - 1);
-
-                if (finalSlide != null) {
-                    Fragment finalFragment = finalSlide.getFragment();
-
-                    if (finalFragment != null) {
-                        View finalView = finalFragment.getView();
-
-                        if (finalView != null) {
-                            TextView title = finalView.findViewById(R.id.mi_title);
-                            TextView desc = finalView.findViewById(R.id.mi_description);
-
-                            title.setText(R.string.intro_slide4_title_failed);
-                            desc.setText(R.string.intro_slide4_desc_failed);
-                        }
-                    }
-                }
-
-                return;
-            }
-        }
-
-        settings.setEncryption(encryptionType);
-        settings.setAuthMethod(authMethod);
-        settings.setAndroidBackupServiceEnabled(androidSyncFragment.getSyncEnabled());
-
-        if (authMethod == Constants.AuthMethod.PASSWORD || authMethod == Constants.AuthMethod.PIN)
-            settings.setAuthCredentials(password);
-
-        settings.setFirstTimeWarningShown(true);
-        setupFinished = true;
-    }
+    private byte[] encryptionKey = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        settings = new Settings(this);
-
         encryptionFragment = new EncryptionFragment();
         authenticationFragment = new AuthenticationFragment();
         androidSyncFragment = new AndroidSyncFragment(encryptionFragment);
+        introFinishedFragment = new IntroFinishedFragment(this, (success, encryptionKey) -> {
+            this.setupFinished = success;
+            this.encryptionKey = encryptionKey;
+        });
 
         encryptionFragment.setEncryptionChangedCallback(newEncryptionType -> authenticationFragment.updateEncryptionType(newEncryptionType));
 
@@ -164,12 +124,10 @@ public class IntroScreenActivity extends IntroActivity {
                 .build()
         );
 
-        addSlide(new SimpleSlide.Builder()
-                .title(R.string.intro_slide4_title)
-                .description(R.string.intro_slide4_desc)
+        addSlide(new FragmentSlide.Builder()
                 .background(R.color.colorPrimary)
                 .backgroundDark(R.color.colorPrimaryDark)
-                .scrollable(false)
+                .fragment(introFinishedFragment)
                 .build()
         );
 
@@ -181,8 +139,10 @@ public class IntroScreenActivity extends IntroActivity {
         addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                if (position == getCount() - 1)
-                    saveSettings();
+                // The second part is needed to prevent the function from being triggered a second
+                // time when clicking the finish button in the last slide
+                if (position == getCount() - 1 && getCurrentSlidePosition() < getCount())
+                    introFinishedFragment.saveSettings(encryptionFragment.getEncryptionType(), authenticationFragment.getAuthMethod(), authenticationFragment.getPassword(), androidSyncFragment.getSyncEnabled());
             }
 
             @Override
@@ -199,6 +159,8 @@ public class IntroScreenActivity extends IntroActivity {
     public Intent onSendActivityResult(int result) {
         Intent data = new Intent();
         data.putExtra(Constants.EXTRA_INTRO_FINISHED, setupFinished);
+        data.putExtra(Constants.EXTRA_INTRO_ENCRYPTION_KEY, encryptionKey);
+
         return data;
     }
 
@@ -270,6 +232,80 @@ public class IntroScreenActivity extends IntroActivity {
 
         public interface EncryptionChangedCallback {
             void onEncryptionChanged(Constants.EncryptionType newEncryptionType);
+        }
+    }
+
+    public static class IntroFinishedFragment extends SlideFragment {
+        private TextView title;
+        private TextView message;
+        private ProgressBar progress;
+
+        private final Context context;
+        private final SaveSettingsCallback callback;
+
+        private boolean canGoForward = false;
+
+        public IntroFinishedFragment(Context context, SaveSettingsCallback callback) {
+            this.context = context;
+            this.callback = callback;
+        }
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View root = inflater.inflate(R.layout.component_intro_finished, container, false);
+
+            title = root.findViewById(R.id.introFinishedTitle);
+            message = root.findViewById(R.id.introFinishedMessage);
+            progress = root.findViewById(R.id.introFinishedProgress);
+
+            return root;
+        }
+
+        private void saveSettings(Constants.EncryptionType encryptionType, Constants.AuthMethod authMethod, String password, boolean androidSyncEnabled) {
+            if ((authMethod == Constants.AuthMethod.PASSWORD || authMethod == Constants.AuthMethod.PIN) && (password == null || password.isEmpty())) {
+                title.setText(R.string.intro_slide4_title_failed);
+                message.setText(R.string.intro_slide4_desc_failed);
+
+                canGoForward = false;
+
+                if (callback != null)
+                    callback.onAfterSaveSettings(false, null);
+            }
+
+            FinishIntroTask task = new FinishIntroTask(context, encryptionType, authMethod, password, androidSyncEnabled);
+            task.setCallback(this::handleTaskResult);
+
+            progress.setVisibility(View.VISIBLE);
+            task.execute();
+        }
+
+        private void handleTaskResult(FinishIntroTask.Result result) {
+            if (result.saveSuccessful) {
+                title.setText(R.string.intro_slide4_title);
+                message.setText(R.string.intro_slide4_desc);
+
+                canGoForward = true;
+            } else {
+                title.setText(R.string.intro_slide4_title_failed);
+                message.setText(R.string.intro_slide4_desc_failed);
+
+                canGoForward = false;
+            }
+
+            progress.setVisibility(View.INVISIBLE);
+
+            if (callback != null)
+                callback.onAfterSaveSettings(result.saveSuccessful, result.encryptionKey);
+        }
+
+        @Override
+        public boolean canGoForward() {
+            return canGoForward;
+        }
+
+        public interface SaveSettingsCallback {
+            void onAfterSaveSettings(boolean success, byte[] encryptionKey);
         }
     }
 
@@ -590,7 +626,8 @@ public class IntroScreenActivity extends IntroActivity {
 
                 KeyguardManager km = (KeyguardManager) context.getSystemService(KEYGUARD_SERVICE);
 
-                if (! km.isKeyguardSecure()) {
+                assert km != null;      // The KEYGUARD_SERVICE should always be available
+                if (!km.isKeyguardSecure()) {
                     updateWarning(R.string.settings_toast_auth_device_not_secure);
                     return false;
                 }

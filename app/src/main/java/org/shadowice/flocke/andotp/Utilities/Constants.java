@@ -96,6 +96,7 @@ public class Constants {
     public final static String EXTRA_BACKUP_ENCRYPTION_KEY          = "encryption_key";
 
     public final static String EXTRA_INTRO_FINISHED                 = "setup_finished";
+    public final static String EXTRA_INTRO_ENCRYPTION_KEY           = "encryption_key";
 
     public final static String EXTRA_SETTINGS_ENCRYPTION_CHANGED    = "encryption_changed";
     public final static String EXTRA_SETTINGS_ENCRYPTION_KEY        = "encryption_key";
@@ -118,7 +119,6 @@ public class Constants {
     final static int PBKDF2_TARGET_AUTH_TIME        = 500;      // ms
     final static int PBKDF2_MIN_AUTH_ITERATIONS     = 20000;
     final static int PBKDF2_BENCHMARK_ITERATIONS    = 50000;
-    final static int PBKDF2_OLD_DEFAULT_ITERATIONS  = 150000;
 
     // PBKDF2 settings for backups
     final static int PBKDF2_MIN_BACKUP_ITERATIONS   = 140000;

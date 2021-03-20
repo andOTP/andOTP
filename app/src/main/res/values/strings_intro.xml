@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
     <string name="intro_slide1_title">Let\'s get started</string>
     <string name="intro_slide1_desc">Welcome to <b>andOTP</b>! This wizard will guide you through
         the initial setup process. Please pay attention and read carefully in order to avoid losing data.
@@ -39,10 +42,13 @@
 
     <string name="intro_slide4_title">Finished</string>
     <string name="intro_slide4_title_failed">Setup failed</string>
+    <string name="intro_slide4_title_progress">Please wait</string>
     <string name="intro_slide4_desc_failed">Failed to set a password, this intro will be shown again
         the next time!</string>
     <string name="intro_slide4_desc">Your settings have been saved, you are now all set to use
         <b>andOTP</b>!</string>
+    <string name="intro_slide4_desc_progress">Your settings are being saved and the encryption key is being
+        generated, please wait…</string>
 
     <string name="intro_slide_android_backup_desc">Android sync is a feature built in to android used to back up app data to a 3rd party service (usually Google). Backups are always encrypted and unaccessible to 3rd parties without your master password. Requires use of Password encryption method.</string>
 </resources>

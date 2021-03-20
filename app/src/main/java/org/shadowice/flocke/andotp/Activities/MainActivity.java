@@ -142,6 +142,8 @@ public class MainActivity extends BaseActivity
 
         if (authMethod == AuthMethod.DEVICE) {
             KeyguardManager km = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+
+            assert km != null;      // The KEYGUARD_SERVICE should always be available
             if (km.isKeyguardSecure()) {
                 Intent authIntent = km.createConfirmDeviceCredentialIntent(getString(R.string.dialog_title_auth), getString(R.string.dialog_msg_auth));
                 startActivityForResult(authIntent, Constants.INTENT_MAIN_AUTHENTICATE);
@@ -151,6 +153,11 @@ public class MainActivity extends BaseActivity
             authIntent.putExtra(Constants.EXTRA_AUTH_MESSAGE, messageId);
             startActivityForResult(authIntent, Constants.INTENT_MAIN_AUTHENTICATE);
         }
+    }
+
+    // Everything that should happen after the app is unlocked can go here
+    private void afterAuthentication() {
+        checkAutomaticTime();
     }
 
     private void restoreSortMode() {
@@ -210,11 +217,10 @@ public class MainActivity extends BaseActivity
 
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new ProcessLifecycleObserver());
 
-        if (! settings.getFirstTimeWarningShown()) {
-           showFirstTimeWarning();
-        }
-
-        checkAutomaticTime();
+        if (!settings.getFirstTimeWarningShown())
+            showFirstTimeWarning();
+        else if (!requireAuthentication)
+            afterAuthentication();
 
         speedDial = findViewById(R.id.speedDial);
         speedDial.inflate(R.menu.menu_fab);
@@ -535,6 +541,8 @@ public class MainActivity extends BaseActivity
                     authKey = intent.getByteArrayExtra(Constants.EXTRA_AUTH_PASSWORD_KEY);
 
                 updateEncryption(authKey);
+
+                afterAuthentication();
             }
         } else if (requestCode == Constants.INTENT_MAIN_QR_OPEN_IMAGE && resultCode == RESULT_OK) {
             if (intent != null) {
@@ -546,8 +554,16 @@ public class MainActivity extends BaseActivity
             if (resultCode == RESULT_OK && intent != null)
                 setupFinished = intent.getBooleanExtra(Constants.EXTRA_INTRO_FINISHED, false);
 
-            if (!setupFinished)
+            if (setupFinished) {
+                requireAuthentication = false;
+
+                byte [] encryptionKey = intent.getByteArrayExtra(Constants.EXTRA_INTRO_ENCRYPTION_KEY);
+                updateEncryption(encryptionKey);
+
+                afterAuthentication();
+            } else {
                 finishAndRemoveTask();
+            }
         }
     }
 
@@ -740,14 +756,20 @@ public class MainActivity extends BaseActivity
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle(R.string.label_tags);
+
+                if (getSupportActionBar() != null)
+                    getSupportActionBar().setTitle(R.string.label_tags);
+
                 invalidateOptionsMenu();
             }
 
             @Override
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                getSupportActionBar().setTitle(R.string.app_name);
+
+                if (getSupportActionBar() != null)
+                    getSupportActionBar().setTitle(R.string.app_name);
+
                 invalidateOptionsMenu();
             }
         };
