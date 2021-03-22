@@ -39,6 +39,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,15 +47,19 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Tasks.ChangeCredentialsTask;
 import org.shadowice.flocke.andotp.Utilities.ConfirmedPasswordTransformationHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.EditorActionHelper;
+import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+
+import javax.crypto.SecretKey;
 
 import static android.content.Context.KEYGUARD_SERVICE;
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
@@ -63,10 +68,6 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 public class CredentialsPreference extends DialogPreference
     implements AdapterView.OnItemClickListener, View.OnClickListener, TextWatcher, TextView.OnEditorActionListener {
     public static final AuthMethod DEFAULT_VALUE = AuthMethod.NONE;
-
-    public interface EncryptionChangeCallback {
-        boolean testEncryptionChange(byte[] newKey);
-    }
 
     private final List<String> entries;
     private static final List<AuthMethod> entryValues = Arrays.asList(
@@ -78,29 +79,40 @@ public class CredentialsPreference extends DialogPreference
 
     private int minLength = 0;
 
+    private final Context context;
     private final Settings settings;
     private AuthMethod value = AuthMethod.NONE;
-    private EncryptionChangeCallback encryptionChangeCallback = null;
+    private SecretKey oldEncryptionKey = null;
 
     private LinearLayout credentialsLayout;
+    private ListView credentialsSelection;
     private TextInputLayout passwordLayout;
     private TextInputEditText passwordInput;
     private EditText passwordConfirm;
     private TextView tooShortWarning;
 
+    private Button btnCancel;
     private Button btnSave;
+    private ProgressBar progressBar;
+
+    private EncryptionHelper.EncryptionChangeCallback encryptionChangeCallback;
 
     public CredentialsPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        settings = new Settings(context);
-        entries = Arrays.asList(context.getResources().getStringArray(R.array.settings_entries_auth));
+        this.context = context;
+        this.settings = new Settings(context);
+        this.entries = Arrays.asList(context.getResources().getStringArray(R.array.settings_entries_auth));
 
         setDialogLayoutResource(R.layout.component_authentication);
     }
 
-    public void setEncryptionChangeCallback(EncryptionChangeCallback cb) {
-        this.encryptionChangeCallback = cb;
+    public void setOldEncryptionKey(SecretKey oldKey) {
+        this.oldEncryptionKey = oldKey;
+    }
+
+    public void setEncryptionChangeCallback(EncryptionHelper.EncryptionChangeCallback changeCallback) {
+        this.encryptionChangeCallback = changeCallback;
     }
 
     @Override
@@ -115,15 +127,15 @@ public class CredentialsPreference extends DialogPreference
     protected void onBindDialogView(View view) {
         value = settings.getAuthMethod();
 
-        ListView listView = view.findViewById(R.id.credentialSelection);
+        credentialsSelection = view.findViewById(R.id.credentialSelection);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_single_choice, entries);
-        listView.setAdapter(adapter);
+        credentialsSelection.setAdapter(adapter);
 
         int index = entryValues.indexOf(value);
-        listView.setSelection(index);
-        listView.setItemChecked(index,true);
-        listView.setOnItemClickListener(this);
+        credentialsSelection.setSelection(index);
+        credentialsSelection.setItemChecked(index,true);
+        credentialsSelection.setOnItemClickListener(this);
 
         credentialsLayout = view.findViewById(R.id.credentialsLayout);
 
@@ -147,11 +159,13 @@ public class CredentialsPreference extends DialogPreference
         passwordConfirm.addTextChangedListener(this);
         passwordConfirm.setOnEditorActionListener(this);
 
-        Button btnCancel = view.findViewById(R.id.btnCancel);
+        btnCancel = view.findViewById(R.id.btnCancel);
         btnSave = view.findViewById(R.id.btnSave);
 
         btnCancel.setOnClickListener(this);
         btnSave.setOnClickListener(this);
+
+        progressBar = view.findViewById(R.id.saveProgress);
 
         updateLayout();
 
@@ -172,9 +186,9 @@ public class CredentialsPreference extends DialogPreference
     }
 
     private void saveValues() {
-        byte[] newKey = null;
+        Constants.EncryptionType encryptionType = settings.getEncryption();
 
-        if (settings.getEncryption() == EncryptionType.PASSWORD) {
+        if (encryptionType == EncryptionType.PASSWORD) {
             if (value == AuthMethod.NONE || value == AuthMethod.DEVICE) {
                 UIHelper.showGenericDialog(getContext(), R.string.settings_dialog_title_error, R.string.settings_dialog_msg_auth_invalid_with_encryption);
                 return;
@@ -190,25 +204,36 @@ public class CredentialsPreference extends DialogPreference
             }
         }
 
-        if (value == AuthMethod.PASSWORD || value == AuthMethod.PIN) {
-            String password = passwordInput.getText().toString();
-            if (!password.isEmpty()) {
-                newKey = settings.setAuthCredentials(password);
-            } else {
-                return;
-            }
+        ChangeCredentialsTask task = new ChangeCredentialsTask(context, encryptionType, oldEncryptionKey, value, passwordInput.getText().toString());
+        task.setCallback(this::handleTaskResult);
+
+        setInProgress(true);
+        task.execute();
+    }
+
+    private void setInProgress(boolean inProgress) {
+        credentialsSelection.setEnabled(!inProgress);
+        passwordInput.setEnabled(!inProgress);
+        passwordConfirm.setEnabled(!inProgress);
+        btnCancel.setEnabled(!inProgress);
+
+        btnSave.setVisibility(inProgress ? View.GONE : View.VISIBLE);
+        progressBar.setVisibility(inProgress ? View.VISIBLE : View.GONE);
+
+        getDialog().setCancelable(!inProgress);
+    }
+
+    private void handleTaskResult(ChangeCredentialsTask.Result result) {
+        if (result.success) {
+            persistString(value.toString().toLowerCase());
+            setSummary(entries.get(entryValues.indexOf(value)));
+
+            if (encryptionChangeCallback != null)
+                encryptionChangeCallback.onSuccessfulEncryptionChange(result.encryptionType, result.newEncryptionKey);
         }
 
-        if (settings.getEncryption() == EncryptionType.PASSWORD) {
-            if (newKey == null || encryptionChangeCallback == null)
-                return;
-
-            if (! encryptionChangeCallback.testEncryptionChange(newKey))
-                return;
-        }
-
-        persistString(value.toString().toLowerCase());
-        setSummary(entries.get(entryValues.indexOf(value)));
+        setInProgress(false);
+        getDialog().dismiss();
     }
 
     @Override
@@ -219,7 +244,6 @@ public class CredentialsPreference extends DialogPreference
                 break;
             case (R.id.btnSave):
                 saveValues();
-                getDialog().dismiss();
                 break;
             default:
                 break;
@@ -298,13 +322,11 @@ public class CredentialsPreference extends DialogPreference
         if (EditorActionHelper.isActionDoneOrKeyboardEnter(actionId, event)) {
             if (btnSave.isEnabled()) btnSave.performClick();
             return true;
-        } else if (EditorActionHelper.isActionUpKeyboardEnter(event)) {
+        } else {
             // Ignore action up after keyboard enter. Otherwise the cancel button would be selected
             // after pressing enter with an invalid password.
-            return true;
+            return EditorActionHelper.isActionUpKeyboardEnter(event);
         }
-
-        return false;
     }
 
     // Needed stub functions

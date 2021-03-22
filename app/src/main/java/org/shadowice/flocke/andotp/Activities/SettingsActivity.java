@@ -47,7 +47,6 @@ import android.widget.Toast;
 
 import org.openintents.openpgp.util.OpenPgpAppPreference;
 import org.openintents.openpgp.util.OpenPgpKeyPreference;
-import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Preferences.CredentialsPreference;
 import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.BackupHelper;
@@ -58,7 +57,6 @@ import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.UIHelper;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.crypto.SecretKey;
@@ -67,7 +65,7 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 
 public class SettingsActivity extends BaseActivity
-        implements SharedPreferences.OnSharedPreferenceChangeListener{
+        implements SharedPreferences.OnSharedPreferenceChangeListener, EncryptionHelper.EncryptionChangeCallback {
 
     private SettingsFragment fragment;
     private SharedPreferences prefs;
@@ -103,6 +101,8 @@ public class SettingsActivity extends BaseActivity
         }
 
         fragment = new SettingsFragment();
+        fragment.setEncryptionKey(encryptionKey);
+        fragment.setEncryptionChangeCallback(this);
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.container_content, fragment)
@@ -198,52 +198,34 @@ public class SettingsActivity extends BaseActivity
         startActivityForResult(authIntent, Constants.INTENT_SETTINGS_AUTHENTICATE);
     }
 
-    private boolean tryEncryptionChange(EncryptionType newEnc, byte[] newKey) {
+    @Override
+    public void onSuccessfulEncryptionChange(EncryptionType newEncryptionType, SecretKey newEncryptionKey) {
+        encryptionKey = newEncryptionKey;
+        encryptionChanged = true;
+
+        fragment.encryption.setValue(newEncryptionType.name().toLowerCase());
+        fragment.setEncryptionKey(newEncryptionKey);
+    }
+
+    private void tryEncryptionChange(EncryptionType newEnc, byte[] newKey) {
         Toast upgrading = Toast.makeText(this, R.string.settings_toast_encryption_changing, Toast.LENGTH_LONG);
         upgrading.show();
 
-        if (DatabaseHelper.backupDatabase(this)) {
-            ArrayList<Entry> entries;
+        EncryptionHelper.EncryptionChangeResult result = EncryptionHelper.tryEncryptionChange(this, encryptionKey, newEnc, newKey, this);
 
-            if (encryptionKey != null)
-                entries = DatabaseHelper.loadDatabase(this, encryptionKey);
-            else
-                entries = new ArrayList<>();
+        upgrading.cancel();
 
-            SecretKey newEncryptionKey;
-
-            if (newEnc == EncryptionType.KEYSTORE) {
-                newEncryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(this, true);
-            } else if (newKey != null && newKey.length > 0) {
-                newEncryptionKey = EncryptionHelper.generateSymmetricKey(newKey);
-            } else {
-                upgrading.cancel();
-                DatabaseHelper.restoreDatabaseBackup(this);
-                return false;
-            }
-
-            if (DatabaseHelper.saveDatabase(this, entries, newEncryptionKey)) {
-                encryptionKey = newEncryptionKey;
-                encryptionChanged = true;
-
-                fragment.encryption.setValue(newEnc.name().toLowerCase());
-
-                upgrading.cancel();
+        switch (result) {
+            case SUCCESS:
                 Toast.makeText(this, R.string.settings_toast_encryption_change_success, Toast.LENGTH_LONG).show();
-
-                return true;
-            }
-
-            DatabaseHelper.restoreDatabaseBackup(this);
-
-            upgrading.cancel();
-            Toast.makeText(this, R.string.settings_toast_encryption_change_failed, Toast.LENGTH_LONG).show();
-        } else {
-            upgrading.cancel();
-            Toast.makeText(this, R.string.settings_toast_encryption_backup_failed, Toast.LENGTH_LONG).show();
+                break;
+            case BACKUP_FAILURE:
+                Toast.makeText(this, R.string.settings_toast_encryption_backup_failed, Toast.LENGTH_LONG).show();
+                break;
+            case CHANGE_FAILURE:
+                Toast.makeText(this, R.string.settings_toast_encryption_change_failed, Toast.LENGTH_LONG).show();
+                break;
         }
-
-        return false;
     }
 
     private void requestBackupAccess() {
@@ -302,6 +284,11 @@ public class SettingsActivity extends BaseActivity
         PreferenceCategory catUI;
 
         private Settings settings;
+
+        private CredentialsPreference credentialsPreference;
+        private SecretKey encryptionKey;
+        private EncryptionHelper.EncryptionChangeCallback encryptionChangeCallback;
+
         private ListPreference encryption;
         private ListPreference useAutoBackup;
         private CheckBoxPreference useAndroidSync;
@@ -342,6 +329,20 @@ public class SettingsActivity extends BaseActivity
             }
         }
 
+        public void setEncryptionKey(SecretKey encryptionKey) {
+            this.encryptionKey = encryptionKey;
+
+            if (credentialsPreference != null)
+                credentialsPreference.setOldEncryptionKey(encryptionKey);
+        }
+
+        public void setEncryptionChangeCallback(EncryptionHelper.EncryptionChangeCallback changeCallback) {
+            this.encryptionChangeCallback = changeCallback;
+
+            if (credentialsPreference != null)
+                credentialsPreference.setEncryptionChangeCallback(changeCallback);
+        }
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -352,8 +353,9 @@ public class SettingsActivity extends BaseActivity
 
             addPreferencesFromResource(R.xml.preferences);
 
-            CredentialsPreference credentialsPreference = (CredentialsPreference) findPreference(getString(R.string.settings_key_auth));
-            credentialsPreference.setEncryptionChangeCallback(newKey -> ((SettingsActivity) getActivity()).tryEncryptionChange(settings.getEncryption(), newKey));
+            credentialsPreference = (CredentialsPreference) findPreference(getString(R.string.settings_key_auth));
+            credentialsPreference.setOldEncryptionKey(encryptionKey);
+            credentialsPreference.setEncryptionChangeCallback(encryptionChangeCallback);
 
             CheckBoxPreference blockAutofill = (CheckBoxPreference) findPreference(getString(R.string.settings_key_block_autofill));
             CheckBoxPreference autoUnlockAfterAutofill = (CheckBoxPreference) findPreference(getString(R.string.settings_key_auto_unlock_after_autofill));

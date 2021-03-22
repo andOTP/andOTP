@@ -23,6 +23,10 @@
 
 package org.shadowice.flocke.andotp.Utilities;
 
+import android.content.Context;
+
+import org.shadowice.flocke.andotp.Database.Entry;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -37,6 +41,7 @@ import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -54,6 +59,49 @@ public class EncryptionHelper {
     public static class PBKDF2Credentials {
         public byte[] password;
         public byte[] key;
+    }
+
+    public enum EncryptionChangeResult {
+        SUCCESS, CHANGE_FAILURE, BACKUP_FAILURE, MISSING_NEW_KEY, DECRYPTION_FAILED, TASK_CREATION_FAILED
+    }
+
+    public interface EncryptionChangeCallback {
+        void onSuccessfulEncryptionChange(Constants.EncryptionType newEncryptionType, SecretKey newEncryptionKey);
+    }
+
+    public static EncryptionChangeResult tryEncryptionChange(Context context, SecretKey oldKey, Constants.EncryptionType newType, byte[] newKey, EncryptionChangeCallback changeCallback) {
+        if (DatabaseHelper.backupDatabase(context)) {
+            ArrayList<Entry> entries;
+
+            if (oldKey != null)
+                entries = DatabaseHelper.loadDatabase(context, oldKey);
+            else
+                return EncryptionChangeResult.DECRYPTION_FAILED;
+
+            SecretKey newEncryptionKey;
+
+            if (newType == Constants.EncryptionType.KEYSTORE) {
+                newEncryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(context, true);
+            } else if (newKey != null && newKey.length > 0) {
+                newEncryptionKey = EncryptionHelper.generateSymmetricKey(newKey);
+            } else {
+                DatabaseHelper.restoreDatabaseBackup(context);
+                return EncryptionChangeResult.MISSING_NEW_KEY;
+            }
+
+            if (DatabaseHelper.saveDatabase(context, entries, newEncryptionKey)) {
+                if (changeCallback != null)
+                    changeCallback.onSuccessfulEncryptionChange(newType, newEncryptionKey);
+
+                return EncryptionChangeResult.SUCCESS;
+            }
+
+            DatabaseHelper.restoreDatabaseBackup(context);
+
+            return EncryptionChangeResult.CHANGE_FAILURE;
+        } else {
+            return EncryptionChangeResult.BACKUP_FAILURE;
+        }
     }
 
     public static int benchmarkIterations(String password, byte[] salt) {
