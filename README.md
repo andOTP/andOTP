@@ -131,7 +131,6 @@ If you want to show your appreciation for our work with a small donation you can
  * [material-intro](https://github.com/heinrichreimer/material-intro)
  * [MaterialProgressBar](https://github.com/DreaminginCodeZH/MaterialProgressBar)
  * [OpenPGP API library](https://github.com/open-keychain/openpgp-api)
- * [VNTNumberPickerPreference](https://github.com/vanniktech/VNTNumberPickerPreference)
  * [ZXing Android Embedded](https://github.com/journeyapps/zxing-android-embedded)
  * [Droid Sans Mono Zeromod](https://github.com/AlbertoDorado/droid-sans-mono-zeromod)
 
@@ -141,11 +140,13 @@ If you want to show your appreciation for our work with a small donation you can
  * [Code Parts from Google's Android Samples](https://android.googlesource.com/platform/development/+/master/samples/Vault/src/com/example/android/vault)
  * [LetterBitmap](https://stackoverflow.com/questions/23122088/colored-boxed-with-letters-a-la-gmail)
  * [DimensionConverter](https://stackoverflow.com/questions/8343971/how-to-parse-a-dimension-string-and-convert-it-to-a-dimension-value)
+ * [NumberPickerPreference](https://github.com/Alobar/AndroidPreferenceTest/tree/master/alobar-preference)
 
 #### Previously used open-source components:
 
  * [FABsMenu](https://github.com/jahirfiquitiva/FABsMenu)
  * [LicensesDialog](https://github.com/PSDev/LicensesDialog)
+ * [VNTNumberPickerPreference](https://github.com/vanniktech/VNTNumberPickerPreference)
 
 #### Previously used code examples:
 

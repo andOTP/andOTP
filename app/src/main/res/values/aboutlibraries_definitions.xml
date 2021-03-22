@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Temporarily add library definitions here until they get merged upstream or in AboutLibraries -->
 
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
     <!-- Apache common codec -->
-    <string name="define_CommonsCodec"></string>
+    <string name="define_CommonsCodec" />
     <string name="library_CommonsCodec_author">The Apache Software Foundation</string>
     <string name="library_CommonsCodec_authorWebsite">http://apache.org</string>
 
@@ -18,7 +21,7 @@
     <string name="library_CommonsCodec_licenseId">apache_2_0</string>
 
     <!-- Expandable Layout -->
-    <string name="define_ExpandableLayout"></string>
+    <string name="define_ExpandableLayout" />
     <string name="library_ExpandableLayout_author">Akira Aratani</string>
 
     <string name="library_ExpandableLayout_libraryName">Expandable Layout</string>
@@ -32,7 +35,7 @@
     <string name="library_ExpandableLayout_licenseId">apache_2_0</string>
 
     <!-- Floating Action Button Speed Dial -->
-    <string name="define_FloatingActionButtonSpeedDial"></string>
+    <string name="define_FloatingActionButtonSpeedDial" />
     <string name="library_FloatingActionButtonSpeedDial_author">Roberto Leinardi</string>
 
     <string name="library_FloatingActionButtonSpeedDial_libraryName">Floating Action Button Speed Dial</string>
@@ -46,7 +49,7 @@
     <string name="library_FloatingActionButtonSpeedDial_licenseId">apache_2_0</string>
 
     <!-- material-intro -->
-    <string name="define_materialintro"></string>
+    <string name="define_materialintro" />
     <string name="library_materialintro_author">Jan Heinrich Reimer</string>
     <string name="library_materialintro_authorWebsite">https://heinrichreimer.com/</string>
 
@@ -61,7 +64,7 @@
     <string name="library_materialintro_licenseId">mit</string>
 
     <!-- OpenPGP API -->
-        <string name="define_OpenPGPAPI"></string>
+    <string name="define_OpenPGPAPI" />
     <string name="library_OpenPGPAPI_author">Dominik Schürmann</string>
     <string name="library_OpenPGPAPI_authorWebsite">https://www.schuermann.eu/</string>
 
@@ -76,7 +79,7 @@
     <string name="library_OpenPGPAPI_licenseId">apache_2_0</string>
 
     <!-- Droid Sans Mono Slashed Font -->
-    <string name="define_MonoSlashedFont"></string>
+    <string name="define_MonoSlashedFont" />
     <string name="library_MonoSlashedFont_author"> Alberto Dorado</string>
 
     <string name="library_MonoSlashedFont_libraryName">Droid Sans Mono Zeromod</string>

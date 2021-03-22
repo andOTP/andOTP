@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--suppress AndroidElementNotAllowed -->
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -7,13 +8,14 @@
         android:key="@string/settings_key_cat_security"
         android:title="@string/settings_category_title_security">
 
-        <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
+        <org.shadowice.flocke.andotp.Preferences.NumberPickerPreference
             android:key="@string/settings_key_tap_to_reveal_timeout"
             android:title="@string/settings_title_tap_to_reveal_timeout"
             android:dialogMessage="@string/settings_desc_tap_to_reveal_timeout"
             android:defaultValue="@integer/settings_default_tap_to_reveal_timeout"
-            app:vnt_minValue="@integer/settings_min_tap_to_reveal_timeout"
-            app:vnt_maxValue="@integer/settings_max_tap_to_reveal_timeout" />
+            app:minValue="@integer/settings_min_tap_to_reveal_timeout"
+            app:maxValue="@integer/settings_max_tap_to_reveal_timeout"
+            app:wrapSelectorWheel="false" />
 
         <org.shadowice.flocke.andotp.Preferences.CredentialsPreference
             android:key="@string/settings_key_auth"
@@ -53,14 +55,15 @@
             android:summary="@string/settings_desc_auth_inactivity"
             android:defaultValue="false" />
 
-        <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
+        <org.shadowice.flocke.andotp.Preferences.NumberPickerPreference
             android:key="@string/settings_key_auth_inactivity_delay"
             android:title="@string/settings_title_auth_inactivity_delay"
             android:dialogMessage="@string/settings_desc_auth_inactivity_delay"
             android:defaultValue="@integer/settings_default_auth_inactivity_delay"
             android:dependency="@string/settings_key_auth_inactivity"
-            app:vnt_minValue="@integer/settings_auth_min_inactivity_delay"
-            app:vnt_maxValue="@integer/settings_auth_max_inactivity_delay" />
+            app:minValue="@integer/settings_auth_min_inactivity_delay"
+            app:maxValue="@integer/settings_auth_max_inactivity_delay"
+            app:wrapSelectorWheel="false" />
 
         <CheckBoxPreference
             android:key="@string/settings_key_block_accessibility"
@@ -140,12 +143,13 @@
             android:entryValues="@array/settings_values_tap"
             android:defaultValue="@string/settings_default_tap_double" />
 
-        <com.vanniktech.vntnumberpickerpreference.VNTNumberPickerPreference
+        <org.shadowice.flocke.andotp.Preferences.NumberPickerPreference
             android:key="@string/settings_key_label_size"
             android:title="@string/settings_title_label_size"
             android:defaultValue="@integer/settings_default_label_size"
-            app:vnt_maxValue="@integer/settings_max_label_size"
-            app:vnt_minValue="@integer/settings_min_label_size" />
+            app:maxValue="@integer/settings_max_label_size"
+            app:minValue="@integer/settings_min_label_size"
+            app:wrapSelectorWheel="false" />
 
         <ListPreference
             android:key="@string/settings_key_label_display"
