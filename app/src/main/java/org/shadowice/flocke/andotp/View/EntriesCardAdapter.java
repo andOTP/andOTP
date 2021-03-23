@@ -63,10 +63,11 @@ import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Database.EntryList;
 import org.shadowice.flocke.andotp.Dialogs.ManualEntryDialog;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Tasks.EncryptedBackupTask;
+import org.shadowice.flocke.andotp.Tasks.GenericBackupTask;
 import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
-import org.shadowice.flocke.andotp.Utilities.EncryptionHelper;
 import org.shadowice.flocke.andotp.Utilities.EntryThumbnail;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.Tools;
@@ -189,25 +190,19 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     public void saveEntries(boolean auto_backup) {
         DatabaseHelper.saveDatabase(context, entries.getEntries(), encryptionKey);
 
-        if(auto_backup) {
-            Constants.BackupType backupType = BackupHelper.autoBackupType(context);
-            if (backupType == Constants.BackupType.ENCRYPTED) {
-                BackupHelper.BackupFile cryptBackupFile = BackupHelper.backupFile(context, settings.getBackupLocation(), Constants.BackupType.ENCRYPTED);
+        if(auto_backup && BackupHelper.autoBackupType(context) == Constants.BackupType.ENCRYPTED) {
+            EncryptedBackupTask task = new EncryptedBackupTask(context, entries.getEntries(), settings.getBackupPasswordEnc(), null);
+            task.setCallback(this::handleTaskResult);
 
-                if (cryptBackupFile.file != null) {
-                    byte[] keyMaterial = encryptionKey.getEncoded();
-                    SecretKey encryptionKey = EncryptionHelper.generateSymmetricKey(keyMaterial);
+            task.execute();
+        }
+    }
 
-                    boolean success = BackupHelper.backupToFile(context, cryptBackupFile.file.getUri(), settings.getBackupPasswordEnc(), encryptionKey);
-                    if (success) {
-                        Toast.makeText(context, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(context, R.string.backup_toast_export_failed, Toast.LENGTH_LONG).show();
-                    }
-                } else {
-                    Toast.makeText(context, cryptBackupFile.errorMessage, Toast.LENGTH_LONG).show();
-                }
-            }
+    private void handleTaskResult(GenericBackupTask.BackupTaskResult result) {
+        if (result.success) {
+            Toast.makeText(context, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(context, result.messageId, Toast.LENGTH_LONG).show();
         }
     }
 

@@ -5,12 +5,10 @@ import android.net.Uri;
 
 import androidx.documentfile.provider.DocumentFile;
 
-import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
 
@@ -101,16 +99,9 @@ public class BackupHelper {
         return Constants.BackupType.UNAVAILABLE;
     }
 
-    public static boolean backupToFile(Context context, Uri uri, String password, SecretKey encryptionKey) {
-        ArrayList<Entry> entries = DatabaseHelper.loadDatabase(context, encryptionKey);
-        String plain = DatabaseHelper.entriesToString(entries);
-
-        return backupToFile(context, uri, password, plain);
-    }
-
     public static boolean backupToFile(Context context, Uri uri, String password, String plain)
     {
-        boolean success = true;
+        boolean success;
 
         try {
             int iter = EncryptionHelper.generateRandomIterations();
