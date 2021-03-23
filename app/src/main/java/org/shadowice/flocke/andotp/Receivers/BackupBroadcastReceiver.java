@@ -30,6 +30,7 @@ import org.shadowice.flocke.andotp.Utilities.Settings;
 
 public abstract class BackupBroadcastReceiver extends BroadcastReceiver {
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     protected boolean canSaveBackup(Context context) {
         Settings settings = new Settings(context);
         return settings.isBackupLocationSet();

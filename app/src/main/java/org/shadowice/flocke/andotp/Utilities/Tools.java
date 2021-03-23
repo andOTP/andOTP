@@ -30,14 +30,12 @@ import android.content.res.TypedArray;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.widget.Toast;
 
 import org.shadowice.flocke.andotp.R;
 
-import java.io.File;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -46,8 +44,6 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Tools {
-    private final static String CSS_RGBA_FORMAT = "rgba(%1$d,%2$d,%3$d,%4$1f)";
-
     /* Checks if external storage is available for read and write */
     public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
@@ -86,15 +82,7 @@ public class Tools {
         return new PorterDuffColorFilter(getThemeColor(context, colorAttr), PorterDuff.Mode.SRC_IN);
     }
 
-    public static Uri buildUri(String base, String name) {
-        return Uri.fromFile(new File(base, name));
-    }
-
-    public static boolean mkdir(String path) {
-        File dir = new File(path);
-        return dir.exists() || dir.mkdirs();
-    }
-
+    @SuppressWarnings("deprecation")
     public static Locale getSystemLocale() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return Resources.getSystem().getConfiguration().getLocales().get(0);
@@ -115,7 +103,7 @@ public class Tools {
         if (chunkSize ==0 || s == null)
             return s;
 
-        StringBuilder ret = new StringBuilder("");
+        StringBuilder ret = new StringBuilder();
         int index = s.length();
         while (index > 0) {
             ret.insert(0, s.substring(Math.max(index - chunkSize, 0), index));

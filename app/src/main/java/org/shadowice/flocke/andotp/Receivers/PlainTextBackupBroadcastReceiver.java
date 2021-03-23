@@ -28,14 +28,13 @@ import android.content.Intent;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
-import org.shadowice.flocke.andotp.Utilities.BackupHelper;
+import org.shadowice.flocke.andotp.Tasks.GenericBackupTask;
+import org.shadowice.flocke.andotp.Tasks.PlainTextBackupTask;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
 import org.shadowice.flocke.andotp.Utilities.NotificationHelper;
 import org.shadowice.flocke.andotp.Utilities.Settings;
-import org.shadowice.flocke.andotp.Utilities.StorageAccessHelper;
-import org.shadowice.flocke.andotp.Utilities.Tools;
 
 import java.util.ArrayList;
 
@@ -44,43 +43,42 @@ import javax.crypto.SecretKey;
 // Use the following command to test in the dev version:
 //   adb shell am broadcast -a org.shadowice.flocke.andotp.broadcast.PLAIN_TEXT_BACKUP org.shadowice.flocke.andotp.dev
 public class PlainTextBackupBroadcastReceiver extends BackupBroadcastReceiver {
+    private Context context;
+
     @Override
     public void onReceive(Context context, Intent intent) {
+        this.context = context;
         Settings settings = new Settings(context);
 
-        if (settings.isPlainTextBackupBroadcastEnabled()) {
-            if (!canSaveBackup(context))
-                return;
-
-            SecretKey encryptionKey = null;
-
-            if (settings.getEncryption() == Constants.EncryptionType.KEYSTORE) {
-                encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(context, false);
-            } else {
-                NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_FAILED, R.string.backup_receiver_title_backup_failed, R.string.backup_receiver_custom_encryption_failed);
-                return;
-            }
-
-            if (Tools.isExternalStorageWritable()) {
-                BackupHelper.BackupFile backupFile = BackupHelper.backupFile(context, settings.getBackupLocation(), Constants.BackupType.PLAIN_TEXT);
-
-                if (backupFile.file == null) {
-                    NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_FAILED, R.string.backup_receiver_title_backup_failed, backupFile.errorMessage);
-                    return;
-                }
-
-                ArrayList<Entry> entries = DatabaseHelper.loadDatabase(context, encryptionKey);
-
-                if (StorageAccessHelper.saveFile(context, backupFile.file.getUri(), DatabaseHelper.entriesToString(entries))) {
-                    NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_SUCCESS, R.string.backup_receiver_title_backup_success, backupFile.file.getName());
-                } else {
-                    NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_FAILED, R.string.backup_receiver_title_backup_failed, R.string.backup_toast_export_failed);
-                }
-            } else {
-                NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_FAILED, R.string.backup_receiver_title_backup_failed, R.string.backup_toast_storage_not_accessible);
-            }
-        } else {
+        if (!settings.isPlainTextBackupBroadcastEnabled()) {
             NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_FAILED, R.string.backup_receiver_title_backup_failed, R.string.backup_receiver_plain_disabled);
+            return;
+        }
+
+        if (!canSaveBackup(context)) {
+            NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_FAILED, R.string.backup_receiver_title_backup_failed, R.string.backup_receiver_no_location_set);
+            return;
+        }
+
+        if (settings.getEncryption() != Constants.EncryptionType.KEYSTORE) {
+            NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_FAILED, R.string.backup_receiver_title_backup_failed, R.string.backup_receiver_custom_encryption_failed);
+            return;
+        }
+
+        SecretKey encryptionKey = KeyStoreHelper.loadEncryptionKeyFromKeyStore(context, false);
+        ArrayList<Entry> entries = DatabaseHelper.loadDatabase(context, encryptionKey);
+
+        PlainTextBackupTask task = new PlainTextBackupTask(context, entries, null);
+        task.setCallback(this::handleTaskResult);
+
+        task.execute();
+    }
+
+    private void handleTaskResult(GenericBackupTask.BackupTaskResult result) {
+        if (result.success) {
+            NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_SUCCESS, R.string.backup_receiver_title_backup_success, result.fileName);
+        } else {
+            NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_FAILED, R.string.backup_receiver_title_backup_failed, result.messageId);
         }
     }
 }

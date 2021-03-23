@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
     <string name="backup_activity_title">Backups</string>
 
     <string name="backup_title_replace">Replace existing entries</string>
@@ -34,6 +37,10 @@
         this before attempting backup</string>
     <string name="backup_receiver_custom_encryption_failed">Password/PIN based encryption not
         supported with broadcast backup</string>
+    <string name="backup_receiver_no_location_set">No backup location set, please set one in the
+        apps settings</string>
+    <string name="backup_receiver_no_password_set">No default password set, please set one in the
+        apps settings</string>
 
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Automatic backup failed</string>

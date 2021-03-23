@@ -10,6 +10,7 @@ import org.shadowice.flocke.andotp.R;
 import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.Settings;
+import org.shadowice.flocke.andotp.Utilities.StorageAccessHelper;
 
 public abstract class GenericBackupTask extends UiBasedBackgroundTask<GenericBackupTask.BackupTaskResult> {
     protected final Context applicationContext;
@@ -30,19 +31,24 @@ public abstract class GenericBackupTask extends UiBasedBackgroundTask<GenericBac
     @Override
     @NonNull
     protected BackupTaskResult doInBackground() {
+        String fileName;
+
         if (uri == null) {
             BackupHelper.BackupFile backupFile = BackupHelper.backupFile(applicationContext, settings.getBackupLocation(), type);
 
             if (backupFile.file == null)
-                return new BackupTaskResult(false, backupFile.errorMessage);
+                return new BackupTaskResult(false, backupFile.errorMessage, null);
 
             uri = backupFile.file.getUri();
+            fileName = backupFile.file.getName();
+        } else {
+            fileName = StorageAccessHelper.getContentFileName(applicationContext, uri);
         }
 
         boolean success = doBackup();
 
         if (success)
-            return BackupTaskResult.success();
+            return BackupTaskResult.success(fileName);
         else
             return BackupTaskResult.failure();
     }
@@ -55,18 +61,20 @@ public abstract class GenericBackupTask extends UiBasedBackgroundTask<GenericBac
     public static class BackupTaskResult {
         public final boolean success;
         public final int messageId;
+        public final String fileName;
 
-        public BackupTaskResult(boolean success, int messageId) {
+        public BackupTaskResult(boolean success, int messageId, String fileName) {
             this.success = success;
             this.messageId = messageId;
+            this.fileName = fileName;
         }
 
-        public static BackupTaskResult success() {
-            return new BackupTaskResult(true, R.string.backup_toast_export_success);
+        public static BackupTaskResult success(String fileName) {
+            return new BackupTaskResult(true, R.string.backup_toast_export_success, fileName);
         }
 
         public static BackupTaskResult failure() {
-            return new BackupTaskResult(false, R.string.backup_toast_export_failed);
+            return new BackupTaskResult(false, R.string.backup_toast_export_failed, null);
         }
     }
 }

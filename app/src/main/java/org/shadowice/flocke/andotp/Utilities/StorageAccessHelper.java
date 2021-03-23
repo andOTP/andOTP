@@ -1,15 +1,16 @@
 package org.shadowice.flocke.andotp.Utilities;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-
-import org.apache.commons.codec.Charsets;
+import android.provider.OpenableColumns;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 public class StorageAccessHelper {
     public static boolean saveFile(Context context, Uri file, byte[] data) {
@@ -31,8 +32,27 @@ public class StorageAccessHelper {
         return success;
     }
 
+    public static String getContentFileName(Context context, Uri uri) {
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            try (Cursor cursor = context.getContentResolver().query(uri, null, null, null, null)) {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            }
+        }
+        if (result == null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return result;
+    }
+
     public static boolean saveFile(Context context, Uri file, String data) {
-        return saveFile(context, file, data.getBytes(Charsets.UTF_8));
+        return saveFile(context, file, data.getBytes(StandardCharsets.UTF_8));
     }
 
     public static byte[] loadFile(Context context, Uri file) throws IOException {
@@ -55,7 +75,7 @@ public class StorageAccessHelper {
 
         try {
             byte[] content = loadFile(context, file);
-            result = new String(content, Charsets.UTF_8);
+            result = new String(content, StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }
