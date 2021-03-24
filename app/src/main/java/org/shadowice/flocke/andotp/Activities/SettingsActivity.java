@@ -49,6 +49,7 @@ import org.openintents.openpgp.util.OpenPgpAppPreference;
 import org.openintents.openpgp.util.OpenPgpKeyPreference;
 import org.shadowice.flocke.andotp.Preferences.CredentialsPreference;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Tasks.ChangeEncryptionTask;
 import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
@@ -72,6 +73,8 @@ public class SettingsActivity extends BaseActivity
 
     private SecretKey encryptionKey = null;
     private boolean encryptionChanged = false;
+
+    private Toast inProgress = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,16 +210,12 @@ public class SettingsActivity extends BaseActivity
         fragment.setEncryptionKey(newEncryptionKey);
     }
 
-    private void tryEncryptionChange(EncryptionType newEnc, byte[] newKey) {
-        Toast upgrading = Toast.makeText(this, R.string.settings_toast_encryption_changing, Toast.LENGTH_LONG);
-        upgrading.show();
+    private void handleTaskResult(ChangeEncryptionTask.Result result) {
+        inProgress.cancel();
 
-        EncryptionHelper.EncryptionChangeResult result = EncryptionHelper.tryEncryptionChange(this, encryptionKey, newEnc, newKey, this);
-
-        upgrading.cancel();
-
-        switch (result) {
+        switch (result.result) {
             case SUCCESS:
+                onSuccessfulEncryptionChange(result.encryptionType, result.newEncryptionKey);
                 Toast.makeText(this, R.string.settings_toast_encryption_change_success, Toast.LENGTH_LONG).show();
                 break;
             case BACKUP_FAILURE:
@@ -226,6 +225,17 @@ public class SettingsActivity extends BaseActivity
                 Toast.makeText(this, R.string.settings_toast_encryption_change_failed, Toast.LENGTH_LONG).show();
                 break;
         }
+    }
+
+    private void tryEncryptionChange(EncryptionType newEnc, byte[] newKey) {
+        ChangeEncryptionTask task = new ChangeEncryptionTask(this, encryptionKey, newEnc, newKey);
+        task.setCallback(this::handleTaskResult);
+
+        // TODO: Better in-progress notification
+        inProgress = Toast.makeText(this, R.string.settings_toast_encryption_changing, Toast.LENGTH_LONG);
+        inProgress.show();
+
+        task.execute();
     }
 
     private void requestBackupAccess() {
