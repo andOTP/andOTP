@@ -44,7 +44,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.provider.DocumentsContract;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.ViewStub;
 import android.widget.Toast;
 
@@ -122,14 +121,6 @@ public class SettingsActivity extends BaseActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home && !canGoBack)
-            return true;
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
@@ -150,7 +141,9 @@ public class SettingsActivity extends BaseActivity
 
     @Override
     public boolean onSupportNavigateUp() {
-        finishWithResult();
+        if (canGoBack)
+            finishWithResult();
+
         return true;
     }
 

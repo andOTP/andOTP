@@ -27,6 +27,7 @@ public abstract class UiBasedBackgroundTask<Result> {
     private Result awaitedResult;
 
     private volatile boolean isCanceled = false;
+    private volatile boolean isRunning = false;
 
     /** @param failedResult The result to return if the task fails (throws an exception or returns null). */
     public UiBasedBackgroundTask(@NonNull Result failedResult) {
@@ -52,7 +53,10 @@ public abstract class UiBasedBackgroundTask<Result> {
     }
 
     private void emitResultOnMainThread(@NonNull UiCallback<Result> callback, @NonNull Result result) {
-        mainThreadHandler.post(() -> callback.onResult(result));
+        mainThreadHandler.post(() -> {
+            callback.onResult(result);
+            isRunning = false;
+        });
         this.callback = null;
         this.awaitedResult = null;
     }
@@ -60,6 +64,7 @@ public abstract class UiBasedBackgroundTask<Result> {
     /** Executed the task on a background thread. Safe to call from the main thread. */
     @AnyThread
     public void execute() {
+        isRunning = true;
         executor.execute(this::runTask);
     }
 
@@ -97,8 +102,14 @@ public abstract class UiBasedBackgroundTask<Result> {
     }
 
     @AnyThread
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    @AnyThread
     public void cancel() {
         isCanceled = true;
+        isRunning = false;
     }
 
     @FunctionalInterface
