@@ -204,6 +204,7 @@ public class CredentialsPreference extends DialogPreference
             }
         }
 
+        assert passwordInput.getText() != null; // The save button should only be accessible when a password has been entered (and confirmed)
         ChangeCredentialsTask task = new ChangeCredentialsTask(context, encryptionType, oldEncryptionKey, value, passwordInput.getText().toString());
         task.setCallback(this::handleTaskResult);
 

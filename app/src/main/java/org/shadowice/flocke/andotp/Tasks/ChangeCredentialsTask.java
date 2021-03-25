@@ -59,6 +59,10 @@ public class ChangeCredentialsTask extends UiBasedBackgroundTask<ChangeCredentia
                 return new Result(false, null, null);
         }
 
+        // We already persist the new value here so if something happens to the calling preference
+        // everything is already finalized
+        settings.setAuthMethod(newAuthMethod);
+
         return new Result(true, newEncryptionKey, encryptionType);
     }
 

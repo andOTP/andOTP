@@ -191,8 +191,7 @@ public class SettingsActivity extends BaseActivity
                 if (fragment.useAndroidSync != null)
                     fragment.useAndroidSync.setEnabled(true);
             }
-        } else if(key.equals(getString(R.string.settings_key_enable_android_backup_service)))
-        {
+        } else if(key.equals(getString(R.string.settings_key_enable_android_backup_service))) {
             Log.d(SettingsActivity.class.getSimpleName(), "onSharedPreferenceChanged called modifying settings_key_enable_android_backup_service service is now: " +
                     (settings.getAndroidBackupServiceEnabled() ? "enabled" : "disabled"));
 
