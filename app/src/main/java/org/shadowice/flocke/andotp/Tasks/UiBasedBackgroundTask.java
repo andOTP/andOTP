@@ -40,14 +40,14 @@ public abstract class UiBasedBackgroundTask<Result> {
     public void setCallback(@Nullable UiCallback<Result> callback) {
         synchronized (callbackLock) {
             // Don't bother doing anything if the task was canceled.
-            if (isCanceled()) {
+            if (isCanceled())
                 return;
-            }
+
             this.callback = callback;
+
             // If we have an awaited result and are setting a new callback, publish the result immediately.
-            if (awaitedResult != null && callback != null) {
+            if (awaitedResult != null && callback != null)
                 emitResultOnMainThread(callback, awaitedResult);
-            }
         }
     }
 
@@ -73,9 +73,9 @@ public abstract class UiBasedBackgroundTask<Result> {
 
         synchronized (callbackLock) {
             // Don't bother issuing callback or storing result if this task is canceled.
-            if (isCanceled()) {
+            if (isCanceled())
                 return;
-            }
+
             if (callback != null) {
                 emitResultOnMainThread(callback, result);
             } else {

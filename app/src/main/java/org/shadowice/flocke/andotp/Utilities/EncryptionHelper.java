@@ -90,6 +90,10 @@ public class EncryptionHelper {
             }
 
             if (DatabaseHelper.saveDatabase(context, entries, newEncryptionKey)) {
+                // Persist new encryption here already so everything is fully setup when the task finishes
+                Settings settings = new Settings(context);
+                settings.setEncryption(newType);
+
                 if (changeCallback != null)
                     changeCallback.onSuccessfulEncryptionChange(newType, newEncryptionKey);
 

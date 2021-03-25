@@ -22,6 +22,7 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
+import android.app.Fragment;
 import android.app.backup.BackupManager;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -38,10 +39,12 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 import android.provider.DocumentsContract;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.ViewStub;
 import android.widget.Toast;
 
@@ -68,6 +71,8 @@ import static org.shadowice.flocke.andotp.Utilities.Constants.EncryptionType;
 public class SettingsActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener, EncryptionHelper.EncryptionChangeCallback {
 
+    private static final String TAG_TASK_FRAGMENT = "SettingsActivity.TaskFragmentTag";
+
     private SettingsFragment fragment;
     private SharedPreferences prefs;
 
@@ -75,6 +80,7 @@ public class SettingsActivity extends BaseActivity
     private boolean encryptionChanged = false;
 
     private Toast inProgress = null;
+    private boolean canGoBack = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +122,14 @@ public class SettingsActivity extends BaseActivity
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home && !canGoBack)
+            return true;
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
@@ -142,8 +156,10 @@ public class SettingsActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        finishWithResult();
-        super.onBackPressed();
+        if (canGoBack) {
+            finishWithResult();
+            super.onBackPressed();
+        }
     }
 
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
@@ -211,7 +227,7 @@ public class SettingsActivity extends BaseActivity
     }
 
     private void handleTaskResult(ChangeEncryptionTask.Result result) {
-        inProgress.cancel();
+        setupUiForTaskState(false);
 
         switch (result.result) {
             case SUCCESS:
@@ -225,17 +241,89 @@ public class SettingsActivity extends BaseActivity
                 Toast.makeText(this, R.string.settings_toast_encryption_change_failed, Toast.LENGTH_LONG).show();
                 break;
         }
+
+        // Remove the task fragment after the task is finished
+        TaskFragment taskFragment = findTaskFragment();
+        if (taskFragment != null) {
+            getFragmentManager().beginTransaction()
+                    .remove(taskFragment)
+                    .commit();
+        }
     }
 
-    private void tryEncryptionChange(EncryptionType newEnc, byte[] newKey) {
-        ChangeEncryptionTask task = new ChangeEncryptionTask(this, encryptionKey, newEnc, newKey);
-        task.setCallback(this::handleTaskResult);
+    @Nullable
+    private SettingsActivity.TaskFragment findTaskFragment() {
+        return (SettingsActivity.TaskFragment) getFragmentManager().findFragmentByTag(TAG_TASK_FRAGMENT);
+    }
 
-        // TODO: Better in-progress notification
-        inProgress = Toast.makeText(this, R.string.settings_toast_encryption_changing, Toast.LENGTH_LONG);
-        inProgress.show();
+    private void startEncryptionChangeTask(EncryptionType newEnc, byte[] newKey) {
+        SettingsActivity.TaskFragment taskFragment = findTaskFragment();
+        // Don't start a task if we already have an active task running.
+        if (taskFragment == null || taskFragment.task.isCanceled()) {
+            ChangeEncryptionTask task = new ChangeEncryptionTask(this, encryptionKey, newEnc, newKey);
+            task.setCallback(this::handleTaskResult);
 
-        task.execute();
+            if (taskFragment == null) {
+                taskFragment = new SettingsActivity.TaskFragment();
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(taskFragment, TAG_TASK_FRAGMENT)
+                        .commit();
+            }
+
+            taskFragment.startTask(task);
+            setupUiForTaskState(true);
+        }
+    }
+
+    private void checkBackgroundTask() {
+        SettingsActivity.TaskFragment taskFragment = findTaskFragment();
+
+        if (taskFragment != null) {
+            if (taskFragment.task.isCanceled()) {
+                // The task was canceled, so remove the task fragment
+                getFragmentManager().beginTransaction()
+                        .remove(taskFragment)
+                        .commit();
+                setupUiForTaskState(false);
+            } else {
+                taskFragment.task.setCallback(this::handleTaskResult);
+                setupUiForTaskState(true);
+            }
+        } else {
+            setupUiForTaskState(false);
+        }
+    }
+
+    private void setupUiForTaskState(boolean taskRunning) {
+        if (taskRunning) {
+            canGoBack = false;
+
+            // TODO: Better in-progress notification
+            inProgress = Toast.makeText(this, R.string.settings_toast_encryption_changing, Toast.LENGTH_LONG);
+            inProgress.show();
+        } else {
+            canGoBack = true;
+
+            if (inProgress != null)
+                inProgress.cancel();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkBackgroundTask();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // We don't want the task to callback to a dead activity and cause a memory leak, so null it here.
+        SettingsActivity.TaskFragment taskFragment = findTaskFragment();
+
+        if (taskFragment != null)
+            taskFragment.task.setCallback(null);
     }
 
     private void requestBackupAccess() {
@@ -262,7 +350,7 @@ public class SettingsActivity extends BaseActivity
 
                 if (authKey != null && authKey.length > 0 && newEnc != null && !newEnc.isEmpty()) {
                     EncryptionType newEncType = EncryptionType.valueOf(newEnc);
-                    tryEncryptionChange(newEncType, authKey);
+                    startEncryptionChangeTask(newEncType, authKey);
                 } else {
                     Toast.makeText(this, R.string.settings_toast_encryption_no_key, Toast.LENGTH_LONG).show();
                 }
@@ -317,7 +405,7 @@ public class SettingsActivity extends BaseActivity
                         if (encryptionType == EncryptionType.PASSWORD)
                             ((SettingsActivity) getActivity()).tryEncryptionChangeWithAuth(encryptionType);
                         else if (encryptionType == EncryptionType.KEYSTORE)
-                            ((SettingsActivity) getActivity()).tryEncryptionChange(encryptionType, null);
+                            ((SettingsActivity) getActivity()).startEncryptionChangeTask(encryptionType, null);
                     })
                     .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> {
                     })
@@ -491,6 +579,21 @@ public class SettingsActivity extends BaseActivity
                 else
                     catUI.removePreference(themeBlack);
             }
+        }
+    }
+
+    /** Retained instance fragment to hold a running {@link ChangeEncryptionTask} between configuration changes.*/
+    public static class TaskFragment extends Fragment {
+        ChangeEncryptionTask task;
+
+        public TaskFragment() {
+            super();
+            setRetainInstance(true);
+        }
+
+        public void startTask(@NonNull ChangeEncryptionTask task) {
+            this.task = task;
+            task.execute();
         }
     }
 }
