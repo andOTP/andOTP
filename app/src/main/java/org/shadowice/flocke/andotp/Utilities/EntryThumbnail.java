@@ -207,6 +207,7 @@ public class EntryThumbnail {
         HomeAssistant(R.drawable.thumb_home_assistant),
         HostingDE(R.drawable.thumb_hosting_de),
         Hover(R.drawable.thumb_hover),
+        Huawei(R.drawable.thumb_huawei),
         HumbleBundle(R.drawable.thumb_humblebundle),
         HurricaneElectric(R.drawable.thumb_hurricane_electric),
         IBM(R.drawable.thumb_ibm),
