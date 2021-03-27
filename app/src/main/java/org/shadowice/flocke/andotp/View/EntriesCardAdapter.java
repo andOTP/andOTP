@@ -63,8 +63,8 @@ import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Database.EntryList;
 import org.shadowice.flocke.andotp.Dialogs.ManualEntryDialog;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Tasks.BackupTaskResult;
 import org.shadowice.flocke.andotp.Tasks.EncryptedBackupTask;
-import org.shadowice.flocke.andotp.Tasks.GenericBackupTask;
 import org.shadowice.flocke.andotp.Utilities.BackupHelper;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
@@ -198,7 +198,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
         }
     }
 
-    private void handleTaskResult(GenericBackupTask.BackupTaskResult result) {
+    private void handleTaskResult(BackupTaskResult result) {
         if (result.success) {
             Toast.makeText(context, R.string.backup_toast_export_success, Toast.LENGTH_LONG).show();
         } else {
@@ -270,9 +270,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
 
         Constants.CardLayouts layout = settings.getCardLayout();
 
-        if (layout == Constants.CardLayouts.DEFAULT) {
-            cardLayout = R.layout.component_card_default;
-        } else if (layout == Constants.CardLayouts.COMPACT) {
+        if (layout == Constants.CardLayouts.COMPACT) {
             cardLayout = R.layout.component_card_compact;
         } else if (layout == Constants.CardLayouts.FULL) {
             cardLayout = R.layout.component_card_full;
@@ -371,7 +369,7 @@ public class EntriesCardAdapter extends RecyclerView.Adapter<EntryViewHolder>
     private void copyHandler(final int position, final String text, final boolean dropToBackground) {
         Tools.copyToClipboard(context, text);
         updateLastUsedAndFrequency(position, getRealIndex(position));
-        if(context != null && dropToBackground) {
+        if (dropToBackground) {
             ((MainActivity)context).moveTaskToBack(true);
         }
     }

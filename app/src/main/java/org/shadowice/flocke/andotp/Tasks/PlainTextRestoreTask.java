@@ -14,8 +14,8 @@ public class PlainTextRestoreTask extends GenericRestoreTask {
 
     @Override
     @NonNull
-    protected RestoreTaskResult doInBackground() {
+    protected BackupTaskResult doInBackground() {
         String data = StorageAccessHelper.loadFileString(applicationContext, uri);
-        return RestoreTaskResult.success(data);
+        return BackupTaskResult.success(BackupTaskResult.ResultType.RESTORE, data);
     }
 }

@@ -28,7 +28,7 @@ public class EncryptedRestoreTask extends GenericRestoreTask {
 
     @Override
     @NonNull
-    protected RestoreTaskResult doInBackground() {
+    protected BackupTaskResult doInBackground() {
         boolean success = true;
         String decryptedString = "";
 
@@ -58,9 +58,9 @@ public class EncryptedRestoreTask extends GenericRestoreTask {
         }
 
         if (success) {
-            return RestoreTaskResult.success(decryptedString);
+            return BackupTaskResult.success(BackupTaskResult.ResultType.RESTORE, decryptedString);
         } else {
-            return RestoreTaskResult.failure(R.string.backup_toast_import_decryption_failed);
+            return BackupTaskResult.failure(BackupTaskResult.ResultType.RESTORE, R.string.backup_toast_import_decryption_failed);
         }
     }
 }

@@ -23,7 +23,6 @@
 package org.shadowice.flocke.andotp.Activities;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -31,8 +30,6 @@ import android.content.IntentSender;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 import android.text.TextUtils;
@@ -56,10 +53,9 @@ import org.openintents.openpgp.util.OpenPgpServiceConnection;
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.Dialogs.PasswordEntryDialog;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Tasks.BackupTaskResult;
 import org.shadowice.flocke.andotp.Tasks.EncryptedBackupTask;
 import org.shadowice.flocke.andotp.Tasks.EncryptedRestoreTask;
-import org.shadowice.flocke.andotp.Tasks.GenericBackupTask;
-import org.shadowice.flocke.andotp.Tasks.GenericRestoreTask;
 import org.shadowice.flocke.andotp.Tasks.PGPBackupTask;
 import org.shadowice.flocke.andotp.Tasks.PGPRestoreTask;
 import org.shadowice.flocke.andotp.Tasks.PlainTextBackupTask;
@@ -79,10 +75,8 @@ import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
 
-public class BackupActivity extends BaseActivity {
+public class BackupActivity extends BackgroundTaskActivity<BackupTaskResult> {
     private final static String TAG = BackupActivity.class.getSimpleName();
-
-    private static final String TAG_TASK_FRAGMENT = "BackupActivity.TaskFragment";
 
     private Constants.BackupType backupType = Constants.BackupType.ENCRYPTED;
     private SecretKey encryptionKey = null;
@@ -104,6 +98,8 @@ public class BackupActivity extends BaseActivity {
 
     private boolean reload = false;
     private boolean allowExit = true;
+
+    private BackupTaskResult.ResultType currentTask = BackupTaskResult.ResultType.NONE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -276,29 +272,28 @@ public class BackupActivity extends BaseActivity {
         Toast.makeText(this, msgId, Toast.LENGTH_LONG).show();
     }
 
-    private void handleBackupTaskResult(GenericBackupTask.BackupTaskResult result) {
-        showBackupProgress(false);
+    @Override
+    void onTaskResult(BackupTaskResult backupTaskResult) {
+        if (backupTaskResult.resultType == BackupTaskResult.ResultType.BACKUP)
+            handleBackupTaskResult(backupTaskResult);
+        else if (backupTaskResult.resultType == BackupTaskResult.ResultType.RESTORE)
+            handleRestoreTaskResult(backupTaskResult);
+    }
 
+    private void handleBackupTaskResult(BackupTaskResult result) {
         if (result.messageId != 0)
             notifyBackupState(result.messageId);
         else
-            if (!result.success)
+            if (result.success)
+                notifyBackupState(R.string.backup_toast_export_success);
+            else
                 notifyBackupState(R.string.backup_toast_export_failed);
-
-        // Clean up the task fragment
-        TaskFragment taskFragment = findTaskFragment();
-
-        if (taskFragment != null && taskFragment.isEmpty()) {
-            getFragmentManager().beginTransaction()
-                    .remove(taskFragment)
-                    .commit();
-        }
 
         if (result.success)
             finishWithResult();
     }
 
-    private void handleRestoreTaskResult(GenericRestoreTask.RestoreTaskResult result) {
+    private void handleRestoreTaskResult(BackupTaskResult result) {
         if (result.success) {
             if (result.isPGP) {
                 InputStream is = new ByteArrayInputStream(result.payload.getBytes(StandardCharsets.UTF_8));
@@ -318,18 +313,21 @@ public class BackupActivity extends BaseActivity {
                 notifyBackupState(R.string.backup_toast_import_failed);
         }
 
-        showRestoreProgress(false);
-
-        // Clean up the task fragment
-        TaskFragment taskFragment = findTaskFragment();
-        if (taskFragment != null && taskFragment.isEmpty()) {
-            getFragmentManager().beginTransaction()
-                    .remove(taskFragment)
-                    .commit();
-        }
-
         if (result.success && !result.isPGP)
             finishWithResult();
+    }
+
+    @Override
+    protected void setupUiForTaskState(boolean running) {
+        if (currentTask == BackupTaskResult.ResultType.BACKUP)
+            showBackupProgress(running);
+        else if (currentTask == BackupTaskResult.ResultType.RESTORE)
+            showRestoreProgress(running);
+    }
+
+    protected void startBackgroundTask(UiBasedBackgroundTask<BackupTaskResult> task, BackupTaskResult.ResultType type) {
+        currentTask = type;
+        startBackgroundTask(task);
     }
 
     private void toggleInProgressMode(boolean running) {
@@ -465,9 +463,7 @@ public class BackupActivity extends BaseActivity {
     private void doRestorePlain(Uri uri) {
         if (Tools.isExternalStorageReadable()) {
             PlainTextRestoreTask task = new PlainTextRestoreTask(this, uri);
-            task.setCallback(this::handleRestoreTaskResult);
-
-            startRestoreTask(task);
+            startBackgroundTask(task, BackupTaskResult.ResultType.RESTORE);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
@@ -478,9 +474,7 @@ public class BackupActivity extends BaseActivity {
             ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this, encryptionKey);
 
             PlainTextBackupTask task = new PlainTextBackupTask(this, entries, uri);
-            task.setCallback(this::handleBackupTaskResult);
-
-            startBackupTask(task);
+            startBackgroundTask(task, BackupTaskResult.ResultType.BACKUP);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
@@ -514,9 +508,7 @@ public class BackupActivity extends BaseActivity {
     private void doRestoreCryptWithPassword(Uri uri, String password, boolean old_format) {
         if (Tools.isExternalStorageReadable()) {
             EncryptedRestoreTask task = new EncryptedRestoreTask(this, uri, password, old_format);
-            task.setCallback(this::handleRestoreTaskResult);
-
-            startRestoreTask(task);
+            startBackgroundTask(task, BackupTaskResult.ResultType.RESTORE);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
@@ -538,9 +530,7 @@ public class BackupActivity extends BaseActivity {
             ArrayList<Entry> entries = DatabaseHelper.loadDatabase(this, encryptionKey);
 
             EncryptedBackupTask task = new EncryptedBackupTask(this, entries, password, uri);
-            task.setCallback(this::handleBackupTaskResult);
-
-            startBackupTask(task);
+            startBackgroundTask(task, BackupTaskResult.ResultType.BACKUP);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
@@ -553,17 +543,13 @@ public class BackupActivity extends BaseActivity {
             decryptIntent = new Intent(OpenPgpApi.ACTION_DECRYPT_VERIFY);
 
         PGPRestoreTask task = new PGPRestoreTask(this, uri, decryptIntent);
-        task.setCallback(this::handleRestoreTaskResult);
-
-        startRestoreTask(task);
+        startBackgroundTask(task, BackupTaskResult.ResultType.RESTORE);
     }
 
     private void doBackupEncrypted(Uri uri, String data) {
         if (Tools.isExternalStorageWritable()) {
             PGPBackupTask task = new PGPBackupTask(this, data, uri);
-            task.setCallback(this::handleBackupTaskResult);
-
-            startBackupTask(task);
+            startBackgroundTask(task, BackupTaskResult.ResultType.BACKUP);
         } else {
             Toast.makeText(this, R.string.backup_toast_storage_not_accessible, Toast.LENGTH_LONG).show();
         }
@@ -645,127 +631,8 @@ public class BackupActivity extends BaseActivity {
         }
     }
 
-    @Nullable
-    private TaskFragment findTaskFragment() {
-        return (TaskFragment) getFragmentManager().findFragmentByTag(TAG_TASK_FRAGMENT);
-    }
-
-    private void startBackupTask(GenericBackupTask task) {
-        TaskFragment taskFragment = findTaskFragment();
-
-        // Don't start a task if we already have an active task running (backup or restore).
-        if (taskFragment == null || taskFragment.isEmpty()) {
-            if (taskFragment == null) {
-                taskFragment = new TaskFragment();
-                getFragmentManager()
-                        .beginTransaction()
-                        .add(taskFragment, TAG_TASK_FRAGMENT)
-                        .commit();
-            }
-
-            taskFragment.startBackupTask(task);
-            showBackupProgress(true);
-        }
-    }
-
-    private void startRestoreTask(GenericRestoreTask task) {
-        TaskFragment taskFragment = findTaskFragment();
-
-        // Don't start a task if we already have an active task running (backup or restore).
-        if (taskFragment == null || taskFragment.isEmpty()) {
-            if (taskFragment == null) {
-                taskFragment = new TaskFragment();
-                getFragmentManager()
-                        .beginTransaction()
-                        .add(taskFragment, TAG_TASK_FRAGMENT)
-                        .commit();
-            }
-
-            taskFragment.startRestoreTask(task);
-            showRestoreProgress(true);
-        }
-    }
-
-    private void checkBackgroundTask() {
-        TaskFragment taskFragment = findTaskFragment();
-
-        if (taskFragment != null) {
-            if (taskFragment.isEmpty()) {
-                // The task was canceled or has finished, so remove the task fragment.
-                getFragmentManager().beginTransaction()
-                        .remove(taskFragment)
-                        .commit();
-            } else {
-                if (taskFragment.isRestoreRunning())
-                    showRestoreProgress(true);
-
-                if (taskFragment.isBackupRunning())
-                    showBackupProgress(true);
-
-                taskFragment.setCallbacks(this::handleBackupTaskResult, this::handleRestoreTaskResult);
-            }
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        // We don't want the task to callback to a dead activity and cause a memory leak, so null it here.
-        TaskFragment taskFragment = findTaskFragment();
-
-        if (taskFragment != null)
-            taskFragment.setCallbacks(null, null);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        checkBackgroundTask();
-    }
-
     @Override
     protected boolean shouldDestroyOnScreenOff() {
         return allowExit;   // Don't destroy the backup activity as long as a backup task is running
-    }
-
-    public static class TaskFragment extends Fragment {
-        GenericBackupTask backupTask;
-        GenericRestoreTask restoreTask;
-
-        public TaskFragment() {
-            super();
-            setRetainInstance(true);
-        }
-
-        public void setCallbacks(UiBasedBackgroundTask.UiCallback<GenericBackupTask.BackupTaskResult> backupCallback, UiBasedBackgroundTask.UiCallback<GenericRestoreTask.RestoreTaskResult> restoreCallback) {
-            if (backupTask != null && backupTask.isRunning())
-                backupTask.setCallback(backupCallback);
-
-            if (restoreTask != null && restoreTask.isRunning())
-                restoreTask.setCallback(restoreCallback);
-        }
-
-        public boolean isEmpty() {
-            return ((backupTask == null || !backupTask.isRunning()) && (restoreTask == null || !restoreTask.isRunning()));
-        }
-
-        public boolean isRestoreRunning() {
-            return (restoreTask != null && restoreTask.isRunning());
-        }
-
-        public boolean isBackupRunning() {
-            return (backupTask != null && backupTask.isRunning());
-        }
-
-        public void startBackupTask(@NonNull GenericBackupTask task) {
-            this.backupTask = task;
-            this.backupTask.execute();
-        }
-
-        public void startRestoreTask(@NonNull GenericRestoreTask task) {
-            this.restoreTask = task;
-            this.restoreTask.execute();
-        }
     }
 }

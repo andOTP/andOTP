@@ -12,14 +12,14 @@ import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.Settings;
 import org.shadowice.flocke.andotp.Utilities.StorageAccessHelper;
 
-public abstract class GenericBackupTask extends UiBasedBackgroundTask<GenericBackupTask.BackupTaskResult> {
+public abstract class GenericBackupTask extends UiBasedBackgroundTask<BackupTaskResult> {
     protected final Context applicationContext;
     protected final Settings settings;
     protected final Constants.BackupType type;
     protected Uri uri;
 
     public GenericBackupTask(Context context, @Nullable Uri uri) {
-        super(BackupTaskResult.failure());
+        super(BackupTaskResult.failure(BackupTaskResult.ResultType.BACKUP, R.string.backup_toast_export_failed));
 
         this.applicationContext = context.getApplicationContext();
         this.settings = new Settings(applicationContext);
@@ -37,7 +37,7 @@ public abstract class GenericBackupTask extends UiBasedBackgroundTask<GenericBac
             BackupHelper.BackupFile backupFile = BackupHelper.backupFile(applicationContext, settings.getBackupLocation(), type);
 
             if (backupFile.file == null)
-                return new BackupTaskResult(false, backupFile.errorMessage, null);
+                return new BackupTaskResult(BackupTaskResult.ResultType.BACKUP,false, null, backupFile.errorMessage);
 
             uri = backupFile.file.getUri();
             fileName = backupFile.file.getName();
@@ -48,33 +48,12 @@ public abstract class GenericBackupTask extends UiBasedBackgroundTask<GenericBac
         boolean success = doBackup();
 
         if (success)
-            return BackupTaskResult.success(fileName);
+            return BackupTaskResult.success(BackupTaskResult.ResultType.BACKUP ,fileName);
         else
-            return BackupTaskResult.failure();
+            return BackupTaskResult.failure(BackupTaskResult.ResultType.BACKUP, R.string.backup_toast_export_failed);
     }
 
     @NonNull
     protected abstract Constants.BackupType getBackupType();
     protected abstract boolean doBackup();
-
-
-    public static class BackupTaskResult {
-        public final boolean success;
-        public final int messageId;
-        public final String fileName;
-
-        public BackupTaskResult(boolean success, int messageId, String fileName) {
-            this.success = success;
-            this.messageId = messageId;
-            this.fileName = fileName;
-        }
-
-        public static BackupTaskResult success(String fileName) {
-            return new BackupTaskResult(true, R.string.backup_toast_export_success, fileName);
-        }
-
-        public static BackupTaskResult failure() {
-            return new BackupTaskResult(false, R.string.backup_toast_export_failed, null);
-        }
-    }
 }

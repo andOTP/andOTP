@@ -18,9 +18,9 @@ public class PGPRestoreTask extends GenericRestoreTask {
 
     @Override
     @NonNull
-    protected RestoreTaskResult doInBackground() {
+    protected BackupTaskResult doInBackground() {
         String data = StorageAccessHelper.loadFileString(applicationContext, uri);
 
-        return new RestoreTaskResult(true, data, 0, true, decryptIntent, uri);
+        return new BackupTaskResult(BackupTaskResult.ResultType.RESTORE,true, data, 0, true, decryptIntent, uri);
     }
 }

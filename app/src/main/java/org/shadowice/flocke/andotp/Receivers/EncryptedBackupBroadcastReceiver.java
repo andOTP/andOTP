@@ -28,8 +28,8 @@ import android.content.Intent;
 
 import org.shadowice.flocke.andotp.Database.Entry;
 import org.shadowice.flocke.andotp.R;
+import org.shadowice.flocke.andotp.Tasks.BackupTaskResult;
 import org.shadowice.flocke.andotp.Tasks.EncryptedBackupTask;
-import org.shadowice.flocke.andotp.Tasks.GenericBackupTask;
 import org.shadowice.flocke.andotp.Utilities.Constants;
 import org.shadowice.flocke.andotp.Utilities.DatabaseHelper;
 import org.shadowice.flocke.andotp.Utilities.KeyStoreHelper;
@@ -81,9 +81,9 @@ public class EncryptedBackupBroadcastReceiver extends BackupBroadcastReceiver {
         task.execute();
     }
 
-    private void handleTaskResult(GenericBackupTask.BackupTaskResult result) {
+    private void handleTaskResult(BackupTaskResult result) {
         if (result.success) {
-            NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_SUCCESS, R.string.backup_receiver_title_backup_success, result.fileName);
+            NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_SUCCESS, R.string.backup_receiver_title_backup_success, result.payload);
         } else {
             NotificationHelper.notify(context, Constants.NotificationChannel.BACKUP_FAILED, R.string.backup_receiver_title_backup_failed, result.messageId);
         }

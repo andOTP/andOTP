@@ -22,19 +22,13 @@
 
 package org.shadowice.flocke.andotp.Activities;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import com.google.android.material.textfield.TextInputLayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.ProcessLifecycleOwner;
 
 import android.text.Editable;
 import android.text.InputType;
@@ -59,17 +53,14 @@ import org.shadowice.flocke.andotp.View.AutoFillable.AutoFillableTextInputEditTe
 
 import static org.shadowice.flocke.andotp.Utilities.Constants.AuthMethod;
 
-public class AuthenticateActivity extends BaseActivity
+public class AuthenticateActivity extends BackgroundTaskActivity<AuthenticationTask.Result>
         implements EditText.OnEditorActionListener, View.OnClickListener {
     private final AutoFillableTextInputEditText.AutoFillTextListener autoFillTextListener = text -> startAuthTask(text.toString());
 
-    private static final String TAG_TASK_FRAGMENT = "AuthenticateActivity.TaskFragmentTag";
-    
     private AuthMethod authMethod;
     private String newEncryption = "";
     private String existingAuthCredentials;
     private boolean isAuthUpgrade = false;
-    private ProcessLifecycleObserver observer;
 
     private TextInputLayout passwordLayout;
     AutoFillableTextInputEditText passwordInput;
@@ -112,10 +103,6 @@ public class AuthenticateActivity extends BaseActivity
                     cancelBackgroundTask();
                 }
             });
-
-        observer = new ProcessLifecycleObserver();
-        ProcessLifecycleOwner.get().getLifecycle()
-                .addObserver(observer);
 
         getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
@@ -171,58 +158,21 @@ public class AuthenticateActivity extends BaseActivity
         unlockProgress = v.findViewById(R.id.unlockProgress);
     }
 
-    private void cancelBackgroundTask() {
-        TaskFragment taskFragment = findTaskFragment();
-        if (taskFragment != null) {
-            taskFragment.task.cancel();
-        }
-        setupUiForTaskState(false);
-    }
-
-    private class ProcessLifecycleObserver implements DefaultLifecycleObserver {
-        @Override
-        public void onStop(@NonNull LifecycleOwner owner) {
-            if (settings.getRelockOnBackground()) {
-                cancelBackgroundTask();
-            }
-        }
+    @Override
+    protected boolean cancelTaskOnScreenOff() {
+        return true;
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        checkBackgroundTask();
-    }
-
-    private void checkBackgroundTask() {
-        TaskFragment taskFragment = findTaskFragment();
-        if (taskFragment != null) {
-            if (taskFragment.task.isCanceled()) {
-                // The task was canceled, so remove the task fragment and reset password input.
-                getFragmentManager().beginTransaction()
-                        .remove(taskFragment)
-                        .commit();
-                resetPasswordInput();
-            } else {
-                taskFragment.task.setCallback(this::handleResult);
-                setupUiForTaskState(true);
-            }
-        }
-    }
-
-    private void resetPasswordInput() {
+    protected void onReturnToCanceledTask() {
         passwordInput.setText("");
         passwordInput.requestFocus();
         InputMethodManager keyboard = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         keyboard.showSoftInput(passwordInput, 0);
     }
 
-    @Nullable
-    private TaskFragment findTaskFragment() {
-        return (TaskFragment) getFragmentManager().findFragmentByTag(TAG_TASK_FRAGMENT);
-    }
-
-    private void setupUiForTaskState(boolean isTaskRunning) {
+    @Override
+    protected void setupUiForTaskState(boolean isTaskRunning) {
         passwordLayout.setEnabled(!isTaskRunning);
         passwordInput.setEnabled(!isTaskRunning);
         unlockButton.setEnabled(!isTaskRunning);
@@ -246,25 +196,12 @@ public class AuthenticateActivity extends BaseActivity
     }
 
     private void startAuthTask(String plainPassword) {
-        TaskFragment taskFragment = findTaskFragment();
-        // Don't start a task if we already have an active task running.
-        if (taskFragment == null || taskFragment.task.isCanceled()) {
-            AuthenticationTask task = new AuthenticationTask(this, isAuthUpgrade, existingAuthCredentials, plainPassword);
-            task.setCallback(this::handleResult);
-
-            if (taskFragment == null) {
-                taskFragment = new TaskFragment();
-                getFragmentManager()
-                        .beginTransaction()
-                        .add(taskFragment, TAG_TASK_FRAGMENT)
-                        .commit();
-            }
-            taskFragment.startTask(task);
-            setupUiForTaskState(true);
-        }
+        AuthenticationTask task = new AuthenticationTask(this, isAuthUpgrade, existingAuthCredentials, plainPassword);
+        startBackgroundTask(task);
     }
 
-    private void handleResult(Result result) {
+    @Override
+    void onTaskResult(Result result) {
         if (result.authUpgradeFailed) {
             Toast.makeText(this, R.string.settings_toast_auth_upgrade_failed, Toast.LENGTH_LONG).show();
         }
@@ -297,46 +234,13 @@ public class AuthenticateActivity extends BaseActivity
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        // We don't want the task to callback to a dead activity and cause a memory leak, so null it here.
-        TaskFragment taskFragment = findTaskFragment();
-        if (taskFragment != null) {
-            taskFragment.task.setCallback(null);
-        }
-    }
-
-    @Override
     protected void onStop() {
         passwordInput.setAutoFillTextListener(null);
         super.onStop();
     }
 
     @Override
-    protected void onDestroy() {
-        ProcessLifecycleOwner.get().getLifecycle()
-                .removeObserver(observer);
-        super.onDestroy();
-    }
-
-    @Override
     protected boolean shouldDestroyOnScreenOff() {
         return false;
-    }
-
-    /** Retained instance fragment to hold a running {@link AuthenticationTask} between configuration changes.*/
-    public static class TaskFragment extends Fragment {
-
-        AuthenticationTask task;
-
-        public TaskFragment() {
-            super();
-            setRetainInstance(true);
-        }
-
-        public void startTask(@NonNull AuthenticationTask task) {
-            this.task = task;
-            task.execute();
-        }
     }
 }
