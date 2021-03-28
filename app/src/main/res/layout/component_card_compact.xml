@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/activity_margin_xxsmall"
     android:layout_marginBottom="@dimen/activity_margin_xxsmall"
     android:clickable="true"
+    android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
     app:contentPadding="0dp"
     style="?attr/cardStyle">
@@ -21,7 +22,8 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            tools:ignore="UselessParent">
 
             <FrameLayout
                 android:id="@+id/thumbnailFrame"
@@ -36,7 +38,8 @@
                     android:layout_width="@dimen/card_thumbnail_size"
                     android:layout_height="@dimen/card_thumbnail_size"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/ic_launcher"
+                    tools:ignore="ContentDescription" />
 
             </FrameLayout>
 
@@ -72,28 +75,31 @@
                                 android:layout_height="wrap_content"
                                 android:visibility="gone">
 
-                                <ImageView
-                                    android:id="@+id/valueImg"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginEnd="@dimen/activity_margin_small"
-                                    app:srcCompat="@drawable/ic_visibility_visible"/>
-
                                 <TextView
-                                    android:textDirection="ltr"
                                     android:id="@+id/valueText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="?android:attr/textColorSecondary"
+                                    android:textDirection="ltr"
                                     android:textSize="24sp"
                                     android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/valueTextPrev"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="?android:attr/textColorSecondary"
+                                    android:textDirection="ltr"
+                                    android:layout_marginStart="@dimen/activity_margin_small"
+                                    tools:ignore="HardcodedText" />
 
                             </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/coverLayout"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                tools:ignore="UseCompoundDrawables">
 
                                 <ImageView
                                     android:id="@+id/coverImg"
@@ -101,6 +107,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_marginEnd="@dimen/activity_margin_small"
                                     android:alpha="0.4"
+                                    android:contentDescription="@string/label_hidden"
                                     app:srcCompat="@drawable/ic_visibility_invisible"/>
 
                                 <TextView
@@ -122,7 +129,8 @@
                             android:maxLines="1"
                             android:ellipsize="end"
                             android:text="Label"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            tools:ignore="HardcodedText" />
 
                         <TextView
                             android:id="@+id/textViewTags"
@@ -131,7 +139,8 @@
                             android:maxLines="1"
                             android:ellipsize="end"
                             android:text="Tags"
-                            android:textSize="13.5sp" />
+                            android:textSize="13.5sp"
+                            tools:ignore="HardcodedText" />
 
                     </LinearLayout>
 
@@ -146,12 +155,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/activity_horizontal_margin"
                             android:visibility="gone"
-                            android:orientation="horizontal" >
+                            android:orientation="horizontal"
+                            tools:ignore="UseCompoundDrawables">
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                app:srcCompat="@drawable/ic_alarm_gray" />
+                                app:srcCompat="@drawable/ic_alarm_gray"
+                                tools:ignore="ContentDescription" />
 
                             <TextView
                                 android:id="@+id/customPeriod"
@@ -190,6 +201,7 @@
                             android:layout_gravity="center_vertical"
                             android:padding="@dimen/activity_margin_small"
                             android:background="?android:attr/selectableItemBackground"
+                            android:contentDescription="@string/button_card_copy"
                             app:srcCompat="@drawable/ic_content_copy_gray" />
 
                         <ImageButton
@@ -199,6 +211,7 @@
                             android:layout_gravity="center_vertical"
                             android:padding="@dimen/activity_margin_small"
                             android:background="?android:attr/selectableItemBackground"
+                            android:contentDescription="@string/button_card_options"
                             app:srcCompat="@drawable/ic_more_vert_gray" />
                     </LinearLayout>
 

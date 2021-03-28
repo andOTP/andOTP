@@ -491,7 +491,8 @@ public class MainActivity extends BaseActivity
                 key.equals(getString(R.string.settings_key_theme_mode)) ||
                 key.equals(getString(R.string.settings_key_theme_black_auto)) ||
                 key.equals(getString(R.string.settings_key_hide_global_timeout)) ||
-                key.equals(getString(R.string.settings_key_hide_issuer))) {
+                key.equals(getString(R.string.settings_key_hide_issuer)) ||
+                key.equals(getString(R.string.settings_key_show_prev_token))) {
             recreateActivity = true;
         }
     }

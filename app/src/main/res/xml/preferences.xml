@@ -143,6 +143,12 @@
             android:entryValues="@array/settings_values_tap"
             android:defaultValue="@string/settings_default_tap_double" />
 
+        <CheckBoxPreference
+            android:key="@string/settings_key_show_prev_token"
+            android:title="@string/settings_title_show_prev_token"
+            android:summary="@string/settings_desc_show_prev_token"
+            android:defaultValue="false" />
+
         <org.shadowice.flocke.andotp.Preferences.NumberPickerPreference
             android:key="@string/settings_key_label_size"
             android:title="@string/settings_title_label_size"

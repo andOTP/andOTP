@@ -69,11 +69,11 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
     private final LinearLayout coverLayout;
     private final LinearLayout counterLayout;
     private final FrameLayout thumbnailFrame;
-    private final ImageView visibleImg;
     private final ImageView thumbnailImg;
     private final ImageButton menuButton;
     private final ImageButton copyButton;
     private final TextView value;
+    private final TextView valuePrev;
     private final TextView label;
     private final TextView counter;
     private final TextView tags;
@@ -86,8 +86,8 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         card = v.findViewById(R.id.card_view);
         value = v.findViewById(R.id.valueText);
+        valuePrev = v.findViewById(R.id.valueTextPrev);
         valueLayout = v.findViewById(R.id.valueLayout);
-        visibleImg = v.findViewById(R.id.valueImg);
         thumbnailFrame = v.findViewById(R.id.thumbnailFrame);
         thumbnailImg = v.findViewById(R.id.thumbnailImg);
         coverLayout = v.findViewById(R.id.coverLayout);
@@ -106,7 +106,6 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
 
         menuButton.getDrawable().setColorFilter(colorFilter);
         copyButton.getDrawable().setColorFilter(colorFilter);
-        visibleImg.getDrawable().setColorFilter(colorFilter);
         invisibleImg.getDrawable().setColorFilter(colorFilter);
 
         setupOnClickListeners(menuButton, copyButton);
@@ -221,6 +220,21 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         // save the unformatted token to the tag of this TextView for copy/paste
         value.setTag(entry.getCurrentOTP());
 
+        if (settings.getShowPrevToken()) {
+            String tokenPrev = entry.getPrevOTP();
+
+            if (tokenPrev != null && !tokenPrev.isEmpty()) {
+                String tokenFormattedPrev = Tools.formatToken(tokenPrev, settings.getTokenSplitGroupSize());
+
+                valuePrev.setVisibility(View.VISIBLE);
+                valuePrev.setText(tokenFormattedPrev);
+            } else {
+                valuePrev.setVisibility(View.GONE);
+            }
+        } else {
+            valuePrev.setVisibility(View.GONE);
+        }
+
         List<String> entryTags = entry.getTags();
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -255,11 +269,9 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
             if (entry.isVisible()) {
                 valueLayout.setVisibility(View.VISIBLE);
                 coverLayout.setVisibility(View.GONE);
-                visibleImg.setVisibility(View.GONE);
             } else {
                 valueLayout.setVisibility(View.GONE);
                 coverLayout.setVisibility(View.VISIBLE);
-                visibleImg.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -316,11 +328,9 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         if (enabled) {
             valueLayout.setVisibility(View.GONE);
             coverLayout.setVisibility(View.VISIBLE);
-            visibleImg.setVisibility(View.VISIBLE);
         } else {
             valueLayout.setVisibility(View.VISIBLE);
             coverLayout.setVisibility(View.GONE);
-            visibleImg.setVisibility(View.GONE);
         }
     }
 
@@ -369,5 +379,6 @@ public class EntryViewHolder extends RecyclerView.ViewHolder
         }
 
         value.setTextColor(textColor);
+        valuePrev.setTextColor(textColor);
     }
 }

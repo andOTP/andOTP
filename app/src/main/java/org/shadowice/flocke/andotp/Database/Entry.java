@@ -70,6 +70,7 @@ public class Entry {
     private String issuer;
     private String label;
     private String currentOTP;
+    private String prevOTP;
     private boolean visible = false;
     private Runnable hideTask = null;
     private long last_update = 0;
@@ -150,7 +151,12 @@ public class Entry {
 
         String counter = uri.getQueryParameter("counter");
         String issuer = uri.getQueryParameter("issuer");
-        String label = getStrippedLabel(issuer, uri.getPath().substring(1));
+
+        String label = "";
+
+        if (uri.getPath() != null)
+            label = getStrippedLabel(issuer, uri.getPath().substring(1));
+
         String period = uri.getQueryParameter("period");
         String digits = uri.getQueryParameter("digits");
         String algorithm = uri.getQueryParameter("algorithm");
@@ -172,6 +178,10 @@ public class Entry {
 
         this.issuer = issuer;
         this.label = label;
+
+        if (secret == null)
+            throw new Exception("Empty secret");
+
         if(type == OTPType.MOTP) {
             this.secret = secret.getBytes();
         } else {
@@ -475,6 +485,10 @@ public class Entry {
         return currentOTP;
     }
 
+    public String getPrevOTP() {
+        return prevOTP;
+    }
+
     public String getPin() {
         return pin;
     }
@@ -492,18 +506,48 @@ public class Entry {
     }
 
     public boolean updateOTP(boolean updateNow) {
-        if (type == OTPType.TOTP || type == OTPType.STEAM) {
+        if (type == OTPType.TOTP || type == OTPType.STEAM || type == OTPType.MOTP) {
             long time = System.currentTimeMillis() / 1000;
             long counter = time / this.getPeriod();
 
             if (updateNow || counter > last_update) {
-                if (type == OTPType.TOTP)
-                    currentOTP = TokenCalculator.TOTP_RFC6238(secret, period, digits, algorithm);
-                else if (type == OTPType.STEAM)
-                    currentOTP = TokenCalculator.TOTP_Steam(secret, period, digits, algorithm);
+                // Store the previous token so we don't have to recalculate it every time
+                if (currentOTP != null && !currentOTP.isEmpty())
+                    prevOTP = currentOTP;
+                else
+                    prevOTP = "";
+
+                switch (type) {
+                    case TOTP:
+                        currentOTP = TokenCalculator.TOTP_RFC6238(secret, period, digits, algorithm, 0);
+
+                        if (prevOTP == null || prevOTP.isEmpty())
+                            prevOTP = TokenCalculator.TOTP_RFC6238(secret, period, digits, algorithm, -1);
+
+                        break;
+                    case STEAM:
+                        currentOTP = TokenCalculator.TOTP_Steam(secret, period, digits, algorithm, 0);
+
+                        if (prevOTP == null || prevOTP.isEmpty())
+                            prevOTP = TokenCalculator.TOTP_Steam(secret, period, digits, algorithm, -1);
+
+                        break;
+                    case MOTP:
+                        String currentPin = this.getPin();
+
+                        if (currentPin.isEmpty()) {
+                            currentOTP = MOTP_NO_PIN_CODE;
+                        } else {
+                            currentOTP = TokenCalculator.MOTP(currentPin, new String(this.secret), time, 0);
+
+                            if (prevOTP == null || prevOTP.isEmpty())
+                                prevOTP = TokenCalculator.MOTP(currentPin, new String(this.secret), time, -1);
+                        }
+
+                        break;
+                }
 
                 last_update = counter;
-                //New OTP. Change color to default color
                 setColor(COLOR_DEFAULT);
                 return true;
             } else {
@@ -512,22 +556,6 @@ public class Entry {
         } else if (type == OTPType.HOTP) {
             currentOTP = TokenCalculator.HOTP(secret, counter, digits, algorithm);
             return true;
-        } else if (type == OTPType.MOTP) {
-            long time = System.currentTimeMillis() / 1000;
-            long counter = time / this.getPeriod();
-            if (counter > last_update || updateNow) {
-                String currentPin = this.getPin();
-                if (currentPin.isEmpty()) {
-                    currentOTP = MOTP_NO_PIN_CODE;
-                } else {
-                    currentOTP = TokenCalculator.MOTP(currentPin, new String(this.secret), time);
-                }
-                last_update = counter;
-                setColor(COLOR_DEFAULT);
-                return true;
-            } else {
-                return false;
-            }
         } else {
             return false;
         }

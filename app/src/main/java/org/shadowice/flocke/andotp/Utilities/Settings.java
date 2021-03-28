@@ -675,4 +675,8 @@ public class Settings {
         String labelDisplay = getString(R.string.settings_key_label_display, R.string.settings_default_label_display);
         return Constants.LabelDisplay.valueOf(labelDisplay.toUpperCase(Locale.ENGLISH));
     }
+
+    public boolean getShowPrevToken() {
+        return getBoolean(R.string.settings_key_show_prev_token, false);
+    }
 }
