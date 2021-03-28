@@ -137,6 +137,7 @@
         <item>Anzeigen/Verstecken</item>
         <item>Kopieren</item>
         <item>Kopieren und in den Hintergrund wechseln</item>
+        <item>Als Keystrokes teilen</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Beschriftung</item>
