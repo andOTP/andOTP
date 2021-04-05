@@ -105,6 +105,9 @@ public class AuthenticateActivity extends BackgroundTaskActivity<AuthenticationT
             });
 
         getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
+        String pass = getIntent().getStringExtra(Constants.EXTRA_AUTH_PLAIN_PASSWORD);
+        if (pass != null) { startAuthTask(pass); }
     }
 
     private void initToolbar() {

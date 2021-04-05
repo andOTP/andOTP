@@ -92,6 +92,7 @@ public class Constants {
     public final static String EXTRA_AUTH_PASSWORD_KEY              = "password_key";
     public final static String EXTRA_AUTH_NEW_ENCRYPTION            = "new_encryption";
     public final static String EXTRA_AUTH_MESSAGE                   = "message";
+    public final static String EXTRA_AUTH_PLAIN_PASSWORD            = "plain_password";
 
     public final static String EXTRA_BACKUP_ENCRYPTION_KEY          = "encryption_key";
 

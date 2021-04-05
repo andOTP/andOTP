@@ -26,10 +26,16 @@ package org.shadowice.flocke.andotp.Activities;
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
+import android.content.ClipDescription;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
+import android.nfc.tech.Ndef;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -52,6 +58,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -82,7 +89,9 @@ import org.shadowice.flocke.andotp.View.ItemTouchHelper.SimpleItemTouchHelperCal
 import org.shadowice.flocke.andotp.Dialogs.ManualEntryDialog;
 import org.shadowice.flocke.andotp.View.TagsAdapter;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.crypto.SecretKey;
@@ -151,6 +160,7 @@ public class MainActivity extends BaseActivity
         } else if (authMethod == AuthMethod.PASSWORD || authMethod == AuthMethod.PIN) {
             Intent authIntent = new Intent(this, AuthenticateActivity.class);
             authIntent.putExtra(Constants.EXTRA_AUTH_MESSAGE, messageId);
+            authIntent.putExtra(Constants.EXTRA_AUTH_PLAIN_PASSWORD, readPasswordFromNFC());
             startActivityForResult(authIntent, Constants.INTENT_MAIN_AUTHENTICATE);
         }
     }
@@ -366,6 +376,60 @@ public class MainActivity extends BaseActivity
         if (savedInstanceState != null) {
             setFilterString(savedInstanceState.getString("filterString", ""));
         }
+    }
+
+    private String readPasswordFromNFC() {
+        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
+            String type = getIntent().getType();
+            if (ClipDescription.MIMETYPE_TEXT_PLAIN.equals(type)) {
+                Tag tag = getIntent().getParcelableExtra(NfcAdapter.EXTRA_TAG);
+                Ndef ndef = Ndef.get(tag);
+                if (ndef == null) {
+                    // NDEF is not supported by this Tag.
+                    return null;
+                }
+                NdefMessage ndefMessage = ndef.getCachedNdefMessage();
+                NdefRecord[] records = ndefMessage.getRecords();
+                for (NdefRecord ndefRecord : records) {
+                    if (ndefRecord.getTnf() == NdefRecord.TNF_WELL_KNOWN && Arrays.equals(ndefRecord.getType(), NdefRecord.RTD_TEXT)) {
+                        try {
+                            return readText(ndefRecord);
+                        } catch (UnsupportedEncodingException e) {
+                            Log.e(MainActivity.class.getSimpleName(), "Unsupported Encoding", e);
+                        }
+                    }
+                }
+            } else {
+                Log.d(MainActivity.class.getSimpleName(), "Wrong mime type: " + type);
+            }
+        }
+        return null;
+    }
+
+    private String readText(NdefRecord record) throws UnsupportedEncodingException {
+        /*
+         * See NFC forum specification for "Text Record Type Definition" at 3.2.1
+         *
+         * http://www.nfc-forum.org/specs/
+         *
+         * bit_7 defines encoding
+         * bit_6 reserved for future use, must be 0
+         * bit_5..0 length of IANA language code
+         */
+
+        byte[] payload = record.getPayload();
+
+        // Get the Text Encoding
+        String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16";
+
+        // Get the Language Code
+        int languageCodeLength = payload[0] & 0063;
+
+        // String languageCode = new String(payload, 1, languageCodeLength, "US-ASCII");
+        // e.g. "en"
+
+        // Get the Text
+        return new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
     }
 
     private void checkIntent() {
