@@ -1,5 +1,39 @@
 # Changelog
 
+#### v0.9.0
+
+ * New feature: Option to focus search on start (Issue #654,PR #658 by @mchllngr)
+ * New feature: Option to disable Android sync (Google Drive backup) during initial setup (Issue #620, PR #622 by @RichyHBM)
+ * New feature: Option to automatically unlock the app after the credentials have been auto-filled (PR #657 by @mchllngr)
+ * New feature: Option to globally hide the issuer (Issue #678, PR #758 by @Ullas-Aithal)
+ * New feature: Option for multi-line labels (Issue #699)
+ * New feature: Automatic theme selection for Android 10+ (Issue #394, PR #418 by @Ullas-Aithal)
+ * New feature: Allow editing digits, period and counter for existing entries (Issue #694)
+ * New feature: **mOTP support** (Issue #142, PR #617 by @mantinan)
+ * New feature: Show a warning if the automatic time setting is disable on the phone (Issue #285 and #777)
+ * New feature: Share OTP token as keystrokes (PR #693 by @DanielWeigl)
+ * New feature: Option to show previous token (Issue #506)
+ * Improvement: Perform authentication in the background to improve responsiveness (Issue #635, PR #738 by @jsoberg)
+ * Improvement: Backups are now performed in background tasks to improve responsiveness and work around problems with some storage providers (e.g. Nextcloud)
+ * Improvement: Show simple instructions and hide the timeout bar if there are no accounts (Issue #745 and #746, PR #747 by @Ullas-Aithal)
+ * Improvement: Pressing ENTER on a physical keyboard now finishes certain tasks (Issue #590, PR #661 by @mchllngr)
+ * Improvement: Use a font with slashed zero for the account secrets (Issue #665, PR #772 by @Ullas-Aithal)
+ * Improvement: Auto-select the thumbnail if the name appears as part of the issuer (Issue #685, PR #687 by @mavit)
+ * Improvement: Force a minimum password length for backups (Issue #770, PR #771 by @Ullas-Aithal)
+ * Improvement: Automatically update the thumbnail when changing the issuer of an entry (Issue #553)
+ * Improvement: Try harder to decode QR codes from images (Issue #790, PR #792 by @ziegenberg)
+ * Improvement: Perform a short benchmark to determine the iterations to use for unlocking the database (Issue #778)
+ * Bugfix: Switch keyboard when changing auth type during setup (Issue #740, PR #741 by @jsoberg)
+ * Bugfix: Show correct message on password mismatch during setup (PR #774 by @brainynai)
+ * Bugfix: Validate password before saving settings during setup to avoid empty passwords (Issue #593)
+ * Internal: Performance and stability improvements for the main token list (fixes #346 as well)
+ * Internal: Upgrade Gradle, build tools and dependencies
+ * Internal: Perform key-generation during setup in a background task
+ * Internal: Perform credentials change in the settings in a background task
+ * Internal: Perform encryption change in the settings in a background task
+ * Internal: Use our own NumberPickerPreference class
+ * Thumbnails: LOTS of new thumbnails (thanks to all contributors)
+
 #### v0.8.0
 
  * New feature: **Storage Access Framework** (remove all manual storage permissions and use the SAF everywhere)
