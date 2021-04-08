@@ -116,8 +116,8 @@ public class Constants {
     final static int PBKDF2_SALT_LENGTH             = 16;
 
     // PBKDF2 settings for authentication
-    final static int PBKDF2_TARGET_AUTH_TIME        = 500;      // ms
-    final static int PBKDF2_MIN_AUTH_ITERATIONS     = 20000;
+    final static int PBKDF2_TARGET_AUTH_TIME        = 1000;      // ms
+    final static int PBKDF2_MIN_AUTH_ITERATIONS     = 30000;
     final static int PBKDF2_BENCHMARK_ITERATIONS    = 50000;
 
     // PBKDF2 settings for backups
