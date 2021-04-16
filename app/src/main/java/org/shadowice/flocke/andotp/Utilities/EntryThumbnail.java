@@ -140,6 +140,7 @@ public class EntryThumbnail {
         CoinTracker(R.drawable.thumb_cointracker),
         ComputerBase(R.drawable.thumb_computerbase),
         ConnectWiseManage(R.drawable.thumb_connectwise_manage),
+        Contabo(R.drawable.thumb_contabo),
         CozyCloud(R.drawable.thumb_cozycloud),
         CrowdSupply(R.drawable.thumb_crowd_supply),
         Crowdin(R.drawable.thumb_crowdin),
