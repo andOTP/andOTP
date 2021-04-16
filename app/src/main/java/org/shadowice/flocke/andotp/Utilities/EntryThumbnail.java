@@ -162,6 +162,7 @@ public class EntryThumbnail {
         DreamHost(R.drawable.thumb_dreamhost),
         Dropbox(R.drawable.thumb_dropbox),
         Drupal(R.drawable.thumb_drupal),
+        Ecloud(R.drawable.thumb_ecloud),
         ElectronicArts(R.drawable.thumb_electronic_arts),
         Email(R.drawable.thumb_email),
         EpicGames(R.drawable.thumb_epic_games),
