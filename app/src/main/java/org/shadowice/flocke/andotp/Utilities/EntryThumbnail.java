@@ -96,6 +96,7 @@ public class EntryThumbnail {
         Appveyor(R.drawable.thumb_appveyor),
         ArchLinux(R.drawable.thumb_archlinux),
         ArenaNet(R.drawable.thumb_arenanet),
+        Aruba(R.drawable.thumb_aruba),
         AtlanticNet(R.drawable.thumb_atlantic_net),
         Atlassian(R.drawable.thumb_atlassian),
         Autodesk(R.drawable.thumb_autodesk),
