@@ -354,6 +354,7 @@ public class EntryThumbnail {
         SOGo(R.drawable.thumb_sogo),
         Sophos(R.drawable.thumb_sophos),
         SourceForge(R.drawable.thumb_sourceforge),
+        Sourcehut(R.drawable.thumb_sourcehut),
         Squarespace(R.drawable.thumb_squarespace),
         Stack(R.drawable.thumb_stack),
         StandardNotes(R.drawable.thumb_standardnotes),
