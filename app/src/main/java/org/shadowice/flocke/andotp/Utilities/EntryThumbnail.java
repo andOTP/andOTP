@@ -345,7 +345,7 @@ public class EntryThumbnail {
         School(R.drawable.thumb_school),
         Sciebo(R.drawable.thumb_sciebo),
         SelfWealth(R.drawable.thumb_selfwealth),
-        Seafile(R.mipmap.thumb_seafile, AssetType.Bitmap),
+        Seafile(R.drawable.thumb_seafile),
         Sentry(R.drawable.thumb_sentry),
         Sevdesk(R.drawable.thumb_sevdesk),
         SimpleLogin(R.drawable.thumb_simple_login),
