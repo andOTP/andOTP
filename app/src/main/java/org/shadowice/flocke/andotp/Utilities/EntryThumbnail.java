@@ -282,6 +282,7 @@ public class EntryThumbnail {
         NextDNS(R.drawable.thumb_nextdns),
         NexusMods(R.drawable.thumb_nexusmods),
         Nintendo(R.drawable.thumb_nintendo),
+        Nord(R.drawable.thumb_nord),
         NoStarchPress(R.drawable.thumb_no_starch_press),
         NOYB(R.drawable.thumb_noyb),
         NPM(R.drawable.thumb_npm),
