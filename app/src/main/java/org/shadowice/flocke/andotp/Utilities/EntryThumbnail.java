@@ -257,7 +257,7 @@ public class EntryThumbnail {
         Mastodon(R.drawable.thumb_mastodon),
         Matomo(R.drawable.thumb_matomo),
         Mattermost(R.drawable.thumb_mattermost),
-        Mediawiki(R.mipmap.thumb_mediawiki, AssetType.Bitmap),
+        Mediawiki(R.drawable.thumb_mediawiki),
         Mega(R.drawable.thumb_mega),
         MercadoLibre(R.drawable.thumb_mercadolibre),
         Mercury(R.drawable.thumb_mercury),
