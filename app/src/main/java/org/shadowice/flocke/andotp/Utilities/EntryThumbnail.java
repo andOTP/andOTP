@@ -30,6 +30,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -42,13 +43,14 @@ public class EntryThumbnail {
 
         if (thumbnail == EntryThumbnails.Default && size > 0) {
             LetterBitmap letterBitmap = new LetterBitmap(context);
-            String letterSrc = issuer.isEmpty() ? label : issuer;
+            String letterSrc = TextUtils.isEmpty(issuer) ? label : issuer;
             return letterBitmap.getLetterTile(letterSrc, letterSrc, size, size);
         } else if (thumbnail != EntryThumbnails.Default) {
 
             try {
                 if (thumbnail.getAssetType() == AssetType.Vector) {
                     Drawable drawable = AppCompatResources.getDrawable(context, thumbnail.getResource());
+                    assert drawable != null; // The thumbnail should always have a drawable
                     Bitmap bitmap = Bitmap.createBitmap(drawable.getMinimumWidth(), drawable.getMinimumHeight(), Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(bitmap);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
