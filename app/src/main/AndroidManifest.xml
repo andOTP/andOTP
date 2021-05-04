@@ -87,4 +87,9 @@
             </intent-filter>
         </receiver>
     </application>
+
+    <!-- Required on Android 11+ for andOTP to be able to select a PGP provider -->
+    <queries>
+        <package android:name="org.sufficientlysecure.keychain" />
+    </queries>
 </manifest>
