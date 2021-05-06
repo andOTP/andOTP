@@ -26,6 +26,10 @@
  * Bugfix: Switch keyboard when changing auth type during setup (Issue #740, PR #741 by @jsoberg)
  * Bugfix: Show correct message on password mismatch during setup (PR #774 by @brainynai)
  * Bugfix: Validate password before saving settings during setup to avoid empty passwords (Issue #593)
+ * Bugfix: Fix scanning QR codes on Android 11+ (Issue #806, PR #807 by @ziegenberg)
+ * Bugfix: Fix OpenKeychain detection on Android 11+ (Issue #825)
+ * Bugfix: Don't require authentication after attaching a physical keyboard (Issue #592)
+ * Bugfix: Fix crash during thumbnail selection with empty issuer
  * Internal: Performance and stability improvements for the main token list (fixes #346 as well)
  * Internal: Upgrade Gradle, build tools and dependencies
  * Internal: Perform key-generation during setup in a background task
