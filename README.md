@@ -65,6 +65,7 @@ key, which renders them useless.
  * [WebDecrypt](https://flocke.shadowice.org/andOTP/decrypt/): JavaScript-based decryption of the **new password-protected backup format** in the browser ([source code](https://github.com/andOTP/WebDecrypt)).
  * [andOTP-decrypt](https://github.com/asmw/andOTP-decrypt): Python script written by @asmw to decrypt the **old and new password-protected backup format** on your PC.
  * [mac2fa](https://github.com/lorenzo2897/mac2fa): Electron app for macOS that lives in your system tray and generates OTPs from an encrypted backup file.
+ * [go-andotp](https://github.com/grijul/go-andotp): CLI Program written in go to encrypt/decrypt andOTP files on your PC. Decrypted files can be encrypted and imported back to andOTP.
 
 ### Automatic backups:
 
