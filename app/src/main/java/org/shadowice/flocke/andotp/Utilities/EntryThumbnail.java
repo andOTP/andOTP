@@ -393,6 +393,7 @@ public class EntryThumbnail {
         Ultimaker(R.drawable.thumb_ultimaker),
         Unity(R.drawable.thumb_unity),
         Uphold(R.drawable.thumb_uphold),
+        UptimeRobot(R.drawable.thumb_uptimerobot),
         USAA(R.drawable.thumb_usaa),
         VagrantCloud(R.drawable.thumb_vagrant_cloud),
         VEXXHOST(R.drawable.thumb_vexxhost),
