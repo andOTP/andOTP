@@ -366,6 +366,7 @@ public class EntryThumbnail {
         StandardNotes(R.drawable.thumb_standardnotes),
         StarCitizen(R.drawable.thumb_starcitizen),
         Steam(R.drawable.thumb_steam),
+        Strato(R.drawable.thumb_strato),
         Stripe(R.drawable.thumb_stripe),
         Sumologic(R.drawable.thumb_sumologic),
         Sync(R.drawable.thumb_sync),
