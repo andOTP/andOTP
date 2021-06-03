@@ -310,6 +310,7 @@ public class EntryThumbnail {
         PaySafe(R.drawable.thumb_paysafecard),
         PCloud(R.drawable.thumb_pcloud),
         PeeringDB(R.drawable.thumb_peeringdb),
+        Percona(R.drawable.thumb_percona),
         Phabricator(R.drawable.thumb_phabricator),
         phpMyAdmin(R.drawable.thumb_phpmyadmin),
         PlayStation(R.drawable.thumb_playstation),
