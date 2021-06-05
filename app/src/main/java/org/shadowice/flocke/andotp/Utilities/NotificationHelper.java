@@ -75,7 +75,7 @@ public class NotificationHelper {
     }
 
     public static void notify(Context context, Constants.NotificationChannel channel , int resIdTitle, String resBody) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, null)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId(channel))
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(context.getText(resIdTitle))
                 .setStyle(new NotificationCompat.BigTextStyle()
