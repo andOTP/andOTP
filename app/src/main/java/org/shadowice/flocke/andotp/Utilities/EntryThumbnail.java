@@ -191,6 +191,7 @@ public class EntryThumbnail {
         Galaxus(R.drawable.thumb_galaxus),
         Gamepad(R.drawable.thumb_gamepad),
         Gandi(R.drawable.thumb_gandi),
+        Gateio(R.drawable.thumb_gateio),
         Git(R.drawable.thumb_git),
         Gitea(R.drawable.thumb_gitea),
         GitHub(R.drawable.thumb_github),
