@@ -78,6 +78,7 @@ public class EntryThumbnail {
         OneBlu(R.drawable.thumb_1blu),
         OnePassword(R.drawable.thumb_1password),
         TwentyThreeAndMe(R.drawable.thumb_23andme),
+        FiveHundredPX(R.drawable.thumb_500px),
         Adafruit(R.drawable.thumb_adafruit),
         AdGuard(R.drawable.thumb_adguard),
         Adobe(R.drawable.thumb_adobe),
