@@ -139,6 +139,7 @@ public class EntryThumbnail {
         Codeberg(R.drawable.thumb_codeberg),
         Codegiant(R.drawable.thumb_codegiant),
         Coinbase(R.drawable.thumb_coinbase),
+        CoinDCX(R.drawable.thumb_coindcx),
         CoinJar(R.drawable.thumb_coinjar),
         CoinTracker(R.drawable.thumb_cointracker),
         ComputerBase(R.drawable.thumb_computerbase),
