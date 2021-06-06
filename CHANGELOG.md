@@ -37,6 +37,7 @@
  * Internal: Perform encryption change in the settings in a background task
  * Internal: Use our own NumberPickerPreference class
  * Thumbnails: LOTS of new thumbnails (thanks to all contributors)
+ * Translations: Indonesian, Serbian and Slovak (thanks to all contributors on Crowdin)
 
 #### v0.8.0
 
