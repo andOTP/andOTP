@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_activity_title">Потврда идентитета</string>
+    <!-- Hints -->
+    <string name="auth_hint_password">Лозинка</string>
+    <string name="auth_hint_pin">ПИН</string>
+    <!-- Messages -->
+    <string name="auth_msg_authenticate">Молимо вас да се аутентификујете да бисте покренули andOTP!</string>
+    <string name="auth_msg_confirm_encryption">Потврдите идентитет да бисте генерисали свој
+        кључ за шифровање!</string>
+    <!-- Buttons -->
+    <string name="auth_button_unlock">Откључај</string>
+    <!-- Toast messages -->
+    <string name="auth_toast_password_missing">Молимо поставите лозинку у <b>Подешавања</b>!</string>
+    <string name="auth_toast_pin_missing">Молимо поставите ПИН у <b>Подешавања</b>!</string>
+    <string name="auth_toast_password_again">Погрешна лозинка, покушајте поново!</string>
+    <string name="auth_toast_pin_again">Погрешн ПИН, покушајте поново!</string>
+</resources>

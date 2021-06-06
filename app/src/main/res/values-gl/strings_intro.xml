@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">Comecemos</string>
     <string name="intro_slide1_desc">Ben vido a <b>andOTP</b>, este asistente guiarate a través da configuración
         inicial. Pon atención e le coidadosamente xa que podes perder datos importantes!
@@ -26,8 +26,17 @@
     <string name="intro_slide3_warn_no_password">Escribe un contrasinal para continuar!</string>
     <string name="intro_slide3_warn_no_pin">Escolle un PIN para continuar!</string>
     <string name="intro_slide3_warn_confirm_password">Confirma o contrasinal para continuar!</string>
+    <string name="intro_slide3_warn_password_mismatch">Os contrasinais teñen que concordar!</string>
     <string name="intro_slide3_warn_confirm_pin">Confirma o PIN para continuar!</string>
+    <string name="intro_slide3_warn_pin_mismatch">Os Pins deben concordar!</string>
     <string name="intro_slide4_title">Remataches</string>
+    <string name="intro_slide4_title_failed">Fallou a configuración</string>
+    <string name="intro_slide4_title_progress">Agarda por favor</string>
+    <string name="intro_slide4_desc_failed">Fallou o establecemento dun contrasinal, esta intro mostrarase
+        de novo a próxima vez!</string>
     <string name="intro_slide4_desc">Gardáronse os teus axustes, agora xa podes utilizar
         <b>andOTP</b>!</string>
+    <string name="intro_slide4_desc_progress">Gardáronse os axustes e a chave de cifrado estase
+        creando, agarda por favor…</string>
+    <string name="intro_slide_android_backup_desc">Android sync é unha función incluída en android utilizada para facer copia de apoio dos datos da app por parte dun terceiro (normalmente Google). As copias gárdanse sempre cifradas e inaccesibles para terceiras partes sen o teu contrasinal mestre. Require que utilices o método de cifrado por Contrasinal.</string>
 </resources>

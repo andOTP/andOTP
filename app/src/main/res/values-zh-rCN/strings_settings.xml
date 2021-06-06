@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">设置</string>
     <!-- Categories -->
     <string name="settings_category_title_security">安全</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">不活动时重新锁定延迟</string>
     <string name="settings_title_block_accessibility">阻止辅助服务</string>
     <string name="settings_title_block_autofill">屏蔽自动填充</string>
+    <string name="settings_title_auto_unlock_after_autofill">自动填充后自动解锁</string>
     <string name="settings_title_lang">语言</string>
+    <string name="settings_title_theme_mode">主题模式</string>
+    <string name="settings_title_theme_black_auto">黑色主题</string>
     <string name="settings_title_theme">主题</string>
     <string name="settings_title_card_layout">卡片布局</string>
+    <string name="settings_title_show_prev_token">显示上一枚令牌</string>
     <string name="settings_title_label_size">名称字号</string>
-    <string name="settings_title_label_scroll">名称滚动</string>
+    <string name="settings_title_label_display">标签显示</string>
     <string name="settings_title_tap_single">单击</string>
     <string name="settings_title_tap_double">双击</string>
     <string name="settings_title_thumbnail_size_ask">缩略图大小</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">高亮过期令牌</string>
     <string name="settings_title_hide_global_timeout">隐藏全局超时栏</string>
     <string name="settings_title_show_individual_timeouts">显示个别超时</string>
+    <string name="settings_title_focus_search_on_start">应用启动后聚焦搜索</string>
+    <string name="settings_title_hide_issuer">隐藏发行人</string>
     <string name="settings_title_backup_append_date">追加日期到文件名</string>
     <string name="settings_title_backup_ask">询问文件名</string>
     <string name="settings_title_backup_location">默认备份位置</string>
@@ -58,13 +64,19 @@
     <string name="settings_desc_auth_inactivity_delay">选择需要重新验证的延时（秒）</string>
     <string name="settings_desc_block_accessibility">隐藏辅助服务中的敏感字段。 <b>如果您依赖辅助服务，请不要启用此选项！</b></string>
     <string name="settings_desc_block_autofill">阻止自动填充服务访问应用内的密码        区域</string>
-    <string name="settings_desc_block_autofill_android">此功能需要 Android 8.0 (Oreo) 以上        版本</string>
-    <string name="settings_desc_label_scroll">过长的名称滚动显示，而非截断显示。</string>
+    <string name="settings_desc_auto_unlock_after_autofill">解锁，前提是自动填充功能已
+        填写了密码</string>
+    <string name="settings_desc_autofill_requires_android_o">此功能需要 Android 8.0 (Oreo)
+        以上版本</string>
+    <string name="settings_desc_theme_black_auto">在深色模式下使用黑色主题</string>
+    <string name="settings_desc_show_prev_token">除了当前的令牌外，显示先前的令牌</string>
     <string name="settings_desc_minimize_on_copy">当您复制 OTP 到剪贴板时应用将被最小化</string>
     <string name="settings_desc_search_includes">指定搜索时应包含的值</string>
     <string name="settings_desc_label_highlight_token">用红色高亮标记将在 8 秒后过期的令牌</string>
     <string name="settings_desc_hide_global_timeout">隐藏屏幕顶部显示的全局超时栏</string>
     <string name="settings_desc_show_individual_timeouts">为每个条目显示一个单独的超时栏。这可能会减慢应用速度，只有在真正需要时才启用。</string>
+    <string name="settings_desc_focus_search_on_start">打开应用程序后立即聚焦搜索</string>
+    <string name="settings_desc_hide_issuer">隐藏每张卡片上的发行人标签</string>
     <string name="settings_desc_backup_append_date">追加当前日期和时间到建议的备份文件名</string>
     <string name="settings_desc_backup_ask">每次创建或还原备份时都询问文件名</string>
     <string name="settings_desc_backup_location">选择默认的备份位置</string>
@@ -90,6 +102,8 @@
     <string name="settings_toast_encryption_no_key">未能获取加密密钥，正在中止！</string>
     <string name="settings_toast_encryption_auth_failed">身份验证失败！</string>
     <string name="settings_toast_auth_upgrade_failed">无法静默升级您的 密码/PIN 到新的加密，请在设置手动重置！</string>
+    <string name="settings_toast_android_sync_enabled">Android 同步已启用</string>
+    <string name="settings_toast_android_sync_disabled">Android 同步已禁用</string>
     <string name="settings_dialog_title_warning">警告</string>
     <string name="settings_dialog_title_error">错误</string>
     <string name="settings_dialog_title_clear_keystore">清除密钥库？</string>
@@ -126,11 +140,16 @@
         <item>显示/隐藏</item>
         <item>复制</item>
         <item>复制并转到后台</item>
+        <item>作为密钥库进行分享</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>名称</item>
         <item>签发方</item>
         <item>标签</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>自动</item>
+        <item>手动</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>关</item>
@@ -141,6 +160,11 @@
         <item>亮色主题</item>
         <item>暗色主题</item>
         <item>黑色主题</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>截断</item>
+        <item>滚动</item>
+        <item>多行</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>隐藏</item>

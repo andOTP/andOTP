@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="backup_activity_title">备份</string>
-    <string name="backup_category_plain">明文备份</string>
-    <string name="backup_category_crypt">加密备份</string>
-    <string name="backup_category_openpgp">OpenPGP 备份</string>
-    <string name="backup_title_export_plain">备份 (纯文本)</string>
-    <string name="backup_title_export_crypt">备份 (已加密)</string>
-    <string name="backup_title_export_openpgp">备份 (OpenPGP)</string>
-    <string name="backup_title_import_plain">还原 (纯文本)</string>
-    <string name="backup_title_import_crypt">还原 (已加密)</string>
-    <string name="backup_title_import_crypt_old">还原（旧版加密）</string>
-    <string name="backup_title_import_openpgp">还原 (OpenPGP)</string>
     <string name="backup_title_replace">替换现有条目</string>
-    <string name="backup_desc_export_plain">备份所有帐户到一个纯文本 JSON 文件。</string>
-    <string name="backup_desc_export_crypt">备份所有帐户到一个受密码保护的 JSON 文件。</string>
-    <string name="backup_desc_export_openpgp">备份所有帐户到一个 OpenPGP 加密的 JSON 文件。</string>
-    <string name="backup_desc_import_plain">从纯文本 JSON 文件还原帐户</string>
-    <string name="backup_desc_import_crypt">从受密码保护的 JSON 文件还原帐户</string>
-    <string name="backup_desc_import_crypt_old">从受密码保护的 JSON 文件还原账户（适用于 <b>andOTP 0.6.3 之前版本</b> 所创建的备份）</string>
-    <string name="backup_desc_import_openpgp">从 OpenPGP 加密的 JSON 文件还原帐户</string>
-    <string name="backup_desc_crypt_setup">未能从 <b>设置</b> 中加载备份密码，这可能是您没有设置密码，或者某处发生错误。在创建或导入备份时，系统将要求您手动输入密码。</string>
+    <string name="backup_desc_replace">如果启用，导入备份时将覆盖掉现有的条目，仅留备份里的内容。如果禁用，备份将会与现有的条目合并。</string>
     <string name="backup_desc_openpgp_provider">您需要安装 OpenPGP 提供程序，并在 <b>设置</b> 中启用，才能使用此功能。</string>
     <string name="backup_desc_openpgp_keyid">在创建加密备份前，您需要在 <b>设置</b> 中选择一个 OpenPGP 密钥。</string>
-    <string name="backup_desc_replace">如果启用，导入备份时将覆盖掉现有的条目，仅留备份里的内容。如果禁用，备份将会与现有的条目合并。</string>
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">安全警告</string>
     <string name="backup_dialog_msg_export_warning">是否确实要将数据库导出为纯文本 JSON 文件？此文件包含您的所有密钥，请注意<b>保持安全</b>！</string>
@@ -33,6 +15,10 @@
     <string name="backup_receiver_read_permission_failed">没有读取权限，请在执行备份前授予。</string>
     <string name="backup_receiver_write_permission_failed">没有写入权限，请在执行备份前授予。</string>
     <string name="backup_receiver_custom_encryption_failed">广播备份不支持基于 密码/PIN 的加密</string>
+    <string name="backup_receiver_no_location_set">未设置备份位置，请在应用设置中
+        设置一个</string>
+    <string name="backup_receiver_no_password_set">未设置默认密码，请在应用设置中
+        设置一个</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">自动备份失败</string>
     <string name="notification_channel_name_backup_success">自动备份成功</string>
@@ -48,9 +34,27 @@
     <string name="backup_toast_import_save_failed">保存还原的条目失败</string>
     <string name="backup_toast_import_decryption_failed">备份解密失败</string>
     <string name="backup_toast_import_no_entries">导入的数据中没有找到条目</string>
+    <string name="backup_toast_import_failed">从外部存储导入失败</string>
     <string name="backup_toast_storage_not_accessible">目前不能访问外部存储</string>
     <string name="backup_toast_openpgp_error">OpenPGP 错误：%s </string>
     <string name="backup_toast_openpgp_not_verified">没有检测到通过验证的签名</string>
     <string name="backup_toast_crypt_password_not_set">未设置密码，请检查 <b>设置</b></string>
     <string name="backup_toast_file_selection_failed">无法打开文件选择对话框！</string>
+    <string name="backup_label_type">备份类型： </string>
+    <string name="backup_label_warning_plain">备份将存储于一个未加密的纯文本
+        文件。请仅在必要时使用，并<b>保管好文件</b>！</string>
+    <string name="backup_label_crypt">备份将使用自定义的
+        密码进行AES 256位加密存储。你可以在设置中设置一个默认密码，如果你
+        不想每次创建备份时都必须输入这个密码。</string>
+    <string name="backup_label_pgp">备份将使用你在设置中指定的
+        PGP密钥进行加密存储。加密将由第三方应用程序处理。</string>
+    <string name="backup_check_restore_old">还原旧的备份格式 (使用 0.63 版本之前的 andOTP
+         创建)</string>
+    <string name="backup_button_backup">创建备份</string>
+    <string name="backup_button_restore">还原备份</string>
+    <string-array name="backup_list_type_names">
+        <item>纯文本</item>
+        <item>已加密</item>
+        <item>OpenPGP</item>
+    </string-array>
 </resources>

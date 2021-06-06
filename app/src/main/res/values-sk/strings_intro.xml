@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="intro_slide1_title">Začíname</string>
+    <string name="intro_slide1_desc">Vitajte v <b>andOTP</b>, tento sprievodca vám pomôže s úvodným nastavením. Prosím dávajte pozor a čítajte pozorne, inak môžete prísť o dáta!
+\n\nŽiadny strach, ktorékoľvek nastavenie môžete neskôr zmeniť v <b>Nastaveniach</b>.</string>
+    <string name="intro_slide2_desc">K zaištení bezpečnosti vašich účtov <b>andOTP</b> ukladá dáta výhradne do šifrovaných dátových súborov.
+Tu si môžete zvoliť, ktorá metóda šifrovania sa bude používať.</string>
+    <string name="intro_slide2_desc_keystore">KeyStore je komponent systému Android slúžiaci k bezpečnému ukladaniu kryptografických kľúčov.
+Výhodou je, že kľúče sú uložené oddelene od dát <b>andOTP</b> a táto funkcia môže využívať hardvérovú podporu šifrovania (ak je v zariadení k dispozícií). Avšak tým, že kľúče nie sú ukladané s dátami <b>andOTP</b>, <b>zabraňuje táto metóda použitiu externých zálohovacích riešení (napríklad Titanium)</b>. Ak zvolíte tuto možnosť musíte se spoľahnúť na vlastné zálohovacie funkcie poskytované <b>andOTP</b>. \n\n<b>Varovanie</b>: O KeyStore je známe, že robí dosť problémov, prosím používajte to len v prípade, keď naozaj musíte.
+Ak Vám nevadí zadávanie hesla / PINu pri každom spustení <b>andOTP</b> a <b>vysoko odporúčame radšej použiť šifrovanie založené na hesle</b>.</string>
+    <string name="intro_slide2_desc_password">Táto metóda zašifruje dáta pomocou kľúča generovaného z PINu alebo hesla. Hlavnou výhodou je, že bude fungovať s externými zálohovacími nástroji (napr. Titanium) a je menej náchylná k zlyhaniu než KeyStore. Budete ale musieť zadať svoje prihlasovacia údaje pri každom spustení <b>andOTP</b>.</string>
+    <string name="intro_slide3_desc_keystore">Tu si môžete nastaviť bezpečnostný zámok <b>andOTP</b>. Ak ste zvolili šifrovanie pomocou <b>Android KeyStore</b>, tento krok voliteľný.</string>
+    <string name="intro_slide3_desc_password">Tu si môžete nastaviť bezpečnostný zámok <b>andOTP</b>. Vzhľadom na to, že ste si zvolili šifrovanie pomocou <b>Hesla/PINu</b>, je potrebné nastaviť heslo alebo PIN pre pokračovanie.</string>
+    <string name="intro_slide3_warn_no_password">Prosím nastavte heslo pre pokračovanie!</string>
+    <string name="intro_slide3_warn_no_pin">Prosím nastavte PIN pre pokračovanie!</string>
+    <string name="intro_slide3_warn_confirm_password">Prosím potvrďte heslo pre pokračovanie!</string>
+    <string name="intro_slide3_warn_password_mismatch">Heslá sa musia zhodovať!</string>
+    <string name="intro_slide3_warn_confirm_pin">Prosím potvrďte PIN pre pokračovanie!</string>
+    <string name="intro_slide3_warn_pin_mismatch">Pin kódy sa musia zhodovať!</string>
+    <string name="intro_slide4_title">Hotovo</string>
+    <string name="intro_slide4_title_failed">Nastavenie zlyhalo</string>
+    <string name="intro_slide4_title_progress">Počkajte prosím</string>
+    <string name="intro_slide4_desc_failed">Nepodarilo sa nastaviť heslo. Toto úvodné nastavenie bude zobrazené znova nabudúce!</string>
+    <string name="intro_slide4_desc">Vaše nastavenia boli uložené, teraz môžete začať používať <b>andOTP</b>!</string>
+    <string name="intro_slide4_desc_progress">Vaše nastavenia sa ukladajú a generuje se šifrovací kľúč, prosím čakajte…</string>
+    <string name="intro_slide_android_backup_desc">Android synchronizácia je funkcia vstavaná do androidu používaná na zálohu dát aplikáciami tretích strán (zvyčajne Google). Zálohy sú vždy zašifrované a tak nedostupné pre aplikácie tretích strán bez hesla. Vyžaduje sa použitie hesla ako metódy šifrovania.</string>
+</resources>

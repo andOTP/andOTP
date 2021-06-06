@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Axustes</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Seguranza</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">Retraso para bloqueo por inactividade</string>
     <string name="settings_title_block_accessibility">Bloquear servizos de accesibilidade</string>
     <string name="settings_title_block_autofill">Bloquear autocompletado</string>
+    <string name="settings_title_auto_unlock_after_autofill">Desactivar automáticamente tras autocompletar</string>
     <string name="settings_title_lang">Idioma</string>
+    <string name="settings_title_theme_mode">Decorado</string>
+    <string name="settings_title_theme_black_auto">Decorado negro</string>
     <string name="settings_title_theme">Decorado</string>
     <string name="settings_title_card_layout">Disposición das entradas</string>
+    <string name="settings_title_show_prev_token">Mostrar token anterior</string>
     <string name="settings_title_label_size">Tamaño da tipografía</string>
-    <string name="settings_title_label_scroll">Desprazar etiqueta</string>
+    <string name="settings_title_label_display">Mostrar etiqueta</string>
     <string name="settings_title_tap_single">Un toque</string>
     <string name="settings_title_tap_double">Dobre toque</string>
     <string name="settings_title_thumbnail_size_ask">Tamaño de miniatura</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">Resaltar testemuños caducados</string>
     <string name="settings_title_hide_global_timeout">Agochar a barra de caducidade</string>
     <string name="settings_title_show_individual_timeouts">Mostrar caducidades individuais</string>
+    <string name="settings_title_focus_search_on_start">Foco na busca ao abrir a app</string>
+    <string name="settings_title_hide_issuer">Agochar provedor</string>
     <string name="settings_title_backup_append_date">Engadir data ao nome do ficheiro</string>
     <string name="settings_title_backup_ask">Preguntar polo nome do ficheiro</string>
     <string name="settings_title_backup_location">Localización por omisión</string>
@@ -65,15 +71,20 @@
         campos con datos sensibles. <b>NON activar esto se dependes dos servizos de accesibilidade!</b></string>
     <string name="settings_desc_block_autofill">Bloquear que servizos de autocompletado accedan
 a campos de contrasinal dentro da app</string>
-    <string name="settings_desc_block_autofill_android">Esta característica require Android
-superior a 8.0 (Oreo)</string>
-    <string name="settings_desc_label_scroll">Desprazar etiquetas largas no canto de recortalas</string>
+    <string name="settings_desc_auto_unlock_after_autofill">Desbloquear se o contrasinal foi completado
+        de xeito automático</string>
+    <string name="settings_desc_autofill_requires_android_o">Esta característica require unha versión de
+        Android superior a 8.0 (Oreo)</string>
+    <string name="settings_desc_theme_black_auto">Usa o decorado negro no modo escuro</string>
+    <string name="settings_desc_show_prev_token">Mostra o token anterior en adición ao actual</string>
     <string name="settings_desc_minimize_on_copy">A app minimizarase ao copiar o OTP ao portapapeis</string>
     <string name="settings_desc_search_includes">Indicar que valores se incluirán ao buscar</string>
     <string name="settings_desc_label_highlight_token">Resaltar testemuño en vermello se vai caducar en 8 segundos</string>
     <string name="settings_desc_hide_global_timeout">Agochar a barra de caducidade xeral mostrada na parte superior</string>
     <string name="settings_desc_show_individual_timeouts">Mostrar unha barra de progreso individual para cada entrada.
         Pode facer máis lenta a app, actívao só se é preciso.</string>
+    <string name="settings_desc_focus_search_on_start">Foco na busca xusto tras abrir a app.</string>
+    <string name="settings_desc_hide_issuer">Agocha a etiqueta do provedor en cada tarxeta</string>
     <string name="settings_desc_backup_append_date">Engadir a data actual e hora ao nome de
         ficheiro de respaldo suxerido</string>
     <string name="settings_desc_backup_ask">Preguntar polo nome do ficheiro cada vez que unha copia de seguranza sexa creada ou
@@ -115,6 +126,8 @@ e un contrasinal para activar esta opción</string>
     <string name="settings_toast_encryption_auth_failed">Fallou a autenticación!</string>
     <string name="settings_toast_auth_upgrade_failed">Fallo ao actualizar o teu contrasinal / PIN
    ao novo cifrado, por favor restableceo en Axustes!</string>
+    <string name="settings_toast_android_sync_enabled">Activada a sincronización Android</string>
+    <string name="settings_toast_android_sync_disabled">Desactivada a sincronización Android</string>
     <string name="settings_dialog_title_warning">Aviso</string>
     <string name="settings_dialog_title_error">Erro</string>
     <string name="settings_dialog_title_clear_keystore">Baleirar a KeyStore?</string>
@@ -163,11 +176,16 @@ e un contrasinal para activar esta opción</string>
         <item>Mostrar/Agochar</item>
         <item>Copiar</item>
         <item>Copiar e mandar a segundo plano</item>
+        <item>Compartir como Keystrokes</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Etiqueta</item>
         <item>Provedor</item>
         <item>Etiquetas</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Auto</item>
+        <item>Manual</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Apagado</item>
@@ -178,6 +196,11 @@ e un contrasinal para activar esta opción</string>
         <item>Decorado claro</item>
         <item>Decorado escuro</item>
         <item>Decorado negro</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Dividir</item>
+        <item>Desprazar</item>
+        <item>Varias liñas</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Agochado</item>

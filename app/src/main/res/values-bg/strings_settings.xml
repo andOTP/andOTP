@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Настройки</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Сигурност</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">Забавяне за повторно заключване при неактивност</string>
     <string name="settings_title_block_accessibility">Блокиране на услугите за достъпност</string>
     <string name="settings_title_block_autofill">Block autofill</string>
+    <string name="settings_title_auto_unlock_after_autofill">Unlock automatically after autofill</string>
     <string name="settings_title_lang">Език</string>
+    <string name="settings_title_theme_mode">Theme mode</string>
+    <string name="settings_title_theme_black_auto">Black theme</string>
     <string name="settings_title_theme">Тема</string>
     <string name="settings_title_card_layout">Вид оформление</string>
+    <string name="settings_title_show_prev_token">Show previous token</string>
     <string name="settings_title_label_size">Размер на шрифта на етикета</string>
-    <string name="settings_title_label_scroll">Превъртане на етикетите</string>
+    <string name="settings_title_label_display">Label display</string>
     <string name="settings_title_tap_single">Еднократно натискане</string>
     <string name="settings_title_tap_double">Двойно натискане</string>
     <string name="settings_title_thumbnail_size_ask">Размера на миниатюрите</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">Маркиране на изтичащите токени</string>
     <string name="settings_title_hide_global_timeout">Скриване на глобалната лента за изчакване</string>
     <string name="settings_title_show_individual_timeouts">Показване на индивидуални времена за изчакване</string>
+    <string name="settings_title_focus_search_on_start">Focus search on app start</string>
+    <string name="settings_title_hide_issuer">Hide Issuer</string>
     <string name="settings_title_backup_append_date">Добавяне на датата към името на файла</string>
     <string name="settings_title_backup_ask">Попитай за името на файла</string>
     <string name="settings_title_backup_location">Default backup location</string>
@@ -66,15 +72,20 @@
      за достъпност. <b>НЕ активирайте това, ако използвате услугите за достъпност!</b></string>
     <string name="settings_desc_block_autofill">Block autofill services from accessing password
         fields inside the app</string>
-    <string name="settings_desc_block_autofill_android">This feature requires an Android version
+    <string name="settings_desc_auto_unlock_after_autofill">Unlock if the password has been filled
+        in by autofill</string>
+    <string name="settings_desc_autofill_requires_android_o">This feature requires an Android version
         above 8.0 (Oreo)</string>
-    <string name="settings_desc_label_scroll">Превъртане на дългите етикети, вместо да бъдат съкращавани</string>
+    <string name="settings_desc_theme_black_auto">Use the black theme in dark mode</string>
+    <string name="settings_desc_show_prev_token">Show the previous token in addition to the current one</string>
     <string name="settings_desc_minimize_on_copy">Приложението ще бъде минимизирано, когато копирате OTP токенът в клипборда</string>
     <string name="settings_desc_search_includes">Посочете кои стойности трябва да бъдат включени при търсенето</string>
     <string name="settings_desc_label_highlight_token">Маркиране на токените в червено, ако изтичат след 8 секунди</string>
     <string name="settings_desc_hide_global_timeout">Скриване на глобалната лента за изчакване в горната част на екрана</string>
     <string name="settings_desc_show_individual_timeouts">Показване на индивидуална лента за изчакване за всеки запис.
        Това може да забави приложението,  да се активира само ако наистина е необходимо.</string>
+    <string name="settings_desc_focus_search_on_start">Focus the search immediately after opening the app.</string>
+    <string name="settings_desc_hide_issuer">Hides issuer label on each card</string>
     <string name="settings_desc_backup_append_date">Добавете текущата дата и час към предложеното
          име на архивното копие</string>
     <string name="settings_desc_backup_ask">Попитайте за името на файла всеки път, когато се създаде или възстановява 
@@ -118,6 +129,8 @@
     <string name="settings_toast_encryption_auth_failed">Удостоверяването е неуспешно!</string>
     <string name="settings_toast_auth_upgrade_failed">Неуспешно автоматично обновяване на вашата парола/ПИН код към
          новото криптиране, моля, нулирайте го ръчно в Настройките!</string>
+    <string name="settings_toast_android_sync_enabled">Android sync enabled</string>
+    <string name="settings_toast_android_sync_disabled">Android sync disabled</string>
     <string name="settings_dialog_title_warning">Предупреждение</string>
     <string name="settings_dialog_title_error">Грешка</string>
     <string name="settings_dialog_title_clear_keystore">Да се изчисти ли Хранилището за ключове на Android?</string>
@@ -170,11 +183,16 @@
         <item>Разкриване/Скриване</item>
         <item>Копиране</item>
         <item>Копирайте и отидете на заден план</item>
+        <item>Share as Keystrokes</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Етикет</item>
         <item>Издател</item>
         <item>Маркери</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Auto</item>
+        <item>Manual</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Изключено</item>
@@ -185,6 +203,11 @@
         <item>Светла тема</item>
         <item>Тъмна тема</item>
         <item>Черна тема</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Truncate</item>
+        <item>Scroll</item>
+        <item>Multiple lines</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Скрит</item>

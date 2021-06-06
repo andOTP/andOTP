@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">Laten we aan de slag gaan</string>
     <string name="intro_slide1_desc">Welkom bij <b>andOTP</b>, deze wizard zal je tijdens het instellen begeleiden. Let goed op en lees alles zorgvuldig anders kun je je gegevens verliezen!    \n\nGeen zorgen, je kunt hierna nog wijzigingen maken bij de <b>Instellingen</b>.</string>
     <string name="intro_slide2_desc">Om de veiligheid van uw accounts te verzekeren zal <b>andOTP</b> ze alleen opslaan in versleutelde gegevensbestanden. Hier kan je kiezen welke versleutelingsmethode er zal gebruikt worden.</string>
@@ -11,8 +11,15 @@
     <string name="intro_slide3_warn_no_password">Stel alsjeblief een wachtwoord in voordat je verder gaat!</string>
     <string name="intro_slide3_warn_no_pin">Stel alsjeblief een pincode in voordat je verder gaat!</string>
     <string name="intro_slide3_warn_confirm_password">Bevestig je wachtwoord om verder te gaan!</string>
+    <string name="intro_slide3_warn_password_mismatch">Wachtwoorden moeten overeen komen!</string>
     <string name="intro_slide3_warn_confirm_pin">Bevestig je pincode om verder te gaan!</string>
+    <string name="intro_slide3_warn_pin_mismatch">Pin-codes moeten overeenkomen!</string>
     <string name="intro_slide4_title">Voltooid</string>
+    <string name="intro_slide4_title_failed">Configuratie mislukt</string>
+    <string name="intro_slide4_title_progress">Een ogenblik geduld</string>
+    <string name="intro_slide4_desc_failed">Het instellen van een wachtwoord is mislukt, deze introductie zal de volgende keer weer getoond worden!</string>
     <string name="intro_slide4_desc">Je instellingen zijn opgeslagen, je bent nu helemaal klaar voor het gebruik van
         <b>andOTP</b>!</string>
+    <string name="intro_slide4_desc_progress">Je instellingen worden opgeslagen en de encryptiesleutel wordt gegenereerd, even geduld…</string>
+    <string name="intro_slide_android_backup_desc">Android-synchronisatie is een functie ingebouwd in Android die gebruikt wordt om een back-up van app-gegevens te maken naar een externe partij (meestal Google). Back-ups worden altijd versleuteld en zijn ontoegankelijk voor derden zonder uw hoofdwachtwoord. Wachtwoordversleuteling is hierbij vereist.</string>
 </resources>

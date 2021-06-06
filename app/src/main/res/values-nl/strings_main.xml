@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- Buttons -->
     <string name="button_cancel">Annuleren</string>
     <string name="button_enter_details">Details ingeven</string>
@@ -10,6 +10,7 @@
     <string name="button_all_tags">Alle labels</string>
     <string name="button_no_tags">Geen labels</string>
     <string name="button_qr_from_image">QR-code van afbeelding</string>
+    <string name="button_accept">Accepteer</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
     <!-- Hints -->
@@ -45,6 +46,8 @@
     <string name="menu_popup_change_image">Afbeelding wijzigen</string>
     <string name="menu_popup_remove">Verwijderen</string>
     <string name="menu_popup_show_qr_code">QR-code weergeven</string>
+    <string name="menu_popup_establish_pin">Voer pin-code in</string>
+    <string name="menu_send_keystrokes">Deel als toetsaanslagen</string>
     <!-- Buttons -->
     <string name="button_card_options">Meer opties</string>
     <string name="button_card_options_format">Meer opties voor %1$s</string>
@@ -78,7 +81,9 @@
     <string name="dialog_title_used_tokens">Gebruik van tokens</string>
     <string name="dialog_title_keystore_error">Sleutelkast fout</string>
     <string name="dialog_title_qr_code">QR-code</string>
+    <string name="dialog_title_pin">Pincode</string>
     <string name="dialog_title_enter_password">Wachtwoord invoeren</string>
+    <string name="dialog_title_auto_time">Automatische tijd</string>
     <string name="dialog_label_enter_password">Wachtwoord invoeren</string>
     <string name="dialog_label_confirm_password">Wachtwoord bevestigen</string>
     <string name="dialog_msg_auth">Voer de referenties van uw apparaat in om te beginnen met andOTP.</string>
@@ -87,8 +92,14 @@
         weer te geven\" functie of kopiëren naar het klembord) om ze te sorteren bij \"Meest gebruikt\" of
         \"Laatst gebruikt\".\n\nDit bericht zal niet meer worden getoond.</string>
     <string name="dialog_msg_keystore_error">Fout bij het laden van de coderingssleuten van de sleutelopslag. <b>Alle vermeldingen die worden toegevoegd zullen verloren gaan.</b>\n\nOm nog steeds andOTP te kunnen gebruiken kan je naar de <b>Instellingen</b> gaan en de <b>Database codering</b> omschakelen naar <b>Wachtwoord / PIN</b>.</string>
+    <string name="dialog_msg_auto_time">Schakel de optie <b>Automatische datum &amp; tijd</b> in in de <b>Instellingen</b> van je telefoon zodat de juiste tijd wordt gebruikt bij het genereren van éénmalige wachtwoorden (TOTP).</string>
+    <string name="dialog_hint_dont_show_again">Dit bericht niet meer weergeven.</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">QR-code scannen</string>
     <string name="shortcut_name_import_qr">Importeer QR code</string>
     <string name="shortcut_name_enter_details">Details ingeven</string>
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">Begin met het toevoegen van token door op het plusje (+) onderaan te drukken</string>
 </resources>

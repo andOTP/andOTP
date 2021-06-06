@@ -3,7 +3,7 @@
     <string name="auth_activity_title">Identifiez-vous</string>
     <!-- Hints -->
     <string name="auth_hint_password">Mot de passe</string>
-    <string name="auth_hint_pin">Code PIN</string>
+    <string name="auth_hint_pin">NIP</string>
     <!-- Messages -->
     <string name="auth_msg_authenticate">Veuillez vous authentifier pour lancer andOTP !</string>
     <string name="auth_msg_confirm_encryption">Veuillez confirmer l\'authentification pour générer votre

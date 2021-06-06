@@ -1,33 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="backup_activity_title">Backups</string>
-    <string name="backup_category_plain">Backups desprotegidos</string>
-    <string name="backup_category_crypt">Backups criptografados</string>
-    <string name="backup_category_openpgp">Backups criptografados com OpenPGP</string>
-    <string name="backup_title_export_plain">Fazer backup (texto puro)</string>
-    <string name="backup_title_export_crypt">Fazer backup (criptografado)</string>
-    <string name="backup_title_export_openpgp">Fazer backup (OpenPGP)</string>
-    <string name="backup_title_import_plain">Restaurar backup (texto puro)</string>
-    <string name="backup_title_import_crypt">Restaurar backup (criptografado)</string>
-    <string name="backup_title_import_crypt_old">Restaurar (criptografado, criptografia antiga)</string>
-    <string name="backup_title_import_openpgp">Restaurar backup (OpenPGP)</string>
     <string name="backup_title_replace">Substituir as contas existentes</string>
-    <string name="backup_desc_export_plain">Fazer o backup de todas as contas em um arquivo JSON desprotegido</string>
-    <string name="backup_desc_export_crypt">Fazer o backup de todas as contas em um arquivo JSON protegido por senha</string>
-    <string name="backup_desc_export_openpgp">Fazer o backup de todas as contas em um arquivo JSON criptografado com OpenPGP</string>
-    <string name="backup_desc_import_plain">Restaurar contas de um arquivo JSON desprotegido</string>
-    <string name="backup_desc_import_crypt">Restaurar contas de um arquivo JSON protegido por senha</string>
-    <string name="backup_desc_import_crypt_old">Recupere contas de um arquivo JSON protegido por senha
-        criado com uma <b>versão do andOTP menor que a 0.6.3</b></string>
-    <string name="backup_desc_import_openpgp">Restaurar contas de um arquivo JSON criptografado com OpenPGP</string>
-    <string name="backup_desc_crypt_setup">Falha ao carregar a senha de backup de <b>Configurações</b>,
-        isso pode significar que nenhuma senha foi definida ou que algo deu errado. Será pedido que
-insira
-        a senha manualmente sempre que criar ou importar um backup.
-    </string>
+    <string name="backup_desc_replace">Se ativado, todas as contas antigas serão substituídas         ao restaurar um backup e apenas as contas do backup estarão presentes. Se desativado, todas as contas antigas e         o conteúdo do backup serão unificados.</string>
     <string name="backup_desc_openpgp_provider">Você precisa instalar um provedor OpenPGP e habilitá-lo nas <b>configurações</b> para usar este recurso.    </string>
     <string name="backup_desc_openpgp_keyid">Você precisa selecionar uma chave OpenPGP nas <b>configurações</b> antes de criar backups criptografados.    </string>
-    <string name="backup_desc_replace">Se ativado, todas as contas antigas serão substituídas         ao restaurar um backup e apenas as contas do backup estarão presentes. Se desativado, todas as contas antigas e         o conteúdo do backup serão unificados.</string>
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">Aviso de segurança</string>
     <string name="backup_dialog_msg_export_warning">Você tem certeza de que deseja exportar o banco de dados como um arquivo JSON desprotegido? Este arquivo contém todas suas senhas, portanto <b>mantenha-o seguro</b>!    </string>
@@ -38,6 +15,10 @@ insira
     <string name="backup_receiver_read_permission_failed">A permissão de leitura não foi concedida. Por favor, conceda-a        antes de iniciar um backup</string>
     <string name="backup_receiver_write_permission_failed">A permissão de escrita não foi concedida. Por favor, conceda-a        antes de iniciar um backup</string>
     <string name="backup_receiver_custom_encryption_failed">A criptografia de senha ou PIN não         pode ser usada com o backup de ativação remota</string>
+    <string name="backup_receiver_no_location_set">Não foi definido um local para backup, indique um nas
+        configurações dos aplicativos</string>
+    <string name="backup_receiver_no_password_set">Não foi definida uma senha padrão, indique uma nas
+        configurações dos aplicativos</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Falha ao realizar o backup automático</string>
     <string name="notification_channel_name_backup_success">Backup automático concluído</string>
@@ -53,9 +34,27 @@ insira
     <string name="backup_toast_import_save_failed">Erro ao salvar as entradas restauradas</string>
     <string name="backup_toast_import_decryption_failed">Falha ao desencriptar o arquivo de backup</string>
     <string name="backup_toast_import_no_entries">Nenhuma conta foi encontrada nos dados importados</string>
+    <string name="backup_toast_import_failed">Erro ao importar do armazenamento externo</string>
     <string name="backup_toast_storage_not_accessible">O armazenamento externo está inacessível no momento</string>
     <string name="backup_toast_openpgp_error">Erro do OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">Nenhuma assinatura verificada foi detectada</string>
     <string name="backup_toast_crypt_password_not_set">A senha não foi definida. Verifique as <b>Configurações</b></string>
     <string name="backup_toast_file_selection_failed">Erro ao abrir diálogo de seleção de arquivo!</string>
+    <string name="backup_label_type">Tipo de backup: </string>
+    <string name="backup_label_warning_plain">O backup será armazenado em um arquivo de texto simples sem
+        criptografia. Use isto apenas se for estritamente necessário e  <b>mantenha o arquivo seguro</b>!</string>
+    <string name="backup_label_crypt">O backup será armazenado de forma criptografada com uma senha personalizada
+        usando criptografia AES 256-bit. Você pode definir a senha padrão nas
+        configurações se não quiser digitar todas as vezes que criar um backup.</string>
+    <string name="backup_label_pgp">O backup será armazenado de forma criptografada usando a chave PGP
+        indicada nas configurações. A criptografia será administrada por outro aplicativo.</string>
+    <string name="backup_check_restore_old">Restaurar formato de backup antigo (criado com uma versão do andOTP
+        anterior à 0.6.3)</string>
+    <string name="backup_button_backup">Criar backup</string>
+    <string name="backup_button_restore">Restaurar backup</string>
+    <string-array name="backup_list_type_names">
+        <item>Texto simples</item>
+        <item>Criptografado</item>
+        <item>OpenPGP</item>
+    </string-array>
 </resources>

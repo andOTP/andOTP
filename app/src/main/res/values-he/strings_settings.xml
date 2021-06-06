@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">הגדרות</string>
     <!-- Categories -->
     <string name="settings_category_title_security">אבטחה</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">עיכוב נעילה מחדש לאחר חוסר פעילות</string>
     <string name="settings_title_block_accessibility">חסום שירותי נגישות</string>
     <string name="settings_title_block_autofill">חסום מילוי אוטומטי</string>
+    <string name="settings_title_auto_unlock_after_autofill">Unlock automatically after autofill</string>
     <string name="settings_title_lang">שפה</string>
+    <string name="settings_title_theme_mode">Theme mode</string>
+    <string name="settings_title_theme_black_auto">Black theme</string>
     <string name="settings_title_theme">ערכת נושא</string>
     <string name="settings_title_card_layout">פריסת כרטיס</string>
+    <string name="settings_title_show_prev_token">Show previous token</string>
     <string name="settings_title_label_size">גודל גופן של תווית</string>
-    <string name="settings_title_label_scroll">גלול תווית</string>
+    <string name="settings_title_label_display">Label display</string>
     <string name="settings_title_tap_single">לחיצה-אחת</string>
     <string name="settings_title_tap_double">לחיצה-כפולה</string>
     <string name="settings_title_thumbnail_size_ask">גודל תמונה ממוזערת</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">הדגש אסימונים שפג תוקפם</string>
     <string name="settings_title_hide_global_timeout">הסתר את סרגל פסק הזמן הראשי</string>
     <string name="settings_title_show_individual_timeouts">הראה פסק זמן אישי</string>
+    <string name="settings_title_focus_search_on_start">Focus search on app start</string>
+    <string name="settings_title_hide_issuer">Hide Issuer</string>
     <string name="settings_title_backup_append_date">הוסף תאריך לשם הקובץ</string>
     <string name="settings_title_backup_ask">בקש שם קובץ</string>
     <string name="settings_title_backup_location">מיקום ברירת מחדל לגיבוי</string>
@@ -66,15 +72,20 @@
         הנגישות. <b>אל תאפשר זאת אם אתה מסתמך על שירותי הנגישות!</b></string>
     <string name="settings_desc_block_autofill">חסום משירותי מילוי אוטומטי גישה לשדות סיסמאות
         בתוך האפליקציה</string>
-    <string name="settings_desc_block_autofill_android">תכונה זו דורשת גרסת Android
-        מעל 8.0 (Oreo)</string>
-    <string name="settings_desc_label_scroll">גלול בתוויות ארוכות במקום לקטוע אותן</string>
+    <string name="settings_desc_auto_unlock_after_autofill">Unlock if the password has been filled
+        in by autofill</string>
+    <string name="settings_desc_autofill_requires_android_o">This feature requires an Android version
+        above 8.0 (Oreo)</string>
+    <string name="settings_desc_theme_black_auto">Use the black theme in dark mode</string>
+    <string name="settings_desc_show_prev_token">Show the previous token in addition to the current one</string>
     <string name="settings_desc_minimize_on_copy">האפליקציה תמוזער כאשר תעתיק את ה- OTP ללוח</string>
     <string name="settings_desc_search_includes">ציין אילו ערכים צריכים להיכלל בעת חיפוש</string>
     <string name="settings_desc_label_highlight_token">הדגשות האסימון באדום אם הוא יפוג בעוד 8 שניות</string>
     <string name="settings_desc_hide_global_timeout">הסתר את סרגל פסק הזמן הגלובלי המוצג בראש המסך</string>
     <string name="settings_desc_show_individual_timeouts">הראה סרגל פסק זמן יחודי לכל ערך.
         זה יכול להאט את האפליקציה, להפעיל אם באמת צריך.</string>
+    <string name="settings_desc_focus_search_on_start">Focus the search immediately after opening the app.</string>
+    <string name="settings_desc_hide_issuer">Hides issuer label on each card</string>
     <string name="settings_desc_backup_append_date">הוסף את התאריך והשעה הנוכחיים לשם קובץ הגיבוי
          המוצע</string>
     <string name="settings_desc_backup_ask">בקש את שם הקובץ בכל פעם שגיבוי נוצר או
@@ -114,6 +125,8 @@
     <string name="settings_toast_encryption_auth_failed">אימות נכשל!</string>
     <string name="settings_toast_auth_upgrade_failed">נכשל השדרוג השקט של הסיסמה / PIN
         להצפנה החדשה, אנא אפס אותה ידנית בהגדרות!</string>
+    <string name="settings_toast_android_sync_enabled">Android sync enabled</string>
+    <string name="settings_toast_android_sync_disabled">Android sync disabled</string>
     <string name="settings_dialog_title_warning">אזהרה</string>
     <string name="settings_dialog_title_error">שגיאה</string>
     <string name="settings_dialog_title_clear_keystore">לנקות את ה- KeyStore?</string>
@@ -165,11 +178,16 @@
         <item>חשוף/הסתר</item>
         <item>העתק</item>
         <item>העתק ולך לרקע</item>
+        <item>Share as Keystrokes</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>תווית</item>
         <item>מנפיק</item>
         <item>תגים</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Auto</item>
+        <item>Manual</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>כבוי</item>
@@ -180,6 +198,11 @@
         <item>ערכת נושא בהירה</item>
         <item>ערכת נושא כהה</item>
         <item>ערכת נושא שחורה</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Truncate</item>
+        <item>Scroll</item>
+        <item>Multiple lines</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>מוסתר</item>

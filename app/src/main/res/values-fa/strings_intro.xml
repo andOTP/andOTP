@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">بیا شروع کنیم</string>
     <string name="intro_slide1_desc">به <b>andOTP</b> خوش آمدید، این مراحل شما را در تنظیمات اولیه راهنمایی می‌کند. لطفا با توجه و دقت بخوانید، در غیر این صورت، ممکن است داده‌هایتان را از دست بدهید! \n\n نگران نباشید! شما می‌توانید هر گزینه ای را بعدا در <b>تنظیمات</b> تغییر دهید.</string>
     <string name="intro_slide2_desc">برای مطمئن شدن از امنیت حساب‌هایتان <b>andOTP</b> داده‌های شما را فقط در پرونده‌های رمزنگاری شده ذخیره می‌کند. اینجا شما می‌توانید روش رمزنگاری را انتخاب کنید.</string>
@@ -10,7 +10,14 @@
     <string name="intro_slide3_warn_no_password">لطفا برای ادامه، یک گذرواژه تعیین کنید!</string>
     <string name="intro_slide3_warn_no_pin">لطفا برای ادامه، یک پین تعیین کنید!</string>
     <string name="intro_slide3_warn_confirm_password">لطفا برای ادامه، گذرواژه خود را تایید کنید!</string>
+    <string name="intro_slide3_warn_password_mismatch">دو رمز عبور یکسان نیستند!</string>
     <string name="intro_slide3_warn_confirm_pin">لطفا برای ادامه، پین خود را تایید کنید!</string>
+    <string name="intro_slide3_warn_pin_mismatch">دو پین یکسان نیستند!</string>
     <string name="intro_slide4_title">تمام شد</string>
+    <string name="intro_slide4_title_failed">تنظیم با شکست مواجه شد</string>
+    <string name="intro_slide4_title_progress">لطفا صبر کنید</string>
+    <string name="intro_slide4_desc_failed">در تنظیم رمز عبور مشکلی رخ داد، این پیش‌نمایش بار بعد، دوباره نمایش داده خواهد شد!</string>
     <string name="intro_slide4_desc">تنظیمات شما ذخیره شدند، حالا شما آماده استفاده از <b>andOTP</b> هستید!</string>
+    <string name="intro_slide4_desc_progress">تنظیمات شما در حال ذخیره‌شدن هستند و کلید رمزگذاری در حال ساخته شدن است، لطفا صبر کنید…</string>
+    <string name="intro_slide_android_backup_desc">همگام‌سازی اندروید یک ویژگی جاسازی‌شده در اندروید است که برای پشتیبان گرفتن از اطلاعات برنامه‌ها به یک سرویس خارجی (معمولا گوگل) استفاده می‌شود. پشتیبان‌ها همیشه رمزگذاری‌شده هستند و بدون رمز عبور اصلی شما توسط سرویس خارجی قابل استفاده نیستند. این ویژگی نیاز به استفاده از روش رمزگذاری با رمز عبور دارد.</string>
 </resources>

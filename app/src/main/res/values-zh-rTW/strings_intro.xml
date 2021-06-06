@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">我們開始吧！</string>
     <string name="intro_slide1_desc">歡迎使用 <b>andOTP</b>，andOTP 精靈將指引您完成起始配置。請仔細認真的閱讀提示說明，不然您可能會因一時大意而遺失重要資料喔！\n\n毋須擔心，稍後您仍可在<b>設定</b>中進行更改。</string>
     <string name="intro_slide2_desc">為確保帳戶的安全，<b>andOTP</b> 僅將資料儲存在加密檔中。在這裡，您可以選取一種加密方法。</string>
@@ -11,7 +11,15 @@
     <string name="intro_slide3_warn_no_password">請設定密碼以繼續！</string>
     <string name="intro_slide3_warn_no_pin">請設定 PIN 碼以繼續！</string>
     <string name="intro_slide3_warn_confirm_password">請確認您的密碼！</string>
+    <string name="intro_slide3_warn_password_mismatch">兩次輸入的密碼必須一致！</string>
     <string name="intro_slide3_warn_confirm_pin">請確認您的 PIN！</string>
+    <string name="intro_slide3_warn_pin_mismatch">兩次輸入的PIN碼必須一致！</string>
     <string name="intro_slide4_title">完成</string>
+    <string name="intro_slide4_title_failed">設定失敗</string>
+    <string name="intro_slide4_title_progress">請稍候</string>
+    <string name="intro_slide4_desc_failed">設置密碼失敗，此簡介將在下次再次顯示！</string>
     <string name="intro_slide4_desc">您的設定已儲存，<b>andOTP</b> 已準備就緒！</string>
+    <string name="intro_slide4_desc_progress">設置正在儲存，並且正在生成加密密鑰
+        請稍候…</string>
+    <string name="intro_slide_android_backup_desc">Android同步是Android一項內置的功能，用於將應用程序數據備份到第三方服務(通常是Google)。 備份會被加密，沒有您的主密碼，第三方將無法存取備份內容。 開啟同步需要使用密碼加密的備份。</string>
 </resources>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="backup_activity_title">Резервне копије</string>
+    <string name="backup_title_replace">Замени постојеће уносе</string>
+    <string name="backup_desc_replace">Ако је омогућено, сви стари уноси се замењују приликом увоза
+        сигурносне копије и доступна је само сигурносна копија. Ако је онемогућено, стари уноси и садржај резервне копије
+        су спојени.</string>
+    <string name="backup_desc_openpgp_provider">Морате инсталирати OpenPGP добављача и омогућити га
+        у <b>Подешавањима</b> да бисте користили ову функцију.
+    </string>
+    <string name="backup_desc_openpgp_keyid">Морате да одаберете OpenPGP кључ у <b>Подешавањима</b>
+        пре него што будете могли да креирате шифроване резервне копије.
+    </string>
+    <!-- Dialogs -->
+    <string name="backup_dialog_title_security_warning">Безбедносно упозорење</string>
+    <string name="backup_dialog_msg_export_warning">Да ли стварно желите да извезете базу података као
+        JSON датотека у обичном тексту? Ова датотека садржи све ваше тајне кључеве, <b>чувајте је на сигурном</b>!
+    </string>
+    <string name="backup_receiver_title_backup_failed">Неуспешна израда резервне копије</string>
+    <string name="backup_receiver_title_backup_success">Успешна израда резервне копије</string>
+    <string name="backup_receiver_plain_disabled">Резервне копије обичног текста тренутно нису дозвољене,
+        идите у Подешавања да бисте их омогућили</string>
+    <string name="backup_receiver_encrypted_disabled">Шифроване резервне копије тренутно нису дозвољене,
+        идите у Подешавања да бисте их омогућили</string>
+    <string name="backup_receiver_read_permission_failed">Дозвола за читање није дата, молим вас
+        да то урадите пре прављења резервне копије</string>
+    <string name="backup_receiver_write_permission_failed">Дозвола за писање није дата, молим вас
+        да то урадите пре прављења резервне копије</string>
+    <string name="backup_receiver_custom_encryption_failed">Шифровање засновано на лозинци/ПИН-у није
+        подржан преко емитовања резервне копије</string>
+    <string name="backup_receiver_no_location_set">Нисте поставили локацију резервне копије, поставите је у
+        подешавањима апликације</string>
+    <string name="backup_receiver_no_password_set">Нисте поставили подразумевану лозинку, поставите је у
+        подешавањима апликације</string>
+    <!-- Notification channels -->
+    <string name="notification_channel_name_backup_failed">Аутоматско прављење резервне копије није успело</string>
+    <string name="notification_channel_name_backup_success">Аутоматско прављење резервне копије је успело</string>
+    <string name="notification_channel_desc_backup_failed">Ова обавештења се приказују када
+        аутоматска резервна копија није успела</string>
+    <string name="notification_channel_desc_backup_success">Ова обавештења се приказују када
+        је успела аутоматска резервна копија</string>
+    <!-- Toast messages -->
+    <string name="backup_toast_no_location">У подешавањима подесите локацију за резервне копије!</string>
+    <string name="backup_toast_location_access_failed">Приступ локацији рењервне копије није успео!</string>
+    <string name="backup_toast_file_creation_failed">Стварање резервне копије није успело!</string>
+    <string name="backup_toast_export_success">Извоз у спољну меморију је успео</string>
+    <string name="backup_toast_export_failed">Извоз у спољну меморију није успео</string>
+    <string name="backup_toast_import_success">Увоз из спољне меморије је успео</string>
+    <string name="backup_toast_import_save_failed">Сачувавање враћених уноса није успело</string>
+    <string name="backup_toast_import_decryption_failed">Дешифровање резервне копије није успело</string>
+    <string name="backup_toast_import_no_entries">У увезеним подацима нису пронађени уноси</string>
+    <string name="backup_toast_import_failed">Увоз из спољне меморије није успео</string>
+    <string name="backup_toast_storage_not_accessible">Екстерна меморија тренутно није доступна</string>
+    <string name="backup_toast_openpgp_error">OpenPGP грешка: %s</string>
+    <string name="backup_toast_openpgp_not_verified">Није пронађен верификовани потпис</string>
+    <string name="backup_toast_crypt_password_not_set">Лозинка није постављена, проверите <b>Подешавања</b></string>
+    <string name="backup_toast_file_selection_failed">Није могуће отворити дијалог за одабир датотеке!</string>
+    <string name="backup_label_type">Врста резервне копије: </string>
+    <string name="backup_label_warning_plain">Резервна копија ће бити смештена у нешифровану текстуалну
+        датотеку. Молимо вас да користите само ако је строго потребно и <b>чувајте датотеку на сигурно</b>!</string>
+    <string name="backup_label_crypt">Резервна копија ће се чувати шифрирана прилагођеном лозинком
+користећи АЕС 256-битну енкрипцију. Можете да поставите подразумевану лозинку у подешавањима
+ако не желите да је унесете сваки пут када креирате резервну копију.</string>
+    <string name="backup_label_pgp">Резервна копија ће бити сачувана шифрирана помоћу PGP кључа ког сте навели у подешавањима. Шифрирање ће управљати спољња апликација.</string>
+    <string name="backup_check_restore_old">Вратите стари резервни формат (креиран са andOTP верзијом пре 0.6.3)</string>
+    <string name="backup_button_backup">Направите резервну копију</string>
+    <string name="backup_button_restore">Вратити из резервне копије</string>
+    <string-array name="backup_list_type_names">
+        <item>Обичан текст</item>
+        <item>Шифровано</item>
+        <item>OpenPGP</item>
+    </string-array>
+</resources>

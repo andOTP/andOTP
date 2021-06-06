@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">Iniziamo</string>
     <string name="intro_slide1_desc">Benvenuto in <b>andOTP</b>, questo tutorial ti guiderà attraverso
         la configurazione iniziale. Presta attenzione e leggi attentamente per evitare la perdita di dati!
@@ -30,8 +30,15 @@
     <string name="intro_slide3_warn_no_password">Imposta una password per continuare!</string>
     <string name="intro_slide3_warn_no_pin">Imposta un PIN per continuare!</string>
     <string name="intro_slide3_warn_confirm_password">Conferma la password per continuare!</string>
+    <string name="intro_slide3_warn_password_mismatch">Le password devono coincidere!</string>
     <string name="intro_slide3_warn_confirm_pin">Conferma il PIN per continuare!</string>
+    <string name="intro_slide3_warn_pin_mismatch">I pin devono coincidere!</string>
     <string name="intro_slide4_title">Finito</string>
+    <string name="intro_slide4_title_failed">Setup fallito</string>
+    <string name="intro_slide4_title_progress">Attendi, per favore</string>
+    <string name="intro_slide4_desc_failed">Errore nell\'impostazione della password, questo messaggio verrà mostrato ancora la prossima volta!</string>
     <string name="intro_slide4_desc">Le tue impostazioni sono state salvate, adesso sei pronto
         per utilizzare <b>andOTP</b>!</string>
+    <string name="intro_slide4_desc_progress">Le impostazioni si stanno salvando e la chiave di criptazione si sta generando, per favore attendi…</string>
+    <string name="intro_slide_android_backup_desc">La sincronizzazione Android è una funzionalità integrata di Android usata per il backup dei dati delle app su un servizio di terze parti (di solito Google). I backup sono sempre crittografati e inaccessibili a terze parti senza la password principale. Richiede l\'uso del metodo di crittografia password.</string>
 </resources>

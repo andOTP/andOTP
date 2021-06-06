@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">Давайте почнемо</string>
     <string name="intro_slide1_desc">Вітаємо вас у додатку <b>OpenPGP</b>, цей майстер допоможе Вам
         з початковим налаштуванням. Будь ласка, приділіть трішки Вашої уваги, щоб уважно прочитати інструкції! Це допоможе не втратити дані, користуючись додатком
@@ -20,7 +20,16 @@
     <string name="intro_slide3_warn_no_password">Будь ласка, встановіть пароль, щоб продовжити!</string>
     <string name="intro_slide3_warn_no_pin">Будь ласка, встановіть PIN-код, щоб продовжити!</string>
     <string name="intro_slide3_warn_confirm_password">Будь ласка, підтвердіть Ваш пароль, щоб продовжити!</string>
+    <string name="intro_slide3_warn_password_mismatch">Passwords must match!</string>
     <string name="intro_slide3_warn_confirm_pin">Будь ласка, підтвердіть Ваш PIN-код, щоб продовжити!</string>
+    <string name="intro_slide3_warn_pin_mismatch">Pins must match!</string>
     <string name="intro_slide4_title">Завершено</string>
+    <string name="intro_slide4_title_failed">Setup failed</string>
+    <string name="intro_slide4_title_progress">Please wait</string>
+    <string name="intro_slide4_desc_failed">Failed to set a password, this intro will be shown again
+        the next time!</string>
     <string name="intro_slide4_desc">Ваші налаштування збережено і тепер все готово для використання <b>andOTP</b>!</string>
+    <string name="intro_slide4_desc_progress">Your settings are being saved and the encryption key is being
+        generated, please wait…</string>
+    <string name="intro_slide_android_backup_desc">Android sync is a feature built in to android used to back up app data to a 3rd party service (usually Google). Backups are always encrypted and unaccessible to 3rd parties without your master password. Requires use of Password encryption method.</string>
 </resources>

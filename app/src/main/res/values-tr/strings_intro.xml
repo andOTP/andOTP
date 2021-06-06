@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">Hadi başlayalım</string>
     <string name="intro_slide1_desc"><b>andOTP</b>\'ye hoş geldiniz, bu araç size ilk kurulum aşamasında yardımcı olacak.
 Lütfen mesajları dikkatlice inceleyin, aksi taktirde veriniz kaybolabilir!
@@ -18,7 +18,16 @@ seçili olmadığı için bir şifre veya PIN kodu tanımlamalısınız.</string
     <string name="intro_slide3_warn_no_password">Lütfen devam etmek için bir şifre belirleyiniz!</string>
     <string name="intro_slide3_warn_no_pin">Lütfen devam etmek için PIN belirleyiniz!</string>
     <string name="intro_slide3_warn_confirm_password">Lütfen devam etmek için parolanızı doğrulayın!</string>
+    <string name="intro_slide3_warn_password_mismatch">Parolalar eşleşmelidir!</string>
     <string name="intro_slide3_warn_confirm_pin">Lütfen devam etmek için PIN\'inizi doğrulayın!</string>
+    <string name="intro_slide3_warn_pin_mismatch">Pin\'ler eşleşmelidir!</string>
     <string name="intro_slide4_title">Tamamlandı</string>
+    <string name="intro_slide4_title_failed">Kurulum başarısız</string>
+    <string name="intro_slide4_title_progress">Lütfen bekleyin</string>
+    <string name="intro_slide4_desc_failed">Parola tanımlanamadı, bu hoş geldin mesajları bir sonraki
+        açılışta yeniden gösterilecek!</string>
     <string name="intro_slide4_desc">Ayarlarınız kaydedildi, artık <b>andOTP</b>\'yi kullanmaya hazırsınız!</string>
+    <string name="intro_slide4_desc_progress">Ayarların kaydediliyor ve de şifreleme anahtarı oluşturuluyor,
+        lütfen bekleyin…</string>
+    <string name="intro_slide_android_backup_desc">Android sync, kullanıcıların uygulama verilerini 3. parti servislere (çoğu zaman Google) yedeklemelerini sağlar. Yedekler her zaman şifrelenmiştir, ve de sizde olan ana parola olmadan bu servisler dosyalara erişemez. Bu yol parola ile şifreleme metodunu gerektirir.</string>
 </resources>

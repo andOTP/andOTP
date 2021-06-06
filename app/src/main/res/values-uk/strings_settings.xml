@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Налаштування</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Безпека</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">Delay for inactivity re-lock</string>
     <string name="settings_title_block_accessibility">Block accessibility services</string>
     <string name="settings_title_block_autofill">Block autofill</string>
+    <string name="settings_title_auto_unlock_after_autofill">Unlock automatically after autofill</string>
     <string name="settings_title_lang">Мова</string>
+    <string name="settings_title_theme_mode">Theme mode</string>
+    <string name="settings_title_theme_black_auto">Black theme</string>
     <string name="settings_title_theme">Тема</string>
     <string name="settings_title_card_layout">Card layout</string>
+    <string name="settings_title_show_prev_token">Show previous token</string>
     <string name="settings_title_label_size">Розмір шрифту для ярлику</string>
-    <string name="settings_title_label_scroll">Мітка прокручування</string>
+    <string name="settings_title_label_display">Label display</string>
     <string name="settings_title_tap_single">Single-tap</string>
     <string name="settings_title_tap_double">Double-tap</string>
     <string name="settings_title_thumbnail_size_ask">Розмір піктограми</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">Highlight expiring tokens</string>
     <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
     <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
+    <string name="settings_title_focus_search_on_start">Focus search on app start</string>
+    <string name="settings_title_hide_issuer">Hide Issuer</string>
     <string name="settings_title_backup_append_date">Додати дату до назви файлу</string>
     <string name="settings_title_backup_ask">Запитувати назву файлу</string>
     <string name="settings_title_backup_location">Default backup location</string>
@@ -66,15 +72,20 @@
         services. <b>DO NOT enable this if you rely on the accessibility services!</b></string>
     <string name="settings_desc_block_autofill">Block autofill services from accessing password
         fields inside the app</string>
-    <string name="settings_desc_block_autofill_android">This feature requires an Android version
+    <string name="settings_desc_auto_unlock_after_autofill">Unlock if the password has been filled
+        in by autofill</string>
+    <string name="settings_desc_autofill_requires_android_o">This feature requires an Android version
         above 8.0 (Oreo)</string>
-    <string name="settings_desc_label_scroll">Прокручувати довгі позначки, замість їх обрізання</string>
+    <string name="settings_desc_theme_black_auto">Use the black theme in dark mode</string>
+    <string name="settings_desc_show_prev_token">Show the previous token in addition to the current one</string>
     <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
     <string name="settings_desc_search_includes">Specify which values should be included when searching</string>
     <string name="settings_desc_label_highlight_token">Highlights token in red if it\'s expiring in 8 seconds</string>
     <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
     <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
         This can slow down the app, only enable if really necessary.</string>
+    <string name="settings_desc_focus_search_on_start">Focus the search immediately after opening the app.</string>
+    <string name="settings_desc_hide_issuer">Hides issuer label on each card</string>
     <string name="settings_desc_backup_append_date">Додати поточну дату та час до назви запропонованого
         файлу резервної копії</string>
     <string name="settings_desc_backup_ask">Запитувати назву файлу при створенні або відновленні резервної копії</string>
@@ -114,6 +125,8 @@
     <string name="settings_toast_encryption_auth_failed">Помилка автентифікації!</string>
     <string name="settings_toast_auth_upgrade_failed">Автоматичне оновлення Вашого паролю / PIN-коду
         до нового типу шифрування завершилося невдало. Будь ласка, скиньте його вручну у Налаштуваннях!</string>
+    <string name="settings_toast_android_sync_enabled">Android sync enabled</string>
+    <string name="settings_toast_android_sync_disabled">Android sync disabled</string>
     <string name="settings_dialog_title_warning">Попередження</string>
     <string name="settings_dialog_title_error">Помилка</string>
     <string name="settings_dialog_title_clear_keystore">Очистити KeyStore?</string>
@@ -165,11 +178,16 @@
         <item>Reveal/Hide</item>
         <item>Copy</item>
         <item>Copy and go to background</item>
+        <item>Share as Keystrokes</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Label</item>
         <item>Issuer</item>
         <item>Tags</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Auto</item>
+        <item>Manual</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Off</item>
@@ -180,6 +198,11 @@
         <item>Світла тема</item>
         <item>Темна тема</item>
         <item>Чорна тема</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Truncate</item>
+        <item>Scroll</item>
+        <item>Multiple lines</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Сховати</item>

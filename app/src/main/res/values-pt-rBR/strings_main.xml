@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- Buttons -->
     <string name="button_cancel">Cancelar</string>
     <string name="button_enter_details">Inserir detalhes</string>
@@ -10,6 +10,7 @@
     <string name="button_all_tags">Todos os marcadores</string>
     <string name="button_no_tags">Sem marcadores</string>
     <string name="button_qr_from_image">Código QR de uma imagem</string>
+    <string name="button_accept">Aceitar</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
     <!-- Hints -->
@@ -45,6 +46,8 @@
     <string name="menu_popup_change_image">Alterar imagem</string>
     <string name="menu_popup_remove">Remover</string>
     <string name="menu_popup_show_qr_code">Exibir código QR</string>
+    <string name="menu_popup_establish_pin">Digite o pin</string>
+    <string name="menu_send_keystrokes">Compartilhar como teclas pressionadas</string>
     <!-- Buttons -->
     <string name="button_card_options">Mais opções</string>
     <string name="button_card_options_format">Mais opções para %1$s</string>
@@ -78,7 +81,9 @@
     <string name="dialog_title_used_tokens">Uso de tokens</string>
     <string name="dialog_title_keystore_error">Erro de armazenamento de chaves</string>
     <string name="dialog_title_qr_code">Código QR</string>
+    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_title_enter_password">Digite a senha</string>
+    <string name="dialog_title_auto_time">Horário automático</string>
     <string name="dialog_label_enter_password">Digite a senha</string>
     <string name="dialog_label_confirm_password">Confirme a senha</string>
     <string name="dialog_msg_auth">Por favor, insira credenciais do dispositivo para iniciar andOTP.</string>
@@ -88,8 +93,16 @@
         classificá-los por \"Mais usados\" ou \"Usados por último\".\n\nEssa mensagem não será exibida novamente.</string>
     <string name="dialog_msg_keystore_error">Falha ao carregar a chave de criptografia da KeyStore.
         <b>Quaisquer alterações adicionadas serão perdidas.</b>\n\nPara continuar usando o andOTP, você precisa ir         até as <b>Configurações</b> e alterar a <b>Criptografia do Banco de Dados</b> para <b>Senha/PIN</b>.</string>
+    <string name="dialog_msg_auto_time">Ative a opção <b>Data e hora automáticas</b> nas
+         <b>Configurações</b> do seu telefone para garantir a correta geração
+        de senhas-de-uso-único baseadas no horário (TOTP).</string>
+    <string name="dialog_hint_dont_show_again">Não mostrar esta mensagem novamente.</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Ler código QR</string>
     <string name="shortcut_name_import_qr">Importar código QR</string>
     <string name="shortcut_name_enter_details">Insira detalhes</string>
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">Comece a adicionar seus tokens pressionando \"+\" na parte inferior</string>
 </resources>

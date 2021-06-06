@@ -1,35 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="backup_activity_title">Copias de seguridad</string>
-    <string name="backup_category_plain">Copias de seguridad sin cifrar</string>
-    <string name="backup_category_crypt">Copias de seguridad cifradas</string>
-    <string name="backup_category_openpgp">Copias de seguridad OpenPGP</string>
-    <string name="backup_title_export_plain">Copia de seguridad (sin cifrar)</string>
-    <string name="backup_title_export_crypt">Copia de seguridad (cifrada)</string>
-    <string name="backup_title_export_openpgp">Copia de seguridad (OpenPGP)</string>
-    <string name="backup_title_import_plain">Restaurar (texto plano)</string>
-    <string name="backup_title_import_crypt">Restaurar (cifradas)</string>
-    <string name="backup_title_import_crypt_old">Restaurar (cifrado, antiguo cifrado)</string>
-    <string name="backup_title_import_openpgp">Restaurar (OpenPGP)</string>
     <string name="backup_title_replace">Reemplazar entradas existentes</string>
-    <string name="backup_desc_export_plain">Hace copia de seguridad de todas las cuentas en un fichero JSON de texto plano</string>
-    <string name="backup_desc_export_crypt">Hace copia de seguridad de todas las cuentas en un fichero JSON con contraseña</string>
-    <string name="backup_desc_export_openpgp">Hace copia de seguridad de todas las cuentas en un fichero JSON cifrado con OpenPGP</string>
-    <string name="backup_desc_import_plain">Restaurar cuentas desde fichero JSON de texto plano</string>
-    <string name="backup_desc_import_crypt">Restaurar cuentas desde fichero JSON con contraseña</string>
-    <string name="backup_desc_import_crypt_old">Restaurar cuentas de un archivo JSON protegido por contraseña
-        creado con una <b>versión de andOTP inferior a 0.6.3</b></string>
-    <string name="backup_desc_import_openpgp">Restaurar cuentas desde fichero JSON cifrado con OpenPGP</string>
-    <string name="backup_desc_crypt_setup">Error al cargar la contraseña del respaldo de los <b>Ajustes</b>, esto puede deberse a que no se ha establecido una contraseña o a que algo ha salido mal. Se te pedirá que ingreses la contraseña manualmente cuando crees o importes un respaldo.    </string>
+    <string name="backup_desc_replace">Activado, las entradas antiguas se reemplazarán al importar una
+        copia de seguridad y solo quedarán las de la copia. Desactivado, las entradas
+        antiguas y las nuevas se juntan.</string>
     <string name="backup_desc_openpgp_provider">Necesitas instalar un proveedor de OpenPGP y activarlo
         en los <b>Ajustes</b> para usar esta opción.
     </string>
     <string name="backup_desc_openpgp_keyid">Necesitas seleccionar una clave OpenPGP en los <b>Ajustes</b>
         antes de crear una copia de seguridad cifrada.
     </string>
-    <string name="backup_desc_replace">Activado, las entradas antiguas se reemplazarán al importar una
-        copia de seguridad y solo quedarán las de la copia. Desactivado, las entradas
-        antiguas y las nuevas se juntan.</string>
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">Advertencia de seguridad</string>
     <string name="backup_dialog_msg_export_warning">¿Realmente quieres exportar la base de datos como
@@ -45,6 +26,10 @@
         hazlo antes de intentar hacer una copia de seguridad</string>
     <string name="backup_receiver_custom_encryption_failed">Cifrado basado en clave/PIN no
         soportado en la copia de seguridad de difusión</string>
+    <string name="backup_receiver_no_location_set">No se ha establecido una ubicación de copia de seguridad,
+        por favor establezca una en la configuración de aplicaciones</string>
+    <string name="backup_receiver_no_password_set">No se ha establecido una contraseña por defecto,
+        por favor establezca una en la configuración de aplicaciones</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Falló la copia de seguridad automática</string>
     <string name="notification_channel_name_backup_success">La copia de seguridad automática se realizó con éxito</string>
@@ -60,9 +45,27 @@
     <string name="backup_toast_import_save_failed">Fallo al guardar las entradas restauradas</string>
     <string name="backup_toast_import_decryption_failed">Fallo al descifrar la copia de seguridad</string>
     <string name="backup_toast_import_no_entries">No se encontraron elementos en los datos importados</string>
+    <string name="backup_toast_import_failed">Fallo al importar desde el almacenamiento externo</string>
     <string name="backup_toast_storage_not_accessible">Almacenamiento externo actualmente inaccesible</string>
     <string name="backup_toast_openpgp_error">Error OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">Ninguna firma verificable detectada</string>
     <string name="backup_toast_crypt_password_not_set">Contraseña no establecida, revise los <b>Ajustes</b></string>
     <string name="backup_toast_file_selection_failed">¡No se puede abrir el diálogo de selección de archivos!</string>
+    <string name="backup_label_type">Tipo de copia de seguridad: </string>
+    <string name="backup_label_warning_plain">La copia de seguridad se almacenará en un archivo
+        de texto plano sin cifrar. Por favor, utilice sólo si es estrictamente necesario y <b>mantenga el archivo a salvo</b>!</string>
+    <string name="backup_label_crypt">La copia de seguridad se almacenará cifrada con una contraseña personalizada
+        usando el cifrado AES de 256 bits. Puede configurar una contraseña por defecto en la configuración si
+        no quiere tener que introducirla cada vez que cree una copia de seguridad.</string>
+    <string name="backup_label_pgp">La copia de seguridad se almacenará cifrada usando la clave PGP que
+        especificaste en la configuración. El cifrado será manejado por una aplicación de terceros.</string>
+    <string name="backup_check_restore_old">Restaurar antiguo formato de copia de seguridad (creado con una versión andOTP
+        anterior a 0.6.3)</string>
+    <string name="backup_button_backup">Crear copia de seguridad</string>
+    <string name="backup_button_restore">Restaurar copia de seguridad</string>
+    <string-array name="backup_list_type_names">
+        <item>Texto plano</item>
+        <item>Cifrado</item>
+        <item>OpenPGP</item>
+    </string-array>
 </resources>

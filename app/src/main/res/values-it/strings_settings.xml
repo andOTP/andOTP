@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Impostazioni</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Sicurezza</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">Ritarda il blocco quando inattivo</string>
     <string name="settings_title_block_accessibility">Blocca servizi di accessibilità</string>
     <string name="settings_title_block_autofill">Blocca autocompletamento</string>
+    <string name="settings_title_auto_unlock_after_autofill">Sblocca automaticamente dopo l\'autocompletamento</string>
     <string name="settings_title_lang">Lingua</string>
+    <string name="settings_title_theme_mode">Modalità tema</string>
+    <string name="settings_title_theme_black_auto">Tema nero</string>
     <string name="settings_title_theme">Tema</string>
     <string name="settings_title_card_layout">Layout scheda</string>
+    <string name="settings_title_show_prev_token">Mostra il token precedente</string>
     <string name="settings_title_label_size">Dimensione carattere dell\'etichetta</string>
-    <string name="settings_title_label_scroll">Etichette che scorrono</string>
+    <string name="settings_title_label_display">Visualizzazione etichette</string>
     <string name="settings_title_tap_single">Tocco singolo</string>
     <string name="settings_title_tap_double">Doppio tocco</string>
     <string name="settings_title_thumbnail_size_ask">Dimensioni dell\'anteprima</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">Evidenzia token in scadenza</string>
     <string name="settings_title_hide_global_timeout">Nascondi la barra di timeout globale</string>
     <string name="settings_title_show_individual_timeouts">Mostra i singoli timeout</string>
+    <string name="settings_title_focus_search_on_start">Seleziona la ricerca all\'avvio dell\'app</string>
+    <string name="settings_title_hide_issuer">Nascondi fornitore</string>
     <string name="settings_title_backup_append_date">Aggiungi la data al nome del file</string>
     <string name="settings_title_backup_ask">Chiedi un nome di file</string>
     <string name="settings_title_backup_location">Posizione di backup predefinita</string>
@@ -66,15 +72,20 @@ sarà richiesta nuovamente l\'autenticazione</string>
 <b> NON abilitarlo se fai affidamento sui servizi di accessibilità!</b></string>
     <string name="settings_desc_block_autofill">Impedisci ai servizi di autocompletamento di accedere ai campi
         delle password nell\'app</string>
-    <string name="settings_desc_block_autofill_android">Questa funzione richiede una versione di Android
+    <string name="settings_desc_auto_unlock_after_autofill">Sblocca se la password è stata inserita
+        dall\'autocompletamento</string>
+    <string name="settings_desc_autofill_requires_android_o">Questa funzione richiede una versione di Android
         superiore alla 8.0 (Oreo)</string>
-    <string name="settings_desc_label_scroll">Etichette che scorrono invece che venire troncate</string>
+    <string name="settings_desc_theme_black_auto">Usa il tema nero in modalità notturna</string>
+    <string name="settings_desc_show_prev_token">Mostra il token precedente oltre a quello attuale</string>
     <string name="settings_desc_minimize_on_copy">L\'app verrà minimizzata quando si copia un codice OTP negli appunti</string>
     <string name="settings_desc_search_includes">Specifica quali valori devono essere inclusi durante la ricerca</string>
     <string name="settings_desc_label_highlight_token">Evidenzia in rosso i token se scadono in 8 secondi</string>
     <string name="settings_desc_hide_global_timeout">Nascondi la barra del conto alla rovescia globale mostrata nella parte superiore dello schermo</string>
     <string name="settings_desc_show_individual_timeouts">Mostra una barra di conto alla rovescia individuale per ogni voce.
         Ciò può rallentare l\'app, attivarlo solo se davvero necessario.</string>
+    <string name="settings_desc_focus_search_on_start">Focalizza la ricerca immediatamente dopo l\'apertura dell\'app.</string>
+    <string name="settings_desc_hide_issuer">Nasconde l\'etichetta del fornitore su ogni carta</string>
     <string name="settings_desc_backup_append_date">Aggiungi la data e l\'ora correnti al nome del
         file di backup suggerito</string>
     <string name="settings_desc_backup_ask">Chiedere il nome del file ogni volta che un backup
@@ -116,6 +127,8 @@ voci o editate, se le condizioni delle impostazioni sono configurate</string>
     <string name="settings_toast_encryption_auth_failed">Autenticazione fallita!</string>
     <string name="settings_toast_auth_upgrade_failed">Impossibile aggiornare automaticamente la password / PIN per la
         nuova crittografia, si prega di reimpostarla manualmente nelle Impostazioni!</string>
+    <string name="settings_toast_android_sync_enabled">Sincronizzazione Android attivata</string>
+    <string name="settings_toast_android_sync_disabled">Sincronizzazione Android disattivata</string>
     <string name="settings_dialog_title_warning">Attenzione</string>
     <string name="settings_dialog_title_error">Errore</string>
     <string name="settings_dialog_title_clear_keystore">Pulire il KeyStore?</string>
@@ -167,11 +180,16 @@ voci o editate, se le condizioni delle impostazioni sono configurate</string>
         <item>Mostra/Nascondi</item>
         <item>Copia</item>
         <item>Copia e vai in secondo piano</item>
+        <item>Condividi come sequenza tasti</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Etichetta</item>
         <item>Emittente</item>
         <item>Tags</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Automatico</item>
+        <item>Manuale</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Disattivo</item>
@@ -182,6 +200,11 @@ voci o editate, se le condizioni delle impostazioni sono configurate</string>
         <item>Tema chiaro</item>
         <item>Tema scuro</item>
         <item>Tema nero</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Tronca</item>
+        <item>Scorri</item>
+        <item>Righe multiple</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Nascosto</item>

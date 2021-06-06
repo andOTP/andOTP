@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- Buttons -->
     <string name="button_cancel">रद्द करें</string>
     <string name="button_enter_details">विवरण दर्ज करें</string>
@@ -10,6 +10,7 @@
     <string name="button_all_tags">सभी टैग</string>
     <string name="button_no_tags">कोई टैग नहीं</string>
     <string name="button_qr_from_image">छवि से क्यूआर कोड</string>
+    <string name="button_accept">स्वीकारें</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d सेकेंड</string>
     <!-- Hints -->
@@ -41,17 +42,19 @@
     <string name="menu_sort_label">लेबल</string>
     <string name="menu_sort_last_used">आखरी इस्त्तमाल किया गया</string>
     <string name="menu_sort_most_used">सर्वाधिक इस्तेमाल किया गया</string>
-    <string name="menu_popup_edit">Edit</string>
+    <string name="menu_popup_edit">संपादित करें</string>
     <string name="menu_popup_change_image">छवि बदलें</string>
     <string name="menu_popup_remove">हटाएं</string>
-    <string name="menu_popup_show_qr_code">Show QR Code</string>
+    <string name="menu_popup_show_qr_code">क्यूआर कोड दिखाएं</string>
+    <string name="menu_popup_establish_pin">पिन दर्ज करें</string>
+    <string name="menu_send_keystrokes">कीस्ट्रोक्स के रूप में साझा करें</string>
     <!-- Buttons -->
-    <string name="button_card_options">More options</string>
-    <string name="button_card_options_format">More options for %1$s</string>
-    <string name="button_card_copy">Copy token</string>
-    <string name="button_card_copy_format">Copy %1$s token</string>
-    <string name="button_add">Add new account</string>
-    <string name="button_close_menu">Close menu</string>
+    <string name="button_card_options">और विकल्प</string>
+    <string name="button_card_options_format">%1$s के लिए और विकल्प</string>
+    <string name="button_card_copy">टोकन कॉपी करें</string>
+    <string name="button_card_copy_format">%1$s टोकन कॉपी करें</string>
+    <string name="button_add">नया खाता जोड़ें</string>
+    <string name="button_close_menu">मेनू बंद करें</string>
     <!-- Toast messages -->
     <string name="toast_auth_failed">प्रमाणीकरण असफल| कृपया पुन: प्रयास करें!</string>
     <string name="toast_auth_failed_fatal">प्रमाणीकरण विफल, समापन andOTP!</string>
@@ -65,30 +68,36 @@
     <string name="toast_qr_error">क्यूआर कोड नहीं मिला / पुष्टि नहीं की जा सकी</string>
     <string name="toast_qr_checksum_exception">क्यूआर कोड को डिकोड करते समय चेकसम सत्यापन विफल हो गया</string>
     <string name="toast_qr_format_error">क्यूआर कोड में प्रारूप त्रुटि</string>
-    <string name="toast_qr_unsuported">QR Code not supported</string>
-    <string name="toast_qr_failed_to_generate">Failed to generate QR Code</string>
+    <string name="toast_qr_unsuported">क्यूआर कोड समर्थित नहीं है</string>
+    <string name="toast_qr_failed_to_generate">क्यूआर कोड उत्पन्न करने में असमर्थ</string>
     <!-- Errors -->
-    <string name="error_invalid_secret">Invalid secret</string>
+    <string name="error_invalid_secret">अमान्य रहस्य</string>
     <!-- Dialogs -->
     <string name="dialog_title_auth">प्रमाणित</string>
     <string name="dialog_title_manual_entry">विवरण दर्ज करें</string>
     <string name="dialog_title_remove">हटाएं</string>
     <string name="dialog_title_rename">नाम बदलें</string>
     <string name="dialog_title_counter">काउंटर</string>
-    <string name="dialog_title_used_tokens">Tokens usage</string>
+    <string name="dialog_title_used_tokens">टोकन का उपयोग</string>
     <string name="dialog_title_keystore_error">कुंजी स्टोर त्रुटि</string>
-    <string name="dialog_title_qr_code">QR Code</string>
+    <string name="dialog_title_qr_code">क्यूआर कोड</string>
+    <string name="dialog_title_pin">पिन</string>
     <string name="dialog_title_enter_password">अपना पासवोर्ड डाले</string>
+    <string name="dialog_title_auto_time">स्वचालित समय</string>
     <string name="dialog_label_enter_password">अपना पासवोर्ड डाले</string>
     <string name="dialog_label_confirm_password">पासवर्ड की पुष्टि करें</string>
     <string name="dialog_msg_auth">AndOTP शुरू करने के लिए कृपया अपनी यंत्र साख दर्ज करें।</string>
     <string name="dialog_msg_confirm_delete">क्या आप वाकई \"%1$s\" खाता हटाना चाहते हैं?</string>
-    <string name="dialog_msg_used_tokens">andOTP will track when you use your tokens (using the \"Tap
-        to reveal\" feature or copying to clipboard) to be able to sort them by \"Most used\" or
-        \"Last used\".\n\nThis message will not be shown again.</string>
+    <string name="dialog_msg_used_tokens">एंडओटीपी तब ट्रैक करेगा जब आप अपने टोकन(\"प्रकट करने के लिए टैप करें\" फ़ीचर का उपयोग करके या क्लिपबोर्ड पर कॉपी करके) का उपयोग करके उन्हें \"सबसे अधिक उपयोग\" या \"अंतिम उपयोग\" के आधार पर छाँटने में सक्षम होंगे।\n\nयह संदेश फिर से नहीं दिखाया जाएगा।</string>
     <string name="dialog_msg_keystore_error">KeyStore से एन्क्रिप्शन कुंजी लोड करने में विफल। <b>जो भी प्रविष्टियाँ जोड़ी गई हैं, वे लुप्त हो जाएँगी।</b>\n\nअभी andOTP का उपयोग करने में सक्षम होने के लिए आप <b>सेटिंग</b> पर जा सकते हैं और <b>डेटाबेस एन्क्रिप्शन</b> को <b>पासवर्ड / पिन</b> स्विच कर सकते हैं।</string>
+    <string name="dialog_msg_auto_time">कृपया समय-आधारित वन-टाइम-पासवर्ड (टीओटीपी) की सही पीढ़ी सुनिश्चित करने के लिए <b> स्वचालित दिनांक और समय</b> विकल्प अपने फोन के <b>सेटिंग्स</b> में सक्षम करें|</string>
+    <string name="dialog_hint_dont_show_again">इसे पुनः न दिखाएँ</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">क्यूआर कोड स्कैन करें</string>
     <string name="shortcut_name_import_qr">क्यूआर कोड आयात करें</string>
     <string name="shortcut_name_enter_details">विवरण दर्ज करें</string>
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">सबसे नीचे \"+\" दबाकर अपने टोकन जोड़ना शुरू करें</string>
 </resources>

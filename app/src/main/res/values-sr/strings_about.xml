@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">О апликацији</string>
+    <string name="about_description">Двофакторска аутентификација отвореног кода за Android</string>
+    <string name="about_tab_about">О апликацији</string>
+    <string name="about_tab_libraries">Библиотеке</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">Историја измена</string>
+    <string name="about_label_license">Лиценца</string>
+    <string name="about_label_MIT">MIT лиценца</string>
+    <string name="about_label_source">Изворни код</string>
+    <string name="about_label_version">Верзија</string>
+    <string name="about_label_faq">ЧПП</string>
+    <string name="about_label_faq_long">Често постављена питања</string>
+    <!-- Authors -->
+    <string name="about_title_authors">Аутори</string>
+    <string name="about_label_main_developer">Главни програмер</string>
+    <string name="about_label_developer">Програмер</string>
+    <string name="about_label_original_author">Аутор оригиналне апликације</string>
+    <string name="about_label_original_app">Оригинална апликација</string>
+    <string name="about_label_website">Вебсајт</string>
+    <string name="about_label_donate">Донирај</string>
+    <string name="about_label_contributors">Сарадници</string>
+    <string name="about_label_translators">Преводиоци</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">Одговорности за сличице</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Све сличице су њихови заштитни знаци
+        одговарајући власници.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> Употреба ових жигова не
+        указују на одобрење носиоца жига од стране andOTP, нити обрнуто.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Сличице треба користити само за
+        представљају компанију или производ на који се односе.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Молимо вас да не користите сличице ни за једну
+        сврху осим представљања те одређене марке или услуге.</b></string>
+    <!-- Support -->
+    <string name="about_title_support">Подржите развој</string>
+    <string name="about_desc_support">Сазнајте како можете подржати развој од andOTP</string>
+    <string name="about_title_special_features">Специјалне функције</string>
+    <string name="about_dialog_special_features">Да ли сте сигурни да желите да омогућите специјалне
+        функције? Већина њих су нестандардна OTP алгоритми који су примењени на специјалним
+        захтевима. Нису <b>званично подржани</b> и може доћи са<b>
+        ограничења</b>, молимо вас да прочитате (и разумете) страницу \"Специјалне Функције\" у Github
+        вики да бисте сазнали више пре него што их употребите.</string>
+    <string name="about_toast_special_features">Омогућене специјалне функције</string>
+    <string name="about_toast_special_features_enabled">Специјалне функције су већ омогућене</string>
+    <string name="about_toast_copied_to_clipboard">Веза за донацију копирана је у оставу</string>
+</resources>

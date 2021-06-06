@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="intro_slide1_title">Ayo mulai</string>
+    <string name="intro_slide1_desc">Selamat datang di <b>andOTP</b>! Panduan ini akan memandu Anda melewati proses pengaturan awal. Harap cermati dan baca dengan saksama untuk menghindari kehilangan data.
+        \n\nJangan khawatir, Anda masih bisa mengubah pengaturan ini nanti di <b>Pengaturan</b>.</string>
+    <string name="intro_slide2_desc">Untuk memastikan keamanan akun Anda, <b>andOTP</b> menggunakan enkripsi untuk mengamankan data akun. Berikut pilihan metode enkripsi yang bisa Anda gunakan.</string>
+    <string name="intro_slide2_desc_keystore">KeyStore adalah komponen sistem Android yang digunakan untuk menyimpan dengan aman kunci kriptografi. Kelebihan menggunakan KeyStore adalah kuncinya disimpan terpisah dari data <b>andOTP</b> dan bisa dicadangkan oleh enkripsi berbasis perangkat keras (jika perangkat anda mendukungnya). Namun, karena kuncinya tidak disimpan dengan data <b>andOTP</b>, <b>metode ini mencegah solusi pencadangan eksternal (seperti Titanium) untuk bekerja</b>. Jika Anda memilih metode ini, Anda harus bergantung ke alat pencadangan internal yang disediakan oleh <b>andOTP</b>. \n\n<b>Peringatan</b>: KeyStore dikenal menyebabkan banyak masalah, jadi hanya gunakan jika Anda harus menggunakannya. Jika Anda tidak masalah untuk memasukkan kata sandi/PIN setiap kali Anda memulai <b>andOTP</b>, <b>sangat direkomendasikan untuk menggunakan enkripsi berbasis kata sandi saja</b>.</string>
+    <string name="intro_slide2_desc_password">Metode ini akan mengenkripsikan data Anda dengan kunci yang dihasilkan dari kata sandi atau PIN. Kelebihan menggunakan metode ini adalah bekerjanya solusi pencadangan eksternal (seperti Titanium) dan lebih tidak rawan gagal daripada KeyStore. Namun, Anda harus memasukkan kredensial Anda setiap kali Anda memulai <b>andOTP</b>.</string>
+    <string name="intro_slide3_desc_keystore">Di sini Anda dapat mengatur metode autentikasi untuk mengunci <b>andOTP</b>. Karena Anda telah memilih <b>Android KeyStore</b> sebagai metode enkripsi Anda, langkah ini opsional.</string>
+    <string name="intro_slide3_desc_password">Di sini Anda dapat mengatur metode autentikasi untuk mengunci <b>andOTP</b>. Karena anda telah memilih <b>Kata Sandi/PIN</b> sebagai metode enkripsi Anda, sebuah kata sandi atau PIN dibutuhkan untuk melanjutkan.</string>
+    <string name="intro_slide3_warn_no_password">Tetapkan kata sandi untuk melanjutkan!</string>
+    <string name="intro_slide3_warn_no_pin">Tetapkan PIN untuk melanjutkan!</string>
+    <string name="intro_slide3_warn_confirm_password">Konfirmasi kata sandi Anda untuk melanjutkan!</string>
+    <string name="intro_slide3_warn_password_mismatch">Kata sandi harus sama!</string>
+    <string name="intro_slide3_warn_confirm_pin">Konfirmasi PIN Anda untuk melanjutkan!</string>
+    <string name="intro_slide3_warn_pin_mismatch">PIN harus sama!</string>
+    <string name="intro_slide4_title">Selesai</string>
+    <string name="intro_slide4_title_failed">Pengaturan gagal</string>
+    <string name="intro_slide4_title_progress">Harap tunggu</string>
+    <string name="intro_slide4_desc_failed">Gagal untuk menentukan kata sandi, panduan ini akan ditampilkan lagi lain kali!</string>
+    <string name="intro_slide4_desc">Pengaturan Anda telah disimpan, sekarang Anda dapat menggunakan <b>andOTP</b>!</string>
+    <string name="intro_slide4_desc_progress">Pengaturan Anda sedang disimpan dan kunci enkripsi sedang dihasilkan, mohon tunggu…</string>
+    <string name="intro_slide_android_backup_desc">Android Sync adalah fitur yang dibangun ke Android yang digunakan untuk mencadangkan data aplikasi ke layanan pihak ketiga (biasanya Google). Cadangan selalu terenkripsi dan tidak bisa diakses oleh pihak ketiga tanpa kata sandi utama. Membutuhkan penggunaan metode enkripsi kata sandi.</string>
+</resources>

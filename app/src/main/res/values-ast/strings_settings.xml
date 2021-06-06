@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Axustes</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Seguranza</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">Retrasu pal bloquéu por inactividá</string>
     <string name="settings_title_block_accessibility">Bloquiar tolos servicios d\'accesibilidá</string>
     <string name="settings_title_block_autofill">Bloquiar el rellenu automáticu</string>
+    <string name="settings_title_auto_unlock_after_autofill">Unlock automatically after autofill</string>
     <string name="settings_title_lang">Llingua</string>
+    <string name="settings_title_theme_mode">Theme mode</string>
+    <string name="settings_title_theme_black_auto">Black theme</string>
     <string name="settings_title_theme">Estilu</string>
     <string name="settings_title_card_layout">Diseñu de les tarxetes</string>
+    <string name="settings_title_show_prev_token">Show previous token</string>
     <string name="settings_title_label_size">Tamañu de la fonte de les etiquetes</string>
-    <string name="settings_title_label_scroll">Desplazar nes etiquetes</string>
+    <string name="settings_title_label_display">Label display</string>
     <string name="settings_title_tap_single">Un toque</string>
     <string name="settings_title_tap_double">Dos toques</string>
     <string name="settings_title_thumbnail_size_ask">Tamañu de miniatures</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">Rescamplar los pases que caduquen</string>
     <string name="settings_title_hide_global_timeout">Anubrir la barra d\'escosa de tiempu</string>
     <string name="settings_title_show_individual_timeouts">Amosar les escoses de tiempu individuales</string>
+    <string name="settings_title_focus_search_on_start">Focus search on app start</string>
+    <string name="settings_title_hide_issuer">Hide Issuer</string>
     <string name="settings_title_backup_append_date">Amestar la data al nome del ficheru</string>
     <string name="settings_title_backup_ask">Pidir un nome de ficheru</string>
     <string name="settings_title_backup_location">Allugamientu predetermináu de les copies</string>
@@ -70,9 +76,12 @@ d\'accesibilidá!</b></string>
     <string name="settings_desc_block_autofill">Bloquia que los servicios de rellenu automáticu
         accedan a los campos de contraseña de
         dientro de l\'aplicación</string>
-    <string name="settings_desc_block_autofill_android">Esta carauterística rique Android
-        8.0 (Oreo) o mayor</string>
-    <string name="settings_desc_label_scroll">Desplazar les etiquetes llargues en cuentes de truncales</string>
+    <string name="settings_desc_auto_unlock_after_autofill">Unlock if the password has been filled
+        in by autofill</string>
+    <string name="settings_desc_autofill_requires_android_o">This feature requires an Android version
+        above 8.0 (Oreo)</string>
+    <string name="settings_desc_theme_black_auto">Use the black theme in dark mode</string>
+    <string name="settings_desc_show_prev_token">Show the previous token in addition to the current one</string>
     <string name="settings_desc_minimize_on_copy">L\'aplicación va minimizase cuando copies el códigu OTP nel cartafueyu</string>
     <string name="settings_desc_search_includes">Especifica los valores que deberíen incluyise al guetar</string>
     <string name="settings_desc_label_highlight_token">Rescampla los pases si caduquen en 8 segundos</string>
@@ -80,6 +89,8 @@ d\'accesibilidá!</b></string>
     <string name="settings_desc_show_individual_timeouts">Amuesa la barra d\'escosa de tiempu en cada entrada.
         Esto pue facer que l\'aplicación vaiga lenta, activa esta opción
         namás si ye preciso.</string>
+    <string name="settings_desc_focus_search_on_start">Focus the search immediately after opening the app.</string>
+    <string name="settings_desc_hide_issuer">Hides issuer label on each card</string>
     <string name="settings_desc_backup_append_date">Amiesta la data actual al nome suxeríu de la copia
         de seguranza</string>
     <string name="settings_desc_backup_ask">Pide\'l nome de ficheru cada vegada que se crea o
@@ -125,6 +136,8 @@ d\'accesibilidá!</b></string>
     <string name="settings_toast_encryption_auth_failed">¡Falló l\'autenticación!</string>
     <string name="settings_toast_auth_upgrade_failed">Fallu al anovar dafurto la contraseña / PIN
         al cifráu nuevu, volvi afitala manualmente n\'axustes.</string>
+    <string name="settings_toast_android_sync_enabled">Android sync enabled</string>
+    <string name="settings_toast_android_sync_disabled">Android sync disabled</string>
     <string name="settings_dialog_title_warning">Alvertencia</string>
     <string name="settings_dialog_title_error">Fallu</string>
     <string name="settings_dialog_title_clear_keystore">¿Llimpiar l\'almacén de claves?</string>
@@ -178,11 +191,16 @@ d\'accesibilidá!</b></string>
         <item>Amosar/anubrir</item>
         <item>Copiar</item>
         <item>Copiar y dir al segundu planu</item>
+        <item>Share as Keystrokes</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Nomes</item>
         <item>Emisor</item>
         <item>Etiquetes</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Auto</item>
+        <item>Manual</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Non</item>
@@ -193,6 +211,11 @@ d\'accesibilidá!</b></string>
         <item>Claridá</item>
         <item>Escuridá</item>
         <item>Prietu</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Truncate</item>
+        <item>Scroll</item>
+        <item>Multiple lines</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Anúbrense</item>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Ayarlar</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Güvenlik</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">Hareketsizlik yeniden kilitlemesi için gecikme süresi</string>
     <string name="settings_title_block_accessibility">Erişilebilirlik hizmetlerini engelle</string>
     <string name="settings_title_block_autofill">Otomatik tamamlayıcı programları engelleme</string>
+    <string name="settings_title_auto_unlock_after_autofill">Otomatik doldurma (parola yönetici programlar) ardından program kilidi otomatik olarak çözülsün</string>
     <string name="settings_title_lang">Dil</string>
+    <string name="settings_title_theme_mode">Tema modu</string>
+    <string name="settings_title_theme_black_auto">Siyah tema</string>
     <string name="settings_title_theme">Tema</string>
     <string name="settings_title_card_layout">Kart düzeni</string>
+    <string name="settings_title_show_prev_token">Önceki token\'i göster</string>
     <string name="settings_title_label_size">Etiket yazı tipi boyutu</string>
-    <string name="settings_title_label_scroll">Kaydırma etiketi</string>
+    <string name="settings_title_label_display">Etiket görünümü</string>
     <string name="settings_title_tap_single">Tek dokunma</string>
     <string name="settings_title_tap_double">Çift dokunma</string>
     <string name="settings_title_thumbnail_size_ask">Küçük resim boyutu</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">Süresi dolan tokenleri vurgula</string>
     <string name="settings_title_hide_global_timeout">Kalan süre barını gizle</string>
     <string name="settings_title_show_individual_timeouts">Her bir kod için kalan süre barı göster</string>
+    <string name="settings_title_focus_search_on_start">Uygulama başladığında arama bölümüne odaklan</string>
+    <string name="settings_title_hide_issuer">Token\'ı veren bilgisini gizle</string>
     <string name="settings_title_backup_append_date">Dosya adına tarihi ekleme</string>
     <string name="settings_title_backup_ask">Dosya adı için sor</string>
     <string name="settings_title_backup_location">Varsayılan yedekleme konumu</string>
@@ -64,14 +70,19 @@
         <b>Erişilebilirlik hizmetlerine ihtiyacınız varsa bunu etkinleştirmeyin!</b></string>
     <string name="settings_desc_block_autofill">Otomatik doldurma (parola vb.) programlarının uygulama
         içindeki parola alanlarına erişimini engeller</string>
-    <string name="settings_desc_block_autofill_android">Bu özellik Android 8.0 (Oreo) veya üstünde desteklenmekte</string>
-    <string name="settings_desc_label_scroll">Büyük etiketleri kırpmak yerine kaydırın</string>
+    <string name="settings_desc_auto_unlock_after_autofill">Eğer parola otomatik doldurma programları ile doldurulduysa
+        kilidi aç</string>
+    <string name="settings_desc_autofill_requires_android_o">Bu özellik Android 8.0 (Oreo) veya üstü sürüm gerektirir</string>
+    <string name="settings_desc_theme_black_auto">Karanlık modda siyah temayı kullan</string>
+    <string name="settings_desc_show_prev_token">Mevcut token\'a ek olarak bir önceki token\'ı da göster</string>
     <string name="settings_desc_minimize_on_copy">OTP\'yi panoya kopyaladığınızda uygulama minimize edilecek</string>
     <string name="settings_desc_search_includes">Arama yaparken hangi değerlerin dahil edilmesi gerektiğini belirtin</string>
     <string name="settings_desc_label_highlight_token">8 saniye içerisinde süresi doluyorsa tokeni kırmızı renkte vurgular</string>
     <string name="settings_desc_hide_global_timeout">Ekranın tepesindeki kalan süre barını gizle</string>
     <string name="settings_desc_show_individual_timeouts">Her bir kod için ayrı ayrı kalan süre barı görüntüler.
         Bu uygulamayı yavaşlatabilir, sadece gerçekten gerekliyse aktifleştirin.</string>
+    <string name="settings_desc_focus_search_on_start">Uygulama açılır açılmaz arama menüsüne odaklan.</string>
+    <string name="settings_desc_hide_issuer">Her kartın altındaki token veren site bilgisini gizle</string>
     <string name="settings_desc_backup_append_date">Önerilen yedek adına mevcut tarih ve saati ekleme</string>
     <string name="settings_desc_backup_ask">Yedek yaratıldığında ya da 
         kurtarıldığında her zaman dosya adı sor</string>
@@ -109,6 +120,8 @@ ilk haline dönülüyor!</string>
     <string name="settings_toast_encryption_auth_failed">Kimlik doğrulama başarısız!</string>
     <string name="settings_toast_auth_upgrade_failed">Şifrenizi / PIN\'inizi yeni şifrelemeye sessizce yükseltme başarısız oldu,
         lütfen ayarları el ile sıfırlayın!</string>
+    <string name="settings_toast_android_sync_enabled">Android sync aktifleştirildi</string>
+    <string name="settings_toast_android_sync_disabled">Android sync pasifleştirildi</string>
     <string name="settings_dialog_title_warning">Uyarı</string>
     <string name="settings_dialog_title_error">Hata</string>
     <string name="settings_dialog_title_clear_keystore">KeyStore\'u temizle?</string>
@@ -160,11 +173,16 @@ beklenmedik durumlar karşısında her zaman bir yedek barındırmak iyi bir al�
         <item>Göster/Gizle</item>
         <item>Kopyala</item>
         <item>Kopyala ve arkaplana at</item>
+        <item>Tuş girişi (keystroke, klavyede tek tek tuşa basmış gibi) olarak paylaş</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Etiket</item>
         <item>Sağlayan</item>
         <item>Etiketler</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Otomatik</item>
+        <item>Manuel</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Kapalı</item>
@@ -175,6 +193,11 @@ beklenmedik durumlar karşısında her zaman bir yedek barındırmak iyi bir al�
         <item>Aydınlık tema</item>
         <item>Koyu tema</item>
         <item>Siyah tema</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Kırp / kısalt</item>
+        <item>Kaydır</item>
+        <item>Çoklu satır</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Gizli</item>

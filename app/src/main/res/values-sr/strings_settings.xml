@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="settings_activity_title">Подешавања</string>
+    <!-- Categories -->
+    <string name="settings_category_title_security">Безбедност</string>
+    <string name="settings_category_title_ui">Кориснички интерфејс</string>
+    <string name="settings_category_title_backup">Резервна копија</string>
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">Додирни за откривање</string>
+    <string name="settings_title_tap_to_reveal_timeout">Тајмаут за додир за откривљавање</string>
+    <string name="settings_title_auth">Аутентификација</string>
+    <string name="settings_title_auth_password">Лозинка</string>
+    <string name="settings_title_auth_pin">ПИН</string>
+    <string name="settings_title_encryption">Шифровање базе</string>
+    <string name="settings_title_panic">Окидач панике</string>
+    <string name="settings_title_relock_screen_off">Закључај на искључавање екрана</string>
+    <string name="settings_title_relock_background">Закључај када програм иде у позадину</string>
+    <string name="settings_title_auth_inactivity">Закључај на неактивност</string>
+    <string name="settings_title_auth_inactivity_delay">Кашњење за закључавање на неактивности</string>
+    <string name="settings_title_block_accessibility">Блокирај услуге приступачности</string>
+    <string name="settings_title_block_autofill">Блокирај Аутопуњење</string>
+    <string name="settings_title_auto_unlock_after_autofill">Аутоматско деблокирање након ауто-пуњења</string>
+    <string name="settings_title_lang">Језик</string>
+    <string name="settings_title_theme_mode">Мод теме</string>
+    <string name="settings_title_theme_black_auto">Црна тема</string>
+    <string name="settings_title_theme">Тема</string>
+    <string name="settings_title_card_layout">Изглед картице</string>
+    <string name="settings_title_show_prev_token">Прикажи претходни жетон</string>
+    <string name="settings_title_label_size">Величина фонта ознаке</string>
+    <string name="settings_title_label_display">Приказ ознаке</string>
+    <string name="settings_title_tap_single">Један додир</string>
+    <string name="settings_title_tap_double">Дупли додир</string>
+    <string name="settings_title_thumbnail_size_ask">Величина сличица</string>
+    <string name="settings_title_split_group_size">Раздели жетон са размаком</string>
+    <string name="settings_title_tag_functionality">Понашање избора ознака</string>
+    <string name="settings_title_minimize_on_copy">Минимизирај апликацију на копирање ОТП-а</string>
+    <string name="settings_title_search_includes">Понашање претраге</string>
+    <string name="settings_title_label_highlight_token">Истакните жетоне који истичу</string>
+    <string name="settings_title_hide_global_timeout">Сакриј глобалну траку тајмаута</string>
+    <string name="settings_title_show_individual_timeouts">Прикажи појединачна тајмаута</string>
+    <string name="settings_title_focus_search_on_start">Фокус на претрагу на покретање апликације</string>
+    <string name="settings_title_hide_issuer">Сакрити издаваоца</string>
+    <string name="settings_title_backup_append_date">Додати датум имену датотеке</string>
+    <string name="settings_title_backup_ask">Тражи име датотеке</string>
+    <string name="settings_title_backup_location">Подразумевана локација резервне копије</string>
+    <string name="settings_title_backup_password">Лозинка резервне копије</string>
+    <string name="settings_title_auto_backup_password_enc">Аутоматски прави резервну копију на нових уноса</string>
+    <string name="settings_title_backup_broadcasts">Резервна копија емитовања</string>
+    <string name="settings_title_openpgp_provider">OpenPGP провајдер</string>
+    <string name="settings_title_openpgp_key_encrypt">OpenPGP кључ за шифровање</string>
+    <string name="settings_title_openpgp_key_sign">OpenPGP кључ за потписивање (опционално)</string>
+    <string name="settings_title_openpgp_verify">Провери шифроване резервне копије</string>
+    <string name="settings_title_special_features">Омогућити специјалне функције</string>
+    <string name="settings_title_enable_screenshot">Омогући снимке екрана</string>
+    <string name="settings_title_enable_android_backup_service">Омогући Android синхронизацију</string>
+    <string name="settings_title_clear_keystore">Испразни KeyStore</string>
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">Подразумевано сакријте ОТП жетоне, захтевајући
+        да се ручно открију</string>
+    <string name="settings_desc_tap_to_reveal_timeout">Изаберите време (у сек.) након којег ћете
+        поново сакрити откривене уносе</string>
+    <string name="settings_desc_panic">Одлучите шта ће се догодити када се прими окидач панике</string>
+    <string name="settings_desc_relock_screen_off">Захтевати аутентификацију након искључивања
+        екрана уређаја</string>
+    <string name="settings_desc_relock_background">Захтевати аутентификацију након што је апликација
+        послата у позадину (нпр. притиском на почетно дугме)</string>
+    <string name="settings_desc_auth_inactivity">Захтевати аутентификацију након што је уређај
+        неактиван</string>
+    <string name="settings_desc_auth_inactivity_delay">Изаберите време (у сек.) након којег ће се
+        поново тражити аутентификација</string>
+    <string name="settings_desc_block_accessibility">Сакрити осетљива поља од услуга приступачности. <b>НЕ Омогућавајте ово ако се ослањате на услуге приступачности!</b></string>
+    <string name="settings_desc_block_autofill">Блокирати услуге аутоматског попуњавања да приступе
+        пољима лозинке унутар апликације</string>
+    <string name="settings_desc_auto_unlock_after_autofill">Откључајте ако је лозинка испуњена са ауто-пуњењем</string>
+    <string name="settings_desc_autofill_requires_android_o">За ову функцију је потребна верзијаAndroid-а изнад 8.0 (Oreo)</string>
+    <string name="settings_desc_theme_black_auto">Користите црну тему у тамном режиму</string>
+    <string name="settings_desc_show_prev_token">Покажите претходни жетон поред тренутног</string>
+    <string name="settings_desc_minimize_on_copy">Апликација ће бити смањена када копирате ОТП у оставу</string>
+    <string name="settings_desc_search_includes">Наведите које вредности треба укључити приликом претраживања</string>
+    <string name="settings_desc_label_highlight_token">Означава жетон црвеном бојом ако истиче за 8 секунди</string>
+    <string name="settings_desc_hide_global_timeout">Сакрије траку глобалног тајмаута приказану на врху екрана</string>
+    <string name="settings_desc_show_individual_timeouts">Приказује појединачну траку временског ограничења за сваки унос.
+        Ово може успорити апликацију, омогућити само ако је заиста потребно.</string>
+    <string name="settings_desc_focus_search_on_start">Фокусирајте претрагу одмах након отварања апликације.</string>
+    <string name="settings_desc_hide_issuer">Сакрива издаваоца на свакој картици</string>
+    <string name="settings_desc_backup_append_date">Додаје тренутни датум и време предложеним
+        називом датотеке</string>
+    <string name="settings_desc_backup_ask">Тражите име датотеке сваки пут када се сигурносна
+        копија креира или обнавља</string>
+    <string name="settings_desc_backup_location">Изаберите подразумевану локацију резервне копије</string>
+    <string name="settings_desc_backup_location_set">Локација за резервне копије је одабрана</string>
+    <string name="settings_desc_backup_password">Поставља лозинку која се користи за шифровање
+        резервних копија</string>
+    <string name="settings_desc_auto_backup_password_enc">Ствара нову шифровану резервну копију када се додају
+        или уреде нови уноси ако су испуњени услови подешавања</string>
+    <string name="settings_desc_auto_backup_requirements">Поставља подразумевану локацију и лозинку
+        за резервну копију</string>
+    <string name="settings_desc_backup_broadcasts">Изаберите које врсте резервних копија могу да покрећу
+        апликације независних произвођача помоћу емитовања</string>
+    <string name="settings_desc_openpgp_key_encrypt">Имејл OpenPGP кључа који се користи за шифровање резервних копија</string>
+    <string name="settings_desc_openpgp_verify">Шифроване резервне копије се увозе само ако су потписане важећим кључем</string>
+    <string name="settings_desc_special_features">Уклоните ознаку да бисте онемогућили специјалне функције</string>
+    <string name="settings_desc_enable_screenshot">Омогући снимање главног екрана (онемогућено по подразумеваним вредностима из безбедносних разлога)</string>
+    <string name="settings_desc_enable_android_backup_service">Омогућава andOTP да користи уграђену Android услугу израде резервних копија за резервне кључеве и преференције</string>
+    <string name="settings_desc_clear_keystore">Брише кључ за шифровање из KeyStore</string>
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_not_secure">Ова функција захтева подешавање сигурног закључаног екрана (Подешавања -&gt; Безбедност -&gt; Закључавање екрана)</string>
+    <string name="settings_toast_password_empty">Празна лозинка није дозвољена, поставите аутентификацију на „Без“ да бисте је онемогућили!</string>
+    <string name="settings_toast_encryption_changing">Покушавам да променим шифровање базе података, сачекајте!</string>
+    <string name="settings_toast_encryption_change_success">Успешно промењено шифровање базе података!</string>
+    <string name="settings_toast_encryption_change_failed">Није успела промена шифровања базе података, враћање у претходно стање!</string>
+    <string name="settings_toast_encryption_backup_failed">Стварање интерне резервне копије није успело, прекидање!</string>
+    <string name="settings_toast_encryption_no_key">Преузимање кључа за шифровање није успело, прекид!</string>
+    <string name="settings_toast_encryption_auth_failed">Идентитет није потврђен!</string>
+    <string name="settings_toast_auth_upgrade_failed">Није успело тихо надоградити лозинку/ПИН на нову енкрипцију, молимо вас да је ручно ресетујете у подешавањима!</string>
+    <string name="settings_toast_android_sync_enabled">Омогућена Android синхронизација</string>
+    <string name="settings_toast_android_sync_disabled">Онемогућена Android синхронизација</string>
+    <string name="settings_dialog_title_warning">Упозорење</string>
+    <string name="settings_dialog_title_error">Грешка</string>
+    <string name="settings_dialog_title_clear_keystore">Испразни KeyStore?</string>
+    <string name="settings_dialog_title_android_sync">Android синх.</string>
+    <string name="settings_dialog_msg_encryption_change">andOTP ће сада покушати да промени шифровање базе података. У случају квара, интерна резервна копија ће бити враћена, а шифровање остаје непромењено.\n\n<b>Међутим, увек је добро имати резервну копију у случају да се догоди нешто неочекивано!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">Можете да користите лозинку или ПИН само ако је шифровање базе података постављено на „Лозинка/ПИН“!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">Прво треба да подесите аутентификацију на „Лозинка“ или „ПИН“!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">Пре промене шифрирања морате поставити лозинку или ПИН!</string>
+    <string name="settings_dialog_msg_clear_keystore_password">У неким случајевима брисање KeyStore-а може помоћи у решавању проблема. Требали бисте наставити само ако знате шта радите!\n\nПошто је <b>Шифровање базе</b> постављено на <b>Лозинка/ПИН</b>, не бисте смели да изгубите никакве податке радећи ово (али ионако никад не боли имати резервну копију).\n\n<b>Да ли сте стварно сигурни да желите да обришете КеиСторе?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">У неким случајевима брисање KeyStore-а може помоћи у решавању проблема. Требали бисте наставити само ако знате шта радите!\n\n<b>Warning</b>: Пошто је <b>Шифровање базе</b> постављено на <b>Android KeyStore</b> изгубићете све своје рачуне. Обавезно имајте резервну копију!\n\n<b>Да ли сте стварно сигурни да желите да очистите KeyStore?</b></string>
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">Android синхронизација се не може користити са keystore,<b>требало би да ручно извршите резервну копију!</b></string>
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>Без</item>
+        <item>Лозинка</item>
+        <item>ПИН</item>
+        <item>Акредитиви за уређај</item>
+    </string-array>
+    <string-array name="settings_entries_encryption">
+        <item>Android KeyStore</item>
+        <item>Лозинка/ПИН</item>
+    </string-array>
+    <string-array name="settings_entries_panic">
+        <item>Обриши све налоге</item>
+        <item>Ресетуј подешавања апликације</item>
+    </string-array>
+    <string-array name="settings_entries_card_layout">
+        <item>Компактно</item>
+        <item>Подразумевано</item>
+        <item>Пуно</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Ништа</item>
+        <item>Показати/сакрити</item>
+        <item>Копирај</item>
+        <item>Копирати и ићи у позадину</item>
+        <item>Делити као унос са тастера</item>
+    </string-array>
+    <string-array name="settings_entries_search_includes">
+        <item>Ознака</item>
+        <item>Издавач</item>
+        <item>Ознаке</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Аутоматски</item>
+        <item>Ручно</item>
+    </string-array>
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Искључено</item>
+        <item>Нови уноси</item>
+        <item>Све уреди</item>
+    </string-array>
+    <string-array name="settings_entries_theme">
+        <item>Светла тема</item>
+        <item>Тамна тема</item>
+        <item>Црна тема</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Скратити</item>
+        <item>Померање</item>
+        <item>Вишеструке линије</item>
+    </string-array>
+    <string-array name="settings_entries_thumbnail_size">
+        <item>Сакривено</item>
+        <item>Ситно</item>
+        <item>Мало</item>
+        <item>Подразумевано</item>
+        <item>Средње</item>
+        <item>Велико</item>
+    </string-array>
+    <string-array name="settings_entries_split_group_size">
+        <item>Не дели</item>
+        <item>После 2 слова</item>
+        <item>После 3 слова</item>
+    </string-array>
+    <string-array name="settings_entries_tag_functionality">
+        <item>Прикажи све уносе који се подударају са <b>било којом</b> од изабраних ознака (или)</item>
+        <item>Прикажи само уносе који се подударају са <b>свим</b> одабраним ознакама (и)</item>
+        <item>Пребацивање између ознака (дозвољава одабир само једне ознаке)</item>
+    </string-array>
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Резервне копије обичног текста</item>
+        <item>Шифроване резервне копије</item>
+    </string-array>
+    <!-- Special -->
+    <string name="settings_lang_sys_default">Подразумевано</string>
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">Унеси нову лозинку</string>
+    <string name="settings_hint_pin">Унеси нови PIN</string>
+    <string name="settings_hint_password_confirm">Потврди лозинку</string>
+    <string name="settings_hint_pin_confirm">Потврди ПИН</string>
+    <string name="settings_label_short_password">Лозинка мора имати макар %1$d карактера!</string>
+    <string name="settings_label_short_pin">ПИН мора имати макар %1$d цифара!</string>
+</resources>

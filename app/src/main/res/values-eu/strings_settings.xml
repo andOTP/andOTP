@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Ezarpenak</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Segurtasuna</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">Erabiltzen ez dela erabakitzeko denbora-muga</string>
     <string name="settings_title_block_accessibility">Irisgarritasun zerbitzuak blokeatu</string>
     <string name="settings_title_block_autofill">Automatikoki betetzea blokeatu</string>
+    <string name="settings_title_auto_unlock_after_autofill">Berez betetzean automatikoki desblokeatu</string>
     <string name="settings_title_lang">Hizkuntza</string>
+    <string name="settings_title_theme_mode">Itxuraren modua</string>
+    <string name="settings_title_theme_black_auto">Itxura beltza</string>
     <string name="settings_title_theme">Itxura</string>
     <string name="settings_title_card_layout">Txartel erako ikuspena</string>
+    <string name="settings_title_show_prev_token">Erakutsi aurreko tokena</string>
     <string name="settings_title_label_size">Etiketaren tamaina</string>
-    <string name="settings_title_label_scroll">Etiketa automatikoki mugitu</string>
+    <string name="settings_title_label_display">Etiketa</string>
     <string name="settings_title_tap_single">Behin sakatu</string>
     <string name="settings_title_tap_double">Birritan sakatu</string>
     <string name="settings_title_thumbnail_size_ask">Irudi txikiaren tamaina</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">Iraungitzera doazen tokenak markatu</string>
     <string name="settings_title_hide_global_timeout">Ezkutatu denbora-mugaren barra</string>
     <string name="settings_title_show_individual_timeouts">Erakutsi bakoitzaren denbora-mugak</string>
+    <string name="settings_title_focus_search_on_start">Bilaketara joan aplikazioa hastean</string>
+    <string name="settings_title_hide_issuer">Ezkutatu jaulkitzailea</string>
     <string name="settings_title_backup_append_date">Fitxategiaren izenari data erantsi</string>
     <string name="settings_title_backup_ask">Fitxategi-izena galdetu</string>
     <string name="settings_title_backup_location">Segurtasun-kopien defektuzko kokalekua</string>
@@ -66,15 +72,20 @@
         ezkutatu. <b>Ez aktibatu hau irisgarritasun zerbitzuak erabili behar badituzu!</b></string>
     <string name="settings_desc_block_autofill">Blokeatu balioak automatikoki betetzen dituzten
         zerbitzuek aplikazioko pasahitzen eremuak irakurtzea</string>
-    <string name="settings_desc_block_autofill_android">Aukera honek Android 8.0 (Oreo) baino
+    <string name="settings_desc_auto_unlock_after_autofill">Desblokeatu pasahitza automatikoki
+        bete bada</string>
+    <string name="settings_desc_autofill_requires_android_o">Aukera honek Android 8.0 (Oreo) baino
         handiagoa den bertsioa behar du</string>
-    <string name="settings_desc_label_scroll">Izen luzeak horizontalean scrolla eginez erakutsi, izenak moztu beharrean</string>
+    <string name="settings_desc_theme_black_auto">Modu ilunean itxura beltza erabili</string>
+    <string name="settings_desc_show_prev_token">Erakutsi aurreko tokena unekoaz gain</string>
     <string name="settings_desc_minimize_on_copy">Aplikazioa minimizatu egingo da OTP gakoa arbelera kopiatzean</string>
     <string name="settings_desc_search_includes">Adierazi bilaketa egitean zein balio kontuan hartu behar diren</string>
     <string name="settings_desc_label_highlight_token">Tokena gorriz markatuko du 8 segundoak iraungitzen bada</string>
     <string name="settings_desc_hide_global_timeout">Pantailaren goialdean agertzen den denbora agortzeko barra globala ezkutatu</string>
     <string name="settings_desc_show_individual_timeouts">Sarrera bakoitzari dagokion denbora agortzeko barra erakutsi.
         Honek aplikazioa moteldu dezake, guztiz beharrezkoa bada bakarrik aktibatu.</string>
+    <string name="settings_desc_focus_search_on_start">Aplikazioa irekitzean bilaketa leihora joan.</string>
+    <string name="settings_desc_hide_issuer">Etiketa bakoitzean jaulkitzailea ezkutatu</string>
     <string name="settings_desc_backup_append_date">Aholkatutako segurtasun kopiaren fitxategi izenari
         uneko data eta ordua gehitu</string>
     <string name="settings_desc_backup_ask">Segurtasun kopia bat sortu edo berrezartzen den bakoitzean
@@ -116,6 +127,8 @@ Androiden horretarako zerbitzua erabiltzea</string>
     <string name="settings_toast_encryption_auth_failed">Autentifikazio errorea!</string>
     <string name="settings_toast_auth_upgrade_failed">Huts egin du zure pasahitza / PINa zifratze berria erabiltzera
 migratzean, berrezarri eskuz Ezarpenetan!</string>
+    <string name="settings_toast_android_sync_enabled">Android sync aktibatu da</string>
+    <string name="settings_toast_android_sync_disabled">Android sync desaktibatu da</string>
     <string name="settings_dialog_title_warning">Oharra</string>
     <string name="settings_dialog_title_error">Errorea</string>
     <string name="settings_dialog_title_clear_keystore">KeyStorea garbitu?</string>
@@ -167,11 +180,16 @@ migratzean, berrezarri eskuz Ezarpenetan!</string>
         <item>Erakutsi/Ezkutatu</item>
         <item>Kopiatu</item>
         <item>Kopiatu eta atzeko planora joan</item>
+        <item>Partekatu teklatu sakaketak</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Etiketa</item>
         <item>Jaulkitzailea</item>
         <item>Etiketak</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Auto</item>
+        <item>Eskuz</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Itzalita</item>
@@ -182,6 +200,11 @@ migratzean, berrezarri eskuz Ezarpenetan!</string>
         <item>Itxura argia</item>
         <item>Itxura iluna</item>
         <item>Itxura beltza</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Moztu</item>
+        <item>Scroll</item>
+        <item>Lerro anitz</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Ezkutuan</item>

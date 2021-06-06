@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">さあ、始めましょう</string>
     <string name="intro_slide1_desc"><b>andOTP</b> へようこそ、このウィザードでは初期設定をご案内します。注意して慎重に読んでください。誤った操作を行うと、データを失う可能性があります！
 \n\n
@@ -8,13 +8,20 @@
     <string name="intro_slide2_desc_keystore">キーストアは、暗号化キーを安全に格納するための Android のシステムコンポーネントです。この方法の利点は、キーがデータファイルから切り離されて格納され、ハードウェア暗号化 (デバイスがサポートしている場合) によってバックアップできることです。ただし、キーはアプリのデータと共に格納されないため、<b>この方式では、外部のバックアップソリューション (Titaniumなど) が機能しなくなります</b>。この方法を選択する場合は <b>andOTP</b> によって提供される内部バックアップ機能に依存する必要があります。
 \n\n
 <b>警告</b>: キーストアは、多くの問題を引き起こすことが知られています、あなたは絶対に必要な場合にのみ、キーストアを使用してください。 <b>andOTP</b> を起動するたびに パスワード/PIN を入力してもかまわない場合は、<b>パスワードベースの暗号化を使用することを強くお勧めします</b>。</string>
-    <string name="intro_slide2_desc_password">この方式では、パスワードまたは PIN から生成されたキーを使用してデータを暗号化します。ここでの主な利点は、これが外部バックアップソリューション (Titaniumなど) で動作し、キーストアよりもはるかに障害が発生しにくいことです。ただし <b>andOTP</b> を起動するたびに認証情報を入力する必要があります。</string>
+    <string name="intro_slide2_desc_password">この方式では、パスワードまたは PIN から生成されたキーを使用してデータを暗号化します。ここでの主な利点は、これが外部バックアップソリューション (Titanium など) で動作し、キーストアよりもはるかに障害が発生しにくいことです。ただし <b>andOTP</b> を起動するたびに認証情報を入力する必要があります。</string>
     <string name="intro_slide3_desc_keystore">ここでは <b>andOTP</b> をロックする認証を設定できます。暗号化方式として <b>Android キーストア</b> を選択したため、これはオプションです。</string>
     <string name="intro_slide3_desc_password">ここでは <b>andOTP</b> をロックする認証を設定できます。暗号化方式として <b>パスワード / PIN</b> を選択したため、続行するにはパスワードまたは PIN のいずれかを設定する必要があります。</string>
     <string name="intro_slide3_warn_no_password">続行するにはパスワードを設定してください！</string>
     <string name="intro_slide3_warn_no_pin">続行するには PIN を設定してください！</string>
     <string name="intro_slide3_warn_confirm_password">続行するには確認パスワードを入力してください！</string>
+    <string name="intro_slide3_warn_password_mismatch">パスワードが一致していません！</string>
     <string name="intro_slide3_warn_confirm_pin">続行するには確認 PIN を入力してください！</string>
+    <string name="intro_slide3_warn_pin_mismatch">PIN が一致していません</string>
     <string name="intro_slide4_title">完了しました</string>
+    <string name="intro_slide4_title_failed">設定に失敗しました</string>
+    <string name="intro_slide4_title_progress">少々お待ちください</string>
+    <string name="intro_slide4_desc_failed">パスワードの設定に失敗しました。この案内は次回も表示されます！</string>
     <string name="intro_slide4_desc">あなたの設定は保存されました、 <b>andOTP</b> を使用する準備が完了しました！</string>
+    <string name="intro_slide4_desc_progress">設定を保存し、暗号化キーを生成します。少々お待ちください…</string>
+    <string name="intro_slide_android_backup_desc">Android sync is a feature built in to android used to back up app data to a 3rd party service (usually Google). Backups are always encrypted and unaccessible to 3rd parties without your master password. Requires use of Password encryption method.</string>
 </resources>

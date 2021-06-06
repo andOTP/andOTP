@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">Tentang</string>
+    <string name="about_description">Aplikasi autentikasi dua langkah sumber terbuka untuk Android</string>
+    <string name="about_tab_about">Tentang</string>
+    <string name="about_tab_libraries">Pustaka</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">Log perubahan</string>
+    <string name="about_label_license">Lisensi</string>
+    <string name="about_label_MIT">Lisensi MIT</string>
+    <string name="about_label_source">Kode sumber</string>
+    <string name="about_label_version">Versi</string>
+    <string name="about_label_faq">Pertanyaan Umum</string>
+    <string name="about_label_faq_long">Pertanyaan yang sering diajukan</string>
+    <!-- Authors -->
+    <string name="about_title_authors">Pembuat</string>
+    <string name="about_label_main_developer">Pengembang utama</string>
+    <string name="about_label_developer">Pengembang</string>
+    <string name="about_label_original_author">Pembuat dari aplikasi asal</string>
+    <string name="about_label_original_app">Aplikasi asal</string>
+    <string name="about_label_website">Situs Web</string>
+    <string name="about_label_donate">Donasi</string>
+    <string name="about_label_contributors">Kontributor</string>
+    <string name="about_label_translators">Penerjemah</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">Penyangkalan thumbnail</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Semua thumbnail adalah merek dagang dari pemilik yang bersangkutan.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> Penggunaan merek dagang tersebut tidak menunjukkan dukungan untuk pemegang merek dagang oleh andOTP dan begitu juga sebaliknya.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Thumbnail hanya bisa digunakan untuk mewakili perusahaan atau produk yang mereka rujuk.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Mohon untuk tidak menggunakan thumbnail untuk segala tujuan apa pun kecuali untuk mewakili merek atau layanan tersebut.</b></string>
+    <!-- Support -->
+    <string name="about_title_support">Dukung pengembangan</string>
+    <string name="about_desc_support">Cari tahu bagaimana Anda bisa membantu pengembangan andOTP</string>
+    <string name="about_title_special_features">Fitur khusus</string>
+    <string name="about_dialog_special_features">Yakin untuk mengaktifkan fitur khusus? Kebanyakan dari fitur tersebut bukan algoritma OTP standar yang diterapkan karena permintaan spesial. Fitur tersebut <b>tidak didukung secara resmi</b> dan dapat menimbulkan <b>berbagai keterbatasan</b>, tolong baca (dan pahami) halaman \"Fitur Khusus\" di wiki Github untuk mengetahui lebih lanjut sebelum menggunakannya.</string>
+    <string name="about_toast_special_features">Fitur khusus telah aktif</string>
+    <string name="about_toast_special_features_enabled">Fitur khusus telah aktif</string>
+    <string name="about_toast_copied_to_clipboard">Tautan donasi telah disalin ke papan klip</string>
+</resources>

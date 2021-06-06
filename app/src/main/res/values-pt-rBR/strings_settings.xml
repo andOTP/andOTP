@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Configurações</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Segurança</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">Tempo de inatividade para bloqueio</string>
     <string name="settings_title_block_accessibility">Bloquear serviços de acessibilidade</string>
     <string name="settings_title_block_autofill">Bloquear preenchimento automático</string>
+    <string name="settings_title_auto_unlock_after_autofill">Desbloqueio automático após o autopreenchimento</string>
     <string name="settings_title_lang">Idioma</string>
+    <string name="settings_title_theme_mode">Modo do tema</string>
+    <string name="settings_title_theme_black_auto">Tema escuro</string>
     <string name="settings_title_theme">Tema</string>
     <string name="settings_title_card_layout">Layout do cartão</string>
+    <string name="settings_title_show_prev_token">Mostrar token anterior</string>
     <string name="settings_title_label_size">Tamanho de fonte do rótulo</string>
-    <string name="settings_title_label_scroll">Rolagem de rótulos</string>
+    <string name="settings_title_label_display">Exibição de etiqueta</string>
     <string name="settings_title_tap_single">Toque único</string>
     <string name="settings_title_tap_double">Toque duplo</string>
     <string name="settings_title_thumbnail_size_ask">Tamanho da miniatura</string>
@@ -34,10 +38,12 @@
     <string name="settings_title_label_highlight_token">Destacar tokens próximos a expirar</string>
     <string name="settings_title_hide_global_timeout">Ocultar barra de tempo limite global</string>
     <string name="settings_title_show_individual_timeouts">Exibir tempos limites individuais</string>
+    <string name="settings_title_focus_search_on_start">Foco na pesquisa ao iniciar o aplicativo</string>
+    <string name="settings_title_hide_issuer">Ocultar emissor</string>
     <string name="settings_title_backup_append_date">Inserir data ao nome do arquivo</string>
     <string name="settings_title_backup_ask">Pedir o nome do arquivo</string>
     <string name="settings_title_backup_location">Local padrão de backup</string>
-    <string name="settings_title_backup_password">Defina a senha do backup</string>
+    <string name="settings_title_backup_password">Senha do backup</string>
     <string name="settings_title_auto_backup_password_enc">Backup automático para novas entradas</string>
     <string name="settings_title_backup_broadcasts">Backup de ativação remota</string>
     <string name="settings_title_openpgp_provider">Provedor OpenPGP</string>
@@ -64,25 +70,32 @@
         accessibilidade. <b>NÃO habilite isso se você depende dos serviços de acessibilidade!</b></string>
     <string name="settings_desc_block_autofill">Bloquear acesso de serviços de autopreenchimento aos
         campos de senha dentro do aplicativo</string>
-    <string name="settings_desc_block_autofill_android">Este recurso exige uma versão Android
-        acima da 8.0 (Oreo)</string>
-    <string name="settings_desc_label_scroll">Rolagem de rótulos longos em vez de truncá-los</string>
+    <string name="settings_desc_auto_unlock_after_autofill">Desbloquear se a senha foi preenchida
+        por autopreenchimento</string>
+    <string name="settings_desc_autofill_requires_android_o">Este recurso requer uma versão do Android
+        a partir da 8.0 (Oreo)</string>
+    <string name="settings_desc_theme_black_auto">Usar tema escuro no modo escuro</string>
+    <string name="settings_desc_show_prev_token">Mostrar o token anterior, além do atual</string>
     <string name="settings_desc_minimize_on_copy">O aplicativo será minimizado quando você copiar o OTP para a área de transferência</string>
     <string name="settings_desc_search_includes">Especificar quais valores devem ser incluídos ao pesquisar</string>
     <string name="settings_desc_label_highlight_token">Destaca o token em vermelho se estiver expirando em 8 segundos</string>
-    <string name="settings_desc_hide_global_timeout">Ocultar barra de tempo limite global exibida no topo da tela</string>
+    <string name="settings_desc_hide_global_timeout">Oculta a barra de tempo limite global exibida no topo da tela</string>
     <string name="settings_desc_show_individual_timeouts">Exibe uma barra de tempo limite individual para cada entrada.
-        Isso pode lentificar o aplicativo, habilite apenas se realmente necessário.</string>
+        Isso pode deixar o aplicativo lento, ative apenas se for realmente necessário.</string>
+    <string name="settings_desc_focus_search_on_start">Foco na pesquisa assim que abrir o aplicativo.</string>
+    <string name="settings_desc_hide_issuer">Ocultar a etiqueta do emissor em cada cartão</string>
     <string name="settings_desc_backup_append_date">Inserir a data e hora atuais ao         nome de backup sugerido</string>
     <string name="settings_desc_backup_ask">Pedir o nome de arquivo sempre que um backup for criado ou        restaurado</string>
     <string name="settings_desc_backup_location">Escolha um local padrão de backup</string>
     <string name="settings_desc_backup_location_set">O local de backup foi escolhido</string>
-    <string name="settings_desc_backup_password">Definir a senha usada para criptografar os        backups</string>
+    <string name="settings_desc_backup_password">Define a senha usada para criptografar os
+        backups</string>
     <string name="settings_desc_auto_backup_password_enc">Cria um novo backup criptografado quando novas
         entradas são adicionadas ou editadas, se as condições das configurações forem atendidas</string>
     <string name="settings_desc_auto_backup_requirements">Defina um local padrão de backup e uma senha de backup
         para habilitar esta opção</string>
-    <string name="settings_desc_backup_broadcasts">Selecionar quais tipos de backup podem ser acionados por        aplicativos de terceiros usando ativação remota</string>
+    <string name="settings_desc_backup_broadcasts">Selecione quais tipos de backup podem ser acionados por
+        aplicativos de terceiros usando ativação remota</string>
     <string name="settings_desc_openpgp_key_encrypt">Endereço de e-mail da chave OpenPGP usada para criptografar
         os backups</string>
     <string name="settings_desc_openpgp_verify">Backups criptografados são importados apenas se eles são         assinados com uma chave válida</string>
@@ -105,6 +118,8 @@
     <string name="settings_toast_encryption_auth_failed">A autenticação falhou!</string>
     <string name="settings_toast_auth_upgrade_failed">Falha ao migrar sua senha / PIN
         para a nova criptografia, por favor redefina-a nas Configurações!</string>
+    <string name="settings_toast_android_sync_enabled">Sincronização do Android ativada</string>
+    <string name="settings_toast_android_sync_disabled">Sincronização do Android desativada</string>
     <string name="settings_dialog_title_warning">Aviso</string>
     <string name="settings_dialog_title_error">Erro</string>
     <string name="settings_dialog_title_clear_keystore">Limpar o armazenamento de chaves?</string>
@@ -157,11 +172,16 @@
         <item>Exibir/Esconder</item>
         <item>Copiar</item>
         <item>Copiar e entrar em segundo plano</item>
+        <item>Compartilhar como teclas pressionadas</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Rótulo</item>
         <item>Emissor</item>
         <item>Marcadores</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Automático</item>
+        <item>Manual</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Desligado</item>
@@ -172,6 +192,11 @@
         <item>Tema claro</item>
         <item>Tema escuro</item>
         <item>Tema preto</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Truncar</item>
+        <item>Rolagem</item>
+        <item>Várias linhas</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Oculto</item>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_activity_title">Autentikasi</string>
+    <!-- Hints -->
+    <string name="auth_hint_password">Kata sandi</string>
+    <string name="auth_hint_pin">PIN</string>
+    <!-- Messages -->
+    <string name="auth_msg_authenticate">Mohon untuk mengautentikasi terlebih dahulu untuk memulai andOTP!</string>
+    <string name="auth_msg_confirm_encryption">Silakan konfirmasi autentikasinya untuk menghasilkan kunci enkripsi Anda!</string>
+    <!-- Buttons -->
+    <string name="auth_button_unlock">Buka kunci</string>
+    <!-- Toast messages -->
+    <string name="auth_toast_password_missing">Silahkan tetapkan sebuah kata sandi di <b>Pengaturan</b>!</string>
+    <string name="auth_toast_pin_missing">Silahkan tetapkan sebuah PIN di <b>Pengaturan</b>!</string>
+    <string name="auth_toast_password_again">Kata sandi salah, silakan coba lagi!</string>
+    <string name="auth_toast_pin_again">PIN salah, silakan coba lagi!</string>
+</resources>

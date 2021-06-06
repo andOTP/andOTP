@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">إعدادات</string>
     <!-- Categories -->
     <string name="settings_category_title_security">الأمان</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">تأخير إعادة قفل عدم النشاط</string>
     <string name="settings_title_block_accessibility">حظر إمكانية الوصول</string>
     <string name="settings_title_block_autofill">حظر التعبئة التلقائية</string>
+    <string name="settings_title_auto_unlock_after_autofill">Unlock automatically after autofill</string>
     <string name="settings_title_lang">اللغة</string>
+    <string name="settings_title_theme_mode">Theme mode</string>
+    <string name="settings_title_theme_black_auto">Black theme</string>
     <string name="settings_title_theme">المظهر</string>
     <string name="settings_title_card_layout">تصميم البطاقة</string>
+    <string name="settings_title_show_prev_token">Show previous token</string>
     <string name="settings_title_label_size">حجم خط إسم العلامات</string>
-    <string name="settings_title_label_scroll">تسمية التمرير</string>
+    <string name="settings_title_label_display">Label display</string>
     <string name="settings_title_tap_single">نقرة</string>
     <string name="settings_title_tap_double">نقر مزدوج</string>
     <string name="settings_title_thumbnail_size_ask">حجم الصور المصغرة</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">Highlight expiring tokens</string>
     <string name="settings_title_hide_global_timeout">Hide global timeout bar</string>
     <string name="settings_title_show_individual_timeouts">Show individual timeouts</string>
+    <string name="settings_title_focus_search_on_start">Focus search on app start</string>
+    <string name="settings_title_hide_issuer">Hide Issuer</string>
     <string name="settings_title_backup_append_date">إلحاق تاريخ اليوم باسم الملف</string>
     <string name="settings_title_backup_ask">إسأل عن إسم الملف</string>
     <string name="settings_title_backup_location">Default backup location</string>
@@ -63,15 +69,20 @@
         services. <b>DO NOT enable this if you rely on the accessibility services!</b></string>
     <string name="settings_desc_block_autofill">Block autofill services from accessing password
         fields inside the app</string>
-    <string name="settings_desc_block_autofill_android">This feature requires an Android version
+    <string name="settings_desc_auto_unlock_after_autofill">Unlock if the password has been filled
+        in by autofill</string>
+    <string name="settings_desc_autofill_requires_android_o">This feature requires an Android version
         above 8.0 (Oreo)</string>
-    <string name="settings_desc_label_scroll">قم بتمرير علامات متجاورة بدلاً من اقتطاعها</string>
+    <string name="settings_desc_theme_black_auto">Use the black theme in dark mode</string>
+    <string name="settings_desc_show_prev_token">Show the previous token in addition to the current one</string>
     <string name="settings_desc_minimize_on_copy">App will be minimized when you copy the OTP to clipboard</string>
     <string name="settings_desc_search_includes">Specify which values should be included when searching</string>
     <string name="settings_desc_label_highlight_token">Highlights token in red if it\'s expiring in 8 seconds</string>
     <string name="settings_desc_hide_global_timeout">Hide the global timeout bar shown at the top of the screen</string>
     <string name="settings_desc_show_individual_timeouts">Show an individual timeout bar for every entry.
         This can slow down the app, only enable if really necessary.</string>
+    <string name="settings_desc_focus_search_on_start">Focus the search immediately after opening the app.</string>
+    <string name="settings_desc_hide_issuer">Hides issuer label on each card</string>
     <string name="settings_desc_backup_append_date">إلحاق بالتاريخ الحالي والوقت إلى اسم الملف النسخ الاحتياطي المقترح</string>
     <string name="settings_desc_backup_ask">اسأل عن اسم الملف كل مرة يتم إنشاء نسخة احتياطية أو نسخة مستعادة</string>
     <string name="settings_desc_backup_location">Choose a default backup location</string>
@@ -102,6 +113,8 @@
     <string name="settings_toast_encryption_no_key">فشل في إستيراد مفتاح التشفير, إلغاء العملية!</string>
     <string name="settings_toast_encryption_auth_failed">أخفقت المصادقة!</string>
     <string name="settings_toast_auth_upgrade_failed">فشل تحديث كلمة المرور / PIN إلى التشفيرة الجديدة. الرجاء إعادة تعيينها في الإعدادات!</string>
+    <string name="settings_toast_android_sync_enabled">Android sync enabled</string>
+    <string name="settings_toast_android_sync_disabled">Android sync disabled</string>
     <string name="settings_dialog_title_warning">تحذير</string>
     <string name="settings_dialog_title_error">خطأ</string>
     <string name="settings_dialog_title_clear_keystore">تخلص من مخزن المفاتيح؟</string>
@@ -147,11 +160,16 @@
         <item>Reveal/Hide</item>
         <item>Copy</item>
         <item>Copy and go to background</item>
+        <item>Share as Keystrokes</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Label</item>
         <item>المصدر</item>
         <item>الوسوم</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Auto</item>
+        <item>Manual</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Off</item>
@@ -162,6 +180,11 @@
         <item>مظهر فاتح</item>
         <item>مظهر داكن</item>
         <item>مظهر أسود</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Truncate</item>
+        <item>Scroll</item>
+        <item>Multiple lines</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>مخفية</item>

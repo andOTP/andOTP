@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">تنظیمات</string>
     <!-- Categories -->
     <string name="settings_category_title_security">امنیت</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">درنگ برای قفل شدن هنگام عدم فعالیت</string>
     <string name="settings_title_block_accessibility">مسدود کردن خدمات دسترسی</string>
     <string name="settings_title_block_autofill">مسدودسازی پرکردن خودکار</string>
+    <string name="settings_title_auto_unlock_after_autofill">بعد از پرکردن خودکار، به صورت خودکار قفل را باز کن</string>
     <string name="settings_title_lang">زبان</string>
+    <string name="settings_title_theme_mode">حالت تم</string>
+    <string name="settings_title_theme_black_auto">تم سیاه</string>
     <string name="settings_title_theme">پوسته</string>
     <string name="settings_title_card_layout">چیدمان کارت‌ها</string>
+    <string name="settings_title_show_prev_token">نمایش توکن قبلی</string>
     <string name="settings_title_label_size">اندازه قلم برچسب</string>
-    <string name="settings_title_label_scroll">برچسب فهرست</string>
+    <string name="settings_title_label_display">نمایش برچسب</string>
     <string name="settings_title_tap_single">تک-ضربه</string>
     <string name="settings_title_tap_double">ضربه-دوتایی</string>
     <string name="settings_title_thumbnail_size_ask">اندازه تصاویر بند انگشتی</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">برجسته سازی توکن های منقضی شده</string>
     <string name="settings_title_hide_global_timeout">پنهان کردن نوار سراسری زمان بندی</string>
     <string name="settings_title_show_individual_timeouts">نمایش زمان بندی های منحصر بفرد</string>
+    <string name="settings_title_focus_search_on_start">در زمان شروع برنامه، در حالت جستجو باش</string>
+    <string name="settings_title_hide_issuer">پنهان‌کردن صادرکننده</string>
     <string name="settings_title_backup_append_date">افزودن تاریخ به نام پرونده</string>
     <string name="settings_title_backup_ask">پرسیدن نام پرونده</string>
     <string name="settings_title_backup_location">محل پیش‌فرض ذخیره نسخه پشتیبان</string>
@@ -63,15 +69,18 @@
         دسترسی.<b>این گزینه را اگر به خدمات دسترسی متکی هستید فعال نکنید! </b></string>
     <string name="settings_desc_block_autofill">خدمت‌های پرکردن خودکار را در مقابل دسترسی به قسمت‌های
         مربوط به گذرواژه در برنامه مسدود کنید</string>
-    <string name="settings_desc_block_autofill_android">این ویژگی نیازمند داشتن اندروید بالاتر از
-        نسخه ۸ (اوریو) است</string>
-    <string name="settings_desc_label_scroll">به‌جای اینکه برچسب‌های بسیار بلند را کوتاه کنی، آن‌ها را فهرست کن</string>
+    <string name="settings_desc_auto_unlock_after_autofill">اگر رمزعبور با پرکردن خودکار پر شده بود، قفل را باز کن</string>
+    <string name="settings_desc_autofill_requires_android_o">این ویژگی نیازمند داشتن اندروید بالاتر از نسخه ۸ (اورئو) است</string>
+    <string name="settings_desc_theme_black_auto">در حالت تاریک، از تم سیاه استفاه کن</string>
+    <string name="settings_desc_show_prev_token">علاوه بر توکن فعلی، توکن قبلی را نیز نشان بده</string>
     <string name="settings_desc_minimize_on_copy">برنامه زمانی که شما رمز یکبار مصرف را به کلیپ بورد روگیری کنید کوچک خواهد شد</string>
     <string name="settings_desc_search_includes">مشخص کنید کدام مقادیر باید هنگام جستجو شامل شوند</string>
     <string name="settings_desc_label_highlight_token">توکن را هنگامی که طی ۸ ثانیه منقضی میشود را به رنگ قرمز برجسته میکند</string>
     <string name="settings_desc_hide_global_timeout">نوار زمان بندی سراسری نشان داده شده در بالای صفحه را پنهان کن</string>
     <string name="settings_desc_show_individual_timeouts">برای هر مورد نوار زمان بندی منحصر بفرد نمایش داده شود.
         اگر واقعا مورد نیاز است فعال شود ، زیرا میتواند موجب کند شدن  برنامه شود.</string>
+    <string name="settings_desc_focus_search_on_start">در باز کردن برنامه، بلافاصله در حالت جستجو باش.</string>
+    <string name="settings_desc_hide_issuer">برچسب صادرکننده را در هر کارت مخفی می‌کند</string>
     <string name="settings_desc_backup_append_date">تاریخ و زمان فعلی را به نام پرونده پشتیبان پیشنهادی اضافه کن</string>
     <string name="settings_desc_backup_ask">هر بار پشتیبان ساخته می‌شود یا بازنشانی می‌شود، یک نام پرونده بپرس</string>
     <string name="settings_desc_backup_location">محل پیش‌فرض ذخیره نسخه پشتیبان را انتخاب کنید</string>
@@ -100,6 +109,8 @@
     <string name="settings_toast_encryption_auth_failed">تایید هویت ناموفق بود!</string>
     <string name="settings_toast_auth_upgrade_failed">ارتقای نامحسوس گذرواژه / پین شما به رمزگذاری جدید ناموفق بود
 لطفا به شیوه دستی در تنظیمات بازنشانی کنید!</string>
+    <string name="settings_toast_android_sync_enabled">همگام‌سازی اندروید فعال است</string>
+    <string name="settings_toast_android_sync_disabled">همگام‌سازی اندروید غیرفعال است</string>
     <string name="settings_dialog_title_warning">هشدار</string>
     <string name="settings_dialog_title_error">خطا</string>
     <string name="settings_dialog_title_clear_keystore">پاکسازی KeyStore؟</string>
@@ -136,11 +147,16 @@
         <item>نمایش/پهنان کردن</item>
         <item>روگیری</item>
         <item>روگیری و رفتن به پس زمینه</item>
+        <item>اشتراک گذاری به عنوان کلید</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>برچسب</item>
         <item>صادر کننده</item>
         <item>برچسب‌ها</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>خودکار</item>
+        <item>دستی</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>خاموش</item>
@@ -151,6 +167,11 @@
         <item>پوسته روشن</item>
         <item>پوسته تیره</item>
         <item>پوسته سیاه</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>کوتاه کردن</item>
+        <item>اسکرول</item>
+        <item>چند خط</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>پنهان</item>

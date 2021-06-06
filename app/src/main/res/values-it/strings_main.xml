@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- Buttons -->
     <string name="button_cancel">Annulla</string>
     <string name="button_enter_details">Aggiungi dettagli</string>
@@ -10,6 +10,7 @@
     <string name="button_all_tags">Tutti i tag</string>
     <string name="button_no_tags">Nessun tag</string>
     <string name="button_qr_from_image">QR code da immagine</string>
+    <string name="button_accept">Accetta</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
     <!-- Hints -->
@@ -45,6 +46,8 @@
     <string name="menu_popup_change_image">Cambia Immagine</string>
     <string name="menu_popup_remove">Rimuovi</string>
     <string name="menu_popup_show_qr_code">Mostra codice QR</string>
+    <string name="menu_popup_establish_pin">Inserisci PIN</string>
+    <string name="menu_send_keystrokes">Condividi come sequenza tasti</string>
     <!-- Buttons -->
     <string name="button_card_options">Altre opzioni</string>
     <string name="button_card_options_format">Altre opzioni per %1$s</string>
@@ -78,7 +81,9 @@
     <string name="dialog_title_used_tokens">Utilizzo dei token</string>
     <string name="dialog_title_keystore_error">Errore KeyStore</string>
     <string name="dialog_title_qr_code">Codice QR</string>
+    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_title_enter_password">Inserisci la password</string>
+    <string name="dialog_title_auto_time">Orario automatico</string>
     <string name="dialog_label_enter_password">Inserisci la password</string>
     <string name="dialog_label_confirm_password">Conferma la password</string>
     <string name="dialog_msg_auth">Si prega di inserire le credenziali del dispositivo per avviare andOTP.</string>
@@ -89,8 +94,16 @@
     <string name="dialog_msg_keystore_error">Impossibile caricare la chiave di crittografia dal KeyStore.
         <b>Qualsiasi voce aggiunta verrà persa</b>\n\nPer continuare ad utilizzare andOTP, vai nelle
         <b>Impostazioni</b> e imposta la <b>Crittografia del database</b> su <b>Password / PIN</b>.</string>
+    <string name="dialog_msg_auto_time">Attiva l\'opzione <b>Data e ora automatiche</b> nelle
+        <b>Impostazioni</b> del tuo telefono per assicurare la corretta generazione di
+        time-based one-time-password(TOTP).</string>
+    <string name="dialog_hint_dont_show_again">Non mostrare più questo messaggio.</string>
+    <string name="yes">Sì</string>
+    <string name="no">No</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Scansione QR-Code</string>
     <string name="shortcut_name_import_qr">Importa codice QR</string>
     <string name="shortcut_name_enter_details">Inserisci dettagli</string>
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">Inizia ad aggiungere i tuoi token premendo \"+\" in basso</string>
 </resources>

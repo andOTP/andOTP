@@ -1,37 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="backup_activity_title">Copias de apoio</string>
-    <string name="backup_category_plain">Copias de apoio en texto plano</string>
-    <string name="backup_category_crypt">Copias de apoio cifradas</string>
-    <string name="backup_category_openpgp">Copias de apoio OpenPGP</string>
-    <string name="backup_title_export_plain">Copia de apoio (texto plano)</string>
-    <string name="backup_title_export_crypt">Copia de apoio (cifrada)</string>
-    <string name="backup_title_export_openpgp">Copia de apoio (OpenPGP)</string>
-    <string name="backup_title_import_plain">Restaurar (texto plano)</string>
-    <string name="backup_title_import_crypt">Restaurar (cifrada)</string>
-    <string name="backup_title_import_crypt_old">Restaurar (cifrado, cifrado antigo)</string>
-    <string name="backup_title_import_openpgp">Restaurar (OpenPGP)</string>
     <string name="backup_title_replace">Substituír as entradas existentes</string>
-    <string name="backup_desc_export_plain">Facer copia de apoio de todas as contas nun ficheiro de texto plano JSON</string>
-    <string name="backup_desc_export_crypt">Facer copia de apoio de todas as contas nun ficheiro JSON con contrasinal</string>
-    <string name="backup_desc_export_openpgp">Facer copia de apoio de todas as contas nun ficheiro JSON cifrado con OpenPGP</string>
-    <string name="backup_desc_import_plain">Restaurar contas desde un ficheiro JSON de texto plano</string>
-    <string name="backup_desc_import_crypt">Restaurar contas desde un ficheiro JSON con contrasinal</string>
-    <string name="backup_desc_import_crypt_old">Restuarar contas dun ficheiro JSON protexido por contrasinal
-        creado cunha <b>versión de andOTP inferior a 0.6.3</b></string>
-    <string name="backup_desc_import_openpgp">Restaurar contas desde un ficheiro JSON cifrado con OpenPGP</string>
-    <string name="backup_desc_crypt_setup">Houbo un erro ao cargar o contrasinal da copia desde os <b>Axustes</b>,
-    ou ben non se estableceu o contrasinal ou algo fallou. Pediráseche introducir
-    o contrasinal manualmente ao crear ou importar unha copia.
-    </string>
+    <string name="backup_desc_replace">Se a activas, todas as entradas antigas reemplazaranse ao importar
+   a copia e só aparecerán as da copia. Sa a desactivas aparecerán tanto as entradas antigas como as do respaldo.</string>
     <string name="backup_desc_openpgp_provider">Necesitas instalar unha aplicación OpenPGP e activala
         na <b>configuración</b> para usar esta opción.
     </string>
     <string name="backup_desc_openpgp_keyid">Necesitas seleccionar unha chave OpenPGP nos <b>Axustes</b>
         antes de crear unha copia de apoio cifrada.
     </string>
-    <string name="backup_desc_replace">Se a activas, todas as entradas antigas reemplazaranse ao importar
-   a copia e só aparecerán as da copia. Sa a desactivas aparecerán tanto as entradas antigas como as do respaldo.</string>
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">Advertencia de seguranza</string>
     <string name="backup_dialog_msg_export_warning">¿Queres exportar a base de datos como
@@ -49,6 +27,10 @@
         arranxa esto ante de intentar a copia</string>
     <string name="backup_receiver_custom_encryption_failed">O cifrado con Contrasinal/PIN non
         está soportado con respaldo remoto</string>
+    <string name="backup_receiver_no_location_set">Non se estableceu a localización para a copia,
+        establécea nos axustes da app</string>
+    <string name="backup_receiver_no_password_set">Sen contrasinal por defecto, establéceo
+        nos axustes da app</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Fallo na copia automática</string>
     <string name="notification_channel_name_backup_success">Copia automática correcta</string>
@@ -66,9 +48,27 @@
     <string name="backup_toast_import_save_failed">Erro ao gardar os elementos restaurados</string>
     <string name="backup_toast_import_decryption_failed">Erro ao descifrar a copia de apoio</string>
     <string name="backup_toast_import_no_entries">Non se atoparon elementos nos datos importados</string>
+    <string name="backup_toast_import_failed">Fallou a importación desde almacenaxe externa</string>
     <string name="backup_toast_storage_not_accessible">O almacenaxe externo non é accesible actualmente</string>
     <string name="backup_toast_openpgp_error">Error OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">Non se detectou unha sinatura verificable</string>
     <string name="backup_toast_crypt_password_not_set">No se estableceu un contrasinal, revisa os <b>axustes</b></string>
     <string name="backup_toast_file_selection_failed">Non se pode abrir o cadro de selección!</string>
+    <string name="backup_label_type">Tipo de copia: </string>
+    <string name="backup_label_warning_plain">A copia de apoio gardarase nun ficheiro de texto plano non cifrado.
+        Utiliza este método só se é estritamente necesario e <b>gárdao de xeito seguro</b>!</string>
+    <string name="backup_label_crypt">A copia vaise gardar cifrada cun contrasinal personal
+        utilizando cifrado AES 256-bit. Podes configurar o contrasinal por defecto nos axustes se
+        non queres ter que escribilo cada vez que fas unha copia de apoio.</string>
+    <string name="backup_label_pgp">A copia de apoio vaise gardar cifrada utilizando a chave PGP que
+        indiques nos axustes. O cifrado será realizado por unha app de terceiros.</string>
+    <string name="backup_check_restore_old">Restablecer copia co formato antigo (creado cunha versión andOTP
+        anterior a 0.6.3)</string>
+    <string name="backup_button_backup">Crear copia de apoio</string>
+    <string name="backup_button_restore">Restablecer copia de apoio</string>
+    <string-array name="backup_list_type_names">
+        <item>Texto plano</item>
+        <item>Cifrada</item>
+        <item>OpenPGP</item>
+    </string-array>
 </resources>

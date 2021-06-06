@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- Buttons -->
+    <string name="button_cancel">Batal</string>
+    <string name="button_enter_details">Masukkan rincian</string>
+    <string name="button_scan_qr">Pindai Kode QR</string>
+    <string name="button_save">Simpan</string>
+    <string name="button_new_tag">Tanda baru</string>
+    <string name="button_settings">Pengaturan</string>
+    <string name="button_all_tags">Semua tanda</string>
+    <string name="button_no_tags">Tidak ada tanda</string>
+    <string name="button_qr_from_image">Kode QR dari gambar</string>
+    <string name="button_accept">Terima</string>
+    <!-- Custom formatting -->
+    <string name="format_custom_period">%d detik</string>
+    <!-- Hints -->
+    <string name="hint_label">Label</string>
+    <string name="hint_secret">Rahasia</string>
+    <!-- Labels -->
+    <string name="label_hidden">Tersembunyi</string>
+    <string name="label_type">Tipe</string>
+    <string name="label_secret">Rahasia</string>
+    <string name="label_period">Waktu</string>
+    <string name="label_digits">Digit</string>
+    <string name="label_counter">Penghitung</string>
+    <string name="label_issuer">Penerbit</string>
+    <string name="label_label">Label</string>
+    <string name="label_algorithm">Algoritma</string>
+    <string name="label_tags">Tanda</string>
+    <string name="label_advanced">Opsi lanjutan</string>
+    <!-- Drawer -->
+    <string name="drawer_open">Tampilkan tanda</string>
+    <string name="drawer_close">Sembunyikan tanda</string>
+    <!-- Menu -->
+    <string name="menu_main_about">Tentang</string>
+    <string name="menu_main_backup">Cadangan</string>
+    <string name="menu_main_search">Telusuri</string>
+    <string name="menu_main_settings">Pengaturan</string>
+    <string name="menu_main_sort">Urutkan</string>
+    <string name="menu_sort_none">Tidak urut</string>
+    <string name="menu_sort_issuer">Penerbit</string>
+    <string name="menu_sort_label">Label</string>
+    <string name="menu_sort_last_used">Terakhir digunakan</string>
+    <string name="menu_sort_most_used">Paling sering digunakan</string>
+    <string name="menu_popup_edit">Sunting</string>
+    <string name="menu_popup_change_image">Ubah gambar</string>
+    <string name="menu_popup_remove">Hapus</string>
+    <string name="menu_popup_show_qr_code">Tampilkan Kode QR</string>
+    <string name="menu_popup_establish_pin">Masukkan PIN</string>
+    <string name="menu_send_keystrokes">Bagikan sebagai otomatisasi papan ketik (Keystrokes)</string>
+    <!-- Buttons -->
+    <string name="button_card_options">Lebih banyak opsi</string>
+    <string name="button_card_options_format">Opsi lainnya untuk %1$s</string>
+    <string name="button_card_copy">Salin token</string>
+    <string name="button_card_copy_format">Salin token %1$s</string>
+    <string name="button_add">Tambahkan akun baru</string>
+    <string name="button_close_menu">Tutup menu</string>
+    <!-- Toast messages -->
+    <string name="toast_auth_failed">Autentikasi gagal, silakan coba lagi!</string>
+    <string name="toast_auth_failed_fatal">Autentikasi gagal, menutup andOTP!</string>
+    <string name="toast_copied_to_clipboard">Disalin ke papan klip</string>
+    <string name="toast_entry_exists">Entri ini sudah ada</string>
+    <string name="toast_invalid_qr_code">Kode QR tidak valid</string>
+    <string name="toast_encryption_key_empty">Kode enkripsi tidak termuat</string>
+    <string name="toast_intent_creation_failed">Kode yang diberikan oleh layanan tidak valid</string>
+    <string name="toast_intent_creation_succeeded">Kode yang diberikan maksud ditambahkan</string>
+    <string name="toast_file_load_error">Tidak dapat membuka berkas</string>
+    <string name="toast_qr_error">Tidak dapat menemukan/mengonfirmasi Kode QR</string>
+    <string name="toast_qr_checksum_exception">Verifikasi checksum gagal saat mendekode Kode QR</string>
+    <string name="toast_qr_format_error">Kesalahan format dalam Kode QR</string>
+    <string name="toast_qr_unsuported">QR Code tidak didukung</string>
+    <string name="toast_qr_failed_to_generate">Gagal menghasilkan Kode QR</string>
+    <!-- Errors -->
+    <string name="error_invalid_secret">Rahasia tidak valid</string>
+    <!-- Dialogs -->
+    <string name="dialog_title_auth">Autentikasi</string>
+    <string name="dialog_title_manual_entry">Masukkan rincian</string>
+    <string name="dialog_title_remove">Hapus</string>
+    <string name="dialog_title_rename">Ubah nama</string>
+    <string name="dialog_title_counter">Penghitung</string>
+    <string name="dialog_title_used_tokens">Penggunaan token</string>
+    <string name="dialog_title_keystore_error">KeyStore salah</string>
+    <string name="dialog_title_qr_code">Kode QR</string>
+    <string name="dialog_title_pin">PIN</string>
+    <string name="dialog_title_enter_password">Masukkan kata sandi</string>
+    <string name="dialog_title_auto_time">Waktu otomatis</string>
+    <string name="dialog_label_enter_password">Masukkan kata sandi</string>
+    <string name="dialog_label_confirm_password">Konfirmasi kata sandi</string>
+    <string name="dialog_msg_auth">Masukkan kredensial perangkat untuk memulai andOTP.</string>
+    <string name="dialog_msg_confirm_delete">Anda yakin ingin menghapus akun \"%1$s\"?</string>
+    <string name="dialog_msg_used_tokens">andOTP akan melacak ketika Anda menggunakan token Anda (menggunakan fitur \"Tekan untuk menampilkan\" atau menyalin ke papan klip) untuk bisa mengurutkannya berdasarkan \"Paling sering digunakan\" atau \"Terakhir digunakan.\" \n\nPesan ini tidak akan ditampilkan lagi.</string>
+    <string name="dialog_msg_keystore_error">Gagal memuat kunci enkripsi dari KeyStore. <b>Entri apa pun yang ditambahkan akan hilang.</b>\n\nUntuk terus menggunakan andOTP, Anda dapat pergi ke <b>Pengaturan</b> dan ganti <b>Enkripsi basis data</b> menjadi <b>Kata Sandi/PIN</b>.</string>
+    <string name="dialog_msg_auto_time">Mohon untuk mengaktifkan opsi <b>Tanggal dan waktu otomatis</b> di <b>Pengaturan</b> ponsel Anda untuk menjamin penghasilan TOTP (Algoritme Kata Sandi Sekali-pakai berbasis Waktu) dengan benar.</string>
+    <string name="dialog_hint_dont_show_again">Jangan perlihatkan pesan ini lagi.</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <!-- Shortcuts -->
+    <string name="shortcut_name_scan_qr">Pindai Kode QR</string>
+    <string name="shortcut_name_import_qr">Impor Kode QR</string>
+    <string name="shortcut_name_enter_details">Masukkan rincian</string>
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">Mulai menambahkan token Anda dengan menekan \"+\" di bawah</string>
+</resources>

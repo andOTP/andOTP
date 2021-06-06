@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="backup_activity_title">نسخه‌های پشتیبان</string>
-    <string name="backup_category_plain">پشتیبان‌های متن ساده</string>
-    <string name="backup_category_crypt">پشتیبان‌های رمزگذاری شده</string>
-    <string name="backup_category_openpgp">پشتیبان‌های OpenPGP</string>
-    <string name="backup_title_export_plain">پشتیبان‌گیری (متن ساده)</string>
-    <string name="backup_title_export_crypt">پشتیبان‌گیری (رمزگذاری شده)</string>
-    <string name="backup_title_export_openpgp">پشتیبان‌گیری (OpenPGP)</string>
-    <string name="backup_title_import_plain">بازگردانی (متن ساده)</string>
-    <string name="backup_title_import_crypt">بازگردانی (رمزگذاری شده)</string>
-    <string name="backup_title_import_crypt_old">بازگردانی (رمزنگاری شده، رمزنگاری قدیمی)</string>
-    <string name="backup_title_import_openpgp">بازگردانی (OpenPGP)</string>
     <string name="backup_title_replace">موارد موجود را جایگزین کن</string>
-    <string name="backup_desc_export_plain">پشتیبان‌گیری از همه حساب‌ها در پرونده JSON متن ساده</string>
-    <string name="backup_desc_export_crypt">پشتیبان‌گیری از همه حساب‌ها در پرونده JSON رمز دار</string>
-    <string name="backup_desc_export_openpgp">پشتیبان‌گیری از همه حساب‌ها در پرونده JSON رمزگذاری شده با OpenPGP</string>
-    <string name="backup_desc_import_plain">بازنشانی از پرونده JSON متن ساده</string>
-    <string name="backup_desc_import_crypt">بازنشانی از پرونده JSON رمز دار</string>
-    <string name="backup_desc_import_crypt_old">بازگردانی حساب‌ها از پرونده JSON محافظت‌شده با رمز
-        که توسط <b> یک نگارش andOTP پایین‌تر از ۰.۶.۳ </b> ایجاد شده</string>
-    <string name="backup_desc_import_openpgp">بازنشانی از پرونده JSON رمزگذاری شده با OpenPGP</string>
-    <string name="backup_desc_crypt_setup">شکست در بارگیری رمز عبور پشتیبان از <b>تنظیمات</b>، این به معنای عدم وجود رمز عبور است یا اشکالی پیش آمده. زمانی که شما یک پشتیبان می‌سازید یا یک پشتیبان وارد می‌کنید، از شما خواسته خواهد شد تا رمز عبور را به صورت دستی وارد کنید.    </string>
+    <string name="backup_desc_replace">اگر فعال باشد، در زمان وارد کردن یک پشتیبان، همه موارد قدیمی جایگزین می‌شوند و فقط پشتیبان باقی می‌ماند. اگر غیرفعال باشد، موارد قدیمی و محتوای پشتیبان با هم ترکیب می‌شوند.</string>
     <string name="backup_desc_openpgp_provider">شما نیاز دارید که یک فراهم کننده OpenPGP نصب کنید و آن را در <b>تنظیمات</b> فعال کنید تا از این ویژگی استفاده کنید.    </string>
     <string name="backup_desc_openpgp_keyid">قبل از اینکه یک پشتیبان رمزگذاری شده بسازید، باید یک کلید OpenPGP در <b>تنظیمات</b> انتخاب کنید.    </string>
-    <string name="backup_desc_replace">اگر فعال باشد، در زمان وارد کردن یک پشتیبان، همه موارد قدیمی جایگزین می‌شوند و فقط پشتیبان باقی می‌ماند. اگر غیرفعال باشد، موارد قدیمی و محتوای پشتیبان با هم ترکیب می‌شوند.</string>
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">هشدار امنیتی</string>
     <string name="backup_dialog_msg_export_warning">آیا واقعا می‌خواهید پایگاه داده را به عنوان پرونده JSON متن ساده استخراج کنید؟ این پرونده حاوی همه کلیدهای محرمانه شماست، لطفا <b>آن را امن نگهدارید</b>!    </string>
@@ -35,6 +16,8 @@
     <string name="backup_receiver_write_permission_failed">اجازه نوشتن داده نشده، لطفا قبل از تلاش برای پشتیبان‌گیری این اجازه را بدهید</string>
     <string name="backup_receiver_custom_encryption_failed">رمزنگاری بر اساس گذرواژه/ پین، توسط
 Broadcast Backup پشتیبانی نمی‌شود</string>
+    <string name="backup_receiver_no_location_set">هیچ مکانی برای ذخیره فایل پشتیبان تنظیم نشده، لطفا در تنظیمات برنامه آن را تنظیم کنید</string>
+    <string name="backup_receiver_no_password_set">هیچ رمز عبور پیشفرضی تنظیم نشده، لطفا در تنظیمات برنامه آن را تنظیم کنید</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">پشتیبان‌گیری خودکار شکست خورد</string>
     <string name="notification_channel_name_backup_success">پشتیبان‌گیری خودکار با موفقیت انجام شد</string>
@@ -50,9 +33,22 @@ Broadcast Backup پشتیبانی نمی‌شود</string>
     <string name="backup_toast_import_save_failed">شکست در ذخیره موارد بازنشانی شده</string>
     <string name="backup_toast_import_decryption_failed">رمزگشایی پشتیبان شکست خورد</string>
     <string name="backup_toast_import_no_entries">هیچ موردی در داده ورودی پیدا نشد</string>
+    <string name="backup_toast_import_failed">وارد کردن از حافظه جانبی با مشکل مواجه شد</string>
     <string name="backup_toast_storage_not_accessible">در حال حاضر حافظه جانبی در دسترس نیست</string>
     <string name="backup_toast_openpgp_error">خطای OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">هیچ امضای تایید شده‌ای شناسایی نشد</string>
     <string name="backup_toast_crypt_password_not_set">گذرواژه تنظیم نشده، <b>تنظیمات</b> را بررسی کنید</string>
     <string name="backup_toast_file_selection_failed">ناتوانی در باز کردن پنجره انتخاب پرونده!</string>
+    <string name="backup_label_type">نوع پشتیبان: </string>
+    <string name="backup_label_warning_plain">پشتیبان به صورت رمزگذاری نشده و یک فایل متنی ذخیره می‌شود. لطفا فقط در صورتی که به سختی لازم است، از این روش استفاده کنید و <b>فایل را امن نگه دارید</b>!</string>
+    <string name="backup_label_crypt">پشتیبان به صورت رمزگذاری شده با یک رمز عبور شخصی با استفاده از رمزگذاری ۲۵۶-بیتی AES ذخیره می‌شود. اگر نمی‌خواهید که هر بار برای پشتیبان‌گیری رمزعبور را وارد کنید، می‌توانید یک رمز عبور پیشفرض در تنظیمات قرار دهید.</string>
+    <string name="backup_label_pgp">پشتیبان به صورت رمزگذاری شده با یک کلید PGP ذخیره می‌شود که شما در تنظیمات قراردادید. رمزگذاری با استفاده از یک برنامه خارجی انجام می‌شود.</string>
+    <string name="backup_check_restore_old">بازگردانی پشتیبان با ساختار قدیمی (ساخته شده با یک andOTP با نسخه قدیمی‌تر از ۰.۶.۳)</string>
+    <string name="backup_button_backup">ساخت پشتیبان</string>
+    <string name="backup_button_restore">بازگردانی پشتیبان</string>
+    <string-array name="backup_list_type_names">
+        <item>متن ساده</item>
+        <item>رمزگذاری شده</item>
+        <item>OpenPGP</item>
+    </string-array>
 </resources>

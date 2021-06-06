@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="backup_activity_title">Zálohy</string>
+    <string name="backup_title_replace">Nahradiť existujúce záznamy</string>
+    <string name="backup_desc_replace">Ak je povolené, všetky pôvodné záznamy sú pri importu zálohy nahradené a zostáva iba obsah zálohy. Ak je zakázané, obsah zálohy bude pridaný k pôvodným položkám.</string>
+    <string name="backup_desc_openpgp_provider">K použití tejto funkcie treba nainštalovať OpenPGP aplikáciu a povoliť ju v <b>Nastaveniach</b>.    </string>
+    <string name="backup_desc_openpgp_keyid">Než budete môcť vytvárať šifrované zálohy je treba v <b>Nastaveniach</b> zvoliť OpenPGP kľúč.    </string>
+    <!-- Dialogs -->
+    <string name="backup_dialog_title_security_warning">Bezpečnostné varovanie</string>
+    <string name="backup_dialog_msg_export_warning">Naozaj chcete exportovať databázu ako nechránený JSON súbor? Tento súbor obsahuje všetky vaše tajné kľúče, prosím <b>majte ho v bezpečí</b>!    </string>
+    <string name="backup_receiver_title_backup_failed">Zálohovanie zlyhalo</string>
+    <string name="backup_receiver_title_backup_success">Zálohovanie prebehlo úspešne</string>
+    <string name="backup_receiver_plain_disabled">Nechránené zálohy nie sú v tuto chvíli povolené, pre ich sprístupnenie prejdite prosím do Nastavení</string>
+    <string name="backup_receiver_encrypted_disabled">Šifrované zálohy nie sú v tejto chvíli povolené, pre ich sprístupnenie prejdite prosím do Nastavení</string>
+    <string name="backup_receiver_read_permission_failed">Povolenie k čítaniu nebolo udelené, prosím udeľte ho pred pokusom o zálohovanie</string>
+    <string name="backup_receiver_write_permission_failed">Povolenie k zápisu nebolo udelené, prosím udeľte ho pred pokusom o zálohovanie</string>
+    <string name="backup_receiver_custom_encryption_failed">Šifrovanie heslom/PINom nie je podporované v kombinácií s automatickým zálohovaním</string>
+    <string name="backup_receiver_no_location_set">Nebola nastavená žiadna cesta pre zálohy. Prosím, nastavte ju v nastaveniach aplikácie</string>
+    <string name="backup_receiver_no_password_set">Nebolo nastavené žiadne predvolené heslo. Prosím, nastavte ho v nastaveniach aplikácie</string>
+    <!-- Notification channels -->
+    <string name="notification_channel_name_backup_failed">Automatické zálohovanie zlyhalo</string>
+    <string name="notification_channel_name_backup_success">Automatické zálohovanie prebehlo úspešne</string>
+    <string name="notification_channel_desc_backup_failed">Tieto upozornenia sa zobrazia, keď automatické zálohovanie z nejakého dôvodu zlyhá</string>
+    <string name="notification_channel_desc_backup_success">Tieto upozornenia sa zobrazia, keď automatické zálohovanie prebehne úspešne</string>
+    <!-- Toast messages -->
+    <string name="backup_toast_no_location">Prosím zvoľte predvolené umiestnenie zálohy v nastaveniach!</string>
+    <string name="backup_toast_location_access_failed">Nepodarilo sa získať prístup k umiestnení zálohy!</string>
+    <string name="backup_toast_file_creation_failed">Nepodarilo sa vytvoriť súbor so zálohou!</string>
+    <string name="backup_toast_export_success">Exportovanie do externého úložiska bolo úspešné</string>
+    <string name="backup_toast_export_failed">Exportovanie do externého úložiska zlyhalo</string>
+    <string name="backup_toast_import_success">Importovanie z externého úložiska bolo úspešné</string>
+    <string name="backup_toast_import_save_failed">Nepodarilo sa uložiť obnovené záznamy</string>
+    <string name="backup_toast_import_decryption_failed">Dešifrovanie zálohy zlyhalo</string>
+    <string name="backup_toast_import_no_entries">Neboli nájdené žiadne záznamy v importovaných dátach</string>
+    <string name="backup_toast_import_failed">Importovanie z externého úložiska zlyhalo</string>
+    <string name="backup_toast_storage_not_accessible">Externé úložisko je momentálne neprístupné</string>
+    <string name="backup_toast_openpgp_error">Chyba OpenPGP: %s</string>
+    <string name="backup_toast_openpgp_not_verified">Nebol nájdený žiadny overený podpis</string>
+    <string name="backup_toast_crypt_password_not_set">Heslo nie je nastavené, skontrolujte <b>Nastavenia</b></string>
+    <string name="backup_toast_file_selection_failed">Nepodarilo sa otvoriť dialóg pre výber súboru!</string>
+    <string name="backup_label_type">Typ zálohy: </string>
+    <string name="backup_label_warning_plain">Záloha bude uložená v nezašifrovanom textovom súbore. Prosím, použite iba, keď je to naozaj nevyhnutné a <b>udržte súbor v bezpečí</b>!</string>
+    <string name="backup_label_crypt">Záloha bude uložená v súbore zašifrovanom heslom použitím algoritmu AES 256-bit. Môžete si nastaviť predvolené heslo v nastaveniach ak ho nechcete zadávať zakaždým, keď vytvárate zálohu.</string>
+    <string name="backup_label_pgp">Záloha bude uložená v súbore zašifrovanom heslom použitím vášho PGP kľúča zadaného v nastaveniach. Šifrovanie bude prevádzkované aplikáciou tretej strany.</string>
+    <string name="backup_check_restore_old">Obnoviť zálohu v starom formáte (vytvorenú s verziou andOTP staršou ako 0.6.3)</string>
+    <string name="backup_button_backup">Vytvoriť zálohu</string>
+    <string name="backup_button_restore">Obnoviť zálohu</string>
+    <string-array name="backup_list_type_names">
+        <item>Iba text</item>
+        <item>Zašifrovaná</item>
+        <item>OpenPGP</item>
+    </string-array>
+</resources>

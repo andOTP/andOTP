@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Ajustes</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Seguridad</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">Retraso para volver a bloquear por inactividad</string>
     <string name="settings_title_block_accessibility">Bloquear servicios de accesibilidad</string>
     <string name="settings_title_block_autofill">Bloquear autorelleno</string>
+    <string name="settings_title_auto_unlock_after_autofill">Desbloquear automáticamente después de autorrellenar</string>
     <string name="settings_title_lang">Idioma</string>
+    <string name="settings_title_theme_mode">Tema</string>
+    <string name="settings_title_theme_black_auto">Tema negro</string>
     <string name="settings_title_theme">Aspecto</string>
     <string name="settings_title_card_layout">Diseño de tarjeta</string>
+    <string name="settings_title_show_prev_token">Mostrar token anterior</string>
     <string name="settings_title_label_size">Tamaño de fuente</string>
-    <string name="settings_title_label_scroll">Desplazar etiqueta</string>
+    <string name="settings_title_label_display">Mostrar etiqueta</string>
     <string name="settings_title_tap_single">Un toque</string>
     <string name="settings_title_tap_double">Doble toque</string>
     <string name="settings_title_thumbnail_size_ask">Tamaño de miniatura</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">Resaltar tokens que expiran</string>
     <string name="settings_title_hide_global_timeout">Ocultar barra de tiempo de espera global</string>
     <string name="settings_title_show_individual_timeouts">Mostrar límites de tiempo individuales</string>
+    <string name="settings_title_focus_search_on_start">Enfocar búsqueda al iniciar la aplicación</string>
+    <string name="settings_title_hide_issuer">Ocultar Emisor</string>
     <string name="settings_title_backup_append_date">Concatenar fecha al nombre del fichero</string>
     <string name="settings_title_backup_ask">Pedir nombre de fichero</string>
     <string name="settings_title_backup_location">Ubicación de copia de seguridad por defecto</string>
@@ -65,15 +71,20 @@
         de accesibilidad. <b>¡NO actives esto si utilizas los servicios de accesibilidad!</b></string>
     <string name="settings_desc_block_autofill">Bloquear servicios de autorrelleno accediendo a campos de contraseña
         dentro de la aplicación</string>
-    <string name="settings_desc_block_autofill_android">Esta función requiere una versión de Android
+    <string name="settings_desc_auto_unlock_after_autofill">Desbloquear si la contraseña ha sido rellenada
+        por autorrelleno</string>
+    <string name="settings_desc_autofill_requires_android_o">Esta función requiere una versión de Android
         superior a 8.0 (Oreo)</string>
-    <string name="settings_desc_label_scroll">Desplazar etiquetas en lugar de truncarlas</string>
+    <string name="settings_desc_theme_black_auto">Usar el tema negro en modo oscuro</string>
+    <string name="settings_desc_show_prev_token">Mostrar el token anterior además del actual</string>
     <string name="settings_desc_minimize_on_copy">La aplicación se minimizará cuando copie el OTP al portapapeles</string>
     <string name="settings_desc_search_includes">Especifique qué valores deben incluirse al buscar</string>
     <string name="settings_desc_label_highlight_token">Resaltar token en rojo si expira en 8 segundos</string>
     <string name="settings_desc_hide_global_timeout">Ocultar la barra de tiempo de espera global mostrada en la parte superior de la pantalla</string>
     <string name="settings_desc_show_individual_timeouts">Mostrar una barra de tiempo de espera individual para cada entrada.
         Esto puede ralentizar la aplicación, solo actívalo si es realmente necesario.</string>
+    <string name="settings_desc_focus_search_on_start">Enfocar la búsqueda inmediatamente después de abrir la aplicación.</string>
+    <string name="settings_desc_hide_issuer">Oculta la etiqueta del emisor en cada tarjeta</string>
     <string name="settings_desc_backup_append_date">Concatena la fecha y hora actual al nombre sugerido
         para el fichero de la copia de seguridad</string>
     <string name="settings_desc_backup_ask">Pedir nombre de fichero cada vvez que una copia de seguridad
@@ -115,6 +126,8 @@
     <string name="settings_toast_encryption_auth_failed">Error de autenticación!</string>
     <string name="settings_toast_auth_upgrade_failed">Fallo al actualizar la contraseña / PIN al nuevo cifrado,
         por favor reinicia manualmente desde ajustes!</string>
+    <string name="settings_toast_android_sync_enabled">Sincronización de Android habilitada</string>
+    <string name="settings_toast_android_sync_disabled">Sincronización de Android deshabilitada</string>
     <string name="settings_dialog_title_warning">Advertencia</string>
     <string name="settings_dialog_title_error">Error</string>
     <string name="settings_dialog_title_clear_keystore">Vaciar el almacen de claves?</string>
@@ -166,11 +179,16 @@
         <item>Revelar/Ocultar</item>
         <item>Copiar</item>
         <item>Copiar y poner en segundo plano</item>
+        <item>Compartir como pulsaciones de teclas</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Nombre</item>
         <item>Emisor</item>
         <item>Etiquetas</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Automático</item>
+        <item>Manual</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Desactivado</item>
@@ -181,6 +199,11 @@
         <item>Tema claro</item>
         <item>Tema oscuro</item>
         <item>Tema negro</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Truncar</item>
+        <item>Deslizar</item>
+        <item>Múltiples líneas</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Oculto</item>

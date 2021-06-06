@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- Buttons -->
     <string name="button_cancel">Ezeztatu</string>
     <string name="button_enter_details">Xehetasunak idatzi</string>
@@ -10,6 +10,7 @@
     <string name="button_all_tags">Etiketa guztiak</string>
     <string name="button_no_tags">Etiketarik ez</string>
     <string name="button_qr_from_image">QR kodea iruditik</string>
+    <string name="button_accept">Onartu</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
     <!-- Hints -->
@@ -45,6 +46,8 @@
     <string name="menu_popup_change_image">Irudia aldatu</string>
     <string name="menu_popup_remove">Ezabatu</string>
     <string name="menu_popup_show_qr_code">Erakutsi QR kodea</string>
+    <string name="menu_popup_establish_pin">Sartu pina</string>
+    <string name="menu_send_keystrokes">Telkatua erabiltzea bezala partekatu</string>
     <!-- Buttons -->
     <string name="button_card_options">Aukera gehiago</string>
     <string name="button_card_options_format">Aukera gehiago: %1$s</string>
@@ -78,7 +81,9 @@
     <string name="dialog_title_used_tokens">Tokenen erabilera</string>
     <string name="dialog_title_keystore_error">KeyStorearen errorea</string>
     <string name="dialog_title_qr_code">QR kodea</string>
+    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_title_enter_password">Pasahitza sartu</string>
+    <string name="dialog_title_auto_time">Ordu automatikoa</string>
     <string name="dialog_label_enter_password">Pasahitza sartu</string>
     <string name="dialog_label_confirm_password">Pasahitza berretsi</string>
     <string name="dialog_msg_auth">Sartu zure gailuaren kredentzialak andOTP hasteko.</string>
@@ -89,8 +94,16 @@
     <string name="dialog_msg_keystore_error">Ezin izan da zifratze-gakoa kargatu.
         <b>Gehitutako sarrerak galdu egingo dira.</b>\n\nandOTP erabiltzen jarraitzeko
         <b>Ezarpenak</b> atalera joan eta aldatu <b>Datu-basearen zifratzea</b>ren balioa <b>Pasahitza/PINa</b> izatera.</string>
+    <string name="dialog_msg_auto_time">Aktibatu <b>Data eta ordu automatikoa</b> zure telefonoaren
+        <b>Ezarpenak</b> atalean OTP gakoak ondo sortzen direla
+        ziurtatzeko.</string>
+    <string name="dialog_hint_dont_show_again">Ez erakutsi mezu hau berriz.</string>
+    <string name="yes">Bai</string>
+    <string name="no">Ez</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">QR kodea eskaneatu</string>
     <string name="shortcut_name_import_qr">QR kodea inportatu</string>
     <string name="shortcut_name_enter_details">Xehetasunak idatzi</string>
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">Gehitu zure tokenak \"+\" botoia sakatuz</string>
 </resources>

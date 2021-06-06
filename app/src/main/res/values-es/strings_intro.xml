@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">Comencemos</string>
     <string name="intro_slide1_desc">Bienvenido a <b>andOTP</b>, este asistente te guiará a través de
         la configuración inicial. Por favor, presta atención y lee con detenimiento pues sino podrías perder información.
@@ -20,8 +20,17 @@
     <string name="intro_slide3_warn_no_password">Por favor, elija una contraseña para continuar.</string>
     <string name="intro_slide3_warn_no_pin">Por favor, elija un PIN para continuar.</string>
     <string name="intro_slide3_warn_confirm_password">Confirma tu contraseña para continuar.</string>
+    <string name="intro_slide3_warn_password_mismatch">¡Las contraseñas deben coincidir!</string>
     <string name="intro_slide3_warn_confirm_pin">Confirma tu PIN para continuar.</string>
+    <string name="intro_slide3_warn_pin_mismatch">¡Los PINs deben coincidir!</string>
     <string name="intro_slide4_title">Finalizado</string>
+    <string name="intro_slide4_title_failed">La configuración ha fallado</string>
+    <string name="intro_slide4_title_progress">Espere por favor</string>
+    <string name="intro_slide4_desc_failed">Error al establecer una contraseña, ¡esta introducción se mostrará de nuevo
+        la próxima vez!</string>
     <string name="intro_slide4_desc">Tu configuración ha sido almacenada, ¡Ya estás listo
         para usar <b>andOTP</b>!</string>
+    <string name="intro_slide4_desc_progress">Se están guardando los ajustes y se está generando la clave 
+        de cifrado, por favor espere…</string>
+    <string name="intro_slide_android_backup_desc">La sincronización de Android es una característica incorporada de android usada para hacer copias de seguridad de los datos de la aplicación a un servicio de terceros (por lo general Google). Las copias de seguridad siempre son cifradas e inaccesibles para terceros sin su contraseña maestra. Requiere el uso del método de cifrado de contraseña.</string>
 </resources>

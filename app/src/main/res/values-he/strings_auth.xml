@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_activity_title">אימות</string>
+    <!-- Hints -->
+    <string name="auth_hint_password">סיסמה</string>
+    <string name="auth_hint_pin">קוד PIN</string>
+    <!-- Messages -->
+    <string name="auth_msg_authenticate">נא לאמת כדי להתחיל להשתמש ב־andOTP!</string>
+    <string name="auth_msg_confirm_encryption">נא לאשר את האימות כדי ליצור את
+        מפתח ההצפנה שלך!</string>
+    <!-- Buttons -->
+    <string name="auth_button_unlock">שחרור</string>
+    <!-- Toast messages -->
+    <string name="auth_toast_password_missing">נא להגדיר סיסמה ב<b>הגדרות</b>!</string>
+    <string name="auth_toast_pin_missing">נא להגדיר קוד PIN ב<b>הגדרות</b>!</string>
+    <string name="auth_toast_password_again">סיסמה שגויה, נא לנסות שוב!</string>
+    <string name="auth_toast_pin_again">קוד PIN שגוי, נא לנסות שוב!</string>
+</resources>

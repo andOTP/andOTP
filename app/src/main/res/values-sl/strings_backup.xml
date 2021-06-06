@@ -1,38 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="backup_activity_title">Varnostne kopije</string>
-    <string name="backup_category_plain">Navadne varnostne kopije</string>
-    <string name="backup_category_crypt">Kodirane varnostne kopije</string>
-    <string name="backup_category_openpgp">OpenPGP varnostne kopije</string>
-    <string name="backup_title_export_plain">Varnostna kopija (navadna)</string>
-    <string name="backup_title_export_crypt">Varnostna kopija (kodirana)</string>
-    <string name="backup_title_export_openpgp">Varnostna kopija (OpenPGP)</string>
-    <string name="backup_title_import_plain">Obnovi varnostno kopijo (navadna)</string>
-    <string name="backup_title_import_crypt">Obnovi varnostna kopijo (kodirana)</string>
-    <string name="backup_title_import_crypt_old">Obnovi (enkriptirano, stara enkripcija)</string>
-    <string name="backup_title_import_openpgp">Obnovi varnostno kopijo(OpenPGP)</string>
     <string name="backup_title_replace">Zamenjaj obstoječe račune</string>
-    <string name="backup_desc_export_plain">Naredi varnostno kopijo vseh računov v navadni JSON datoteki</string>
-    <string name="backup_desc_export_crypt">Naredi varnostno kopijo vseh računov v z geslom zaščiteni JSON datoteki</string>
-    <string name="backup_desc_export_openpgp">Naredi varnostno kopijo vseh računov v z OpenPGP zaščiteni JSON datoteki</string>
-    <string name="backup_desc_import_plain">Obnovi varnostno kopijo iz navadne JSON datoteke</string>
-    <string name="backup_desc_import_crypt">Obnovi varnostno kopijo iz z geslom zaščitene JSON datoteke</string>
-    <string name="backup_desc_import_crypt_old">Obnovi račune s pomočjo z geslom zaščitene JSON datoteke,
-        ustvarjene z <b>andOTP verzijo nižjo od 0.6.3</b></string>
-    <string name="backup_desc_import_openpgp">Obnovi varnostno kopijo iz z OpenPGP zaščitene JSON datoteke</string>
-    <string name="backup_desc_crypt_setup">Pri nalaganju varnostnega gesla iz <b>Nastavitve</b> je prišlo do napake,
-        to bodisi pomeni, da geslo ni bilo določeno ali je pa nekaj šlo narobe. Geslo boste morali
-        vnesti ročno ob ustvarjanju ali uvozu varnostne kopije.
-    </string>
+    <string name="backup_desc_replace">Če omogočeno, bodo vsi stari računi nadomeščeni ob uvozu
+        varnostne kopije in prisotna bo samo varnostna kopija. Če onemogočeno, bodo računi in vsebina varnostne kopije
+        združene.</string>
     <string name="backup_desc_openpgp_provider">Namestiti morate OpenPGP ponudnika in omogočiti
         to funkcijo v <b>Nastavitve</b>.
     </string>
     <string name="backup_desc_openpgp_keyid">Izbrati morate OpenPGP ključ v <b>Nastavitve</b>
         preden lahko ustvarite kodirane varnostne kopije.
     </string>
-    <string name="backup_desc_replace">Če omogočeno, bodo vsi stari računi nadomeščeni ob uvozu
-        varnostne kopije in prisotna bo samo varnostna kopija. Če onemogočeno, bodo računi in vsebina varnostne kopije
-        združene.</string>
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">Varnostno opozorilo</string>
     <string name="backup_dialog_msg_export_warning">Ali res želite izvoziti zbirko podatkov v
@@ -50,6 +28,10 @@
         jih odobrite pred varnostnim kopiranjem</string>
     <string name="backup_receiver_custom_encryption_failed">Kodiranje s pomočjo gesla/PIN ni
         podprto pri varnostnem kopiranju preko zunanjih aplikacij</string>
+    <string name="backup_receiver_no_location_set">No backup location set, please set one in the
+        apps settings</string>
+    <string name="backup_receiver_no_password_set">No default password set, please set one in the
+        apps settings</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Samodejno varnostno kopiranje ni uspelo</string>
     <string name="notification_channel_name_backup_success">Samodejna izdelava varnostne kopije je bila uspešna</string>
@@ -67,9 +49,27 @@
     <string name="backup_toast_import_save_failed">Obnovljenih računov ni bilo mogoče shraniti</string>
     <string name="backup_toast_import_decryption_failed">Dekodiranje varnostne kopije ni uspelo</string>
     <string name="backup_toast_import_no_entries">V uvoženi datoteki ni bilo najdenih uporabniških računov</string>
+    <string name="backup_toast_import_failed">Import from external storage failed</string>
     <string name="backup_toast_storage_not_accessible">Zunanja shramba trenutno ni dostopna</string>
     <string name="backup_toast_openpgp_error">OpenPGP napaka: %s</string>
     <string name="backup_toast_openpgp_not_verified">Overjenih podpisov ni bilo mogoče najti</string>
     <string name="backup_toast_crypt_password_not_set">Geslo ni bilo nastavljeno, preverite <b>Nastavitve</b></string>
     <string name="backup_toast_file_selection_failed">Can\'t open file selection dialog!</string>
+    <string name="backup_label_type">Backup type: </string>
+    <string name="backup_label_warning_plain">The backup will be stored in an unencrypted plain-text
+        file. Please only use if strictly necessary and <b>keep the file safe</b>!</string>
+    <string name="backup_label_crypt">The backup will be stored encrypted with a custom password
+        using AES 256-bit encryption. You can setup a default password in the settings if you
+        don\'t want to have to enter it every time you create a backup.</string>
+    <string name="backup_label_pgp">The backup will be stored encrypted using the PGP key you
+        specified in the settings. The encryption will be handled by a 3rd party app.</string>
+    <string name="backup_check_restore_old">Restore old backup format (created with an andOTP version
+        before 0.6.3)</string>
+    <string name="backup_button_backup">Create backup</string>
+    <string name="backup_button_restore">Restore backup</string>
+    <string-array name="backup_list_type_names">
+        <item>Plain-text</item>
+        <item>Encrypted</item>
+        <item>OpenPGP</item>
+    </string-array>
 </resources>

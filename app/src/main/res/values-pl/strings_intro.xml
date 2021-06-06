@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">Zaczynajmy</string>
     <string name="intro_slide1_desc">Witaj w <b>andOTP</b>. Ten kreator przeprowadzi Cię przez wstępną konfigurację. Zapoznaj się dokładnie z informacjami zawartymi na następnych stronach, w przeciwnym razie istnieje ryzyko utraty danych!\n\nNie martw się, wszystkie opcje będzie można później zmienić w <b>Ustawieniach</b>.</string>
     <string name="intro_slide2_desc">Aby zapewnić bezpieczeństwo Twoim danym andOTP przechowuje je tylko w zaszyfrowanych plikach. Tutaj możesz wybrać, która metoda szyfrowania będzie użyta.</string>
@@ -10,8 +10,17 @@
     <string name="intro_slide3_warn_no_password">Ustaw hasło, aby kontynuować!</string>
     <string name="intro_slide3_warn_no_pin">Ustaw kod PIN, aby kontynuować!</string>
     <string name="intro_slide3_warn_confirm_password">Potwierdź hasło, aby kontynuować!</string>
+    <string name="intro_slide3_warn_password_mismatch">Hasła muszą się zgadzać!</string>
     <string name="intro_slide3_warn_confirm_pin">Potwierdź kod PIN, aby kontynuować!</string>
+    <string name="intro_slide3_warn_pin_mismatch">Kody PIN muszą się zgadzać!</string>
     <string name="intro_slide4_title">Ukończono</string>
+    <string name="intro_slide4_title_failed">Konfiguracja nie powiodła się</string>
+    <string name="intro_slide4_title_progress">Proszę czekać</string>
+    <string name="intro_slide4_desc_failed">Nie udało się ustawić hasła, to wprowadzenie zostanie wyświetlone ponownie
+        następnym razem!</string>
     <string name="intro_slide4_desc">Twoje ustawienia zostały zapisane, możesz teraz 
         korzystać z <b>andOTP</b>!</string>
+    <string name="intro_slide4_desc_progress">Twoje ustawienia są zapisywane, a klucz szyfrujący jest
+        generowany, proszę czekać…</string>
+    <string name="intro_slide_android_backup_desc">Synchronizacja systemu Android jest funkcją wbudowaną w system Android używaną do tworzenia kopii zapasowych danych aplikacji w usłudze innego dostawcy (zwykle Google). Kopie zapasowe są zawsze zaszyfrowane i niedostępne dla innych osób bez hasła głównego. Wymaga użycia metody szyfrowania hasłem.</string>
 </resources>

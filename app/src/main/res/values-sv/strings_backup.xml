@@ -1,38 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="backup_activity_title">Säkerhetskopior</string>
-    <string name="backup_category_plain">Säkerhetskopior i klartext</string>
-    <string name="backup_category_crypt">Krypterade säkerhetskopior</string>
-    <string name="backup_category_openpgp">OpenPGP säkerhetskopior</string>
-    <string name="backup_title_export_plain">Säkerhetskopia (klartext)</string>
-    <string name="backup_title_export_crypt">Säkerhetskopia (krypterat)</string>
-    <string name="backup_title_export_openpgp">Säkerhetskopia (OpenPGP)</string>
-    <string name="backup_title_import_plain">Återställ (klartext)</string>
-    <string name="backup_title_import_crypt">Återställ (krypterad)</string>
-    <string name="backup_title_import_crypt_old">Återställ (krypterad, gammal kryptering)</string>
-    <string name="backup_title_import_openpgp">Återställ (OpenPGP)</string>
     <string name="backup_title_replace">Ersätt befintliga poster</string>
-    <string name="backup_desc_export_plain">Säkerhetskopiera alla konton i en fil i klartext i JSON</string>
-    <string name="backup_desc_export_crypt">Säkerhetskopiera alla konton i en lösenordskyddat JSON-fil</string>
-    <string name="backup_desc_export_openpgp">Säkerhetskopiera alla konton i en OpenPGP-krypterad JSON-fil</string>
-    <string name="backup_desc_import_plain">Återställa konton från en oformaterad JSON-fil</string>
-    <string name="backup_desc_import_crypt">Återställ konton från en lösenordsskyddad JSON-fil</string>
-    <string name="backup_desc_import_crypt_old">Återställ konton från en lösenordsskyddad JSON-fil
-        skyddad med en <b>andOTP-version lägre än 0.6.3</b></string>
-    <string name="backup_desc_import_openpgp">Återställ konton från en OpenPGP-krypterad JSON-fil</string>
-    <string name="backup_desc_crypt_setup">Det gick inte att läsa in säkerhetskopieringslösenordet från <b>Inställningar</b>,
-        det betyder antingen att inget lösenord har ställts in eller att något gick fel. Du kommer att bli ombedd att ange
-        lösenordet manuellt när du skapar eller importerar en säkerhetskopia.
-    </string>
+    <string name="backup_desc_replace">Om aktiverad ersätts alla gamla poster när du importerar en
+        säkerhetskopia och endast säkerhetskopian är närvarande. Om inaktiverade de gamla posterna och säkerhetskopieringsinnehållet
+        sammanfogas.</string>
     <string name="backup_desc_openpgp_provider">Du måste installera en OpenPGP-leverantör och aktivera
         den i <b>Inställningar</b> för att använda den här funktionen.
     </string>
     <string name="backup_desc_openpgp_keyid">Du måste välja en OpenPGP-nyckel i <b>Inställningar</b>
         innan du kan skapa krypterade säkerhetskopior.
     </string>
-    <string name="backup_desc_replace">Om aktiverad ersätts alla gamla poster när du importerar en
-        säkerhetskopia och endast säkerhetskopian är närvarande. Om inaktiverade de gamla posterna och säkerhetskopieringsinnehållet
-        sammanfogas.</string>
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">Säkerhetsvarning</string>
     <string name="backup_dialog_msg_export_warning">Vill du verkligen exportera databasen som
@@ -50,6 +28,10 @@
         detta innan du försöker säkerhetskopiera</string>
     <string name="backup_receiver_custom_encryption_failed">Lösenord/PIN-baserad kryptering stöds
         inte med broadcast-säkerhetskopiering</string>
+    <string name="backup_receiver_no_location_set">No backup location set, please set one in the
+        apps settings</string>
+    <string name="backup_receiver_no_password_set">No default password set, please set one in the
+        apps settings</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Automatisk säkerhetskopiering misslyckades</string>
     <string name="notification_channel_name_backup_success">Automatisk säkerhetskopiering lyckades</string>
@@ -67,9 +49,27 @@
     <string name="backup_toast_import_save_failed">Det gick inte att spara återställda poster</string>
     <string name="backup_toast_import_decryption_failed">Dekryptering av säkerhetskopian misslyckades</string>
     <string name="backup_toast_import_no_entries">Inga poster hittades i importerade data</string>
+    <string name="backup_toast_import_failed">Export till extern lagring misslyckades</string>
     <string name="backup_toast_storage_not_accessible">Extern lagring är för närvarande inte tillgänglig</string>
     <string name="backup_toast_openpgp_error">OpenPGP-fel: %s</string>
     <string name="backup_toast_openpgp_not_verified">Ingen verifierad signatur detekterad</string>
     <string name="backup_toast_crypt_password_not_set">Lösenordet är inte inställt, kontrollera <b>Inställningar</b></string>
     <string name="backup_toast_file_selection_failed">Kan inte öppna fildialogrutan!</string>
+    <string name="backup_label_type">Typ av säkethetskopia: </string>
+    <string name="backup_label_warning_plain">The backup will be stored in an unencrypted plain-text
+        file. Please only use if strictly necessary and <b>keep the file safe</b>!</string>
+    <string name="backup_label_crypt">The backup will be stored encrypted with a custom password
+        using AES 256-bit encryption. You can setup a default password in the settings if you
+        don\'t want to have to enter it every time you create a backup.</string>
+    <string name="backup_label_pgp">The backup will be stored encrypted using the PGP key you
+        specified in the settings. The encryption will be handled by a 3rd party app.</string>
+    <string name="backup_check_restore_old">Restore old backup format (created with an andOTP version
+        before 0.6.3)</string>
+    <string name="backup_button_backup">Skapa säkerhetskopia</string>
+    <string name="backup_button_restore">Återställ säkerhetskopia</string>
+    <string-array name="backup_list_type_names">
+        <item>Plain-text</item>
+        <item>Krypterad</item>
+        <item>OpenPGP</item>
+    </string-array>
 </resources>

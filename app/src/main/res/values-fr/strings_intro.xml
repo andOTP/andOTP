@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">C\'est parti</string>
     <string name="intro_slide1_desc">Bienvenue sur <b>andOTP</b>, cet assistant vous guidera lors
         de la configuration initiale. Veuillez prêter attention et lire attentivement sous peine de perdre des données !
@@ -28,8 +28,17 @@
     <string name="intro_slide3_warn_no_password">Veuillez définir un mot de passe pour continuer !</string>
     <string name="intro_slide3_warn_no_pin">Veuillez définir un code PIN pour continuer !</string>
     <string name="intro_slide3_warn_confirm_password">Veuillez confirmer votre mot de passe pour continuer !</string>
+    <string name="intro_slide3_warn_password_mismatch">Les mots de passe doivent correspondre!</string>
     <string name="intro_slide3_warn_confirm_pin">Veuillez confirmer votre code PIN pour continuer !</string>
+    <string name="intro_slide3_warn_pin_mismatch">Les codes PIN doivent correspondre !</string>
     <string name="intro_slide4_title">Terminé</string>
+    <string name="intro_slide4_title_failed">Échec de la configuration</string>
+    <string name="intro_slide4_title_progress">Veuillez patienter</string>
+    <string name="intro_slide4_desc_failed">Impossible de définir un mot de passe, cette introduction sera affichée à nouveau
+        la prochaine fois !</string>
     <string name="intro_slide4_desc">Vos paramètres ont été enregistrés, vous pouvez maintenant utiliser
         <b>andOTP</b> !</string>
+    <string name="intro_slide4_desc_progress">Vos paramètres sont en cours d\'enregistrement et la clé de chiffrement est
+        en cours de génération, veuillez patienter…</string>
+    <string name="intro_slide_android_backup_desc">La synchronisation Android est une fonctionnalité intégrée à android utilisée pour sauvegarder les données de l\'application vers un service tiers (généralement Google). Les sauvegardes sont toujours chiffrées et inaccessibles à des tiers sans votre mot de passe principal. Nécessite l\'utilisation de la méthode de chiffrement du mot de passe.</string>
 </resources>

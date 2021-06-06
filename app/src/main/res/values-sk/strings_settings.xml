@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="settings_activity_title">Nastavenia</string>
+    <!-- Categories -->
+    <string name="settings_category_title_security">Zabezpečenie</string>
+    <string name="settings_category_title_ui">Používateľské rozhranie</string>
+    <string name="settings_category_title_backup">Zálohovanie</string>
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">Zobraziť ťuknutím</string>
+    <string name="settings_title_tap_to_reveal_timeout">Čas do skrytia zobrazeného kódu</string>
+    <string name="settings_title_auth">Autentifikácia</string>
+    <string name="settings_title_auth_password">Heslo</string>
+    <string name="settings_title_auth_pin">PIN</string>
+    <string name="settings_title_encryption">Šifrovanie databázy</string>
+    <string name="settings_title_panic">Tlačidlo paniky</string>
+    <string name="settings_title_relock_screen_off">Zamknúť pri vypnutí displeja</string>
+    <string name="settings_title_relock_background">Zamknúť po prechode aplikácie do pozadia</string>
+    <string name="settings_title_auth_inactivity">Zamknúť po neaktivite</string>
+    <string name="settings_title_auth_inactivity_delay">Oneskorenie pre zamknutie po neaktivite</string>
+    <string name="settings_title_block_accessibility">Blokovať služby prístupnosti</string>
+    <string name="settings_title_block_autofill">Blokovať automatické dopĺňanie</string>
+    <string name="settings_title_auto_unlock_after_autofill">Automaticky odomknúť po automatickom doplnení</string>
+    <string name="settings_title_lang">Jazyk</string>
+    <string name="settings_title_theme_mode">Režim témy</string>
+    <string name="settings_title_theme_black_auto">Čierny motív</string>
+    <string name="settings_title_theme">Motív</string>
+    <string name="settings_title_card_layout">Rozloženie kariet</string>
+    <string name="settings_title_show_prev_token">Zobraziť predchádzajúci token</string>
+    <string name="settings_title_label_size">Veľkosť písma popisu</string>
+    <string name="settings_title_label_display">Zobrazenie štítku</string>
+    <string name="settings_title_tap_single">Jedno ťuknutie</string>
+    <string name="settings_title_tap_double">Dvojité ťuknutie</string>
+    <string name="settings_title_thumbnail_size_ask">Veľkosť náhľadu</string>
+    <string name="settings_title_split_group_size">Oddeliť token medzerami</string>
+    <string name="settings_title_tag_functionality">Chovanie pri výberu štítku</string>
+    <string name="settings_title_minimize_on_copy">Prejsť na pozadie po skopírovaní OTP</string>
+    <string name="settings_title_search_includes">Správanie pri vyhľadávaní</string>
+    <string name="settings_title_label_highlight_token">Zvýrazniť expirujúce tokeny</string>
+    <string name="settings_title_hide_global_timeout">Skryť spoločnú časovú lištu</string>
+    <string name="settings_title_show_individual_timeouts">Zobraziť individuálne časové lišty</string>
+    <string name="settings_title_focus_search_on_start">Vybrať políčko vyhľadávania pri štarte aplikácie</string>
+    <string name="settings_title_hide_issuer">Skryť vydavateľa</string>
+    <string name="settings_title_backup_append_date">Pridať dátum k názvu súboru</string>
+    <string name="settings_title_backup_ask">Zadajte názov súboru</string>
+    <string name="settings_title_backup_location">Predvolené umiestnenie zálohy</string>
+    <string name="settings_title_backup_password">Heslo zálohy</string>
+    <string name="settings_title_auto_backup_password_enc">Automaticky zálohovať pri vytvorení nových položiek</string>
+    <string name="settings_title_backup_broadcasts">Príkazy k zálohovaniu</string>
+    <string name="settings_title_openpgp_provider">Poskytovateľ OpenPGP</string>
+    <string name="settings_title_openpgp_key_encrypt">OpenPGP šifrovací kľúč</string>
+    <string name="settings_title_openpgp_key_sign">OpenPGP podpisovací kľúč (voliteľné)</string>
+    <string name="settings_title_openpgp_verify">Overovať šifrované zálohy</string>
+    <string name="settings_title_special_features">Povoliť špeciálne možnosti</string>
+    <string name="settings_title_enable_screenshot">Povoliť snímky obrazovky</string>
+    <string name="settings_title_enable_android_backup_service">Povoliť Android synchronizáciu</string>
+    <string name="settings_title_clear_keystore">Zmazať KeyStore</string>
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">Skryť OTP tokeny a požadovať ich manuálne odhalenie</string>
+    <string name="settings_desc_tap_to_reveal_timeout">Zvoľte čas (v sekundách), po ktorom sa zobrazené kódy opäť skryjú</string>
+    <string name="settings_desc_panic">Zvoľte reakciu na signál paniky</string>
+    <string name="settings_desc_relock_screen_off">Vyžadovať opätovnú autentifikáciu po vypnutí displeja</string>
+    <string name="settings_desc_relock_background">Vyžadovať opätovnú autentifikáciu po presunutí aplikácie na pozadie (napr. stlačením tlačidla \"Domov\")</string>
+    <string name="settings_desc_auth_inactivity">Vyžadovať opätovnú autentifikáciu po tom, ako bolo zariadenie neaktívne</string>
+    <string name="settings_desc_auth_inactivity_delay">Zvoľte čas (v sekundách), po ktorom sa bude vyžadovať opätovná autentifikácia</string>
+    <string name="settings_desc_block_accessibility">Skryť polia s citlivými informáciami pred službami pre uľahčenie prístupu. <b>NEAKTIVUJTE pokiaľ sa spoliehate na služby uľahčenia prístupu!</b></string>
+    <string name="settings_desc_block_autofill">Blokovať službám automatického dopĺňania prístup k poliam slúžiacim k zadaniu hesla v aplikácií</string>
+    <string name="settings_desc_auto_unlock_after_autofill">Odomknúť ak bolo heslo zadané automatickým vypĺňaním</string>
+    <string name="settings_desc_autofill_requires_android_o">Táto funkcia vyžaduje verziu Androidu vyššiu ako 8.0 (Oreo)</string>
+    <string name="settings_desc_theme_black_auto">Použiť čiernu tému v tmavom móde</string>
+    <string name="settings_desc_show_prev_token">Zobraziť aj predchádzajúci token okrem aktuálneho</string>
+    <string name="settings_desc_minimize_on_copy">Aplikácia bude minimalizovaná, keď skopírujete OTP do schránky</string>
+    <string name="settings_desc_search_includes">Určte, ktoré hodnoty by mali byť zahrnuté pri hľadaní</string>
+    <string name="settings_desc_label_highlight_token">Zvýrazniť token červenou, ak vyprší do 8 sekúnd</string>
+    <string name="settings_desc_hide_global_timeout">Skryť spoločnú časovú lištu v hornej časti obrazovky</string>
+    <string name="settings_desc_show_individual_timeouts">Zobraziť individuálne časový limit pre každý záznam.
+        Môže to spomaliť aplikáciu, povoľte, iba ak je to naozaj nutné.</string>
+    <string name="settings_desc_focus_search_on_start">Otvoriť políčko vyhľadávania okamžite po otvorení aplikácie.</string>
+    <string name="settings_desc_hide_issuer">Skryť štítok vydavateľa na každej karte</string>
+    <string name="settings_desc_backup_append_date">Pridať aktuálny dátum a čas k navrhovanému názvu záložného súboru</string>
+    <string name="settings_desc_backup_ask">Spýtať sa na názov súboru vždy pri vytváraní či obnovovaní zálohy</string>
+    <string name="settings_desc_backup_location">Zvoľte predvolené umiestnenie zálohy</string>
+    <string name="settings_desc_backup_location_set">Umiestnenie zálohy bolo vybrané</string>
+    <string name="settings_desc_backup_password">Nastaviť heslo používané k šifrovaniu záloh</string>
+    <string name="settings_desc_auto_backup_password_enc">Vytvorí novú šifrovanú zálohu pri vytvorení či úprave položiek, keď sú splnené podmienky z nastavení</string>
+    <string name="settings_desc_auto_backup_requirements">Pre povolení tejto možnosti nastavte umiestnenie zálohy a heslo pre zálohu</string>
+    <string name="settings_desc_backup_broadcasts">Vyberte, ktoré typy zálohovania môžu byť spustené pomocou príkazov od aplikácií tretej strany</string>
+    <string name="settings_desc_openpgp_key_encrypt">E-mailová adresa pre OpenPGP kľúče použité k šifrovaniu záloh</string>
+    <string name="settings_desc_openpgp_verify">Šifrované zálohy sú importované iba, ak sú podpísané platným klíčom</string>
+    <string name="settings_desc_special_features">Zrušte zaškrtnutie políčka pre opätovné zakázanie špeciálnych funkcíi</string>
+    <string name="settings_desc_enable_screenshot">Povoliť zaznamenávanie snímkov hlavnej obrazovky (v predvolenom nastavení je z bezpečnostných dôvodov zakázané)</string>
+    <string name="settings_desc_enable_android_backup_service">Povoliť andOTP používať zálohovaciu službu systému Android k zálohovaniu kľúčov a nastavení</string>
+    <string name="settings_desc_clear_keystore">Odstrániť šifrovací kľúč z úložiska kľúčov</string>
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_not_secure">Táto funkcia vyžaduje nastavenie zámku obrazovky (Nastavenie -&gt; Zabezpečenie -&gt; Zámok obrazovky)</string>
+    <string name="settings_toast_password_empty">Nie je povolené prázdne heslo, nastavte prihlásenie na \"Žiadne\" pre zakázanie!</string>
+    <string name="settings_toast_encryption_changing">Pokúšam sa zmeniť šifrovanie databázy, prosím počkajte!</string>
+    <string name="settings_toast_encryption_change_success">Šifrovanie databázy úspešne zmenené!</string>
+    <string name="settings_toast_encryption_change_failed">Nepodarilo sa zmeniť šifrovanie databázy, vraciam k pôvodnému stavu!</string>
+    <string name="settings_toast_encryption_backup_failed">Nepodarilo sa vytvoriť vnútornú zálohu, operácia bola zrušená!</string>
+    <string name="settings_toast_encryption_no_key">Nepodarilo sa získať šifrovací kľúč, operácia bola zrušená!</string>
+    <string name="settings_toast_encryption_auth_failed">Autentifikácia zlyhala!</string>
+    <string name="settings_toast_auth_upgrade_failed">Nepodarila sa automaticky previesť heslo/PIN na nové šifrovanie, prosím nastavte to znovu v Nastaveniach!</string>
+    <string name="settings_toast_android_sync_enabled">Android synchronizácia povolená</string>
+    <string name="settings_toast_android_sync_disabled">Android synchronizácia zakázaná</string>
+    <string name="settings_dialog_title_warning">Varovanie</string>
+    <string name="settings_dialog_title_error">Chyba</string>
+    <string name="settings_dialog_title_clear_keystore">Vymazať KeyStore?</string>
+    <string name="settings_dialog_title_android_sync">Android synchnizácia</string>
+    <string name="settings_dialog_msg_encryption_change">andOTP sa pokúsi zmeniť šifrovanie databázy.
+V prípade chyby bude obnovená interná záloha a šifrovanie zostane nezmenené.\n\n<b>Ale aj tak je vhodné mať zálohu pre prípad, že sa stane niečo nepredvídaného!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">Heslo alebo kód PIN sa dá použiť jedine ak je šifrovanie databázy nastavené na \"Heslo / PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">Najskôr je potrebné nastaviť autentifikáciu na \"Heslo\" alebo \"PIN\"!</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">Najskôr musíte nastaviť heslo alebo PIN pred zmenou šifrovania!</string>
+    <string name="settings_dialog_msg_clear_keystore_password">V niektorých prípadoch vymazanie KeyStore môže pomôcť vyriešiť problémy. Pokračujte, jedine ak viete, čo robíte!\n\nVzhľadom na to, že máte <b>šifrovanie databázy</b> nastavené na <b>heslo / PIN</b> by ste týmto postupom nemali prísť o dáta (ale mať zálohu nikdy neuškodí).\n\n<b>Ste si naozaj istý, že chcete vymazať KeyStore?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">V niektorých prípadoch vymazanie KeyStore môže pomôcť vyriešiť problémy. Pokračujte, jedine ak viete, čo robíte!\n\n<b>Varovanie</b>: Vzhľadom na to, že máte <b>šifrovanie databázy</b> nastavené na <b>Android KeyStore</b> stratíte týmto krokom všetky svoje účty. Uistite sa, že máte zálohu!\n\n<b>Ste si naozaj istý, že chcete vymazať KeyStore?</b></string>
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">Android synchronizácia sa nedá použiť v kombinácií s šifrovaním na báze KeyStore, <b>je potrebné zálohovať manuálne!</b></string>
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>Žiadny</item>
+        <item>Heslo</item>
+        <item>PIN</item>
+        <item>Rovnaké ako na zariadení</item>
+    </string-array>
+    <string-array name="settings_entries_encryption">
+        <item>Android KeyStore</item>
+        <item>Heslo / PIN</item>
+    </string-array>
+    <string-array name="settings_entries_panic">
+        <item>Vymazať všetky účty</item>
+        <item>Obnoviť predvolené nastavenia</item>
+    </string-array>
+    <string-array name="settings_entries_card_layout">
+        <item>Kompaktné</item>
+        <item>Predvolené</item>
+        <item>Plné</item>
+    </string-array>
+    <string-array name="settings_entries_tap">
+        <item>Nič</item>
+        <item>Zobraziť/Skryť</item>
+        <item>Skopírovať</item>
+        <item>Skopírovať a dať na pozadie</item>
+        <item>Zdieľať ako stlačenia klávesov (keystrokes)</item>
+    </string-array>
+    <string-array name="settings_entries_search_includes">
+        <item>Popis</item>
+        <item>Vydavateľ</item>
+        <item>Štítky</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Auto</item>
+        <item>Manuálne</item>
+    </string-array>
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Vypnuté</item>
+        <item>Nové položky</item>
+        <item>Ľubovoľné úpravy</item>
+    </string-array>
+    <string-array name="settings_entries_theme">
+        <item>Svetlý motív</item>
+        <item>Tmavá motív</item>
+        <item>Čierny motív</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Skrátené</item>
+        <item>Posúvané</item>
+        <item>Viacero riadkov</item>
+    </string-array>
+    <string-array name="settings_entries_thumbnail_size">
+        <item>Skryté</item>
+        <item>Drobné</item>
+        <item>Malé</item>
+        <item>Predvolené</item>
+        <item>Stredné</item>
+        <item>Veľké</item>
+    </string-array>
+    <string-array name="settings_entries_split_group_size">
+        <item>Nedeliť</item>
+        <item>Po dvoch znakoch</item>
+        <item>Po troch znakoch</item>
+    </string-array>
+    <string-array name="settings_entries_tag_functionality">
+        <item>Zobraziť všetky záznamy zodpovedajúce <b>akémukoľvek</b> z vybraných štítkov (alebo)</item>
+        <item>Zobraziť iba záznamy zodpovedajúce <b>všetkým</b> vybraným štítkom (a)</item>
+        <item>Prepínať medzi štítkami (iba jeden štítok môže byť vybraný)</item>
+    </string-array>
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Nechránené zálohy</item>
+        <item>Šifrované zálohy</item>
+    </string-array>
+    <!-- Special -->
+    <string name="settings_lang_sys_default">Podľa systému</string>
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">Zadajte nové heslo</string>
+    <string name="settings_hint_pin">Zadajte nový PIN</string>
+    <string name="settings_hint_password_confirm">Potvrďte heslo</string>
+    <string name="settings_hint_pin_confirm">Potvrďte PIN</string>
+    <string name="settings_label_short_password">Heslo musí mať aspoň %1$d znakov!</string>
+    <string name="settings_label_short_pin">PIN musí mať aspoň %1$d číslic!</string>
+</resources>

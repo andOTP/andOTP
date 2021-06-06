@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">Lássunk neki</string>
     <string name="intro_slide1_desc">Üdvözli az <b>andOTP</b>, ez a varázsló végigvezeti a
         kezdeti beállításokon. Olvassa el figyelmesen, különben elveszítheti az adatait!
@@ -30,8 +30,17 @@
     <string name="intro_slide3_warn_no_password">Állítson be jelszót a folytatáshoz!</string>
     <string name="intro_slide3_warn_no_pin">Állítson be PIN-kódot a folytatáshoz!</string>
     <string name="intro_slide3_warn_confirm_password">Erősítse meg a jelszavát a folytatáshoz!</string>
+    <string name="intro_slide3_warn_password_mismatch">A jelszavaknak egyezniük kell.</string>
     <string name="intro_slide3_warn_confirm_pin">Erősítse meg a PIN-kódját a folytatáshoz!</string>
+    <string name="intro_slide3_warn_pin_mismatch">A PIN-kódoknak egyezniük kell.</string>
     <string name="intro_slide4_title">Kész</string>
+    <string name="intro_slide4_title_failed">A beállítás sikertelen</string>
+    <string name="intro_slide4_title_progress">Kis türelmet…</string>
+    <string name="intro_slide4_desc_failed">A jelszó megadása sikertelen, a bemutató a következő
+        alkalommal is meg fog jelenni.</string>
     <string name="intro_slide4_desc">A beállításai mentésre kerültek, minden kész az
         <b>andOTP</b> használatához!</string>
+    <string name="intro_slide4_desc_progress">A beállításai mentésre kerülnek, a titkosítási kulcs pedig előállításra
+        kerül, kis türelmet…</string>
+    <string name="intro_slide_android_backup_desc">Az Android szinkronizálás az Android beépített funkciója, amely az adatok harmadik féltől származó (jellemzően Google) szolgáltatással történő biztonsági mentésére szolgál. A biztonsági mentések mindig titkosítottak, és harmadik felek nem férnek hozzájuk a mesterjelszó nélkül. A jelszavas titkosítási mód használata szükséges.</string>
 </resources>

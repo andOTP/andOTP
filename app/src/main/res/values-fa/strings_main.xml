@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- Buttons -->
     <string name="button_cancel">لغو</string>
     <string name="button_enter_details">جزئیات را وارد کنید</string>
@@ -10,6 +10,7 @@
     <string name="button_all_tags">همه تگ‌ها</string>
     <string name="button_no_tags">بدون تگ</string>
     <string name="button_qr_from_image">کد QR از تصویر</string>
+    <string name="button_accept">پذیرفتن</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d ثانیه</string>
     <!-- Hints -->
@@ -45,6 +46,8 @@
     <string name="menu_popup_change_image">تغییر تصویر</string>
     <string name="menu_popup_remove">حذف</string>
     <string name="menu_popup_show_qr_code">نمایش کد QR</string>
+    <string name="menu_popup_establish_pin">وارد کردن پین</string>
+    <string name="menu_send_keystrokes">اشتراک گذاری به عنوان کلید</string>
     <!-- Buttons -->
     <string name="button_card_options">گزینه‌های بیشتر</string>
     <string name="button_card_options_format">گزینه‌های بیشتر برای %1$s</string>
@@ -78,7 +81,9 @@
     <string name="dialog_title_used_tokens">کاربرد توکن</string>
     <string name="dialog_title_keystore_error">خطای KeyStore</string>
     <string name="dialog_title_qr_code">کد QR</string>
+    <string name="dialog_title_pin">پین</string>
     <string name="dialog_title_enter_password">گذرواژه را وارد کنید</string>
+    <string name="dialog_title_auto_time">زمان خودکار</string>
     <string name="dialog_label_enter_password">گذرواژه را وارد کنید</string>
     <string name="dialog_label_confirm_password">تایید گذرواژه</string>
     <string name="dialog_msg_auth">برای شروع andOTP لطفا اعتبارنامه دستگاه خود را وارد کنید.</string>
@@ -90,8 +95,14 @@
     <string name="dialog_msg_keystore_error">بارگذاری کلید رمزنگاری از KeyStore ناموفق بود.
         <b>هر ورودی که افزوده شده از دست خواهد رفت.</b>\n\n برای ادامه استفاده از andOTP، می‌توانید به
         <b>تنظیمات</b> بروید و <b>رمزنگاری پایگاه داده</b> را به <b>گذرواژه / پین</b> تغییر دهید.</string>
+    <string name="dialog_msg_auto_time">لطفا گزینه <b>تاریخ و زمان</b> خودکار را فعال کنید تا از تولید درست رمز عبور یکبار مصرف بر پایه زمان (TOTP) مطمئن باشید.</string>
+    <string name="dialog_hint_dont_show_again">این پیغام دوباره نشان داده نشود.</string>
+    <string name="yes">بله</string>
+    <string name="no">خیر</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">اسکن کد QR</string>
     <string name="shortcut_name_import_qr">وارد کردن کد QR</string>
     <string name="shortcut_name_enter_details">جزئیات را وارد کنید</string>
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">توکن‌های خود را با زدن «+» در پایین صفحه اضافه کنید</string>
 </resources>

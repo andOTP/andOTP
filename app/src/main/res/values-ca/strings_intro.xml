@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">Comencem</string>
     <string name="intro_slide1_desc">Benvinguda a <b>andOTP</b>! Aquest assistents us guiarà en el
         procés de configuració inicial. Pareu atenció i llegiu atentament per tal d\'evitar la pèrdua de dades.
@@ -28,11 +28,20 @@
     <string name="intro_slide3_desc_password">Here you can setup an authentication method to lock
         <b>andOTP</b>. Since you have chosen <b>Password / PIN</b> as your encryption method, a
         password or a PIN must be set to proceed.</string>
-    <string name="intro_slide3_warn_no_password">Please set a password to continue!</string>
-    <string name="intro_slide3_warn_no_pin">Please set a PIN to continue!</string>
-    <string name="intro_slide3_warn_confirm_password">Please confirm your password to continue!</string>
-    <string name="intro_slide3_warn_confirm_pin">Please confirm your PIN to continue!</string>
-    <string name="intro_slide4_title">Finished</string>
-    <string name="intro_slide4_desc">Your settings have been saved, you are now all set to use
-        <b>andOTP</b>!</string>
+    <string name="intro_slide3_warn_no_password">Si us plau, establiu una contrasenya per a continuar!</string>
+    <string name="intro_slide3_warn_no_pin">Si us plau, establiu un PIN per a continuar!</string>
+    <string name="intro_slide3_warn_confirm_password">Si us plau, confirmeu la contrasenya per a continuar!</string>
+    <string name="intro_slide3_warn_password_mismatch">Les contrasenyes han de coincidir!</string>
+    <string name="intro_slide3_warn_confirm_pin">Si us plau, confirmeu el PIN per a continuar!</string>
+    <string name="intro_slide3_warn_pin_mismatch">Els PIN han de coincidir!</string>
+    <string name="intro_slide4_title">Acabat</string>
+    <string name="intro_slide4_title_failed">La configuració ha fallat</string>
+    <string name="intro_slide4_title_progress">Espereu, si us plau</string>
+    <string name="intro_slide4_desc_failed">No ha estat possible establir la contrasenya, aquesta introducció
+         tornarà a mostrar-se la pròxima vegada!</string>
+    <string name="intro_slide4_desc">S\'han desat les preferències, ja podeu fer servir
+         <b>andOTP</b>!</string>
+    <string name="intro_slide4_desc_progress">Les preferències s\'han desat i la clau d\'encriptació es generarà
+         ara, per favor espereu…</string>
+    <string name="intro_slide_android_backup_desc">Android sync is a feature built in to android used to back up app data to a 3rd party service (usually Google). Backups are always encrypted and unaccessible to 3rd parties without your master password. Requires use of Password encryption method.</string>
 </resources>

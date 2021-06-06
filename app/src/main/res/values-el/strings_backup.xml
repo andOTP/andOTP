@@ -1,33 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="backup_activity_title">Αντίγραφα ασφαλείας</string>
-    <string name="backup_category_plain">Αντίγραφα ασφαλείας απλού κειμένου</string>
-    <string name="backup_category_crypt">Κρυπτογραφημένα αντίγραφα ασφαλείας</string>
-    <string name="backup_category_openpgp">Αντίγραφα ασφαλείας OpenPGP</string>
-    <string name="backup_title_export_plain">Δημιουργία αντιγράφου ασφαλείας (απλού κειμένου)</string>
-    <string name="backup_title_export_crypt">Δημιουργία αντιγράφου ασφαλείας (κρυπτογραφημένου)</string>
-    <string name="backup_title_export_openpgp">Δημιουργία αντιγράφου ασφαλείας (OpenPGP)</string>
-    <string name="backup_title_import_plain">Επαναφορά (απλού κειμένου)</string>
-    <string name="backup_title_import_crypt">Επαναφορά (κρυπτογραφημένου)</string>
-    <string name="backup_title_import_crypt_old">Επαναφορά (Κρυπτογραφημένη, Παλιά κρυπτογράφηση)</string>
-    <string name="backup_title_import_openpgp">Επαναφορά (OpenPGP)</string>
     <string name="backup_title_replace">Αντικατάσταση υφιστάμενων εγγραφών</string>
-    <string name="backup_desc_export_plain">Δημιουργία αντιγράφων ασφαλείας όλων των λογαριασμών σε ένα αρχείο JSON απλού κειμένου</string>
-    <string name="backup_desc_export_crypt">Δημιουργία αντιγράφων ασφαλείας όλων των λογαριασμών σε ένα αρχείο JSON που προστατεύεται με κωδικό πρόσβασης</string>
-    <string name="backup_desc_export_openpgp">Δημιουργία αντιγράφων ασφαλείας όλων των λογαριασμών σε ένα αρχείο JSON κρυπτογραφημένο με OpenPGP</string>
-    <string name="backup_desc_import_plain">Επαναφορά λογαριασμών από ένα αρχείο JSON απλού κειμένου</string>
-    <string name="backup_desc_import_crypt">Επαναφορά λογαριασμών από ένα αρχείο JSON που προστατεύεται με κωδικό πρόσβασης</string>
-    <string name="backup_desc_import_crypt_old">Επαναφορά λογαριασμού από αρχείο JSON που προστατεύεται με κωδικό που
-        δημιουργήθηκε από μία<b>andOTP έκδοση μικρότερη από 0.6.3</b></string>
-    <string name="backup_desc_import_openpgp">Επαναφορά λογαριασμών από ένα αρχείο JSON κρυπτογραφημένο με OpenPGP</string>
-    <string name="backup_desc_crypt_setup">Αποτυχία φόρτωσης του κωδικού αντιγράφου ασφαλείας από τις <b>Ρυθμίσεις</b>.
-        που αυτό σημαίνει είτε ότι δεν έχει οριστεί κωδικός πρόσβασης ή ότι κάτι πήγε στραβά. Θα σας ζητηθεί να εισέλθετε
-        εισάγοντας τον κωδικό πρόσβασης με μη αυτόματο τρόπο κατά τη δημιουργία ή την εισαγωγή ενός αντιγράφου ασφαλείας.
-    
-    </string>
+    <string name="backup_desc_replace">Αν ενεργοποιηθεί, όλες οι παλιές εγγραφές θα αντικατασταθούν κατά την εισαγωγή ενός αντιγράφου ασφαλείας και μόνο το αντίγραφο ασφαλείας θα είναι διαθέσιμο. Αν απενεργοποιηθεί, θα συγχωνευτούν οι παλιές εγγραφές και το περιεχόμενο των αντιγράφων ασφαλείας.</string>
     <string name="backup_desc_openpgp_provider">Θα πρέπει να εγκαταστήσετε έναν πάροχο OpenPGP και να τον ενεργοποιήσετε στις <b>Ρυθμίσεις</b> για να χρησιμοποιήσετε αυτή τη λειτουργία.    </string>
     <string name="backup_desc_openpgp_keyid">Θα πρέπει να επιλέξετε ένα κλειδί OpenPGP στις <b>Ρυθμίσεις</b> πριν μπορέσετε να δημιουργήσετε κρυπτογραφημένα αντίγραφα ασφαλείας.    </string>
-    <string name="backup_desc_replace">Αν ενεργοποιηθεί, όλες οι παλιές εγγραφές θα αντικατασταθούν κατά την εισαγωγή ενός αντιγράφου ασφαλείας και μόνο το αντίγραφο ασφαλείας θα είναι διαθέσιμο. Αν απενεργοποιηθεί, θα συγχωνευτούν οι παλιές εγγραφές και το περιεχόμενο των αντιγράφων ασφαλείας.</string>
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">Προειδοποίηση ασφαλείας</string>
     <string name="backup_dialog_msg_export_warning">Θέλετε πραγματικά να εξαγάγετε τη βάση δεδομένων ως αρχείο JSON απλού κειμένου; Αυτό το αρχείο περιέχει όλα τα μυστικά κλειδιά σας, παρακαλούμε να <b>το κρατήσετε ασφαλές</b>!    </string>
@@ -38,6 +15,10 @@
     <string name="backup_receiver_read_permission_failed">Η άδεια για ανάγνωση δεν έχει δοθεί, παρακαλώ παραχωρήστε την πριν προσπαθήσετε να πάρετε αντίγραφο ασφαλείας</string>
     <string name="backup_receiver_write_permission_failed">Η άδεια για εγγραφή δεν έχει δοθεί, παρακαλώ παραχωρήστε την πριν προσπαθήσετε να πάρετε αντίγραφο ασφαλείας</string>
     <string name="backup_receiver_custom_encryption_failed">Η κρυπτογράφηση με κωδικό πρόσβασης ή PIN δεν υποστηρίζεται στα αντίγραφα ασφαλείας μέσω εκπομπής</string>
+    <string name="backup_receiver_no_location_set">Δεν ορίστηκε θέση αντιγράφου ασφαλείας, παρακαλώ ορίστε μία στις ρυθμίσεις
+        εφαρμογών</string>
+    <string name="backup_receiver_no_password_set">Δεν έχει οριστεί προεπιλεγμένος κωδικός πρόσβασης, παρακαλώ ορίστε μία στις ρυθμίσεις
+        εφαρμογών</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Αποτυχία αυτόματης λήψης αντιγράφου ασφαλείας</string>
     <string name="notification_channel_name_backup_success">Επιτυχής αυτόματη λήψη αντιγράφου ασφαλείας</string>
@@ -53,9 +34,27 @@
     <string name="backup_toast_import_save_failed">Αποτυχία αποθήκευσης των εγγραφών από επαναφορά</string>
     <string name="backup_toast_import_decryption_failed">Η αποκρυπτογράφηση του αντιγράφου ασφαλείας απέτυχε</string>
     <string name="backup_toast_import_no_entries">Δεν βρέθηκαν εγγραφές στα δεδομένα που εισήχθηκαν</string>
+    <string name="backup_toast_import_failed">Η εισαγωγή από εξωτερική συσκευή αποθήκευσης απέτυχε</string>
     <string name="backup_toast_storage_not_accessible">Η εξωτερική αποθήκευση δεν είναι διαθέσιμη αυτή τη στιγμή</string>
     <string name="backup_toast_openpgp_error">Σφάλμα OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">Δεν ανιχνεύτηκε επαληθευμένη υπογραφή</string>
     <string name="backup_toast_crypt_password_not_set">Ο κωδικός πρόσβασης δεν έχει οριστεί, ελέγξτε τις <b>ρυθμίσεις</b></string>
     <string name="backup_toast_file_selection_failed">Δεν είναι δυνατό το άνοιγμα διαλόγου επιλογής αρχείων!</string>
+    <string name="backup_label_type">Τύπος αντιγράφου: </string>
+    <string name="backup_label_warning_plain">Το αντίγραφο ασφαλείας θα αποθηκευτεί σε μη κρυπτογραφημένο απλό κείμενο
+         αρχείο. Χρησιμοποιήστε μόνο εάν είναι απολύτως απαραίτητο και <b> διατηρήστε το αρχείο ασφαλές </b>!</string>
+    <string name="backup_label_crypt">Το αντίγραφο ασφαλείας θα αποθηκευτεί κρυπτογραφημένα με προσαρμοσμένο κωδικό πρόσβασης
+        χρησιμοποιώντας κρυπτογράφηση AES 256-bit. Μπορείτε να ρυθμίσετε έναν προεπιλεγμένο κωδικό πρόσβασης στις ρυθμίσεις αν
+        δεν θέλετε να τον εισάγετε κάθε φορά που δημιουργείτε ένα αντίγραφο ασφαλείας.</string>
+    <string name="backup_label_pgp">Το αντίγραφο ασφαλείας θα αποθηκευτεί κρυπτογραφημένο χρησιμοποιώντας το κλειδί PGP εσείς
+         καθορίζεται στις ρυθμίσεις. Η κρυπτογράφηση θα χρησιμοποιηθεί από μια εφαρμογή τρίτου μέρους.</string>
+    <string name="backup_check_restore_old">Επαναφορά παλιάς μορφής αντιγράφου ασφαλείας (δημιουργήθηκε με έκδοση andOTP
+        πριν από 0.6.3)</string>
+    <string name="backup_button_backup">Δημιουργία αντιγράφου ασφαλείας</string>
+    <string name="backup_button_restore">Επαναφορά αντιγράφου</string>
+    <string-array name="backup_list_type_names">
+        <item>Απλό κείμενο</item>
+        <item>Κρυπτογραφημένο</item>
+        <item>OpenPGP</item>
+    </string-array>
 </resources>

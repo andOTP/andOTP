@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- Buttons -->
     <string name="button_cancel">Cancel·la</string>
     <string name="button_enter_details">Introduïu-ne els detalls</string>
@@ -10,6 +10,7 @@
     <string name="button_all_tags">Totes les etiquetes</string>
     <string name="button_no_tags">Sense etiquetes</string>
     <string name="button_qr_from_image">codi QR de la imatge</string>
+    <string name="button_accept">Accepta</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
     <!-- Hints -->
@@ -45,6 +46,8 @@
     <string name="menu_popup_change_image">Canvia la imatge</string>
     <string name="menu_popup_remove">Suprimeix</string>
     <string name="menu_popup_show_qr_code">Mostra el codi QR</string>
+    <string name="menu_popup_establish_pin">Introduïu PIN</string>
+    <string name="menu_send_keystrokes">Comparteix com pulsacions de tecles</string>
     <!-- Buttons -->
     <string name="button_card_options">Més opcions</string>
     <string name="button_card_options_format">Més opcions per a %1$s</string>
@@ -78,7 +81,9 @@
     <string name="dialog_title_used_tokens">Ús de testimonis</string>
     <string name="dialog_title_keystore_error">Error al magatzem de claus</string>
     <string name="dialog_title_qr_code">Codi QR</string>
+    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_title_enter_password">Introduïu la contrasenya</string>
+    <string name="dialog_title_auto_time">Zona horària automàtica</string>
     <string name="dialog_label_enter_password">Introduïu la contrasenya</string>
     <string name="dialog_label_confirm_password">Confirmeu la contrasenya</string>
     <string name="dialog_msg_auth">Per favor, introduïu les vostres credencials per a iniciar andOTP.</string>
@@ -89,8 +94,16 @@
     <string name="dialog_msg_keystore_error">No s\'ha pogut carregar la clau de xifratge del KeyStore.
         <b>Qualsevol entrada que s\'hi hagin afegit es perdrà.</b>\n\nPer a continuar usant andOTP, podeu
         anar a la <b>Configuració</b> i canviar el <b>xifratge de la base de dades</b> a <b>Contrasenyes / PIN</b>.</string>
+    <string name="dialog_msg_auto_time">Activa l\'opció<b>Zona horaria automàtica </b> a
+        la <b>Configuració</b> del telèfon per assegurar que sigui correcta la generació de contrasenyes temporals 
+        basades en un sol ús (TOTP).</string>
+    <string name="dialog_hint_dont_show_again">No tornis a mostrar aquest missatge.</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Escaneja un codi QR</string>
     <string name="shortcut_name_import_qr">Importa un codi QR</string>
     <string name="shortcut_name_enter_details">Introduïu-ne els detalls</string>
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">Comenceu afegint els vostres testimonis tocant \"+\" en la part inferior</string>
 </resources>

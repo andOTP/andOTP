@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- Buttons -->
     <string name="button_cancel">Cancelar</string>
     <string name="button_enter_details">Introducir datos</string>
@@ -10,6 +10,7 @@
     <string name="button_all_tags">Todas as etiquetas</string>
     <string name="button_no_tags">Sen etiquetas</string>
     <string name="button_qr_from_image">Código QR desde imaxe</string>
+    <string name="button_accept">Aceptar</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
     <!-- Hints -->
@@ -45,6 +46,8 @@
     <string name="menu_popup_change_image">Cambiar imaxe</string>
     <string name="menu_popup_remove">Eliminar</string>
     <string name="menu_popup_show_qr_code">Mostrar código QR</string>
+    <string name="menu_popup_establish_pin">Escribe pin</string>
+    <string name="menu_send_keystrokes">Compartir como Keystrokes</string>
     <!-- Buttons -->
     <string name="button_card_options">Máis opcións</string>
     <string name="button_card_options_format">Máis opcións para %1$s</string>
@@ -78,7 +81,9 @@
     <string name="dialog_title_used_tokens">Utilizacións dos tokens</string>
     <string name="dialog_title_keystore_error">Fallo no KeyStore</string>
     <string name="dialog_title_qr_code">Código QR</string>
+    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_title_enter_password">Introducir contrasinal</string>
+    <string name="dialog_title_auto_time">Hora automática</string>
     <string name="dialog_label_enter_password">Introducir contrasinal</string>
     <string name="dialog_label_confirm_password">Confirmar contrasinal</string>
     <string name="dialog_msg_auth">Introduce as credenciais do dispositivo para iniciar andOTP.</string>
@@ -89,8 +94,16 @@
     <string name="dialog_msg_keystore_error">Fallo ao cargar a chave de cifrado desde KeyStore.
         <b>Calquera entrada que se engada perderase.</b>\n\nPara poder seguir usando andOTP podes ir a
         <b>Axustes</b> e cambiar o <b>Cifrado da base da datos</b> a <b>Contrasinal / PIN</b>.</string>
+    <string name="dialog_msg_auto_time">Activa a opción <b>hora e data automáticas</b> nos <b>Axustes</b>
+        do teu móbil para asegurarte da correcta creación dos contrasinais
+        dun só uso (TOTP) baseados na hora.</string>
+    <string name="dialog_hint_dont_show_again">Non volver a mostrar esta mensaxe.</string>
+    <string name="yes">Si</string>
+    <string name="no">Non</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Escanear código-QR</string>
     <string name="shortcut_name_import_qr">Importar código QR</string>
     <string name="shortcut_name_enter_details">Introducir detalles</string>
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">Engade os teus tokens premendo no \"+\" na parte inferior</string>
 </resources>

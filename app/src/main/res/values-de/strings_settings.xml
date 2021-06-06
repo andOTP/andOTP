@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Einstellungen</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Sicherheit</string>
@@ -19,21 +19,27 @@
     <string name="settings_title_auth_inactivity_delay">Zeit bis zur Inaktivitätssperre</string>
     <string name="settings_title_block_accessibility">Eingabehilfen blockieren</string>
     <string name="settings_title_block_autofill">Autofill verhindern</string>
+    <string name="settings_title_auto_unlock_after_autofill">Automatisch nach Autofill entsperren</string>
     <string name="settings_title_lang">Sprache</string>
+    <string name="settings_title_theme_mode">Themen-Modus</string>
+    <string name="settings_title_theme_black_auto">Schwarzes Thema</string>
     <string name="settings_title_theme">Design</string>
     <string name="settings_title_card_layout">Kartenlayout</string>
+    <string name="settings_title_show_prev_token">Zeige vorherige Token</string>
     <string name="settings_title_label_size">Schriftgröße der Beschriftung</string>
-    <string name="settings_title_label_scroll">Beschriftung scrollen</string>
+    <string name="settings_title_label_display">Beschriftung-Anzeige</string>
     <string name="settings_title_tap_single">Einfaches Tippen</string>
     <string name="settings_title_tap_double">Doppeltes Tippen</string>
     <string name="settings_title_thumbnail_size_ask">Größe der Miniaturansichten</string>
     <string name="settings_title_split_group_size">Token mit Leerzeichen unterteilen</string>
-    <string name="settings_title_tag_functionality">Schlagwort Auswahlverhalten</string>
+    <string name="settings_title_tag_functionality">Label-Auswahlverhalten</string>
     <string name="settings_title_minimize_on_copy">App nach dem Kopieren von OTP minimieren</string>
     <string name="settings_title_search_includes">Suchverhalten</string>
     <string name="settings_title_label_highlight_token">Ablaufende Tokens hervorheben</string>
     <string name="settings_title_hide_global_timeout">Globale Timeout-Leiste ausblenden</string>
     <string name="settings_title_show_individual_timeouts">Individuelle Timeouts anzeigen</string>
+    <string name="settings_title_focus_search_on_start">Fokussiere Suche bei App-Start</string>
+    <string name="settings_title_hide_issuer">Aussteller ausblenden</string>
     <string name="settings_title_backup_append_date">Datum an den Dateinamen anhängen</string>
     <string name="settings_title_backup_ask">Nach Dateinamen fragen</string>
     <string name="settings_title_backup_location">Standard-Sicherungsort</string>
@@ -63,15 +69,18 @@
         Authentifizierung benötigt wird</string>
     <string name="settings_desc_block_accessibility">Verstecke vertrauliche Einträge vor den Eingabehilfsdiensten.        <b>NICHT aktivieren, wenn Eingabehilfe benötigt wird!</b></string>
     <string name="settings_desc_block_autofill">Hindert Autofill-Dienste am Zugriff auf Passwortfelder in der App</string>
-    <string name="settings_desc_block_autofill_android">Dieses Feature erfordert eine Android-Version
-        höher als 8.0 (Oreo)</string>
-    <string name="settings_desc_label_scroll">Überlange Beschriftungen scrollen, statt diese abzuschneiden</string>
+    <string name="settings_desc_auto_unlock_after_autofill">Entsperren wenn das Passwort durch Autofill gefüllt wurde</string>
+    <string name="settings_desc_autofill_requires_android_o">Dieses Funktion erfordert eine Android-Version 8.0 (Oreo) oder höher</string>
+    <string name="settings_desc_theme_black_auto">Schwarzes Thema im Nachtmodus verwenden</string>
+    <string name="settings_desc_show_prev_token">Zeige die vorherigen Token zusätzlich zum aktuellen Token</string>
     <string name="settings_desc_minimize_on_copy">App wird minimiert wenn der OTP Code kopiert wurde</string>
     <string name="settings_desc_search_includes">Welche Werte sollen in der Suche enthalten sein?</string>
     <string name="settings_desc_label_highlight_token">Token wird rot markiert, wenn es in weniger als 8 Sekunden ausläuft</string>
     <string name="settings_desc_hide_global_timeout">Globale Timeout-Leiste am oberen Bildschirmrand ausblenden</string>
     <string name="settings_desc_show_individual_timeouts">Zeige eine individuelle Timeout-Leiste für jeden Eintrag.
         Dies kann die App verlangsamen, nur aktivieren, wenn wirklich notwendig.</string>
+    <string name="settings_desc_focus_search_on_start">Fokussiere unnmittelbar nach dem Öffnen der App die Suche.</string>
+    <string name="settings_desc_hide_issuer">Verstecke die Ausstellerbeschriftung auf jeder Karte</string>
     <string name="settings_desc_backup_append_date">Aktuelles Datum und die aktuelle Uhrzeit an den vorgeschlagenen Sicherungsdateinamen anhängen</string>
     <string name="settings_desc_backup_ask">Jedes Mal nach dem Dateinamen fragen, wenn eine Sicherung erstellt oder wiederhergestellt wird</string>
     <string name="settings_desc_backup_location">Wählen Sie eine Standard-Sicherungsort</string>
@@ -101,6 +110,8 @@
     <string name="settings_toast_encryption_no_key">Fehler beim Abrufen des Verschlüsselungsschlüssels. Abbruch!</string>
     <string name="settings_toast_encryption_auth_failed">Authentifizierung fehlgeschlagen!</string>
     <string name="settings_toast_auth_upgrade_failed">Transparentes Umstellen vom Ihrem Passwort / Ihrer PIN auf die neuen Verschlüsselung fehlgeschlagen, bitte setzen Sie es manuell in den Einstellungen zurück!</string>
+    <string name="settings_toast_android_sync_enabled">Android Sync aktiviert</string>
+    <string name="settings_toast_android_sync_disabled">Android Sync deaktivert</string>
     <string name="settings_dialog_title_warning">Achtung</string>
     <string name="settings_dialog_title_error">Fehler</string>
     <string name="settings_dialog_title_clear_keystore">KeyStore leeren?</string>
@@ -137,12 +148,16 @@
         <item>Anzeigen/Verstecken</item>
         <item>Kopieren</item>
         <item>Kopieren und in den Hintergrund wechseln</item>
-        <item>Als Keystrokes teilen</item>
+        <item>Als Tastenanschlägen teilen</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Beschriftung</item>
         <item>Aussteller</item>
-        <item>Schlagwort</item>
+        <item>Labels</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Automatisch</item>
+        <item>Anleitung</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Aus</item>
@@ -153,6 +168,11 @@
         <item>Helles Design</item>
         <item>Dunkles Design</item>
         <item>Schwarzes Design</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Kürzen</item>
+        <item>Scrollen</item>
+        <item>Mehrere Zeilen</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Versteckt</item>
@@ -168,9 +188,9 @@
         <item>Nach drei Zeichen</item>
     </string-array>
     <string-array name="settings_entries_tag_functionality">
-        <item>Alle Einträge anzeigen, die mit <b>irgendeinem</b> der ausgewählten Schlagwörter übereinstimmen (ODER)</item>
-        <item>Nur Einträge anzeigen, die mit <b>allen</b> der ausgewählten Schlagwörter übereinstimmen (UND)</item>
-        <item>Zwischen Schlagwörtern umschalten (es kann jeweils nur ein Schlagwort ausgewählt werden)</item>
+        <item>Alle Einträge anzeigen, die mit <b>irgendeinem</b> der ausgewählten Labels übereinstimmen (ODER)</item>
+        <item>Nur Einträge anzeigen, die mit <b>allen</b> der ausgewählten Labels übereinstimmen (UND)</item>
+        <item>Zwischen Labels umschalten (es kann jeweils nur ein Label ausgewählt werden)</item>
     </string-array>
     <string-array name="settings_entries_backup_broadcasts">
         <item>Klartext-Datensicherungen</item>

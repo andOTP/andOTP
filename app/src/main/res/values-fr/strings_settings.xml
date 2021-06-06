@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Paramètres</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Sécurité</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">Délai de re-verrouillage pour inactivité</string>
     <string name="settings_title_block_accessibility">Bloquer les services d\'accessibilité</string>
     <string name="settings_title_block_autofill">Bloquer l\'autoremplissage</string>
+    <string name="settings_title_auto_unlock_after_autofill">Déverrouiller automatiquement après le remplissage automatique</string>
     <string name="settings_title_lang">Langue</string>
+    <string name="settings_title_theme_mode">Mode du thème</string>
+    <string name="settings_title_theme_black_auto">Thème noir</string>
     <string name="settings_title_theme">Thème</string>
     <string name="settings_title_card_layout">Disposition des cartes</string>
+    <string name="settings_title_show_prev_token">Afficher le jeton précédent</string>
     <string name="settings_title_label_size">Taille de la police des titres</string>
-    <string name="settings_title_label_scroll">Défilement des libellés</string>
+    <string name="settings_title_label_display">Affichage du libellé</string>
     <string name="settings_title_tap_single">Appui simple</string>
     <string name="settings_title_tap_double">Appui double</string>
     <string name="settings_title_thumbnail_size_ask">Taille des miniatures</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">Surligner les jetons qui vont expirer</string>
     <string name="settings_title_hide_global_timeout">Masquer la barre globale d\'expiration</string>
     <string name="settings_title_show_individual_timeouts">Afficher les expirations par entrée</string>
+    <string name="settings_title_focus_search_on_start">Focus sur la recherche au démarrage de l\'application</string>
+    <string name="settings_title_hide_issuer">Cacher l\'émetteur</string>
     <string name="settings_title_backup_append_date">Ajouter la date au nom de fichier</string>
     <string name="settings_title_backup_ask">Demander le nom du fichier</string>
     <string name="settings_title_backup_location">Emplacement de sauvegarde par défaut</string>
@@ -62,15 +68,20 @@
     <b>N\'activez PAS ceci si vous avez besoin des services d\'accessibilité !</b></string>
     <string name="settings_desc_block_autofill">Empêcher les services de saisie automatique d\'accéder aux champs
         du mot de passe dans l\'appli</string>
-    <string name="settings_desc_block_autofill_android">Cette fonctionnalité nécessite une version Android
+    <string name="settings_desc_auto_unlock_after_autofill">Déverrouiller si le mot de passe a été renseigné
+        par saisie automatique</string>
+    <string name="settings_desc_autofill_requires_android_o">Cette fonctionnalité nécessite une version Android
         supérieure à 8.0 (Oreo)</string>
-    <string name="settings_desc_label_scroll">Faire défiler les libellés trop longs plutôt que de les tronquer</string>
+    <string name="settings_desc_theme_black_auto">Utiliser le thème noir en mode sombre</string>
+    <string name="settings_desc_show_prev_token">Afficher le jeton précédent en plus du jeton actuel</string>
     <string name="settings_desc_minimize_on_copy">L\'appli sera réduite à la copie du jeton OTP dans le presse-papiers</string>
     <string name="settings_desc_search_includes">Choisissez quelles valeurs seront incluses lors de la recherche</string>
     <string name="settings_desc_label_highlight_token">Surligne les jeton en rouge s\'ils expirent dans moins de 8 secondes</string>
     <string name="settings_desc_hide_global_timeout">Masquer la barre globale d\'expiration affichée en haut de l\'écran</string>
     <string name="settings_desc_show_individual_timeouts">Afficher une barre d\'expiration individuelle pour chaque entrée.
         Cela peut ralentir l\'application, à activer uniquement si nécessaire.</string>
+    <string name="settings_desc_focus_search_on_start">Focus sur la recherche immédiatement après l\'ouverture de l\'application.</string>
+    <string name="settings_desc_hide_issuer">Masque le libellé de l\'émetteur de chaque carte</string>
     <string name="settings_desc_backup_append_date">Ajouter la date et l\'heure au nom de fichier de sauvegarde proposé</string>
     <string name="settings_desc_backup_ask">Demander le nom du fichier à chaque fois qu\'une sauvegarde est créée ou restaurée</string>
     <string name="settings_desc_backup_location">Choisissez un emplacement de sauvegarde par défaut</string>
@@ -99,6 +110,8 @@
     <string name="settings_toast_encryption_auth_failed">Échec de l\'authentification !</string>
     <string name="settings_toast_auth_upgrade_failed">Échec de la mise à jour de votre mot de passe / code PIN
         pour le nouveau chiffrement, veuillez le réinitialiser manuellement depuis les paramètres !</string>
+    <string name="settings_toast_android_sync_enabled">Synchronisation Android activée</string>
+    <string name="settings_toast_android_sync_disabled">Synchronisation Android désactivée</string>
     <string name="settings_dialog_title_warning">Attention</string>
     <string name="settings_dialog_title_error">Erreur</string>
     <string name="settings_dialog_title_clear_keystore">Vider le KeyStore ?</string>
@@ -146,11 +159,16 @@
         <item>Révéler/Masquer</item>
         <item>Copier</item>
         <item>Copier et aller en arrière-plan</item>
+        <item>Partagez comme frappes sur clavier</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Étiquette</item>
         <item>Émetteur</item>
         <item>Étiquettes</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Auto</item>
+        <item>Manuel</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Désactivé</item>
@@ -161,6 +179,11 @@
         <item>Thème clair</item>
         <item>Thème sombre</item>
         <item>Thème noir</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Tronquer</item>
+        <item>Défilement</item>
+        <item>Lignes multiples</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Caché</item>

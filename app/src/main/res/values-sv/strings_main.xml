@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- Buttons -->
     <string name="button_cancel">Avbryt</string>
     <string name="button_enter_details">Ange detaljer</string>
@@ -10,6 +10,7 @@
     <string name="button_all_tags">Alla taggar</string>
     <string name="button_no_tags">Inga taggar</string>
     <string name="button_qr_from_image">QR-kod från bild</string>
+    <string name="button_accept">Acceptera</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
     <!-- Hints -->
@@ -45,6 +46,8 @@
     <string name="menu_popup_change_image">Ändra bild</string>
     <string name="menu_popup_remove">Ta bort</string>
     <string name="menu_popup_show_qr_code">Visa QR-kod</string>
+    <string name="menu_popup_establish_pin">Ange PIN-kod</string>
+    <string name="menu_send_keystrokes">Dela som tangenttryckningar</string>
     <!-- Buttons -->
     <string name="button_card_options">Fler alternativ</string>
     <string name="button_card_options_format">Fler alternativ för %1$s</string>
@@ -78,7 +81,9 @@
     <string name="dialog_title_used_tokens">Tokens användning</string>
     <string name="dialog_title_keystore_error">KeyStore-fel</string>
     <string name="dialog_title_qr_code">QR-kod</string>
+    <string name="dialog_title_pin">PIN-kod</string>
     <string name="dialog_title_enter_password">Ange lösenord</string>
+    <string name="dialog_title_auto_time">Automatisk tid</string>
     <string name="dialog_label_enter_password">Ange lösenord</string>
     <string name="dialog_label_confirm_password">Bekräfta lösenord</string>
     <string name="dialog_msg_auth">Ange dina enhetsuppgifter för att starta andOTP.</string>
@@ -89,8 +94,16 @@
     <string name="dialog_msg_keystore_error">Det gick inte att läsa in krypteringsnyckeln från KeyStore.
         <b>Alla poster som läggs till kommer att gå förlorade.</b>\n\nFör att fortfarande kunna använda andOTP kan du gå
         till <b>Inställningar</b> och byta <b>Databas-kryptering</b> till <b>Lösenord / PIN-kod</b>.</string>
+    <string name="dialog_msg_auto_time">Please enable the <b>Automatic date &amp; time</b> option in
+        your phones <b>Settings</b> to ensure the correct generation of time-based
+        one-time-passwords (TOTP).</string>
+    <string name="dialog_hint_dont_show_again">Visa inte detta meddelande igen.</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Skanna QR-kod</string>
     <string name="shortcut_name_import_qr">Importera QR kod</string>
     <string name="shortcut_name_enter_details">Ange detaljer</string>
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">Start adding your tokens by pressing \"+\" at the bottom</string>
 </resources>

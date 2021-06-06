@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="auth_activity_title">Přihlášení</string>
+    <string name="auth_activity_title">Ověření</string>
     <!-- Hints -->
     <string name="auth_hint_password">Heslo</string>
     <string name="auth_hint_pin">PIN</string>
     <!-- Messages -->
-    <string name="auth_msg_authenticate">Přihlašte se pro spuštění andOTP!</string>
-    <string name="auth_msg_confirm_encryption">Pro vygenerování šifrovacího klíče prosím potvrďte své přihlášení!</string>
+    <string name="auth_msg_authenticate">Prosím, proveďte ověření pro spuštění andOTP!</string>
+    <string name="auth_msg_confirm_encryption">Pro vygenerování šifrovacího klíče prosím proveďte ověření!</string>
     <!-- Buttons -->
     <string name="auth_button_unlock">Odemknout</string>
     <!-- Toast messages -->
-    <string name="auth_toast_password_missing">Prosím nastavte heslo v <b>Nastavení</b>!</string>
-    <string name="auth_toast_pin_missing">Prosím nastavte PIN v <b>Nastavení</b>!</string>
+    <string name="auth_toast_password_missing">Prosím, nastavte heslo v <b>Nastavení</b>!</string>
+    <string name="auth_toast_pin_missing">Prosím, nastavte PIN v <b>Nastavení</b>!</string>
     <string name="auth_toast_password_again">Nesprávné heslo, zkuste to prosím znovu!</string>
     <string name="auth_toast_pin_again">Nesprávný PIN, zkuste to prosím znovu!</string>
 </resources>

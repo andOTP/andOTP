@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- Buttons -->
+    <string name="button_cancel">Zrušiť</string>
+    <string name="button_enter_details">Zadať detaily</string>
+    <string name="button_scan_qr">Načítať QR kód</string>
+    <string name="button_save">Uložiť</string>
+    <string name="button_new_tag">Nový štítok</string>
+    <string name="button_settings">Nastavenia</string>
+    <string name="button_all_tags">Všetky štítky</string>
+    <string name="button_no_tags">Žiadne štítky</string>
+    <string name="button_qr_from_image">QR kód z obrázku</string>
+    <string name="button_accept">Potvrdiť</string>
+    <!-- Custom formatting -->
+    <string name="format_custom_period">%d s</string>
+    <!-- Hints -->
+    <string name="hint_label">Popis</string>
+    <string name="hint_secret">Tajný kľúč</string>
+    <!-- Labels -->
+    <string name="label_hidden">Skryté</string>
+    <string name="label_type">Typ</string>
+    <string name="label_secret">Tajný kľúč</string>
+    <string name="label_period">Interval</string>
+    <string name="label_digits">Číslice</string>
+    <string name="label_counter">Počítadlo</string>
+    <string name="label_issuer">Vydavateľ</string>
+    <string name="label_label">Popis</string>
+    <string name="label_algorithm">Algoritmus</string>
+    <string name="label_tags">Štítky</string>
+    <string name="label_advanced">Odborné nastavenia</string>
+    <!-- Drawer -->
+    <string name="drawer_open">Zobraziť štítky</string>
+    <string name="drawer_close">Skryť štítky</string>
+    <!-- Menu -->
+    <string name="menu_main_about">O aplikácií</string>
+    <string name="menu_main_backup">Zálohovanie</string>
+    <string name="menu_main_search">Hľadať</string>
+    <string name="menu_main_settings">Nastavenia</string>
+    <string name="menu_main_sort">Zoradiť</string>
+    <string name="menu_sort_none">Nezoradiť</string>
+    <string name="menu_sort_issuer">Vydavateľ</string>
+    <string name="menu_sort_label">Popis</string>
+    <string name="menu_sort_last_used">Naposledy použité</string>
+    <string name="menu_sort_most_used">Najpoužívanejšie</string>
+    <string name="menu_popup_edit">Upraviť</string>
+    <string name="menu_popup_change_image">Zmeniť obrázok</string>
+    <string name="menu_popup_remove">Odstrániť</string>
+    <string name="menu_popup_show_qr_code">Zobraziť QR kód</string>
+    <string name="menu_popup_establish_pin">Zadajte pin</string>
+    <string name="menu_send_keystrokes">Zdieľať ako stlačenia klávesov (keystrokes)</string>
+    <!-- Buttons -->
+    <string name="button_card_options">Ďalšie možnosti</string>
+    <string name="button_card_options_format">Ďalšie možnosti pre %1$s</string>
+    <string name="button_card_copy">Skopírovať token</string>
+    <string name="button_card_copy_format">Skopírovať %1$s token</string>
+    <string name="button_add">Pridať nový účet</string>
+    <string name="button_close_menu">Zatvoriť menu</string>
+    <!-- Toast messages -->
+    <string name="toast_auth_failed">Autentifikácia zlyhala, prosím skúste znova!</string>
+    <string name="toast_auth_failed_fatal">Autentifikácia zlyhala, zatváram andOTP!</string>
+    <string name="toast_copied_to_clipboard">Skopírované do schránky</string>
+    <string name="toast_entry_exists">Tento záznam už existuje</string>
+    <string name="toast_invalid_qr_code">Neplatný QR kód</string>
+    <string name="toast_encryption_key_empty">Šifrovací kľúč nenačítaný</string>
+    <string name="toast_intent_creation_failed">Aplikácia predala neplatný kód</string>
+    <string name="toast_intent_creation_succeeded">Aplikáciou predaný kód bol pridaný</string>
+    <string name="toast_file_load_error">Nepodarilo sa otvoriť súbor</string>
+    <string name="toast_qr_error">Nepodarilo sa nájsť/potvrdiť QR kód</string>
+    <string name="toast_qr_checksum_exception">Overenie kontrolného súčtu sa nepodarilo pri dekódovaní QR kódu</string>
+    <string name="toast_qr_format_error">Chyba formátu v QR kóde</string>
+    <string name="toast_qr_unsuported">QR kód nie je podporovaný</string>
+    <string name="toast_qr_failed_to_generate">Nepodarilo sa vygenerovať QR kód</string>
+    <!-- Errors -->
+    <string name="error_invalid_secret">Neplatný tajný kľúč</string>
+    <!-- Dialogs -->
+    <string name="dialog_title_auth">Overiť</string>
+    <string name="dialog_title_manual_entry">Zadať detaily</string>
+    <string name="dialog_title_remove">Odstrániť</string>
+    <string name="dialog_title_rename">Premenovať</string>
+    <string name="dialog_title_counter">Počítadlo</string>
+    <string name="dialog_title_used_tokens">Využitie tokenov</string>
+    <string name="dialog_title_keystore_error">Chyba KeyStore</string>
+    <string name="dialog_title_qr_code">QR kód</string>
+    <string name="dialog_title_pin">PIN</string>
+    <string name="dialog_title_enter_password">Zadajte heslo</string>
+    <string name="dialog_title_auto_time">Automatický čas</string>
+    <string name="dialog_label_enter_password">Zadajte heslo</string>
+    <string name="dialog_label_confirm_password">Potvrďte heslo</string>
+    <string name="dialog_msg_auth">Prosím zadajte heslo zariadenia pre spustenie andOTP.</string>
+    <string name="dialog_msg_confirm_delete">Ste si istý, že chcete vymazať účet \"%1$s\"?</string>
+    <string name="dialog_msg_used_tokens">andOTP bude sledovať, kedy použijete svoje tokeny (pomocou funkcie \"Ťuknite
+        pre odhalenie\" alebo skopírovania do schránky), aby ste ich mohli zoradiť podľa
+        \"Najpoužívanejšie\" alebo \"Naposledy použité\".\n\nTáto správa nebude znovu zobrazená.</string>
+    <string name="dialog_msg_keystore_error">Nepodarilo sa načítať šifrovací kľúč z KeyStore.
+         <b>Všetky pridané položky budú stratené.</b> \n\nPre zaistenie použiteľnosti andOTP v <b>Nastaveniach</b> prepnite <b>Šifrovanie databázy</b> na <b>heslo / PIN</b>.</string>
+    <string name="dialog_msg_auto_time">Prosím povoľte <b>Automatický dátum a čas</b> v <b>Nastaveniach</b> vášho telefónu aby ste zaistili správne generovanie časovo založených jednorázových hesiel (TOTP).</string>
+    <string name="dialog_hint_dont_show_again">Túto správu už viac nezobrazovať.</string>
+    <string name="yes">Áno</string>
+    <string name="no">Nie</string>
+    <!-- Shortcuts -->
+    <string name="shortcut_name_scan_qr">Načítať QR kód</string>
+    <string name="shortcut_name_import_qr">Importovať QR kód</string>
+    <string name="shortcut_name_enter_details">Zadať detaily</string>
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">Začnite pridaním vašich tokenov stlačením \"+\" dole</string>
+</resources>

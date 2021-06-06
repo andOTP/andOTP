@@ -1,33 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="backup_activity_title">النُّسَخ الإحتياطية</string>
-    <string name="backup_category_plain">النُسَخ الاحتياطية نص مجرّد</string>
-    <string name="backup_category_crypt">النُسَخ الاحتياطية المشفّرة</string>
-    <string name="backup_category_openpgp">النُسَخ الاحتياطية بأوبن بي جي بي</string>
-    <string name="backup_title_export_plain">نسخ احتياطي (نص مجرّد)</string>
-    <string name="backup_title_export_crypt">نسخ احتياطي (مشفّر)</string>
-    <string name="backup_title_export_openpgp">نسخ احتياطي (أوبن بي جي بي)</string>
-    <string name="backup_title_import_plain">استعادة (نص مجرّد)</string>
-    <string name="backup_title_import_crypt">استعادة (مشفّر)</string>
-    <string name="backup_title_import_crypt_old">استعادة (مشفّر، التشفير القديم)</string>
-    <string name="backup_title_import_openpgp">إسترجاع (أوبن بي جي بي)</string>
     <string name="backup_title_replace">استبدال العناصر الموجودة</string>
-    <string name="backup_desc_export_plain">انسخ احتياطيًا كافة الحسابات في ملف JSON نص مُجرَّد</string>
-    <string name="backup_desc_export_crypt">انسخ احتياطيًا كافة الحسابات في ملف JSON محمي بكلمة مرور</string>
-    <string name="backup_desc_export_openpgp">انسخ احتياطيًا كافة الحسابات في ملف JSON مشفّر بواسطة أوبن بي جي بي</string>
-    <string name="backup_desc_import_plain">استعادة الحسابات من ملف JSON نص مجرّد</string>
-    <string name="backup_desc_import_crypt">استعادة الحسابات من ملف JSON محمي بكلمة مرور</string>
-    <string name="backup_desc_import_crypt_old">استعادة الحسابات من ملف JSON محمي بكلمة مرور
-        الذي تم إنشاؤه بواسطة إصدار andOTP <b>أقل من 0.6.3</b></string>
-    <string name="backup_desc_import_openpgp">استعادة الحسابات من ملف JSON مشفر بأوبن بي جي بي</string>
-    <string name="backup_desc_crypt_setup">فشل في تحميل كلمة مرور النسخ الاحتياطي من <b>الإعدادات</b>، 
-هذا يعني إما أنه لم يتم تعيين كلمة مرور أو حدث خطأ ما. سيطلب منك إدخال 
-كلمة المرور يدويًا عند إنشاء أو استيراد نسخة احتياطية.</string>
+    <string name="backup_desc_replace">عند التفعيل, سوف تستبدل النسخة التي تم استيرادها بجميع الإدخالات القديمة. عند التعطيل, الإدخالات القديمة ستدمج مع محتويات النسخة.</string>
     <string name="backup_desc_openpgp_provider">تحتاج إلى تثبيت مزود أوبن بي جي بي وتفعيله 
 في <b>الإعدادات</b> لاستعمال هذه الخاصية.</string>
     <string name="backup_desc_openpgp_keyid">تحتاج إلى تحديد مفتاح أوبن بي جي بي في <b>الإعدادات</b> 
 قبل أن يمكنك إنشاء نسخ احتياطية مشفرة.</string>
-    <string name="backup_desc_replace">عند التفعيل, سوف تستبدل النسخة التي تم استيرادها بجميع الإدخالات القديمة. عند التعطيل, الإدخالات القديمة ستدمج مع محتويات النسخة.</string>
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">تحذير الأمان</string>
     <string name="backup_dialog_msg_export_warning">هل حقا تريد تصدير قاعدة البيانات كملف JSON نص مجرّد؟ الملف يحتوي جميع المفاتيح السرية. الرجاء <b>الحفاظ عليها آمنة</b>!    </string>
@@ -39,6 +18,10 @@
     <string name="backup_receiver_write_permission_failed">إذن الكتابة لم يمنح. الرجاء منحه قبل محاولة النسخ الاحتياطي</string>
     <string name="backup_receiver_custom_encryption_failed">التشفير القائم على كلمة المرور/PIN غير مدعوم
         مع النسخ الإحتياطي المبث</string>
+    <string name="backup_receiver_no_location_set">No backup location set, please set one in the
+        apps settings</string>
+    <string name="backup_receiver_no_password_set">No default password set, please set one in the
+        apps settings</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">فشل النسخ الاحتياطي التلقائي</string>
     <string name="notification_channel_name_backup_success">تم النسخ الاحتياطي التلقائي بنجاح</string>
@@ -55,9 +38,27 @@
     <string name="backup_toast_import_save_failed">فشلت عملية الإحتفاظ بالبيانات المسترجَعة</string>
     <string name="backup_toast_import_decryption_failed">فشلت عملية فك تشفير النسخة الإحتياطية</string>
     <string name="backup_toast_import_no_entries">لم يتم العثور على أي عنصر في البيانات التي تم إستعادتها</string>
+    <string name="backup_toast_import_failed">Import from external storage failed</string>
     <string name="backup_toast_storage_not_accessible">لا يمكن الوصول إلى ذاكرة التخزين الخارجية حاليًا</string>
     <string name="backup_toast_openpgp_error">خلل في أوبن بي جي بي : %s</string>
     <string name="backup_toast_openpgp_not_verified">لم يتم العثور على أي توقيع مُصادَق عليه</string>
     <string name="backup_toast_crypt_password_not_set">لم يتم تعيين كلمة المرور، الرجاء التحقق من <b>الإعدادات</b></string>
     <string name="backup_toast_file_selection_failed">لا يمكن فتح مربع حوار اختيار الملف!</string>
+    <string name="backup_label_type">Backup type: </string>
+    <string name="backup_label_warning_plain">The backup will be stored in an unencrypted plain-text
+        file. Please only use if strictly necessary and <b>keep the file safe</b>!</string>
+    <string name="backup_label_crypt">The backup will be stored encrypted with a custom password
+        using AES 256-bit encryption. You can setup a default password in the settings if you
+        don\'t want to have to enter it every time you create a backup.</string>
+    <string name="backup_label_pgp">The backup will be stored encrypted using the PGP key you
+        specified in the settings. The encryption will be handled by a 3rd party app.</string>
+    <string name="backup_check_restore_old">Restore old backup format (created with an andOTP version
+        before 0.6.3)</string>
+    <string name="backup_button_backup">Create backup</string>
+    <string name="backup_button_restore">Restore backup</string>
+    <string-array name="backup_list_type_names">
+        <item>Plain-text</item>
+        <item>Encrypted</item>
+        <item>OpenPGP</item>
+    </string-array>
 </resources>

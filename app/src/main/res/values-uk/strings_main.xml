@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- Buttons -->
     <string name="button_cancel">Скасувати</string>
     <string name="button_enter_details">Ввести дані</string>
@@ -10,6 +10,7 @@
     <string name="button_all_tags">Усі мітки</string>
     <string name="button_no_tags">Немає міток</string>
     <string name="button_qr_from_image">QR code from image</string>
+    <string name="button_accept">Accept</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d с</string>
     <!-- Hints -->
@@ -45,6 +46,8 @@
     <string name="menu_popup_change_image">Змінити зображення</string>
     <string name="menu_popup_remove">Видалити</string>
     <string name="menu_popup_show_qr_code">Show QR Code</string>
+    <string name="menu_popup_establish_pin">Enter pin</string>
+    <string name="menu_send_keystrokes">Share as Keystrokes</string>
     <!-- Buttons -->
     <string name="button_card_options">More options</string>
     <string name="button_card_options_format">More options for %1$s</string>
@@ -78,7 +81,9 @@
     <string name="dialog_title_used_tokens">Tokens usage</string>
     <string name="dialog_title_keystore_error">Помилка KeyStore</string>
     <string name="dialog_title_qr_code">QR Code</string>
+    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_title_enter_password">Введіть пароль</string>
+    <string name="dialog_title_auto_time">Automatic time</string>
     <string name="dialog_label_enter_password">Введіть пароль</string>
     <string name="dialog_label_confirm_password">Підтвердіть пароль</string>
     <string name="dialog_msg_auth">Будь ласка, підтвердіть дані вашого пристрою, щоб запустити andOTP.</string>
@@ -89,8 +94,16 @@
     <string name="dialog_msg_keystore_error">Завантаження ключа шифрування з KeyStore завершилося невдало.
         <b>Усі дані, які Ви додали - будуть втрачені.</b>\n\nЩоб мати надалі можливість використовувати andOTP, Ви можете перейти
         до <b>Налаштувань</b> і змінити <b>Шифрування бази даних</b> на <b>Пароль / ПІН-код</b>.</string>
+    <string name="dialog_msg_auto_time">Please enable the <b>Automatic date &amp; time</b> option in
+        your phones <b>Settings</b> to ensure the correct generation of time-based
+        one-time-passwords (TOTP).</string>
+    <string name="dialog_hint_dont_show_again">Don\'t show this message again.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">Зісканувати QR-код</string>
     <string name="shortcut_name_import_qr">Import QR code</string>
     <string name="shortcut_name_enter_details">Введіть дані</string>
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">Start adding your tokens by pressing \"+\" at the bottom</string>
 </resources>

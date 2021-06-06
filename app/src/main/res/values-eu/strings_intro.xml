@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">Has gaitezen</string>
     <string name="intro_slide1_desc">Ongi etorri <b>andOTP</b>ra! Hasierako konfigurazioa egiten lagunduko dizugu
         Jarri arreta eta ondo irakurri daturik galdu nahi ez baduzu.
@@ -29,8 +29,17 @@
     <string name="intro_slide3_warn_no_password">Ezarri pasahitza jarraitzeko!</string>
     <string name="intro_slide3_warn_no_pin">Ezarri PINa jarraitzeko!</string>
     <string name="intro_slide3_warn_confirm_password">Jarraitzeko baieztatu zure pasahitza!</string>
+    <string name="intro_slide3_warn_password_mismatch">Pasahitzak bat etorri behar dira!</string>
     <string name="intro_slide3_warn_confirm_pin">Jarraitzeko baieztatu zure PINa!</string>
+    <string name="intro_slide3_warn_pin_mismatch">Pin kodeak bat etorri behar dira!</string>
     <string name="intro_slide4_title">Amaitu duzu</string>
+    <string name="intro_slide4_title_failed">Konfigurazioak huts egin du</string>
+    <string name="intro_slide4_title_progress">Itxaron mesedez</string>
+    <string name="intro_slide4_desc_failed">Pasahitza ezartzeak huts egin du, sarrera mezu hau
+        berriz agertuko da hurrengoan!</string>
     <string name="intro_slide4_desc">Zure ezarpenak ondo gorde dira, <b>andOTP</b> erabiltzeko
         prest zaude!</string>
+    <string name="intro_slide4_desc_progress">Zure ezarpenak gordetzen ari gara eta zifratze-kodea sortzen
+        ari gara, itxaron mesedez…</string>
+    <string name="intro_slide_android_backup_desc">Android sync aplikazioen datuen babeskopia hirugarrenen zerbitzu baten (normalean Google) gordetzeko androidek duen ezaugarri bat da. Babeskopiak zifratuta gordetzen dira eta beste inork ezin ditu lortu zure pasahitz nagusia erabili gabe. Zifratzeko pasahitza erabiltzea beharrezkoa da.</string>
 </resources>

@@ -24,19 +24,15 @@
     <string name="about_label_translators">Переводчики</string>
     <!-- Thumbnail disclaimer -->
     <string name="about_title_thumbnail_disclaimer">Отказ от ответственности</string>
-    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Все превью являются товарными знаками 
-        соответствующих владельцев.</string>
-    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> Использование этих товарных знаков не означает 
-        одобрение владельца товарного знака andOTP, ни наоборот.</string>
-    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Превью должны использоваться только для
-        обозначения компании или продукта, к которому они относятся.</string>
-    <string name="about_thumbnails_disclaimer_no4"><b>4. Пожалуйста, не используйте превью для любых целей, 
-        кроме обозначения конкретной марки или службы.</b></string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Все изображения являются товарными знаками соответствующих владельцев.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> Использование этих товарных знаков не означает ни одобрение владельца товарного знака andOTP, ни наоборот.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Изображения должны использоваться только для обозначения компании или продукта, к которому они относятся.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Пожалуйста, не используйте изображения для любых целей, кроме обозначения конкретной марки или службы.</b></string>
     <!-- Support -->
     <string name="about_title_support">Поддержать разработку</string>
     <string name="about_desc_support">Узнайте, как вы можете поддержать разработку andOTP</string>
     <string name="about_title_special_features">Особые функции</string>
-    <string name="about_dialog_special_features">Вы уверены, что Вы хотите включить особые        функции? Большинство из них - нестандартные алгоритмы OTP, которые были добавлены по особым        просьбам. Они <b>официально не поддерживается</b> и могут быть с <b>некоторыми        ограничениями</b>, пожалуйста, прочитайте (и поймите) страницы «Особые функции» на Github        wiki, чтобы узнать о них подробнее перед их использованием.</string>
+    <string name="about_dialog_special_features">Вы уверены, что хотите включить особые функции? Большинство из них — нестандартные алгоритмы OTP, которые были добавлены по особым просьбам. Они <b>официально не поддерживается</b> и могут быть с <b>некоторыми        ограничениями</b>, пожалуйста, прочитайте (и поймите) страницы «Особые функции» на Github wiki, чтобы узнать о них подробнее перед их использованием.</string>
     <string name="about_toast_special_features">Особые функции включены</string>
     <string name="about_toast_special_features_enabled">Особые функции уже включены</string>
     <string name="about_toast_copied_to_clipboard">Ссылка для пожертвований скопирована в буфер обмена</string>

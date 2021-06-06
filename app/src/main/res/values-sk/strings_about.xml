@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">O aplikácií</string>
+    <string name="about_description">Open sourcová dvojfaktorová autentifikácia pre Android</string>
+    <string name="about_tab_about">O aplikácií</string>
+    <string name="about_tab_libraries">Knižnice</string>
+    <!-- Misc -->
+    <string name="about_label_changelog">Zoznam zmien</string>
+    <string name="about_label_license">Licencia</string>
+    <string name="about_label_MIT">MIT Licencia</string>
+    <string name="about_label_source">Zdrojový kód</string>
+    <string name="about_label_version">Verzia</string>
+    <string name="about_label_faq">FAQ</string>
+    <string name="about_label_faq_long">Často kladené otázky</string>
+    <!-- Authors -->
+    <string name="about_title_authors">Autori</string>
+    <string name="about_label_main_developer">Hlavný vývojár</string>
+    <string name="about_label_developer">Vývojár</string>
+    <string name="about_label_original_author">Autor pôvodnej aplikácie</string>
+    <string name="about_label_original_app">Pôvodná aplikácia</string>
+    <string name="about_label_website">Webová stránka</string>
+    <string name="about_label_donate">Podporiť</string>
+    <string name="about_label_contributors">K vývoju prispeli</string>
+    <string name="about_label_translators">Prekladatelia</string>
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">Miniatúry - zbavenie sa zodpovednosti</string>
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Všetky miniatúry sú ochrannými známkami ich príslušných vlastníkov.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> použitie týchto ochranných známok neznamená súhlas držiteľa ochrannej známky andOTP, ani naopak.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> miniatúry možno používať iba k reprezentáci firmy alebo výrobku, ktorého sa týkajú.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Nepoužívajte prosím miniatúry na akékoľvek účely s výnimkou odkazu na konkrétnu značku alebo službu.</b></string>
+    <!-- Support -->
+    <string name="about_title_support">Podporte vývoj</string>
+    <string name="about_desc_support">Zistite, ako môžete podporiť vývoj andOTP</string>
+    <string name="about_title_special_features">Špeciálne funkcie</string>
+    <string name="about_dialog_special_features">Ste si naozaj istí, že chcete zapnúť špeciálne funkcie?
+Väčšina z nich sú neštandardné OTP algoritmy, ktoré boli implementované na základe špeciálnych požiadaviek.
+Tieto funkcie <b>nie sú oficiálne podporované</b> a môžu prichádzať s <b>istými obmedzeniami</b>, prosím prečítajte si (a pochopte) stránku \"Special features\" na Github wiki, aby ste sa o nich dozvedeli viac skôr ako ich začnete používať.</string>
+    <string name="about_toast_special_features">Špeciálne funkcie povolené</string>
+    <string name="about_toast_special_features_enabled">Špeciálne funkcie už boli povolené</string>
+    <string name="about_toast_copied_to_clipboard">Odkaz pre príspevok bol skopírovaný do schránky</string>
+</resources>

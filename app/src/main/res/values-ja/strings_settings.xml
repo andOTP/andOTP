@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">設定</string>
     <!-- Categories -->
     <string name="settings_category_title_security">セキュリティ</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">非アクティブでロックの遅延時間</string>
     <string name="settings_title_block_accessibility">ユーザー補助サービスをブロック</string>
     <string name="settings_title_block_autofill">自動入力をブロック</string>
+    <string name="settings_title_auto_unlock_after_autofill">Unlock automatically after autofill</string>
     <string name="settings_title_lang">言語</string>
+    <string name="settings_title_theme_mode">テーマモード</string>
+    <string name="settings_title_theme_black_auto">ブラックテーマ</string>
     <string name="settings_title_theme">テーマ</string>
     <string name="settings_title_card_layout">カードレイアウト</string>
+    <string name="settings_title_show_prev_token">Show previous token</string>
     <string name="settings_title_label_size">ラベルのフォントサイズ</string>
-    <string name="settings_title_label_scroll">ラベルをスクロール</string>
+    <string name="settings_title_label_display">ラベルの表示</string>
     <string name="settings_title_tap_single">シングルタップ</string>
     <string name="settings_title_tap_double">ダブルタップ</string>
     <string name="settings_title_thumbnail_size_ask">サムネイルのサイズ</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">有効期限切れ直前のトークンを強調表示</string>
     <string name="settings_title_hide_global_timeout">全体の有効期限表示を行わない</string>
     <string name="settings_title_show_individual_timeouts">個別の有効期限表示を行う</string>
+    <string name="settings_title_focus_search_on_start">アプリ起動時に検索にフォーカス</string>
+    <string name="settings_title_hide_issuer">発行者を非表示</string>
     <string name="settings_title_backup_append_date">日付をファイル名に追加</string>
     <string name="settings_title_backup_ask">ファイルを確認</string>
     <string name="settings_title_backup_location">既定のバックアップ保存先</string>
@@ -58,13 +64,18 @@
     <string name="settings_desc_auth_inactivity_delay">再度認証を要求するまでの時間 (秒) を選択してください</string>
     <string name="settings_desc_block_accessibility">機密性の高い項目をユーザー補助サービスから非表示にします。<b>ユーザー補助サービスを使用している場合は、この機能を有効にしないでください！</b></string>
     <string name="settings_desc_block_autofill">自動入力サービスによるアプリ内のパスワードフィールドへのアクセスをブロックします</string>
-    <string name="settings_desc_block_autofill_android">この機能を利用するには Android 8.0 (Oreo) 以上のバージョンが必要です</string>
-    <string name="settings_desc_label_scroll">ラベルが長すぎる場合はスクロールする</string>
+    <string name="settings_desc_auto_unlock_after_autofill">Unlock if the password has been filled
+        in by autofill</string>
+    <string name="settings_desc_autofill_requires_android_o">この機能を利用するには Android 8.0 (Oreo) 以上のバージョンが必要です</string>
+    <string name="settings_desc_theme_black_auto">ダークモードでブラックテーマを使用</string>
+    <string name="settings_desc_show_prev_token">Show the previous token in addition to the current one</string>
     <string name="settings_desc_minimize_on_copy">OTP をクリップボードにコピーしたら、アプリを最小化する</string>
     <string name="settings_desc_search_includes">検索の対象に含める値を指定します</string>
     <string name="settings_desc_label_highlight_token">8秒以内に有効期限切れになるトークンを強調表示する</string>
     <string name="settings_desc_hide_global_timeout">画面上部に表示される「全体の有効期限表示」を無効化します</string>
     <string name="settings_desc_show_individual_timeouts">すべてのエントリで「個別の有効期限表示」を有効化します。この設定によりアプリの動作が遅くなる可能性があるため、本当に必要な場合のみ有効化してください。</string>
+    <string name="settings_desc_focus_search_on_start">アプリ起動直後、検索にフォーカスする。</string>
+    <string name="settings_desc_hide_issuer">各カードの発行者ラベルを非表示にする</string>
     <string name="settings_desc_backup_append_date">提案されたバックアップファイル名に現在の日付と時刻を追加する</string>
     <string name="settings_desc_backup_ask">バックアップが作成または復元されるたびにファイル名を確認する</string>
     <string name="settings_desc_backup_location">既定のバックアップ保存先を選択</string>
@@ -89,6 +100,8 @@
     <string name="settings_toast_encryption_no_key">暗号化キーの取得に失敗しました！</string>
     <string name="settings_toast_encryption_auth_failed">認証に失敗しました！</string>
     <string name="settings_toast_auth_upgrade_failed">自動的に パスワード / PIN を新しい暗号化にアップグレードできませんでした、設定で手動でリセットしてください！</string>
+    <string name="settings_toast_android_sync_enabled">Android sync 有効</string>
+    <string name="settings_toast_android_sync_disabled">Android sync 無効</string>
     <string name="settings_dialog_title_warning">警告</string>
     <string name="settings_dialog_title_error">エラー</string>
     <string name="settings_dialog_title_clear_keystore">キーストアをクリアしますか？</string>
@@ -125,11 +138,16 @@
         <item>表示/非表示</item>
         <item>コピー</item>
         <item>コピーしてバックグラウンドへ移動</item>
+        <item>キーストロークとして共有</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>ラベル</item>
         <item>発行者</item>
         <item>タグ</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>自動</item>
+        <item>手動</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>オフ</item>
@@ -140,6 +158,11 @@
         <item>ライトテーマ</item>
         <item>ダークテーマ</item>
         <item>ブラックテーマ</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>切り詰めて表示</item>
+        <item>スクロールして表示</item>
+        <item>複数行で表示</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>非表示</item>
@@ -157,7 +180,7 @@
     <string-array name="settings_entries_tag_functionality">
         <item>選択したタグの <b>いずれか</b> に一致するすべてのエントリを表示する (or)</item>
         <item>選択した <b>すべて</b> のタグに一致するエントリのみを表示する (and)</item>
-        <item>タグを切り替える (一度に1つのタグしか選択できない)</item>
+        <item>タグを切り替える (一度に 1 つのタグしか選択できない)</item>
     </string-array>
     <string-array name="settings_entries_backup_broadcasts">
         <item>非暗号化バックアップ</item>

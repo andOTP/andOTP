@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">設定</string>
     <!-- Categories -->
     <string name="settings_category_title_security">安全性</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">不活躍時重新鎖定的延遲</string>
     <string name="settings_title_block_accessibility">封鎖無障礙服務</string>
     <string name="settings_title_block_autofill">封鎖自動填入</string>
+    <string name="settings_title_auto_unlock_after_autofill">自動填入後自動解鎖</string>
     <string name="settings_title_lang">語言</string>
+    <string name="settings_title_theme_mode">佈景主題</string>
+    <string name="settings_title_theme_black_auto">黑色主題</string>
     <string name="settings_title_theme">佈景主題</string>
     <string name="settings_title_card_layout">卡片佈局</string>
+    <string name="settings_title_show_prev_token">顯示上一個權杖</string>
     <string name="settings_title_label_size">標籤字型大小</string>
-    <string name="settings_title_label_scroll">捲動標籤</string>
+    <string name="settings_title_label_display">標籤顯示</string>
     <string name="settings_title_tap_single">輕點一下</string>
     <string name="settings_title_tap_double">輕點兩下</string>
     <string name="settings_title_thumbnail_size_ask">縮圖大小</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">突出顯示即將過期的權杖</string>
     <string name="settings_title_hide_global_timeout">隱藏全域逾時欄</string>
     <string name="settings_title_show_individual_timeouts">顯示獨立逾時</string>
+    <string name="settings_title_focus_search_on_start">在應用程式開始時把焦點放在搜尋功能</string>
+    <string name="settings_title_hide_issuer">隱藏發出者</string>
     <string name="settings_title_backup_append_date">為檔案名追加日期</string>
     <string name="settings_title_backup_ask">詢問檔案名</string>
     <string name="settings_title_backup_location">預設備份位置</string>
@@ -61,15 +67,20 @@
         <b>如果您會依賴無障礙服務的話，請勿啟用此選項！</b></string>
     <string name="settings_desc_block_autofill">避免自動填入服務存取應用程式
         中的密碼欄位</string>
-    <string name="settings_desc_block_autofill_android">此功能需要 Android 版本
+    <string name="settings_desc_auto_unlock_after_autofill">如果密碼被自動填入
+        則解鎖</string>
+    <string name="settings_desc_autofill_requires_android_o">此功能需要 Android 版本
         8.0 (Oreo) 以上</string>
-    <string name="settings_desc_label_scroll">水平滾動超長標籤而非截斷它們</string>
+    <string name="settings_desc_theme_black_auto">在深色主題下使用黑色主題</string>
+    <string name="settings_desc_show_prev_token">顯示當前以及上一個權杖</string>
     <string name="settings_desc_minimize_on_copy">應用程式將會在您把 OTP 複製到剪貼簿時最小化</string>
     <string name="settings_desc_search_includes">指定搜尋時應該包含哪些值</string>
     <string name="settings_desc_label_highlight_token">如果權杖將於8秒內過期，以紅色突顯它</string>
     <string name="settings_desc_hide_global_timeout">隱藏畫面頂部顯示的全域超時欄</string>
     <string name="settings_desc_show_individual_timeouts">為每個項目顯示單獨的逾時欄。
         這可能會拖慢應用程式，請只在需要時啟用。</string>
+    <string name="settings_desc_focus_search_on_start">開啟應用程式後立即把焦點放在搜尋功能</string>
+    <string name="settings_desc_hide_issuer">於每張卡上隱藏發出者標籤</string>
     <string name="settings_desc_backup_append_date">將當前日期和時間追加到預設的備份檔案名中</string>
     <string name="settings_desc_backup_ask">每次新增或重新儲存備份時都要求鍵入檔案名</string>
     <string name="settings_desc_backup_location">選擇預設備份位置</string>
@@ -96,6 +107,8 @@
     <string name="settings_toast_encryption_no_key">未能取得加密金鑰，變更過程正在中止！</string>
     <string name="settings_toast_encryption_auth_failed">身分認證失敗！</string>
     <string name="settings_toast_auth_upgrade_failed">無法自動將密碼 或 PIN 轉換為新的加密方式，請在自行在設定中重設！</string>
+    <string name="settings_toast_android_sync_enabled">Android 同步已開啟</string>
+    <string name="settings_toast_android_sync_disabled">Android 同步已關閉</string>
     <string name="settings_dialog_title_warning">警告</string>
     <string name="settings_dialog_title_error">錯誤</string>
     <string name="settings_dialog_title_clear_keystore">確定要清除金鑰庫碼？</string>
@@ -132,11 +145,16 @@
         <item>揭露／隱藏</item>
         <item>複製</item>
         <item>複製並跳到背景</item>
+        <item>以自動化鍵盤 (Keystrokes) 分享</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>標籤</item>
         <item>發行者</item>
         <item>標籤</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>自動</item>
+        <item>手動</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>關閉</item>
@@ -147,6 +165,11 @@
         <item>淺色主題</item>
         <item>深色主題</item>
         <item>黑色主題</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>截斷</item>
+        <item>滾動</item>
+        <item>多行</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>隱藏</item>

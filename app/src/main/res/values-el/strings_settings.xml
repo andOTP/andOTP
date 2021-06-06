@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Ρυθμίσεις</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Ασφάλεια</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">Καθυστέρηση κλειδώματος σε κατάσταση αδράνειας</string>
     <string name="settings_title_block_accessibility">Αποκλεισμός υπηρεσιών προσβασιμότητας</string>
     <string name="settings_title_block_autofill">Αποκλεισμός αυτόματης-συμπλήρωσης</string>
+    <string name="settings_title_auto_unlock_after_autofill">Αυτόματο ξεκλείδωμα μετά την αυτόματη συμπλήρωση</string>
     <string name="settings_title_lang">Γλώσσα</string>
+    <string name="settings_title_theme_mode">Έκδοση θέματος</string>
+    <string name="settings_title_theme_black_auto">Μαύρο θέμα</string>
     <string name="settings_title_theme">Θέμα</string>
     <string name="settings_title_card_layout">Διάταξη κάρτας</string>
+    <string name="settings_title_show_prev_token">Εμφάνιση προηγούμενου διακριτικού</string>
     <string name="settings_title_label_size">Μέγεθος γραμματοσειράς ετικέτας</string>
-    <string name="settings_title_label_scroll">Ετικέτα κύλισης</string>
+    <string name="settings_title_label_display">Εμφάνιση ετικέτας</string>
     <string name="settings_title_tap_single">Μονό πάτημα</string>
     <string name="settings_title_tap_double">Διπλό πάτημα</string>
     <string name="settings_title_thumbnail_size_ask">Μέγεθος μικρογραφίας</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">Επισήμανση τεκμηρίων που λήγουν</string>
     <string name="settings_title_hide_global_timeout">Απόκρυψη καθολικής γραμμής χρονικού ορίου</string>
     <string name="settings_title_show_individual_timeouts">Εμφάνιση μεμονωμένων χρονικών ορίων</string>
+    <string name="settings_title_focus_search_on_start">Εστίαση αναζήτησης κατά την εκκίνηση της εφαρμογής</string>
+    <string name="settings_title_hide_issuer">Απόκρυψη Εκδότη</string>
     <string name="settings_title_backup_append_date">Προσθήκη ημερομηνίας στο όνομα αρχείου</string>
     <string name="settings_title_backup_ask">Ερώτηση για όνομα αρχείου</string>
     <string name="settings_title_backup_location">Προεπιλεγμένη τοποθεσία αντιγράφου ασφαλείας</string>
@@ -66,15 +72,20 @@
         προσβασιμότητας. <b>ΜΗΝ το ενεργοποιήσετε αν βασίζεστε στις υπηρεσίες προσβασιμότητας!</b></string>
     <string name="settings_desc_block_autofill">Αποκλείστε τις υπηρεσίες αυτόματης συμπλήρωσης από την πρόσβαση στον κωδικό πρόσβασης
         πεδία εντός της εφαρμογής</string>
-    <string name="settings_desc_block_autofill_android">Αυτή η λειτουργία απαιτεί έκδοση Android
+    <string name="settings_desc_auto_unlock_after_autofill">Ξεκλείδωμα αν ο κωδικός πρόσβασης έχει συμπληρωθεί
+        με αυτόματη συμπλήρωση</string>
+    <string name="settings_desc_autofill_requires_android_o">Αυτή η λειτουργία απαιτεί έκδοση Android
         πάνω από 8.0 (Oreo)</string>
-    <string name="settings_desc_label_scroll">Κύλιση σε υπερβολικά μεγάλες ετικέτες αντί για περικοπή τους</string>
+    <string name="settings_desc_theme_black_auto">Χρήση του μαύρου θέματος σε σκοτεινή λειτουργία</string>
+    <string name="settings_desc_show_prev_token">Εμφάνιση του προηγούμενου διακριτικού εκτός από το τρέχον</string>
     <string name="settings_desc_minimize_on_copy">Η εφαρμογή θα ελαχιστοποιείται όταν αντιγράφετε το OTP στο πρόχειρο</string>
     <string name="settings_desc_search_includes">Καθορίστε ποιες τιμές θα πρέπει να συμπεριληφθούν κατά την αναζήτηση</string>
     <string name="settings_desc_label_highlight_token">Επισήμανση τεκμηρίου με κόκκινο χρώμα αν λήγει σε 8 δευτερόλεπτα</string>
     <string name="settings_desc_hide_global_timeout">Απόκρυψη της καθολικής γραμμής χρονικού ορίου που εμφανίζεται στο πάνω μέρος της οθόνης</string>
     <string name="settings_desc_show_individual_timeouts">Εμφάνιση μεμονωμένης γραμμής χρονικού ορίου για κάθε καταχώριση.
         Αυτό μπορεί να επιβραδύνει την εφαρμογή, ενεργοποιείστε το μόνο εάν είναι πραγματικά απαραίτητο.</string>
+    <string name="settings_desc_focus_search_on_start">Εστίαση της αναζήτησης αμέσως μετά το άνοιγμα της εφαρμογής.</string>
+    <string name="settings_desc_hide_issuer">Κρύβει την ετικέτα εκδότη σε κάθε κάρτα</string>
     <string name="settings_desc_backup_append_date">Προσθέστε την τρέχουσα ημερομηνία και ώρα στο προτεινόμενο
         όνομα αρχείου αντιγράφου ασφαλείας</string>
     <string name="settings_desc_backup_ask">Ερώτηση για το όνομα του αρχείου κάθε φορά που δημιουργείται ένα αντίγραφο ασφαλείας ή
@@ -116,6 +127,8 @@
     <string name="settings_toast_encryption_auth_failed">Η ταυτοποίηση απέτυχε!</string>
     <string name="settings_toast_auth_upgrade_failed">Η ενημέρωση του κωδικού πρόσβασης ή PIN απέτυχε
         κατά την νέα κρυπτογράφηση, επαναφορά με μη αυτόματο τρόπο στις Ρυθμίσεις!</string>
+    <string name="settings_toast_android_sync_enabled">Ενεργοποίηση συγχρονισμού Android</string>
+    <string name="settings_toast_android_sync_disabled">Συγχρονισμός Android απενεργοποιημένος</string>
     <string name="settings_dialog_title_warning">Προειδοποίηση</string>
     <string name="settings_dialog_title_error">Σφάλμα</string>
     <string name="settings_dialog_title_clear_keystore">Εκκαθάριση KeyStore;</string>
@@ -167,11 +180,16 @@
         <item>Εμφάνιση/Απόκρυψη</item>
         <item>Αντιγραφή</item>
         <item>Αντιγράψτε και μεταβείτε στο παρασκήνιο</item>
+        <item>Κοινή χρήση ως πλήκτρα</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Ετικέτα</item>
         <item>Εκδότης</item>
         <item>Ετικέτες</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Αυτόματο</item>
+        <item>Χειροκίνητο</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Ανενεργό</item>
@@ -182,6 +200,11 @@
         <item>Φωτεινό θέμα</item>
         <item>Σκοτεινό θέμα</item>
         <item>Μαύρο θέμα</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Περιορισμός</item>
+        <item>Κύλιση</item>
+        <item>Πολλαπλές γραμμές</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Κρυφό</item>

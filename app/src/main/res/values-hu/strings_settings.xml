@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Beállítások</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Biztonság</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">A tétlenség miatt lezárás késleltetése</string>
     <string name="settings_title_block_accessibility">Akadálymentesítési szolgáltatások blokkolása</string>
     <string name="settings_title_block_autofill">Automatikus kitöltés blokkolása</string>
+    <string name="settings_title_auto_unlock_after_autofill">Automatikus feloldás az automatikus kitöltés után</string>
     <string name="settings_title_lang">Nyelv</string>
+    <string name="settings_title_theme_mode">Téma mód</string>
+    <string name="settings_title_theme_black_auto">Fekete téma</string>
     <string name="settings_title_theme">Téma</string>
     <string name="settings_title_card_layout">Kártyák elrendezése</string>
+    <string name="settings_title_show_prev_token">Előző token megjelenítése</string>
     <string name="settings_title_label_size">Cím betűmérete</string>
-    <string name="settings_title_label_scroll">Cím görgetése</string>
+    <string name="settings_title_label_display">Címkemegjelenítés</string>
     <string name="settings_title_tap_single">Egy koppintás</string>
     <string name="settings_title_tap_double">Dupla koppintás</string>
     <string name="settings_title_thumbnail_size_ask">Bélyegképek mérete</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">Lejáró tokenek kiemelése</string>
     <string name="settings_title_hide_global_timeout">Globális időtúllépési sáv elrejtése</string>
     <string name="settings_title_show_individual_timeouts">Időtúllépések egyenkénti megjelenítése</string>
+    <string name="settings_title_focus_search_on_start">A keresésre fókuszálás az alkalmazás indításakor</string>
+    <string name="settings_title_hide_issuer">Kiállító elrejtése</string>
     <string name="settings_title_backup_append_date">Dátum hozzáfűzése a fájlnévhez</string>
     <string name="settings_title_backup_ask">Fájlnév bekérése</string>
     <string name="settings_title_backup_location">Biztonsági mentés alapértelmezett helye</string>
@@ -67,15 +73,20 @@
     <string name="settings_desc_block_autofill">Az automatikus kitöltési szolgáltatások blokkolása,
         hogy ne férjenek hozzá az alkalmazáson belüli
         jelszómezőkhöz</string>
-    <string name="settings_desc_block_autofill_android">A funkcióhoz 8.0-s (Oreo) vagy újabb
+    <string name="settings_desc_auto_unlock_after_autofill">Feloldás, ha a jelszó automatikus kitöltéssel
+        került megadásra</string>
+    <string name="settings_desc_autofill_requires_android_o">A funkcióhoz 8.0-s (Oreo) vagy újabb
         Android verzió szükséges</string>
-    <string name="settings_desc_label_scroll">A hosszabb címek görgetése a levágásuk helyett</string>
+    <string name="settings_desc_theme_black_auto">A fekete téma használata sötét módban</string>
+    <string name="settings_desc_show_prev_token">Az előző token megjelenítése a jelenlegi mellett</string>
     <string name="settings_desc_minimize_on_copy">Az alkalmazás minimalizálva lesz, ha a vágólapra másolja az OTP-t</string>
     <string name="settings_desc_search_includes">Adja meg, hogy mely értékek legyenek belevéve a keresésbe</string>
     <string name="settings_desc_label_highlight_token">Tokenek kiemelése vörössel, ha 8 másodpercen belül lejár</string>
     <string name="settings_desc_hide_global_timeout">A képernyő tetején található globális időtúllépési sáv elrejtése</string>
     <string name="settings_desc_show_individual_timeouts">Külön időtúllépési sáv megjelenítése minden bejegyzéshez.
         Ez lelassíthatja az alkalmazást, csak akkor engedélyezze, ha szükséges.</string>
+    <string name="settings_desc_focus_search_on_start">Azonnali fókuszálás a keresésre az alkalmazás megnyitásakor.</string>
+    <string name="settings_desc_hide_issuer">Elrejti a kiállítót az összes kártyán</string>
     <string name="settings_desc_backup_append_date">A jelenlegi dátum és idő hozzáfűzése a biztonsági
         mentés javasolt nevéhez</string>
     <string name="settings_desc_backup_ask">Fájl nevének kérése minden alkalommal amikor biztonsági mentés jön létre vagy állítódik vissza</string>
@@ -115,6 +126,8 @@
     <string name="settings_toast_encryption_auth_failed">A hitelesítés sikertelen!</string>
     <string name="settings_toast_auth_upgrade_failed">Nem sikerült a jelszó/PIN-kód néma frissítése az új titkosításra,
         állítsa vissza kézzel a Beállításokban!</string>
+    <string name="settings_toast_android_sync_enabled">Android szinkronizálás be</string>
+    <string name="settings_toast_android_sync_disabled">Android szinkronizálás ki</string>
     <string name="settings_dialog_title_warning">Figyelmeztetés</string>
     <string name="settings_dialog_title_error">Hiba</string>
     <string name="settings_dialog_title_clear_keystore">Törli a KeyStore-t?</string>
@@ -166,11 +179,16 @@
         <item>Megjelenítés/elrejtés</item>
         <item>Másolás</item>
         <item>Másolás és háttérbe küldés</item>
+        <item>Megosztás billentyűleütésekként</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Cím</item>
         <item>Kibocsátó</item>
         <item>Címkék</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Automatikus</item>
+        <item>Kézi</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Ki</item>
@@ -181,6 +199,11 @@
         <item>Világos téma</item>
         <item>Sötét téma</item>
         <item>Fekete téma</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Levágás</item>
+        <item>Görgetés</item>
+        <item>Több sor</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Rejtett</item>

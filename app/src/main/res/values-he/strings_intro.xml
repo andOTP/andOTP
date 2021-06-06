@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="intro_slide1_title">בוא נתחיל</string>
     <string name="intro_slide1_desc">ברוך הבא ל <b>andOTP</b>, אשף זה ינחה אותך         בהתקנה הראשונית. אנא הקדש תשומת לב וקרא בקפידה, אחרת אתה יכול לאבד את הנתונים שלך!         \n\nאל דאגה, אתה עדיין יכול לשנות כל אחת מהאפשרויות מאוחר יותר ב<b>הגדרות</b>.</string>
     <string name="intro_slide2_desc">כדי לוודא את אבטחת החשבונות שלך <b>andOTP</b>         יאחסן אותם רק בקבצי נתונים מוצפנים. כאן אתה יכול לבחור איזו שיטת הצפנה תהיה         בשימוש.</string>
@@ -25,8 +25,17 @@
     <string name="intro_slide3_warn_no_password">אנא הגדר סיסמה כדי להמשיך!</string>
     <string name="intro_slide3_warn_no_pin">אנא הגדר קוד PIN כדי להמשיך!</string>
     <string name="intro_slide3_warn_confirm_password">אנא אשר את הסיסמה שלך כדי להמשיך!</string>
+    <string name="intro_slide3_warn_password_mismatch">Passwords must match!</string>
     <string name="intro_slide3_warn_confirm_pin">אנא אשר את הקוד PIN שלך כדי להמשיך!</string>
+    <string name="intro_slide3_warn_pin_mismatch">Pins must match!</string>
     <string name="intro_slide4_title">הסתיים</string>
+    <string name="intro_slide4_title_failed">Setup failed</string>
+    <string name="intro_slide4_title_progress">Please wait</string>
+    <string name="intro_slide4_desc_failed">Failed to set a password, this intro will be shown again
+        the next time!</string>
     <string name="intro_slide4_desc">ההגדרות שלך נשמרו, הינך מוכן להשתמש ב
         <b>andOTP</b> עכשיו!</string>
+    <string name="intro_slide4_desc_progress">Your settings are being saved and the encryption key is being
+        generated, please wait…</string>
+    <string name="intro_slide_android_backup_desc">Android sync is a feature built in to android used to back up app data to a 3rd party service (usually Google). Backups are always encrypted and unaccessible to 3rd parties without your master password. Requires use of Password encryption method.</string>
 </resources>

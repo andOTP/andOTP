@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- Buttons -->
     <string name="button_cancel">キャンセル</string>
     <string name="button_enter_details">詳細を入力</string>
@@ -10,6 +10,7 @@
     <string name="button_all_tags">すべてのタグ</string>
     <string name="button_no_tags">タグなし</string>
     <string name="button_qr_from_image">QR コードを画像からスキャン</string>
+    <string name="button_accept">承認</string>
     <!-- Custom formatting -->
     <string name="format_custom_period">%d 秒</string>
     <!-- Hints -->
@@ -45,6 +46,8 @@
     <string name="menu_popup_change_image">画像を変更</string>
     <string name="menu_popup_remove">削除</string>
     <string name="menu_popup_show_qr_code">QR コードを表示</string>
+    <string name="menu_popup_establish_pin">PIN を入力</string>
+    <string name="menu_send_keystrokes">キーストロークとして共有</string>
     <!-- Buttons -->
     <string name="button_card_options">その他設定</string>
     <string name="button_card_options_format">%1$s のその他設定</string>
@@ -78,7 +81,9 @@
     <string name="dialog_title_used_tokens">トークンの使用</string>
     <string name="dialog_title_keystore_error">キーストアエラー</string>
     <string name="dialog_title_qr_code">QR コード</string>
+    <string name="dialog_title_pin">PIN</string>
     <string name="dialog_title_enter_password">パスワードを入力</string>
+    <string name="dialog_title_auto_time">時刻の自動設定</string>
     <string name="dialog_label_enter_password">パスワードを入力</string>
     <string name="dialog_label_confirm_password">パスワードの確認</string>
     <string name="dialog_msg_auth">andOTP を起動するためにデバイス認証情報を入力してください。</string>
@@ -86,8 +91,14 @@
     <string name="dialog_msg_used_tokens">andOTP はあなたがトークンを使用したタイミングを追跡します(「タップして表示」を使用するかクリップボードにコピーした場合)。これにより、トークンを「使用回数順」または「使用した順」で並び替えることができます。\n\nこのメッセージは再度表示されることはありません。</string>
     <string name="dialog_msg_keystore_error">キーストアから暗号化キーを読み込めませんでした。 <b>追加されたエントリはすべて失われます。</b>
 \n\n andOTP を引き続き使用できるようにするには <b>設定</b> に行き <b>データベース暗号化</b> を <b>パスワード / PIN</b> に切り替えます。</string>
+    <string name="dialog_msg_auto_time">あなたの端末の<b>設定</b>で<b>日付と時刻の自動設定</b>を有効すると、Time-based One-time Password (TOTP) が正確に動作します。</string>
+    <string name="dialog_hint_dont_show_again">Don\'t show this message again.</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
     <!-- Shortcuts -->
     <string name="shortcut_name_scan_qr">QR コードをスキャン</string>
     <string name="shortcut_name_import_qr">QR コードをインポート</string>
     <string name="shortcut_name_enter_details">詳細を入力</string>
+    <!-- Empty List Text -->
+    <string name="empty_list_view_text">画面下部の「+」を押してトークンを追加できます</string>
 </resources>

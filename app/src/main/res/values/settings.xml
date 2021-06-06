@@ -152,6 +152,7 @@
     <string-array name="settings_values_lang" translatable="false">
         <item>system</item>
         <item>ast</item>
+        <item>in</item>
         <item>ca</item>
         <item>de</item>
         <item>en</item>
@@ -164,6 +165,7 @@
         <item>nl</item>
         <item>pl</item>
         <item>pt_BR</item>
+        <item>sk</item>
         <item>sl</item>
         <item>sv</item>
         <item>tr</item>
@@ -172,7 +174,8 @@
         <item>ru</item>
         <item>uk</item>
         <item>bg</item>
-        <item>iw</item>
+        <item>sr</item>
+        <item>he</item>
         <item>ar</item>
         <item>fa</item>
         <item>hi</item>
@@ -227,6 +230,7 @@
     <string-array name="settings_entries_lang" translatable="false">
         <item>@string/settings_lang_sys_default</item>
         <item>Asturianu</item>
+        <item>Bahasa Indonesia</item>
         <item>Català</item>
         <item>Deutsch</item>
         <item>English</item>
@@ -239,6 +243,7 @@
         <item>Nederlands</item>
         <item>Polski</item>
         <item>Português (Brasil)</item>
+        <item>Slovenčina</item>
         <item>Slovenščina</item>
         <item>Svenska</item>
         <item>Türkçe</item>
@@ -247,6 +252,7 @@
         <item>Русский</item>
         <item>Українська</item>
         <item>български</item>
+        <item>српски</item>
         <item>עִברִית</item>
         <item>العربية</item>
         <item>فارسی</item>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="settings_activity_title">Instellingen</string>
     <!-- Categories -->
     <string name="settings_category_title_security">Beveiliging</string>
@@ -19,11 +19,15 @@
     <string name="settings_title_auth_inactivity_delay">Vertraag vergrendeling bij inactiviteit</string>
     <string name="settings_title_block_accessibility">Blokkeer toegankelijkheidsdiensten</string>
     <string name="settings_title_block_autofill">Automatisch aanvullen blokkeren</string>
+    <string name="settings_title_auto_unlock_after_autofill">Ontgrendel na automatisch invullen</string>
     <string name="settings_title_lang">Taal</string>
+    <string name="settings_title_theme_mode">Themamodus</string>
+    <string name="settings_title_theme_black_auto">Zwart thema</string>
     <string name="settings_title_theme">Thema</string>
     <string name="settings_title_card_layout">Kaart lay-out</string>
+    <string name="settings_title_show_prev_token">Toon vorig token</string>
     <string name="settings_title_label_size">Lettergrootte vermeldingen</string>
-    <string name="settings_title_label_scroll">Scroll vermeldingen</string>
+    <string name="settings_title_label_display">Label weergave</string>
     <string name="settings_title_tap_single">Enkele tik</string>
     <string name="settings_title_tap_double">Dubbel tik</string>
     <string name="settings_title_thumbnail_size_ask">Miniatuurgrootte</string>
@@ -34,6 +38,8 @@
     <string name="settings_title_label_highlight_token">Verlopen tokens markeren</string>
     <string name="settings_title_hide_global_timeout">Tijdslimiet balk verbergen</string>
     <string name="settings_title_show_individual_timeouts">Individuele tijdslimiet weergeven</string>
+    <string name="settings_title_focus_search_on_start">Focus zoekveld na starten app</string>
+    <string name="settings_title_hide_issuer">Verberg uitgever</string>
     <string name="settings_title_backup_append_date">Datum toevoegen aan bestandsnaam</string>
     <string name="settings_title_backup_ask">Vraag naar de bestandsnaam</string>
     <string name="settings_title_backup_location">Standaard reservekopie locatie</string>
@@ -63,15 +69,18 @@
         diensten. <b>NIET inschakelen wanneer je afhankelijk bent van toegankelijkheidsdiensten!</b></string>
     <string name="settings_desc_block_autofill">Automatische aanvullen blokkeren om toegang te krijgen tot wachtwoorden
         velden in de app</string>
-    <string name="settings_desc_block_autofill_android">Deze functie vereist een Android versie
-        boven 8.0 (Oreo)</string>
-    <string name="settings_desc_label_scroll">Vermeldingen horizontaal scrollen in plaats van ze af te korten</string>
+    <string name="settings_desc_auto_unlock_after_autofill">Ontgrendel nadat wachtwoord automatisch is ingevuld</string>
+    <string name="settings_desc_autofill_requires_android_o">Deze functie vereist een hogere versie dan Android 8.0 (Oreo)</string>
+    <string name="settings_desc_theme_black_auto">Gebruik zwart thema in donkere modus</string>
+    <string name="settings_desc_show_prev_token">Toon het vorige token naast het huidige token</string>
     <string name="settings_desc_minimize_on_copy">Nadat je de OTP naar het klembord kopieert wordt de app geminimaliseerd</string>
     <string name="settings_desc_search_includes">Specificeer welke waarden moeten gebruikt tijdens het zoeken</string>
     <string name="settings_desc_label_highlight_token">Markeert token in rood als deze over 8 seconden verloopt</string>
     <string name="settings_desc_hide_global_timeout">Tijdslimiet balk aan de bovenkant verbergen</string>
     <string name="settings_desc_show_individual_timeouts">Toon een individuele tiidsbalk voor elke toegang.
         Dit vertraagd de app, alleen inschakelen als het echt nodig is.</string>
+    <string name="settings_desc_focus_search_on_start">Focus het zoekveld direct na het openen van de app.</string>
+    <string name="settings_desc_hide_issuer">Verbergt uitgeverlabel op elke kaart</string>
     <string name="settings_desc_backup_append_date">Voeg de huidige datum en tijd toe aan de voorgestelde back-up bestandsnaam</string>
     <string name="settings_desc_backup_ask">Vraag naar de bestandsnaam elke keer als een reservekopie is gemaakt of wordt teruggezet</string>
     <string name="settings_desc_backup_location">Reservekopie locatie kiezen</string>
@@ -100,6 +109,8 @@
     <string name="settings_toast_encryption_no_key">Het ophalen van de encryptiesleutel mislukte, afbreken!</string>
     <string name="settings_toast_encryption_auth_failed">Verificatie mislukt!</string>
     <string name="settings_toast_auth_upgrade_failed">Het bijwerken van je wachtwoord / PIN naar de nieuwe codering mislukte, herstel het handmatig bij de instellingen!</string>
+    <string name="settings_toast_android_sync_enabled">Android-synchronisatie ingeschakeld</string>
+    <string name="settings_toast_android_sync_disabled">Android-synchronisatie uitgeschakeld</string>
     <string name="settings_dialog_title_warning">Waarschuwing</string>
     <string name="settings_dialog_title_error">Fout</string>
     <string name="settings_dialog_title_clear_keystore">Sleutelopslag leegmaken?</string>
@@ -141,11 +152,16 @@ Doordat de <b>Database encryptie</b> is ingesteld op <b>Android sleutelopslag</b
         <item>Weergeven/Verbergen</item>
         <item>Kopie</item>
         <item>Kopieer en ga naar achtergrond</item>
+        <item>Deel als toetsaanslagen</item>
     </string-array>
     <string-array name="settings_entries_search_includes">
         <item>Etiket</item>
         <item>Uitgever</item>
         <item>Tags</item>
+    </string-array>
+    <string-array name="settings_entries_theme_mode">
+        <item>Automatisch</item>
+        <item>Handmatig</item>
     </string-array>
     <string-array name="settings_entries_auto_backup_password_enc">
         <item>Uit</item>
@@ -156,6 +172,11 @@ Doordat de <b>Database encryptie</b> is ingesteld op <b>Android sleutelopslag</b
         <item>Licht thema</item>
         <item>Donker thema</item>
         <item>Zwart thema</item>
+    </string-array>
+    <string-array name="settings_entries_label_display">
+        <item>Afkappen</item>
+        <item>Scrollen</item>
+        <item>Meerdere regels</item>
     </string-array>
     <string-array name="settings_entries_thumbnail_size">
         <item>Verborgen</item>

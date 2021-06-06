@@ -1,47 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="backup_activity_title">Zálohování</string>
-    <string name="backup_category_plain">Nechráněné zálohy</string>
-    <string name="backup_category_crypt">Šifrované zálohy</string>
-    <string name="backup_category_openpgp">OpenPGP šifrované zálohy</string>
-    <string name="backup_title_export_plain">Zálohovat (nešifrováno)</string>
-    <string name="backup_title_export_crypt">Zálohovat (šifrováno)</string>
-    <string name="backup_title_export_openpgp">Zálohovat (OpenPGP)</string>
-    <string name="backup_title_import_plain">Obnovit zálohu (nechráněnou)</string>
-    <string name="backup_title_import_crypt">Obnovit zálohu (šifrovanou)</string>
-    <string name="backup_title_import_crypt_old">Obnova (šifrované, staré šifrování)</string>
-    <string name="backup_title_import_openpgp">Obnovit zálohu (OpenPGP)</string>
-    <string name="backup_title_replace">Nahrazovat předchozí záznamy</string>
-    <string name="backup_desc_export_plain">Zálohovat všechny účty do nechráněného souboru JSON</string>
-    <string name="backup_desc_export_crypt">Zálohovat všechny účty do souboru JSON chráněného heslem</string>
-    <string name="backup_desc_export_openpgp">Zálohovat všechny účty do souboru JSON šifrovaného OpenPGP</string>
-    <string name="backup_desc_import_plain">Obnovit účty z nechráněného souboru JSON</string>
-    <string name="backup_desc_import_crypt">Obnovit účty ze souboru JSON chráněného heslem</string>
-    <string name="backup_desc_import_crypt_old">Obnoví účty z JSON souboru chráněného heslem,
-který byl vytvořen pomocí <b>verze andOTP nižší než 0.6.3</b></string>
-    <string name="backup_desc_import_openpgp">Obnovit účty ze souboru JSON šifrovaného OpenPGP</string>
-    <string name="backup_desc_crypt_setup">Nepodařilo se načíst záložní heslo z <b>Nastavení</b>, to buď znamená, že není nastaveno  žádné heslo nebo něco se pokazilo. Budete vyzváni k ručnímu zadání hesla při vytváření nebo importu zálohy.
+    <string name="backup_title_replace">Nahradit předchozí záznamy</string>
+    <string name="backup_desc_replace">Je-li povoleno, všechny původní záznamy jsou při importu zálohy nahrazeny
+        a zůstává jen obsah zálohy. Je-li zakázáno, obsah zálohy bude
+        přidán k původním položkám.</string>
+    <string name="backup_desc_openpgp_provider">K použití této funkce je třeba nainstalovat OpenPGP aplikaci a povolit ji
+        v <b>Nastavení</b>.
     </string>
-    <string name="backup_desc_openpgp_provider">K použití této funkce je třeba nainstalovat OpenPGP aplikaci a povolit ji v <b>Nastavení</b>.    </string>
-    <string name="backup_desc_openpgp_keyid">Než budete moct vytvářet šifrované zálohy je třeba v <b>Nastavení</b> zvolit OpenPGP klíč.    </string>
-    <string name="backup_desc_replace">Je-li povoleno všechny původní záznamy jsou při importu zálohy nahrazeny a zůstává jen obsah zálohy. Je-li zakázáno obsah zálohy bude přidán k původním položkám.</string>
+    <string name="backup_desc_openpgp_keyid">Než budete moct vytvářet šifrované zálohy je třeba v <b>Nastavení</b>
+        zvolit OpenPGP klíč.
+    </string>
     <!-- Dialogs -->
     <string name="backup_dialog_title_security_warning">Bezpečnostní varování</string>
-    <string name="backup_dialog_msg_export_warning">Opravdu chcete exportovat databázi jako nechráněný JSON soubor? Tento soubor obsahuje všechny vaše tajné klíče, prosím <b>mějte ho v bezpečí</b>!    </string>
+    <string name="backup_dialog_msg_export_warning">Opravdu chcete exportovat databázi jako
+        nechráněný JSON soubor? Tento soubor obsahuje všechny vaše tajné klíče, prosím, <b>udržujte ho v bezpečí</b>!
+    </string>
     <string name="backup_receiver_title_backup_failed">Zálohování selhalo</string>
     <string name="backup_receiver_title_backup_success">Zálohování proběhlo úspěšně</string>
-    <string name="backup_receiver_plain_disabled">Nechráněné zálohy nejsou v tuto chvíli povolené, pro jejich zpřístupnění přejděte prosím do Nastavení</string>
-    <string name="backup_receiver_encrypted_disabled">Šifrované zálohy nejsou v tuto chvíli povolené, pro jejich zpřístupnění přejděte prosím do Nastavení</string>
-    <string name="backup_receiver_read_permission_failed">Nebylo uděleno oprávnění ke čtení, prosím udělte ho před pokusem o zálohování</string>
-    <string name="backup_receiver_write_permission_failed">Nebylo uděleno oprávnění k zápisu, prosím udělte ho před pokusem o zálohování</string>
-    <string name="backup_receiver_custom_encryption_failed">Šifrování heslem/PINem není podporováno v kombinaci s automatizovaným zálohováním</string>
+    <string name="backup_receiver_plain_disabled">Nechráněné zálohy nejsou v tuto chvíli povoleny,
+        pro jejich povolení přejděte, prosím do Nastavení</string>
+    <string name="backup_receiver_encrypted_disabled">Šifrované zálohy nejsou v tuto chvíli povoleny, pro jejich zpřístupnění
+        přejděte, prosím, do Nastavení</string>
+    <string name="backup_receiver_read_permission_failed">Nebylo uděleno oprávnění ke čtení, prosím,
+        udělte je před pokusem o zálohování</string>
+    <string name="backup_receiver_write_permission_failed">Nebylo uděleno oprávnění k zápisu, prosím,
+        udělte je před pokusem o zálohování</string>
+    <string name="backup_receiver_custom_encryption_failed">Šifrování heslem/PINem není podporováno v kombinaci
+        s automatizovaným zálohováním</string>
+    <string name="backup_receiver_no_location_set">No backup location set, please set one in the
+        apps settings</string>
+    <string name="backup_receiver_no_password_set">No default password set, please set one in the
+        apps settings</string>
     <!-- Notification channels -->
     <string name="notification_channel_name_backup_failed">Automatické zálohování selhalo</string>
     <string name="notification_channel_name_backup_success">Automatické zálohování proběhlo úspěšně</string>
-    <string name="notification_channel_desc_backup_failed">Tato upozornění se zobrazí, když automatické zálohování z nějakého důvodu selže</string>
-    <string name="notification_channel_desc_backup_success">Tato upozornění se zobrazí, když automatické zálohování proběhne úspěšně</string>
+    <string name="notification_channel_desc_backup_failed">Tato upozornění se zobrazí,
+        když automatické zálohování z nějakého důvodu selže</string>
+    <string name="notification_channel_desc_backup_success">Tato upozornění se zobrazí,
+        když automatické zálohování proběhne úspěšně</string>
     <!-- Toast messages -->
-    <string name="backup_toast_no_location">Prosím nastavte výchozí umístění zálohy v nastavení!</string>
+    <string name="backup_toast_no_location">Prosím, nastavte výchozí umístění zálohy v nastavení!</string>
     <string name="backup_toast_location_access_failed">Nepodařilo se získat přístup k umístění zálohy!</string>
     <string name="backup_toast_file_creation_failed">Nepodařilo se vytvořit soubor zálohy!</string>
     <string name="backup_toast_export_success">Export na externí úložiště byl úspěšný</string>
@@ -50,9 +49,27 @@ který byl vytvořen pomocí <b>verze andOTP nižší než 0.6.3</b></string>
     <string name="backup_toast_import_save_failed">Nepodařilo se uložit obnovované záznamy</string>
     <string name="backup_toast_import_decryption_failed">Dešifrování zálohy se nezdařilo</string>
     <string name="backup_toast_import_no_entries">V importovaných datech nebyly nalezeny žádné záznamy</string>
+    <string name="backup_toast_import_failed">Import from external storage failed</string>
     <string name="backup_toast_storage_not_accessible">Externí úložiště teď není dostupné</string>
     <string name="backup_toast_openpgp_error">Chyba OpenPGP: %s</string>
     <string name="backup_toast_openpgp_not_verified">Nenalezen ověřený podpis</string>
     <string name="backup_toast_crypt_password_not_set">Heslo není nastaveno, zkontrolujte <b>Nastavení</b></string>
     <string name="backup_toast_file_selection_failed">Nemohu otevřít dialog výběru souboru!</string>
+    <string name="backup_label_type">Backup type: </string>
+    <string name="backup_label_warning_plain">The backup will be stored in an unencrypted plain-text
+        file. Please only use if strictly necessary and <b>keep the file safe</b>!</string>
+    <string name="backup_label_crypt">The backup will be stored encrypted with a custom password
+        using AES 256-bit encryption. You can setup a default password in the settings if you
+        don\'t want to have to enter it every time you create a backup.</string>
+    <string name="backup_label_pgp">The backup will be stored encrypted using the PGP key you
+        specified in the settings. The encryption will be handled by a 3rd party app.</string>
+    <string name="backup_check_restore_old">Restore old backup format (created with an andOTP version
+        before 0.6.3)</string>
+    <string name="backup_button_backup">Create backup</string>
+    <string name="backup_button_restore">Restore backup</string>
+    <string-array name="backup_list_type_names">
+        <item>Plain-text</item>
+        <item>Encrypted</item>
+        <item>OpenPGP</item>
+    </string-array>
 </resources>
