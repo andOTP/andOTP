@@ -83,13 +83,6 @@ public class Settings {
             remove(R.string.settings_key_locale);
         }
 
-        if (settings.contains(getResString(R.string.settings_key_lang))) {
-            String lang = getString(R.string.settings_key_lang, R.string.settings_default_lang);
-
-            if (lang.equals("iw"))
-                setLocale("he");
-        }
-
         if (settings.contains(getResString(R.string.settings_key_tap_to_reveal))) {
             if (getBoolean(R.string.settings_key_tap_to_reveal, false)) {
                 setString(R.string.settings_key_tap_single, Constants.TapMode.REVEAL.toString().toLowerCase(Locale.ENGLISH));
