@@ -411,6 +411,7 @@ public class EntryThumbnail {
         Wordfence(R.drawable.thumb_wordfence),
         Wordpress(R.drawable.thumb_wordpress),
         Workplace(R.drawable.thumb_workplace),
+        XDADevelopers(R.drawable.thumb_xda_developers),
         Xero(R.drawable.thumb_xero),
         Xerox(R.drawable.thumb_xerox),
         Xing(R.drawable.thumb_xing),
