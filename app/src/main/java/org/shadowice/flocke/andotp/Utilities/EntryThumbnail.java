@@ -315,6 +315,7 @@ public class EntryThumbnail {
         Phabricator(R.drawable.thumb_phabricator),
         phpMyAdmin(R.drawable.thumb_phpmyadmin),
         PlayStation(R.drawable.thumb_playstation),
+        Plesk(R.drawable.thumb_plesk),
         Plex(R.drawable.thumb_plex),
         Pluralsight(R.drawable.thumb_pluralsight),
         Plurk(R.drawable.thumb_plurk),
