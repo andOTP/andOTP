@@ -379,6 +379,7 @@ public class EntryThumbnail {
         Terminal(R.drawable.thumb_terminal),
         TerraformCloud(R.drawable.thumb_terraform_cloud),
         TeslaMotors(R.drawable.thumb_tesla_motors),
+        Tildes(R.drawable.thumb_tildes),
         TMobile(R.drawable.thumb_t_mobile),
         TransIP(R.drawable.thumb_transip),
         Trello(R.drawable.thumb_trello),
