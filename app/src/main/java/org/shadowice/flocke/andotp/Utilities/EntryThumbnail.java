@@ -303,6 +303,7 @@ public class EntryThumbnail {
         Origin(R.drawable.thumb_origin),
         OVH(R.drawable.thumb_ovh),
         Packet(R.drawable.thumb_packet),
+        Papaki(R.drawable.thumb_papaki),
         Parsecgaming(R.drawable.thumb_parsecgaming),
         Passwordstate(R.drawable.thumb_passwordstate),
         Patreon(R.drawable.thumb_patreon),
