@@ -238,6 +238,7 @@ public class EntryThumbnail {
         Lichess(R.drawable.thumb_lichess),
         LinkedIn(R.drawable.thumb_linkedin),
         Linode(R.drawable.thumb_linode),
+        LinusTechTips(R.drawable.thumb_linustechtips),
         Liqui(R.drawable.thumb_liqui),
         LivelyMe(R.drawable.thumb_livelyme),
         Lobsters(R.drawable.thumb_lobsters),
