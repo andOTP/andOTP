@@ -343,6 +343,7 @@ public class EntryThumbnail {
         Rockstar(R.drawable.thumb_rockstar),
         Roundcube(R.drawable.thumb_roundcube),
         RSS(R.drawable.thumb_rss),
+        RubyGems(R.drawable.thumb_rubygems),
         Samsung(R.drawable.thumb_samsung),
         SAP(R.drawable.thumb_sap),
         Saxobank(R.drawable.thumb_saxobank),
