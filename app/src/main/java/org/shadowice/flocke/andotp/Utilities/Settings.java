@@ -522,9 +522,12 @@ public class Settings {
     }
 
     public void setTagToggle(String tag, Boolean value) {
-        Set<String> toggledTags = settings.getStringSet(getResString(R.string.settings_key_tags_toggles), Collections.emptySet());
+        Set<String> toggledTagsPref = settings.getStringSet(getResString(R.string.settings_key_tags_toggles), Collections.emptySet());
 
-        assert toggledTags != null;     // At least an empty set should always be present
+        Set<String> toggledTags = Collections.emptySet();
+
+        if (toggledTagsPref != null)
+            toggledTags = new HashSet<>(toggledTagsPref);
 
         if (value)
             toggledTags.remove(tag);
@@ -561,12 +564,10 @@ public class Settings {
     }
 
 
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean getScreenshotsEnabled() {
         return getBoolean(R.string.settings_key_enable_screenshot, false);
     }
 
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean getUsedTokensDialogShown() {
         return getBoolean(R.string.settings_key_last_used_dialog_shown, false);
     }
