@@ -1,5 +1,9 @@
 # Changelog
 
+#### v0.9.0.1
+
+ * Bugfix: Fix crash when using the tags drawer (Issue #856)
+
 #### v0.9.0
 
  * New feature: Option to focus search on start (Issue #654,PR #658 by @mchllngr)
