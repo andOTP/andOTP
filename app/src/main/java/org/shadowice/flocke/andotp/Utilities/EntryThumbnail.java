@@ -410,6 +410,7 @@ public class EntryThumbnail {
         Wasabi(R.drawable.thumb_wasabi),
         WebDe(R.drawable.thumb_web_de),
         Weclapp(R.drawable.thumb_weclapp),
+        Werknemerloket(R.drawable.thumb_werknemerloket),
         Wikimedia(R.drawable.thumb_wikimedia),
         Wildduck(R.drawable.thumb_wildduck),
         Wordfence(R.drawable.thumb_wordfence),
