@@ -357,6 +357,7 @@ public class EntryThumbnail {
         Skrill(R.drawable.thumb_skrill),
         Slack(R.drawable.thumb_slack),
         Smartbill(R.drawable.thumb_smartbill),
+        Smartschool(R.drawable.thumb_smartschool),
         Snapchat(R.drawable.thumb_snapchat),
         SOGo(R.drawable.thumb_sogo),
         Sophos(R.drawable.thumb_sophos),
