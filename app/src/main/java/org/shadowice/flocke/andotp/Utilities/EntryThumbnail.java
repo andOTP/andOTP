@@ -158,6 +158,7 @@ public class EntryThumbnail {
         Digidentity(R.drawable.thumb_digidentity),
         DigitalOcean(R.drawable.thumb_digital_ocean),
         Directus(R.drawable.thumb_directus),
+        Discogs(R.drawable.thumb_discogs),
         Discord(R.drawable.thumb_discord),
         Discourse(R.drawable.thumb_discourse),
         Disroot(R.drawable.thumb_disroot),
