@@ -382,6 +382,7 @@ public class EntryThumbnail {
         TransIP(R.drawable.thumb_transip),
         Trello(R.drawable.thumb_trello),
         Tresorit(R.drawable.thumb_tresorit),
+        TruckersMP(R.drawable.thumb_truckersmp),
         Tumblr(R.drawable.thumb_tumblr),
         TUBerlin(R.drawable.thumb_tu_berlin),
         TurboTax(R.drawable.thumb_turbotax),
