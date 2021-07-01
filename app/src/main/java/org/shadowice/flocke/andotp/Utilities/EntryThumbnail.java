@@ -327,6 +327,7 @@ public class EntryThumbnail {
         PrivateInternetAccess(R.drawable.thumb_private_internet_access),
         ProtonMail(R.drawable.thumb_protonmail),
         Proxmox(R.drawable.thumb_proxmox),
+        PulseHeberg(R.drawable.thumb_pulseheberg),
         Purse(R.drawable.thumb_purse),
         Pushover(R.drawable.thumb_pushover),
         PyPI(R.drawable.thumb_pypi),
