@@ -413,6 +413,7 @@ public class EntryThumbnail {
         Werknemerloket(R.drawable.thumb_werknemerloket),
         Wikimedia(R.drawable.thumb_wikimedia),
         Wildduck(R.drawable.thumb_wildduck),
+        Windscribe(R.drawable.thumb_windscribe),
         Wordfence(R.drawable.thumb_wordfence),
         Wordpress(R.drawable.thumb_wordpress),
         Workplace(R.drawable.thumb_workplace),
