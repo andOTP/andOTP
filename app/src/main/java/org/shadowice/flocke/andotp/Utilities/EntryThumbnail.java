@@ -381,6 +381,7 @@ public class EntryThumbnail {
         TeslaMotors(R.drawable.thumb_tesla_motors),
         Tildes(R.drawable.thumb_tildes),
         TMobile(R.drawable.thumb_t_mobile),
+        TradingView(R.drawable.thumb_tradingview),
         TransIP(R.drawable.thumb_transip),
         Trello(R.drawable.thumb_trello),
         Tresorit(R.drawable.thumb_tresorit),
