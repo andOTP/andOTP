@@ -231,6 +231,7 @@ public class EntryThumbnail {
         KDE(R.drawable.thumb_kde),
         Keeper(R.drawable.thumb_keeper),
         Keycloak(R.drawable.thumb_keycloak),
+        Keyhelp(R.drawable.thumb_keyhelp),
         Kickstarter(R.drawable.thumb_kickstarter),
         Kraken(R.drawable.thumb_kraken),
         Kucoin(R.drawable.thumb_kucoin),
