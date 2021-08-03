@@ -18,7 +18,7 @@
     <!-- The default letter tile text size (relative to the height of the tile) -->
     <item name="tile_letter_font_size_scale" type="dimen" format="float">0.75</item>
 
-    <dimen name="drawer_width">200dp</dimen>
+    <dimen name="drawer_width">220dp</dimen>
     <dimen name="divider_size">1dp</dimen>
 
     <!-- FAB Menu -->

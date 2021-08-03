@@ -30,9 +30,8 @@
                 android:id="@+id/thumbnailFrame"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingEnd="@dimen/activity_margin"
                 android:paddingStart="@dimen/card_padding_without_corners"
-                android:background="?attr/thumbnailBackground">
+                android:paddingEnd="@dimen/activity_margin">
 
                 <ImageView
                     android:id="@+id/thumbnailImg"
@@ -117,10 +116,10 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:alpha="0.4"
+                                    android:text="@string/label_hidden"
                                     android:textColor="?android:attr/textColorSecondary"
-                                    android:textSize="28sp"
-                                    android:textStyle="bold"
-                                    android:text="@string/label_hidden" />
+                                    android:textSize="24sp"
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
                         </LinearLayout>
