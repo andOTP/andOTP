@@ -40,5 +40,11 @@
     <color name="synology_black">#231815</color>
     <color name="keeper_gold">#FFC700</color>
     <color name="bitpanda">#282828</color>
+    <color name="betterment">#2f363c</color>
+    <color name="crowdin">#2E3340</color>
+    <color name="docusign">#100f0d</color>
+    <color name="eveonline">#211e1e</color>
+    <color name="g2a_white">#555E63</color>
+    <color name="g2a_dark">#EBEBEB</color>
 </resources>
 

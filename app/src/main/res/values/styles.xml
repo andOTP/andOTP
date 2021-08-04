@@ -26,6 +26,12 @@
     <attr name="keeper_gold_black" format="reference"/>
     <attr name="keeper_black_gold" format="reference"/>
     <attr name="bitpanda" format="reference"/>
+    <attr name="betterment" format="reference"/>
+    <attr name="crowdin" format="reference"/>
+    <attr name="docusign" format="reference"/>
+    <attr name="eveonline" format="reference"/>
+    <attr name="g2a_2" format="reference"/>
+
     <!-- General styles -->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
@@ -70,6 +76,11 @@
         <item name="keeper_black_gold">@color/black</item>
         <item name="keeper_gold_black">@color/keeper_gold</item>
         <item name="bitpanda">@color/bitpanda</item>
+        <item name="betterment">@color/betterment</item>
+        <item name="crowdin">@color/crowdin</item>
+        <item name="docusign">@color/docusign</item>
+        <item name="eveonline">@color/eveonline</item>
+        <item name="g2a_2">@color/g2a_white</item>
     </style>
 
     <style name="AppTheme" parent="AppBaseTheme"/>
@@ -123,6 +134,11 @@
         <item name="keeper_black_gold">@color/keeper_gold</item>
         <item name="keeper_gold_black">@color/black</item>
         <item name="bitpanda">@color/white</item>
+        <item name="betterment">@color/white</item>
+        <item name="crowdin">@color/white</item>
+        <item name="docusign">@color/white</item>
+        <item name="eveonline">@color/white</item>
+        <item name="g2a_2">@color/g2a_dark</item>
     </style>
 
     <style name="AppTheme.Dark" parent = "AppBaseTheme.Dark"/>
@@ -171,6 +187,11 @@
         <item name="keeper_black_gold">@color/keeper_gold</item>
         <item name="keeper_gold_black">@color/black</item>
         <item name="bitpanda">@color/white</item>
+        <item name="betterment">@color/white</item>
+        <item name="crowdin">@color/white</item>
+        <item name="docusign">@color/white</item>
+        <item name="eveonline">@color/white</item>
+        <item name="g2a_2">@color/g2a_dark</item>
     </style>
 
     <style name="AppTheme.Black" parent="AppBaseTheme.Black"/>
