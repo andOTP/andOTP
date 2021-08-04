@@ -115,7 +115,7 @@
                                     android:alpha="0.4"
                                     android:text="@string/label_hidden"
                                     android:textColor="?android:attr/textColorSecondary"
-                                    android:textSize="22sp"
+                                    android:textSize="24sp"
                                     android:textStyle="bold" />
 
                             </LinearLayout>

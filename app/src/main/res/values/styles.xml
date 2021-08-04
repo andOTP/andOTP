@@ -12,7 +12,7 @@
 
     <attr name="colorExpiring" format="reference"/>
 
-    <!--  Icon Color  -->
+    <!--  Thumbnail Colors  -->
     <attr name="C_Github" format="reference"/>
     <attr name="amazon_gold" format="reference"/>
     <attr name="amazon_main" format="reference"/>
@@ -44,7 +44,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorlayoutbg">@color/layoutbg</item>
         <item name="windowBackground">?android:attr/colorBackground</item>
         <item name="navigationBarColor">?android:attr/colorBackground</item>
 
@@ -62,7 +61,7 @@
 
         <item name="colorExpiring">@color/expiring_red_dark</item>
 
-        <!-- Icons -->
+        <!-- Thumbnails -->
         <item name="C_Github">@color/github</item>
         <item name="amazon_gold">@color/amazon_gold</item>
         <item name="amazon_main">@color/amazon_main</item>
@@ -100,10 +99,9 @@
 
     <!-- Dark application theme. -->
     <style name="AppBaseTheme.Dark" parent="Theme.AppCompat">
-        <item name="colorPrimary">@color/dark_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/dark_colorPrimaryDark</item>
-        <item name="colorAccent">@color/dark_colorAccent</item>
-        <item name="colorlayoutbg">@color/dark_layoutbg</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="windowBackground">?android:attr/colorBackground</item>
         <item name="navigationBarColor">?android:attr/colorBackground</item>
 
@@ -120,7 +118,7 @@
 
         <item name="colorExpiring">@color/expiring_red_light</item>
 
-        <!-- Icon -->
+        <!-- Thumbnails -->
         <item name="C_Github">@color/dark_github</item>
         <item name="amazon_gold">@color/amazon_gold</item>
         <item name="amazon_main">@color/white</item>
@@ -156,10 +154,9 @@
     <style name="AppBaseTheme.Black" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/black_colorPrimary</item>
         <item name="colorPrimaryDark">@color/black_colorPrimaryDark</item>
-        <item name="colorAccent">@color/black_colorAccent</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="windowBackground">@color/black</item>
         <item name="navigationBarColor">@color/black</item>
-        <item name="colorlayoutbg">@color/dark_layoutbg</item>
         <item name="colorGithub">@color/github_light</item>
 
         <item name="cardStyle">@style/CardViewStyle.Black</item>
@@ -173,7 +170,7 @@
 
         <item name="colorExpiring">@color/expiring_red_light</item>
 
-        <!--   Icons   -->
+        <!--   Thumbnails   -->
         <item name="C_Github">@color/dark_github</item>
         <item name="amazon_gold">@color/amazon_gold</item>
         <item name="amazon_main">@color/white</item>
