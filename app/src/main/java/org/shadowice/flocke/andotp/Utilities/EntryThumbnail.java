@@ -349,6 +349,7 @@ public class EntryThumbnail {
         SelfWealth(R.drawable.thumb_selfwealth),
         Seafile(R.drawable.thumb_seafile),
         Sentry(R.drawable.thumb_sentry),
+        ServiceNow(R.drawable.thumb_servicenow),
         Sevdesk(R.drawable.thumb_sevdesk),
         SimpleLogin(R.drawable.thumb_simple_login),
         Skrill(R.drawable.thumb_skrill),
