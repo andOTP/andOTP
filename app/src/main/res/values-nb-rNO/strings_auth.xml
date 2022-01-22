@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_activity_title">Identitetsbekreft</string>
+
+    <!-- Hints -->
+    <string name="auth_hint_password">Passord</string>
+    <string name="auth_hint_pin">PIN</string>
+
+    <!-- Messages -->
+    <string name="auth_msg_authenticate">Identitetsbekreft deg for å starte andOTP.</string>
+    <string name="auth_msg_confirm_encryption">Bekreft identiteten for å generere din
+        krypteringsnøkkel.</string>
+
+    <!-- Buttons -->
+    <string name="auth_button_unlock">Lås opp</string>
+
+    <!-- Toast messages -->
+    <string name="auth_toast_password_missing">Sett opp et passord i <b>innstillingene</b>!</string>
+    <string name="auth_toast_pin_missing">Sett opp en PIN i <b>innstillingene</b>!</string>
+    <string name="auth_toast_password_again">Feil passord. Prøv igjen.</string>
+    <string name="auth_toast_pin_again">Feil PIN. Prøv igjen.</string>
+</resources>

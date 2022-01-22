@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">Om</string>
+
+    <string name="about_description">Fri to-faktoridentifikator for Android</string>
+
+    <string name="about_tab_about">Om</string>
+    <string name="about_tab_libraries">Bibliotek</string>
+
+    <!-- Misc -->
+    <string name="about_label_changelog">Endringslogg</string>
+    <string name="about_label_license">Lisens</string>
+    <string name="about_label_MIT">MIT</string>
+    <string name="about_label_source">Kildekode</string>
+    <string name="about_label_version">Versjon</string>
+    <string name="about_label_faq">O-S-S</string>
+    <string name="about_label_faq_long">Ofte stilte spørsmål</string>
+
+    <!-- Authors -->
+    <string name="about_title_authors">Utviklere</string>
+
+    <string name="about_label_main_developer">Hovedutvikler</string>
+    <string name="about_label_developer">Utvikler</string>
+    <string name="about_label_original_author">Opprinnelig utvikler</string>
+    <string name="about_label_original_app">Opprinnelig program</string>
+    <string name="about_label_website">Nettside</string>
+    <string name="about_label_github" translatable="false">GitHub</string>
+    <string name="about_label_donate">Doner</string>
+    <string name="about_name_author1" translatable="false">Jakob Nixdorf</string>
+    <string name="about_name_author_original" translatable="false">Bruno Bierbaumer</string>
+    <string name="about_name_author2" translatable="false">Richy HBM</string>
+
+    <string name="about_label_contributors">Bidragsytere</string>
+    <string name="about_label_translators">Translators</string>
+
+    <!-- Thumbnail disclaimer -->
+    <string name="about_title_thumbnail_disclaimer">Miniatyrbilde-ansvarsfraskrivelse</string>
+
+    <string name="about_thumbnails_disclaimer_no1"><b>1.</b> Alle miniatyrbilder tilhører deres
+        respektive eiere.</string>
+    <string name="about_thumbnails_disclaimer_no2"><b>2.</b> Bruk av disse varemerkene indikerer ikke
+        godkjenning av andOTP av eiere, og heller ikke vice versa.</string>
+    <string name="about_thumbnails_disclaimer_no3"><b>3.</b> Miniatybilder skal kun brukes til å
+        representere selskapet eller produktet de refererer.</string>
+    <string name="about_thumbnails_disclaimer_no4"><b>4. Ikke bruk miniatyrbilder til noe annet formål
+        enn å representere et gitt merke eller tjeneste.</b></string>
+
+    <!-- Support -->
+    <string name="about_title_support">Støtt utviklingen</string>
+    <string name="about_desc_support">Finn ut hvordan du kan støtte utviklingen av andOTP</string>
+
+    <string name="about_title_special_features">Spesialfunksjoner</string>
+    <string name="about_dialog_special_features">Vil du skru på dette?
+        De fleste av dem er OTP-algoritmer uten for standarden, som ble implementert på spesiell forespørsel.
+        De er <b>ikke støttet offisielt</b> og kan ha <b>gitte
+        begrensninger</b>. Les (og forstå) siden \"Special features\" på GitHub-
+        wiki-en for å lære mer om bruken av dem.</string>
+    <string name="about_toast_special_features">Spesialfunksjoner påslått</string>
+    <string name="about_toast_special_features_enabled">Spesialfunksjoner er allerede påslått</string>
+    <string name="about_toast_copied_to_clipboard">Donasjonslenke kopiert til utklippstavle</string>
+</resources>

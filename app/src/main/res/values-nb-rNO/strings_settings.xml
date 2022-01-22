@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
+    <string name="settings_activity_title">Innstillinger</string>
+
+    <!-- Categories -->
+    <string name="settings_category_title_security">Sikkerhet</string>
+    <string name="settings_category_title_ui">Brukergrensesnitt</string>
+    <string name="settings_category_title_backup">Sikkerhetskopi</string>
+
+    <!-- Titles -->
+    <string name="settings_title_tap_to_reveal">Trykk for å avsløre</string>
+    <string name="settings_title_tap_to_reveal_timeout">Tidsavbrudd for «Trykk for å avsløre»</string>
+    <string name="settings_title_auth">Identitetsbekreftelse</string>
+    <string name="settings_title_auth_password">Passord</string>
+    <string name="settings_title_auth_pin">PIN</string>
+    <string name="settings_title_encryption">Database-kryptering</string>
+    <string name="settings_title_panic">Panikkutløser</string>
+    <string name="settings_title_relock_screen_off">Lås igjen når skjermen skrus av</string>
+    <string name="settings_title_relock_background">Lås igjen når programmet sendes til bakgrunnen</string>
+    <string name="settings_title_auth_inactivity">Lås igjen ved inaktivitet</string>
+    <string name="settings_title_auth_inactivity_delay">Forsinkelse for inaktivitetslåsing</string>
+    <string name="settings_title_block_accessibility">Blokker tilgjengelighetstjenester</string>
+    <string name="settings_title_block_autofill">Blokker forhåndsutfylling</string>
+    <string name="settings_title_auto_unlock_after_autofill">Lås opp automatisk etter forhåndsutfylling</string>
+
+    <string name="settings_title_lang">Språk</string>
+    <string name="settings_title_theme_mode">Draktvalg</string>
+    <string name="settings_title_theme_black_auto">Svart</string>
+    <string name="settings_title_theme">Drakt</string>
+    <string name="settings_title_card_layout">Kort-oppsett</string>
+    <string name="settings_title_show_prev_token">Vis forrige symbol</string>
+    <string name="settings_title_label_size">Etikett-skriftstørrelse</string>
+    <string name="settings_title_label_display">Etikett-visning</string>
+    <string name="settings_title_tap_single">Enkelttrykk</string>
+    <string name="settings_title_tap_double">Dobbelttrykk</string>
+    <string name="settings_title_thumbnail_size_ask">Miniatyrbildestørrelse</string>
+    <string name="settings_title_split_group_size">Inndel symbol med mellomrom</string>
+    <string name="settings_title_tag_functionality">Oppførsel for etikettvelger</string>
+    <string name="settings_title_minimize_on_copy">Minimer program etter kopiering av OTP</string>
+    <string name="settings_title_search_includes">Søkeoppførsel</string>
+    <string name="settings_title_label_highlight_token">Framhev utløpende symbol</string>
+    <string name="settings_title_hide_global_timeout">Skjul tidsutløsfelt</string>
+    <string name="settings_title_show_individual_timeouts">Vis individuelle tidsavbrudd</string>
+    <string name="settings_title_focus_search_on_start">Fokuser på søk ved programstart</string>
+    <string name="settings_title_hide_issuer">Skjul utsteder</string>
+
+    <string name="settings_title_backup_append_date">Legg til dato i filnavn</string>
+    <string name="settings_title_backup_ask">Spør om filnavn</string>
+    <string name="settings_title_backup_location">Forvalgt sikkerhetskopilagringssted</string>
+    <string name="settings_title_backup_password">Sikkerhetskopipassord</string>
+    <string name="settings_title_auto_backup_password_enc">Automatisk sikkerhetskopi ved nye oppføringer</string>
+
+    <string name="settings_title_backup_broadcasts">Sikkerhetskopier kringkastinger</string>
+    <string name="settings_title_openpgp_provider">OpenPGP-tilbyder</string>
+    <string name="settings_title_openpgp_key_encrypt">OpenPGP-krypteringsnøkkel</string>
+    <string name="settings_title_openpgp_key_sign">OpenPGP-signeringsnøkkel (valgfritt)</string>
+    <string name="settings_title_openpgp_verify">Bekreft krypterte sikkerhetskopier</string>
+
+    <string name="settings_title_special_features">Skru på spesialfunksjoner</string>
+    <string name="settings_title_enable_screenshot">Tillat skjermavbildninger</string>
+    <string name="settings_title_enable_android_backup_service">Skru på Android sync</string>
+    <string name="settings_title_clear_keystore">Tøm KeyStore</string>
+
+    <!-- Descriptions -->
+    <string name="settings_desc_tap_to_reveal">Skjul OTP-symbolene som forvalg, noe som kreves at de
+        avsløres manuelt</string>
+    <string name="settings_desc_tap_to_reveal_timeout">Velg antall sekunder avslørte oppføringer skal
+        vises</string>
+    <string name="settings_desc_panic">Avgjør hva som skjer når panikkutløser mottas</string>
+    <string name="settings_desc_relock_screen_off">Krev identitetsbekreftelse etter at enhetsskjermen
+        skrus av</string>
+    <string name="settings_desc_relock_background">Krev identitetsbekreftelse etter at programmet sendes
+        til bakgrunnen (f.eks. ved å trykke på hjem-knappen)</string>
+    <string name="settings_desc_auth_inactivity">Krev identitetsbekreftelse etter at enheten har vært
+        inaktiv</string>
+    <string name="settings_desc_auth_inactivity_delay">Velg antall sekunder før identitetsbekreftelse
+        kreves igjen</string>
+    <string name="settings_desc_block_accessibility">Skjul sensitive felter fra tilgjengelighetstjenester.
+        <b>IKKE skru på dette hvis du avhenger av dem!</b></string>
+    <string name="settings_desc_block_autofill">Blokker forhåndsutfyllingstjenester fra tilgang til passordfelter
+        i programmet</string>
+    <string name="settings_desc_auto_unlock_after_autofill">Lås opp hvis passordet har blitt
+        forhåndsutfylt</string>
+    <string name="settings_desc_autofill_requires_android_o">Denne funksjonen krever Android versjon
+        8.0 (Oreo) eller høyere.</string>
+
+    <string name="settings_desc_theme_black_auto">Svart drakt i mørk modus.</string>
+    <string name="settings_desc_show_prev_token">Vis forrige symbol i tillegg til nåværende.</string>
+    <string name="settings_desc_minimize_on_copy">Programmer vil bli minimert når du kopierer OTP til utklippstavle.</string>
+    <string name="settings_desc_search_includes">Angi hvilke verdier som skal inkluderes når du søker.</string>
+    <string name="settings_desc_label_highlight_token">Framhever symboler i rødt hvis det utløper de neste åtte sekundene.</string>
+    <string name="settings_desc_hide_global_timeout">Skjul tidsavbruddsfelt som vises på toppen av skjermen.</string>
+    <string name="settings_desc_show_individual_timeouts">Vis individuelt tidsavbruddsfelt for hver oppføring.
+        Dette kan gjøre programmet tregere. Kun skru det på hvis det er nødvendig.</string>
+    <string name="settings_desc_focus_search_on_start">Fokuser søket når programmet åpnes.</string>
+    <string name="settings_desc_hide_issuer">Skjuler utstederetikett som ellers vises for hvert kort</string>
+
+    <string name="settings_desc_backup_append_date">Legg til nåværende dato og tid til foreslått
+        sikkerhetskopifilnavn</string>
+    <string name="settings_desc_backup_ask">Spør om filnavn hver gang en sikkerhetskopi opprettes eller
+        gjenopprettes</string>
+    <string name="settings_desc_backup_location">Velg forvalgt sikkerhetskopilagringssted</string>
+    <string name="settings_desc_backup_location_set">Sikkerhetskopilagringssted valgt</string>
+    <string name="settings_desc_backup_password">Sett passordet brukt til kryptering av
+        sikkerhetskopiene</string>
+
+    <string name="settings_desc_auto_backup_password_enc">Lager en ny kryptert sikkerhetskopi når nye
+        oppføringer legges til eller redigeres, hvis innstillingsvilkårene oppfylles</string>
+    <string name="settings_desc_auto_backup_requirements">Sett forvalgt sikkerhetskopilagringssted og et
+        sikkerhetskopipassord for å skru på denne innstillingen</string>
+
+    <string name="settings_desc_backup_broadcasts">Velg hvilken sikkerhetskopityper som kan utløses av
+        tredjepartsprogrammer ved bruk av kringkastinger</string>
+
+    <string name="settings_desc_openpgp_key_encrypt">E-postadresse for OpenPGP-nøkkelen brukt til å kryptere
+        sikkerhetskopiene</string>
+    <string name="settings_desc_openpgp_verify">Krypterte sikkerhetskopier importeres kun når de er signert
+        med en gyldig nøkkel</string>
+
+    <string name="settings_desc_special_features">Fjern uthaking for å skru av spesialfunksjonene igjen</string>
+    <string name="settings_desc_enable_screenshot">Tillat skjermavbildninger av hovedskjermen
+        (avskrudd som forvalg av sikkerhetshensyn)</string>
+    <string name="settings_desc_enable_android_backup_service">Lar andOTP bruke Android
+        sin innebygde sikkerhetskopitjeneste for sikkerhetskopiering av nøkler og innstillinger</string>
+    <string name="settings_desc_clear_keystore">Slett krypteringsnøkkel fra KeyStore</string>
+
+    <!-- Toasts -->
+    <string name="settings_toast_auth_device_not_secure">Denne funksjonen krever at en sikker låseskjerm
+        settes opp (Innstillinger → Sikkerhet → Skjermlås)</string>
+
+    <string name="settings_toast_password_empty">Tomt passord tillates ikke.
+        Sett identitetsbekreftelse til \"Ingen\" for å skru det av.</string>
+
+    <string name="settings_toast_encryption_changing">Prøver å endre
+        databasekryptering …</string>
+    <string name="settings_toast_encryption_change_success">Endret
+        databasekrypteringen.</string>
+    <string name="settings_toast_encryption_change_failed">Klarte ikke å endre databasekryptering.
+        Går tilbake til opprinnelig tilstand.</string>
+    <string name="settings_toast_encryption_backup_failed">Klarte ikke å opprette intern sikkerhetskopi.
+        Avbryter …</string>
+    <string name="settings_toast_encryption_no_key">Klarte ikke å hente krypteringsnøkkelen. Avbryter …</string>
+    <string name="settings_toast_encryption_auth_failed">Identitetsbekreftelse mislyktes.</string>
+
+    <string name="settings_toast_auth_upgrade_failed">Klarte ikke å oppgradere ditt passord/PIN til den nye
+        krypteringen. Tilbakestill det manuelt i <b>innstillingene</b>.</string>
+
+    <string name="settings_toast_android_sync_enabled">Android sync på</string>
+    <string name="settings_toast_android_sync_disabled">Android sync av</string>
+
+    <string name="settings_dialog_title_warning">Advarsel</string>
+    <string name="settings_dialog_title_error">Feil</string>
+    <string name="settings_dialog_title_clear_keystore">Tøm KeyStore?</string>
+    <string name="settings_dialog_title_android_sync">Android sync</string>
+
+    <string name="settings_dialog_msg_encryption_change">andOTP vil nå prøve å endre din
+        databasekryptering. Hvis det mislykkes vil en intern sikkerhetskopi gjenopprettes og krypteringen
+        forblir uendret.\n\n<b>Det er alltid en god idé å ha en sikkerhetskopi i fall noe uventet
+        skjer!</b></string>
+    <string name="settings_dialog_msg_auth_invalid_with_encryption">Du kan kun bruke passord eller PIN
+        når databasekryptering er satt til \"Passord/PIN\".</string>
+    <string name="settings_dialog_msg_encryption_invalid_with_auth">Du må først sette
+        identitetsbekreftelse til «Passord» eller «PIN».</string>
+    <string name="settings_dialog_msg_encryption_invalid_without_credentials">Du må først sette
+        et passord eller PIN før du endrer krypteringen.</string>
+
+    <string name="settings_dialog_msg_clear_keystore_password">I noen tilfeller vil tømming av KeyStore
+        løse problemene. Du bør kun fortsette hvis du vet hva du gjør!\n\nSiden
+        <b>Databasekryptering</b> er satt til <b>Password/PIN</b> skal du ikke miste data
+        når du gjør dette (men det skader aldri å ha en sikkerhetstkopi uansett).\n\n<b>
+        Tøm KeyStore?</b></string>
+    <string name="settings_dialog_msg_clear_keystore_keystore">I noen tilfeller vil tømming av KeyStore
+        løse problemene. Du bør kun forsette hvis du vet hva du gjør!\n\n<b>Advarsel</b>:
+        Siden <b>Databasekryptering</b> er satt til <b>Android KeyStore</b> vil du miste alle
+        kontoene dine. Sørg for at du har en sikkerhetskopi!\n\n<b>
+        Tøm KeyStore?</b></string>
+
+    <string name="settings_dialog_msg_android_sync_disabled_encryption">Android sync kan ikke brukes med KeyStore-
+        kryptering, <b>du bør utføre en manuell sikkerhetskopi!</b></string>
+
+    <!-- List entries -->
+    <string-array name="settings_entries_auth">
+        <item>Ingen</item>
+        <item>Passord</item>
+        <item>PIN</item>
+        <item>Enhets-identitetsdetaljer</item>
+    </string-array>
+
+    <string-array name="settings_entries_encryption">
+        <item>Android KeyStore</item>
+        <item>Passord/PIN</item>
+    </string-array>
+
+    <string-array name="settings_entries_panic">
+        <item>Fjern alle kontoer</item>
+        <item>Tilbakestill programinnstillinger</item>
+    </string-array>
+
+    <string-array name="settings_entries_card_layout">
+        <item>Kompakt</item>
+        <item>Forvalg</item>
+        <item>Full</item>
+    </string-array>
+
+    <string-array name="settings_entries_tap">
+        <item>Ingenting</item>
+        <item>Avslør/skjul</item>
+        <item>Kopier</item>
+        <item>Kopier og gå til bakgrunnen</item>
+        <item>Del som tastetrykk</item>
+    </string-array>
+
+    <string-array name="settings_entries_search_includes">
+        <item>Etikett</item>
+        <item>Utsteder</item>
+        <item>Etiketter</item>
+    </string-array>
+  
+    <string-array name="settings_entries_theme_mode">
+        <item>Auto</item>
+        <item>Manuell</item>
+    </string-array>
+
+    <string-array name="settings_entries_auto_backup_password_enc">
+        <item>Av</item>
+        <item>Nye oppføringer</item>
+        <item>Alle redigeringer</item>
+    </string-array>
+
+    <string-array name="settings_entries_theme">
+        <item>Lys</item>
+        <item>Mørk</item>
+        <item>Svart</item>
+    </string-array>
+
+    <string-array name="settings_entries_label_display">
+        <item>Forkort</item>
+        <item>Rulling</item>
+        <item>Flere linjer</item>
+    </string-array>
+
+    <string-array name="settings_entries_thumbnail_size">
+        <item>Skjult</item>
+        <item>Mikro</item>
+        <item>Små</item>
+        <item>Forvalg</item>
+        <item>Middels</item>
+        <item>Store</item>
+    </string-array>
+
+    <string-array name="settings_entries_split_group_size">
+        <item>Ikke del</item>
+        <item>Etter to tegn</item>
+        <item>Etter tre tegn</item>
+    </string-array>
+
+    <string-array name="settings_entries_tag_functionality">
+        <item>Ikke vis alle oppføringer som samsvarer med <b>alle</b> valgte etiketter (eller)</item>
+        <item>Kun vis oppføringer som samsvarer med <b>alle</b> valgte etiketter (og)</item>
+        <item>Veksle mellom etiketter (kun tillat én valgt etikett av gangen)</item>
+    </string-array>
+
+    <string-array name="settings_entries_backup_broadcasts">
+        <item>Sikkerhetskopier i klartekst</item>
+        <item>Krypterte sikkerhetskopier</item>
+    </string-array>
+    
+    <!-- Special -->
+    <string name="settings_lang_sys_default">Systemforvalg</string>
+
+    <!-- PasswordPreference -->
+    <string name="settings_hint_password">Skriv inn nytt passord</string>
+    <string name="settings_hint_pin">Skriv inn ny PIN</string>
+    <string name="settings_hint_password_confirm">Bekreft passord</string>
+    <string name="settings_hint_pin_confirm">Bekreft PIN</string>
+
+    <string name="settings_label_short_password">Passordet må være minst %1$d tegn.</string>
+    <string name="settings_label_short_pin">PIN må være minst %1$d tegn.</string>
+</resources>
