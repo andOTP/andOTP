@@ -337,6 +337,7 @@ public class EntryThumbnail {
         RipeNNC(R.drawable.thumb_ripe_ncc),
         Ripio(R.drawable.thumb_ripio),
         Robinhood(R.drawable.thumb_robinhood),
+        RocketChat(R.drawable.thumb_rocket_chat),
         Rockstar(R.drawable.thumb_rockstar),
         Roundcube(R.drawable.thumb_roundcube),
         RSS(R.drawable.thumb_rss),
