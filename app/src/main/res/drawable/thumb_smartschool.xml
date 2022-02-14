@@ -5,8 +5,7 @@
     android:viewportWidth="128"
     android:viewportHeight="128">
   <path
-      android:pathData="M0,12.8v102.4c0,7.4 5.4,12.8 12.8,12.8h102.4c7.4,0 12.8,-5.4 12.8,-12.8V12.8C128,5.4 122.6,0 115.2,0H12.8C5.4,0 0,5.4 0,12.8z"
-      android:fillType="evenOdd">
+      android:pathData="M0,12.8v102.4c0,7.4 5.4,12.8 12.8,12.8h102.4c7.4,0 12.8,-5.4 12.8,-12.8V12.8C128,5.4 122.6,0 115.2,0H12.8C5.4,0 0,5.4 0,12.8z">
     <aapt:attr name="android:fillColor">
       <gradient 
           android:startY="0.008"
