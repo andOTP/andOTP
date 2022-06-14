@@ -20,6 +20,7 @@
     <!-- Custom formatting -->
     <string name="format_custom_period">%d s</string>
     <string name="card_separator" translatable="false">&#160;-&#160;</string>
+    <string name="bullet_placeholder" translatable="false">&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;</string>
 
     <!-- Hints -->
     <string name="hint_label">Label</string>

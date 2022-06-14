@@ -112,10 +112,11 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:alpha="0.4"
+                                    android:contentDescription="@string/label_hidden"
+                                    android:text="@string/bullet_placeholder"
                                     android:textColor="?android:attr/textColorSecondary"
                                     android:textSize="28sp"
-                                    android:textStyle="bold"
-                                    android:text="@string/label_hidden" />
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
                         </LinearLayout>
