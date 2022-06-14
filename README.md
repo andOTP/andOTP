@@ -8,6 +8,14 @@
 
 ![andOTP](./assets/logo.png)
 
+## Unmaintained
+
+**This repository is currently unmaintained.**
+
+See [this XDA post](https://forum.xda-developers.com/t/app-4-4-open-source-andotp-open-source-two-factor-authentication-for-android.3636993/post-87021655) for more details.
+
+## Intro
+
 andOTP is a two-factor authentication App for Android 5.1+.
 
 It implements Time-based One-time Passwords (TOTP) and HMAC-Based One-Time Passwords (HOTP).
