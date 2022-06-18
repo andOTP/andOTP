@@ -13,8 +13,12 @@ public class EditorActionHelper {
     private EditorActionHelper() { /* not allowed */ }
 
     public static boolean isActionDoneOrKeyboardEnter(int actionId, KeyEvent event) {
-        return actionId == EditorInfo.IME_ACTION_DONE
-                || event.getAction() == ACTION_DOWN && (event.getKeyCode() == KEYCODE_ENTER || event.getKeyCode() == KEYCODE_NUMPAD_ENTER);
+        boolean isKeyboardEnterEvent = false;
+        if (event != null) {
+            isKeyboardEnterEvent = event.getAction() == ACTION_DOWN && (event.getKeyCode() == KEYCODE_ENTER || event.getKeyCode() == KEYCODE_NUMPAD_ENTER);
+        }
+
+        return actionId == EditorInfo.IME_ACTION_DONE || isKeyboardEnterEvent;
     }
 
     public static boolean isActionUpKeyboardEnter(KeyEvent event) {
