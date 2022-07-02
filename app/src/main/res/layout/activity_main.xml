@@ -65,7 +65,9 @@
                 android:paddingEnd="@dimen/activity_margin_small"
                 android:paddingTop="@dimen/activity_margin_xsmall"
                 android:paddingBottom="@dimen/fab_recyclerview_padding"
-                android:clipToPadding="false" />
+                android:clipToPadding="false"
+                android:scrollbars="vertical"
+                android:fadeScrollbars="true"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
