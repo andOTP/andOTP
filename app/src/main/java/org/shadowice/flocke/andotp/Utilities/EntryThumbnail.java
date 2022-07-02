@@ -383,6 +383,7 @@ public class EntryThumbnail {
         TurboTax(R.drawable.thumb_turbotax),
         Tutanota(R.drawable.thumb_tutanota),
         TUWien(R.drawable.thumb_tuwien_ac_at),
+        Tweakers(R.drawable.thumb_tweakers),
         Twilio(R.drawable.thumb_twilio),
         Twitch(R.drawable.thumb_twitch),
         Twitter(R.drawable.thumb_twitter),
