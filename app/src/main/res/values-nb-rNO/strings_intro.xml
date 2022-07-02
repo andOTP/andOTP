@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
+    <string name="intro_slide1_title">La oss begynne</string>
+    <string name="intro_slide1_desc">Velkommen til <b>andOTP</b>. Denne veilederen vil geleide deg gjennom
+        oppsettsprosessen. Ta hensyn og les nøye for å unngå å miste data.
+        \n\nDu kan endre disse innstillingene senere i <b>innstillingene</b>.</string>
+
+    <string name="intro_slide2_desc">For å sikre tilgang til kontoene dine bruker <b>andOTP</b>
+        kryptering for å lagre kontodata. Her kan du velge hvilken krypteringsmode du vil
+        bruke.</string>
+    <string name="intro_slide2_desc_keystore">KeyStore (nøkkelknippe) er en systemkomponent i Android
+        som brukes til å lagre kryptografiske nøkler sikkert. Fordelen er at nøklene lagres
+        utenfor <b>andOTP</b> sin data, og kan fungere med maskinvarebasert kryptering
+        (hvis enheten din støtter deg). Dog forhindrer dette eksterne sikkerhetskopiprogrammer
+        <b>(som f.eks. OAndBackupX)</b>. Hvis du velger denne metoden må du belage deg på den
+        interne sikkerhetskopifunksjonen i <b>andOTP</b>.\n\n<b>Advarsel</b>: KeyStore lager mye krøll,
+        så kun bruk det hvis du absolutt må. Hvis du ikke bryr deg om å skrive inn et passord/PIN
+        hver gang du starter <b>andOTP</b>, så <b>anbefales det sterkt å bruke den passord-baserte
+        krypteringen istedenfor</b>.</string>
+    <string name="intro_slide2_desc_password">Denne metoden krypterer dataen din med en nøkkel
+        generert fra et passord eller PIN. Hovedfordelen er at eksterne sikkerhetskopiprogrammer
+        (som f.eks OAndBackupX) fungerer som forventet. Det er også mindre utsatt for feil enn
+        KeyStore. Bakdelen er at du må skrive noe inn hver gang du starter
+        <b>andOTP</b>.</string>
+
+    <string name="intro_slide3_desc_keystore">Her kan du sette opp en metode for låsing av
+        <b>andOTP</b>. Siden du har valg <b>Android KeyStore</b> som krypteringsmetode er dette steget
+        valgfritt.</string>
+    <string name="intro_slide3_desc_password">Her kan du sette opp en metode for låsing av
+        <b>andOTP</b>. Siden du har valgt<b>Passord/PIN</b> som krypteringsmetode må du velge
+        et passord eller en PIN for å fortsette.</string>
+    <string name="intro_slide3_warn_no_password">Sett et passord for å fortsette.</string>
+    <string name="intro_slide3_warn_no_pin">Velg en PIN for å fortsette.</string>
+    <string name="intro_slide3_warn_confirm_password">Bekreft passordet for å fortsette.</string>
+    <string name="intro_slide3_warn_password_mismatch">Passordene må samsvare.</string>
+    <string name="intro_slide3_warn_confirm_pin">Bekreft din PIN for å fortsette.</string>
+    <string name="intro_slide3_warn_pin_mismatch">PIN må stemme overens.</string>
+
+    <string name="intro_slide4_title">Fullført</string>
+    <string name="intro_slide4_title_failed">Oppsett mislyktes</string>
+    <string name="intro_slide4_title_progress">Vent …</string>
+    <string name="intro_slide4_desc_failed">Klarte ikke å sette et passord. Denne introen vil bli
+        vist neste gang også.</string>
+    <string name="intro_slide4_desc">Innstillingene dine har blitt lagret. Du kan nå bruke
+        <b>andOTP</b>.</string>
+    <string name="intro_slide4_desc_progress">Innstillingene dine blir lagret og krypteringsnøkkelen
+        genereres …</string>
+
+    <string name="intro_slide_android_backup_desc">Android sync er en innebygd Android-funksjon for å sikkerheskopiere daa til en tredjepartstjeneste. Sikkerheskoier lagres alltid kryptert og utilgjengelige for tredjeparter som ikke har hovedpassordet ditt. Dette krever bruk av passord-krypteringsmetode.</string>
+</resources>

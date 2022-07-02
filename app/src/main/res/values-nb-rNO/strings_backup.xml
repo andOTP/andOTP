@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
+    <string name="backup_activity_title">Sikkerhetskopier</string>
+
+    <string name="backup_title_replace">Erstatt eksisterende oppføringer</string>
+    <string name="backup_desc_replace">Erstatter alle gamle oppføringer når en sikkerhetskopi importeresIf enabled all old entries are replaced when importing a
+        og kun sikkerhetskopien finnes. Skrur du dette av vil gamle oppføringer og sikkerhetskopi-innhold
+        flettes.</string>
+
+    <string name="backup_desc_openpgp_provider">Dy må installere en OpenPGP-tilbyder og skru den på
+        i <b>innstillingene</b> for å bruke denne funksjonen.
+    </string>
+    <string name="backup_desc_openpgp_keyid">Du må velge en OpenPGP-nøkkel i <b>innstillingene</b>
+        før du kan lage krypterte sikkerhetskopier.
+    </string>
+
+    <!-- Dialogs -->
+    <string name="backup_dialog_title_security_warning">Sikkerhetsadvarsel</string>
+    <string name="backup_dialog_msg_export_warning">Eksporter databasen som JSON-fil i
+        klartekst? Denne filen inneholder alle dine hemmelige nøkler. <b>Oppbevar den trygt</b>!
+    </string>
+
+    <string name="backup_receiver_title_backup_failed">Sikkerhetskopiering mislyktes</string>
+    <string name="backup_receiver_title_backup_success">Utført</string>
+
+    <string name="backup_receiver_plain_disabled">Sikerhetskopier i klartekst tillates ikke.
+        Skru dette på i <b>innstillingene</b> for gjøre det.</string>
+    <string name="backup_receiver_encrypted_disabled">Krypterte sikkerhetskopier tillates ikke.
+        Skru dette på i <b>innstillingene</b> for å gjøre det.</string>
+
+    <string name="backup_receiver_read_permission_failed">Innvilg lesetilgang for du utfører
+        sikkerhetskopiering</string>
+    <string name="backup_receiver_write_permission_failed">Innvilg skrivetilgang før du utfører
+        sikkerhetskopiering</string>
+    <string name="backup_receiver_custom_encryption_failed">Passord/PIN-basert kryptering støttes
+        ikke med kringkastings-sikkerhetskopi</string>
+    <string name="backup_receiver_no_location_set">Velg et lagringssted for sikkerhetskopi i
+        <b>innstillingene</b> først</string>
+    <string name="backup_receiver_no_password_set">Velg et passord i <b>innstillingene</b>
+        først</string>
+
+    <!-- Notification channels -->
+    <string name="notification_channel_name_backup_failed">Automatisk sikkerhetskopi mislyktes</string>
+    <string name="notification_channel_name_backup_success">Utført</string>
+
+    <string name="notification_channel_desc_backup_failed">Disse merknadene vises når en
+        automatisk sikkerhetskopi har mislyktes</string>
+    <string name="notification_channel_desc_backup_success">Disse merknadene vises når en automatisk
+        sikkerhetskopi er utført</string>
+
+    <!-- Toast messages -->
+    <string name="backup_toast_no_location">Velg et lagringssted for sikkerhetskopier i <b>innstillingene</b></string>
+    <string name="backup_toast_location_access_failed">Fikk ikke tilgang til lagringssted for sikkerhetskopier</string>
+    <string name="backup_toast_file_creation_failed">Failed to create backup file!</string>
+
+    <string name="backup_toast_export_success">Eksportert til eksternlagring</string>
+    <string name="backup_toast_export_failed">Eksport til eksternlagring mislyktes</string>%
+    <string name="backup_toast_import_success">Importert fra eksternlagring</string>
+    <string name="backup_toast_import_save_failed">Klarte ikke å lagre gjenopprettede oppføringer</string>
+    <string name="backup_toast_import_decryption_failed">Kunne ikke dekryptere sikkerhetskopi</string>
+    <string name="backup_toast_import_no_entries">Det er ingen oppføringer i importert data</string>
+    <string name="backup_toast_import_failed">Kunne ikke importere fra eksternlager</string>
+    <string name="backup_toast_storage_not_accessible">Fikk ikke tilgang til eksternlager</string>
+    <string name="backup_toast_openpgp_error">OpenPGP-feil: %s</string>
+    <string name="backup_toast_openpgp_not_verified">Fant ingen bekreftet signatur</string>
+    <string name="backup_toast_crypt_password_not_set">Passord er ikke satt. Sjekk <b>innstillingene</b></string>
+    <string name="backup_toast_file_selection_failed">Kunne ikke åpne filvelgeren</string>
+
+    <string name="backup_label_type">Sikkerhetskopitype: </string>
+
+    <string name="backup_label_warning_plain">Sikkerhetskopien vil bli lagret i en ukryptert fil
+        i klartekst. Kun bruk dette hvis det er helt nødvendig og <b>oppbevar den på et trygt sted</b>!</string>
+    <string name="backup_label_crypt">Sikkerhetskopien vil bli lagret kryptert med et egendefinert passord
+        kryptert med AES-256. Du kan sette opp et forvalgt passord i innstillingene hvis du
+        ikke ønsker å skrive det inn hver gang du lager en sikkerhetskopi.</string>
+    <string name="backup_label_pgp">Sikkerhetskopien vil bli lagret kryptert med PGP-nøkkelen du angav
+        i innstillingene. Krypteringen vil håndteres med et tredjepartsprogram.specified in the settings.</string>
+
+    <string name="backup_check_restore_old">Gjenopprett gammelt sikkerhetskopiformat (laget med andOTP før versjon
+        0.6.3)</string>
+
+    <string name="backup_button_backup">Opprett sikkerhetskopi</string>
+    <string name="backup_button_restore">Gjenopprett sikkerhetskopi</string>
+
+    <string-array name="backup_list_type_names">
+        <item>Klartekst</item>
+        <item>Kryptert</item>
+        <item>OpenPGP</item>
+    </string-array>
+
+    <string-array name="backup_list_type_values" translatable="false">
+        <item>plain</item>
+        <item>crypt</item>
+        <item>pgp</item>
+    </string-array>
+</resources>
