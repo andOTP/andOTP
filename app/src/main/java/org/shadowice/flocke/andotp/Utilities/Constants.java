@@ -121,8 +121,7 @@ public class Constants {
     final static int PBKDF2_BENCHMARK_ITERATIONS    = 50000;
 
     // PBKDF2 settings for backups
-    final static int PBKDF2_MIN_BACKUP_ITERATIONS   = 140000;
-    final static int PBKDF2_MAX_BACKUP_ITERATIONS   = 160000;
+    final static int PBKDF2_BACKUP_ITERATIONS       = 750000;
 
     // Authentication
     public final static int AUTH_MIN_PIN_LENGTH        = 4;

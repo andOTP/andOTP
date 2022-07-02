@@ -127,11 +127,6 @@ public class EncryptionHelper {
         }
     }
 
-    public static int generateRandomIterations() {
-        Random rand = new Random();
-        return rand.nextInt((Constants.PBKDF2_MAX_BACKUP_ITERATIONS - Constants.PBKDF2_MIN_BACKUP_ITERATIONS) + 1) + Constants.PBKDF2_MIN_BACKUP_ITERATIONS;
-    }
-
     public static byte[] generateRandom(int length) {
         final byte[] raw = new byte[length];
         new SecureRandom().nextBytes(raw);

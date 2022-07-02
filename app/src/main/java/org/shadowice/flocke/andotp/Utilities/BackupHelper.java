@@ -104,7 +104,7 @@ public class BackupHelper {
         boolean success;
 
         try {
-            int iter = EncryptionHelper.generateRandomIterations();
+            int iter = Constants.PBKDF2_BACKUP_ITERATIONS;
             byte[] salt = EncryptionHelper.generateRandom(Constants.ENCRYPTION_IV_LENGTH);
 
             SecretKey key = EncryptionHelper.generateSymmetricKeyPBKDF2(password, iter, salt);
