@@ -2,6 +2,7 @@
     <!-- Light application theme -->
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="android:windowLightNavigationBar">true</item>
+        <item name="navigationBarColor">?android:attr/colorBackground</item>
     </style>
 
     <style name="AppTheme.Dark" parent="AppBaseTheme.Dark">

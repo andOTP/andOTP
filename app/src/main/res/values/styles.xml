@@ -25,7 +25,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="windowBackground">?android:attr/colorBackground</item>
-        <item name="navigationBarColor">?android:attr/colorBackground</item>
+        <item name="navigationBarColor">@color/black</item>
 
         <item name="colorGithub">@color/github_dark</item>
         <item name="thumbnailBackground">@android:color/transparent</item>
