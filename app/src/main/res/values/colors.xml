@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#388E3C</color>                  <!-- material_green_700 -->
-    <color name="colorPrimaryDark">#00600F</color>
-    <color name="colorAccent">#FFCC00</color>
+    <color name="colorPrimary">#16213E</color>
+    <color name="colorPrimaryDark">#1A1A2E</color>
+    <color name="colorAccent">#2286c3</color>                  <!-- material_blue_300 P - Dark -->
 
+    <color name="black_colorPrimary">@color/black</color>
+    <color name="black_colorPrimaryDark">@color/black</color>
     <color name="divider">#B6B6B6</color>
 
     <color name="github_dark">#333333</color>
@@ -12,11 +14,30 @@
     <color name="warning_red">#b71c1c</color>                   <!-- material_red_900 -->
 
     <color name="black">#000000</color>
-
-    <color name="dark_thumbnail_background">#ffe0e0e0</color>   <!-- material_grey_300 -->
+    <color name="white">#FFFFFF</color>
 
     <color name="fab_small_label_background">#212121</color>
 
     <color name="expiring_red_light">#f05545</color>            <!--Light color from https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=B71C1C-->
     <color name="expiring_red_dark">#d50000</color>             <!--Dark color from https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=D50000-->
+
+    <!--  Thumbnail Colors    -->
+    <color name="github">#161614</color>
+    <color name="dark_github">#ffffff</color>
+    <color name="amazon_gold">#FFB300</color>
+    <color name="amazon_main">#37474F</color>
+    <color name="airtable">#333333</color>
+    <color name="aws">#252f3e</color>
+    <color name="atlantic">#1A1A1A</color>
+    <color name="synology_grey">#B5B5B6</color>
+    <color name="synology_black">#231815</color>
+    <color name="keeper_gold">#FFC700</color>
+    <color name="bitpanda">#282828</color>
+    <color name="betterment">#2F263C</color>
+    <color name="crowdin">#2E3340</color>
+    <color name="docusign">#100f0d</color>
+    <color name="eveonline">#211e1e</color>
+    <color name="g2a_white">#555E63</color>
+    <color name="g2a_dark">#EBEBEB</color>
 </resources>
+

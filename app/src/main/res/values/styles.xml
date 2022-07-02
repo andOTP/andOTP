@@ -6,10 +6,31 @@
 
     <attr name="colorGithub" format="reference" />
     <attr name="thumbnailBackground" format="reference" />
-    
+
+    <attr name="colorlayoutbg" format="reference" />
     <attr name="navigationBarColor" format="reference" />
 
     <attr name="colorExpiring" format="reference"/>
+
+    <!--  Thumbnail Colors  -->
+    <attr name="C_Github" format="reference"/>
+    <attr name="amazon_gold" format="reference"/>
+    <attr name="amazon_main" format="reference"/>
+    <attr name="Adobetext" format="reference"/>
+    <attr name="adafruit" format="reference"/>
+    <attr name="airtable" format="reference"/>
+    <attr name="aws" format="reference"/>
+    <attr name="black_white" format="reference"/>
+    <attr name="atlantic" format="reference"/>
+    <attr name="synology" format="reference"/>
+    <attr name="keeper_gold_black" format="reference"/>
+    <attr name="keeper_black_gold" format="reference"/>
+    <attr name="bitpanda" format="reference"/>
+    <attr name="betterment" format="reference"/>
+    <attr name="crowdin" format="reference"/>
+    <attr name="docusign" format="reference"/>
+    <attr name="eveonline" format="reference"/>
+    <attr name="g2a_2" format="reference"/>
 
     <!-- General styles -->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -23,7 +44,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
         <item name="windowBackground">?android:attr/colorBackground</item>
         <item name="navigationBarColor">?android:attr/colorBackground</item>
 
@@ -40,6 +60,26 @@
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource</item>
 
         <item name="colorExpiring">@color/expiring_red_dark</item>
+
+        <!-- Thumbnails -->
+        <item name="C_Github">@color/github</item>
+        <item name="amazon_gold">@color/amazon_gold</item>
+        <item name="amazon_main">@color/amazon_main</item>
+        <item name="Adobetext">@color/black</item>
+        <item name="adafruit">@color/black</item>
+        <item name="airtable">@color/airtable</item>
+        <item name="aws">@color/aws</item>
+        <item name="black_white">@color/black</item>
+        <item name="atlantic">@color/atlantic</item>
+        <item name="synology">@color/synology_black</item>
+        <item name="keeper_black_gold">@color/black</item>
+        <item name="keeper_gold_black">@color/keeper_gold</item>
+        <item name="bitpanda">@color/bitpanda</item>
+        <item name="betterment">@color/betterment</item>
+        <item name="crowdin">@color/crowdin</item>
+        <item name="docusign">@color/docusign</item>
+        <item name="eveonline">@color/eveonline</item>
+        <item name="g2a_2">@color/g2a_white</item>
     </style>
 
     <style name="AppTheme" parent="AppBaseTheme"/>
@@ -62,10 +102,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
         <item name="windowBackground">?android:attr/colorBackground</item>
         <item name="navigationBarColor">?android:attr/colorBackground</item>
-        <item name="thumbnailBackground">@color/dark_thumbnail_background</item>
 
         <item name="colorGithub">@color/github_light</item>
 
@@ -79,6 +117,26 @@
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource_dark</item>
 
         <item name="colorExpiring">@color/expiring_red_light</item>
+
+        <!-- Thumbnails -->
+        <item name="C_Github">@color/dark_github</item>
+        <item name="amazon_gold">@color/amazon_gold</item>
+        <item name="amazon_main">@color/white</item>
+        <item name="Adobetext">@color/white</item>
+        <item name="adafruit">@color/white</item>
+        <item name="airtable">@color/white</item>
+        <item name="aws">@color/white</item>
+        <item name="black_white">@color/white</item>
+        <item name="atlantic">@color/white</item>
+        <item name="synology">@color/synology_black</item>
+        <item name="keeper_black_gold">@color/keeper_gold</item>
+        <item name="keeper_gold_black">@color/black</item>
+        <item name="bitpanda">@color/white</item>
+        <item name="betterment">@color/white</item>
+        <item name="crowdin">@color/white</item>
+        <item name="docusign">@color/white</item>
+        <item name="eveonline">@color/white</item>
+        <item name="g2a_2">@color/g2a_dark</item>
     </style>
 
     <style name="AppTheme.Dark" parent = "AppBaseTheme.Dark"/>
@@ -94,14 +152,11 @@
 
     <!-- Black application theme. -->
     <style name="AppBaseTheme.Black" parent="Theme.AppCompat">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/black_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/black_colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
         <item name="windowBackground">@color/black</item>
         <item name="navigationBarColor">@color/black</item>
-        <item name="thumbnailBackground">@color/dark_thumbnail_background</item>
-
         <item name="colorGithub">@color/github_light</item>
 
         <item name="cardStyle">@style/CardViewStyle.Black</item>
@@ -114,6 +169,26 @@
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource_dark</item>
 
         <item name="colorExpiring">@color/expiring_red_light</item>
+
+        <!--   Thumbnails   -->
+        <item name="C_Github">@color/dark_github</item>
+        <item name="amazon_gold">@color/amazon_gold</item>
+        <item name="amazon_main">@color/white</item>
+        <item name="Adobetext">@color/white</item>
+        <item name="adafruit">@color/white</item>
+        <item name="airtable">@color/white</item>
+        <item name="aws">@color/white</item>
+        <item name="black_white">@color/white</item>
+        <item name="atlantic">@color/white</item>
+        <item name="synology">@color/synology_grey</item>
+        <item name="keeper_black_gold">@color/keeper_gold</item>
+        <item name="keeper_gold_black">@color/black</item>
+        <item name="bitpanda">@color/white</item>
+        <item name="betterment">@color/white</item>
+        <item name="crowdin">@color/white</item>
+        <item name="docusign">@color/white</item>
+        <item name="eveonline">@color/white</item>
+        <item name="g2a_2">@color/g2a_dark</item>
     </style>
 
     <style name="AppTheme.Black" parent="AppBaseTheme.Black"/>

@@ -7,6 +7,12 @@
     android:layout_height="match_parent"
     android:padding="@dimen/activity_margin_xlarge">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_lock" />
+
     <TextView
         android:id="@+id/passwordLabel"
         android:layout_width="match_parent"

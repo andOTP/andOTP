@@ -31,7 +31,6 @@
                 android:layout_height="match_parent"
                 android:padding="@dimen/activity_margin"
                 android:paddingStart="@dimen/card_padding_without_corners"
-                android:background="?attr/thumbnailBackground"
                 tools:ignore="RtlSymmetry">
 
                 <ImageView
@@ -112,10 +111,10 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:alpha="0.4"
+                                    android:text="@string/label_hidden"
                                     android:textColor="?android:attr/textColorSecondary"
                                     android:textSize="28sp"
-                                    android:textStyle="bold"
-                                    android:text="@string/label_hidden" />
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
                         </LinearLayout>
@@ -197,9 +196,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:padding="@dimen/activity_margin_small"
                             android:background="?android:attr/selectableItemBackground"
                             android:contentDescription="@string/button_card_copy"
+                            android:padding="@dimen/activity_margin_xsmall"
                             app:srcCompat="@drawable/ic_content_copy_gray" />
 
                         <ImageButton
@@ -207,9 +206,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:padding="@dimen/activity_margin_small"
                             android:background="?android:attr/selectableItemBackground"
                             android:contentDescription="@string/button_card_options"
+                            android:padding="@dimen/activity_margin_xsmall"
                             app:srcCompat="@drawable/ic_more_vert_gray" />
                     </LinearLayout>
 
